@@ -1,0 +1,4 @@
+getunik_bleed_hd_security:
+    resource: "@GetunikBleedHdSecurityBundle/Resources/config/routing.yml"
+    prefix:   /
+
