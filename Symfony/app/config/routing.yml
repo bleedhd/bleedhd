@@ -1,12 +1,11 @@
-getunik_bleed_hd_assessment_ui:
-    resource: "@GetunikBleedHdAssessmentUIBundle/Resources/config/routing.yml"
-    prefix:   /
+getunik_bleed_hd_security:
+    resource: "@GetunikBleedHdSecurityBundle/Resources/config/routing.yml"
+    prefix:   /user
 
 getunik_bleed_hd_assessment_data:
     resource: "@GetunikBleedHdAssessmentDataBundle/Resources/config/routing.yml"
     prefix:   /
 
-getunik_bleed_hd_security:
-    resource: "@GetunikBleedHdSecurityBundle/Resources/config/routing.yml"
+getunik_bleed_hd_assessment_ui:
+    resource: "@GetunikBleedHdAssessmentUIBundle/Resources/config/routing.yml"
     prefix:   /
-
