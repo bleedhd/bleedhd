@@ -1,0 +1,4 @@
+services:
+#    getunik_bleed_hd_assessment_data.example:
+#        class: Getunik\BleedHd\AssessmentDataBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
