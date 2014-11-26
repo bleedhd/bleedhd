@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Getunik\BleedHd\SecurityBundle\GetunikBleedHdSecurityBundle(),
             new Getunik\BleedHd\AssessmentDataBundle\GetunikBleedHdAssessmentDataBundle(),
+            new Getunik\BleedHd\AssessmentUIBundle\GetunikBleedHdAssessmentUIBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

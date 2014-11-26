@@ -1,0 +1,3 @@
+getunik_bleed_hd_assessment_ui_homepage:
+    path:     /hello3/{name}
+    defaults: { _controller: GetunikBleedHdAssessmentUIBundle:Default:index }
