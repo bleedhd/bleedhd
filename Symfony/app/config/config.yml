@@ -83,3 +83,12 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Getunik\BleedHd\SecurityBundle\Entity\User
+
+fos_oauth_server:
+    db_driver: orm       # Driver availables: orm, mongodb, or propel
+    client_class:        Getunik\BleedHd\SecurityBundle\Entity\Client
+    access_token_class:  Getunik\BleedHd\SecurityBundle\Entity\AccessToken
+    refresh_token_class: Getunik\BleedHd\SecurityBundle\Entity\RefreshToken
+    auth_code_class:     Getunik\BleedHd\SecurityBundle\Entity\AuthCode
+    service:
+        user_provider: fos_user.user_manager

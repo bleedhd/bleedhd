@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
             new Getunik\BleedHd\SecurityBundle\GetunikBleedHdSecurityBundle(),
             new Getunik\BleedHd\AssessmentDataBundle\GetunikBleedHdAssessmentDataBundle(),
             new Getunik\BleedHd\AssessmentUIBundle\GetunikBleedHdAssessmentUIBundle(),

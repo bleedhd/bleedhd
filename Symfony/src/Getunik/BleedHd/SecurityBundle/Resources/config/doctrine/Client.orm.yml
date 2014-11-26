@@ -1,0 +1,41 @@
+Getunik\BleedHd\SecurityBundle\Entity\Client:
+    type: entity
+    table: Client
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        randomId:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: random_id
+        redirectUris:
+            type: array
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: redirect_uris
+        secret:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        allowedGrantTypes:
+            type: array
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: allowed_grant_types
+    lifecycleCallbacks: {  }

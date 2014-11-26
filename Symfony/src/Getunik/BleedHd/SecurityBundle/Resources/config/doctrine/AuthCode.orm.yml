@@ -1,0 +1,69 @@
+Getunik\BleedHd\SecurityBundle\Entity\AuthCode:
+    type: entity
+    table: AuthCode
+    indexes:
+        IDX_F1D7D17719EB6921:
+            columns:
+                - client_id
+        IDX_F1D7D177A76ED395:
+            columns:
+                - user_id
+    uniqueConstraints:
+        UNIQ_F1D7D1775F37A13B:
+            columns:
+                - token
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        token:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        redirectUri:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: redirect_uri
+        expiresAt:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: expires_at
+        scope:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+    manyToOne:
+        client:
+            targetEntity: Client
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                client_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        user:
+            targetEntity: User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
