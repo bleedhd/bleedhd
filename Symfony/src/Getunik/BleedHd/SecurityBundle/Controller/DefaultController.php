@@ -8,6 +8,7 @@ class DefaultController extends Controller
 {
     public function indexAction($name)
     {
-        return $this->render('GetunikBleedHdSecurityBundle:Default:index.html.twig', array('name' => $name));
+    	$env = $this->container->get('kernel')->getEnvironment();
+        return $this->render('GetunikBleedHdSecurityBundle:Default:index.html.twig', array('name' => $name, 'env' => $env));
     }
 }
