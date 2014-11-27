@@ -63,6 +63,13 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
 
+# Doctrine Migrations Configuration
+doctrine_migrations:
+    dir_name: %kernel.root_dir%/DoctrineMigrations
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -70,3 +77,24 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# FOS User Bundle Configuration
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Getunik\BleedHd\SecurityBundle\Entity\User
+
+fos_oauth_server:
+    db_driver: orm       # Driver availables: orm, mongodb, or propel
+    client_class:        Getunik\BleedHd\SecurityBundle\Entity\Client
+    access_token_class:  Getunik\BleedHd\SecurityBundle\Entity\AccessToken
+    refresh_token_class: Getunik\BleedHd\SecurityBundle\Entity\RefreshToken
+    auth_code_class:     Getunik\BleedHd\SecurityBundle\Entity\AuthCode
+    service:
+        user_provider: fos_user.user_manager
+
+getunik_bleed_hd_security:
+    auto_token_client:
+        id: 1_5jyzuhluzucco4swk0wssw8wsgs8k8c844oc8ckg84skg8os8g
+        secret: 2p607zqdlqiosg4gocowooks4ow8kk8gkss04wwo0sw8804o4o
+        target_path: /user/profile

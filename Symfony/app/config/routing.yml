@@ -1,12 +1,17 @@
+getunik_bleed_hd_security:
+    resource: "@GetunikBleedHdSecurityBundle/Resources/config/routing.yml"
+    prefix:   /user
+
+getunik_bleed_hd_assessment_data:
+    resource: "@GetunikBleedHdAssessmentDataBundle/Resources/config/routing.yml"
+    prefix:   /api
+
 getunik_bleed_hd_assessment_ui:
     resource: "@GetunikBleedHdAssessmentUIBundle/Resources/config/routing.yml"
     prefix:   /
 
-getunik_bleed_hd_assessment_data:
-    resource: "@GetunikBleedHdAssessmentDataBundle/Resources/config/routing.yml"
-    prefix:   /
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
 
-getunik_bleed_hd_security:
-    resource: "@GetunikBleedHdSecurityBundle/Resources/config/routing.yml"
-    prefix:   /
-
+fos_oauth_server_authorize:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"

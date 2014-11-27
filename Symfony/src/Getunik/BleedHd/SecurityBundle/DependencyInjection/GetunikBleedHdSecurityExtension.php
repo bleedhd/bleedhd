@@ -24,5 +24,10 @@ class GetunikBleedHdSecurityExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        //$container->setParameter('getunik_bleed_hd_security.auto_token_client.id', '42');
+        $container->setParameter('getunik_bleed_hd_security.auto_token_client.id', $config['auto_token_client']['id']);
+        $container->setParameter('getunik_bleed_hd_security.auto_token_client.secret', $config['auto_token_client']['secret']);
+        $container->setParameter('getunik_bleed_hd_security.auto_token_client.target_path', $config['auto_token_client']['target_path']);
     }
 }
