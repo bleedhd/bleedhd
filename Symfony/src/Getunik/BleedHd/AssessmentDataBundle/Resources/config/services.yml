@@ -1,4 +1,17 @@
+parameters:
+    getunik.bleed_hd_data.patient_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\PatientsController
+    getunik.bleed_hd_data.patient_manager.class: Getunik\BleedHd\AssessmentDataBundle\Manager\PatientManager
+
+
 services:
-#    getunik_bleed_hd_assessment_data.example:
-#        class: Getunik\BleedHd\AssessmentDataBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    getunik.bleed_hd_data.patient_manager:
+                class: %getunik.bleed_hd_data.patient_manager.class%
+                arguments:
+                    - @doctrine
+
+    getunik.bleed_hd_data.patient_controller:
+                class: %getunik.bleed_hd_data.patient_controller.class%
+                arguments:
+                    - @getunik.bleed_hd_data.patient_manager
+                calls:
+                    - [setContainer, ["@service_container"]]
