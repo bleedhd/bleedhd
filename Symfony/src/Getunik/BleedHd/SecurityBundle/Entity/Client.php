@@ -17,6 +17,11 @@ class Client
     /**
      * @var string
      */
+    private $name;
+
+    /**
+     * @var string
+     */
     private $randomId;
 
     /**
@@ -43,6 +48,29 @@ class Client
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Client
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
