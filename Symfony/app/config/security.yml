@@ -15,18 +15,34 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        oauth_token:
+            pattern: ^/oauth/v2/token
+            security: false
+            context: secured
+
+        oauth_authorize:
+            pattern: ^/oauth/v2/auth
+            anonymous: true
+            context: secured
+
         user_management:
             pattern: ^/user
             form_login:
                 provider: fos_userbundle
                 check_path: /user/login_check
                 login_path: /user/login
-                default_target_path: /user/profile
-                # TODO: success_handler: my.auth_success_handler
+                success_handler: getunik_bleed_hd_security.auth_success_handler
             logout:
                 path: /user/logout
                 target: /user/login
             anonymous: true
+            context: secured
+
+        api:
+            pattern: ^/api
+            fos_oauth: true
+            stateless: true
+            anonymous: false # can be omitted as its default value
             context: secured
 
         default:
