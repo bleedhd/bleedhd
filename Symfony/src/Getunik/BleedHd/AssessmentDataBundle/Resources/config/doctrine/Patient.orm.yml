@@ -1,6 +1,7 @@
 Getunik\BleedHd\AssessmentDataBundle\Entity\Patient:
     type:  entity
     table: Patient
+    repositoryClass: Getunik\BleedHd\AssessmentDataBundle\Entity\PatientRepository
     id:
         id:
             type: integer
@@ -51,4 +52,4 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Patient:
     oneToMany:
         stati:
             targetEntity: PatientStatus
-            mappedBy: patient_id
+            mappedBy: patient

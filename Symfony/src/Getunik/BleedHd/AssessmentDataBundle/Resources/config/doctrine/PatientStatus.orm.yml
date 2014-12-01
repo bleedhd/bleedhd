@@ -27,3 +27,10 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus:
             type: string
             nullable: false
             length: 255
+    manyToOne:
+        patient:
+            targetEntity: Patient
+            inversedBy: stati
+            joinColumn:
+                name: patientId
+                referencedColumnName: id

@@ -5,3 +5,4 @@ getunik_bleed_hd_assessment_data_homepage:
 getunik_bleed_hd_assessment_data_customers:
     type:     rest
     resource: getunik.bleed_hd_data.patient_controller
+    #resource: Getunik\BleedHd\AssessmentDataBundle\Controller\PatientsController

@@ -192,4 +192,60 @@ class PatientStatus
     {
         return $this->transplantSource;
     }
+    /**
+     * @var string
+     */
+    private $manyToOne;
+
+
+    /**
+     * Set manyToOne
+     *
+     * @param string $manyToOne
+     * @return PatientStatus
+     */
+    public function setManyToOne($manyToOne)
+    {
+        $this->manyToOne = $manyToOne;
+
+        return $this;
+    }
+
+    /**
+     * Get manyToOne
+     *
+     * @return string 
+     */
+    public function getManyToOne()
+    {
+        return $this->manyToOne;
+    }
+    /**
+     * @var \Getunik\BleedHd\AssessmentDataBundle\Entity\Patient
+     */
+    private $patient;
+
+
+    /**
+     * Set patient
+     *
+     * @param \Getunik\BleedHd\AssessmentDataBundle\Entity\Patient $patient
+     * @return PatientStatus
+     */
+    public function setPatient(\Getunik\BleedHd\AssessmentDataBundle\Entity\Patient $patient = null)
+    {
+        $this->patient = $patient;
+
+        return $this;
+    }
+
+    /**
+     * Get patient
+     *
+     * @return \Getunik\BleedHd\AssessmentDataBundle\Entity\Patient 
+     */
+    public function getPatient()
+    {
+        return $this->patient;
+    }
 }
