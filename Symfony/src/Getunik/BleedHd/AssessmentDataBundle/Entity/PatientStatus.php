@@ -3,6 +3,8 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Exclude;
 
 /**
  * PatientStatus
@@ -48,7 +50,7 @@ class PatientStatus
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -71,7 +73,7 @@ class PatientStatus
     /**
      * Get lastUpdatedDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getLastUpdatedDate()
     {
@@ -94,7 +96,7 @@ class PatientStatus
     /**
      * Get lastUpdatedBy
      *
-     * @return integer 
+     * @return integer
      */
     public function getLastUpdatedBy()
     {
@@ -117,7 +119,7 @@ class PatientStatus
     /**
      * Get patientId
      *
-     * @return integer 
+     * @return integer
      */
     public function getPatientId()
     {
@@ -140,7 +142,7 @@ class PatientStatus
     /**
      * Get transplantDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getTransplantDate()
     {
@@ -163,7 +165,7 @@ class PatientStatus
     /**
      * Get transplantType
      *
-     * @return string 
+     * @return string
      */
     public function getTransplantType()
     {
@@ -186,7 +188,7 @@ class PatientStatus
     /**
      * Get transplantSource
      *
-     * @return string 
+     * @return string
      */
     public function getTransplantSource()
     {
@@ -214,7 +216,7 @@ class PatientStatus
     /**
      * Get manyToOne
      *
-     * @return string 
+     * @return string
      */
     public function getManyToOne()
     {
@@ -222,6 +224,7 @@ class PatientStatus
     }
     /**
      * @var \Getunik\BleedHd\AssessmentDataBundle\Entity\Patient
+     * @Exclude
      */
     private $patient;
 
@@ -242,7 +245,7 @@ class PatientStatus
     /**
      * Get patient
      *
-     * @return \Getunik\BleedHd\AssessmentDataBundle\Entity\Patient 
+     * @return \Getunik\BleedHd\AssessmentDataBundle\Entity\Patient
      */
     public function getPatient()
     {

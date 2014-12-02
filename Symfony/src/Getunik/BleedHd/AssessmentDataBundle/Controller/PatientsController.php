@@ -27,20 +27,20 @@ class PatientsController extends FOSRestController
 
     /**
      * "bleed_get_patients"     [GET] /patients
-     *
-     * @ParamConverter("patient", options={"id" = "patient"})
      */
-    public function getPatientsAction(Patient $patient)
+    public function getPatientsAction()
     {
         return $this->handleView($this->view($this->patientRepository->findAll()));
     }
 
     /**
      * "get_patients"           [GET] /patients/{slug}
+     *
+     * @ParamConverter("patient", options={"id" = "patient"})
      */
-    public function getPatientAction($slug)
+    public function getPatientAction(Patient $patient)
     {
-        return $this->handleView($this->view("test"));
+        return $this->handleView($this->view($patient));
     }
 
     /**
@@ -62,16 +62,16 @@ class PatientsController extends FOSRestController
     /**
      * "put_user"               [PUT] /patients/{slug}
      *
-     * @ParamConverter("patient", converter="fos_rest.request_body")
+     * @ParamConverter("patientBody", converter="fos_rest.request_body")
      */
-    public function putPatientAction($slug, Patient $patient)
+    public function putPatientAction($patient, Patient $patientBody)
     {
-        if ($patient->getId() != $slug)
+        if ($patientBody->getId() != $patient)
         {
-            throw new HttpException(400, 'Resource ID mismatch: body -> ' . $patient->getId() . ', resource -> ' . $slug);
+            throw new HttpException(400, 'Resource ID mismatch: body -> ' . $patientBody->getId() . ', resource -> ' . $slug);
         }
 
-        $updated = $this->patientRepository->update($patient);
+        $updated = $this->patientRepository->update($patientBody);
 
         return $this->handleView($this->view($updated));
     }

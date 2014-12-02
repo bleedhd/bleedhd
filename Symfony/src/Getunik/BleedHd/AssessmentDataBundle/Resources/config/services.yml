@@ -1,7 +1,9 @@
 parameters:
-    getunik.bleed_hd_data.patient_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\PatientsController
     getunik.bleed_hd_data.patient_manager.class: Getunik\BleedHd\AssessmentDataBundle\Manager\PatientManager
     getunik.bleed_hd_data.patient_repository.class: Getunik\BleedHd\AssessmentDataBundle\Entity\PatientRepository
+    getunik.bleed_hd_data.patient_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\PatientsController
+    getunik.bleed_hd_data.patientstatus_repository.class: Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatusRepository
+    getunik.bleed_hd_data.patientstatus_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\PatientStatusesController
 
 
 services:
@@ -17,10 +19,26 @@ services:
         arguments:
             - "GetunikBleedHdAssessmentDataBundle:Patient"
 
+    getunik.bleed_hd_data.patientstatus_repository:
+        class: %getunik.bleed_hd_data.patientstatus_repository.class%
+        factory_service: doctrine
+        factory_method: getRepository
+        arguments:
+            - "GetunikBleedHdAssessmentDataBundle:PatientStatus"
+        calls:
+            - [setSecurityContext, ["@security.context"]]
+
     getunik.bleed_hd_data.patient_controller:
                 class: %getunik.bleed_hd_data.patient_controller.class%
                 arguments:
                     - @getunik.bleed_hd_data.patient_repository
                     - @getunik.bleed_hd_data.patient_manager
+                calls:
+                    - [setContainer, ["@service_container"]]
+
+    getunik.bleed_hd_data.patientstatus_controller:
+                class: %getunik.bleed_hd_data.patientstatus_controller.class%
+                arguments:
+                    - @getunik.bleed_hd_data.patientstatus_repository
                 calls:
                     - [setContainer, ["@service_container"]]

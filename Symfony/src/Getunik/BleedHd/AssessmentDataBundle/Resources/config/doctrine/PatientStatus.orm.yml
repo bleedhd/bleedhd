@@ -1,6 +1,7 @@
 Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus:
     type:  entity
     table: PatientStatus
+    repositoryClass: Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatusRepository
     id:
         id:
             type: integer
