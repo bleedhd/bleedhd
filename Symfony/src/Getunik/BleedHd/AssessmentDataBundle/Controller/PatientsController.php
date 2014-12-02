@@ -5,6 +5,7 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Controller;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Patient;
 use Getunik\BleedHd\AssessmentDataBundle\Entity\PatientRepository;
@@ -26,8 +27,10 @@ class PatientsController extends FOSRestController
 
     /**
      * "bleed_get_patients"     [GET] /patients
+     *
+     * @ParamConverter("patient", options={"id" = "patient"})
      */
-    public function getPatientsAction()
+    public function getPatientsAction(Patient $patient)
     {
         return $this->handleView($this->view($this->patientRepository->findAll()));
     }
@@ -37,12 +40,13 @@ class PatientsController extends FOSRestController
      */
     public function getPatientAction($slug)
     {
+        return $this->handleView($this->view("test"));
     }
 
     /**
      * "post_users"             [POST] /patients
      */
-    public function postPatientsAction(Request $request)
+    public function postPatientsAction()
     {
         $serializer = $this->get('fos_rest.serializer');
         $patient = $serializer->deserialize($request->getContent(), 'Getunik\BleedHd\AssessmentDataBundle\Entity\Patient', 'json');
@@ -57,9 +61,19 @@ class PatientsController extends FOSRestController
 
     /**
      * "put_user"               [PUT] /patients/{slug}
+     *
+     * @ParamConverter("patient", converter="fos_rest.request_body")
      */
-    public function putPatientAction(Request $request, Patient $patient, Patient $patient2)
+    public function putPatientAction($slug, Patient $patient)
     {
+        if ($patient->getId() != $slug)
+        {
+            throw new HttpException(400, 'Resource ID mismatch: body -> ' . $patient->getId() . ', resource -> ' . $slug);
+        }
+
+        $updated = $this->patientRepository->update($patient);
+
+        return $this->handleView($this->view($updated));
     }
 
     /**
