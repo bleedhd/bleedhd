@@ -7,6 +7,13 @@ parameters:
 
 
 services:
+    getunik.bleed_hd_data.entity_update_listener:
+        class: Getunik\BleedHd\AssessmentDataBundle\Listener\EntityUpdateListener
+        arguments:
+            - @service_container
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
+
     getunik.bleed_hd_data.patient_manager:
                 class: %getunik.bleed_hd_data.patient_manager.class%
                 arguments:

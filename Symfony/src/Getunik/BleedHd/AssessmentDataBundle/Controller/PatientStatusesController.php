@@ -54,8 +54,6 @@ class PatientStatusesController extends FOSRestController
     public function postStatusesAction(Patient $patient, PatientStatus $status)
     {
         $status->setPatient($patient);
-        $status->setLastUpdatedDate(new \DateTime());
-        $status->setLastUpdatedBy($this->getUser()->getId());
 
         $this->patientStatusRepository->save($status);
 
@@ -66,9 +64,6 @@ class PatientStatusesController extends FOSRestController
 
         // $serializer = $this->get('fos_rest.serializer');
         // $status = $serializer->deserialize($request->getContent(), 'Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus', 'json');
-
-        // $status->setLastUpdatedDate(new \DateTime());
-        // $status->setLastUpdatedBy($this->getUser()->getId());
 
         // $this->patientStatusRepository->save($status);
 
@@ -84,8 +79,6 @@ class PatientStatusesController extends FOSRestController
     public function putStatusAction($patient, PatientStatus $status, PatientStatus $statusBody)
     {
         $statusBody->setPatient($status->getPatient());
-        $status->setLastUpdatedDate(new \DateTime());
-        $status->setLastUpdatedBy($this->getUser()->getId());
         $updated = $this->patientStatusRepository->update($statusBody);
 
         return $this->handleView($this->view($updated));

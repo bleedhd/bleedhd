@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Patient
  */
-class Patient
+class Patient implements AuditableEntityInterface
 {
     /**
      * @var integer
@@ -95,7 +95,7 @@ class Patient
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -118,7 +118,7 @@ class Patient
     /**
      * Get lastUpdatedDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getLastUpdatedDate()
     {
@@ -141,7 +141,7 @@ class Patient
     /**
      * Get lastUpdatedBy
      *
-     * @return integer 
+     * @return integer
      */
     public function getLastUpdatedBy()
     {
@@ -164,7 +164,7 @@ class Patient
     /**
      * Get isActive
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsActive()
     {
@@ -187,7 +187,7 @@ class Patient
     /**
      * Get firstname
      *
-     * @return string 
+     * @return string
      */
     public function getFirstname()
     {
@@ -210,7 +210,7 @@ class Patient
     /**
      * Get lastname
      *
-     * @return string 
+     * @return string
      */
     public function getLastname()
     {
@@ -233,7 +233,7 @@ class Patient
     /**
      * Get birthdate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getBirthdate()
     {
@@ -256,7 +256,7 @@ class Patient
     /**
      * Get sex
      *
-     * @return string 
+     * @return string
      */
     public function getSex()
     {
@@ -279,7 +279,7 @@ class Patient
     /**
      * Get patientNumber
      *
-     * @return string 
+     * @return string
      */
     public function getPatientNumber()
     {
@@ -302,7 +302,7 @@ class Patient
     /**
      * Get upnNumber
      *
-     * @return string 
+     * @return string
      */
     public function getUpnNumber()
     {
@@ -325,7 +325,7 @@ class Patient
     /**
      * Get diagnosis
      *
-     * @return string 
+     * @return string
      */
     public function getDiagnosis()
     {
@@ -348,7 +348,7 @@ class Patient
     /**
      * Get diagnosisDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDiagnosisDate()
     {
@@ -371,7 +371,7 @@ class Patient
     /**
      * Get patientBloodType
      *
-     * @return string 
+     * @return string
      */
     public function getPatientBloodType()
     {
@@ -394,7 +394,7 @@ class Patient
     /**
      * Get donorBloodType
      *
-     * @return string 
+     * @return string
      */
     public function getDonorBloodType()
     {
@@ -427,7 +427,7 @@ class Patient
     /**
      * Get stati
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getStati()
     {

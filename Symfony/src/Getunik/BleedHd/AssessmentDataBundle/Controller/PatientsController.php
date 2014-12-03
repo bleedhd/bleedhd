@@ -51,9 +51,6 @@ class PatientsController extends FOSRestController
         $serializer = $this->get('fos_rest.serializer');
         $patient = $serializer->deserialize($request->getContent(), 'Getunik\BleedHd\AssessmentDataBundle\Entity\Patient', 'json');
 
-        $patient->setLastUpdatedDate(new \DateTime());
-        $patient->setLastUpdatedBy($this->getUser()->getId());
-
         $this->patientRepository->save($patient);
 
         return $this->handleView($this->view($patient));
