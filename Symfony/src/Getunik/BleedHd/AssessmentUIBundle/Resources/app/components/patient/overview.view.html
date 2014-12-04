@@ -1,5 +1,31 @@
-<div ng-controller="PatientOverviewController">
-	<ul>
-		<li ng-repeat="status in data track by $index">{{status}}</li>
-	</ul>
+<div>
+	<div>
+		Filter: <input type="text" ng-model="ctlPatients.filterSearch" />
+		<input type="checkbox" checked="checked" id="filter_active" ng-model="ctlPatients.filterActive" ng-true-value="true" ng-false-value="false" />
+		<label for="filter_active">Show only active patients</label>
+		<button type="button" ng-click="ctlPatients.resetFilter()">Reset Filter</button>
+	</div>
+	<div>
+		Searching for "{{ ctlPatients.filterSearch }}" with active {{ ctlPatients.filterActive }}
+	</div>
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th>Lastname</th>
+					<th>Firstname</th>
+					<th>Date of Birth</th>
+					<th>Active</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="patient in ctlPatients.patients | filter:ctlPatients.filterPatientsFulltext(ctlPatients.filterSearch) | filter:{is_active:(ctlPatients.filterActive ? true : undefined)}">
+					<td>{{ patient.firstname }}</td>
+					<td>{{ patient.lastname }}</td>
+					<td>{{ patient.birthdate | birthdate }} </td>
+					<td>{{ patient.is_active | boolyesno }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
