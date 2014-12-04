@@ -18,7 +18,7 @@ class PatientStatusRepository extends EntityRepository
     public function save(PatientStatus $status)
     {
         $this->_em->persist($status);
-        $this->_em->flush();
+        //$this->_em->flush();
     }
 
     public function update(PatientStatus $status)
@@ -26,7 +26,7 @@ class PatientStatusRepository extends EntityRepository
         //var_dump($this->context->getToken()->getUser());
 
         $merged = $this->_em->merge($status);
-        $this->_em->flush();
+        //$this->_em->flush();
 
         return $merged;
     }

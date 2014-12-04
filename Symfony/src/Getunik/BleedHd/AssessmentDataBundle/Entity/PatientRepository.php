@@ -10,13 +10,13 @@ class PatientRepository extends EntityRepository
     public function save(Patient $patient)
     {
         $this->_em->persist($patient);
-        $this->_em->flush();
+        //$this->_em->flush();
     }
 
     public function update(Patient $patient)
     {
         $merged = $this->_em->merge($patient);
-        $this->_em->flush();
+        //$this->_em->flush();
 
         return $merged;
     }

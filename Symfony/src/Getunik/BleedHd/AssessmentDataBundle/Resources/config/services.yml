@@ -1,4 +1,5 @@
 parameters:
+    getunik.bleed_hd_data.entity_manager_service: doctrine.orm.default_entity_manager
     getunik.bleed_hd_data.patient_manager.class: Getunik\BleedHd\AssessmentDataBundle\Manager\PatientManager
     getunik.bleed_hd_data.patient_repository.class: Getunik\BleedHd\AssessmentDataBundle\Entity\PatientRepository
     getunik.bleed_hd_data.patient_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\PatientsController
@@ -13,6 +14,13 @@ services:
             - @service_container
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: prePersist }
+
+    getunik.bleed_hd_data.flush_data_listener:
+        class: Getunik\BleedHd\AssessmentDataBundle\Listener\FlushDataListener
+        arguments: ['@service_container', '%getunik.bleed_hd_data.entity_manager_service%']
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onFihishRequest }
 
     getunik.bleed_hd_data.patient_manager:
                 class: %getunik.bleed_hd_data.patient_manager.class%

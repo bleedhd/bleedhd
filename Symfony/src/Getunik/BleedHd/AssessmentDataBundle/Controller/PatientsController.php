@@ -6,6 +6,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use FOS\RestBundle\Controller\Annotations\Post;
 
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Patient;
 use Getunik\BleedHd\AssessmentDataBundle\Entity\PatientRepository;
@@ -45,11 +46,13 @@ class PatientsController extends FOSRestController
 
     /**
      * "post_users"             [POST] /patients
+     * @Post("/patients", requirements={"_format"="json|xml"})
+     * @ParamConverter("patient", converter="fos_rest.request_body")
      */
-    public function postPatientsAction()
+    public function postPatientsAction(Patient $patient)
     {
-        $serializer = $this->get('fos_rest.serializer');
-        $patient = $serializer->deserialize($request->getContent(), 'Getunik\BleedHd\AssessmentDataBundle\Entity\Patient', 'json');
+        //$serializer = $this->get('fos_rest.serializer');
+        //$patient = $serializer->deserialize($request->getContent(), 'Getunik\BleedHd\AssessmentDataBundle\Entity\Patient', 'json');
 
         $this->patientRepository->save($patient);
 
