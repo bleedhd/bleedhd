@@ -1,1 +1,40 @@
-Hello {{ name }}!
+<!DOCTYPE html>
+<html lang="en" ng-app="bleedHdApp">
+<head>
+	<meta charset="utf-8">
+	<title>Leech App</title>
+	{% javascripts output='js/compiled/angular.js'
+		'@GetunikBleedHdAssessmentUIBundle/Resources/angular/core/angular.js'
+		'@GetunikBleedHdAssessmentUIBundle/Resources/angular/core/angular-route.js'
+		'@GetunikBleedHdAssessmentUIBundle/Resources/angular/ui-router/angular-ui-router.js'
+		'@GetunikBleedHdAssessmentUIBundle/Resources/angular/resource/angular-resource.js'
+	%}
+		<script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+
+	{% javascripts filter="angular"
+		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/**/*.view.html'
+	%}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+
+	{% javascripts output="js/compiled/app.js"
+		'@GetunikBleedHdAssessmentUIBundle/Resources/app/bleedhd.module.js'
+		'@GetunikBleedHdAssessmentUIBundle/Resources/app/bleedhd.routes.js'
+		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/**/*.module.js'
+		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/**/*.controller.js'
+	%}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+
+</head>
+<body>
+	<div>
+		<h1>Bleed HD</h1>
+		{#
+			<div ui-view></div>
+		#}
+		<div ng-view></div>
+	</div>
+</body>
+</html>
