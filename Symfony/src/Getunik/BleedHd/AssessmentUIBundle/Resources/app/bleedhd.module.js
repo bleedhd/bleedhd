@@ -27,6 +27,16 @@
 		'ngResource',
 		'ui.router',
 		'patient',
-	]);
+	])
+
+	.constant('bleedHdConfig', {
+		version: '1.0.0',
+		format: {
+			birthdate: 'dd.MM.yyyy',
+			yesno: ['yes', 'no'],
+		},
+	})
+
+	;
 
 })(angular);

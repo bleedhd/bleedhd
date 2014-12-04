@@ -13,8 +13,8 @@
 				<tr ng-repeat="patient in ctlPatients.patients">
 					<td>{{ patient.firstname }}</td>
 					<td>{{ patient.lastname }}</td>
-					<td>{{ patient.birthdate }} </td>
-					<td>{{ patient.is_active }}</td>
+					<td>{{ patient.birthdate | birthdate }} </td>
+					<td>{{ patient.is_active | boolyesno }}</td>
 				</tr>
 			</tbody>
 		</table>
