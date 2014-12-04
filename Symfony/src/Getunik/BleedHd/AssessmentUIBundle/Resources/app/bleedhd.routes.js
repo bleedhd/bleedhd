@@ -1,16 +1,15 @@
 
-(function (angular) {
+(function (angular, bleedHd) {
 
 	angular.module('bleedHdApp').config(['$routeProvider', '$stateProvider',
 		function($routeProvider, $stateProvider) {
 			console.log("config");
 			$routeProvider
 				.when('/patients', {
-					templateUrl: 'GetunikBleedHdAssessmentUIBundle/Resources/app/components/patient/overview.view.html',
-					controller: 'PatientOverviewController',
+					templateUrl: bleedHd.getView('patient', 'overview'),
 				})
 				.otherwise('/patients');
 		}
 	]);
 
-})(angular);
+})(angular, bleedHd);

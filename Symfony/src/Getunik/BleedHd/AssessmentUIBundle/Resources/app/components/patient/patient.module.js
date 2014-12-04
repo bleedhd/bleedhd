@@ -1,6 +1,8 @@
 
-(function (angular) {
+(function (angular, bleedHd) {
 
-	var module = angular.module('patient', []);
+	var module = angular.module('patient', [
+		bleedHd.getView('patient', 'overview'),
+	]);
 
-})(angular);
+})(angular, bleedHd);

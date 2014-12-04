@@ -1,5 +1,5 @@
 
-(function (angular) {
+(function (angular, bleedHd) {
 
 	angular.module('patient')
 		.controller('PatientOverviewController', function ($scope) {
@@ -12,4 +12,4 @@
 			];
 		});
 
-})(angular);
+})(angular, bleedHd);

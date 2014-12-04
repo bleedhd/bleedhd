@@ -1,18 +1,21 @@
 
 (function (angular) {
-	var viewModuleBase = 'GetunikBleedHdAssessmentUIBundle/Resources/app/components',
-		viewModule = function (component, view) {
-			return [viewModuleBase, component, view + '.view.html'].join('/');
-		};
+
+	window.bleedHd = {};
+	var bleedHd = window.bleedHd;
+
+	bleedHd.basePath = 'GetunikBleedHdAssessmentUIBundle/Resources/app';
+	bleedHd.getView = function (component, view) {
+		return [bleedHd.basePath, 'components', component, view + '.view.html'].join('/');
+	};
 
 	console.log("one");
 
-	angular.module('bleedHdApp', [
+	bleedHd.app = angular.module('bleedHdApp', [
 		'ngRoute',
 		'ngResource',
 		'ui.router',
 		'patient',
-		viewModule('patient', 'overview'),
 	]);
 
 })(angular);
