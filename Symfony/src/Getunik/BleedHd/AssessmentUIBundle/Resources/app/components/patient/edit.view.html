@@ -2,22 +2,22 @@
 	<div>
 		<h1>Add new patient / Edit patient</h1>
 	</div>
-	<div>
+	<form name="patientForm" novalidate>
 		<div>
 			<label for="patient_lastname">Lastname*:</label>
-			<input id="patient_lastname" type="text" ng-model="ctlPatient.patient.lastname" />
+			<input id="patient_lastname" type="text" ng-model="ctlPatient.patient.lastname" required />
 		</div>
 		<div>
 			<label for="patient_firstname">Firstname*:</label>
-			<input id="patient_firstname" type="text" ng-model="ctlPatient.patient.firstname" />
+			<input id="patient_firstname" type="text" ng-model="ctlPatient.patient.firstname" required />
 		</div>
 		<div>
 			<label for="patient_birthdate">Date of birth*:</label>
-			<input id="patient_birthdate" type="date" ng-model="ctlPatient.patient.birthdate" />
+			<input id="patient_birthdate" type="date" ng-model="ctlPatient.patient.birthdate" required />
 		</div>
 		<div>
 			<label for="patient_sex">Sex*:</label>
-			<select id="patient_sex" ng-model="ctlPatient.patient.sex">
+			<select id="patient_sex" ng-model="ctlPatient.patient.sex" required>
 				<option value="-">Not specified</option>
 				<option value="m">Male</option>
 				<option value="f">Female</option>
@@ -87,9 +87,9 @@
 
 		<div>
 			<a href="#/patients">Cancel</a>
-			<a href="#">Save</a>
+			<button type="button" ng-disabled="patientForm.$invalid" ng-click="ctlPatient.save()">Save</a>
 		</div>
-	</div>
+	</form>
 
 	<div>
 		<br /><br />
@@ -99,5 +99,10 @@
 		{{ ctlPatient.patient.diagnosis_date }} -> {{ ctlPatient.patient.diagnosis }}<br />
 		{{ ctlPatient.patient.patient_blood_type }} -> {{ ctlPatient.patient.donor_blood_type }}<br />
 		is active: {{ ctlPatient.patient.is_active | boolyesno }}
+	</div>
+
+	<div>
+		<br />
+		<pre>{{ patientForm | json }}</pre>
 	</div>
 </div>

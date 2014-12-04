@@ -1,12 +1,18 @@
 
 (function (angular, bleedHd) {
 
-	function PatientEditController($scope, patient) {
-		this.test = 'test';
+	function PatientEditController($scope, patientData, patient) {
+		this.patientData = patientData;
 		this.patient = patient;
+		this.$scope = $scope;
 	}
 
 	angular.extend(PatientEditController.prototype, {
+		save: function () {
+			if (this.$scope.patientForm.$valid) {
+				this.patientData.savePatient(this.patient);
+			}
+		},
 	});
 
 

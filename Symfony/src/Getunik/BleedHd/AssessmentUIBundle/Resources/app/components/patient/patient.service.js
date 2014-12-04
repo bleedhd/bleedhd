@@ -15,6 +15,13 @@
 		newPatient: function () {
 			return {};
 		},
+		savePatient: function (patient) {
+			if (patient.id === undefined) {
+				this.resource.save(patient);
+			} else {
+
+			}
+		},
 	});
 
 
