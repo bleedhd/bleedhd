@@ -45,3 +45,66 @@ Now you can use CURL to access the REST API like so:
 ```
 curl -X GET -H "Authorization: Bearer _access_token_" "http://bleed-hd.localhost/api/..."
 ```
+
+## Patients
+
+### Create a Patient
+```
+{
+	"is_active": true,
+	"firstname": "Patient One",
+	"lastname": "One Patient",
+	"birthdate": "1980-01-01T00:00:00Z",
+	"sex": "m",
+	"patient_number": "patient-1",
+	"upn_number": 12345,
+	"diagnosis": "diagnosis-1",
+	"diagnosis_date": "2014-12-01T00:00:00Z",
+	"patient_blood_type": "A+",
+	"donor_blood_type": "A+"
+}
+```
+
+```
+curl -i -X POST -H "Content-Type: application/json" -H "Authorization: Bearer _access_token_" -d '{"is_active":true,"firstname":"Patient One","lastname":"One Patient","birthdate":"1980-01-01T00:00:00Z","sex":"m","patient_number":"patient-1","upn_number":12345,"diagnosis":"diagnosis-1","diagnosis_date":"2014-12-01T00:00:00Z","patient_blood_type":"A+","donor_blood_type":"A+"}' "http://bleed-hd.localhost/api/patients"
+```
+
+### Update a Patient
+```
+curl -i -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer _access_token_" -d '{"id":1,"is_active":true,"firstname":"Patient One Modified","lastname":"One Patient Modified","birthdate":"1980-01-02T00:00:00Z","sex":"m","patient_number":"patient-1","upn_number":12345,"diagnosis":"diagnosis-1-1","diagnosis_date":"2014-12-02T00:00:00Z","patient_blood_type":"A+","donor_blood_type":"A+"}' "http://bleed-hd.localhost/api/patients/1"
+```
+
+### Get a Patient
+```
+curl -i -X GET -H "Content-Type: application/json" -H "Authorization: Bearer _access_token_" "http://bleed-hd.localhost/api/patients/1"
+```
+
+## PatientStatus
+```
+{
+	"patient_id": 1,
+	"transplant_date": "2012-08-08T00:00:00Z",
+	"transplant_type": "type-1",
+	"transplant_source": "source-1"
+}
+```
+
+### Create a PatientStatus
+```
+curl -i -X POST -H "Content-Type: application/json" -H "Authorization: Bearer _access_token_" -d '{"patient_id":1,"transplant_date":"2012-08-08T00:00:00Z","transplant_type":"type-1","transplant_source":"source-1"}' "http://bleed-hd.localhost/api/patients/1/statuses"
+```
+
+### Update a PatientStatus
+```
+curl -i -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer _access_token_" -d '{"id":1,"patient_id":1,"transplant_date":"2012-08-08T00:00:00Z","transplant_type":"type-1-1","transplant_source":"source-1-1"}' "http://bleed-hd.localhost/api/patients/1/statuses/1"
+```
+
+### Get a PatientStatus
+```
+curl -i -X GET -H "Content-Type: application/json" -H "Authorization: Bearer _access_token_" "http://bleed-hd.localhost/api/patients/1/statuses/1"
+```
+
+### Get all PatientStatuses for a Patient
+```
+curl -i -X GET -H "Content-Type: application/json" -H "Authorization: Bearer _access_token_" "http://bleed-hd.localhost/api/patients/1/statuses"
+```

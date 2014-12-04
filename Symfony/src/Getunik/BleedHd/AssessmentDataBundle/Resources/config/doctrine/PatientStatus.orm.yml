@@ -1,0 +1,37 @@
+Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus:
+    type:  entity
+    table: PatientStatus
+    repositoryClass: Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatusRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        lastUpdatedDate:
+            type: datetimetz
+            nullable: false
+        lastUpdatedBy:
+            type: integer
+            nullable: false
+        patientId:
+            type: integer
+            nullable: false
+        transplantDate:
+            type: date
+            nullable: false
+        transplantType:
+            type: string
+            nullable: false
+            length: 255
+        transplantSource:
+            type: string
+            nullable: false
+            length: 255
+    manyToOne:
+        patient:
+            targetEntity: Patient
+            inversedBy: stati
+            joinColumn:
+                name: patientId
+                referencedColumnName: id

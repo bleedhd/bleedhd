@@ -1,3 +1,7 @@
 getunik_bleed_hd_assessment_data_homepage:
     path:     /hello2/{name}
     defaults: { _controller: GetunikBleedHdAssessmentDataBundle:Default:index }
+
+getunik_bleed_hd_assessment_data_patient:
+    type: rest
+    resource: "@GetunikBleedHdAssessmentDataBundle/Resources/config/patient_routes.yml"

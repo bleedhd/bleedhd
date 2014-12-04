@@ -1,0 +1,7 @@
+patient:
+    type: rest
+    resource: getunik.bleed_hd_data.patient_controller
+patientstatus:
+    type: rest
+    parent: patient
+    resource: getunik.bleed_hd_data.patientstatus_controller

@@ -93,6 +93,12 @@ fos_oauth_server:
     service:
         user_provider: fos_user.user_manager
 
+fos_rest:
+    routing_loader:
+        default_format: json
+    body_converter:
+        enabled: true
+
 getunik_bleed_hd_security:
     auto_token_client:
         id: 1_5jyzuhluzucco4swk0wssw8wsgs8k8c844oc8ckg84skg8os8g
