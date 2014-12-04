@@ -12,6 +12,9 @@
 		getPatients: function () {
 			return this.resource.query();
 		},
+		newPatient: function () {
+			return {};
+		},
 	});
 
 

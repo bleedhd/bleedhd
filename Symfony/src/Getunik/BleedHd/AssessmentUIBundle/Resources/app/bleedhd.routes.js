@@ -5,6 +5,8 @@
 		function($routeProvider, $stateProvider) {
 			$routeProvider
 				.when('/patients', bleedHd.controllers.PatientOverviewController)
+				.when('/patients/new', bleedHd.controllers.PatientEditController)
+				.when('/patients/edit/:patientId', bleedHd.controllers.PatientEditController)
 				.otherwise('/patients');
 		}
 	]);
