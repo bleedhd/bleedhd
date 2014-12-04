@@ -9,7 +9,7 @@ parameters:
 
 services:
     getunik.bleed_hd_data.entity_update_listener:
-        class: Getunik\BleedHd\AssessmentDataBundle\Listener\EntityUpdateListener
+        class: Getunik\BleedHd\AssessmentDataBundle\Listener\UpdateInformationListener
         arguments:
             - @service_container
         tags:
@@ -20,7 +20,7 @@ services:
         class: Getunik\BleedHd\AssessmentDataBundle\Listener\FlushDataListener
         arguments: ['@service_container', '%getunik.bleed_hd_data.entity_manager_service%']
         tags:
-            - { name: kernel.event_listener, event: kernel.response, method: onFihishRequest }
+            - { name: kernel.event_listener, event: kernel.response, method: onResponse }
 
     getunik.bleed_hd_data.patient_manager:
                 class: %getunik.bleed_hd_data.patient_manager.class%

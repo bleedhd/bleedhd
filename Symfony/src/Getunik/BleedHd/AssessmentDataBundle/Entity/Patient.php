@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Patient
  */
-class Patient implements AuditableEntityInterface
+class Patient implements UpdateInformationInterface
 {
     /**
      * @var integer

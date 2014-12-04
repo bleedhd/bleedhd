@@ -9,7 +9,7 @@ use JMS\Serializer\Annotation\Exclude;
 /**
  * PatientStatus
  */
-class PatientStatus implements AuditableEntityInterface
+class PatientStatus implements UpdateInformationInterface
 {
     /**
      * @var integer
