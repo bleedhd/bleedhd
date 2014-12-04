@@ -1,0 +1,103 @@
+
+(function (angular, bleedHd) {
+
+	angular.module('bleedHdApp')
+
+		/**
+		 * The authHandler service provides a central point to get the current user's authentication
+		 * token. It _is_ a promise ($q deferred) that resolves as soon as the current token is available
+		 * and passes the token as the resolution argument. See the secureResource service on how it
+		 * can be used.
+		 */
+		.factory('authHandler', function($http, $q) {
+			var authToken = $q.defer();
+
+			authToken.resolve('abcdefg');
+
+			// TODO: currently disabled for testing
+			/*$http.get('/user/getToken').
+				success(function(data, status, headers, config) {
+					console.log("got the token", data);
+					authToken.resolve(data);
+				}).error(function(msg, code) {
+					authToken.reject(msg);
+				});*/
+
+			return authToken.promise;
+		})
+
+		/**
+		 * The secureResource service is basically a wrapper around the esisting $resource service that
+		 * includes authorization using the 'Authorization' HTTP header. It responds to the same function
+		 * calls as the $resource service and the returned resources do the same with one major difference
+		 * in behavior: instead of returning incomplete objects, the actions called on the resources always
+		 * return a promise that is only resolved when all the data has actually been fetched.
+		 *
+		 * @see https://docs.angularjs.org/api/ngResource/service/$resource under 'Returns'
+		 */
+		.factory('secureResource', function ($q, $resource, authHandler) {
+			var defaultActions = {
+				'get': {method: 'GET'},
+				'save': {method: 'POST'},
+				'query': {method: 'GET', isArray: true},
+				'remove': {method: 'DELETE'},
+				'delete': {method: 'DELETE'},
+			};
+
+			var SecureResource = function (url, paramDefaults, actions, options) {
+				var promiseHandle = $q.defer();
+				this.resourcePromise = promiseHandle.promise;
+
+				var that = this;
+
+				authHandler.then(function (authToken) {
+					angular.forEach(actions, function(action, name) {
+						action.headers['Authorization'] = 'Bearer ' + authToken.access_token;
+					});
+
+					promiseHandle.resolve($resource(url, paramDefaults, actions, options));
+				}, function (msg, code) {
+					promiseHandle.reject(msg);
+				});
+			};
+
+			SecureResource.prototype = {
+				delegateTo: function (name, args) {
+					var deferred = $q.defer(),
+						result = deferred.promise;
+
+					this.resourcePromise
+						.then(function (resource) {
+							return resource[name].apply(resource, args).$promise;
+						})
+						.then(function (result) {
+							console.log("result", result.$resolved);
+							deferred.resolve(result);
+						}, function (reason) {
+							deferred.reject(reason);
+						});
+
+					return result;
+				},
+			};
+
+
+			return function (url, paramDefaults, actions, options) {
+				var result = new SecureResource(url, paramDefaults, actions, options),
+					actions = angular.extend({}, defaultActions, actions);
+
+				// create delegator functions for all actions
+				angular.forEach(actions, function(action, name) {
+					result[name] = function() {
+						return this.delegateTo(name, Array.prototype.slice.call(arguments));
+					};
+				});
+
+				return result;
+			};
+
+		})
+
+		; // finally end the giant statement
+
+})(angular, bleedHd);

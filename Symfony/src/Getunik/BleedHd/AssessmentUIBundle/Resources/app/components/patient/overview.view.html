@@ -1,5 +1,22 @@
-<div ng-controller="PatientOverviewController">
-	<ul>
-		<li ng-repeat="status in data track by $index">{{status}}</li>
-	</ul>
+<div>
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th>Lastname</th>
+					<th>Firstname</th>
+					<th>Date of Birth</th>
+					<th>Active</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="patient in ctlPatients.patients">
+					<td>{{ patient.firstname }}</td>
+					<td>{{ patient.lastname }}</td>
+					<td>{{ patient.birthdate }} </td>
+					<td>{{ patient.is_active }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
