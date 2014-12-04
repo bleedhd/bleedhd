@@ -31,6 +31,13 @@
 
 	.constant('bleedHdConfig', {
 		version: '1.0.0',
+		api: {
+			host: '',
+			base: '/api',
+			resources: {
+				patients: 'patients',
+			},
+		},
 		format: {
 			birthdate: 'dd.MM.yyyy',
 			yesno: ['yes', 'no'],

@@ -8,7 +8,7 @@
 	PatientOverviewController.asName = 'ctlPatients';
 	PatientOverviewController.defaultTemplate = bleedHd.getView('patient', 'overview');
 	PatientOverviewController.resolve = {
-		patients: function (secureResource) { return secureResource('/api/patients/:patientId', { patientId: '@id' }).query(); },
+		patients: function (patientData) { return patientData.getPatients(); },
 	}
 
 	bleedHd.registerController('patient', PatientOverviewController);
