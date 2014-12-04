@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
             new FOS\RestBundle\FOSRestBundle(),
+            new Asoc\AsseticAngularJsBundle\AsocAsseticAngularJsBundle(),
             new Getunik\BleedHd\SecurityBundle\GetunikBleedHdSecurityBundle(),
             new Getunik\BleedHd\AssessmentDataBundle\GetunikBleedHdAssessmentDataBundle(),
             new Getunik\BleedHd\AssessmentUIBundle\GetunikBleedHdAssessmentUIBundle(),
