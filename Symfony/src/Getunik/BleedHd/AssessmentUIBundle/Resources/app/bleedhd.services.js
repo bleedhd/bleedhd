@@ -40,7 +40,7 @@
 				'get': {method: 'GET'},
 				'save': {method: 'POST'},
 				'query': {method: 'GET', isArray: true},
-				'remove': {method: 'DELETE'},
+				'update': {method: 'PUT'},
 				'delete': {method: 'DELETE'},
 			};
 
