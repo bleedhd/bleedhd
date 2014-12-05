@@ -13,7 +13,9 @@
 			return this.resource.query();
 		},
 		newPatient: function () {
-			return {};
+			return {
+				is_active: true,
+			};
 		},
 		savePatient: function (patient) {
 			if (patient.id === undefined) {

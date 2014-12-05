@@ -52,6 +52,7 @@
 
 				authHandler.then(function (authToken) {
 					angular.forEach(actions, function(action, name) {
+						if (action.headers === undefined) { action.headers = {}; }
 						action.headers['Authorization'] = 'Bearer ' + authToken.access_token;
 					});
 
@@ -83,8 +84,8 @@
 
 
 			return function (url, paramDefaults, actions, options) {
-				var result = new SecureResource(url, paramDefaults, actions, options),
-					actions = angular.extend({}, defaultActions, actions);
+				var actions = angular.extend({}, defaultActions, actions),
+					result = new SecureResource(url, paramDefaults, actions, options);
 
 				// create delegator functions for all actions
 				angular.forEach(actions, function(action, name) {

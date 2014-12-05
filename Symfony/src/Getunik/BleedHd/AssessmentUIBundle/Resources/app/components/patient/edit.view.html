@@ -13,28 +13,28 @@
 		</div>
 		<div>
 			<label for="patient_birthdate">Date of birth*:</label>
-			<input id="patient_birthdate" type="date" ng-model="ctlPatient.patient.birthdate" required />
+			<input id="patient_birthdate" type="date" ng-model="ctlPatient.patient.birthdate" ng-model-options="{ timezone: 'UTC' }" required />
 		</div>
 		<div>
-			<label for="patient_sex">Sex*:</label>
-			<select id="patient_sex" ng-model="ctlPatient.patient.sex" required>
-				<option value="-">Not specified</option>
+			<label for="patient_sex">Sex:</label>
+			<select id="patient_sex" ng-model="ctlPatient.patient.sex">
+				<option value="">Not specified</option>
 				<option value="m">Male</option>
 				<option value="f">Female</option>
 			</select>
 		</div>
 		<div>
-			<label for="patient_number">Patient Number:</label>
-			<input id="patient_number" type="number" ng-model="ctlPatient.patient.number" />
+			<label for="patient_patient_number">Patient Number*:</label>
+			<input id="patient_patient_number" type="number" ng-model="ctlPatient.patient.patient_number" required />
 		</div>
 		<div>
-			<label for="patient_upn_number">UPN Number:</label>
-			<input id="patient_upn_number" type="text" ng-model="ctlPatient.patient.upn_number" />
+			<label for="patient_upn">UPN Number:</label>
+			<input id="patient_upn" type="number" ng-model="ctlPatient.patient.upn" />
 		</div>
 		<div>
 			<label for="patient_diagnosis">Diagnosis:</label>
 			<select id="patient_diagnosis" ng-model="ctlPatient.patient.diagnosis">
-				<option value="Undiagnosed">Undiagnosed</option>
+				<option value="">Undiagnosed</option>
 				<option value="Acute myelogenous leukemia">Acute myelogenous leukemia</option>
 				<option value="Acute lymphatic leukemia">Acute lymphatic leukemia</option>
 				<option value="Leukemia, not otherwise specified">Leukemia, not otherwise specified</option>
@@ -50,12 +50,12 @@
 		</div>
 		<div>
 			<label for="patient_diagnosis_date">Date initial diagnosis (yyyy-mm-dd):</label>
-			<input id="patient_diagnosis_date" type="date" ng-model="ctlPatient.patient.diagnosis_date" />
+			<input id="patient_diagnosis_date" type="date" ng-model="ctlPatient.patient.diagnosis_date" ng-model-options="{ timezone: 'UTC' }" />
 		</div>
 		<div>
 			<label for="patient_patient_blood_type">Patient Blood Type:</label>
 			<select id="patient_patient_blood_type" ng-model="ctlPatient.patient.patient_blood_type">
-				<option value="Not specified">Not specified</option>
+				<option value="">Not specified</option>
 				<option value="0+">0+</option>
 				<option value="0-">0-</option>
 				<option value="A+">A+</option>
@@ -69,7 +69,7 @@
 		<div>
 			<label for="patient_donor_blood_type">Donor Blood Type:</label>
 			<select id="patient_donor_blood_type" ng-model="ctlPatient.patient.donor_blood_type">
-				<option value="Not specified">Not specified</option>
+				<option value="">Not specified</option>
 				<option value="0+">0+</option>
 				<option value="0-">0-</option>
 				<option value="A+">A+</option>
@@ -94,9 +94,9 @@
 	<div>
 		<br /><br />
 		{{ ctlPatient.patient.firstname }} {{ ctlPatient.patient.lastname }} <br />
-		{{ ctlPatient.patient.birthdate }} ({{ ctlPatient.patient.sex }})<br />
-		{{ ctlPatient.patient.number }} / {{ ctlPatient.patient.upn_number }}<br />
-		{{ ctlPatient.patient.diagnosis_date }} -> {{ ctlPatient.patient.diagnosis }}<br />
+		{{ ctlPatient.patient.birthdate | json }} ({{ ctlPatient.patient.sex }})<br />
+		{{ ctlPatient.patient.patient_number }} / {{ ctlPatient.patient.upn }}<br />
+		{{ ctlPatient.patient.diagnosis_date | json }} -> {{ ctlPatient.patient.diagnosis }}<br />
 		{{ ctlPatient.patient.patient_blood_type }} -> {{ ctlPatient.patient.donor_blood_type }}<br />
 		is active: {{ ctlPatient.patient.is_active | boolyesno }}
 	</div>

@@ -19,15 +19,15 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus:
             nullable: false
         transplantDate:
             type: date
-            nullable: false
+            nullable: true
         transplantType:
             type: string
-            nullable: false
             length: 255
+            nullable: true
         transplantSource:
             type: string
-            nullable: false
             length: 255
+            nullable: true
     manyToOne:
         patient:
             targetEntity: Patient

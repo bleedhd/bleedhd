@@ -57,7 +57,7 @@ class Patient implements UpdateInformationInterface
     /**
      * @var string
      */
-    private $upnNumber;
+    private $upn;
 
     /**
      * @var string
@@ -287,26 +287,26 @@ class Patient implements UpdateInformationInterface
     }
 
     /**
-     * Set upnNumber
+     * Set upn
      *
-     * @param string $upnNumber
+     * @param string $upn
      * @return Patient
      */
-    public function setUpnNumber($upnNumber)
+    public function setUpn($upn)
     {
-        $this->upnNumber = $upnNumber;
+        $this->upn = $upn;
 
         return $this;
     }
 
     /**
-     * Get upnNumber
+     * Get upn
      *
      * @return string
      */
-    public function getUpnNumber()
+    public function getUpn()
     {
-        return $this->upnNumber;
+        return $this->upn;
     }
 
     /**
