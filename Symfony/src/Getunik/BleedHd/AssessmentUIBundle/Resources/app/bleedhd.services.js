@@ -72,7 +72,6 @@
 							return resource[name].apply(resource, args).$promise;
 						})
 						.then(function (result) {
-							console.log("result", result.$resolved);
 							deferred.resolve(result);
 						}, function (reason) {
 							deferred.reject(reason);
@@ -97,6 +96,37 @@
 				return result;
 			};
 
+		})
+
+		.factory('jsonDateInterceptor', function() {
+			var iso8601RegEx = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?([+-]\d{4}|Z)$/;
+
+			function recursiveProcess (data, processor) {
+				angular.forEach(data, function(value, key, parent) {
+					if (typeof(value) === 'object') {
+						recursiveProcess(value, processor);
+					} else {
+						var processed = processor(key, value);
+						if (processed !== undefined)
+						{
+							parent[key] = processed;
+						}
+					}
+				});
+			}
+
+			function transformDateString(key, value) {
+				if (typeof(value) === 'string' && value.match(iso8601RegEx)) {
+					return new Date(Date.parse(value));
+				}
+			}
+
+			return {
+				response: function (response) {
+					recursiveProcess(response.data, transformDateString);
+					return response;
+				},
+			};
 		})
 
 		; // finally end the giant statement
