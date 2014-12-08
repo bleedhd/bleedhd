@@ -44,6 +44,10 @@
 		},
 	})
 
+	.config(function ($httpProvider) {
+		$httpProvider.interceptors.push('jsonDateInterceptor');
+	})
+
 	;
 
 })(angular);

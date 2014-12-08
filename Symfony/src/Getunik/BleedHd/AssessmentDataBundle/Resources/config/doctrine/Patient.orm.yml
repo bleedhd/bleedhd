@@ -31,25 +31,32 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Patient:
         sex:
             type: string
             length: 10
+            nullable: true
         patientNumber:
             type: string
             length: 255
-        upnNumber:
+            nullable: true
+        upn:
             type: string
             length: 255
+            nullable: true
         diagnosis:
             type: string
             length: 255
+            nullable: true
         diagnosisDate:
             type: datetimetz
             length: 255
+            nullable: true
         patientBloodType:
             type: string
             length: 10
+            nullable: true
         donorBloodType:
             type: string
             length: 10
+            nullable: true
     oneToMany:
-        stati:
+        statuses:
             targetEntity: PatientStatus
             mappedBy: patient

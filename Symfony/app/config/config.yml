@@ -105,3 +105,24 @@ getunik_bleed_hd_security:
         id: 1_5jyzuhluzucco4swk0wssw8wsgs8k8c844oc8ckg84skg8os8g
         secret: 2p607zqdlqiosg4gocowooks4ow8kk8gkss04wwo0sw8804o4o
         target_path: /user/profile
+
+jms_serializer:
+    handlers:
+        # Fix basic JavaScript date / time / serialization handling incompatibility
+        # https://github.com/schmittjoh/JMSSerializerBundle/issues/395
+        datetime:
+            default_format: "Y-m-d\TH:i:s.uO" # ISO8601
+            default_timezone: "UTC"
+    metadata:
+        cache: file
+        debug: "%kernel.debug%"
+        file_cache:
+            dir: "%kernel.cache_dir%/serializer"
+
+        # Using auto-detection, the mapping files for each bundle will be
+        # expected in the Resources/config/serializer directory.
+        #
+        # Example:
+        # class: My\FooBundle\Entity\User
+        # expected path: @MyFooBundle/Resources/config/serializer/Entity.User.(yml|xml|php)
+        auto_detection: true

@@ -1,5 +1,9 @@
 <div>
 	<div>
+		<h1>Patient overview</h1>
+		<a href="#/export">Export</a>
+	</div>
+	<div>
 		Filter: <input type="text" ng-model="ctlPatients.filterSearch" />
 		<input type="checkbox" checked="checked" id="filter_active" ng-model="ctlPatients.filterActive" ng-true-value="true" ng-false-value="false" />
 		<label for="filter_active">Show only active patients</label>
@@ -9,9 +13,11 @@
 		Searching for "{{ ctlPatients.filterSearch }}" with active {{ ctlPatients.filterActive }}
 	</div>
 	<div>
+		<a href="#/patients/new">New patient</a>
 		<table>
 			<thead>
 				<tr>
+					<th>&nbsp;</th>
 					<th>Lastname</th>
 					<th>Firstname</th>
 					<th>Date of Birth</th>
@@ -19,7 +25,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="patient in ctlPatients.patients | filter:ctlPatients.filterPatientsFulltext(ctlPatients.filterSearch) | filter:{is_active:(ctlPatients.filterActive ? true : undefined)}">
+				<tr ng-repeat="patient in ctlPatients.patients | filter:ctlPatients.filterPatientsFulltext(ctlPatients.filterSearch) | filter:{is_active:(ctlPatients.filterActive ? true : undefined)}" data-id="{{ patient.id }}">
+					<td><a href="#/patients/edit/{{ patient.id }}">Edit</a></td>
 					<td>{{ patient.firstname }}</td>
 					<td>{{ patient.lastname }}</td>
 					<td>{{ patient.birthdate | birthdate }} </td>

@@ -40,7 +40,7 @@
 				'get': {method: 'GET'},
 				'save': {method: 'POST'},
 				'query': {method: 'GET', isArray: true},
-				'remove': {method: 'DELETE'},
+				'update': {method: 'PUT'},
 				'delete': {method: 'DELETE'},
 			};
 
@@ -52,6 +52,7 @@
 
 				authHandler.then(function (authToken) {
 					angular.forEach(actions, function(action, name) {
+						if (action.headers === undefined) { action.headers = {}; }
 						action.headers['Authorization'] = 'Bearer ' + authToken.access_token;
 					});
 
@@ -71,7 +72,6 @@
 							return resource[name].apply(resource, args).$promise;
 						})
 						.then(function (result) {
-							console.log("result", result.$resolved);
 							deferred.resolve(result);
 						}, function (reason) {
 							deferred.reject(reason);
@@ -83,8 +83,8 @@
 
 
 			return function (url, paramDefaults, actions, options) {
-				var result = new SecureResource(url, paramDefaults, actions, options),
-					actions = angular.extend({}, defaultActions, actions);
+				var actions = angular.extend({}, defaultActions, actions),
+					result = new SecureResource(url, paramDefaults, actions, options);
 
 				// create delegator functions for all actions
 				angular.forEach(actions, function(action, name) {
@@ -96,6 +96,37 @@
 				return result;
 			};
 
+		})
+
+		.factory('jsonDateInterceptor', function() {
+			var iso8601RegEx = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?([+-]\d{4}|Z)$/;
+
+			function recursiveProcess (data, processor) {
+				angular.forEach(data, function(value, key, parent) {
+					if (typeof(value) === 'object') {
+						recursiveProcess(value, processor);
+					} else {
+						var processed = processor(key, value);
+						if (processed !== undefined)
+						{
+							parent[key] = processed;
+						}
+					}
+				});
+			}
+
+			function transformDateString(key, value) {
+				if (typeof(value) === 'string' && value.match(iso8601RegEx)) {
+					return new Date(Date.parse(value));
+				}
+			}
+
+			return {
+				response: function (response) {
+					recursiveProcess(response.data, transformDateString);
+					return response;
+				},
+			};
 		})
 
 		; // finally end the giant statement

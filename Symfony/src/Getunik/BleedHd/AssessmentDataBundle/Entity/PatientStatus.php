@@ -3,8 +3,6 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Exclude;
 
 /**
  * PatientStatus
@@ -224,7 +222,6 @@ class PatientStatus implements UpdateInformationInterface
     }
     /**
      * @var \Getunik\BleedHd\AssessmentDataBundle\Entity\Patient
-     * @Exclude
      */
     private $patient;
 
