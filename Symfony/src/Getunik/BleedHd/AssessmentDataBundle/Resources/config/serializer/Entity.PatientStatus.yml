@@ -1,0 +1,18 @@
+Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus:
+    exclusion_policy: ALL
+    read_only: false
+    properties:
+        id:
+            since_version: 1.0
+        lastUpdatedDate:
+            since_version: 1.0
+        lastUpdatedBy:
+            since_version: 1.0
+        patientId:
+            since_version: 1.0
+        transplantDate:
+            since_version: 1.0
+        transplantType:
+            since_version: 1.0
+        transplantSource:
+            since_version: 1.0
