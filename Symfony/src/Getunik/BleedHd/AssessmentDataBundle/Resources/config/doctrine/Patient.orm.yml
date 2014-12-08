@@ -57,6 +57,6 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Patient:
             length: 10
             nullable: true
     oneToMany:
-        stati:
+        statuses:
             targetEntity: PatientStatus
             mappedBy: patient

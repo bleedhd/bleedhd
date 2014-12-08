@@ -82,14 +82,14 @@ class Patient implements UpdateInformationInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $stati;
+    private $statuses;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->stati = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->statuses = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -402,35 +402,35 @@ class Patient implements UpdateInformationInterface
     }
 
     /**
-     * Add stati
+     * Add statuses
      *
-     * @param \Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus $stati
+     * @param \Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus $statuses
      * @return Patient
      */
-    public function addStati(\Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus $stati)
+    public function addStatus(\Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus $statuses)
     {
-        $this->stati[] = $stati;
+        $this->statuses[] = $statuses;
 
         return $this;
     }
 
     /**
-     * Remove stati
+     * Remove statuses
      *
-     * @param \Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus $stati
+     * @param \Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus $statuses
      */
-    public function removeStati(\Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus $stati)
+    public function removeStatus(\Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus $statuses)
     {
-        $this->stati->removeElement($stati);
+        $this->statuses->removeElement($statuses);
     }
 
     /**
-     * Get stati
+     * Get statuses
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getStati()
+    public function getStatuses()
     {
-        return $this->stati;
+        return $this->statuses;
     }
 }
