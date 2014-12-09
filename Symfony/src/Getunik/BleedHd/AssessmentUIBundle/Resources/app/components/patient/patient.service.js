@@ -43,9 +43,15 @@
 				patient.put();
 			}
 		},
+		newStatus: function (patient) {
+			return {
+				patient_id: patient.id,
+				transplant_date: new Date(),
+			};
+		},
 		saveStatus: function (status) {
 			if (status.id === undefined) {
-				this.BleedApi.one('patients', patientId).all('statuses').save(status);
+				this.BleedApi.one('patients', status.patient_id).all('statuses').post(status);
 			} else {
 				status.put();
 			}
