@@ -1,10 +1,11 @@
 
 (function (angular, bleedHd) {
 
-	function PatientDataService(BleedApi, secureResource, bleedHdConfig) {
+	function PatientDataService($q, BleedApi, secureResource, bleedHdConfig) {
 		this.resource = secureResource;
 		this.config = bleedHdConfig;
 
+		this.$q = $q;
 		this.BleedApi = BleedApi;
 		this.patients = BleedApi.all('patients');
 	}
@@ -14,7 +15,21 @@
 			return this.patients.getList();
 		},
 		getPatient: function (patientId) {
-			return this.patients.get(patientId);
+			var patient = this.$q.defer();
+
+			this.$q
+				.all({
+					patient: this.patients.get(patientId),
+					statuses: this.BleedApi.one('patients', patientId).getList('statuses'),
+				})
+				.then(function (promises) {
+					promises.patient.statuses = promises.statuses;
+					patient.resolve(promises.patient);
+				}, function (reason) {
+					patient.reject(reason);
+				});
+
+			return patient.promise;
 		},
 		newPatient: function () {
 			return {
@@ -28,8 +43,12 @@
 				patient.put();
 			}
 		},
-		getStatuses: function (patientId) {
-			return this.BleedApi.one('patients', patientId).getList('statuses');
+		saveStatus: function (status) {
+			if (status.id === undefined) {
+				this.BleedApi.one('patients', patientId).all('statuses').save(status);
+			} else {
+				status.put();
+			}
 		},
 	});
 

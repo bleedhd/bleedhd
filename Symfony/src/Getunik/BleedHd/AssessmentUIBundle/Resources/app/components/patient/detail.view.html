@@ -16,6 +16,23 @@
 	</div>
 	<div>
 		<h2>Status overview</h2>
-		TODO
+		<table>
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th>Date</th>
+					<th>Transplant</th>
+					<th>Source</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="status in ctlPatient.patient.statuses" data-id="{{ status.id }}">
+					<td><a href="#/patients/{{ ctlPatient.patient.id }}/status/edit/{{ status.id }}">Details</a></td>
+					<td>{{ status.transplant_date | date }}</td>
+					<td>{{ status.transplant_type }}</td>
+					<td>{{ status.transplant_source }}</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>
