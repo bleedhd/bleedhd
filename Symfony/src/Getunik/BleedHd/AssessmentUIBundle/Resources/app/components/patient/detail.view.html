@@ -27,7 +27,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="status in ctlPatient.patient.statuses" data-id="{{ status.id }}">
+				<tr ng-repeat="status in ctlPatient.patient.statuses | orderBy:'transplant_date':true" data-id="{{ status.id }}">
 					<td><a href="#/patients/{{ ctlPatient.patient.id }}/status/edit/{{ status.id }}">Details</a></td>
 					<td>{{ status.transplant_date | date }}</td>
 					<td>{{ status.transplant_type }}</td>
