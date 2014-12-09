@@ -17,6 +17,15 @@
 				}
 			});
 		}
+
+		// Only allogenic transplants can/should have a transplant source, so we reset the transplant source to empty
+		// string for all transplant types except for allogenic.
+		var status = this.status;
+		$scope.$watch('ctlStatus.status.transplant_type', function (newValue, oldValue) {
+			if (status.transplant_type !== 'allogenic') {
+				status.transplant_source = '';
+			}
+		});
 	}
 
 	angular.extend(PatientStatusEditController.prototype, {

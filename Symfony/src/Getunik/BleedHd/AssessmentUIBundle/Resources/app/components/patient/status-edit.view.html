@@ -18,11 +18,11 @@
 			<select id="status_transplant_type" ng-model="ctlStatus.status.transplant_type">
 				<option value="">not specified</option>
 				<option value="autologous">autologous</option>
-				<option value="allogeneic">allogeneic</option>
+				<option value="allogenic">allogenic</option>
 				<option value="DLI">DLI</option>
 			</select>
 		</div>
-		<div>
+		<div ng-show="ctlStatus.status.transplant_type == 'allogenic'">
 			<label for="status_transplant_source">Source:</label>
 			<select id="status_transplant_source" ng-model="ctlStatus.status.transplant_source">
 				<option value="">not specified</option>
@@ -37,4 +37,8 @@
 			<button type="button" ng-disabled="statusForm.$invalid" ng-click="ctlStatus.save()">Save</a>
 		</div>
 	</form>
+</div>
+<div>
+	<br /> <br />
+	{{ ctlStatus.status | json }}
 </div>
