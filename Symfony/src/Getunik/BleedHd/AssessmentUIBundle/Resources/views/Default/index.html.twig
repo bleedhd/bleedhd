@@ -4,10 +4,12 @@
 	<meta charset="utf-8">
 	<title>Leech App</title>
 	{% javascripts output='js/compiled/angular.js'
+		'@GetunikBleedHdAssessmentUIBundle/Resources/js/lodash/lodash.js'
 		'@GetunikBleedHdAssessmentUIBundle/Resources/angular/core/angular.js'
 		'@GetunikBleedHdAssessmentUIBundle/Resources/angular/core/angular-route.js'
 		'@GetunikBleedHdAssessmentUIBundle/Resources/angular/ui-router/angular-ui-router.js'
 		'@GetunikBleedHdAssessmentUIBundle/Resources/angular/resource/angular-resource.js'
+		'@GetunikBleedHdAssessmentUIBundle/Resources/angular/restangular/restangular.js'
 	%}
 		<script src="{{ asset_url }}"></script>
 	{% endjavascripts %}

@@ -1,19 +1,20 @@
 
 (function (angular, bleedHd) {
 
-	function PatientDataService(secureResource, bleedHdConfig) {
+	function PatientDataService(BleedApi, secureResource, bleedHdConfig) {
 		this.resource = secureResource;
 		this.config = bleedHdConfig;
 
-		this.resource = secureResource([this.config.api.base, this.config.api.resources.patients, ':patientId'].join('/'), { patientId: '@id' });
+		this.BleedApi = BleedApi;
+		this.patients = BleedApi.all('patients');
 	}
 
 	angular.extend(PatientDataService.prototype, {
 		getPatients: function () {
-			return this.resource.query();
+			return this.patients.getList();
 		},
 		getPatient: function (patientId) {
-			return this.resource.get({ patientId: patientId });
+			return this.patients.get(patientId);
 		},
 		newPatient: function () {
 			return {
@@ -22,17 +23,17 @@
 		},
 		savePatient: function (patient) {
 			if (patient.id === undefined) {
-				this.resource.save(patient);
+				this.patients.post(patient);
 			} else {
-				this.resource.update(patient);
+				patient.put();
 			}
+		},
+		getStatuses: function (patientId) {
+			return this.BleedApi.one('patients', patientId).getList('statuses');
 		},
 	});
 
-
 	angular.module('patient')
-		.factory('patientData', function (secureResource, bleedHdConfig) {
-			return new PatientDataService(secureResource, bleedHdConfig);
-		});
+		.service('patientData', PatientDataService);
 
 })(angular, bleedHd);

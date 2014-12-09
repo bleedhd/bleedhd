@@ -18,7 +18,7 @@
 					search = new RegExp(pattern, 'i');
 
 				return fullText.match(search) !== null;
-			}
+			};
 		},
 		resetFilter: function () {
 			this.filterActive = true;
@@ -31,7 +31,7 @@
 	PatientOverviewController.defaultTemplate = bleedHd.getView('patient', 'overview');
 	PatientOverviewController.resolve = {
 		patients: function (patientData) { return patientData.getPatients(); },
-	}
+	};
 
 	bleedHd.registerController('patient', PatientOverviewController);
 

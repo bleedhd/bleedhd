@@ -12,7 +12,9 @@
 		.factory('authHandler', function($http, $q) {
 			var authToken = $q.defer();
 
-			authToken.resolve('abcdefg');
+			window.setTimeout(function () {
+				authToken.resolve('abcdefg');
+			}, 2000);
 
 			// TODO: currently disabled for testing
 			/*$http.get('/user/getToken').
@@ -127,6 +129,21 @@
 					return response;
 				},
 			};
+		})
+
+		.factory('BleedApi', function (Restangular, authHandler) {
+			var token = {
+				value: null,
+				toString: function () { return (this.value === null ? "not yet" : this.value); },
+			};
+
+			authHandler.then(function (token) { token.value = token; console.log ("auth resolved", token.toString()); });
+
+			return Restangular.withConfig(function(RestangularConfig) {
+				RestangularConfig
+					.setBaseUrl('/api')
+					.setDefaultHeaders({ 'Authorization': token });
+			});
 		})
 
 		; // finally end the giant statement

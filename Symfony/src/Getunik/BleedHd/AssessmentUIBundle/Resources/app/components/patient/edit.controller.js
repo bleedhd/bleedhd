@@ -42,7 +42,7 @@
 				return patientData.getPatient($route.current.params.patientId);
 			}
 		}
-	}
+	};
 
 	bleedHd.registerController('patient', PatientEditController);
 
