@@ -1,19 +1,35 @@
 
 (function (angular, bleedHd) {
 
-	function PatientDataService(secureResource, bleedHdConfig) {
+	function PatientDataService($q, BleedApi, secureResource, bleedHdConfig) {
 		this.resource = secureResource;
 		this.config = bleedHdConfig;
 
-		this.resource = secureResource([this.config.api.base, this.config.api.resources.patients, ':patientId'].join('/'), { patientId: '@id' });
+		this.$q = $q;
+		this.BleedApi = BleedApi;
+		this.patients = BleedApi.all('patients');
 	}
 
 	angular.extend(PatientDataService.prototype, {
 		getPatients: function () {
-			return this.resource.query();
+			return this.patients.getList();
 		},
 		getPatient: function (patientId) {
-			return this.resource.get({ patientId: patientId });
+			var patient = this.$q.defer();
+
+			this.$q
+				.all({
+					patient: this.patients.get(patientId),
+					statuses: this.BleedApi.one('patients', patientId).getList('statuses'),
+				})
+				.then(function (promises) {
+					promises.patient.statuses = promises.statuses;
+					patient.resolve(promises.patient);
+				}, function (reason) {
+					patient.reject(reason);
+				});
+
+			return patient.promise;
 		},
 		newPatient: function () {
 			return {
@@ -22,17 +38,27 @@
 		},
 		savePatient: function (patient) {
 			if (patient.id === undefined) {
-				this.resource.save(patient);
+				this.patients.post(patient);
 			} else {
-				this.resource.update(patient);
+				patient.put();
+			}
+		},
+		newStatus: function (patient) {
+			return {
+				patient_id: patient.id,
+				transplant_date: new Date(),
+			};
+		},
+		saveStatus: function (status) {
+			if (status.id === undefined) {
+				this.BleedApi.one('patients', status.patient_id).all('statuses').post(status);
+			} else {
+				status.put();
 			}
 		},
 	});
 
-
 	angular.module('patient')
-		.factory('patientData', function (secureResource, bleedHdConfig) {
-			return new PatientDataService(secureResource, bleedHdConfig);
-		});
+		.service('patientData', PatientDataService);
 
 })(angular, bleedHd);

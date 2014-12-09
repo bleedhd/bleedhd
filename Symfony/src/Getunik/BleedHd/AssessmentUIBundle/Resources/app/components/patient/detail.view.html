@@ -1,0 +1,39 @@
+<div>
+	<h1>Patient details</h1>
+</div>
+<div>
+	<div>
+		{{ ctlPatient.patient | json }}
+	</div>
+	<div>
+		<a href="#/patients/edit/{{ ctlPatient.patient.id }}">Edit patient</a>
+	</div>
+</div>
+<div>
+	<div>
+		<h2>Assessments</h2>
+		TODO
+	</div>
+	<div>
+		<h2>Status overview</h2>
+		<a href="#/patients/{{ ctlPatient.patient.id }}/status/new">New status</a>
+		<table>
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th>Date</th>
+					<th>Transplant</th>
+					<th>Source</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="status in ctlPatient.patient.statuses | orderBy:'transplant_date':true" data-id="{{ status.id }}">
+					<td><a href="#/patients/{{ ctlPatient.patient.id }}/status/edit/{{ status.id }}">Details</a></td>
+					<td>{{ status.transplant_date | date }}</td>
+					<td>{{ status.transplant_type }}</td>
+					<td>{{ status.transplant_source }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

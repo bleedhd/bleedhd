@@ -15,7 +15,7 @@
 			templateUrl: controller.defaultTemplate,
 			resolve: controller.resolve,
 		};
-	}
+	};
 
 	bleedHd.basePath = 'GetunikBleedHdAssessmentUIBundle/Resources/app';
 	bleedHd.getView = function (component, view) {
@@ -27,6 +27,7 @@
 		'ngResource',
 		'ui.router',
 		'patient',
+		'restangular',
 	])
 
 	.constant('bleedHdConfig', {
@@ -36,6 +37,7 @@
 			base: '/api',
 			resources: {
 				patients: 'patients',
+				statuses: 'patients/:patientId/statuses',
 			},
 		},
 		format: {

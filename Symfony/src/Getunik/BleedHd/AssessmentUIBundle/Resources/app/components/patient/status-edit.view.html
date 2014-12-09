@@ -1,0 +1,44 @@
+<div>
+	<h1>Patient status details</h1>
+</div>
+<div>
+	<div>
+		{{ ctlStatus.patient | json }}
+	</div>
+</div>
+<div>
+	<br /> <br />
+	<form name="statusForm" novalidate>
+		<div>
+			<label for="status_transplant_date">Date:</label>
+			<input id="status_transplant_date" type="date" ng-model="ctlStatus.status.transplant_date" ng-model-options="{ timezone: 'UTC' }" />
+		</div>
+		<div>
+			<label for="status_transplant_type">Transplant Type:</label>
+			<select id="status_transplant_type" ng-model="ctlStatus.status.transplant_type">
+				<option value="">not specified</option>
+				<option value="autologous">autologous</option>
+				<option value="allogenic">allogenic</option>
+				<option value="DLI">DLI</option>
+			</select>
+		</div>
+		<div ng-show="ctlStatus.status.transplant_type == 'allogenic'">
+			<label for="status_transplant_source">Source:</label>
+			<select id="status_transplant_source" ng-model="ctlStatus.status.transplant_source">
+				<option value="">not specified</option>
+				<option value="Cord">Cord</option>
+				<option value="BM">BM</option>
+				<option value="PBSC">PBSC</option>
+			</select>
+		</div>
+
+		<div>
+			<a href="#/patients/detail/{{ ctlStatus.patient.id }}">Cancel</a>
+			<button type="button" ng-disabled="statusForm.$invalid" ng-click="ctlStatus.save()">Save</a>
+		</div>
+	</form>
+</div>
+<div>
+	<br /> <br />
+	{{ ctlStatus.status | json }}
+</div>
