@@ -6,16 +6,16 @@
 		/**
 		 * Formats the given Date object as a birthdate
 		 */
-		.filter('birthdate', function ($filter, bleedHdConfig) {
+		.filter('birthdate', function ($filter, BleedHdConfig) {
 			var dateFilter = $filter('date');
 			return function (date) {
-				return dateFilter(date, bleedHdConfig.format.birthdate);
+				return dateFilter(date, BleedHdConfig.format.birthdate);
 			};
 		})
 
-		.filter('boolyesno', function (bleedHdConfig) {
+		.filter('boolyesno', function (BleedHdConfig) {
 			return function (value) {
-				return (value === true ? bleedHdConfig.format.yesno[0] : bleedHdConfig.format.yesno[1]);
+				return (value === true ? BleedHdConfig.format.yesno[0] : BleedHdConfig.format.yesno[1]);
 			};
 		});
 

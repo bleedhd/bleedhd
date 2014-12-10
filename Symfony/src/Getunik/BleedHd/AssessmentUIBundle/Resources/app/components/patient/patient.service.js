@@ -1,10 +1,7 @@
 
 (function (angular, bleedHd) {
 
-	function PatientDataService($q, BleedApi, secureResource, bleedHdConfig) {
-		this.resource = secureResource;
-		this.config = bleedHdConfig;
-
+	function PatientDataService($q, BleedApi) {
 		this.$q = $q;
 		this.BleedApi = BleedApi;
 		this.patients = BleedApi.all('patients');

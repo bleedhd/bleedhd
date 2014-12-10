@@ -63,7 +63,7 @@
 		'restangular',
 	])
 
-	.constant('bleedHdConfig', {
+	.constant('BleedHdConfig', {
 		version: '1.0.0',
 		api: {
 			host: '',
@@ -79,8 +79,21 @@
 		},
 	})
 
-	.config(function ($httpProvider) {
-		$httpProvider.interceptors.push('jsonDateInterceptor');
+	.config(function ($provide, $httpProvider) {
+		$httpProvider.interceptors.push('JsonDateInterceptor');
+
+		$provide.decorator('RestangularResource', function ($delegate, AuthHandler) {
+			var oldExecuteRequest = $delegate.executeRequest;
+
+			// always wait for authorization before executing the request
+			$delegate.executeRequest = function (params) {
+				return AuthHandler.authorized(function () {
+					return oldExecuteRequest(params);
+				});
+			};
+
+			return $delegate;
+		});
 	})
 
 	;

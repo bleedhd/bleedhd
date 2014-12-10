@@ -1,22 +1,16 @@
 
 (function (angular, bleedHd) {
 
-	angular.module('bleedHdApp')
+	function AuthHandler($http, $q) {
+		var that = this;
 
-		/**
-		 * The authHandler service provides a central point to get the current user's authentication
-		 * token. It _is_ a promise ($q deferred) that resolves as soon as the current token is available
-		 * and passes the token as the resolution argument. See the secureResource service on how it
-		 * can be used.
-		 */
-		.factory('authHandler', function($http, $q) {
-			var authToken = $q.defer();
+		this.deferred = $q.defer();
+		this.token = {
+			value: null,
+			toString: function () { return (this.value === null ? "token not yet available" : this.value); },
+		};
 
-			window.setTimeout(function () {
-				authToken.resolve('abcdefg');
-			}, 2000);
-
-			// TODO: currently disabled for testing
+		// TODO: currently disabled for testing
 			/*$http.get('/user/getToken').
 				success(function(data, status, headers, config) {
 					console.log("got the token", data);
@@ -25,82 +19,38 @@
 					authToken.reject(msg);
 				});*/
 
-			return authToken.promise;
-		})
+		window.setTimeout(function () {
+			that.deferred.resolve('qwer');
+		}, 500);
+
+		this.deferred.promise.then(function (data) {
+			console.log("token resolved");
+			that.token.value = data;
+		});
+	}
+
+	angular.extend(AuthHandler.prototype, {
+		getToken: function () {
+			return this.token;
+		},
+		authorized: function (callback) {
+			return this.deferred.promise.then(function (data) {
+				return callback(data);
+			});
+		},
+	});
+
+	angular.module('bleedHdApp')
 
 		/**
-		 * The secureResource service is basically a wrapper around the esisting $resource service that
-		 * includes authorization using the 'Authorization' HTTP header. It responds to the same function
-		 * calls as the $resource service and the returned resources do the same with one major difference
-		 * in behavior: instead of returning incomplete objects, the actions called on the resources always
-		 * return a promise that is only resolved when all the data has actually been fetched.
-		 *
-		 * @see https://docs.angularjs.org/api/ngResource/service/$resource under 'Returns'
+		 * The AuthHandler service provides a central point to get the current user's authentication
+		 * token. It _is_ a promise ($q deferred) that resolves as soon as the current token is available
+		 * and passes the token as the resolution argument. See the secureResource service on how it
+		 * can be used.
 		 */
-		.factory('secureResource', function ($q, $resource, authHandler) {
-			var defaultActions = {
-				'get': {method: 'GET'},
-				'save': {method: 'POST'},
-				'query': {method: 'GET', isArray: true},
-				'update': {method: 'PUT'},
-				'delete': {method: 'DELETE'},
-			};
+		.service('AuthHandler', AuthHandler)
 
-			var SecureResource = function (url, paramDefaults, actions, options) {
-				var promiseHandle = $q.defer();
-				this.resourcePromise = promiseHandle.promise;
-
-				var that = this;
-
-				authHandler.then(function (authToken) {
-					angular.forEach(actions, function(action, name) {
-						if (action.headers === undefined) { action.headers = {}; }
-						action.headers['Authorization'] = 'Bearer ' + authToken.access_token;
-					});
-
-					promiseHandle.resolve($resource(url, paramDefaults, actions, options));
-				}, function (msg, code) {
-					promiseHandle.reject(msg);
-				});
-			};
-
-			SecureResource.prototype = {
-				delegateTo: function (name, args) {
-					var deferred = $q.defer(),
-						result = deferred.promise;
-
-					this.resourcePromise
-						.then(function (resource) {
-							return resource[name].apply(resource, args).$promise;
-						})
-						.then(function (result) {
-							deferred.resolve(result);
-						}, function (reason) {
-							deferred.reject(reason);
-						});
-
-					return result;
-				},
-			};
-
-
-			return function (url, paramDefaults, actions, options) {
-				var actions = angular.extend({}, defaultActions, actions),
-					result = new SecureResource(url, paramDefaults, actions, options);
-
-				// create delegator functions for all actions
-				angular.forEach(actions, function(action, name) {
-					result[name] = function() {
-						return this.delegateTo(name, Array.prototype.slice.call(arguments));
-					};
-				});
-
-				return result;
-			};
-
-		})
-
-		.factory('jsonDateInterceptor', function() {
+		.factory('JsonDateInterceptor', function() {
 			var iso8601RegEx = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?([+-]\d{4}|Z)$/;
 
 			function recursiveProcess (data, processor) {
@@ -131,18 +81,11 @@
 			};
 		})
 
-		.factory('BleedApi', function (Restangular, authHandler) {
-			var token = {
-				value: null,
-				toString: function () { return (this.value === null ? "not yet" : this.value); },
-			};
-
-			authHandler.then(function (token) { token.value = token; console.log ("auth resolved", token.toString()); });
-
+		.factory('BleedApi', function (Restangular, AuthHandler) {
 			return Restangular.withConfig(function(RestangularConfig) {
 				RestangularConfig
 					.setBaseUrl('/api')
-					.setDefaultHeaders({ 'Authorization': token });
+					.setDefaultHeaders({ 'Authorization': AuthHandler.getToken() });
 			});
 		})
 
