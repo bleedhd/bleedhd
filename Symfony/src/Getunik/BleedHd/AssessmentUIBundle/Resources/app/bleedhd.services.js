@@ -1,6 +1,10 @@
 
 (function (angular, bleedHd) {
 
+	/**
+	 * The AuthHandler manages an OAuth token and provides functionality to integrate the token
+	 * into webservice requests. @see BleedApi service for more information.
+	 */
 	function AuthHandler($http, $q) {
 		var that = this;
 
@@ -11,13 +15,13 @@
 		};
 
 		// TODO: currently disabled for testing
-			/*$http.get('/user/getToken').
-				success(function(data, status, headers, config) {
-					console.log("got the token", data);
-					authToken.resolve(data);
-				}).error(function(msg, code) {
-					authToken.reject(msg);
-				});*/
+		/*$http.get('/user/getToken').
+			success(function(data, status, headers, config) {
+				console.log("got the token", data);
+				authToken.resolve(data);
+			}).error(function(msg, code) {
+				authToken.reject(msg);
+			});*/
 
 		window.setTimeout(function () {
 			that.deferred.resolve('qwer');
@@ -30,9 +34,23 @@
 	}
 
 	angular.extend(AuthHandler.prototype, {
+		/**
+		 * The object returned by this function can be used as a proxy for the actual token since it is updated
+		 * as soon as the token is available. As long as the serialization (conversion to string) happens after
+		 * the token has been resolved, this will work; otherwise the token value will be reported as 'token not
+		 * yet available'.
+		 *
+		 * @return {object} - a token object with a 'toString' function that simple returns the authentication token
+		 */
 		getToken: function () {
 			return this.token;
 		},
+		/**
+		 * Similar to the 'then' function on promises, this method will call the callback function with
+		 * the token data object as soon as it is resolved.
+		 *
+		 * @param {function(object)} - callback that will be called whenever the authorization token has been resolved
+		 */
 		authorized: function (callback) {
 			return this.deferred.promise.then(function (data) {
 				return callback(data);
@@ -50,6 +68,11 @@
 		 */
 		.service('AuthHandler', AuthHandler)
 
+		/**
+		 * The JSON date interceptor is an HTTP interceptor implementation that transforms properties
+		 * with values that match an ISO-8601 date-time into a JavaScript Date object. It is added to
+		 * the default HTTP interceptors by this module's basic configuration.
+		 */
 		.factory('JsonDateInterceptor', function() {
 			var iso8601RegEx = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?([+-]\d{4}|Z)$/;
 
@@ -81,6 +104,10 @@
 			};
 		})
 
+		/**
+		 * The BleedApi service provides a convenient pre-configured Restangular object with
+		 * integrated authorization.
+		 */
 		.factory('BleedApi', function (Restangular, AuthHandler) {
 			return Restangular.withConfig(function(RestangularConfig) {
 				RestangularConfig

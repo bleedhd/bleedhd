@@ -31,7 +31,7 @@
 	bleedHd.registerController = function (module, constructor, methods, routeDefaults) {
 		// add the controller methods to the controller's prototype
 		angular.extend(constructor.prototype, methods);
-		angular.module(module).controller(name, constructor);
+		angular.module(module).controller(constructor.name, constructor);
 
 		bleedHd.controllers[constructor.name] = {
 			controller: constructor,
@@ -82,6 +82,8 @@
 	.config(function ($provide, $httpProvider) {
 		$httpProvider.interceptors.push('JsonDateInterceptor');
 
+		// extend the (customized) Restangular service implementation to wait for
+		// the Authorization Handler promise to resolve before executing any HTTP request
 		$provide.decorator('RestangularResource', function ($delegate, AuthHandler) {
 			var oldExecuteRequest = $delegate.executeRequest;
 

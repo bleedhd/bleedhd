@@ -17,7 +17,7 @@
 			return function (value) {
 				return (value === true ? BleedHdConfig.format.yesno[0] : BleedHdConfig.format.yesno[1]);
 			};
-		});
+		})
 
 		; // finally end the giant statement
 
