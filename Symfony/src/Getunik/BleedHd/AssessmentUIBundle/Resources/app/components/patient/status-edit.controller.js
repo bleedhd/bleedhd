@@ -28,22 +28,23 @@
 		});
 	}
 
-	angular.extend(PatientStatusEditController.prototype, {
-		save: function () {
-			if (this.$scope.statusForm.$valid) {
-				this.patientData.saveStatus(this.status);
-				this.$location.path('/patients/detail/' + this.patient.id);
-			}
+	bleedHd.registerController('patient', PatientStatusEditController,
+		{
+			save: function () {
+				if (this.$scope.statusForm.$valid) {
+					this.patientData.saveStatus(this.status);
+					this.$location.path('/patients/detail/' + this.patient.id);
+				}
+			},
 		},
-	});
+		{
+			asName: 'ctlStatus',
+			templateUrl: bleedHd.getView('patient', 'status-edit'),
+			resolve: {
+				patient: function ($route, patientData) { return patientData.getPatient($route.current.params.patientId); },
+			},
+		}
+	);
 
-
-	PatientStatusEditController.asName = 'ctlStatus';
-	PatientStatusEditController.defaultTemplate = bleedHd.getView('patient', 'status-edit');
-	PatientStatusEditController.resolve = {
-		patient: function ($route, patientData) { return patientData.getPatient($route.current.params.patientId); },
-	};
-
-	bleedHd.registerController('patient', PatientStatusEditController);
 
 })(angular, bleedHd);

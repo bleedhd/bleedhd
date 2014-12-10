@@ -22,28 +22,28 @@
 		return (newValue === undefined || newValue === 0 ? '' : newValue.toString());
 	}
 
-	angular.extend(PatientEditController.prototype, {
-		save: function () {
-			if (this.$scope.patientForm.$valid) {
-				this.patientData.savePatient(this.patient);
-				this.$location.path('/patients');
-			}
+	bleedHd.registerController('patient', PatientEditController,
+		{
+			save: function () {
+				if (this.$scope.patientForm.$valid) {
+					this.patientData.savePatient(this.patient);
+					this.$location.path('/patients');
+				}
+			},
 		},
-	});
-
-
-	PatientEditController.asName = 'ctlPatient';
-	PatientEditController.defaultTemplate = bleedHd.getView('patient', 'edit');
-	PatientEditController.resolve = {
-		patient: function($route, patientData) {
-			if ($route.current.params.patientId === undefined) {
-				return patientData.newPatient();
-			} else {
-				return patientData.getPatient($route.current.params.patientId);
-			}
+		{
+			asName: 'ctlPatient',
+			templateUrl: bleedHd.getView('patient', 'edit'),
+			resolve: {
+				patient: function($route, patientData) {
+					if ($route.current.params.patientId === undefined) {
+						return patientData.newPatient();
+					} else {
+						return patientData.getPatient($route.current.params.patientId);
+					}
+				}
+			},
 		}
-	};
-
-	bleedHd.registerController('patient', PatientEditController);
+	);
 
 })(angular, bleedHd);
