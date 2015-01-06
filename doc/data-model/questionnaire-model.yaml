@@ -1,6 +1,7 @@
 # Questions are structured in a hierarchy of
-#   Chapter - Group - Section
-# to facilitate potential future navigation concepts.
+#   Chapter - Group - Screen
+# to facilitate potential future navigation concepts. All questions in a screen
+# are displayed on a single screen
 
 meta_answers:
   nya: not yet answered
