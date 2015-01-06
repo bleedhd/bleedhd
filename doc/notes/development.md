@@ -1,3 +1,11 @@
+# Terminology
+
+Questionnaire
+: a definition of a structured set of questions that, when answered, make up an *Assessment*.
+
+Assessment
+: the complete set of answers to a given questionnaire.
+
 # Dev Notes
 
 ## Bootstrapping the Project
