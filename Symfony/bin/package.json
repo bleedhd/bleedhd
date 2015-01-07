@@ -1,0 +1,11 @@
+{
+  "name": "BleedHDDependencies",
+  "version": "1.0.0",
+  "description": "BleedHD dependencies",
+  "main": "index.js",
+  "author": "",
+  "license": "BSD",
+  "dependencies": {
+  	"less": "2.2.0"
+  }
+}
