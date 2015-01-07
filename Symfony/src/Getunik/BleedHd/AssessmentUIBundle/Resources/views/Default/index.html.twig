@@ -41,6 +41,11 @@
 	%}
 		<script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
+	{% stylesheets filter="less" filter="cssrewrite" output="css/compiled/styles.css"
+		'@GetunikBleedHdAssessmentUIBundle/Resources/less/styles.less'
+	%}
+		<link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+	{% endstylesheets %}
 
 </head>
 <body>
