@@ -321,4 +321,32 @@ class Assessment implements UpdateInformationInterface
     {
         return $this->patient;
     }
+    /**
+     * @var array
+     */
+    private $result;
+
+
+    /**
+     * Set result
+     *
+     * @param array $result
+     * @return Assessment
+     */
+    public function setResult($result)
+    {
+        $this->result = $result;
+
+        return $this;
+    }
+
+    /**
+     * Get result
+     *
+     * @return array 
+     */
+    public function getResult()
+    {
+        return $this->result;
+    }
 }

@@ -33,6 +33,9 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
         remarks:
             type: text
             nullable: true
+        result:
+            type: json_array
+            nullable: true
     oneToMany:
         statuses:
             targetEntity: Response

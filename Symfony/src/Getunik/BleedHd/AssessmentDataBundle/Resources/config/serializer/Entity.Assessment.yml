@@ -18,3 +18,5 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
             since_version: 1.0
         remarks:
             since_version: 1.0
+        result:
+            since_version: 1.0
