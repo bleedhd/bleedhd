@@ -48,14 +48,6 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Patient:
             type: datetimetz
             length: 255
             nullable: true
-        patientBloodType:
-            type: string
-            length: 10
-            nullable: true
-        donorBloodType:
-            type: string
-            length: 10
-            nullable: true
     oneToMany:
         statuses:
             targetEntity: PatientStatus

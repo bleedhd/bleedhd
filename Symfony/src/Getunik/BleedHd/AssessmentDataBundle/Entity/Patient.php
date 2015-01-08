@@ -70,16 +70,6 @@ class Patient implements UpdateInformationInterface
     private $diagnosisDate;
 
     /**
-     * @var string
-     */
-    private $patientBloodType;
-
-    /**
-     * @var string
-     */
-    private $donorBloodType;
-
-    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $statuses;
@@ -353,52 +343,6 @@ class Patient implements UpdateInformationInterface
     public function getDiagnosisDate()
     {
         return $this->diagnosisDate;
-    }
-
-    /**
-     * Set patientBloodType
-     *
-     * @param string $patientBloodType
-     * @return Patient
-     */
-    public function setPatientBloodType($patientBloodType)
-    {
-        $this->patientBloodType = $patientBloodType;
-
-        return $this;
-    }
-
-    /**
-     * Get patientBloodType
-     *
-     * @return string
-     */
-    public function getPatientBloodType()
-    {
-        return $this->patientBloodType;
-    }
-
-    /**
-     * Set donorBloodType
-     *
-     * @param string $donorBloodType
-     * @return Patient
-     */
-    public function setDonorBloodType($donorBloodType)
-    {
-        $this->donorBloodType = $donorBloodType;
-
-        return $this;
-    }
-
-    /**
-     * Get donorBloodType
-     *
-     * @return string
-     */
-    public function getDonorBloodType()
-    {
-        return $this->donorBloodType;
     }
 
     /**

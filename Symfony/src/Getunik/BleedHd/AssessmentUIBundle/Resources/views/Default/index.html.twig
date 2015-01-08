@@ -5,18 +5,6 @@
 	<title>BleedHD</title>
 	{% if app.environment == 'dev' %}
 		{% javascripts output='js/compiled/angular.js'
-			'@GetunikBleedHdAssessmentUIBundle/Resources/js/jquery/jquery-2.1.1.min.js'
-			'@GetunikBleedHdAssessmentUIBundle/Resources/js/lodash/lodash.min.js'
-			'@GetunikBleedHdAssessmentUIBundle/Resources/angular/core/angular.min.js'
-			'@GetunikBleedHdAssessmentUIBundle/Resources/angular/core/angular-route.min.js'
-			'@GetunikBleedHdAssessmentUIBundle/Resources/angular/ui-router/angular-ui-router.js'
-			'@GetunikBleedHdAssessmentUIBundle/Resources/angular/resource/angular-resource.js'
-			'@GetunikBleedHdAssessmentUIBundle/Resources/angular/restangular/restangular.min.js'
-		%}
-			<script type="text/javascript" src="{{ asset_url }}"></script>
-		{% endjavascripts %}
-	{% else %}
-		{% javascripts output='js/compiled/angular.js'
 			'@GetunikBleedHdAssessmentUIBundle/Resources/js/jquery/jquery-2.1.1.js'
 			'@GetunikBleedHdAssessmentUIBundle/Resources/js/lodash/lodash.js'
 			'@GetunikBleedHdAssessmentUIBundle/Resources/angular/core/angular.js'
@@ -24,6 +12,18 @@
 			'@GetunikBleedHdAssessmentUIBundle/Resources/angular/ui-router/angular-ui-router.js'
 			'@GetunikBleedHdAssessmentUIBundle/Resources/angular/resource/angular-resource.js'
 			'@GetunikBleedHdAssessmentUIBundle/Resources/angular/restangular/restangular.js'
+		%}
+			<script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	{% else %}
+		{% javascripts output='js/compiled/angular.js'
+			'@GetunikBleedHdAssessmentUIBundle/Resources/js/jquery/jquery-2.1.1.min.js'
+			'@GetunikBleedHdAssessmentUIBundle/Resources/js/lodash/lodash.min.js'
+			'@GetunikBleedHdAssessmentUIBundle/Resources/angular/core/angular.min.js'
+			'@GetunikBleedHdAssessmentUIBundle/Resources/angular/core/angular-route.min.js'
+			'@GetunikBleedHdAssessmentUIBundle/Resources/angular/ui-router/angular-ui-router.js'
+			'@GetunikBleedHdAssessmentUIBundle/Resources/angular/resource/angular-resource.js'
+			'@GetunikBleedHdAssessmentUIBundle/Resources/angular/restangular/restangular.min.js'
 		%}
 			<script type="text/javascript" src="{{ asset_url }}"></script>
 		{% endjavascripts %}
