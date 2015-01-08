@@ -39,4 +39,42 @@ class AssessmentsController extends FOSRestController
     {
         return $this->handleView($this->view($assessment));
     }
+
+    /**
+     * "bleed_post_assessments"             [POST] /patients
+     *
+     * @Post("/patients/{patient}/assessments", requirements={"_format"="json|xml"})
+     * @ParamConverter("patient", options={"id" = "patient"})
+     * @ParamConverter("assessment", converter="fos_rest.request_body")
+     */
+    public function postAssessmentsAction(Patient $patient, Assessment $assessment)
+    {
+        $assessment->setPatient($patient);
+
+        $this->assessmentHandler->save($assessment);
+
+        return $this->handleView($this->view($assessment));
+    }
+
+    /**
+     * "put_user"               [PUT] /patients/{slug}
+     *
+     * @ParamConverter("assessment", options={"id": "assessment", "mapping": {"patient":"patientId","assessment":"id"}})
+     * @ParamConverter("assessmentBody", converter="fos_rest.request_body")
+     */
+    public function putAssessmentAction($patient, Assessment $assessment, Assessment $assessmentBody)
+    {
+        $assessmentBody->setPatient($assessment->getPatient());
+        $updated = $this->assessmentHandler->update($assessmentBody);
+
+        return $this->handleView($this->view($updated));
+    }
+
+    /**
+     * "delete_user"            [DELETE] /patients/{slug}
+     */
+    public function deleteAssessmentAction($patient, $assessment)
+    {
+        return $this->handleView($this->view("delete assessment"));
+    }
 }
