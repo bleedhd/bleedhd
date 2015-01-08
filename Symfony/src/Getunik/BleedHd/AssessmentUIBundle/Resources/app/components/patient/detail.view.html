@@ -31,7 +31,7 @@
 					<td><a href="#/patients/{{ ctlPatient.patient.id }}/status/edit/{{ status.id }}">Details</a></td>
 					<td>{{ status.transplant_date | date }}</td>
 					<td>{{ status.transplant_type }}</td>
-					<td>{{ status.transplant_source }}</td>
+					<td>{{ status.transplant_source || status.transplant_custom }}</td>
 				</tr>
 			</tbody>
 		</table>

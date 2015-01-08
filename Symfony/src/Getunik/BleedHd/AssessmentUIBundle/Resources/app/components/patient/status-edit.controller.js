@@ -25,6 +25,9 @@
 			if (status.transplant_type !== 'allogenic') {
 				status.transplant_source = '';
 			}
+			if (status.transplant_type !== 'other') {
+				status.transplant_custom = '';
+			}
 		});
 	}
 

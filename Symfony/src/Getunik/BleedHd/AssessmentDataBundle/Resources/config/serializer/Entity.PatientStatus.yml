@@ -16,3 +16,5 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus:
             since_version: 1.0
         transplantSource:
             since_version: 1.0
+        transplantCustom:
+            since_version: 1.0

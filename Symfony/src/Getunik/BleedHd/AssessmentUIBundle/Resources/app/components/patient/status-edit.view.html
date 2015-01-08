@@ -20,6 +20,7 @@
 				<option value="autologous">autologous</option>
 				<option value="allogenic">allogenic</option>
 				<option value="DLI">DLI</option>
+				<option value="other">other</option>
 			</select>
 		</div>
 		<div ng-show="ctlStatus.status.transplant_type == 'allogenic'">
@@ -30,6 +31,10 @@
 				<option value="BM">BM</option>
 				<option value="PBSC">PBSC</option>
 			</select>
+		</div>
+		<div ng-show="ctlStatus.status.transplant_type == 'other'">
+			<label for="status_transplant_custom">Specify:</label>
+			<input id="status_transplant_custom" ng-model="ctlStatus.status.transplant_custom" />
 		</div>
 
 		<div>

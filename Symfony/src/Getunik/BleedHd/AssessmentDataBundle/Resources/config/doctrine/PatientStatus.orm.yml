@@ -28,6 +28,10 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus:
             type: string
             length: 255
             nullable: true
+        transplantCustom:
+            type: string
+            length: 255
+            nullable: true
     manyToOne:
         patient:
             targetEntity: Patient
