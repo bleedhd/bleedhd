@@ -25,9 +25,11 @@
 	bleedHd.registerController('patient', PatientEditController,
 		{
 			save: function () {
-				if (this.$scope.patientForm.$valid) {
-					this.patientData.savePatient(this.patient);
-					this.$location.path('/patients');
+				var ctl = this;
+				if (ctl.$scope.patientForm.$valid) {
+					ctl.patientData.savePatient(ctl.patient).then(function () {
+						ctl.$location.path('/patients');
+					});
 				}
 			},
 		},

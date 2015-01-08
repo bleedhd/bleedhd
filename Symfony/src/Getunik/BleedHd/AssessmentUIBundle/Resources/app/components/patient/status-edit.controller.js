@@ -25,15 +25,20 @@
 			if (status.transplant_type !== 'allogenic') {
 				status.transplant_source = '';
 			}
+			if (status.transplant_type !== 'other') {
+				status.transplant_custom = '';
+			}
 		});
 	}
 
 	bleedHd.registerController('patient', PatientStatusEditController,
 		{
 			save: function () {
-				if (this.$scope.statusForm.$valid) {
-					this.patientData.saveStatus(this.status);
-					this.$location.path('/patients/detail/' + this.patient.id);
+				var ctl = this;
+				if (ctl.$scope.statusForm.$valid) {
+					ctl.patientData.saveStatus(ctl.status).then(function () {
+						ctl.$location.path('/patients/detail/' + ctl.patient.id);
+					});
 				}
 			},
 		},
