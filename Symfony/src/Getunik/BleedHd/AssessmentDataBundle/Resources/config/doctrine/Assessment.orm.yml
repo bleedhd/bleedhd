@@ -1,0 +1,46 @@
+Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
+    type:  entity
+    table: Assessment
+    repositoryClass: Getunik\BleedHd\AssessmentDataBundle\Entity\AssessmentRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        lastUpdatedDate:
+            type: datetimetz
+            nullable: false
+        lastUpdatedBy:
+            type: integer
+            nullable: false
+        patientId:
+            type: integer
+            nullable: false
+        questionnaire:
+            type: string
+            length: 255
+            nullable: false
+        startDate:
+            type: date
+            nullable: true
+        startTime:
+            type: time
+            nullable: true
+        platelets:
+            type: float
+            nullable: true
+        remarks:
+            type: text
+            nullable: true
+    oneToMany:
+        statuses:
+            targetEntity: Response
+            mappedBy: assessment
+    manyToOne:
+        patient:
+            targetEntity: Patient
+            inversedBy: assessments
+            joinColumn:
+                name: patientId
+                referencedColumnName: id
