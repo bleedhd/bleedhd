@@ -5,6 +5,10 @@ parameters:
     getunik.bleed_hd_data.patient_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\PatientsController
     getunik.bleed_hd_data.patientstatus_repository.class: Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatusRepository
     getunik.bleed_hd_data.patientstatus_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\PatientStatusesController
+    getunik.bleed_hd_data.assessment_handler.class: Getunik\BleedHd\AssessmentDataBundle\Handler\AssessmentHandler
+    getunik.bleed_hd_data.assessment_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\AssessmentsController
+    getunik.bleed_hd_data.response_handler.class: Getunik\BleedHd\AssessmentDataBundle\Handler\ResponseHandler
+    getunik.bleed_hd_data.response_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\ResponsesController
 
 
 services:
@@ -57,3 +61,27 @@ services:
                     - @getunik.bleed_hd_data.patientstatus_repository
                 calls:
                     - [setContainer, ["@service_container"]]
+
+    getunik.bleed_hd_data.assessment_handler:
+        class: %getunik.bleed_hd_data.assessment_handler.class%
+        arguments:
+            - @doctrine
+
+    getunik.bleed_hd_data.assessment_controller:
+        class: %getunik.bleed_hd_data.assessment_controller.class%
+        arguments:
+            - @getunik.bleed_hd_data.assessment_handler
+        calls:
+            - [setContainer, ["@service_container"]]
+
+    getunik.bleed_hd_data.response_handler:
+        class: %getunik.bleed_hd_data.response_handler.class%
+        arguments:
+            - @doctrine
+
+    getunik.bleed_hd_data.response_controller:
+        class: %getunik.bleed_hd_data.response_controller.class%
+        arguments:
+            - @getunik.bleed_hd_data.response_handler
+        calls:
+            - [setContainer, ["@service_container"]]
