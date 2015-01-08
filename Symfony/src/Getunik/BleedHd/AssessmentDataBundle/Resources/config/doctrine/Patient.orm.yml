@@ -48,6 +48,9 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Patient:
             type: datetimetz
             length: 255
             nullable: true
+        remarks:
+            type: text
+            nullable: true
     oneToMany:
         statuses:
             targetEntity: PatientStatus

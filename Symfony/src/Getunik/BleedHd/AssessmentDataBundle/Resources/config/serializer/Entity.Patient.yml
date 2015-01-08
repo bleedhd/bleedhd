@@ -26,3 +26,5 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Patient:
             since_version: 1.0
         diagnosisDate:
             since_version: 1.0
+        remarks:
+            since_version: 1.0

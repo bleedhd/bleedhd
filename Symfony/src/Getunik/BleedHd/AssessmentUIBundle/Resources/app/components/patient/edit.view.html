@@ -53,6 +53,10 @@
 			<input id="patient_diagnosis_date" type="date" ng-model="ctlPatient.patient.diagnosis_date" ng-model-options="{ timezone: 'UTC' }" />
 		</div>
 		<div>
+			<label for="patient_remarks">Remarks:</label>
+			<textarea id="patient_remarks" ng-model="ctlPatient.patient.remarks"></textarea>
+		</div>
+		<div>
 			<input id="patient_is_active" type="checkbox" ng-model="ctlPatient.patient.is_active" ng-true-value="true" ng-false-value="false" />
 			<label for="patient_is_active">Active:</label>
 		</div>

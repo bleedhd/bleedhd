@@ -377,4 +377,32 @@ class Patient implements UpdateInformationInterface
     {
         return $this->statuses;
     }
+    /**
+     * @var string
+     */
+    private $remarks;
+
+
+    /**
+     * Set remarks
+     *
+     * @param string $remarks
+     * @return Patient
+     */
+    public function setRemarks($remarks)
+    {
+        $this->remarks = $remarks;
+
+        return $this;
+    }
+
+    /**
+     * Get remarks
+     *
+     * @return string
+     */
+    public function getRemarks()
+    {
+        return $this->remarks;
+    }
 }
