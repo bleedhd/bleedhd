@@ -57,10 +57,7 @@
 <body>
 	<div>
 		<h1>Bleed HD</h1>
-		{#
-			<div ui-view></div>
-		#}
-		<div ng-view></div>
+		<div ng-view autoscroll="true"></div>
 	</div>
 	<div class="environment-indicator {{ app.environment }}">{{ app.environment }}</div>
 </body>

@@ -55,3 +55,6 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Patient:
         statuses:
             targetEntity: PatientStatus
             mappedBy: patient
+        assessments:
+            targetEntity: Assessment
+            mappedBy: patient

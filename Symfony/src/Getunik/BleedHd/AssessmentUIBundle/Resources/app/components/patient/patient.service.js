@@ -18,9 +18,11 @@
 				.all({
 					patient: this.patients.get(patientId),
 					statuses: this.BleedApi.one('patients', patientId).getList('statuses'),
+					assessments: this.BleedApi.one('patients', patientId).getList('assessments'),
 				})
 				.then(function (promises) {
 					promises.patient.statuses = promises.statuses;
+					promises.patient.assessments = promises.assessments;
 					patient.resolve(promises.patient);
 				}, function (reason) {
 					patient.reject(reason);

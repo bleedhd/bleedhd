@@ -405,4 +405,42 @@ class Patient implements UpdateInformationInterface
     {
         return $this->remarks;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $assessments;
+
+
+    /**
+     * Add assessments
+     *
+     * @param \Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment $assessments
+     * @return Patient
+     */
+    public function addAssessment(\Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment $assessments)
+    {
+        $this->assessments[] = $assessments;
+
+        return $this;
+    }
+
+    /**
+     * Remove assessments
+     *
+     * @param \Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment $assessments
+     */
+    public function removeAssessment(\Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment $assessments)
+    {
+        $this->assessments->removeElement($assessments);
+    }
+
+    /**
+     * Get assessments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAssessments()
+    {
+        return $this->assessments;
+    }
 }
