@@ -15,6 +15,7 @@ class AssessmentRepository extends EntityRepository
     public function save(Assessment $assessment)
     {
         $this->_em->persist($assessment);
+        $this->_em->flush();
     }
 
     public function update(Assessment $assessment)
