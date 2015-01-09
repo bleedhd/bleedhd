@@ -1,0 +1,47 @@
+<div>
+	<div>
+		<h1>New / Edit Assessment</h1>
+	</div>
+	<form name="assessmentForm" novalidate>
+		<div>
+			<label for="assessment_start_date">Date of assessment*:</label>
+			<input id="assessment_start_date" type="date" ng-model="ctlAssessment.assessment.start_date" ng-model-options="{ timezone: 'UTC' }" required />
+		</div>
+		<div>
+			<label for="assessment_start_time">Start time*:</label>
+			<input id="assessment_start_time" type="time" ng-model="ctlAssessment.assessment.start_time" ng-model-options="{ timezone: 'UTC' }" required />
+		</div>
+		<div>
+			<label for="assessment_platelets">Platelets (G/L):</label>
+			<input id="assessment_platelets" type="text" ng-model="ctlAssessment.assessment.platelets" />
+		</div>
+		<div>
+			<label for="assessment_remarks">Remarks:</label>
+			<textarea id="assessment_remarks" ng-model="ctlAssessment.assessment.remarks"></textarea>
+		</div>
+		<div ng-if="!ctlAssessment.isNew">
+			<button type="button" ng-disabled="assessmentForm.$invalid" ng-click="ctlAssessment.save()">Save</a>
+		</div>
+	</form>
+
+	<div ng-if="ctlAssessment.isNew">
+		<h2>Start new assessment</h2>
+		<ul>
+			<li><a href="#">Bleeding WHO</a></li>
+			<li><a href="#">Bleeding BSMS</a></li>
+			<li><a href="#">GvHD - features</a></li>
+			<li><a href="#">GvHD - first diagnosis</a></li>
+			<li><a href="#">GvHD - current staging</a></li>
+			<li><a href="#">GvHD - therapy response</a></li>
+			<li><a href="#">GvHD - patient self report</a></li>
+		</ul>
+	</div>
+
+	<div ng-if="!ctlAssessment.isNew">
+		{{ ctlAssessment.assessment.result | json }}
+	</div>
+
+	<div>
+		<pre>{{ assessmentForm | json }}</pre>
+	</div>
+</div>
