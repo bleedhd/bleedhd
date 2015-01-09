@@ -9,6 +9,8 @@ parameters:
     getunik.bleed_hd_data.assessment_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\AssessmentsController
     getunik.bleed_hd_data.response_handler.class: Getunik\BleedHd\AssessmentDataBundle\Handler\ResponseHandler
     getunik.bleed_hd_data.response_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\ResponsesController
+    getunik.bleed_hd_data.questionnaire_handler.class: Getunik\BleedHd\AssessmentDataBundle\Handler\QuestionnaireHandler
+    getunik.bleed_hd_data.questionnaire_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\QuestionnairesController
 
 
 services:
@@ -83,5 +85,17 @@ services:
         class: %getunik.bleed_hd_data.response_controller.class%
         arguments:
             - @getunik.bleed_hd_data.response_handler
+        calls:
+            - [setContainer, ["@service_container"]]
+
+    getunik.bleed_hd_data.questionnaire_handler:
+        class: %getunik.bleed_hd_data.questionnaire_handler.class%
+        arguments:
+            - %kernel.root_dir%/../src/Getunik/BleedHd/AssessmentDataBundle/Resources/questionnaire
+
+    getunik.bleed_hd_data.questionnaire_controller:
+        class: %getunik.bleed_hd_data.questionnaire_controller.class%
+        arguments:
+            - @getunik.bleed_hd_data.questionnaire_handler
         calls:
             - [setContainer, ["@service_container"]]

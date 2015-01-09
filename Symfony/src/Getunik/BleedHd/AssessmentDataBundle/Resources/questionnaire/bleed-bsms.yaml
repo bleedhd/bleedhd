@@ -1,0 +1,30 @@
+# Questions are structured in a hierarchy of
+#   Chapter - Group - Screen
+# to facilitate potential future navigation concepts. All questions in a screen
+# are displayed on a single screen
+
+meta_answers:
+  nya: not yet answered
+  nass: not assessed
+  napp: not applicable
+  ns: no symptom
+questions:
+  chapter_1:
+    group_1:
+      section_1:
+        screen_1:
+          -
+            slug: question-yes-no
+            type: yesno
+            meta_answers: ['nya', 'nass']
+            question:
+              title: Do you agree or not?
+              description: "Some <strong>HTML</strong> markup"
+            options: # optional
+              yes:
+                label: "Yes"
+                value: true
+              no:
+                label: "No"
+                value: false
+            export: TODO
