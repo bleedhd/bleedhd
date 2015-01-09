@@ -8,6 +8,8 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
             since_version: 1.0
         lastUpdatedBy:
             since_version: 1.0
+        patientId:
+            since_version: 1.0
         questionnaire:
             since_version: 1.0
         startDate:

@@ -35,6 +35,6 @@ class ResponseHandler
 
     public function update(Response $response)
     {
-        return $this->repository->merge($response);
+        return $this->repository->update($response);
     }
 }

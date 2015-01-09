@@ -35,6 +35,6 @@ class AssessmentHandler
 
     public function update(Assessment $assessment)
     {
-        return $this->repository->merge($assessment);
+        return $this->repository->update($assessment);
     }
 }
