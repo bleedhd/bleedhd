@@ -1,4 +1,4 @@
-Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus:
+Getunik\BleedHd\AssessmentDataBundle\Entity\Response:
     exclusion_policy: ALL
     read_only: false
     properties:
@@ -8,13 +8,9 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus:
             since_version: 1.0
         lastUpdatedBy:
             since_version: 1.0
-        patientId:
+        assessmentId:
             since_version: 1.0
-        transplantDate:
+        questionSlug:
             since_version: 1.0
-        transplantType:
-            since_version: 1.0
-        transplantSource:
-            since_version: 1.0
-        transplantCustom:
+        result:
             since_version: 1.0

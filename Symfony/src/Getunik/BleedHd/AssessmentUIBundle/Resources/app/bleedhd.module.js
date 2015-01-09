@@ -59,8 +59,9 @@
 		'ngRoute',
 		'ngResource',
 		'ui.router',
-		'patient',
 		'restangular',
+		'patient',
+		'assessment',
 	])
 
 	.constant('BleedHdConfig', {

@@ -18,9 +18,11 @@
 				.all({
 					patient: this.patients.get(patientId),
 					statuses: this.BleedApi.one('patients', patientId).getList('statuses'),
+					assessments: this.BleedApi.one('patients', patientId).getList('assessments'),
 				})
 				.then(function (promises) {
 					promises.patient.statuses = promises.statuses;
+					promises.patient.assessments = promises.assessments;
 					patient.resolve(promises.patient);
 				}, function (reason) {
 					patient.reject(reason);
@@ -35,9 +37,9 @@
 		},
 		savePatient: function (patient) {
 			if (patient.id === undefined) {
-				this.patients.post(patient);
+				return this.patients.post(patient);
 			} else {
-				patient.put();
+				return patient.put();
 			}
 		},
 		newStatus: function (patient) {
@@ -48,9 +50,9 @@
 		},
 		saveStatus: function (status) {
 			if (status.id === undefined) {
-				this.BleedApi.one('patients', status.patient_id).all('statuses').post(status);
+				return this.BleedApi.one('patients', status.patient_id).all('statuses').post(status);
 			} else {
-				status.put();
+				return status.put();
 			}
 		},
 	});

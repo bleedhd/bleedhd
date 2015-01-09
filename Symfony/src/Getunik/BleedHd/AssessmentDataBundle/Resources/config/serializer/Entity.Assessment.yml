@@ -1,4 +1,4 @@
-Getunik\BleedHd\AssessmentDataBundle\Entity\Patient:
+Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
     exclusion_policy: ALL
     read_only: false
     properties:
@@ -8,23 +8,17 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Patient:
             since_version: 1.0
         lastUpdatedBy:
             since_version: 1.0
-        isActive:
+        patientId:
             since_version: 1.0
-        firstname:
+        questionnaire:
             since_version: 1.0
-        lastname:
+        startDate:
             since_version: 1.0
-        birthdate:
+        startTime:
             since_version: 1.0
-        sex:
-            since_version: 1.0
-        patientNumber:
-            since_version: 1.0
-        upn:
-            since_version: 1.0
-        diagnosis:
-            since_version: 1.0
-        diagnosisDate:
+        platelets:
             since_version: 1.0
         remarks:
+            since_version: 1.0
+        result:
             since_version: 1.0

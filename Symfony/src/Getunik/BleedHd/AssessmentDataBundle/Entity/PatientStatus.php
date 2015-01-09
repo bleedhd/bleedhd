@@ -248,4 +248,32 @@ class PatientStatus implements UpdateInformationInterface
     {
         return $this->patient;
     }
+    /**
+     * @var string
+     */
+    private $transplantCustom;
+
+
+    /**
+     * Set transplantCustom
+     *
+     * @param string $transplantCustom
+     * @return PatientStatus
+     */
+    public function setTransplantCustom($transplantCustom)
+    {
+        $this->transplantCustom = $transplantCustom;
+
+        return $this;
+    }
+
+    /**
+     * Get transplantCustom
+     *
+     * @return string 
+     */
+    public function getTransplantCustom()
+    {
+        return $this->transplantCustom;
+    }
 }

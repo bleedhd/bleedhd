@@ -1,7 +1,7 @@
-Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus:
+Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
     type:  entity
-    table: PatientStatus
-    repositoryClass: Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatusRepository
+    table: Assessment
+    repositoryClass: Getunik\BleedHd\AssessmentDataBundle\Entity\AssessmentRepository
     id:
         id:
             type: integer
@@ -17,25 +17,33 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus:
         patientId:
             type: integer
             nullable: false
-        transplantDate:
+        questionnaire:
+            type: string
+            length: 255
+            nullable: false
+        startDate:
             type: date
             nullable: true
-        transplantType:
-            type: string
-            length: 255
+        startTime:
+            type: time
             nullable: true
-        transplantSource:
-            type: string
-            length: 255
+        platelets:
+            type: float
             nullable: true
-        transplantCustom:
-            type: string
-            length: 255
+        remarks:
+            type: text
             nullable: true
+        result:
+            type: json_array
+            nullable: true
+    oneToMany:
+        statuses:
+            targetEntity: Response
+            mappedBy: assessment
     manyToOne:
         patient:
             targetEntity: Patient
-            inversedBy: statuses
+            inversedBy: assessments
             joinColumn:
                 name: patientId
                 referencedColumnName: id

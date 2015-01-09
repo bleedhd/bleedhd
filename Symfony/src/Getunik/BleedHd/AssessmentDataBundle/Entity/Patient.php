@@ -70,16 +70,6 @@ class Patient implements UpdateInformationInterface
     private $diagnosisDate;
 
     /**
-     * @var string
-     */
-    private $patientBloodType;
-
-    /**
-     * @var string
-     */
-    private $donorBloodType;
-
-    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $statuses;
@@ -356,52 +346,6 @@ class Patient implements UpdateInformationInterface
     }
 
     /**
-     * Set patientBloodType
-     *
-     * @param string $patientBloodType
-     * @return Patient
-     */
-    public function setPatientBloodType($patientBloodType)
-    {
-        $this->patientBloodType = $patientBloodType;
-
-        return $this;
-    }
-
-    /**
-     * Get patientBloodType
-     *
-     * @return string
-     */
-    public function getPatientBloodType()
-    {
-        return $this->patientBloodType;
-    }
-
-    /**
-     * Set donorBloodType
-     *
-     * @param string $donorBloodType
-     * @return Patient
-     */
-    public function setDonorBloodType($donorBloodType)
-    {
-        $this->donorBloodType = $donorBloodType;
-
-        return $this;
-    }
-
-    /**
-     * Get donorBloodType
-     *
-     * @return string
-     */
-    public function getDonorBloodType()
-    {
-        return $this->donorBloodType;
-    }
-
-    /**
      * Add statuses
      *
      * @param \Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus $statuses
@@ -432,5 +376,71 @@ class Patient implements UpdateInformationInterface
     public function getStatuses()
     {
         return $this->statuses;
+    }
+    /**
+     * @var string
+     */
+    private $remarks;
+
+
+    /**
+     * Set remarks
+     *
+     * @param string $remarks
+     * @return Patient
+     */
+    public function setRemarks($remarks)
+    {
+        $this->remarks = $remarks;
+
+        return $this;
+    }
+
+    /**
+     * Get remarks
+     *
+     * @return string
+     */
+    public function getRemarks()
+    {
+        return $this->remarks;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $assessments;
+
+
+    /**
+     * Add assessments
+     *
+     * @param \Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment $assessments
+     * @return Patient
+     */
+    public function addAssessment(\Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment $assessments)
+    {
+        $this->assessments[] = $assessments;
+
+        return $this;
+    }
+
+    /**
+     * Remove assessments
+     *
+     * @param \Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment $assessments
+     */
+    public function removeAssessment(\Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment $assessments)
+    {
+        $this->assessments->removeElement($assessments);
+    }
+
+    /**
+     * Get assessments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAssessments()
+    {
+        return $this->assessments;
     }
 }
