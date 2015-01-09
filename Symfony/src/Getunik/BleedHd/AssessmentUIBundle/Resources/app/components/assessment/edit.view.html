@@ -38,7 +38,8 @@
 	</div>
 
 	<div ng-if="!ctlAssessment.isNew">
-		{{ ctlAssessment.assessment.result | json }}
+		<pre>{{ ctlAssessment.assessment.result | json }}</pre>
+		<a ng-href="#/assessment/{{ ctlAssessment.patientId }}/{{ ctlAssessment.assessment.id }}/start">Edit Assessment</a>
 	</div>
 
 	<div>

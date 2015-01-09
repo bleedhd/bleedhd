@@ -5,6 +5,7 @@
 		//'bleedHdApp',
 		'patient',
 		bleedHd.getView('assessment', 'edit'),
+		bleedHd.getView('assessment', 'screen'),
 	]);
 
 })(angular, bleedHd);
