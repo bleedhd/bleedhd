@@ -30,6 +30,15 @@
 					});
 				}
 			},
+			createAndStart: function (questionnaire) {
+				var ctl = this;
+				if (ctl.$scope.assessmentForm.$valid) {
+					ctl.assessment.questionnaire = questionnaire;
+					ctl.AssessmentData.saveAssessment(ctl.assessment).then(function (assessment) {
+						ctl.$location.path(['/assessment', ctl.patientId, assessment.id, 'start'].join('/'));
+					});
+				}
+			},
 		},
 		{
 			asName: 'ctlAssessment',
