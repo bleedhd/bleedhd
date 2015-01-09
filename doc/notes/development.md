@@ -24,6 +24,13 @@ php app/console fos:user:promote editor ROLE_EDITOR
 php app/console getu:oauth-server:create-client BleedHD --grant-type="password" --grant-type="refresh_token"
 ```
 
+# Data Model Changes with Doctrine
+
+To update the entity PHP classes from the YAML mappings, do
+```
+php app/console doctrine:generate:entities GetunikBleedHdAssessmentDataBundle
+```
+
 # Testing Things
 
 ## Accessing the REST API
