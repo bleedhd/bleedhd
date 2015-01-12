@@ -17,6 +17,11 @@
 
 	function YesNoQuestion(scope, questionCtl) {
 		this.construct(scope, questionCtl);
+
+		this.options = $.extend({
+			yes: { label: 'Yes', value: true },
+			no: { label: 'No', value: false },
+		}, questionCtl.question.options);
 	}
 
 	angular.extend(YesNoQuestion.prototype, BaseQuestionImpl.prototype, {

@@ -1,14 +1,7 @@
-<div class="radio">
-	<label>
-		<input type="radio" ng-model="implCtl.result.value" value="option1">
-		YES TODO
-	</label>
-</div>
-<div class="radio">
-	<label>
-		<input type="radio" ng-model="implCtl.result.value" value="option2">
-		NO TODO
-	</label>
-</div>
 
-<pre>{{ implCtl.result }}</pre>
+<div class="radio" ng-repeat="option in ['yes', 'no']">
+	<label>
+		<input type="radio" ng-model="implCtl.result.value" ng-value="implCtl.options[option].value">
+		{{ implCtl.options[option].label }}
+	</label>
+</div>
