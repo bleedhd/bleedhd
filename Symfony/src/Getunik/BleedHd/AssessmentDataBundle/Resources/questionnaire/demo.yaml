@@ -8,39 +8,45 @@ meta_answers:
   nass: not assessed
   napp: not applicable
   ns: no symptom
-questions:
-  chapter_1:
-    section_1:
-      screen_1:
-        -
-          slug: question-yes-no-demo
-          type: yesno
-          title: "Demo Question 1 (Yes/No)"
-          meta_answers: ['nya', 'nass']
-          intro:
-            question: "Do you agree or not?"
-            description: "Some <strong>HTML</strong> markup"
-          options: # optional
-            yes:
-              label: "Yes"
-              value: "heck-yes"
-            no:
-              label: "No"
-              value: "heck-no"
-          export: TODO
-        -
-          slug: question-yes-no-demo2
-          type: yesno
-          title: "Demo Question 2 (Yes/No)"
-          meta_answers: ['nya', 'nass']
-          intro:
-            question: "Do you agree or not?"
-            description: "Some fundamentally different <strong>HTML</strong> markup"
-          options: # optional
-            yes:
-              label: "Jupp"
-              value: true
-            no:
-              label: "Nope"
-              value: false
-          export: TODO
+chapters:
+  -
+    slug: chapter_1
+    sections:
+      -
+        slug: section_1
+        screens:
+          -
+            slug: screen_1
+            questions:
+              -
+                slug: question-yes-no-demo
+                type: yesno
+                title: "Demo Question 1 (Yes/No)"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Do you agree or not?"
+                  description: "Some <strong>HTML</strong> markup"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: "heck-yes"
+                  no:
+                    label: "No"
+                    value: "heck-no"
+                export: TODO
+              -
+                slug: question-yes-no-demo2
+                type: yesno
+                title: "Demo Question 2 (Yes/No)"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Do you agree or not?"
+                  description: "Some fundamentally different <strong>HTML</strong> markup"
+                options: # optional
+                  yes:
+                    label: "Jupp"
+                    value: true
+                  no:
+                    label: "Nope"
+                    value: false
+                export: TODO

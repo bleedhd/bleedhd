@@ -15,25 +15,35 @@
 			});
 		},
 		processYaml: function (yamlData) {
-			var screenObj,
+			var screenObj, chapterSlug, sectionSlug, screenSlug,
 				screenIndex = 0,
 				questionnaire = {
 					screens: {},
 					screensLinear: [],
 				};
 
-			angular.forEach(yamlData.questions, function (chapterData, chapter) {
-				angular.forEach(chapterData, function (sectionData, section) {
-					angular.forEach(sectionData, function (screenData, screen) {
+			angular.forEach(yamlData.chapters, function (chapter) {
+				chapterSlug = (chapter.slug === undefined ? [] : [chapter.slug]);
+
+				angular.forEach(chapter.sections, function (section) {
+					sectionSlug = chapterSlug.concat(section.slug === undefined ? [] : [section.slug]);
+
+					angular.forEach(section.screens, function (screen) {
+						screenSlug = sectionSlug.concat(screen.slug === undefined ? [] : [screen.slug]);
+
 						var screenObj = {
-							chapter: chapter,
-							section: section,
-							slug: screen,
+							chapter: chapter.slug,
+							section: section.slug,
+							slug: screenSlug.join('.'),
 							index: screenIndex++,
-							questions: screenData,
+							questions: screen.questions,
 						};
 
-						questionnaire.screens[screen] = screenObj;
+						angular.forEach(screenObj.questions, function (question) {
+							question.slug = screenSlug.concat([question.slug]).join('.');
+						});
+
+						questionnaire.screens[screen.slug] = screenObj;
 						questionnaire.screensLinear.push(screenObj);
 					});
 				});
