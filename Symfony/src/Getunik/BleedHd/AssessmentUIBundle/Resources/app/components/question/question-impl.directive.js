@@ -24,7 +24,7 @@
 			var that = this;
 
 			this.scope.$watch('implCtl.result.value', function (newValue, oldValue) {
-				if (newValue !== oldValue) {
+				if (newValue !== oldValue && newValue !== null) {
 					that.scope.$emit('result-changed', that.result);
 				}
 			});

@@ -8,10 +8,17 @@
 		var that = this;
 
 		$scope.$on('result-changed', function (event, result) {
+			that.result.meta = null;
 			$scope.$emit('response-changed', {
 				slug: that.question.slug,
 				result: that.result,
 			});
+		});
+
+		$scope.$watch('questionCtl.result.meta', function (newValue, oldValue) {
+			if (newValue !== oldValue && newValue !== null) {
+				that.result.value = null;
+			}
 		});
 	}
 

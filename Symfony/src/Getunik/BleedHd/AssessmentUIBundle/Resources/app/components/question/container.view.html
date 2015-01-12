@@ -27,13 +27,10 @@
 
 	<div class="panel-footer clearfix">
 		<div class="bleed-meta-answers pull-left">
-			META
-			<!--
-				<label><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">Not yet answered</label>
-			-->
+			<label ng-repeat="metaAnswer in question.meta_answers"><input type="radio" ng-model="questionCtl.result.meta" value="{{ metaAnswer }}">{{ metaAnswer }}</label>
 		</div>
 		<div class="pull-right">
-			TODO
+			TODO X/Y
 		</div>
 	</div>
 
