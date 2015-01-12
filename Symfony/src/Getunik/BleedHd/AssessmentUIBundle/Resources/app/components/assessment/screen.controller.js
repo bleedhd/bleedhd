@@ -1,10 +1,9 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentScreenController($scope, $location, AssessmentData, patientId, assessment) {
-		this.AssessmentData = AssessmentData;
-		this.patientId = patientId;
-		this.assessment = assessment;
+	function AssessmentScreenController($scope, $location, context) {
+		$scope.context = this.context = context;
+
 		this.$scope = $scope;
 		this.$location = $location;
 	}
@@ -16,10 +15,9 @@
 			asName: 'ctlScreen',
 			templateUrl: bleedHd.getView('assessment', 'screen'),
 			resolve: {
-				patientId: function ($route) { return $route.current.params.patientId; },
-				assessment: function ($route, AssessmentData) {
+				context: function ($route, AssessmentContext) {
 					var params = $route.current.params;
-					return AssessmentData.getAssessment(params.patientId, params.assessmentId);
+					return AssessmentContext.load(params.patientId, params.assessmentId);
 				},
 			},
 		}
