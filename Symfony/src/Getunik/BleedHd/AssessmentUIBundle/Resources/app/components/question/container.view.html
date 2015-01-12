@@ -1,0 +1,40 @@
+
+<div class="panel panel-default">
+
+	<div class="panel-heading clearfix">
+		<div class="pull-left panel-title">
+			{{ question.title }}
+		</div>
+		<div class="pull-right">
+			TBD
+		</div>
+	</div>
+
+	<div class="panel-body">
+		<div class="bleed-question">
+			<div class="row">
+				<div class="col-xs-12">
+					<h2>{{ question.question }}</h2>
+					<p>{{ question.description }}</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="bleed-answers">
+			<question-impl type="'yesno'"></question-impl>
+		</div>
+	</div>
+
+	<div class="panel-footer clearfix">
+		<div class="bleed-meta-answers pull-left">
+			META
+			<!--
+				<label><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">Not yet answered</label>
+			-->
+		</div>
+		<div class="pull-right">
+			TODO
+		</div>
+	</div>
+
+</div><!-- /.panel -->

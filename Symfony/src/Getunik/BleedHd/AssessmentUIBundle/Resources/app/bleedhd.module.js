@@ -62,6 +62,7 @@
 		'restangular',
 		'patient',
 		'assessment',
+		'question',
 	])
 
 	.constant('BleedHdConfig', {

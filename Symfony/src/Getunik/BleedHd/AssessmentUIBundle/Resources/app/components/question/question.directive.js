@@ -9,12 +9,10 @@
 	});
 
 
-	angular.module('assessment')
+	angular.module('question')
 		.directive('question', function () {
 			return {
-				template: function (element, attrs) {
-					return '<div>QUESTION</div>';
-				},
+				templateUrl: bleedHd.getView('question', 'container'),
 				restrict: 'E',
 				scope: {
 					data: '=',
