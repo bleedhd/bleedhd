@@ -14,8 +14,8 @@
 		<div class="bleed-question">
 			<div class="row">
 				<div class="col-xs-12">
-					<h2>{{ question.question }}</h2>
-					<p>{{ question.description }}</p>
+					<h2 ng-bind-html="question.intro.question"></h2>
+					<p ng-bind-html="question.intro.description"></p>
 				</div>
 			</div>
 		</div>

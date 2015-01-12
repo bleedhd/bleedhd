@@ -21,10 +21,8 @@
 
 	angular.extend(YesNoQuestion.prototype, BaseQuestionImpl.prototype, {
 		link: function (element) {
-			console.log("linking", element);
-
 			this.scope.$watch('implCtl.result.value', function (newValue, oldValue) {
-				console.log('value changed', newValue);
+				console.log('result changed', newValue);
 			});
 		},
 	});
@@ -54,7 +52,6 @@
 						scope.implCtl = new questionTypes[scope.type](scope, questionCtl);
 
 						$templateRequest(bleedHd.getView('question', 'question-type-' + scope.type)).then(function (template) {
-							console.log(scope.implCtl, scope.implCtl.value);
 							element.append($compile(template)(scope));
 							scope.implCtl.link(element);
 						});

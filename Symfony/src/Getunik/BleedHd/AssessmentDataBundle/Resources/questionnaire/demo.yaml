@@ -10,21 +10,37 @@ meta_answers:
   ns: no symptom
 questions:
   chapter_1:
-    group_1:
-      section_1:
-        screen_1:
-          -
-            slug: question-yes-no-demo
-            type: yesno
-            meta_answers: ['nya', 'nass']
-            question:
-              title: Do you agree or not?
-              description: "Some <strong>HTML</strong> markup"
-            options: # optional
-              yes:
-                label: "Yes"
-                value: true
-              no:
-                label: "No"
-                value: false
-            export: TODO
+    section_1:
+      screen_1:
+        -
+          slug: question-yes-no-demo
+          type: yesno
+          title: "Demo Question 1 (Yes/No)"
+          meta_answers: ['nya', 'nass']
+          intro:
+            question: "Do you agree or not?"
+            description: "Some <strong>HTML</strong> markup"
+          options: # optional
+            yes:
+              label: "Yes"
+              value: "heck-yes"
+            no:
+              label: "No"
+              value: "heck-no"
+          export: TODO
+        -
+          slug: question-yes-no-demo2
+          type: yesno
+          title: "Demo Question 2 (Yes/No)"
+          meta_answers: ['nya', 'nass']
+          intro:
+            question: "Do you agree or not?"
+            description: "Some fundamentally different <strong>HTML</strong> markup"
+          options: # optional
+            yes:
+              label: "Jupp"
+              value: true
+            no:
+              label: "Nope"
+              value: false
+          export: TODO

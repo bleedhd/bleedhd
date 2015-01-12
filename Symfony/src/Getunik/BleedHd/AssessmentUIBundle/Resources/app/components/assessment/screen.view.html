@@ -9,9 +9,8 @@
 		<button type="button">Save and return to assessment details</button>
 	</div>
 
-	<div>
-		<div>TODO: Question(s)</div>
-		<question data="context.questionnaire"></question>
+	<div ng-repeat="question in ctlScreen.screen.questions">
+		<question data="question"></question>
 	</div>
 
 	<div>

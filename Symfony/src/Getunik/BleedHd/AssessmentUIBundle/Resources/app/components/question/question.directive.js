@@ -5,7 +5,6 @@
 	}
 
 	angular.extend(AssessmentQuestionController.prototype, {
-
 	});
 
 
@@ -15,9 +14,10 @@
 				templateUrl: bleedHd.getView('question', 'container'),
 				restrict: 'E',
 				scope: {
-					data: '=',
+					question: '=data',
 				},
 				controller: AssessmentQuestionController,
+				controllerAs: 'questionCtl',
 				link: function (scope, element, attrs, controller) {
 				},
 			};

@@ -13,7 +13,7 @@
 		load: function (patientId, assessmentId) {
 			var that = this;
 
-			if (this.assessment === null || this.assessment.id != assessment.id ) {
+			if (this.assessment === null || this.assessment.id != assessmentId) {
 				var self = this.$q.defer();
 
 				// TODO: get existing responses and link with questionnaire
@@ -27,6 +27,7 @@
 					return that.QuestionnaireData.get(that.assessment.questionnaire);
 				}).then(function (questionnaire) {
 					that.questionnaire = questionnaire;
+					console.log('questionnaire', questionnaire);
 
 					return that;
 				});
