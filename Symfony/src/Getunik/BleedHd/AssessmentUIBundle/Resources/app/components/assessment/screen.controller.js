@@ -9,17 +9,17 @@
 
 		if ($route.current.params.screen === 'start') {
 			console.log('starting');
-			var firstScreen = context.questionnaire.screensLinear[0].slug;
+			var firstScreen = context.questionnaire.getFirstScreenSlug();
 			$location.path(['/assessment', context.patient.id, context.assessment.id, firstScreen].join('/'));
 		} else {
-			this.screen = context.questionnaire.screens[$route.current.params.screen];
+			this.screen = context.questionnaire.getScreenBySlug($route.current.params.screen);
 		}
 
 		var that = this;
 		that.dirty = {};
 
 		$scope.$on('response-changed', function (event, response) {
-			that.dirty[response.slug] = response;
+			that.dirty[response.slug.full] = response;
 			console.log('dirty questions', that.dirty);
 		});
 	}

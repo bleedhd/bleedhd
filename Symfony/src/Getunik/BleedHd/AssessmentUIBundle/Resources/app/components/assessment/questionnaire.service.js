@@ -1,6 +1,59 @@
 
 (function (angular, bleedHd) {
 
+	function Slug(slug, parent) {
+		this.full = (parent === undefined ? [] : [parent.full]).concat(slug === undefined ? [] : [slug]).join('.');
+		this.short = slug;
+	}
+
+
+	function Questionnaire(yamlData) {
+		this.screens = {};
+		this.screensLinear = [];
+
+		this.processYaml(yamlData);
+	}
+
+	angular.extend(Questionnaire.prototype, {
+		getScreenBySlug: function (slug) {
+			return this.screens[slug];
+		},
+		getFirstScreenSlug: function () {
+			return this.screensLinear[0].slug.short;
+		},
+		processYaml: function (yamlData) {
+			var that = this, screenObj, chapterSlug, sectionSlug, screenSlug, screenIndex = 0;
+
+			angular.forEach(yamlData.chapters, function (chapter) {
+				chapterSlug = new Slug(chapter.slug);
+
+				angular.forEach(chapter.sections, function (section) {
+					sectionSlug = new Slug(section.slug, chapterSlug);
+
+					angular.forEach(section.screens, function (screen) {
+						screenSlug = new Slug(screen.slug, sectionSlug);
+
+						var screenObj = {
+							chapter: chapterSlug,
+							section: sectionSlug,
+							slug: screenSlug,
+							index: screenIndex++,
+							questions: screen.questions,
+						};
+
+						angular.forEach(screenObj.questions, function (question) {
+							question.slug = new Slug(question.slug, screenSlug);
+						});
+
+						that.screens[screen.slug] = screenObj;
+						that.screensLinear.push(screenObj);
+					});
+				});
+			});
+		},
+	});
+
+
 	function QuestionnaireDataService($q, BleedApi) {
 		this.$q = $q;
 		this.BleedApi = BleedApi;
@@ -15,41 +68,7 @@
 			});
 		},
 		processYaml: function (yamlData) {
-			var screenObj, chapterSlug, sectionSlug, screenSlug,
-				screenIndex = 0,
-				questionnaire = {
-					screens: {},
-					screensLinear: [],
-				};
-
-			angular.forEach(yamlData.chapters, function (chapter) {
-				chapterSlug = (chapter.slug === undefined ? [] : [chapter.slug]);
-
-				angular.forEach(chapter.sections, function (section) {
-					sectionSlug = chapterSlug.concat(section.slug === undefined ? [] : [section.slug]);
-
-					angular.forEach(section.screens, function (screen) {
-						screenSlug = sectionSlug.concat(screen.slug === undefined ? [] : [screen.slug]);
-
-						var screenObj = {
-							chapter: chapter.slug,
-							section: section.slug,
-							slug: screenSlug.join('.'),
-							index: screenIndex++,
-							questions: screen.questions,
-						};
-
-						angular.forEach(screenObj.questions, function (question) {
-							question.slug = screenSlug.concat([question.slug]).join('.');
-						});
-
-						questionnaire.screens[screen.slug] = screenObj;
-						questionnaire.screensLinear.push(screenObj);
-					});
-				});
-			});
-
-			return questionnaire;
+			return new Questionnaire(yamlData);
 		},
 	});
 
