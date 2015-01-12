@@ -9,7 +9,7 @@
 			this.scope = scope;
 			this.parentCtl = questionCtl;
 
-			this.result = {};
+			this.result = this.parentCtl.result;
 		},
 		link: function (element) {},
 	});
@@ -21,8 +21,12 @@
 
 	angular.extend(YesNoQuestion.prototype, BaseQuestionImpl.prototype, {
 		link: function (element) {
+			var that = this;
+
 			this.scope.$watch('implCtl.result.value', function (newValue, oldValue) {
-				console.log('result changed', newValue);
+				if (newValue !== oldValue) {
+					that.scope.$emit('result-changed', that.result);
+				}
 			});
 		},
 	});

@@ -14,6 +14,14 @@
 		} else {
 			this.screen = context.questionnaire.screens[$route.current.params.screen];
 		}
+
+		var that = this;
+		that.dirty = {};
+
+		$scope.$on('response-changed', function (event, response) {
+			that.dirty[response.slug] = response;
+			console.log('dirty questions', that.dirty);
+		});
 	}
 
 	bleedHd.registerController('assessment', AssessmentScreenController,
