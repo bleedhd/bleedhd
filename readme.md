@@ -20,11 +20,13 @@
    cd bleed-hd
    git submodule update --init --recursive
    ```
+
 2. Install Composer Dependencies
 
    ```bash
    composer.phar install
    ```
+
 3. Create (empty) Database
 
    ```bash
@@ -32,6 +34,7 @@
    cd Symfony
    php app/console doctrine:migrations:migrate
    ```
+
 4. Create a User for yourself
 
 	```bash
