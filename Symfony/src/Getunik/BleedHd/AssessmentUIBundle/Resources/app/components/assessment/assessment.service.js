@@ -31,10 +31,10 @@
 			var that = this;
 
 			angular.forEach(responses, function (response) {
-				if (response.id === undefined) {
-					that.BleedApi.one('patients', patientId).one('assessments', assessmentId).all('responses').post(response);
-				} else {
+				if (response.fromServer === true) {
 					response.put();
+				} else {
+					that.BleedApi.one('patients', patientId).one('assessments', assessmentId).all('responses').post(response);
 				}
 			});
 		},

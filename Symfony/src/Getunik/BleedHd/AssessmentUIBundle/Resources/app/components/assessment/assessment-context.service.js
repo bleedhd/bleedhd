@@ -24,7 +24,11 @@
 				}).then(function (promises) {
 					that.patient = promises.patient;
 					that.assessment = promises.assessment;
-					that.responses = promises.responses;
+
+					that.responses = {};
+					angular.forEach(promises.responses, function (response) {
+						that.responses[response.id] = response;
+					});
 
 					return that.QuestionnaireData.get(that.assessment.questionnaire);
 				}).then(function (questionnaire) {
@@ -40,6 +44,17 @@
 		saveResponses: function (responses) {
 			return this.AssessmentData.saveResponses(this.patient.id, this.assessment.id, responses);
 		},
+		getResponseForQuestion: function (slug) {
+				if (this.responses[slug.full] === undefined) {
+					return {
+						id: slug.full,
+						assessment_id: this.assessment.id,
+						result: { value: null, meta: 'nya' },
+					};
+				} else {
+					return this.responses[slug.full];
+				}
+			},
 	});
 
 

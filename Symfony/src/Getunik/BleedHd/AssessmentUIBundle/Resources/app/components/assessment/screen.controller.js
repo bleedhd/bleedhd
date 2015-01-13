@@ -26,14 +26,6 @@
 
 	bleedHd.registerController('assessment', AssessmentScreenController,
 		{
-			getResponseForQuestion: function (slug) {
-				// TODO: fetch actual existing response if available
-				return {
-					assessment_id: this.context.assessment.id,
-					question_slug: slug,
-					result: { value: null, meta: 'nya' },
-				};
-			},
 			saveModifiedResponses: function () {
 				return this.context.saveResponses($.map(this.dirty, function(val) { return val; }));
 			},

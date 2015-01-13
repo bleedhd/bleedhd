@@ -10,5 +10,6 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Response:
             since_version: 1.0
         questionSlug:
             since_version: 1.0
+            serialized_name: id
         result:
             since_version: 1.0

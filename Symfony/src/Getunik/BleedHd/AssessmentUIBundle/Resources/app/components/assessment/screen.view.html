@@ -10,7 +10,7 @@
 	</div>
 
 	<div ng-repeat="question in ctlScreen.screen.questions">
-		<question data="question" response="ctlScreen.getResponseForQuestion(question.slug.full)"></question>
+		<question data="question" response="ctlScreen.context.getResponseForQuestion(question.slug)"></question>
 	</div>
 
 	<div>
