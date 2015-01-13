@@ -12,6 +12,9 @@
 			this.result = this.parentCtl.result;
 		},
 		link: function (element) {},
+		registerSupplement: function (supplement) {
+			console.log("registering", supplement);
+		},
 	});
 
 

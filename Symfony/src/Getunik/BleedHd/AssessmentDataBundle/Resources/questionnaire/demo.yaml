@@ -46,6 +46,13 @@ chapters:
                   yes:
                     label: "Jupp"
                     value: true
+                    supplements:
+                      -
+                        slug: new
+                        type: checkbox
+                        label: New?
+                        question:
+                          title: Is this new?
                   no:
                     label: "Nope"
                     value: false

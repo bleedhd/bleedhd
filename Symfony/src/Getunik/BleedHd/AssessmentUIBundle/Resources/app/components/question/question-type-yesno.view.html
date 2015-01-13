@@ -4,4 +4,5 @@
 		<input type="radio" ng-model="implCtl.result.value" ng-value="implCtl.options[option].value">
 		{{ implCtl.options[option].label }}
 	</label>
+	<supplement ng-repeat="supplement in implCtl.options[option].supplements" register="implCtl.registerSupplement(supplement)" definition="supplement" data="{}"></supplement>
 </div>
