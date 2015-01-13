@@ -49,7 +49,7 @@
 					return {
 						id: slug.full,
 						assessment_id: this.assessment.id,
-						result: { value: null, meta: 'nya' },
+						result: { data: null, meta: 'nya' },
 					};
 				} else {
 					return this.responses[slug.full];

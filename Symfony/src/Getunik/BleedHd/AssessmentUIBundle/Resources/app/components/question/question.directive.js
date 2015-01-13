@@ -8,14 +8,15 @@
 
 		var that = this;
 
-		$scope.$on('result-changed', function (event, result) {
+		$scope.$on('q-data-changed', function (event, data) {
 			that.result.meta = null;
+			that.result.data = data;
 			$scope.$emit('response-changed', that.response);
 		});
 
 		$scope.$watch('questionCtl.result.meta', function (newValue, oldValue) {
 			if (newValue !== oldValue && newValue !== null) {
-				that.result.value = null;
+				that.result.data = null;
 				$scope.$emit('response-changed', that.response);
 			}
 		});

@@ -9,7 +9,13 @@
 			this.scope = scope;
 			this.parentCtl = questionCtl;
 
-			this.result = this.parentCtl.result;
+			this.data = angular.copy(this.parentCtl.result.data) || this.emptyData();
+		},
+		emptyData: function () {
+			return {
+				value: null,
+				supplements: {},
+			};
 		},
 		link: function (element) {},
 		registerSupplement: function (supplement) {
@@ -31,9 +37,9 @@
 		link: function (element) {
 			var that = this;
 
-			this.scope.$watch('implCtl.result.value', function (newValue, oldValue) {
+			this.scope.$watch('implCtl.data.value', function (newValue, oldValue) {
 				if (newValue !== oldValue && newValue !== null) {
-					that.scope.$emit('result-changed', that.result);
+					that.scope.$emit('q-data-changed', that.data);
 				}
 			});
 		},
