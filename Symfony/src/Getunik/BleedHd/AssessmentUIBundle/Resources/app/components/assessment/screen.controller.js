@@ -19,7 +19,7 @@
 		that.dirty = {};
 
 		$scope.$on('response-changed', function (event, response) {
-			that.dirty[response.question_slug] = response;
+			that.dirty[response.id] = response;
 			console.log('dirty questions', that.dirty);
 		});
 	}

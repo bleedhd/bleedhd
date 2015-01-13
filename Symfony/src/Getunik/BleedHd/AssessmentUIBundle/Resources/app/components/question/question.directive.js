@@ -16,6 +16,7 @@
 		$scope.$watch('questionCtl.result.meta', function (newValue, oldValue) {
 			if (newValue !== oldValue && newValue !== null) {
 				that.result.value = null;
+				$scope.$emit('response-changed', that.response);
 			}
 		});
 	}
