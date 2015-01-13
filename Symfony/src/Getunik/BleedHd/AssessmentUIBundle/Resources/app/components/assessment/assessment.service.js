@@ -24,6 +24,20 @@
 				return assessment.put();
 			}
 		},
+		getResponses: function (patientId, assessmentId) {
+			return this.BleedApi.one('patients', patientId).one('assessments', assessmentId).all('responses').getList();
+		},
+		saveResponses: function (patientId, assessmentId, responses) {
+			var that = this;
+
+			angular.forEach(responses, function (response) {
+				if (response.id === undefined) {
+					that.BleedApi.one('patients', patientId).one('assessments', assessmentId).all('responses').post(response);
+				} else {
+					response.put();
+				}
+			});
+		},
 	});
 
 

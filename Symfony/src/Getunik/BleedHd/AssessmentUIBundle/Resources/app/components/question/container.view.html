@@ -3,7 +3,7 @@
 
 	<div class="panel-heading clearfix">
 		<div class="pull-left panel-title">
-			{{ question.title }}
+			{{ questionCtl.question.title }}
 		</div>
 		<div class="pull-right">
 			TBD
@@ -14,8 +14,8 @@
 		<div class="bleed-question">
 			<div class="row">
 				<div class="col-xs-12">
-					<h2 ng-bind-html="question.intro.question"></h2>
-					<p ng-bind-html="question.intro.description"></p>
+					<h2 ng-bind-html="questionCtl.question.intro.question"></h2>
+					<p ng-bind-html="questionCtl.question.intro.description"></p>
 				</div>
 			</div>
 		</div>
@@ -27,7 +27,7 @@
 
 	<div class="panel-footer clearfix">
 		<div class="bleed-meta-answers pull-left">
-			<label ng-repeat="metaAnswer in question.meta_answers"><input type="radio" ng-model="questionCtl.result.meta" value="{{ metaAnswer }}">{{ metaAnswer }}</label>
+			<label ng-repeat="metaAnswer in questionCtl.question.meta_answers"><input type="radio" ng-model="questionCtl.result.meta" value="{{ metaAnswer }}">{{ metaAnswer }}</label>
 		</div>
 		<div class="pull-right">
 			TODO X/Y

@@ -6,16 +6,16 @@
 
 	<div>
 		<div>TODO: header stuff</div>
-		<button type="button">Save and return to assessment details</button>
+		<button type="button" ng-click="ctlScreen.saveModifiedResponses()">Save and return to assessment details</button>
 	</div>
 
 	<div ng-repeat="question in ctlScreen.screen.questions">
-		<question data="question"></question>
+		<question data="question" response="ctlScreen.getResponseForQuestion(question.slug.full)"></question>
 	</div>
 
 	<div>
-		<button type="button">Save and previous question</button><br />
-		<button type="button">Save and next question</button>
+		<button type="button" ng-click="ctlScreen.saveModifiedResponses()">Save and previous question</button><br />
+		<button type="button" ng-click="ctlScreen.saveModifiedResponses()">Save and next question</button>
 	</div>
 
 </div>
