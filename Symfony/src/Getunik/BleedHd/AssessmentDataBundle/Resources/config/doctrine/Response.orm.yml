@@ -3,23 +3,17 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Response:
     table: Response
     repositoryClass: Getunik\BleedHd\AssessmentDataBundle\Entity\ResponseRepository
     id:
-        id:
+        assessmentId:
             type: integer
-            generator:
-                strategy: AUTO
+        questionSlug:
+            type: string
+            length: 255
     fields:
         lastUpdatedDate:
             type: datetimetz
             nullable: false
         lastUpdatedBy:
             type: integer
-            nullable: false
-        assessmentId:
-            type: integer
-            nullable: false
-        questionSlug:
-            type: string
-            length: 255
             nullable: false
         result:
             type: json_array

@@ -2,8 +2,6 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Response:
     exclusion_policy: ALL
     read_only: false
     properties:
-        id:
-            since_version: 1.0
         lastUpdatedDate:
             since_version: 1.0
         lastUpdatedBy:
