@@ -29,14 +29,7 @@
 		},
 		saveResponses: function (patientId, assessmentId, responses) {
 			var that = this;
-
-			angular.forEach(responses, function (response) {
-				if (response.fromServer === true) {
-					response.put();
-				} else {
-					that.BleedApi.one('patients', patientId).one('assessments', assessmentId).all('responses').post(response);
-				}
-			});
+			this.BleedApi.one('patients', patientId).one('assessments', assessmentId).all('responses').customPOST(responses, 'batch');
 		},
 	});
 

@@ -3,6 +3,7 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Handler;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Response;
 
 
@@ -36,5 +37,22 @@ class ResponseHandler
     public function update(Response $response)
     {
         return $this->repository->update($response);
+    }
+
+    public function batchUpdate(Assessment $assessment, array $responses)
+    {
+        foreach ($responses as $response)
+        {
+            $response->setAssessment($assessment);
+            $existing = $this->repository->find(array('questionSlug' => $response->getQuestionSlug(), 'assessmentId' => $response->getAssessmentId()));
+            if ($existing === NULL)
+            {
+                $this->save($response);
+            }
+            else
+            {
+                $this->update($response);
+            }
+        }
     }
 }

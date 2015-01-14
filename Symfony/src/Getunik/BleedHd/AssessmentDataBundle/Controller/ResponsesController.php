@@ -82,4 +82,16 @@ class ResponsesController extends FOSRestController
     {
         return $this->handleView($this->view("delete response"));
     }
+
+    /**
+     * @Post("/patients/{patient}/assessments/{assessment}/responses/batch")
+     * @ParamConverter("assessment", options={"id" = "assessment"})
+     * @ParamConverter("responsesBody", converter="fos_rest.request_body", class="ArrayCollection<Getunik\BleedHd\AssessmentDataBundle\Entity\Response>")
+     */
+    public function postBatchAction($patient, Assessment $assessment, $responsesBody)
+    {
+        $this->responseHandler->batchUpdate($assessment, $responsesBody);
+
+        return $this->handleView($this->view($responsesBody));
+    }
 }
