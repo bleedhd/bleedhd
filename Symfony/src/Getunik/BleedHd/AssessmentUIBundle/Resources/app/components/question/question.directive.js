@@ -1,10 +1,10 @@
 
 (function (angular, bleedHd) {
 
-	function BaseQuestionImpl() {
+	function BaseQuestion() {
 	}
 
-	angular.extend(BaseQuestionImpl.prototype, {
+	angular.extend(BaseQuestion.prototype, {
 		construct: function (scope, containerCtl) {
 			this.scope = scope;
 			this.parentCtl = containerCtl;
@@ -33,11 +33,11 @@
 		}, containerCtl.question.options);
 	}
 
-	angular.extend(YesNoQuestion.prototype, BaseQuestionImpl.prototype, {
+	angular.extend(YesNoQuestion.prototype, BaseQuestion.prototype, {
 		link: function (element) {
 			var that = this;
 
-			this.scope.$watch('implCtl.data.value', function (newValue, oldValue) {
+			this.scope.$watch('questionCtl.data.value', function (newValue, oldValue) {
 				if (newValue !== oldValue && newValue !== null) {
 					that.scope.$emit('q-data-changed', that.data);
 				}
@@ -54,24 +54,22 @@
 	//////
 
 	angular.module('question')
-		.directive('questionImpl', function ($templateRequest, $compile) {
+		.directive('question', function ($templateRequest, $compile) {
 			return {
 				restrict: 'E',
 				require: '^^container',
 				scope: {
 					type: '=',
 				},
-				//controller: QuestionImplController,
-				//controllerAs: 'implCtl',
 				compile: function (element, attrs, transclude) {
 					// return simple linking function that dynamically loads the question template
 					return function (scope, element, attrs, containerCtl) {
 
-						scope.implCtl = new questionTypes[scope.type](scope, containerCtl);
+						scope.questionCtl = new questionTypes[scope.type](scope, containerCtl);
 
 						$templateRequest(bleedHd.getView('question', 'question-type-' + scope.type)).then(function (template) {
 							element.append($compile(template)(scope));
-							scope.implCtl.link(element);
+							scope.questionCtl.link(element);
 						});
 					};
 				},
