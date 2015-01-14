@@ -27,7 +27,9 @@
 	bleedHd.registerController('assessment', AssessmentScreenController,
 		{
 			saveModifiedResponses: function () {
-				return this.context.saveResponses($.map(this.dirty, function(val) { return val; }));
+				var responsesToSave = $.map(this.dirty, function(val) { return val; });
+				this.dirty = {};
+				return this.context.saveResponses(responsesToSave);
 			},
 		},
 		{

@@ -1,7 +1,7 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentQuestionController($scope) {
+	function AssessmentQuestionContainerController($scope) {
 		this.question = $scope.question();
 		this.response = $scope.response();
 		this.result = this.response.result;
@@ -14,7 +14,7 @@
 			$scope.$emit('response-changed', that.response);
 		});
 
-		$scope.$watch('questionCtl.result.meta', function (newValue, oldValue) {
+		$scope.$watch('containerCtl.result.meta', function (newValue, oldValue) {
 			if (newValue !== oldValue && newValue !== null) {
 				that.result.data = null;
 				$scope.$emit('response-changed', that.response);
@@ -22,12 +22,12 @@
 		});
 	}
 
-	angular.extend(AssessmentQuestionController.prototype, {
+	angular.extend(AssessmentQuestionContainerController.prototype, {
 	});
 
 
 	angular.module('question')
-		.directive('question', function () {
+		.directive('container', function () {
 			return {
 				templateUrl: bleedHd.getView('question', 'container'),
 				restrict: 'E',
@@ -35,8 +35,8 @@
 					question: '&data',
 					response: '&',
 				},
-				controller: AssessmentQuestionController,
-				controllerAs: 'questionCtl',
+				controller: AssessmentQuestionContainerController,
+				controllerAs: 'containerCtl',
 				link: function (scope, element, attrs, controller) {
 				},
 			};

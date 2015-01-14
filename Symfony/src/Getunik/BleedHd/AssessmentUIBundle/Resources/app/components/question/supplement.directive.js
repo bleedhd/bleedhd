@@ -45,7 +45,6 @@
 		.directive('supplement', function ($templateRequest, $compile) {
 			return {
 				restrict: 'E',
-				require: '^^question',
 				scope: {
 					register: '&',
 					definition: '&',
@@ -53,7 +52,7 @@
 				},
 				compile: function (element, attrs, transclude) {
 					// return simple linking function that dynamically loads the question template
-					return function (scope, element, attrs, implCtl) {
+					return function (scope, element, attrs) {
 
 						var definition = scope.definition();
 						scope.supplementCtl = new supplementTypes[definition.type](scope, definition);
