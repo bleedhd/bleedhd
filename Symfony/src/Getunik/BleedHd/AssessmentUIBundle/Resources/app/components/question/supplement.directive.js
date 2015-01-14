@@ -27,7 +27,7 @@
 			this.scope.$watch('value', function (newValue, oldValue) {
 				if (newValue !== oldValue && newValue !== null) {
 					that.supplement[that.definition.slug] = newValue;
-					that.scope.$emit('supplement-changed', that.value);
+					that.scope.$emit('q-supplement-changed', that.value);
 				}
 			});
 		},

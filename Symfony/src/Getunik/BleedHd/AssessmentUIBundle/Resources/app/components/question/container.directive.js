@@ -11,13 +11,13 @@
 		$scope.$on('q-data-changed', function (event, data) {
 			that.result.meta = null;
 			that.result.data = data;
-			$scope.$emit('response-changed', that.response);
+			$scope.$emit('q-response-changed', that.response);
 		});
 
 		$scope.$watch('containerCtl.result.meta', function (newValue, oldValue) {
 			if (newValue !== oldValue && newValue !== null) {
 				that.result.data = null;
-				$scope.$emit('response-changed', that.response);
+				$scope.$emit('q-response-changed', that.response);
 			}
 		});
 	}

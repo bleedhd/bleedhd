@@ -18,7 +18,7 @@
 		var that = this;
 		that.dirty = {};
 
-		$scope.$on('response-changed', function (event, response) {
+		$scope.$on('q-response-changed', function (event, response) {
 			that.dirty[response.id] = response;
 			console.log('dirty questions', that.dirty);
 		});
@@ -29,7 +29,7 @@
 			saveModifiedResponses: function () {
 				var responsesToSave = $.map(this.dirty, function(val) { return val; });
 				this.dirty = {};
-				return this.context.saveResponses(responsesToSave);
+				return responsesToSave.length > 0 ? this.context.saveResponses(responsesToSave) : null;
 			},
 		},
 		{
