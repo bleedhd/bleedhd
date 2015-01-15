@@ -56,4 +56,11 @@ chapters:
                   no:
                     label: "Nope"
                     value: false
+                    supplements:
+                      -
+                        slug: sure
+                        type: checkbox
+                        label: Sure?
+                        question:
+                          title: Are you sure?
                 export: TODO

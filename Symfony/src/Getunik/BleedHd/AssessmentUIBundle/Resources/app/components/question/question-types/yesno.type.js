@@ -8,18 +8,23 @@
 			yes: { label: 'Yes', value: true },
 			no: { label: 'No', value: false },
 		}, this.question.options);
+
+		var that = this;
+		angular.forEach(this.getOptions(), function (option) {
+			option.supplementData = option.value === that.data.value ? that.data.supplements : {};
+		});
 	}
 
 	angular.module('question').run(function (TypeRegistry) {
 		TypeRegistry.registerQuestionType('yesno', YesNoQuestion, {
 			link: function (element) {
-				var that = this;
-
-				this.scope.$watch('questionCtl.data.value', function (newValue, oldValue) {
-					if (newValue !== oldValue && newValue !== null) {
-						that.scope.$emit('q-data-changed', that.data);
-					}
-				});
+			},
+			onChange: function (option) {
+				this.data.supplements = option.supplementData;
+				this.scope.$emit('q-data-changed', this.data);
+			},
+			getOptions: function () {
+				return [this.options.yes, this.options.no];
 			},
 		});
 	});

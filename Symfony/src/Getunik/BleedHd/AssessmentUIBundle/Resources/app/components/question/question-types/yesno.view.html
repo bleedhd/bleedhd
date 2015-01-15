@@ -1,12 +1,12 @@
 
-<div class="radio" ng-repeat="option in ['yes', 'no']">
+<div class="radio" ng-repeat="option in questionCtl.getOptions()">
 	<label>
-		<input type="radio" ng-model="questionCtl.data.value" ng-value="questionCtl.options[option].value">
-		{{ questionCtl.options[option].label }}
+		<input type="radio" ng-model="questionCtl.data.value" ng-change="questionCtl.onChange(option)" ng-value="option.value">
+		{{ option.label }}
 	</label>
 	<supplement
-		ng-repeat="supplement in questionCtl.options[option].supplements"
-		active="questionCtl.data.value === questionCtl.options[option].value"
+		ng-repeat="supplement in option.supplements"
+		active="questionCtl.data.value === option.value"
 		definition="supplement"
-		data="questionCtl.data.supplements"></supplement>
+		data="option.supplementData"></supplement>
 </div>
