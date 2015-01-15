@@ -20,21 +20,28 @@
 			</div>
 		</div>
 
-		<div class="bleed-answers">
-			<question question="containerCtl.question" data="containerCtl.result.data" ></question>
+		<div ng-switch on="containerCtl.question.type">
+			<div ng-switch-when="multi" class="bleed-answers">
+				<div class="bleed-answers-group" ng-repeat="question in containerCtl.question.questions">
+					<h4 ng-bind-html="question.intro.question"></h4>
+					<question question="question" data="containerCtl.response[question.slug.full].result.data" ></question>
+					<pre>{{ containerCtl.response[question.slug.full].result|json }}</pre>
+				</div>
+			</div>
+			<div ng-switch-default class="bleed-answers">
+				<question question="containerCtl.question" data="containerCtl.result.data" ></question>
+				<pre>{{ containerCtl.result|json }}</pre>
+			</div>
 		</div>
 	</div>
 
 	<div class="panel-footer clearfix">
 		<div class="bleed-meta-answers pull-left">
-			<label ng-repeat="metaAnswer in containerCtl.question.meta_answers"><input type="radio" ng-model="containerCtl.result.meta" value="{{ metaAnswer }}">{{ metaAnswer }}</label>
+			<label ng-repeat="metaAnswer in containerCtl.question.meta_answers"><input type="radio" ng-model="binding.meta" ng-change="containerCtl.onMetaChange()" value="{{ metaAnswer }}">{{ metaAnswer }}</label>
 		</div>
 		<div class="pull-right">
 			TODO X/Y
 		</div>
 	</div>
-
-
-	<pre>{{ containerCtl.result|json }}</pre>
 
 </div><!-- /.panel -->

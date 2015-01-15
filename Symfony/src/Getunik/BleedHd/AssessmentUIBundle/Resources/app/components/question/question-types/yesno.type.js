@@ -21,7 +21,7 @@
 			},
 			onChange: function (option) {
 				this.data.supplements = option.supplementData;
-				this.scope.$emit('q-data-changed', this.data);
+				this.scope.$emit('q-data-changed', this);
 			},
 			getOptions: function () {
 				return [this.options.yes, this.options.no];

@@ -10,8 +10,9 @@
 	function Questionnaire(yamlData) {
 		this.screens = {};
 		this.screensLinear = [];
+		this.multiQuestions = {};
 
-		this.processYaml(yamlData);
+		this._processYaml(yamlData);
 	}
 
 	angular.extend(Questionnaire.prototype, {
@@ -24,7 +25,13 @@
 		getScreenCount: function () {
 			return this.screensLinear.length;
 		},
-		processYaml: function (yamlData) {
+		isMultiQuestion: function (slug) {
+			return this.multiQuestions[slug.full] !== undefined;
+		},
+		getMultiQuestionChildSlugs: function (slug) {
+			return this.multiQuestions[slug.full];
+		},
+		_processYaml: function (yamlData) {
 			var that = this, screenObj, chapterSlug, sectionSlug, screenSlug, screenIndex = 0;
 
 			angular.forEach(yamlData.chapters, function (chapter) {
@@ -44,15 +51,24 @@
 							questions: screen.questions,
 						};
 
-						angular.forEach(screenObj.questions, function (question) {
-							question.slug = new Slug(question.slug, screenSlug);
-						});
+						angular.forEach(screenObj.questions, function (question) { that._processQuestion(screenSlug, question); });
 
 						that.screens[screen.slug] = screenObj;
 						that.screensLinear.push(screenObj);
 					});
 				});
 			});
+		},
+		_processQuestion: function (parentSlug, question) {
+			var that = this;
+
+			question.slug = new Slug(question.slug, parentSlug);
+			if (question.type === 'multi') {
+				that.multiQuestions[question.slug.full] = [];
+				angular.forEach(question.questions, function (child) { that._processQuestion(question.slug, child); });
+			} else if (that.multiQuestions[parentSlug.full] !== undefined) {
+				that.multiQuestions[parentSlug.full].push(question.slug);
+			}
 		},
 	});
 
@@ -67,11 +83,8 @@
 		get: function (name) {
 			var that = this;
 			return this.questionnaires.get(name).then(function (yamlData) {
-				return that.processYaml(yamlData);
+				return new Questionnaire(yamlData);
 			});
-		},
-		processYaml: function (yamlData) {
-			return new Questionnaire(yamlData);
 		},
 	});
 

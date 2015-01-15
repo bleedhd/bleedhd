@@ -64,3 +64,32 @@ chapters:
                         question:
                           title: Are you sure?
                 export: TODO
+          -
+            slug: screen_2
+            questions:
+              -
+                slug: multi-demo
+                type: multi
+                title: "These are multiple questions"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "What's the deal with the questions below?"
+                questions:
+                  -
+                    slug: first
+                    type: yesno
+                    meta_answers: ['nya', 'nass']
+                    intro:
+                      question: "Is this the real life?"
+                  -
+                    slug: second
+                    type: yesno
+                    meta_answers: ['nya', 'nass']
+                    intro:
+                      question: "Is this just fantasy?"
+                  -
+                    slug: third
+                    type: yesno
+                    meta_answers: ['nya', 'nass']
+                    intro:
+                      question: "Caught in a landslide(?)"

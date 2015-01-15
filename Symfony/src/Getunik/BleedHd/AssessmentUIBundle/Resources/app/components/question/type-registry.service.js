@@ -110,7 +110,7 @@
 			});
 
 			this.scope.$on('q-supplement-changed', function (event, data) {
-				that.scope.$emit('q-data-changed', that.data);
+				that.scope.$emit('q-data-changed', that);
 			});
 		},
 		link: function (element) {

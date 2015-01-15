@@ -20,7 +20,7 @@
 
 		$scope.$on('q-response-changed', function (event, response) {
 			that.dirty[response.id] = response;
-			console.log('dirty questions', that.dirty);
+			console.log(response);
 		});
 	}
 
