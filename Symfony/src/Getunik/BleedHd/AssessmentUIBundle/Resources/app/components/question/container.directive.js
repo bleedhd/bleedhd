@@ -4,8 +4,12 @@
 	function AssessmentQuestionContainerController($scope) {
 		this.scope = $scope;
 		this.question = this.scope.question();
+
+		// in case this is a multi-question, the response will be a mapping { _question-slug_: response } while
+		// it is simply a response object in the normal case
 		this.response = this.scope.response();
 		this.result = this.response.result;
+		this.isMulti = this.question.type === 'multi';
 
 		// set this scope property to bind to in the view. this needs to be in an object because the
 		// ng-model binding inside an ng-repeat appears to not work otherwise.
@@ -17,7 +21,7 @@
 			var currentResponse = that.response;
 
 			// switch for multi-question handling
-			if (that.result === undefined) {
+			if (that.isMulti) {
 				currentResponse = that.response[questionCtl.slug.full];
 			}
 
@@ -27,32 +31,14 @@
 			that.scope.binding.meta = null;
 			that.scope.$emit('q-response-changed', currentResponse);
 		});
-
-		/*$scope.$watch('containerCtl.result.meta', function (newValue, oldValue) {
-			if (newValue !== oldValue && newValue !== null) {
-				var currentResult = that.result;
-
-				// switch for multi-question handling
-				if (that.result === undefined) {
-					angular.forEach(that.response, function (response) {
-						response.result.data = null;
-					});
-					currentResult = that.response[questionCtl.slug.full];
-				} else {
-					that.result.data = null;
-				}
-
-				that.resetQuestions();
-				$scope.$emit('q-response-changed', that.response);
-			}
-		});*/
 	}
 
 	angular.extend(AssessmentQuestionContainerController.prototype, {
 		getInitialMetaValue: function () {
 			var that = this;
 
-			if (that.result === undefined) {
+			// switch for multi-question handling
+			if (that.isMulti) {
 				var meta = '';
 				angular.forEach(that.response, function (response) {
 					if (meta !== null) {
@@ -78,7 +64,7 @@
 			that.resetQuestions();
 
 			// switch for multi-question handling
-			if (that.result === undefined) {
+			if (that.isMulti) {
 				angular.forEach(that.response, function (response) {
 					response.result.data = null;
 					response.result.meta = that.scope.binding.meta;
