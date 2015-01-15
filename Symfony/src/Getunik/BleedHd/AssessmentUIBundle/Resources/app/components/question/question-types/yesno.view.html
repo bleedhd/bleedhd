@@ -4,5 +4,9 @@
 		<input type="radio" ng-model="questionCtl.data.value" ng-value="questionCtl.options[option].value">
 		{{ questionCtl.options[option].label }}
 	</label>
-	<supplement ng-repeat="supplement in questionCtl.options[option].supplements" definition="supplement" data="questionCtl.data.supplements"></supplement>
+	<supplement
+		ng-repeat="supplement in questionCtl.options[option].supplements"
+		active="questionCtl.data.value === questionCtl.options[option].value"
+		definition="supplement"
+		data="questionCtl.data.supplements"></supplement>
 </div>

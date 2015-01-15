@@ -1,7 +1,7 @@
 <div class="bleed-sub-answer">
 	<h6 ng-bind-html="supplementCtl.definition.question.title"></h6>
 	<div class="checkbox">
-		<label><input type="checkbox" ng-model="value">{{ supplementCtl.definition.label }}</label>
+		<label><input type="checkbox" ng-disabled="!active" ng-model="value">{{ supplementCtl.definition.label }}</label>
 	</div>
 </div>
 <pre>{{ supplementCtl.supplement | json }}</pre>
