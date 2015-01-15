@@ -5,8 +5,8 @@
 		//'bleedHdApp',
 		'assessment',
 		bleedHd.getView('question', 'container'),
-		bleedHd.getView('question', 'question-type-yesno'),
-		bleedHd.getView('question', 'supplement-type-checkbox'),
+		bleedHd.getView('question', 'question-types/yesno'),
+		bleedHd.getView('question', 'supplement-types/checkbox'),
 	]);
 
 })(angular, bleedHd);

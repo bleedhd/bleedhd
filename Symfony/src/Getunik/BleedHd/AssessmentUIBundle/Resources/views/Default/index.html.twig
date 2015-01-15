@@ -33,7 +33,8 @@
 
 
 	{% javascripts filter="angular" output="js/compiled/templates.js"
-		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/**/*.view.html'
+		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/*/*.view.html'
+		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/*/*/*.view.html'
 	%}
 		<script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
@@ -43,10 +44,12 @@
 		'@GetunikBleedHdAssessmentUIBundle/Resources/app/bleedhd.routes.js'
 		'@GetunikBleedHdAssessmentUIBundle/Resources/app/bleedhd.services.js'
 		'@GetunikBleedHdAssessmentUIBundle/Resources/app/bleedhd.filters.js'
-		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/**/*.module.js'
-		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/**/*.service.js'
-		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/**/*.directive.js'
-		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/**/*.controller.js'
+		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/*/*.module.js'
+		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/*/*.service.js'
+		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/*/*.directive.js'
+		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/*/*/*.type.js'
+		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/*/*.controller.js'
+
 	%}
 		<script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
