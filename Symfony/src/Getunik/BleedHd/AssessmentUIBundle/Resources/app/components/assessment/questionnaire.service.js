@@ -18,8 +18,11 @@
 		getScreenBySlug: function (slug) {
 			return this.screens[slug];
 		},
-		getFirstScreenSlug: function () {
-			return this.screensLinear[0].slug.short;
+		getScreenByIndex: function (index) {
+			return this.screensLinear[index];
+		},
+		getScreenCount: function () {
+			return this.screensLinear.length;
 		},
 		processYaml: function (yamlData) {
 			var that = this, screenObj, chapterSlug, sectionSlug, screenSlug, screenIndex = 0;
