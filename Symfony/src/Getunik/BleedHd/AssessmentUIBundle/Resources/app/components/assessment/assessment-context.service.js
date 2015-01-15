@@ -42,6 +42,13 @@
 			}
 		},
 		saveResponses: function (responses) {
+			var that = this;
+
+			// update responses in current context
+			angular.forEach(responses, function (response) {
+				that.responses[response.id] = response;
+			});
+
 			return this.AssessmentData.saveResponses(this.patient.id, this.assessment.id, responses);
 		},
 		getResponseForQuestion: function (slug) {
