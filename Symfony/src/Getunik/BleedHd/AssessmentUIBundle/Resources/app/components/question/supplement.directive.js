@@ -9,8 +9,6 @@
 			this.scope = scope;
 			this.definition = definition;
 			this.supplement = scope.data();
-
-			scope.register({ supplement: this });
 		},
 		link: function (element) {},
 	});
@@ -46,7 +44,6 @@
 			return {
 				restrict: 'E',
 				scope: {
-					register: '&',
 					definition: '&',
 					data: '&',
 				},

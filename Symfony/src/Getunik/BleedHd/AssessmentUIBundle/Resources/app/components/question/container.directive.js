@@ -2,6 +2,7 @@
 (function (angular, bleedHd) {
 
 	function AssessmentQuestionContainerController($scope) {
+		this.scope = $scope;
 		this.question = $scope.question();
 		this.response = $scope.response();
 		this.result = this.response.result;
@@ -17,12 +18,16 @@
 		$scope.$watch('containerCtl.result.meta', function (newValue, oldValue) {
 			if (newValue !== oldValue && newValue !== null) {
 				that.result.data = null;
+				that.resetQuestions();
 				$scope.$emit('q-response-changed', that.response);
 			}
 		});
 	}
 
 	angular.extend(AssessmentQuestionContainerController.prototype, {
+		resetQuestions: function () {
+			this.scope.$broadcast('q-do-reset');
+		},
 	});
 
 

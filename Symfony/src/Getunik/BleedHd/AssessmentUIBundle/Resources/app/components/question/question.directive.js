@@ -5,11 +5,22 @@
 	}
 
 	angular.extend(BaseQuestion.prototype, {
-		construct: function (scope, containerCtl) {
+		construct: function (scope, question) {
 			this.scope = scope;
-			this.parentCtl = containerCtl;
+			this.question = question;
+			this.slug = this.question.slug;
 
-			this.data = angular.copy(this.parentCtl.result.data) || this.emptyData();
+			this.data = angular.copy(scope.data()) || this.emptyData();
+			// the fun of translating objects to JSON, to PHP array, to JSON (in the DB), back to PHP array,
+			// back to JSON, back to objects... {} => JSON {} => PHP array() => JSON [] => PHP array() => JSON [] => []
+			if (angular.isArray(this.data.supplements) && this.data.supplements.length === 0) {
+				this.data.supplements = {};
+			}
+
+			var that = this;
+			this.scope.$on('q-do-reset', function (event, data) {
+				that.reset(event, data);
+			});
 		},
 		emptyData: function () {
 			return {
@@ -17,20 +28,21 @@
 				supplements: {},
 			};
 		},
-		link: function (element) {},
-		registerSupplement: function (supplement) {
-			console.log("registering", supplement);
+		reset: function (event, data) {
+			this.data = this.emptyData();
+		},
+		link: function (element) {
 		},
 	});
 
 
-	function YesNoQuestion(scope, containerCtl) {
-		this.construct(scope, containerCtl);
+	function YesNoQuestion(scope, question) {
+		this.construct(scope, question);
 
 		this.options = $.extend({
 			yes: { label: 'Yes', value: true },
 			no: { label: 'No', value: false },
-		}, containerCtl.question.options);
+		}, this.question.options);
 	}
 
 	angular.extend(YesNoQuestion.prototype, BaseQuestion.prototype, {
@@ -57,17 +69,18 @@
 		.directive('question', function ($templateRequest, $compile) {
 			return {
 				restrict: 'E',
-				require: '^^container',
 				scope: {
-					type: '=',
+					question: '&',
+					data: '&',
 				},
 				compile: function (element, attrs, transclude) {
 					// return simple linking function that dynamically loads the question template
-					return function (scope, element, attrs, containerCtl) {
+					return function (scope, element, attrs) {
 
-						scope.questionCtl = new questionTypes[scope.type](scope, containerCtl);
+						var question = scope.question();
+						scope.questionCtl = new questionTypes[question.type](scope, question);
 
-						$templateRequest(bleedHd.getView('question', 'question-type-' + scope.type)).then(function (template) {
+						$templateRequest(bleedHd.getView('question', 'question-type-' + question.type)).then(function (template) {
 							element.append($compile(template)(scope));
 							scope.questionCtl.link(element);
 						});
