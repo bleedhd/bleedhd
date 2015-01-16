@@ -1,8 +1,8 @@
 
 (function (angular) {
 
-	angular.module('question').config(function (MyQuestionTypeRegistryProvider) {
-		MyQuestionTypeRegistryProvider.registerTypeWithName('base', null, function (parent) {
+	angular.module('question').config(function (QuestionTypeRegistryProvider) {
+		QuestionTypeRegistryProvider.registerTypeWithName('base', null, function (parent) {
 			return {
 				ctor: function BaseQuestion (scope, question) {
 					this.scope = scope;

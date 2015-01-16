@@ -1,8 +1,8 @@
 
 (function (angular) {
 
-	angular.module('question').config(function (MyQuestionTypeRegistryProvider) {
-		MyQuestionTypeRegistryProvider.registerTypeWithName('yesno', 'base', function (parent) {
+	angular.module('question').config(function (QuestionTypeRegistryProvider) {
+		QuestionTypeRegistryProvider.registerTypeWithName('yesno', 'base', function (parent) {
 			return {
 				ctor: function YesNoQuestion(scope, question) {
 					parent(this)(scope, question);

@@ -2,7 +2,7 @@
 (function (angular, bleedHd) {
 
 	angular.module('question')
-		.directive('question', function (MyQuestionTypeRegistry, TemplateTypeService) {
+		.directive('question', function (QuestionTypeRegistry, TemplateTypeService) {
 			return {
 				restrict: 'E',
 				scope: {
@@ -14,7 +14,7 @@
 					return function (scope, element, attrs) {
 						var question = scope.question();
 
-						scope.questionCtl = TemplateTypeService.instantiate(MyQuestionTypeRegistry, scope, element, question);
+						scope.questionCtl = TemplateTypeService.instantiate(QuestionTypeRegistry, scope, element, question);
 					};
 				},
 			};
