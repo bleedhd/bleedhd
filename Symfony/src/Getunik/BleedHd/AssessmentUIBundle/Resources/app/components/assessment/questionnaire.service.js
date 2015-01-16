@@ -11,6 +11,7 @@
 		this.screens = {};
 		this.screensLinear = [];
 		this.multiQuestions = {};
+		this.questions = [];
 
 		this._processYaml(yamlData);
 	}
@@ -66,8 +67,11 @@
 			if (question.type === 'multi') {
 				that.multiQuestions[question.slug.full] = [];
 				angular.forEach(question.questions, function (child) { that._processQuestion(question.slug, child); });
-			} else if (that.multiQuestions[parentSlug.full] !== undefined) {
-				that.multiQuestions[parentSlug.full].push(question.slug);
+			} else {
+				that.questions.push(question);
+				if (that.multiQuestions[parentSlug.full] !== undefined) {
+					that.multiQuestions[parentSlug.full].push(question.slug);
+				}
 			}
 		},
 	});

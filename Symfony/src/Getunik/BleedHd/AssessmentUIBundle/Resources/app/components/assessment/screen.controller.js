@@ -38,6 +38,7 @@
 			},
 			goOverview: function () {
 				this.saveModifiedResponses();
+				this.context.updateScore();
 				this.$location.path(['/patients', this.context.patient.id, 'assessment/edit', this.context.assessment.id].join('/'));
 			},
 			saveModifiedResponses: function () {

@@ -1,11 +1,12 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentContext($q, patientData, AssessmentData, QuestionnaireData) {
+	function AssessmentContext($q, patientData, AssessmentData, QuestionnaireData, Scoring) {
 		this.$q = $q;
 		this.PatientData = patientData;
 		this.AssessmentData = AssessmentData;
 		this.QuestionnaireData = QuestionnaireData;
+		this.Scoring = Scoring;
 		this.assessment = null;
 	}
 
@@ -49,6 +50,12 @@
 			});
 
 			return this.AssessmentData.saveResponses(this.patient.id, this.assessment.id, responses);
+		},
+		updateScore: function () {
+			var score = this.Scoring.getScore(this);
+
+			this.assessment.result = score;
+			return this.AssessmentData.saveAssessment(this.assessment);
 		},
 		getResponseForQuestion: function (slug) {
 			if (this.responses[slug.full] === undefined) {
