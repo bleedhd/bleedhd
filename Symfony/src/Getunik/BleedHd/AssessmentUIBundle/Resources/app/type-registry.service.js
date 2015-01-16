@@ -4,8 +4,6 @@
 	function TypeRegistryFactory() {
 		this.instances = {};
 
-		console.log('TypeRegistryFactory');
-
 		var that = this;
 		this.$get = function () { return that; };
 	}
@@ -14,10 +12,6 @@
 		create: function (name) {
 			this.instances[name] = new TypeRegistryProvider();
 			return this.instances[name];
-			/*return function () {
-
-			};
-			this.instances[name] = new TypeRegistryProvider()*/
 		},
 		buildTypes: function () {
 			angular.forEach(this.instances, function (inst) {
@@ -28,8 +22,6 @@
 
 
 	function TypeRegistryProvider() {
-		console.log('TypeRegistryProvider');
-
 		this.typeDefs = [];
 	}
 
@@ -101,18 +93,15 @@
 
 	function TypeRegistry(provider) {
 		this.provider = provider;
-		console.log('TypeRegistry');
 	}
 
 	angular.extend(TypeRegistry.prototype, {
 		instantiate: function (name, args) {
-			console.log('instantiating', name, args);
-
 			var type = this.provider.types[name];
 			return new type.ctor(args);
 		},
 		exists: function (name) {
-
+			return this.provider.types[name] !== undefined;
 		},
 	});
 
@@ -120,47 +109,8 @@
 
 		.provider('TypeRegistryFactory', TypeRegistryFactory)
 
-		.provider('MyRegistry', function (TypeRegistryFactoryProvider) {
-			return TypeRegistryFactoryProvider.create('MyRegistry');
-		})
-
-		.config(function (MyRegistryProvider) {
-			MyRegistryProvider.registerType("MyType", function (parent) {
-				return {
-					ctor: function DerivedType (a) { console.log("parent ctor", parent(this)); parent(this)(a); console.log("DerivedType", a); this.b = a; },
-					members: {
-						test: function () { console.log('test derived'); parent(this, "test")(); return "result"; }
-					}
-				};
-			});
-		})
-
-		.config(function (MyRegistryProvider) {
-			MyRegistryProvider.registerType(null, function (parent) {
-				return {
-					ctor: function MyType (a) { console.log("MyType", a); this.a = a; },
-					members: {
-						test: function () { console.log('test'); return "result"; },
-						myTest: function () { console.log('mytest'); },
-					}
-				};
-			});
-		})
-
-		.run(function (TypeRegistryFactory, MyRegistry) {
+		.run(function (TypeRegistryFactory) {
 			TypeRegistryFactory.buildTypes();
-
-			console.log("running....");
-			var inst = MyRegistry.instantiate('MyType', [42]);
-			console.log(inst);
-			console.log(inst.test());
-		})
-
-		.run(function (TypeRegistryFactory, MyRegistry) {
-			console.log("running....");
-			var inst = MyRegistry.instantiate('DerivedType', ["gurray"]);
-			console.log(inst);
-			console.log(inst.test());
 		})
 
 	;
