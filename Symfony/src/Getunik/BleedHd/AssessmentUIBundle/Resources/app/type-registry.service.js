@@ -9,8 +9,8 @@
 	}
 
 	angular.extend(TypeRegistryFactory.prototype, {
-		create: function (name) {
-			this.instances[name] = new TypeRegistryProvider();
+		create: function (name, extensions) {
+			this.instances[name] = new TypeRegistryProvider(extensions);
 			return this.instances[name];
 		},
 		buildTypes: function () {
@@ -21,13 +21,14 @@
 	});
 
 
-	function TypeRegistryProvider() {
+	function TypeRegistryProvider(extensions) {
 		this.typeDefs = [];
+		this.extensions = extensions;
 	}
 
 	angular.extend(TypeRegistryProvider.prototype, {
 		$get: function () {
-			return new TypeRegistry(this);
+			return angular.extend(new TypeRegistry(this), this.extensions);
 		},
 		registerType: function (base, typeBuilderFn) {
 			this.registerTypeWithName(null, base, typeBuilderFn);

@@ -1,8 +1,8 @@
 
-(function (angular, bleedHd) {
+(function (angular) {
 
 	angular.module('assessment').config(function (ScoringRegistryProvider) {
-		window.test = ScoringRegistryProvider;
+
 		ScoringRegistryProvider.registerTypeWithName('demo', null, function (parent) {
 			return {
 				ctor: function DemoScoreCalculator () { console.log('instantiating demo score calculator'); },
@@ -32,6 +32,7 @@
 				},
 			};
 		});
+
 	});
 
-})(angular, bleedHd);
+})(angular);

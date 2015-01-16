@@ -1,6 +1,44 @@
 
 (function (angular, bleedHd) {
 
+	function TemplateTypeService($compile, $templateCache, $templateRequest) {
+		this.$compile = $compile;
+		this.$templateCache = $templateCache;
+		this.$templateRequest = $templateRequest;
+	}
+
+	angular.extend(TemplateTypeService.prototype, {
+		instantiate: function (typeRegistry, scope, element, definition) {
+			var that = this,
+				base = typeRegistry.prefix + '-types/',
+				instance = typeRegistry.instantiate(definition.type, [scope, definition]),
+				templateName = that.findTemplate(base, instance);
+
+			console.log('cool stuff', templateName, instance);
+
+			that.$templateRequest(bleedHd.getView('question', templateName)).then(function (template) {
+				element.append(that.$compile(template)(scope));
+				instance.linkWithElement(element);
+			});
+
+			return instance;
+		},
+		findTemplate: function (base, instance) {
+			var that = this,
+				template = null;
+
+			angular.forEach(instance.getTemplateHierarchy(), function (name) {
+				if (that.$templateCache.get(bleedHd.getView('question', base + name))) {
+					template = base + name;
+				}
+			});
+
+			return template;
+		},
+	});
+
+
+
 	function Type(services, definition) {
 		this.services = services;
 		this.definition = definition;
@@ -159,6 +197,18 @@
 	///////
 
 	angular.module('question')
-		.service('QuestionTypeRegistry', TypeRegistryService);
+		.service('QuestionTypeRegistry', TypeRegistryService)
+
+		.service('TemplateTypeService', TemplateTypeService)
+
+		.provider('MyQuestionTypeRegistry', function (TypeRegistryFactoryProvider) {
+			return TypeRegistryFactoryProvider.create('MyQuestionTypeRegistry', { prefix: 'question' });
+		})
+
+		.provider('SupplementTypeRegistry', function (TypeRegistryFactoryProvider) {
+			return TypeRegistryFactoryProvider.create('SupplementTypeRegistry', { prefix: 'supplement' });
+		})
+
+	;
 
 })(angular, bleedHd);
