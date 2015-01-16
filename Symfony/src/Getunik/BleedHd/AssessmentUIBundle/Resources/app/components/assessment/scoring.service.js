@@ -1,22 +1,18 @@
 
 (function (angular, bleedHd) {
 
-	function ScoringService($q, BleedApi) {
+	function ScoringService($q, BleedApi, ScoringRegistry) {
 		this.$q = $q;
-		this.BleedApi = BleedApi;
-
-		this.calculators = {};
+		this.ScoringRegistry = ScoringRegistry;
 	}
 
 	angular.extend(ScoringService.prototype, {
-		registerCalculator: function (assessmentType, calculator) {
-			this.calculators[assessmentType] = calculator;
-		},
 		getScore: function (assessmentContext) {
-			var calculator = this.calculators[assessmentContext.assessment.questionnaire],
-				score = calculator === undefined ? {} : calculator.run(assessmentContext);
+			var type = assessmentContext.assessment.questionnaire;
 
-			return score;
+			if (this.ScoringRegistry.exists(type)) {
+				return this.ScoringRegistry.instantiate(type).run(assessmentContext);
+			}
 		}
 	});
 
