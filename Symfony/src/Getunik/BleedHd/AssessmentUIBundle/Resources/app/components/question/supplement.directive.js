@@ -2,7 +2,7 @@
 (function (angular, bleedHd) {
 
 	angular.module('question')
-		.directive('supplement', function (TypeRegistry) {
+		.directive('supplement', function (QuestionTypeRegistry) {
 			return {
 				restrict: 'E',
 				scope: {
@@ -14,7 +14,7 @@
 					// return simple linking function that dynamically loads the question template
 					return function (scope, element, attrs) {
 						var definition = scope.definition();
-						scope.supplementCtl = TypeRegistry.getSupplementType(definition.type, definition.variant).instantiate(scope, element, definition);
+						scope.supplementCtl = QuestionTypeRegistry.getSupplementType(definition.type, definition.variant).instantiate(scope, element, definition);
 					};
 				},
 			};

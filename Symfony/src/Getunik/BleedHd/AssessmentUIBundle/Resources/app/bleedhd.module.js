@@ -61,6 +61,7 @@
 		'ngSanitize',
 		'ui.router',
 		'restangular',
+		'typeRegistry',
 		'patient',
 		'assessment',
 		'question',

@@ -15,8 +15,8 @@
 		});
 	}
 
-	angular.module('question').run(function (TypeRegistry) {
-		TypeRegistry.registerQuestionType('yesno', YesNoQuestion, {
+	angular.module('question').run(function (QuestionTypeRegistry) {
+		QuestionTypeRegistry.registerQuestionType('yesno', YesNoQuestion, {
 			link: function (element) {
 			},
 			onChange: function (option) {

@@ -6,8 +6,8 @@
 		scope.value = this.supplement[this.definition.slug];
 	}
 
-	angular.module('question').run(function (TypeRegistry) {
-		TypeRegistry.registerSupplementType('checkbox', CheckboxSupplement, {
+	angular.module('question').run(function (QuestionTypeRegistry) {
+		QuestionTypeRegistry.registerSupplementType('checkbox', CheckboxSupplement, {
 			link: function (element) {
 			},
 			onChange: function () {

@@ -159,6 +159,6 @@
 	///////
 
 	angular.module('question')
-		.service('TypeRegistry', TypeRegistryService);
+		.service('QuestionTypeRegistry', TypeRegistryService);
 
 })(angular, bleedHd);
