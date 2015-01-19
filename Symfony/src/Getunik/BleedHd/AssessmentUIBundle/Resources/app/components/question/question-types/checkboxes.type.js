@@ -15,12 +15,15 @@
 					var that = this,
 						values = {};
 
+					// binding endpoint for the reset option (radio)
+					this.resetCheckboxes = false;
+
 					// key values by 'value' so that we can link them to the supplement definitions
-					this.data.forEach(function (item) {
+					angular.forEach(this.data, function (item) {
 						values[item.value] = item;
 					});
 
-					this.options = this.question.options.map(function (option) {
+					this.options = $.map(this.question.options, function (option) {
 						var dataItem = values[option.value] || {};
 						return angular.extend({}, option, {
 							binding: {
@@ -36,14 +39,32 @@
 					emptyData: function () {
 						return [];
 					},
-					onChange: function (option) {
+					getOptions: function () {
+						return this.options;
+					},
+					reset: function (event, data) {
+						this.resetCheckboxes = false;
+						this.uncheckAll();
+					},
+					uncheckAll: function () {
+						angular.forEach(this.options, function (option) {
+							option.binding.value = null;
+						});
+						this.updateData();
+					},
+					updateData: function () {
 						this.data = $.map(this.getOptions(), function (option) {
 							return option.binding.value === null ? null : option.binding;
 						});
+					},
+					onChange: function (option) {
+						this.resetCheckboxes = false;
+						this.updateData();
 						this.scope.$emit('q-data-changed', this);
 					},
-					getOptions: function () {
-						return this.options;
+					onResetCheckboxes: function () {
+						this.uncheckAll();
+						this.scope.$emit('q-data-changed', this);
 					},
 				},
 			};

@@ -1,4 +1,10 @@
 
+<div class="radio" ng-if="questionCtl.question.option_reset">
+	<label>
+		<input type="radio" ng-model="questionCtl.resetCheckboxes" ng-change="questionCtl.onResetCheckboxes()">
+		{{ questionCtl.question.option_reset.label }}
+	</label>
+</div>
 <div class="checkbox" ng-repeat="option in questionCtl.getOptions()">
 	<label>
 		<input type="checkbox" ng-model="option.binding.value" ng-change="questionCtl.onChange(option)" ng-true-value="'{{ option.value }}'" ng-false-value="null">

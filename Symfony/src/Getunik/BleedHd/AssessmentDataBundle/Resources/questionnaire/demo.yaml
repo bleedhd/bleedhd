@@ -104,7 +104,8 @@ chapters:
                 intro:
                   question: "Make your choices!"
                   description: "Pick the things you like"
-                has_null_option: true
+                option_reset:
+                  label: "Nothing at all you fool!"
                 options:
                   -
                     label: "Star Wars"
@@ -120,3 +121,21 @@ chapters:
                   -
                     label: "Harry Potter"
                     value: harry-potter
+              -
+                slug: checkboxes-demo
+                type: checkboxes
+                title: "More choices!"
+                meta_answers: ['nya']
+                intro:
+                  question: "Now for the important question!"
+                  description: "Pick the things you like"
+                options:
+                  -
+                    label: "StarCraft"
+                    value: sc
+                  -
+                    label: "Command & Conquer"
+                    value: cnc
+                  -
+                    label: "Age of Empires"
+                    value: AoE
