@@ -10,11 +10,7 @@
 					this.slug = this.question.slug;
 
 					this.data = angular.copy(scope.data()) || this.emptyData();
-					// the fun of translating objects to JSON, to PHP array, to JSON (in the DB), back to PHP array,
-					// back to JSON, back to objects... {} => JSON {} => PHP array() => JSON [] => PHP array() => JSON [] => []
-					if (angular.isArray(this.data.supplements) && this.data.supplements.length === 0) {
-						this.data.supplements = {};
-					}
+					this.data.supplements = this.normalizeSupplement(this.data.supplements);
 				},
 				members: {
 					getTemplateHierarchy: function () {
@@ -48,6 +44,15 @@
 						});
 					},
 					link: function (element) {
+					},
+					normalizeSupplement: function (supplements) {
+						// the fun of translating objects to JSON, to PHP array, to JSON (in the DB), back to PHP array,
+						// back to JSON, back to objects... {} => JSON {} => PHP array() => JSON [] => PHP array() => JSON [] => []
+						if (supplements === null || supplements === undefined || (angular.isArray(supplements) && supplements.length === 0)) {
+							return {};
+						} else {
+							return supplements;
+						}
 					},
 				},
 			};
