@@ -1,0 +1,12 @@
+
+<div class="checkbox" ng-repeat="option in questionCtl.getOptions()">
+	<label>
+		<input type="checkbox" ng-model="option.binding.value" ng-change="questionCtl.onChange(option)" ng-true-value="'{{ option.value }}'" ng-false-value="null">
+		{{ option.label }}
+	</label>
+	<supplement
+		ng-repeat="supplement in option.supplements"
+		active="option.binding.value === option.value"
+		definition="supplement"
+		data="option.binding.supplements"></supplement>
+</div>
