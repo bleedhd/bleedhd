@@ -6,6 +6,7 @@
 		'assessment',
 		bleedHd.getView('question', 'container'),
 		bleedHd.getView('question', 'question-types/yesno'),
+		bleedHd.getView('question', 'question-types/checkboxes'),
 		bleedHd.getView('question', 'supplement-types/checkbox'),
 	]);
 

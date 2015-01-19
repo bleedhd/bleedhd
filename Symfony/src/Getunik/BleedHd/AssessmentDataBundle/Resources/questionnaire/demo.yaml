@@ -93,3 +93,49 @@ chapters:
                     meta_answers: ['nya', 'nass']
                     intro:
                       question: "Caught in a landslide(?)"
+          -
+            slug: screen_3
+            questions:
+              -
+                slug: checkboxes-demo
+                type: checkboxes
+                title: "Make your choices!"
+                meta_answers: ['nya']
+                intro:
+                  question: "Make your choices!"
+                  description: "Pick the things you like"
+                option_reset:
+                  label: "Nothing at all you fool!"
+                options:
+                  -
+                    label: "Star Wars"
+                    value: star-wars
+                    supplements:
+                      -
+                        slug: all
+                        type: checkbox
+                        label: "All of them - even the prequels"
+                  -
+                    label: "Star-Trek"
+                    value: star-trek
+                  -
+                    label: "Harry Potter"
+                    value: harry-potter
+              -
+                slug: checkboxes-demo2
+                type: checkboxes
+                title: "More choices!"
+                meta_answers: ['nya']
+                intro:
+                  question: "Now for the important question!"
+                  description: "Pick the things you like"
+                options:
+                  -
+                    label: "StarCraft"
+                    value: sc
+                  -
+                    label: "Command & Conquer"
+                    value: cnc
+                  -
+                    label: "Age of Empires"
+                    value: AoE

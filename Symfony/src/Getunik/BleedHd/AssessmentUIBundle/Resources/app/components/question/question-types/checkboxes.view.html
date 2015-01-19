@@ -1,0 +1,18 @@
+
+<div class="radio" ng-if="questionCtl.question.option_reset">
+	<label>
+		<input type="radio" ng-model="questionCtl.resetCheckboxes" ng-value="true" ng-change="questionCtl.onResetCheckboxes()">
+		{{ questionCtl.question.option_reset.label }}
+	</label>
+</div>
+<div class="checkbox" ng-repeat="option in questionCtl.getOptions()">
+	<label>
+		<input type="checkbox" ng-model="option.binding.value" ng-change="questionCtl.onChange(option)" ng-true-value="'{{ option.value }}'" ng-false-value="null">
+		{{ option.label }}
+	</label>
+	<supplement
+		ng-repeat="supplement in option.supplements"
+		active="option.binding.value === option.value"
+		definition="supplement"
+		data="option.binding.supplements"></supplement>
+</div>

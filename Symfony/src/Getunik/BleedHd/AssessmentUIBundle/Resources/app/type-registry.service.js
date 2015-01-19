@@ -1,6 +1,8 @@
 
 (function (angular) {
 
+	var minErr = angular.$$minErr('typeRegistry');
+
 	function TypeRegistryFactory() {
 		this.instances = {};
 
@@ -99,6 +101,9 @@
 	angular.extend(TypeRegistry.prototype, {
 		instantiate: function (name, args) {
 			var type = this.provider.types[name];
+			if (type === undefined) {
+				throw minErr('TypeRegistry', 'Unknown type "{0}"', name);
+			}
 			return new type.ctor(args);
 		},
 		exists: function (name) {
