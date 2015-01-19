@@ -56,10 +56,10 @@
 						this.data = $.map(this.getOptions(), function (option) {
 							return option.binding.value === null ? null : option.binding;
 						});
+						return this.data.length > 0;
 					},
 					onChange: function (option) {
-						this.resetCheckboxes = false;
-						this.updateData();
+						this.resetCheckboxes = !this.updateData();
 						this.scope.$emit('q-data-changed', this);
 					},
 					onResetCheckboxes: function () {
