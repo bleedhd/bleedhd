@@ -1,9 +1,10 @@
 
 <div class="form-group">
 	<label class="control-label" ng-if="questionCtl.question.label" ng-bind="questionCtl.question.label"></label>
-	<input type="text" class="form-control" ng-model="questionCtl.data.value">
+	<input type="text" class="form-control" placeholder="{{ questionCtl.question.placeholder }}" ng-model="questionCtl.data.value" ng-change="questionCtl.onChange()">
 	<supplement
-		ng-repeat="supplement in option.supplements"
+		ng-repeat="supplement in questionCtl.question.supplements"
+		active="!!questionCtl.data.value"
 		definition="supplement"
-		data="questionCtl.data.supplement"></supplement>
+		data="questionCtl.data.supplements"></supplement>
 </div>

@@ -152,3 +152,22 @@ chapters:
                   description: "Only highly sugary food counts as dessert"
                 label: "Some sort of label (optional)"
                 pattern: "/[0-9]/"
+              -
+                slug: text-demo2
+                type: text
+                title: "Hobbies"
+                meta_answers: ['nya']
+                intro:
+                  question: "Which of your hobbies consumes the most time?"
+                  description: "Sleeping doesn't count!"
+                placeholder: "Skiing"
+                pattern: "/[0-9]/"
+                supplements:
+                  -
+                    slug: sports
+                    type: checkbox
+                    label: "Is it a sport?"
+                  -
+                    slug: indoors
+                    type: checkbox
+                    label: "Is it an indoor hobby?"
