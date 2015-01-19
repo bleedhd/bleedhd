@@ -122,7 +122,7 @@ chapters:
                     label: "Harry Potter"
                     value: harry-potter
               -
-                slug: checkboxes-demo
+                slug: checkboxes-demo2
                 type: checkboxes
                 title: "More choices!"
                 meta_answers: ['nya']
