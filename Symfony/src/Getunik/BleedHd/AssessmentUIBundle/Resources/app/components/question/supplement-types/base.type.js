@@ -7,7 +7,7 @@
 				ctor: function BaseSupplement (scope, definition) {
 					this.scope = scope;
 					this.definition = definition;
-					this.supplement = scope.data();
+					this.supplement = scope.data() || {};
 				},
 				members: {
 					getTemplateHierarchy: function () {
