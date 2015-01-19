@@ -12,7 +12,12 @@ class Response implements UpdateInformationInterface
     /**
      * @var integer
      */
-    private $id;
+    private $assessmentId;
+
+    /**
+     * @var string
+     */
+    private $questionSlug;
 
     /**
      * @var \DateTime
@@ -23,16 +28,6 @@ class Response implements UpdateInformationInterface
      * @var integer
      */
     private $lastUpdatedBy;
-
-    /**
-     * @var integer
-     */
-    private $assessmentId;
-
-    /**
-     * @var string
-     */
-    private $questionSlug;
 
     /**
      * @var array
@@ -46,13 +41,49 @@ class Response implements UpdateInformationInterface
 
 
     /**
-     * Get id
+     * Set assessmentId
+     *
+     * @param integer $assessmentId
+     * @return Response
+     */
+    public function setAssessmentId($assessmentId)
+    {
+        $this->assessmentId = $assessmentId;
+
+        return $this;
+    }
+
+    /**
+     * Get assessmentId
      *
      * @return integer
      */
-    public function getId()
+    public function getAssessmentId()
     {
-        return $this->id;
+        return $this->assessmentId;
+    }
+
+    /**
+     * Set questionSlug
+     *
+     * @param string $questionSlug
+     * @return Response
+     */
+    public function setQuestionSlug($questionSlug)
+    {
+        $this->questionSlug = $questionSlug;
+
+        return $this;
+    }
+
+    /**
+     * Get questionSlug
+     *
+     * @return string
+     */
+    public function getQuestionSlug()
+    {
+        return $this->questionSlug;
     }
 
     /**
@@ -99,52 +130,6 @@ class Response implements UpdateInformationInterface
     public function getLastUpdatedBy()
     {
         return $this->lastUpdatedBy;
-    }
-
-    /**
-     * Set assessmentId
-     *
-     * @param integer $assessmentId
-     * @return Response
-     */
-    public function setAssessmentId($assessmentId)
-    {
-        $this->assessmentId = $assessmentId;
-
-        return $this;
-    }
-
-    /**
-     * Get assessmentId
-     *
-     * @return integer
-     */
-    public function getAssessmentId()
-    {
-        return $this->assessmentId;
-    }
-
-    /**
-     * Set questionSlug
-     *
-     * @param string $questionSlug
-     * @return Response
-     */
-    public function setQuestionSlug($questionSlug)
-    {
-        $this->questionSlug = $questionSlug;
-
-        return $this;
-    }
-
-    /**
-     * Get questionSlug
-     *
-     * @return string
-     */
-    public function getQuestionSlug()
-    {
-        return $this->questionSlug;
     }
 
     /**

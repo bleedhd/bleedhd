@@ -24,6 +24,13 @@
 				return assessment.put();
 			}
 		},
+		getResponses: function (patientId, assessmentId) {
+			return this.BleedApi.one('patients', patientId).one('assessments', assessmentId).all('responses').getList();
+		},
+		saveResponses: function (patientId, assessmentId, responses) {
+			var that = this;
+			this.BleedApi.one('patients', patientId).one('assessments', assessmentId).all('responses').customPOST(responses, 'batch');
+		},
 	});
 
 

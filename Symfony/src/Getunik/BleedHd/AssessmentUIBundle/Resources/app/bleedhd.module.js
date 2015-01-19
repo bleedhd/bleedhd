@@ -58,10 +58,13 @@
 	bleedHd.app = angular.module('bleedHdApp', [
 		'ngRoute',
 		'ngResource',
+		'ngSanitize',
 		'ui.router',
 		'restangular',
+		'typeRegistry',
 		'patient',
 		'assessment',
+		'question',
 	])
 
 	.constant('BleedHdConfig', {

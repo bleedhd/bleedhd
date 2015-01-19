@@ -6,16 +6,16 @@
 
 	<div>
 		<div>TODO: header stuff</div>
-		<button type="button">Save and return to assessment details</button>
+		<button type="button" ng-click="ctlScreen.goOverview()">Save and return to assessment details</button>
+	</div>
+
+	<div ng-repeat="question in ctlScreen.screen.questions">
+		<container data="question" response="ctlScreen.context.getResponseForQuestion(question.slug)"></container>
 	</div>
 
 	<div>
-		<div>TODO: Question(s)</div>
-	</div>
-
-	<div>
-		<button type="button">Save and previous question</button><br />
-		<button type="button">Save and next question</button>
+		<button type="button" ng-if="ctlScreen.screen.index > 0" ng-click="ctlScreen.goPrev()">Save and previous question</button><br />
+		<button type="button" ng-if="ctlScreen.screen.index < ctlScreen.context.questionnaire.getScreenCount() - 1" ng-click="ctlScreen.goNext()">Save and next question</button>
 	</div>
 
 </div>

@@ -1,0 +1,12 @@
+
+<div class="radio" ng-repeat="option in questionCtl.getOptions()">
+	<label>
+		<input type="radio" ng-model="questionCtl.data.value" ng-change="questionCtl.onChange(option)" ng-value="option.value">
+		{{ option.label }}
+	</label>
+	<supplement
+		ng-repeat="supplement in option.supplements"
+		active="questionCtl.data.value === option.value"
+		definition="supplement"
+		data="option.supplementData"></supplement>
+</div>
