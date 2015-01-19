@@ -139,3 +139,16 @@ chapters:
                   -
                     label: "Age of Empires"
                     value: AoE
+          -
+            slug: screen_4
+            questions:
+              -
+                slug: text-demo1
+                type: text
+                title: "Food stuff"
+                meta_answers: ['nya']
+                intro:
+                  question: "What is your favorite dessert?"
+                  description: "Only highly sugary food counts as dessert"
+                label: "Some sort of label (optional)"
+                pattern: "/[0-9]/"

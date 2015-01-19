@@ -1,0 +1,9 @@
+
+<div class="form-group">
+	<label class="control-label" ng-if="questionCtl.question.label" ng-bind="questionCtl.question.label"></label>
+	<input type="text" class="form-control" ng-model="questionCtl.data.value">
+	<supplement
+		ng-repeat="supplement in option.supplements"
+		definition="supplement"
+		data="questionCtl.data.supplement"></supplement>
+</div>
