@@ -8,106 +8,88 @@ meta_answers:
   nass: not assessed
   napp: not applicable
   ns: no symptom
-questions:
-  chapter_1:
-    group_1:
-      section_1:
-        -
-          slug: question-yes-no
-          type: yesno
-          meta_answers: ['nya', 'nass']
-          question:
-            title: Do you agree or not?
-            description: "Some <strong>HTML</strong> markup"
-          options: # optional
-            yes:
-              label: "Yes"
-              value: true
-            no:
-              label: "No"
-              value: false
-          export: TODO
-        -
-          slug: question-radios
-          type: radios
-          meta_answers: ['nya', 'nass']
-          question:
-            title: Choose an option
-            description: "Some <strong>HTML</strong> markup"
-          groups:
-            -
-              slug: first
-              options: ['opt0', 'opt2']
-              title: Important options
-              description: some sort of explanation (HTML)
-            -
-              slug: second
-              options: ['opt1']
-              title: Less important options
-              description: more explanation HTML stuff
-          options:
-            -
-              slug: opt0
-              label: "Option one is this and that—be sure to include why it's great"
-              value: 0
-            -
-              slug: opt1
-              label: "Option two can be something else and selecting it will deselect option one"
-              value: 1
-            -
-              slug: opt2
-              label: "Option three is disabled"
-              value: 2
-          export: TODO
-        -
-          slug: question-checkboxes
-          type: checkboxes
-          meta_answers: ['nya', 'nass']
-          question:
-            title: Select all that apply
-            description: "Some <strong>HTML</strong> markup"
-          options:
-            -
-              slug: opt0
-              label: "One thingy"
-              value: 0
-            -
-              slug: opt1
-              label: "Second thingy"
-              value: 1
-            -
-              slug: opt2
-              label: "Third thingy"
-              value: 2
-          export: TODO
-        -
-          slug: question-with-options
-          type: radios
-          meta_answers: ['nya', 'nass']
-          question:
-            title: Choose an option and elaborate
-            description: "Some <strong>HTML</strong> markup"
-          options:
-            -
-              slug: opt0
-              label: "This option is more than it appears to be"
-              value: 0
-              supplement:
-                slug: new
-                type: isnew
-                question:
-                  title: Is this new?
-            -
-              slug: opt1
-              label: "This is a normal option"
-              value: 1
-            -
-              slug: opt2
-              label: "This is another fancy option with an answer option"
-              value: 2
-              supplement:
-                slug: comment
-                type: textarea
-                question:
-                  title: Elaborate on your answer
-          export: TODO
+chapters:
+  -
+    slug: chapter_1
+    sections:
+      -
+        slug: section_1
+        screens:
+          -
+            slug: screen_1
+            questions:
+              -
+                slug: question-yes-no-demo
+                type: yesno
+                title: "Demo Question 1 (Yes/No)"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Do you agree or not?"
+                  description: "Some <strong>HTML</strong> markup"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: "heck-yes"
+                  no:
+                    label: "No"
+                    value: "heck-no"
+                export: TODO
+              -
+                slug: question-yes-no-demo2
+                type: yesno
+                title: "Demo Question 2 (Yes/No)"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Do you agree or not?"
+                  description: "Some fundamentally different <strong>HTML</strong> markup"
+                options: # optional
+                  yes:
+                    label: "Jupp"
+                    value: true
+                    supplements:
+                      -
+                        slug: new
+                        type: checkbox
+                        label: New?
+                        question:
+                          title: Is this new?
+                  no:
+                    label: "Nope"
+                    value: false
+                    supplements:
+                      -
+                        slug: sure
+                        type: checkbox
+                        label: Sure?
+                        question:
+                          title: Are you sure?
+                export: TODO
+          -
+            slug: screen_2
+            questions:
+              -
+                slug: multi-demo
+                type: multi
+                title: "These are multiple questions"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "What's the deal with the questions below?"
+                questions:
+                  -
+                    slug: first
+                    type: yesno
+                    meta_answers: ['nya', 'nass']
+                    intro:
+                      question: "Is this the real life?"
+                  -
+                    slug: second
+                    type: yesno
+                    meta_answers: ['nya', 'nass']
+                    intro:
+                      question: "Is this just fantasy?"
+                  -
+                    slug: third
+                    type: yesno
+                    meta_answers: ['nya', 'nass']
+                    intro:
+                      question: "Caught in a landslide(?)"
