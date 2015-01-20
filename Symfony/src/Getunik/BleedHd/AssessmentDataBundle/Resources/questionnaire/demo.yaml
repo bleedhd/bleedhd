@@ -290,6 +290,25 @@ chapters:
                   -
                     label: "Three"
                     value: 3
+                    supplements:
+                      -
+                        slug: list
+                        type: checkboxes
+                        question:
+                          title: "Pick your companions (multiple)"
+                        options:
+                          -
+                            label: "Elves"
+                            value: elves
+                          -
+                            label: "Dwarves"
+                            value: dwarves
+                          -
+                            label: "Hobbits"
+                            value: hobbits
+                          -
+                            label: "Men"
+                            value: men
                   -
                     label: "Four"
                     value: 4
