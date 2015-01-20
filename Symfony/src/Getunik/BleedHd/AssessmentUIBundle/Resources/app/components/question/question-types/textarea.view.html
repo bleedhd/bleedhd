@@ -1,10 +1,10 @@
 
 <div class="form-group">
-	<label class="control-label" ng-if="questionCtl.question.label" ng-bind="questionCtl.question.label"></label>
-	<textarea rows="{{ questionCtl.rows }}" cols="{{ questionCtl.cols }}" class="form-control" placeholder="{{ questionCtl.question.placeholder }}" ng-model="questionCtl.data.value" ng-change="questionCtl.onChange()">
+	<label class="control-label" ng-if="questionCtl.definition.label" ng-bind="questionCtl.definition.label"></label>
+	<textarea rows="{{ questionCtl.rows }}" cols="{{ questionCtl.cols }}" class="form-control" placeholder="{{ questionCtl.definition.placeholder }}" ng-model="questionCtl.data.value" ng-change="questionCtl.onChange()">
 	</textarea>
 	<supplement
-		ng-repeat="supplement in questionCtl.question.supplements"
+		ng-repeat="supplement in questionCtl.definition.supplements"
 		active="!!questionCtl.data.value"
 		definition="supplement"
 		data="questionCtl.data.supplements"></supplement>

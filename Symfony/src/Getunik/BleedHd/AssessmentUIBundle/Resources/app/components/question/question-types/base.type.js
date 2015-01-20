@@ -4,10 +4,10 @@
 	angular.module('question').config(function (QuestionTypeRegistryProvider) {
 		QuestionTypeRegistryProvider.registerTypeWithName('base', null, function (parent) {
 			return {
-				ctor: function BaseQuestion (scope, question) {
+				ctor: function BaseQuestion (scope, definition) {
 					this.scope = scope;
-					this.question = question;
-					this.slug = this.question.slug;
+					this.definition = definition;
+					this.slug = this.definition.slug;
 
 					this.data = angular.copy(scope.data()) || this.emptyData();
 					this.data.supplements = this.normalizeSupplement(this.data.supplements);
@@ -15,8 +15,8 @@
 				members: {
 					getTemplateHierarchy: function () {
 						return [
-							this.question.type + '-' + this.question.variant,
-							this.question.type,
+							this.definition.type + '-' + this.definition.variant,
+							this.definition.type,
 						];
 					},
 					emptyData: function () {

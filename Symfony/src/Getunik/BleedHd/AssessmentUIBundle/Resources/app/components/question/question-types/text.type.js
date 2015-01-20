@@ -4,10 +4,10 @@
 	angular.module('question').config(function (QuestionTypeRegistryProvider, RegExpressionsProvider) {
 		QuestionTypeRegistryProvider.registerTypeWithName('text', 'base', function (parent) {
 			return {
-				ctor: function TextQuestion(scope, question) {
-					parent(this)(scope, question);
+				ctor: function TextQuestion(scope, definition) {
+					parent(this)(scope, definition);
 
-					this.filterExpression = RegExpressionsProvider.$get().parse(question.pattern);
+					this.filterExpression = RegExpressionsProvider.$get().parse(definition.pattern);
 				},
 				members: {
 				},

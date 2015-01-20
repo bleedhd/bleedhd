@@ -1,9 +1,9 @@
 
 <div class="form-group">
-	<label class="control-label" ng-if="questionCtl.question.label" ng-bind="questionCtl.question.label"></label>
-	<input type="text" class="form-control" model-filter-expression="questionCtl.filterExpression" placeholder="{{ questionCtl.question.placeholder }}" ng-model="questionCtl.data.value" ng-change="questionCtl.onChange()">
+	<label class="control-label" ng-if="questionCtl.definition.label" ng-bind="questionCtl.definition.label"></label>
+	<input type="text" class="form-control" model-filter-expression="questionCtl.filterExpression" placeholder="{{ questionCtl.definition.placeholder }}" ng-model="questionCtl.data.value" ng-change="questionCtl.onChange()">
 	<supplement
-		ng-repeat="supplement in questionCtl.question.supplements"
+		ng-repeat="supplement in questionCtl.definition.supplements"
 		active="!!questionCtl.data.value"
 		definition="supplement"
 		data="questionCtl.data.supplements"></supplement>

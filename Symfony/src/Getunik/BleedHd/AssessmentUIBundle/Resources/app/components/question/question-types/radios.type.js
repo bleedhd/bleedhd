@@ -4,12 +4,12 @@
 	angular.module('question').config(function (QuestionTypeRegistryProvider) {
 		QuestionTypeRegistryProvider.registerTypeWithName('radios', 'base', function (parent) {
 			return {
-				ctor: function RadiosQuestion(scope, question) {
-					parent(this)(scope, question);
+				ctor: function RadiosQuestion(scope, definition) {
+					parent(this)(scope, definition);
 
 					var that = this;
 
-					this.options = $.map(this.question.options, function (option) {
+					this.options = $.map(this.definition.options, function (option) {
 						var supplements = option.value === that.data.value ? that.normalizeSupplement(that.data.supplements) : {};
 						return angular.extend({}, option, {
 							binding: {

@@ -4,13 +4,13 @@
 	angular.module('question').config(function (QuestionTypeRegistryProvider) {
 		QuestionTypeRegistryProvider.registerTypeWithName('yesno', 'base', function (parent) {
 			return {
-				ctor: function YesNoQuestion(scope, question) {
-					parent(this)(scope, question);
+				ctor: function YesNoQuestion(scope, definition) {
+					parent(this)(scope, definition);
 
 					this.options = $.extend({
 						yes: { label: 'Yes', value: true },
 						no: { label: 'No', value: false },
-					}, this.question.options);
+					}, this.definition.options);
 
 					var that = this;
 					angular.forEach(this.getOptions(), function (option) {

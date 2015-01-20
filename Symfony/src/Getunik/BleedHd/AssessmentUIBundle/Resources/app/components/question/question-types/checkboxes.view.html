@@ -1,8 +1,8 @@
 
-<div class="radio" ng-if="questionCtl.question.option_reset">
+<div class="radio" ng-if="questionCtl.definition.option_reset">
 	<label>
 		<input type="radio" ng-model="questionCtl.resetCheckboxes" ng-value="true" ng-change="questionCtl.onResetCheckboxes()">
-		{{ questionCtl.question.option_reset.label }}
+		{{ questionCtl.definition.option_reset.label }}
 	</label>
 </div>
 <div class="checkbox" ng-repeat="option in questionCtl.getOptions()">

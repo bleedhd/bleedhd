@@ -9,8 +9,8 @@
 	angular.module('question').config(function (QuestionTypeRegistryProvider) {
 		QuestionTypeRegistryProvider.registerTypeWithName('checkboxes', 'base', function (parent) {
 			return {
-				ctor: function CheckboxesQuestion(scope, question) {
-					parent(this)(scope, question);
+				ctor: function CheckboxesQuestion(scope, definition) {
+					parent(this)(scope, definition);
 
 					var that = this,
 						values = {};
@@ -23,7 +23,7 @@
 						values[item.value] = item;
 					});
 
-					this.options = $.map(this.question.options, function (option) {
+					this.options = $.map(this.definition.options, function (option) {
 						var dataItem = values[option.value] || {};
 						return angular.extend({}, option, {
 							binding: {
