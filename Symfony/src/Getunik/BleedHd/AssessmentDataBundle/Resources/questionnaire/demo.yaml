@@ -205,3 +205,43 @@ chapters:
                     slug: like
                     type: checkbox
                     label: "Do you like this song?"
+          -
+            slug: screen_6
+            questions:
+              -
+                slug: radios-demo1
+                type: radios
+                title: "Multiple-Choice"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "What is <em>the</em> answer?"
+                options:
+                  -
+                    label: "There is no answer"
+                    value: nope
+                    supplements:
+                      -
+                        slug: new
+                        type: checkbox
+                        label: "New?"
+                        question:
+                          title: Is this new?
+                  -
+                    label: "42"
+                    value: 42
+                  -
+                    label: "666"
+                    value: 666
+                    supplements:
+                      -
+                        slug: beast
+                        type: checkbox
+                        label: "The number of the beast?"
+                  -
+                    label: "What was the question again?"
+                    value: wut
+                    supplements:
+                      -
+                        slug: adhd
+                        type: checkbox
+                        label: "Sorry man... I have ADHD"
