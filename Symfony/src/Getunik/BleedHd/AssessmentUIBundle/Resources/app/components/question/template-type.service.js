@@ -16,7 +16,7 @@
 
 			that.$templateRequest(bleedHd.getView('question', templateName)).then(function (template) {
 				element.append(that.$compile(template)(scope));
-				instance.linkWithElement(element);
+				instance.link(element);
 			});
 
 			return instance;

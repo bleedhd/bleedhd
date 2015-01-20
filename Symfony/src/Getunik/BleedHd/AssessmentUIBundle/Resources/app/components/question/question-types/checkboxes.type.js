@@ -34,8 +34,6 @@
 					});
 				},
 				members: {
-					link: function (element) {
-					},
 					emptyData: function () {
 						return [];
 					},

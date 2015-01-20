@@ -18,8 +18,6 @@
 					});
 				},
 				members: {
-					link: function (element) {
-					},
 					onChange: function (option) {
 						this.data.supplements = option.supplementData;
 						this.scope.$emit('q-data-changed', this);

@@ -10,8 +10,6 @@
 					this.filterExpression = RegExpressionsProvider.$get().parse(question.pattern);
 				},
 				members: {
-					link: function (element) {
-					},
 					onChange: function (option) {
 						this.scope.$emit('q-data-changed', this);
 					},

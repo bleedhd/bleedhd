@@ -28,13 +28,11 @@
 					reset: function (event, data) {
 						this.data = this.emptyData();
 					},
-					linkWithElement: function (element) {
-						this.element = element;
-						this.baseLink(element);
-						this.link(element);
-					},
-					baseLink: function (element) {
+					link: function (element) {
 						var that = this;
+
+						that.element = element;
+
 						this.scope.$on('q-do-reset', function (event, data) {
 							that.reset(event, data);
 						});
@@ -42,8 +40,6 @@
 						this.scope.$on('q-supplement-changed', function (event, data) {
 							that.scope.$emit('q-data-changed', that);
 						});
-					},
-					link: function (element) {
 					},
 					normalizeSupplement: function (supplements) {
 						// the fun of translating objects to JSON, to PHP array, to JSON (in the DB), back to PHP array,

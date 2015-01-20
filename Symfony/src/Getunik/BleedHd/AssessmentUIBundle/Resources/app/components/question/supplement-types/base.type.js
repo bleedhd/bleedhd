@@ -16,27 +16,22 @@
 							this.definition.type,
 						];
 					},
-					linkWithElement: function (element) {
-						this.element = element;
-						this.baseLink(element);
-						this.link(element);
-					},
 					deactivate: function () {
 						this.element.addClass('disabled');
 					},
 					setActive: function (active) {
 						this.element.toggleClass('disabled', !active);
 					},
-					baseLink: function (element) {
+					link: function (element) {
 						var that = this;
+
+						that.element = element;
 
 						that.scope.$watch('active', function (newValue) {
 							that.setActive(newValue);
 						});
 
 						that.setActive(that.scope.active);
-					},
-					link: function (element) {
 					},
 				},
 			};

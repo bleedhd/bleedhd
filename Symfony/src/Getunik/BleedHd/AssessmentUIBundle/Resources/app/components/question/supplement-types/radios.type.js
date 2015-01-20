@@ -14,8 +14,6 @@
 					});
 				},
 				members: {
-					link: function (element) {
-					},
 					getOptions: function () {
 						return this.options;
 					},

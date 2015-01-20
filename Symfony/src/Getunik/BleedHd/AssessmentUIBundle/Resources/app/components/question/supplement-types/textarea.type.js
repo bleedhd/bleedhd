@@ -12,8 +12,6 @@
 					this.cols = this.definition.cols || 80;
 				},
 				members: {
-					link: function (element) {
-					},
 					onChange: function () {
 						this.scope.$emit('q-supplement-changed', this);
 					},
