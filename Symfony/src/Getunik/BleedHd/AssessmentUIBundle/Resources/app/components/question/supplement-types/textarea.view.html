@@ -1,0 +1,10 @@
+<div class="bleed-sub-answer">
+	<h6 ng-bind-html="supplementCtl.definition.question.title"></h6>
+
+	<div class="form-group">
+		<label class="control-label" ng-if="supplementCtl.definition.label" ng-bind="supplementCtl.definition.label"></label>
+		<textarea rows="{{ supplementCtl.rows }}" cols="{{ supplementCtl.cols }}" class="form-control" ng-disabled="!active" placeholder="{{ supplementCtl.definition.placeholder }}" ng-model="supplementCtl.supplement[supplementCtl.definition.slug]" ng-change="supplementCtl.onChange()">
+		</textarea>
+	</div>
+
+</div>

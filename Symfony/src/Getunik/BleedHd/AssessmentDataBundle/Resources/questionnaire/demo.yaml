@@ -268,9 +268,25 @@ chapters:
                         placeholder: "Something"
                         question:
                           title: "What up dog?"
+                      -
+                        slug: number
+                        type: text
+                        label: "Enter an integer"
+                        placeholder: "e.g. 42"
+                        pattern: integer
+                        question:
+                          title: "How Many?"
                   -
                     label: "Two"
                     value: 2
+                    supplements:
+                      -
+                        slug: textarea
+                        type: textarea
+                        label: "Describe stuff"
+                        placeholder: "Description..."
+                        question:
+                          title: "How you doin'?"
                   -
                     label: "Three"
                     value: 3

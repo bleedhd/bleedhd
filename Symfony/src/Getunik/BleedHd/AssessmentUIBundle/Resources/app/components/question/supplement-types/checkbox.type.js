@@ -1,5 +1,4 @@
 
-
 (function (angular) {
 
 	angular.module('question').config(function (SupplementTypeRegistryProvider) {
