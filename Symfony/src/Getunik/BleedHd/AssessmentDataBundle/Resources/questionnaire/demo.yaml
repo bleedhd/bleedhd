@@ -312,6 +312,25 @@ chapters:
                   -
                     label: "Four"
                     value: 4
+                    supplements:
+                      -
+                        slug: movie
+                        type: radios
+                        question:
+                          title: "Which of the movies series below is your favorite?"
+                        options:
+                          -
+                            label: "Back to the Future"
+                            value: bttf
+                          -
+                            label: "Matrix"
+                            value: matrix
+                          -
+                            label: "Lord of the Rings"
+                            value: lotr
+                          -
+                            label: "Toy Story"
+                            value: ts
                   -
                     label: "Five"
                     value: 5
