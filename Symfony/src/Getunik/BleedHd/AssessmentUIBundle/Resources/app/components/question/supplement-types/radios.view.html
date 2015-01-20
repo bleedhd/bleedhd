@@ -1,0 +1,9 @@
+<div class="bleed-sub-answer">
+	<h6 ng-bind-html="supplementCtl.definition.question.title"></h6>
+	<div class="checkbox" ng-repeat="option in supplementCtl.getOptions()">
+		<label>
+			<input type="radio" ng-disabled="!active" ng-model="supplementCtl.supplementValue" ng-model-options="{ getterSetter: true }" ng-change="supplementCtl.onChange(option)" ng-value="option.value">
+			{{ option.label }}
+		</label>
+	</div>
+</div>
