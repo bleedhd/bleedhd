@@ -177,12 +177,31 @@ chapters:
                 intro:
                   question: "On a scale from 1 to 10, how awesome are you?"
                 pattern: "/^($|[1-9]$|10$)/"
+          -
+            slug: screen_5
+            questions:
+              -
+                slug: textarea-demo1
+                type: textarea
+                title: "Essay"
+                meta_answers: ['nya']
+                intro:
+                  question: "Tell me something about yourself"
+                  description: "Don't be shy..."
+                label: "About you"
+                placeholder: "I am ..."
+                rows: 20
+                cols: 100
+              -
+                slug: textarea-demo2
+                type: textarea
+                title: "Lyrics"
+                meta_answers: ['nya']
+                intro:
+                  question: "Carry on my wayward son..."
+                  description: "(complete the song text)"
                 supplements:
                   -
-                    slug: sports
+                    slug: like
                     type: checkbox
-                    label: "Is it a sport?"
-                  -
-                    slug: indoors
-                    type: checkbox
-                    label: "Is it an indoor hobby?"
+                    label: "Do you like this song?"
