@@ -151,7 +151,6 @@ chapters:
                   question: "What is your favorite dessert?"
                   description: "Only highly sugary food counts as dessert"
                 label: "Some sort of label (optional)"
-                pattern: "/[0-9]/"
               -
                 slug: text-demo2
                 type: text
@@ -160,8 +159,24 @@ chapters:
                 intro:
                   question: "Which of your hobbies consumes the most time?"
                   description: "Sleeping doesn't count!"
-                placeholder: "Skiing"
-                pattern: "/[0-9]/"
+                placeholder: "e.g. Skiing"
+                supplements:
+                  -
+                    slug: sports
+                    type: checkbox
+                    label: "Is it a sport?"
+                  -
+                    slug: indoors
+                    type: checkbox
+                    label: "Is it an indoor hobby?"
+              -
+                slug: text-demo3
+                type: text
+                title: "Awesomeness"
+                meta_answers: ['nya']
+                intro:
+                  question: "On a scale from 1 to 10, how awesome are you?"
+                pattern: "/^($|[1-9]$|10$)/"
                 supplements:
                   -
                     slug: sports
