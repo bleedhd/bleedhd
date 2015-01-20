@@ -245,3 +245,38 @@ chapters:
                         slug: adhd
                         type: checkbox
                         label: "Sorry man... I have ADHD"
+          -
+            slug: screen_7
+            questions:
+              -
+                slug: supplements-demo1
+                type: radios
+                title: "Supplement Choices"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Some question?"
+                  description: "Chose your option according to the supplements"
+                options:
+                  -
+                    label: "One"
+                    value: 1
+                    supplements:
+                      -
+                        slug: text
+                        type: text
+                        label: "Enter some text"
+                        placeholder: "Something"
+                        question:
+                          title: "What up dog?"
+                  -
+                    label: "Two"
+                    value: 2
+                  -
+                    label: "Three"
+                    value: 3
+                  -
+                    label: "Four"
+                    value: 4
+                  -
+                    label: "Five"
+                    value: 5
