@@ -11,6 +11,7 @@
 		bleedHd.getView('question', 'question-types/text'),
 		bleedHd.getView('question', 'question-types/textarea'),
 		bleedHd.getView('question', 'supplement-types/checkbox'),
+		bleedHd.getView('question', 'supplement-types/checkboxes'),
 		bleedHd.getView('question', 'supplement-types/text'),
 		bleedHd.getView('question', 'supplement-types/textarea'),
 	]);
