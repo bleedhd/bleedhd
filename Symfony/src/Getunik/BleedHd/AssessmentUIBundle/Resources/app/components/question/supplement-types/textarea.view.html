@@ -3,7 +3,7 @@
 
 	<div class="form-group">
 		<label class="control-label" ng-if="supplementCtl.definition.label" ng-bind="supplementCtl.definition.label"></label>
-		<textarea rows="{{ supplementCtl.rows }}" cols="{{ supplementCtl.cols }}" class="form-control" ng-disabled="!active" placeholder="{{ supplementCtl.definition.placeholder }}" ng-model="supplementCtl.supplement[supplementCtl.definition.slug]" ng-change="supplementCtl.onChange()">
+		<textarea rows="{{ supplementCtl.rows }}" cols="{{ supplementCtl.cols }}" class="form-control" ng-disabled="!active" placeholder="{{ supplementCtl.definition.placeholder }}" ng-model="supplementCtl.value" ng-model-options="{ getterSetter: true }" ng-change="supplementCtl.onChange()">
 		</textarea>
 	</div>
 

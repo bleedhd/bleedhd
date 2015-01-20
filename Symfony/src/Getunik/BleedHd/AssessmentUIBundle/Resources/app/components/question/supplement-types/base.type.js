@@ -7,7 +7,11 @@
 				ctor: function BaseSupplement (scope, definition) {
 					this.scope = scope;
 					this.definition = definition;
-					this.supplement = scope.data() || {};
+					this.slug = this.definition.slug;
+
+					this.supplementObject = scope.data() || {};
+					// initialize supplement with its default value
+					this.value(this.value() || this.getDefault());
 				},
 				members: {
 					getTemplateHierarchy: function () {
@@ -35,6 +39,20 @@
 					},
 					onChange: function () {
 						this.scope.$emit('q-supplement-changed', this);
+					},
+					getDefault: function () {
+						return null;
+					},
+					/**
+					 * AngularJS style getter/setter property for nice and convenient data binding "into"
+					 * the supplementObject
+					 */
+					value: function (newValue) {
+						if (newValue !== undefined) {
+							this.supplementObject[this.slug] = newValue;
+						}
+
+						return this.supplementObject[this.slug];
 					},
 				},
 			};
