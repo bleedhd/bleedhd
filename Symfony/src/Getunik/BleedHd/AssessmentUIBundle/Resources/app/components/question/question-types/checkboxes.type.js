@@ -58,7 +58,7 @@
 					},
 					onChange: function (option) {
 						this.resetCheckboxes = !this.updateData();
-						this.scope.$emit('q-data-changed', this);
+						parent(this, "onChange")();
 					},
 					onResetCheckboxes: function () {
 						this.uncheckAll();

@@ -17,9 +17,6 @@
 					getOptions: function () {
 						return this.options;
 					},
-					onChange: function (option) {
-						this.scope.$emit('q-supplement-changed', this);
-					},
 					supplementValue: function (newValue) {
 						if (newValue !== undefined) {
 							this.supplement[this.definition.slug] = newValue;

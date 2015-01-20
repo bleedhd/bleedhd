@@ -37,7 +37,7 @@
 					},
 					onChange: function () {
 						this.updateData();
-						this.scope.$emit('q-supplement-changed', this);
+						parent(this, "onChange")();
 					},
 				},
 			};

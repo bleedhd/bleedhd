@@ -41,6 +41,9 @@
 							that.scope.$emit('q-data-changed', that);
 						});
 					},
+					onChange: function () {
+						this.scope.$emit('q-data-changed', this);
+					},
 					normalizeSupplement: function (supplements) {
 						// the fun of translating objects to JSON, to PHP array, to JSON (in the DB), back to PHP array,
 						// back to JSON, back to objects... {} => JSON {} => PHP array() => JSON [] => PHP array() => JSON [] => []

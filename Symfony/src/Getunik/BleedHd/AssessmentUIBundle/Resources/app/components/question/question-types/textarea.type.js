@@ -11,9 +11,6 @@
 					this.cols = question.cols || 80;
 				},
 				members: {
-					onChange: function (option) {
-						this.scope.$emit('q-data-changed', this);
-					},
 				},
 			};
 		});

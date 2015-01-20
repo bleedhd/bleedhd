@@ -33,6 +33,9 @@
 
 						that.setActive(that.scope.active);
 					},
+					onChange: function () {
+						this.scope.$emit('q-supplement-changed', this);
+					},
 				},
 			};
 		});
