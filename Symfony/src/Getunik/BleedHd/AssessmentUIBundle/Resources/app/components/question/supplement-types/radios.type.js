@@ -2,19 +2,14 @@
 (function (angular) {
 
 	angular.module('question').config(function (SupplementTypeRegistryProvider) {
-		SupplementTypeRegistryProvider.registerTypeWithName('radios', 'base', function (parent) {
+		SupplementTypeRegistryProvider.registerTypeWithName('radios', 'base', ['option'], function (parent) {
 			return {
 				ctor: function RadiosSupplement (scope, definition) {
 					parent(this)(scope, definition);
 
-					this.options = $.map(this.definition.options, function (option) {
-						return angular.extend({}, option);
-					});
+					this.options = this.processOptions(this.definition.options);
 				},
 				members: {
-					getOptions: function () {
-						return this.options;
-					},
 				},
 			};
 		});

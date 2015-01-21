@@ -10,7 +10,8 @@
 		processOptions: function (options, bindingCallback) {
 			var that = this;
 			return $.map(options, function (option) {
-				return angular.extend({}, option, {	binding: bindingCallback(option) });
+				var binding = bindingCallback === undefined ? {} : { binding: bindingCallback(option) };
+				return angular.extend({}, option, binding);
 			});
 		},
 		getOptions: function () {
