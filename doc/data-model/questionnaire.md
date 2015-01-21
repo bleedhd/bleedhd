@@ -150,7 +150,6 @@ Simple yes or no question using radio buttons. Only one of the two options may b
 
 ### Configuration
 
-The full configuration looks like this:
 ```yaml
 slug: question-yes-no-demo
 type: yesno
@@ -203,7 +202,6 @@ unchecks all checkboxes. It can be enabled by adding the `option_reset` configur
 
 ### Configuration
 
-The full configuration looks like this:
 ```yaml
 slug: checkboxes-demo
 type: checkboxes
@@ -245,9 +243,8 @@ A simple choice between multiple items. Only one of the options can be selected 
 
 ### Configuration
 
-The full configuration looks like this:
 ```yaml
-slug: radios-demo1
+slug: radios-demo
 type: radios
 title: "Multiple-Choice"
 meta_answers: ['nya', 'nass']
@@ -279,16 +276,113 @@ Each option can define its own supplements list.
 
 ## "text"
 
+The text question type presents the user with a simple single line text input field. It can also be used
+for restricted input like numeric values by configuring the `pattern` accordingly
+
+### Configuration
+
+```yaml
+slug: text-demo
+type: text
+title: "Hobbies"
+meta_answers: ['nya']
+intro:
+  question: "Which of your hobbies consumes the most time?"
+  description: "Sleeping doesn't count!" # optional
+placeholder: "e.g. Skiing" # optional
+pattern: "/^($|[1-9]$|10$)/"
+supplements:
+  ...
+```
+
+**placeholder**: The placeholder provides an input hint inside the text field while it is empty.
+
+**pattern**: This property limits the allowed input values by providing a regular expression that must match
+at any time - any character entered that would result in a string that would not match the expression will be
+blocked. The value can either be a JavaScript style RegExp delimited by slashes or one of the following
+predefined shorthands.
+* `integer`: integer values (digits only)
+* `decimal`: any numeric value that may include a decimal point (`.` character)
+
+### Result Example
+
+```json
+{
+	"data": {
+		"value": "Some random text",
+	},
+	"meta": null,
+}
+```
+
+
 ## "textarea"
+
+The textarea type allows long and descriptive multiline responses.
+
+### Configuration
+
+```yaml
+slug: textarea-demo
+type: textarea
+title: "Essay"
+meta_answers: ['nya']
+intro:
+  question: "Tell me something about yourself"
+  description: "Don't be shy..." # optional
+label: "About you" # optional
+placeholder: "I am ..."
+rows: 20
+cols: 100
+supplements:
+  ...
+```
+
+**placeholder**: The placeholder provides an input hint inside the text field while it is empty.
+
+**rows**: The number of rows that defines the height of the text area. It does not limit the number of lines
+the user can actually enter. See [http://www.w3schools.com/tags/att_textarea_rows.asp](http://www.w3schools.com/tags/att_textarea_rows.asp)
+
+**cols**: The number of cols that defines the width of the text area. This has usually no effect since the styling of the with to 100% takes
+precedence. See [http://www.w3schools.com/tags/att_textarea_cols.asp](http://www.w3schools.com/tags/att_textarea_cols.asp)
+
+### Result Example
+
+```json
+{
+	"data": {
+		"value": "Some random text\nwith line breaks",
+	},
+	"meta": null,
+}
+```
 
 ## "multiquestion"
 
-Multiquestions are internally represented as individual questions - they are just rendered together in a single question container. As such, every question in a multi-question gets its own _response_ and the specifics of the _result_ are defined by the inner question type.
+Multiquestions are internally represented as individual questions - they are just rendered together in a single question container. As
+such, every question in a multi-question gets its own _response_ and the specifics of the _result_ are defined by the inner question
+type. The multiquestion settings only affect the question container and not the actual questions.
+
+### Configuration
+
+```yaml
+slug: multi-demo
+type: multi
+title: "These are multiple questions"
+meta_answers: ['nya', 'nass']
+intro:
+  question: "What's the deal with the questions below?"
+  description: "Description" # optional
+questions:
+  ...
+```
+
+The `questions` property is simply an array of questions presented inside the container.
 
 
 # Question Supplements
 
-## `checkbox`
+## "checkbox"
 
 ```json
 {
@@ -299,7 +393,7 @@ Multiquestions are internally represented as individual questions - they are jus
 }
 ```
 
-## `textfield`
+## "textfield"
 
 ```json
 {
@@ -310,7 +404,7 @@ Multiquestions are internally represented as individual questions - they are jus
 }
 ```
 
-## `radios`
+## "radios"
 
 ```json
 {
@@ -321,7 +415,7 @@ Multiquestions are internally represented as individual questions - they are jus
 }
 ```
 
-## `checkboxes`
+## "checkboxes"
 ```json
 {
 	"value": 3,
