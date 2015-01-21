@@ -2,31 +2,23 @@
 (function (angular) {
 
 	angular.module('question').config(function (QuestionTypeRegistryProvider) {
-		QuestionTypeRegistryProvider.registerTypeWithName('radios', 'base', function (parent) {
+		QuestionTypeRegistryProvider.registerTypeWithName('radios', 'base', ['option'], function (parent) {
 			return {
-				ctor: function RadiosQuestion(scope, question) {
-					parent(this)(scope, question);
+				ctor: function RadiosQuestion(scope, definition) {
+					parent(this)(scope, definition);
 
 					var that = this;
 
-					this.options = $.map(this.question.options, function (option) {
-						var supplements = option.value === that.data.value ? that.normalizeSupplement(that.data.supplements) : {};
-						return angular.extend({}, option, {
-							binding: {
-								supplements: supplements,
-							},
-						});
+					that.options = that.processOptions(that.definition.options, function (option) {
+						return {
+							supplements: (option.value === that.data.value ? that.normalizeSupplement(that.data.supplements) : {}),
+						};
 					});
 				},
 				members: {
-					link: function (element) {
-					},
 					onChange: function (option) {
 						this.data.supplements = option.binding.supplements;
-						this.scope.$emit('q-data-changed', this);
-					},
-					getOptions: function () {
-						return this.options;
+						parent(this, "onChange")();
 					},
 				},
 			};

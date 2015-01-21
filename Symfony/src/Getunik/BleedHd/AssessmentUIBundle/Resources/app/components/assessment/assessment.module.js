@@ -2,7 +2,8 @@
 (function (angular, bleedHd) {
 
 	var module = angular.module('assessment', [
-		//'bleedHdApp',
+		'bleedHdApp',
+		'typeRegistry',
 		'patient',
 		bleedHd.getView('assessment', 'edit'),
 		bleedHd.getView('assessment', 'screen'),

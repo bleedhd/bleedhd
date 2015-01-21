@@ -6,15 +6,15 @@
 			return {
 				restrict: 'E',
 				scope: {
-					question: '&',
+					definition: '&',
 					data: '&',
 				},
 				compile: function (element, attrs, transclude) {
 					// return simple linking function that dynamically loads the question template
 					return function (scope, element, attrs) {
-						var question = scope.question();
+						var definition = scope.definition();
 
-						scope.questionCtl = TemplateTypeService.instantiate(QuestionTypeRegistry, scope, element, question);
+						scope.questionCtl = TemplateTypeService.instantiate(QuestionTypeRegistry, scope, element, definition);
 					};
 				},
 			};

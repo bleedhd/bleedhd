@@ -2,7 +2,8 @@
 (function (angular, bleedHd) {
 
 	var module = angular.module('question', [
-		//'bleedHdApp',
+		'bleedHdApp',
+		'typeRegistry',
 		'assessment',
 		bleedHd.getView('question', 'container'),
 		bleedHd.getView('question', 'question-types/yesno'),

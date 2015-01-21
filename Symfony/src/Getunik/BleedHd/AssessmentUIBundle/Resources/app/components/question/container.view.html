@@ -24,12 +24,12 @@
 			<div ng-switch-when="multi" class="bleed-answers">
 				<div class="bleed-answers-group" ng-repeat="question in containerCtl.question.questions">
 					<h4 ng-bind-html="question.intro.question"></h4>
-					<question question="question" data="containerCtl.response[question.slug.full].result.data" ></question>
+					<question definition="question" data="containerCtl.response[question.slug.full].result.data" ></question>
 					<pre>{{ containerCtl.response[question.slug.full].result|json }}</pre>
 				</div>
 			</div>
 			<div ng-switch-default class="bleed-answers">
-				<question question="containerCtl.question" data="containerCtl.result.data" ></question>
+				<question definition="containerCtl.question" data="containerCtl.result.data" ></question>
 				<pre>{{ containerCtl.result|json }}</pre>
 			</div>
 		</div>

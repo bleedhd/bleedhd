@@ -4,16 +4,15 @@
 	angular.module('question').config(function (QuestionTypeRegistryProvider, RegExpressionsProvider) {
 		QuestionTypeRegistryProvider.registerTypeWithName('text', 'base', function (parent) {
 			return {
-				ctor: function TextQuestion(scope, question) {
-					parent(this)(scope, question);
+				ctor: function TextQuestion(scope, definition) {
+					parent(this)(scope, definition);
 
-					this.filterExpression = RegExpressionsProvider.$get().parse(question.pattern);
+					this.filterExpression = RegExpressionsProvider.$get().parse(definition.pattern);
 				},
 				members: {
-					link: function (element) {
-					},
-					onChange: function (option) {
-						this.scope.$emit('q-data-changed', this);
+					reset: function (event, data) {
+						// keep the this.data.supplements binding intact by only resetting the value
+						this.data.value = null;
 					},
 				},
 			};
