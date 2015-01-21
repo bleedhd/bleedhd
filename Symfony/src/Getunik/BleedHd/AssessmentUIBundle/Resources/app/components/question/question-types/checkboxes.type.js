@@ -7,7 +7,7 @@
 	 * initial data object has that order.
 	 */
 	angular.module('question').config(function (QuestionTypeRegistryProvider) {
-		QuestionTypeRegistryProvider.registerTypeWithName('checkboxes', 'base', function (parent) {
+		QuestionTypeRegistryProvider.registerTypeWithName('checkboxes', 'baseoption', function (parent) {
 			return {
 				ctor: function CheckboxesQuestion(scope, definition) {
 					parent(this)(scope, definition);
@@ -16,29 +16,25 @@
 						values = {};
 
 					// binding endpoint for the reset option (radio)
-					this.resetCheckboxes = false;
+					that.resetCheckboxes = false;
 
 					// key values by 'value' so that we can link them to the supplement definitions
-					angular.forEach(this.data, function (item) {
+					angular.forEach(that.data, function (item) {
 						values[item.value] = item;
 					});
 
-					this.options = $.map(this.definition.options, function (option) {
+					that.options = that.processOptions(that.definition.options, function (option) {
 						var dataItem = values[option.value] || {};
-						return angular.extend({}, option, {
-							binding: {
-								value: dataItem.value || null,
-								supplements: that.normalizeSupplement(dataItem.supplements),
-							},
-						});
+
+						return {
+							value: dataItem.value || null,
+							supplements: that.normalizeSupplement(dataItem.supplements),
+						};
 					});
 				},
 				members: {
 					emptyData: function () {
 						return [];
-					},
-					getOptions: function () {
-						return this.options;
 					},
 					reset: function (event, data) {
 						this.resetCheckboxes = false;
