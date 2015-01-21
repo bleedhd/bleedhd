@@ -31,6 +31,11 @@
 
 						that.element = element;
 
+						that.element
+							.addClass('supplement')
+							.addClass(that.definition.style)
+							.addClass('variant-' + (this.definition.variant || 'default'));
+
 						that.scope.$watch('active', function (newValue) {
 							that.setActive(newValue);
 						});

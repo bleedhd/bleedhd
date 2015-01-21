@@ -33,11 +33,16 @@
 
 						that.element = element;
 
-						this.scope.$on('q-do-reset', function (event, data) {
+						that.element
+							.addClass('question')
+							.addClass(that.definition.style)
+							.addClass('variant-' + (this.definition.variant || 'default'));
+
+						that.scope.$on('q-do-reset', function (event, data) {
 							that.reset(event, data);
 						});
 
-						this.scope.$on('q-supplement-changed', function (event, data) {
+						that.scope.$on('q-supplement-changed', function (event, data) {
 							that.scope.$emit('q-data-changed', that);
 						});
 					},
