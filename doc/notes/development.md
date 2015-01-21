@@ -1,3 +1,12 @@
+# Prerequisites
+
+All of this documentation is fairly useless without some advanced understanding of the primary technologies involved:
+* Symfony2
+* AngularJS (v1.3.5)
+* REST
+
+It assumes familiarity with all of these topics and uses their terminology where appropriate.
+
 # Terminology
 
 Questionnaire
