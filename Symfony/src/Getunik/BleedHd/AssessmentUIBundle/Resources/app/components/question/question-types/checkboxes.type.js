@@ -7,7 +7,7 @@
 	 * initial data object has that order.
 	 */
 	angular.module('question').config(function (QuestionTypeRegistryProvider) {
-		QuestionTypeRegistryProvider.registerTypeWithName('checkboxes', 'baseoption', function (parent) {
+		QuestionTypeRegistryProvider.registerTypeWithName('checkboxes', 'base', ['option'], function (parent) {
 			return {
 				ctor: function CheckboxesQuestion(scope, definition) {
 					parent(this)(scope, definition);

@@ -2,7 +2,7 @@
 (function (angular) {
 
 	angular.module('question').config(function (QuestionTypeRegistryProvider) {
-		QuestionTypeRegistryProvider.registerTypeWithName('radios', 'baseoption', function (parent) {
+		QuestionTypeRegistryProvider.registerTypeWithName('radios', 'base', ['option'], function (parent) {
 			return {
 				ctor: function RadiosQuestion(scope, definition) {
 					parent(this)(scope, definition);
