@@ -242,7 +242,6 @@ Each option except for the _reset_ which isn't an actual option can define its o
 A simple choice between multiple items. Only one of the options can be selected at any given time.
 
 ### Configuration
-
 ```yaml
 slug: radios-demo
 type: radios
@@ -263,8 +262,10 @@ options:
 
 Each option can define its own supplements list.
 
-### Result Example
+### Variants
+* `horizontal`: Arranges the radios horizontally instead of the vertical default. Note that in horizontal mode, option supplements do not work (there is no place to put them).
 
+### Result Example
 ```json
 {
 	"data": {
