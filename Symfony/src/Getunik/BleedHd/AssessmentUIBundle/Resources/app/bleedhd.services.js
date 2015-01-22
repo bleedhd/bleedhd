@@ -15,21 +15,24 @@
 		};
 
 		// TODO: currently disabled for testing
-		/*$http.get('/user/getToken').
+		/*$http.get('/user/gettoken').
 			success(function(data, status, headers, config) {
 				console.log("got the token", data);
-				authToken.resolve(data);
+				that.deferred.resolve(data);
 			}).error(function(msg, code) {
-				authToken.reject(msg);
+				that.deferred.reject(msg);
 			});*/
 
 		window.setTimeout(function () {
-			that.deferred.resolve('qwer');
+			that.deferred.resolve({
+				access_token: 'qwer',
+				expires_at: new Date(),
+				refresh_token: 'asdf',
+			});
 		}, 500);
 
 		this.deferred.promise.then(function (data) {
-			console.log("token resolved");
-			that.token.value = data;
+			that.token.value = data.access_token;
 		});
 	}
 
@@ -108,11 +111,20 @@
 		 * The BleedApi service provides a convenient pre-configured Restangular object with
 		 * integrated authorization.
 		 */
-		.factory('BleedApi', function (Restangular, AuthHandler) {
+		.factory('BleedApi', function (Restangular, AuthHandler, $window) {
 			return Restangular.withConfig(function(RestangularConfig) {
 				RestangularConfig
 					.setBaseUrl('/api')
-					.setDefaultHeaders({ 'Authorization': AuthHandler.getToken() });
+					.setDefaultHeaders({ 'Authorization': AuthHandler.getToken() })
+					.setErrorInterceptor(function (response) {
+						console.log("resource request error", response);
+						if (response.status == 403) {
+							console.log("Login required. Redirecting...");
+							$window.location.href='/user/login';
+						}
+
+						return false;
+					});
 			});
 		})
 

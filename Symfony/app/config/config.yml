@@ -103,6 +103,9 @@ fos_rest:
         default_format: json
     body_converter:
         enabled: true
+    access_denied_listener:
+        # all requests using the 'json' format will return a 403 on an access denied violation
+        json: true
 
 getunik_bleed_hd_security:
     auto_token_client:

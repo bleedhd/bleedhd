@@ -4,8 +4,9 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use FOS\RestBundle\Controller\FOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Post;
 
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Patient;
@@ -25,6 +26,7 @@ class PatientsController extends FOSRestController
     }
 
     /**
+     * --@Security("has_role('ROLE_READER')")
      */
     public function getPatientsAction()
     {
