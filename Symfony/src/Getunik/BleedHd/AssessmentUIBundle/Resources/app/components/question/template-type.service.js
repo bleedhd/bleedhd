@@ -25,9 +25,10 @@
 			var that = this,
 				template = null;
 
-			angular.forEach(instance.getTemplateHierarchy(), function (name) {
+			$.each(instance.getTemplateHierarchy(), function (index, name) {
 				if (that.$templateCache.get(bleedHd.getView('question', base + name))) {
 					template = base + name;
+					return false;
 				}
 			});
 
