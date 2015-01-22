@@ -1,7 +1,8 @@
 <div class="bleed-sub-answer">
 	<h6 ng-bind-html="supplementCtl.definition.question.title"></h6>
-	<div class="radio" ng-repeat="option in supplementCtl.getOptions()">
-		<label>
+	<div class="radio">
+		<label ng-if="supplementCtl.definition.label" ng-bind-html="supplementCtl.definition.label"></label>
+		<label ng-repeat="option in supplementCtl.getOptions()">
 			<input type="radio" ng-disabled="!active" ng-model="supplementCtl.value" ng-model-options="{ getterSetter: true }" ng-change="supplementCtl.onChange(option)" ng-value="option.value">
 			{{ option.label }}
 		</label>

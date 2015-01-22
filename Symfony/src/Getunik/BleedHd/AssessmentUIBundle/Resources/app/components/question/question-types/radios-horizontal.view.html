@@ -1,0 +1,7 @@
+
+<div class="radio">
+	<label ng-repeat="option in questionCtl.getOptions()">
+		<input type="radio" ng-model="questionCtl.data.value" ng-change="questionCtl.onChange(option)" ng-value="option.value">
+		{{ option.label }}
+	</label>
+</div>
