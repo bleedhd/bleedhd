@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="bleedHdApp">
+    <head>
+        <meta charset="utf-8">
+        <title>BleedHD</title>
+        {% block head %}{% endblock head %}
+
+        {% block scripts %}{% endblock scripts %}
+
+        {% stylesheets filter="less" filter="cssrewrite" output="css/compiled/styles.css"
+            '@GetunikBleedHdAssessmentUIBundle/Resources/less/styles.less'
+        %}
+        <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+        {% endstylesheets %}
+    </head>
+    <body>
+        <div>
+            {% block content %}{% endblock content %}
+        </div>
+        <div class="environment-indicator {{ app.environment }}">{{ app.environment }}</div>
+    </body>
+</html>
