@@ -2,10 +2,10 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Controller;
 
-use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Post;
 
 use Getunik\BleedHd\AssessmentDataBundle\Handler\QuestionnaireHandler;
@@ -17,7 +17,6 @@ use Getunik\BleedHd\AssessmentDataBundle\Handler\QuestionnaireHandler;
 class QuestionnairesController extends FOSRestController
 {
     protected $questionnaireHandler;
-    protected $patientManager;
 
     public function __construct(QuestionnaireHandler $questionnaireHandler)
     {
@@ -25,7 +24,6 @@ class QuestionnairesController extends FOSRestController
     }
 
     /**
-     * "bleed_get_questionnaires"     [GET] /questionnaires
      */
     public function getQuestionnairesAction()
     {
@@ -33,7 +31,6 @@ class QuestionnairesController extends FOSRestController
     }
 
     /**
-     * "get_questionnaire"           [GET] /questionnaires/{slug}
      */
     public function getQuestionnaireAction($questionnaire)
     {

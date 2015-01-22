@@ -3,15 +3,15 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Handler;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
+use Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus;
 
 
 /**
- * AssessmentHandler
+ * PatientHandler
  */
-class AssessmentHandler
+class PatientStatusHandler
 {
-    public static $entityType = 'Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment';
+    public static $entityType = 'Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus';
 
     private $repository;
 
@@ -22,17 +22,17 @@ class AssessmentHandler
                             ->getRepository(self::$entityType);
     }
 
-    public function save(Assessment $assessment)
+    public function save(PatientStatus $status)
     {
-        $this->repository->save($assessment, true);
+        $this->repository->save($status, true);
     }
 
-    public function update(Assessment $assessment)
+    public function update(PatientStatus $status)
     {
-        return $this->repository->update($assessment);
+        return $this->repository->update($status);
     }
 
-    public function getPatientAssessments($patientId)
+    public function getPatientStatuses($patientId)
     {
         return $this->repository->findBy(array('patientId' => $patientId));
     }

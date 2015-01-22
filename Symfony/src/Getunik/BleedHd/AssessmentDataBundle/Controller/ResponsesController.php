@@ -2,19 +2,23 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Controller;
 
-use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Delete;
+use FOS\RestBundle\Controller\FOSRestController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Response;
 use Getunik\BleedHd\AssessmentDataBundle\Handler\ResponseHandler;
 
+
+/**
+ * ResponsesController
+ */
 class ResponsesController extends FOSRestController
 {
     protected $responseHandler;
@@ -25,7 +29,6 @@ class ResponsesController extends FOSRestController
     }
 
     /**
-     * "bleed_get_responses"     [GET] /patient/{patient}/assessment/{assessment}/responses
      */
     public function getResponsesAction($patient, $assessment)
     {
@@ -33,8 +36,6 @@ class ResponsesController extends FOSRestController
     }
 
     /**
-     * "bleed_get_response"           [GET] /patient/{patient}/assessment/{assessment}/responses/{response}
-     *
      * @Get("/patients/{patient}/assessments/{assessment}/responses/{response}", requirements={"response"=".*(?=\.json$|\.xml$)|.*"})
      * @ParamConverter("response", options={"id": "response", "mapping": {"assessment":"assessmentId","response":"questionSlug"}})
      */
@@ -44,8 +45,6 @@ class ResponsesController extends FOSRestController
     }
 
     /**
-     * "bleed_post_response"             [POST] /patient/{patient}/assessment/{assessment}/responses
-     *
      * @Post("/patients/{patient}/assessments/{assessment}/responses", requirements={"response"=".*(?=\.json$|\.xml$)|.*"})
      * @ParamConverter("assessment", options={"id" = "assessment"})
      * @ParamConverter("response", converter="fos_rest.request_body")
@@ -59,8 +58,6 @@ class ResponsesController extends FOSRestController
     }
 
     /**
-     * "put_user"               [PUT] /patient/{patient}/assessment/{assessment}/responses/{response}
-     *
      * @Put("/patients/{patient}/assessments/{assessment}/responses/{response}", requirements={"response"=".*(?=\.json$|\.xml$)|.*"})
      * @ParamConverter("response", options={"id": "response", "mapping": {"assessment":"assessmentId","response":"questionSlug"}})
      * @ParamConverter("responseBody", converter="fos_rest.request_body")
@@ -74,8 +71,6 @@ class ResponsesController extends FOSRestController
     }
 
     /**
-     * "bleed_delete_response"            [DELETE] /patient/{patient}/assessment/{assessment}/responses/{response}
-     *
      * @Delete("/patients/{patient}/assessments/{assessment}/responses/{response}", requirements={"response"=".*(?=\.json$|\.xml$)|.*"})
      */
     public function deleteResponseAction($patient, $assessment, $response)

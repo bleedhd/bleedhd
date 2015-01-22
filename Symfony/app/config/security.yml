@@ -5,6 +5,7 @@ security:
     role_hierarchy:
         ROLE_EDITOR: ROLE_READER
         ROLE_ADMIN: ROLE_EDITOR
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     providers:
         fos_userbundle:

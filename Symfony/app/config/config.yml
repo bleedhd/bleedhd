@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -103,12 +103,15 @@ fos_rest:
         default_format: json
     body_converter:
         enabled: true
+    access_denied_listener:
+        # all requests using the 'json' format will return a 403 on an access denied violation
+        json: true
 
 getunik_bleed_hd_security:
     auto_token_client:
         id: 1_5jyzuhluzucco4swk0wssw8wsgs8k8c844oc8ckg84skg8os8g
         secret: 2p607zqdlqiosg4gocowooks4ow8kk8gkss04wwo0sw8804o4o
-        target_path: /user/profile
+        target_path: /index
 
 jms_serializer:
     handlers:
