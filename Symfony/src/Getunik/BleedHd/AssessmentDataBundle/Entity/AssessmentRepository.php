@@ -4,6 +4,7 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+
 /**
  * AssessmentRepository
  *
@@ -12,10 +13,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class AssessmentRepository extends EntityRepository
 {
-    public function save(Assessment $assessment)
+    public function save(Assessment $assessment, $flush = false)
     {
         $this->_em->persist($assessment);
-        $this->_em->flush();
+        if ($flush)
+        {
+            $this->_em->flush();
+        }
     }
 
     public function update(Assessment $assessment)

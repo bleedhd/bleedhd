@@ -2,10 +2,10 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Controller;
 
-use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use FOS\RestBundle\Controller\FOSRestController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 
@@ -13,6 +13,10 @@ use Getunik\BleedHd\AssessmentDataBundle\Entity\Patient;
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
 use Getunik\BleedHd\AssessmentDataBundle\Handler\AssessmentHandler;
 
+
+/**
+ * AssessmentsController
+ */
 class AssessmentsController extends FOSRestController
 {
     protected $assessmentHandler;
@@ -23,7 +27,6 @@ class AssessmentsController extends FOSRestController
     }
 
     /**
-     * "bleed_get_assessments"     [GET] /assessments
      */
     public function getAssessmentsAction($patient)
     {
@@ -31,8 +34,6 @@ class AssessmentsController extends FOSRestController
     }
 
     /**
-     * "bleed_get_assessment"           [GET] /assessment/{slug}
-     *
      * @ParamConverter("assessment", options={"id": "assessment", "mapping": {"patient":"patientId","assessment":"id"}})
      */
     public function getAssessmentAction($patient, Assessment $assessment)
@@ -41,8 +42,6 @@ class AssessmentsController extends FOSRestController
     }
 
     /**
-     * "bleed_post_assessments"             [POST] /patients
-     *
      * @Post("/patients/{patient}/assessments", requirements={"_format"="json|xml"})
      * @ParamConverter("patient", options={"id" = "patient"})
      * @ParamConverter("assessment", converter="fos_rest.request_body")
@@ -57,8 +56,6 @@ class AssessmentsController extends FOSRestController
     }
 
     /**
-     * "put_user"               [PUT] /patients/{slug}
-     *
      * @ParamConverter("assessment", options={"id": "assessment", "mapping": {"patient":"patientId","assessment":"id"}})
      * @ParamConverter("assessmentBody", converter="fos_rest.request_body")
      */
@@ -71,7 +68,6 @@ class AssessmentsController extends FOSRestController
     }
 
     /**
-     * "delete_user"            [DELETE] /patients/{slug}
      */
     public function deleteAssessmentAction($patient, $assessment)
     {

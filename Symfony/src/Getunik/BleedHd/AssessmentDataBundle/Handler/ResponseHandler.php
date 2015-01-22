@@ -7,7 +7,6 @@ use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Response;
 
 
-
 /**
  * ResponseHandler
  */
@@ -24,19 +23,19 @@ class ResponseHandler
                             ->getRepository(self::$entityType);
     }
 
-    public function getAssessmentResponses($assessmentId)
-    {
-        return $this->repository->findBy(array('assessmentId' => $assessmentId));
-    }
-
     public function save(Response $response)
     {
-        $this->repository->save($response);
+        $this->repository->save($response, true);
     }
 
     public function update(Response $response)
     {
         return $this->repository->update($response);
+    }
+
+    public function getAssessmentResponses($assessmentId)
+    {
+        return $this->repository->findBy(array('assessmentId' => $assessmentId));
     }
 
     public function batchUpdate(Assessment $assessment, array $responses)
