@@ -4,6 +4,7 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Handler;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
+use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
 
 
 /**
@@ -45,10 +46,8 @@ class AssessmentHandler
     public function updateScore(Assessment $assessment)
     {
         $responses = $this->responseHandler->getAssessmentResponses($assessment->getId());
+        $questionnaire = $this->questionnaireHandler->getQuestionnaireByName($assessment->getQuestionnaire());
 
-        foreach ($responses as $response)
-        {
-            var_dump($response->getQuestionSlug());
-        }
+        $context = new AssessmentContext($assessment, $questionnaire, $responses);
     }
 }
