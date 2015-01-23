@@ -22,3 +22,7 @@ parameters:
     debug_toolbar:          true
     debug_redirects:        false
     use_assetic_controller: true
+
+    # For OAuth client handling
+    oauth_client_id: FillThisOutAfterGeneratingTheClient
+    oauth_client_secret: FillThisOutAfterGeneratingTheClient
