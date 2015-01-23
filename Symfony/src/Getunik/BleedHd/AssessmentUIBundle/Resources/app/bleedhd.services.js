@@ -11,25 +11,25 @@
 		this.deferred = $q.defer();
 		this.token = {
 			value: null,
-			toString: function () { return (this.value === null ? "token not yet available" : this.value); },
+			toString: function () { return (this.value === null ? 'token not yet available' : 'Bearer ' + this.value); },
 		};
 
-		// TODO: currently disabled for testing
-		/*$http.get('/user/gettoken').
+		$http.get('/user/gettoken').
 			success(function(data, status, headers, config) {
 				console.log("got the token", data);
 				that.deferred.resolve(data);
 			}).error(function(msg, code) {
 				that.deferred.reject(msg);
-			});*/
+			});
 
-		window.setTimeout(function () {
+		// this is dummy code useful for testing without security
+		/*window.setTimeout(function () {
 			that.deferred.resolve({
 				access_token: 'qwer',
 				expires_at: new Date(),
 				refresh_token: 'asdf',
 			});
-		}, 500);
+		}, 500);*/
 
 		this.deferred.promise.then(function (data) {
 			that.token.value = data.access_token;
@@ -118,7 +118,7 @@
 					.setDefaultHeaders({ 'Authorization': AuthHandler.getToken() })
 					.setErrorInterceptor(function (response) {
 						console.log("resource request error", response);
-						if (response.status == 403) {
+						if (response.status === 403 || response.status === 401) {
 							console.log("Login required. Redirecting...");
 							$window.location.href='/user/login';
 						}
