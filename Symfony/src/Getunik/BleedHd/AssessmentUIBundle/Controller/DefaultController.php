@@ -29,4 +29,9 @@ class DefaultController extends Controller
     {
         return $this->render('GetunikBleedHdAssessmentUIBundle:Default:index.html.twig');
     }
+
+    public function rootRedirectAction()
+    {
+        return $this->redirect($this->generateUrl('getunik_bleed_hd_assessment_ui_app'));
+    }
 }

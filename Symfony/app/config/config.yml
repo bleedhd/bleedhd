@@ -109,9 +109,9 @@ fos_rest:
 
 getunik_bleed_hd_security:
     auto_token_client:
-        id: 1_5jyzuhluzucco4swk0wssw8wsgs8k8c844oc8ckg84skg8os8g
-        secret: 2p607zqdlqiosg4gocowooks4ow8kk8gkss04wwo0sw8804o4o
-        target_path: /index
+        id: "%oauth_client_id%"
+        secret: "%oauth_client_secret%"
+        target_path: /app
 
 jms_serializer:
     handlers:
