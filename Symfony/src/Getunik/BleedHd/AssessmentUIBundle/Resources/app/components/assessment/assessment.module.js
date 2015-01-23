@@ -7,10 +7,6 @@
 		'patient',
 	])
 
-		.provider('ScoringRegistry', function (TypeRegistryFactoryProvider) {
-			return TypeRegistryFactoryProvider.create('ScoringRegistry');
-		})
-
 	;
 
 })(angular, bleedHd);

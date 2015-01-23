@@ -4,6 +4,8 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Handler;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
+use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
+use Getunik\BleedHd\AssessmentDataBundle\Scoring\ScoreCalculatorFactory;
 
 
 /**
@@ -14,12 +16,17 @@ class AssessmentHandler
     public static $entityType = 'Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment';
 
     private $repository;
+    private $responseHandler;
+    private $questionnaireHandler;
 
-    public function __construct(ManagerRegistry $managerRegistry)
+    public function __construct(ManagerRegistry $managerRegistry, ResponseHandler $responseHandler, QuestionnaireHandler $questionnaireHandler)
     {
         $this->repository = $managerRegistry
                             ->getManagerForClass(self::$entityType)
                             ->getRepository(self::$entityType);
+
+        $this->responseHandler = $responseHandler;
+        $this->questionnaireHandler = $questionnaireHandler;
     }
 
     public function save(Assessment $assessment)
@@ -35,5 +42,20 @@ class AssessmentHandler
     public function getPatientAssessments($patientId)
     {
         return $this->repository->findBy(array('patientId' => $patientId));
+    }
+
+    public function updateScore(Assessment $assessment)
+    {
+        $responses = $this->responseHandler->getAssessmentResponses($assessment->getId());
+        $questionnaire = $this->questionnaireHandler->getQuestionnaireByName($assessment->getQuestionnaire());
+
+        $context = new AssessmentContext($assessment, $questionnaire, $responses);
+        $calculator = ScoreCalculatorFactory::create($assessment->getQuestionnaire());
+
+        $result = $calculator->run($context)->getResult();
+        $assessment->setResult($result);
+        $this->repository->save($assessment, false);
+
+        return $assessment;
     }
 }
