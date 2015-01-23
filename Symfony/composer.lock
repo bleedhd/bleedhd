@@ -4,52 +4,8 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a6b06ac212c64ac49a660ba61c15e290",
+    "hash": "dd61faa92a0aac10c33b267e79f06edd",
     "packages": [
-        {
-            "name": "asoc/assetic-angular-js-bundle",
-            "version": "dev-master",
-            "target-dir": "Asoc/AsseticAngularJsBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/AStateOfCode/AsseticAngularJsBundle.git",
-                "reference": "0858f7990156944cd92525a1b77db4c5bd6672ee"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/AStateOfCode/AsseticAngularJsBundle/zipball/0858f7990156944cd92525a1b77db4c5bd6672ee",
-                "reference": "0858f7990156944cd92525a1b77db4c5bd6672ee",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "symfony/assetic-bundle": "~2.3"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-0": {
-                    "Asoc\\AsseticAngularJsBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Pascal Kuendig",
-                    "email": "padakuro@gmail.com"
-                }
-            ],
-            "description": "Assetic filter to output AngularJS templates for the template cache",
-            "homepage": "https://github.com/AStateOfCode/AsseticAngularJsBundle",
-            "keywords": [
-                "angular",
-                "assetic",
-                "template"
-            ],
-            "time": "2014-11-27 18:16:17"
-        },
         {
             "name": "doctrine/annotations",
             "version": "v1.2.1",
@@ -1129,6 +1085,56 @@
                 "User management"
             ],
             "time": "2014-11-19 10:34:13"
+        },
+        {
+            "name": "getu-lar/assetic-angular-js-bundle",
+            "version": "dev-master",
+            "target-dir": "Asoc/AsseticAngularJsBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/getu-lar/AsseticAngularJsBundle.git",
+                "reference": "f8501b3ef583d74c3298dd4f1e0c0aecc234d26b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/getu-lar/AsseticAngularJsBundle/zipball/f8501b3ef583d74c3298dd4f1e0c0aecc234d26b",
+                "reference": "f8501b3ef583d74c3298dd4f1e0c0aecc234d26b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/assetic-bundle": "~2.3"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Asoc\\AsseticAngularJsBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pascal Kuendig",
+                    "email": "padakuro@gmail.com"
+                },
+                {
+                    "name": "Lukas Angerer",
+                    "email": "lukas.angerer@getunik.com"
+                }
+            ],
+            "description": "Assetic filter to output AngularJS templates for the template cache",
+            "homepage": "https://github.com/getu-lar/AsseticAngularJsBundle",
+            "keywords": [
+                "angular",
+                "assetic",
+                "template"
+            ],
+            "support": {
+                "source": "https://github.com/getu-lar/AsseticAngularJsBundle/tree/master"
+            },
+            "time": "2015-01-23 08:15:06"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -2294,16 +2300,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.16.2",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "42f758d9fe2146d1f0470604fc05ee43580873fc"
+                "reference": "2493970fa4d587eca73f77e6d8bd48a8bdd4c608"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/42f758d9fe2146d1f0470604fc05ee43580873fc",
-                "reference": "42f758d9fe2146d1f0470604fc05ee43580873fc",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/2493970fa4d587eca73f77e6d8bd48a8bdd4c608",
+                "reference": "2493970fa4d587eca73f77e6d8bd48a8bdd4c608",
                 "shasum": ""
             },
             "require": {
@@ -2312,7 +2318,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.16-dev"
+                    "dev-master": "1.17-dev"
                 }
             },
             "autoload": {
@@ -2338,7 +2344,7 @@
                 },
                 {
                     "name": "Twig Team",
-                    "homepage": "https://github.com/fabpot/Twig/graphs/contributors",
+                    "homepage": "http://twig.sensiolabs.org/contributors",
                     "role": "Contributors"
                 }
             ],
@@ -2347,7 +2353,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-10-17 12:53:44"
+            "time": "2015-01-14 10:15:49"
         },
         {
             "name": "willdurand/jsonp-callback-validator",
@@ -2496,9 +2502,10 @@
         "doctrine/doctrine-migrations-bundle": 20,
         "friendsofsymfony/user-bundle": 20,
         "friendsofsymfony/oauth-server-bundle": 20,
-        "asoc/assetic-angular-js-bundle": 20
+        "getu-lar/assetic-angular-js-bundle": 20
     },
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": {
         "php": ">=5.3.3"
     },

@@ -133,3 +133,6 @@ jms_serializer:
         # class: My\FooBundle\Entity\User
         # expected path: @MyFooBundle/Resources/config/serializer/Entity.User.(yml|xml|php)
         auto_detection: true
+
+asoc_assetic_angular_js:
+    angular_module_name: '$segments[3]'

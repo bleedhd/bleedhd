@@ -31,14 +31,6 @@
 		{% endjavascripts %}
 	{% endif %}
 
-
-	{% javascripts filter="angular" output="js/compiled/templates.js"
-		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/*/*.view.html'
-		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/*/*/*.view.html'
-	%}
-		<script type="text/javascript" src="{{ asset_url }}"></script>
-	{% endjavascripts %}
-
 	{% javascripts output="js/compiled/app.js"
 		'@GetunikBleedHdAssessmentUIBundle/Resources/app/bleedhd.module.js'
 		'@GetunikBleedHdAssessmentUIBundle/Resources/app/bleedhd.routes.js'
@@ -52,6 +44,13 @@
 		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/*/*/*.type.js'
 		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/*/*/*.score.js'
 		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/*/*.controller.js'
+	%}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+
+	{% javascripts filter="angular" output="js/compiled/templates.js"
+		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/*/*.view.html'
+		'@GetunikBleedHdAssessmentUIBundle/Resources/app/components/*/*/*.view.html'
 	%}
 		<script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
