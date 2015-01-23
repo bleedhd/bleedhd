@@ -43,8 +43,15 @@ class AssessmentContext
             $subSlug = new Slug(isset($subSegment['slug']) ? $subSegment['slug'] : NULL, $slug);
             if ($isLast)
             {
-                $response = isset($responseMap[$subSlug->getFull()]) ? $responseMap[$subSlug->getFull()] : NULL;
-                $this->questions[] = new Question($subSlug, $subSegment, $response);
+                if (isset($subSegment['type']) && $subSegment['type'] === 'multi')
+                {
+                    $this->processHierarchySegment($subSegment, $responseMap, $segmentIndex, $subSlug);
+                }
+                else
+                {
+                    $response = isset($responseMap[$subSlug->getFull()]) ? $responseMap[$subSlug->getFull()] : NULL;
+                    $this->questions[] = new Question($subSlug, $subSegment, $response);
+                }
             }
             else
             {

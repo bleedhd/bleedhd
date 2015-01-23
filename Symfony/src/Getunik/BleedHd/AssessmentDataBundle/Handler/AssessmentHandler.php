@@ -5,6 +5,7 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Handler;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
+use Getunik\BleedHd\AssessmentDataBundle\Scoring\ScoreCalculatorFactory;
 
 
 /**
@@ -49,5 +50,9 @@ class AssessmentHandler
         $questionnaire = $this->questionnaireHandler->getQuestionnaireByName($assessment->getQuestionnaire());
 
         $context = new AssessmentContext($assessment, $questionnaire, $responses);
+        $calculator = ScoreCalculatorFactory::create($assessment->getQuestionnaire());
+
+        $result = $calculator->run($context)->getResult();
+        var_dump($result);
     }
 }

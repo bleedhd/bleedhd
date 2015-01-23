@@ -27,4 +27,19 @@ class Question
     		var_dump($response->getResult());
     	}
     }
+
+    public function getSlug()
+    {
+    	return $this->slug;
+    }
+
+    public function getQuestion()
+    {
+    	return $this->question;
+    }
+
+    public function getResult()
+    {
+    	return $this->result;
+    }
 }
