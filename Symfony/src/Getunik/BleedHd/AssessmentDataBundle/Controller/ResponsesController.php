@@ -56,19 +56,22 @@ class ResponsesController extends FOSRestController
     {
         $response->setAssessment($assessment);
         $this->responseHandler->save($response);
+        $this->assessmentHandler->updateScore($assessment);
 
         return $this->handleView($this->view($response));
     }
 
     /**
      * @Put("/patients/{patient}/assessments/{assessment}/responses/{response}", requirements={"response"=".*(?=\.json$|\.xml$)|.*"})
+     * @ParamConverter("assessment", options={"id" = "assessment"})
      * @ParamConverter("response", options={"id": "response", "mapping": {"assessment":"assessmentId","response":"questionSlug"}})
      * @ParamConverter("responseBody", converter="fos_rest.request_body")
      */
-    public function putResponseAction($patient, $assessment, Response $response, Response $responseBody)
+    public function putResponseAction($patient, Assessment $assessment, Response $response, Response $responseBody)
     {
         $responseBody->setAssessment($response->getAssessment());
         $updated = $this->responseHandler->update($responseBody);
+        $this->assessmentHandler->updateScore($assessment);
 
         return $this->handleView($this->view($updated));
     }

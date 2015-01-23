@@ -53,6 +53,9 @@ class AssessmentHandler
         $calculator = ScoreCalculatorFactory::create($assessment->getQuestionnaire());
 
         $result = $calculator->run($context)->getResult();
-        var_dump($result);
+        $assessment->setResult($result);
+        $this->repository->save($assessment, false);
+
+        return $assessment;
     }
 }
