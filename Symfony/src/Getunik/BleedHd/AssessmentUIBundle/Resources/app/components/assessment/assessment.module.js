@@ -5,8 +5,6 @@
 		'bleedHdApp',
 		'typeRegistry',
 		'patient',
-		bleedHd.getView('assessment', 'edit'),
-		bleedHd.getView('assessment', 'screen'),
 	])
 
 		.provider('ScoringRegistry', function (TypeRegistryFactoryProvider) {

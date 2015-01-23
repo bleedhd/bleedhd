@@ -6,6 +6,12 @@
     "autoload": {
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/getu-lar/AsseticAngularJsBundle"
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.5.*",
@@ -24,7 +30,7 @@
         "friendsofsymfony/oauth-server-bundle": "dev-master",
         "friendsofsymfony/rest-bundle": "~1.4",
         "jms/serializer-bundle": "~0.13",
-        "asoc/assetic-angular-js-bundle": "dev-master"
+        "getu-lar/assetic-angular-js-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
