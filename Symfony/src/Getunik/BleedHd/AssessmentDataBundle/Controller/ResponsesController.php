@@ -14,6 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Response;
 use Getunik\BleedHd\AssessmentDataBundle\Handler\ResponseHandler;
+use Getunik\BleedHd\AssessmentDataBundle\Handler\AssessmentHandler;
 
 
 /**
@@ -22,10 +23,12 @@ use Getunik\BleedHd\AssessmentDataBundle\Handler\ResponseHandler;
 class ResponsesController extends FOSRestController
 {
     protected $responseHandler;
+    protected $assessmentHandler;
 
-    public function __construct(ResponseHandler $responseHandler)
+    public function __construct(ResponseHandler $responseHandler, AssessmentHandler $assessmentHandler)
     {
         $this->responseHandler = $responseHandler;
+        $this->assessmentHandler = $assessmentHandler;
     }
 
     /**
@@ -86,6 +89,7 @@ class ResponsesController extends FOSRestController
     public function postBatchAction($patient, Assessment $assessment, $responsesBody)
     {
         $this->responseHandler->batchUpdate($assessment, $responsesBody);
+        $this->assessmentHandler->updateScore($assessment);
 
         return $this->handleView($this->view($responsesBody));
     }

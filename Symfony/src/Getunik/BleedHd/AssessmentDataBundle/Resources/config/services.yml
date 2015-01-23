@@ -58,6 +58,8 @@ services:
         class: %getunik.bleed_hd_data.assessment_handler.class%
         arguments:
             - @doctrine
+            - @getunik.bleed_hd_data.response_handler
+            - @getunik.bleed_hd_data.questionnaire_handler
 
     getunik.bleed_hd_data.assessment_controller:
         class: %getunik.bleed_hd_data.assessment_controller.class%
@@ -76,6 +78,7 @@ services:
         class: %getunik.bleed_hd_data.response_controller.class%
         arguments:
             - @getunik.bleed_hd_data.response_handler
+            - @getunik.bleed_hd_data.assessment_handler
         calls:
             - [setContainer, ["@service_container"]]
 

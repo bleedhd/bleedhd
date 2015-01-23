@@ -14,12 +14,17 @@ class AssessmentHandler
     public static $entityType = 'Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment';
 
     private $repository;
+    private $responseHandler;
+    private $questionnaireHandler;
 
-    public function __construct(ManagerRegistry $managerRegistry)
+    public function __construct(ManagerRegistry $managerRegistry, ResponseHandler $responseHandler, QuestionnaireHandler $questionnaireHandler)
     {
         $this->repository = $managerRegistry
                             ->getManagerForClass(self::$entityType)
                             ->getRepository(self::$entityType);
+
+        $this->responseHandler = $responseHandler;
+        $this->questionnaireHandler = $questionnaireHandler;
     }
 
     public function save(Assessment $assessment)
@@ -35,5 +40,15 @@ class AssessmentHandler
     public function getPatientAssessments($patientId)
     {
         return $this->repository->findBy(array('patientId' => $patientId));
+    }
+
+    public function updateScore(Assessment $assessment)
+    {
+        $responses = $this->responseHandler->getAssessmentResponses($assessment->getId());
+
+        foreach ($responses as $response)
+        {
+            var_dump($response->getQuestionSlug());
+        }
     }
 }
