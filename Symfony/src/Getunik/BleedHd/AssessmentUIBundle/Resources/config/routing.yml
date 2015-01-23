@@ -1,3 +1,7 @@
-getunik_bleed_hd_assessment_ui_homepage:
-    path:     /index
+getunik_bleed_hd_assessment_ui_app:
+    path:     /app
     defaults: { _controller: GetunikBleedHdAssessmentUIBundle:Default:index }
+
+getunik_bleed_hd_assessment_ui_root:
+    path:     /
+    defaults: { _controller: GetunikBleedHdAssessmentUIBundle:Default:rootRedirect }

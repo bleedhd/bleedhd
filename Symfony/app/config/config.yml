@@ -111,7 +111,7 @@ getunik_bleed_hd_security:
     auto_token_client:
         id: "%oauth_client_id%"
         secret: "%oauth_client_secret%"
-        target_path: /index
+        target_path: /app
 
 jms_serializer:
     handlers:
