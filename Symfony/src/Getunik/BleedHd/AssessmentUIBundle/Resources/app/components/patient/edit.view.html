@@ -1,84 +1,124 @@
-<div>
-	<div>
-		<h1>Add new patient / Edit patient</h1>
+
+<div class="container bleed-meta">
+	<div class="row">
+		<div class="col-xs-12 col-sm-6">
+			<h3>Add new patient / Edit patient</h3>
+		</div>
+		<div class="col-xs-12 col-sm-6">
+
+		</div>
 	</div>
-	<form name="patientForm" novalidate>
-		<div>
-			<label for="patient_lastname">Lastname*:</label>
-			<input id="patient_lastname" type="text" ng-model="ctlPatient.patient.lastname" required />
-		</div>
-		<div>
-			<label for="patient_firstname">Firstname*:</label>
-			<input id="patient_firstname" type="text" ng-model="ctlPatient.patient.firstname" required />
-		</div>
-		<div>
-			<label for="patient_birthdate">Date of birth*:</label>
-			<input id="patient_birthdate" type="date" ng-model="ctlPatient.patient.birthdate" ng-model-options="{ timezone: 'UTC' }" required />
-		</div>
-		<div>
-			<label for="patient_sex">Sex:</label>
-			<select id="patient_sex" ng-model="ctlPatient.patient.sex">
-				<option value="">Not specified</option>
-				<option value="m">Male</option>
-				<option value="f">Female</option>
-			</select>
-		</div>
-		<div>
-			<label for="patient_patient_number">Patient Number:</label>
-			<input id="patient_patient_number" type="number" ng-model="patient_number" />
-		</div>
-		<div>
-			<label for="patient_upn">UPN Number:</label>
-			<input id="patient_upn" type="number" ng-model="upn" />
-		</div>
-		<div>
-			<label for="patient_diagnosis">Diagnosis:</label>
-			<select id="patient_diagnosis" ng-model="ctlPatient.patient.diagnosis">
-				<option value="">Undiagnosed</option>
-				<option value="Acute myelogenous leukemia">Acute myelogenous leukemia</option>
-				<option value="Acute lymphatic leukemia">Acute lymphatic leukemia</option>
-				<option value="Leukemia, not otherwise specified">Leukemia, not otherwise specified</option>
-				<option value="Lymphoma">Lymphoma</option>
-				<option value="Myeloproliferative neoplasm">Myeloproliferative neoplasm</option>
-				<option value="Myelodysplastic syndrome">Myelodysplastic syndrome</option>
-				<option value="Myeloid neoplasm, not otherwise specified">Myeloid neoplasm, not otherwise specified</option>
-				<option value="Autoimmune disease">Autoimmune disease</option>
-				<option value="Immunodeficiency">Immunodeficiency</option>
-				<option value="Aplastic anemia">Aplastic anemia</option>
-				<option value="Other">Other</option>
-			</select>
-		</div>
-		<div>
-			<label for="patient_diagnosis_date">Date initial diagnosis (yyyy-mm-dd):</label>
-			<input id="patient_diagnosis_date" type="date" ng-model="ctlPatient.patient.diagnosis_date" ng-model-options="{ timezone: 'UTC' }" />
-		</div>
-		<div>
-			<label for="patient_remarks">Remarks:</label>
-			<textarea id="patient_remarks" ng-model="ctlPatient.patient.remarks"></textarea>
-		</div>
-		<div>
-			<input id="patient_is_active" type="checkbox" ng-model="ctlPatient.patient.is_active" ng-true-value="true" ng-false-value="false" />
-			<label for="patient_is_active">Active:</label>
-		</div>
+</div>
 
-		<div>
-			<a href="#/patients">Cancel</a>
-			<button type="button" ng-disabled="patientForm.$invalid" ng-click="ctlPatient.save()">Save</a>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+
+			<div class="panel panel-default">
+				<div class="panel-body">
+
+					<form role="form" name="patientForm" novalidate>
+
+						<div class="row">
+
+							<div class="col-xs-12 col-sm-6">
+								<div class="form-group">
+									<label for="patient_lastname">Last name*:</label>
+									<input id="patient_lastname" class="form-control" type="text" ng-model="ctlPatient.patient.lastname" required />
+								</div>
+								<div class="form-group">
+									<label for="patient_birthdate">Date of birth*:</label>
+									<input id="patient_birthdate" class="form-control" type="date" ng-model="ctlPatient.patient.birthdate" ng-model-options="{ timezone: 'UTC' }" required />
+								</div>
+								<div class="form-group">
+									<label for="patient_patient_number">Patient number:</label>
+									<input id="patient_patient_number" class="form-control" type="number" ng-model="patient_number" />
+								</div>
+
+								<div class="form-group">
+									<label for="patient_diagnosis">Diagnosis:</label>
+									<select id="patient_diagnosis" class="form-control" ng-model="ctlPatient.patient.diagnosis">
+										<option value="">Undiagnosed</option>
+										<option value="Acute myelogenous leukemia">Acute myelogenous leukemia</option>
+										<option value="Acute lymphatic leukemia">Acute lymphatic leukemia</option>
+										<option value="Leukemia, not otherwise specified">Leukemia, not otherwise specified</option>
+										<option value="Lymphoma">Lymphoma</option>
+										<option value="Myeloproliferative neoplasm">Myeloproliferative neoplasm</option>
+										<option value="Myelodysplastic syndrome">Myelodysplastic syndrome</option>
+										<option value="Myeloid neoplasm, not otherwise specified">Myeloid neoplasm, not otherwise specified</option>
+										<option value="Autoimmune disease">Autoimmune disease</option>
+										<option value="Immunodeficiency">Immunodeficiency</option>
+										<option value="Aplastic anemia">Aplastic anemia</option>
+										<option value="Other">Other</option>
+									</select>
+								</div>
+
+								<div class="checkbox">
+									<label>
+										<input id="patient_is_active" type="checkbox" ng-model="ctlPatient.patient.is_active" ng-true-value="true" ng-false-value="false" /> Active
+									</label>
+								</div>
+							</div>
+
+							<div class="col-xs-12 col-sm-6">
+								<div class="form-group">
+									<label for="patient_firstname">First name*:</label>
+									<input id="patient_firstname" class="form-control" type="text" ng-model="ctlPatient.patient.firstname" required />
+								</div>
+								<div class="form-group">
+									<label for="patient_sex">Gender:</label>
+									<select id="patient_sex" class="form-control" ng-model="ctlPatient.patient.sex">
+										<option value="">Not specified</option>
+										<option value="m">Male</option>
+										<option value="f">Female</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="patient_upn">UPN number:</label>
+									<input id="patient_upn" class="form-control" type="number" ng-model="upn" />
+								</div>
+								<div class="form-group">
+									<label for="patient_diagnosis_date">Date initial diagnosis:</label>
+									<input id="patient_diagnosis_date" class="form-control" type="date" ng-model="ctlPatient.patient.diagnosis_date" ng-model-options="{ timezone: 'UTC' }" />
+								</div>
+							</div>
+
+							<div class="col-xs-12">
+								<div class="form-group">
+									<label for="patient_remarks">Remarks:</label>
+									<textarea id="patient_remarks" class="form-control" cols="30" rows="5" ng-model="ctlPatient.patient.remarks"></textarea>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<a class="btn btn-default" href="#/patients">Cancel</a>
+								<button class="btn btn-default" type="button" ng-disabled="patientForm.$invalid" ng-click="ctlPatient.save()">Save</a>
+							</div>
+						</div>
+
+					</form>
+
+				</div>
+			</div>
+
+			<div ng-if="env.debug" class="debug-output">
+				<br /><br />
+				{{ ctlPatient.patient.firstname }} {{ ctlPatient.patient.lastname }} <br />
+				{{ ctlPatient.patient.birthdate | json }} ({{ ctlPatient.patient.sex }})<br />
+				{{ ctlPatient.patient.patient_number }} / {{ ctlPatient.patient.upn }}<br />
+				{{ ctlPatient.patient.diagnosis_date | json }} -> {{ ctlPatient.patient.diagnosis }}<br />
+				{{ ctlPatient.patient.patient_blood_type }} -> {{ ctlPatient.patient.donor_blood_type }}<br />
+				is active: {{ ctlPatient.patient.is_active | boolyesno }}
+			</div>
+
+			<div ng-if="env.debug" class="debug-output">
+				<br />
+				<pre>{{ patientForm | json }}</pre>
+			</div>
+
 		</div>
-	</form>
-
-	<div>
-		<br /><br />
-		{{ ctlPatient.patient.firstname }} {{ ctlPatient.patient.lastname }} <br />
-		{{ ctlPatient.patient.birthdate | json }} ({{ ctlPatient.patient.sex }})<br />
-		{{ ctlPatient.patient.patient_number }} / {{ ctlPatient.patient.upn }}<br />
-		{{ ctlPatient.patient.diagnosis_date | json }} -> {{ ctlPatient.patient.diagnosis }}<br />
-		{{ ctlPatient.patient.patient_blood_type }} -> {{ ctlPatient.patient.donor_blood_type }}<br />
-		is active: {{ ctlPatient.patient.is_active | boolyesno }}
-	</div>
-
-	<div>
-		<br />
-		<pre>{{ patientForm | json }}</pre>
 	</div>
 </div>
