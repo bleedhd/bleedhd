@@ -1,38 +1,85 @@
-<div>
-	<div>
-		<h1>Patient overview</h1>
-		<a href="#/export">Export</a>
+
+<div class="container bleed-meta">
+	<div class="row">
+		<div class="col-xs-12 col-sm-6">
+			<h3>Patient Overview</h3>
+		</div>
+		<div class="col-xs-12 col-sm-6">
+			<a class="btn btn-default pull-right" href="#/export">Export</a>
+		</div>
 	</div>
-	<div>
-		Filter: <input type="text" ng-model="ctlPatients.filterSearch" />
-		<input type="checkbox" checked="checked" id="filter_active" ng-model="ctlPatients.filterActive" ng-true-value="true" ng-false-value="false" />
-		<label for="filter_active">Show only active patients</label>
-		<button type="button" ng-click="ctlPatients.resetFilter()">Reset Filter</button>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+
+			<div class="well">
+				<form class="form clearfix" role="search">
+					<input type="text" class="form-control" placeholder="Name or place of birth" ng-model="ctlPatients.filterSearch" />
+
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" checked="checked" id="filter_active" ng-model="ctlPatients.filterActive" ng-true-value="true" ng-false-value="false" /> Show only active patients
+						</label>
+					</div>
+					<button class="btn btn-default" ng-click="ctlPatients.resetFilter()">Reset Filter</button>
+				</form>
+			</div>
+
+			<div ng-if="env.debug" class="debug-output">
+				Searching for "{{ ctlPatients.filterSearch }}" with active {{ ctlPatients.filterActive }}
+			</div>
+
+		</div>
 	</div>
-	<div>
-		Searching for "{{ ctlPatients.filterSearch }}" with active {{ ctlPatients.filterActive }}
-	</div>
-	<div>
-		<a href="#/patients/new">New patient</a>
-		<table>
-			<thead>
-				<tr>
-					<th>&nbsp;</th>
-					<th>Lastname</th>
-					<th>Firstname</th>
-					<th>Date of Birth</th>
-					<th>Active</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="patient in ctlPatients.patients | filter:ctlPatients.filterPatientsFulltext(ctlPatients.filterSearch) | filter:{is_active:(ctlPatients.filterActive ? true : undefined)}" data-id="{{ patient.id }}">
-					<td><a href="#/patients/detail/{{ patient.id }}">Details</a></td>
-					<td>{{ patient.firstname }}</td>
-					<td>{{ patient.lastname }}</td>
-					<td>{{ patient.birthdate | birthdate }} </td>
-					<td>{{ patient.is_active | boolyesno }}</td>
-				</tr>
-			</tbody>
-		</table>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+
+			<div class="panel panel-default">
+				<div class="panel-body">
+
+					<a class="btn btn-default pull-right" href="#/patients/new">New patient</a>
+
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Last Name</th>
+								<th>First Name</th>
+								<th>Date of birth</th>
+								<th>Active</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="patient in ctlPatients.patients | filter:ctlPatients.filterPatientsFulltext(ctlPatients.filterSearch) | filter:{is_active:(ctlPatients.filterActive ? true : undefined)}" data-id="{{ patient.id }}">
+								<td>{{ patient.firstname }}</td>
+								<td>{{ patient.lastname }}</td>
+								<td>{{ patient.birthdate | birthdate }} </td>
+								<td>{{ patient.is_active | boolyesno }}</td>
+								<td><a class="btn btn-default btn-xs" href="#/patients/detail/{{ patient.id }}">Details</a></td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+
+			<nav>
+				<ul class="pagination">
+					<li class="disabled"><a href="#"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
+					<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+				</ul>
+			</nav>
+
+		</div>
 	</div>
 </div>
