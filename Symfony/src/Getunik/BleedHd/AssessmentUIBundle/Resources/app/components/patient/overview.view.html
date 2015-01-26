@@ -16,11 +16,11 @@
 
 			<div class="well">
 				<form class="form clearfix" role="search">
-					<input type="text" class="form-control" placeholder="Name or place of birth" ng-model="ctlPatients.filterSearch" />
+					<input type="text" class="form-control" placeholder="Name or place of birth" ng-model="ctlPatients.filterSearch" ng-change="ctlPatients.onFilterChange()" />
 
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" checked="checked" id="filter_active" ng-model="ctlPatients.filterActive" ng-true-value="true" ng-false-value="false" /> Show only active patients
+							<input type="checkbox" checked="checked" id="filter_active" ng-model="ctlPatients.filterActive" ng-true-value="true" ng-false-value="false" ng-change="ctlPatients.onFilterChange()" /> Show only active patients
 						</label>
 					</div>
 					<button class="btn btn-default" ng-click="ctlPatients.resetFilter()">Reset Filter</button>
@@ -55,9 +55,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="patient in ctlPatients.patients | filter:ctlPatients.filterPatientsFulltext(ctlPatients.filterSearch) | filter:{is_active:(ctlPatients.filterActive ? true : undefined)}" data-id="{{ patient.id }}">
-								<td>{{ patient.firstname }}</td>
+							<tr ng-repeat="patient in ctlPatients.paging.getPageItems()" data-id="{{ patient.id }}">
 								<td>{{ patient.lastname }}</td>
+								<td>{{ patient.firstname }}</td>
 								<td>{{ patient.birthdate | birthdate }}</td>
 								<td>{{ patient.is_active | boolyesno }}</td>
 								<td><a class="btn btn-default btn-xs" href="#/patients/detail/{{ patient.id }}">Details</a></td>
@@ -69,15 +69,7 @@
 			</div>
 
 			<nav>
-				<ul class="pagination">
-					<li class="disabled"><a href="#"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-					<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
-				</ul>
+				<pagination total-items="paging.items.length" items-per-page="paging.itemsPerPage" ng-model="paging.currentPage" class="pagination-sm" previous-text="«" next-text="»"></pagination>
 			</nav>
 
 		</div>
