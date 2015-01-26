@@ -4,7 +4,7 @@
 		<div class="col-xs-12 col-sm-6">
 			<h4>TODO: Assessment Bleeding WHO</h4>
 			<h5>Patient: {{ ctlScreen.context.patient.lastname }} {{ ctlScreen.context.patient.firstname }}</h5>
-			<h5>Date of birth: {{ ctlScreen.context.patient.birthdate | birthdate }}</h5>
+			<h5>Date of birth: {{ ctlScreen.context.patient.birthdate | isodate }}</h5>
 		</div>
 		<div class="col-xs-12 col-sm-6">
 			<button class="btn btn-default pull-right" ng-click="ctlScreen.goOverview()">Save and return to assessment details</a>

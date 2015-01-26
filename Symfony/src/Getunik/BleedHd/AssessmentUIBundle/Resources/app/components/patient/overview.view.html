@@ -58,7 +58,7 @@
 							<tr ng-repeat="patient in ctlPatients.paging.getPageItems()" data-id="{{ patient.id }}">
 								<td>{{ patient.lastname }}</td>
 								<td>{{ patient.firstname }}</td>
-								<td>{{ patient.birthdate | birthdate }}</td>
+								<td>{{ patient.birthdate | isodate }}</td>
 								<td>{{ patient.is_active | boolyesno }}</td>
 								<td><a class="btn btn-default btn-xs" href="#/patients/detail/{{ patient.id }}">Details</a></td>
 							</tr>

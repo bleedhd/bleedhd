@@ -78,7 +78,7 @@
 			},
 		},
 		format: {
-			birthdate: 'dd.MM.yyyy',
+			isodate: 'yyyy-MM-dd',
 			yesno: ['yes', 'no'],
 		},
 	})

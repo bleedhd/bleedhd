@@ -25,9 +25,9 @@
 
 					<div class="row">
 						<div class="col-xs-12 col-sm-6">
-							Date of birth: {{ ctlPatient.patient.birthdate | birthdate }}<br/>
+							Date of birth: {{ ctlPatient.patient.birthdate | isodate }}<br/>
 							Sex: {{ ctlPatient.patient.sex }}<br/>
-							Date of initial diagnosis: {{ ctlPatient.patient.diagnosis_date | birthdate }}<br/>
+							Date of initial diagnosis: {{ ctlPatient.patient.diagnosis_date | isodate }}<br/>
 							Diagnosis: {{ ctlPatient.patient.diagnosis }}<br/>
 							TODO: Status since 15.08.2014: autologous
 						</div>
@@ -122,7 +122,7 @@
 										</thead>
 										<tbody>
 											<tr ng-repeat="assessment in ctlPatient.patient.assessments | orderBy:'start_date':true">
-												<td>{{ assessment.start_date | date }}</td>
+												<td>{{ assessment.start_date | isodate }}</td>
 												<td>{{ assessment.questionnaire }}</td>
 												<td>{{ assessment.platelets }}</td>
 												<td>{{ assessment.result | json }}</td>
@@ -170,7 +170,7 @@
 										</thead>
 										<tbody>
 											<tr ng-repeat="status in ctlPatient.patient.statuses | orderBy:'transplant_date':true" data-id="{{ status.id }}">
-												<td>{{ status.transplant_date | birthdate }}</td>
+												<td>{{ status.transplant_date | isodate }}</td>
 												<td>{{ status.transplant_type }}</td>
 												<td>{{ status.transplant_source || status.transplant_custom }}</td>
 												<td><a class="btn btn-default btn-xs" href="#/patients/{{ ctlPatient.patient.id }}/status/edit/{{ status.id }}">Details</a></td>
@@ -188,22 +188,6 @@
 				</tab>
 
 			</tabset>
-
-<!--
-			<div class="tab-content">
-				<div role="tabpanel" class="tab-pane fade in active" id="assessments" aria-labelledby="tab_assessments">
-
-
-				</div>
-
-
-				<div role="tabpanel" class="tab-pane fade" id="status" aria-labelledby="tab_status">
-
-
-
-				</div>
-			</div>
-			-->
 
 		</div>
 	</div>

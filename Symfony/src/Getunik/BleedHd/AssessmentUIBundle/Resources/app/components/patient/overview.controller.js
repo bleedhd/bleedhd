@@ -18,7 +18,7 @@
 		};
 		$scope.paging = this.paging;
 
-		this.birthdateFilter = $filter('birthdate');
+		this.dateFilter = $filter('isodate');
 		this.resetFilter();
 	}
 
@@ -30,7 +30,7 @@
 			// 	// build a custom 'full text' search string from the patient properties and
 			// 	// match it against a regular expression created from the given pattern value
 			// 	return function (value, index) {
-			// 		var fullText = [value.firstname, value.lastname, ctl.birthdateFilter(value.birthdate)].join('|'),
+			// 		var fullText = [value.firstname, value.lastname, ctl.dateFilter(value.birthdate)].join('|'),
 			// 			search = new RegExp(pattern, 'i');
 
 			// 		return fullText.match(search) !== null;
@@ -54,7 +54,7 @@
 			patientFilter: function (patient) {
 				if (this.filterActive && !patient.is_active) { return false; }
 
-				var fullText = [patient.firstname, patient.lastname, this.birthdateFilter(patient.birthdate)].join('|'),
+				var fullText = [patient.firstname, patient.lastname, this.dateFilter(patient.birthdate)].join('|'),
 					search = new RegExp(this.filterSearch, 'i');
 
 				return fullText.match(search) !== null;

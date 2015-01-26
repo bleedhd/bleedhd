@@ -4,12 +4,12 @@
 	angular.module('bleedHdApp')
 
 		/**
-		 * Formats the given Date object as a birthdate
+		 * Formats the given Date object as an ISO-8601 date
 		 */
-		.filter('birthdate', function ($filter, BleedHdConfig) {
+		.filter('isodate', function ($filter, BleedHdConfig) {
 			var dateFilter = $filter('date');
 			return function (date) {
-				return dateFilter(date, BleedHdConfig.format.birthdate);
+				return dateFilter(date, BleedHdConfig.format.isodate);
 			};
 		})
 
