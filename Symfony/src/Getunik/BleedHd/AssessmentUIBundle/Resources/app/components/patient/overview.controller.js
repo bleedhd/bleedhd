@@ -8,7 +8,7 @@
 		this.paging = {
 			items: [],
 			currentPage: 1,
-			itemsPerPage: 5,
+			itemsPerPage: 30,
 			getPageItems: function () {
 				var start = (this.currentPage - 1) * this.itemsPerPage,
 					end = start + this.itemsPerPage;
@@ -20,11 +20,6 @@
 
 		this.birthdateFilter = $filter('birthdate');
 		this.resetFilter();
-
-		$scope.setPage = function (pageNo) {
-			$scope.paging.currentPage = pageNo;
-			console.log("on page", pageNo);
-		};
 	}
 
 	bleedHd.registerController('patient', PatientOverviewController,
