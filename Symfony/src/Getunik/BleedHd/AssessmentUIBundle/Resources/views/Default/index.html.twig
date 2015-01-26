@@ -3,10 +3,10 @@
 {% trans_default_domain 'AssessmentUIBundle' %}
 
 {% block scripts %}
+	{{ parent() }}
+
 	{% if app.environment == 'dev' %}
 		{% javascripts output='js/compiled/angular.js'
-			'@GetunikBleedHdAssessmentUIBundle/Resources/js/jquery/jquery-2.1.1.js'
-			'@GetunikBleedHdAssessmentUIBundle/Resources/js/lodash/lodash.js'
 			'@GetunikBleedHdAssessmentUIBundle/Resources/angular/core/angular.js'
 			'@GetunikBleedHdAssessmentUIBundle/Resources/angular/core/angular-route.js'
 			'@GetunikBleedHdAssessmentUIBundle/Resources/angular/core/angular-sanitize.js'
