@@ -14,6 +14,11 @@
             %}
                 <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
+            <script type="text/javascript">
+                window.env = {
+                    environment: '{{ app.environment }}',
+                };
+            </script>
         {% endblock scripts %}
 
         {% stylesheets filter="less" filter="cssrewrite" output="css/compiled/styles.css"

@@ -102,6 +102,12 @@
 		});
 	})
 
+	.run(function ($rootScope) {
+		$rootScope.env = angular.extend({}, window.env, {
+			debug: location.search.match(/debug=true(&|$)/) !== null,
+		});
+	})
+
 	;
 
 })(angular);
