@@ -3,40 +3,30 @@
 <top-nav title="Patient details" nav-url="#/patients" nav-label="Back to patient overview"></top-nav>
 
 <!-- Patient Details -->
-<div class="container">
+<panel>
 	<div class="row">
 		<div class="col-xs-12">
-
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<div class="row">
-						<div class="col-xs-12">
-							<h4>{{ ctlPatient.patient.lastname }} {{ ctlPatient.patient.firstname }}</h4>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-xs-12 col-sm-6">
-							Date of birth: {{ ctlPatient.patient.birthdate.date | isodate }}<br/>
-							Sex: {{ ctlPatient.patient.sex }}<br/>
-							Date of initial diagnosis: {{ ctlPatient.patient.diagnosis_date.date | isodate }}<br/>
-							Diagnosis: {{ ctlPatient.patient.diagnosis }}<br/>
-							TODO: Status since 15.08.2014: autologous
-						</div>
-						<div class="col-xs-12 col-sm-6">
-							Patient number: {{ ctlPatient.patient.patient_number }}<br/>
-							UPN-Numer: {{ ctlPatient.patient.upn }}
-						</div>
-						<div class="col-xs-12">
-							<a class="btn btn-default pull-right" href="#/patients/edit/{{ ctlPatient.patient.id }}">Edit patient</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
+			<h4>{{ ctlPatient.patient | patientname }}</h4>
 		</div>
 	</div>
-</div>
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-6">
+			Date of birth: {{ ctlPatient.patient.birthdate.date | isodate }}<br/>
+			Sex: {{ ctlPatient.patient.sex }}<br/>
+			Date of initial diagnosis: {{ ctlPatient.patient.diagnosis_date.date | isodate }}<br/>
+			Diagnosis: {{ ctlPatient.patient.diagnosis }}<br/>
+			TODO: Status since 15.08.2014: autologous
+		</div>
+		<div class="col-xs-12 col-sm-6">
+			Patient number: {{ ctlPatient.patient.patient_number }}<br/>
+			UPN-Numer: {{ ctlPatient.patient.upn }}
+		</div>
+		<div class="col-xs-12">
+			<a class="btn btn-default pull-right" href="#/patients/edit/{{ ctlPatient.patient.id }}">Edit patient</a>
+		</div>
+	</div>
+</panel>
 
 <!-- Assessments / Status Tabs -->
 <div class="container">

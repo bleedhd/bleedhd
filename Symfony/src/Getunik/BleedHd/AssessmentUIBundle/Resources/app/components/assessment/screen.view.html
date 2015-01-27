@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-6">
 			<h4>TODO: Assessment Bleeding WHO</h4>
-			<h5>Patient: {{ ctlScreen.context.patient.lastname }} {{ ctlScreen.context.patient.firstname }}</h5>
+			<h5>Patient: {{ ctlScreen.context.patient | patientname }}</h5>
 			<h5>Date of birth: {{ ctlScreen.context.patient.birthdate.date | isodate }}</h5>
 		</div>
 		<div class="col-xs-12 col-sm-6">

@@ -1,163 +1,106 @@
 
 <top-nav title="Assessment details" nav-url="#/patients/detail/{{ ctlAssessment.patientId }}" nav-label="Cancel and go back to patient details"></top-nav>
 
-<div class="container">
+<panel>
 	<div class="row">
 		<div class="col-xs-12">
+			<h4>TODO: Affentranger Melanie</h4>
+			Date of birth: 04.04.1944
+			{{ ctlAssessment.startDate }}
+		</div>
+	</div>
+</panel>
 
-			<div class="panel panel-default">
-				<div class="panel-body">
+<panel heading="Metadata">
 
-					<div class="row">
-						<div class="col-xs-12">
-							<h4>TODO: Affentranger Melanie</h4>
-							Date of birth: 04.04.1944
-						</div>
-					</div>
+	<form role="form" name="assessmentForm" novalidate>
 
+		<div class="row">
+
+			<div class="col-xs-12 col-sm-6">
+				<div class="form-group">
+					<label for="assessment_start_date">Date of assessment*:</label>
+					<input id="assessment_start_date" class="form-control" type="date" ng-model="ctlAssessment.startDate" ng-change="ctlAssessment.onDateChange()" required />
+				</div>
+				<div class="form-group">
+					<label for="assessment_start_time">Start time*:</label>
+					<input id="assessment_start_time" class="form-control" type="time" ng-model="ctlAssessment.startTime" ng-change="ctlAssessment.onTimeChange()" required />
+				</div>
+				<div class="form-group">
+					<label for="assessment_platelets">Platelets (G/l)*:</label>
+					<input id="assessment_platelets" class="form-control" type="text" ng-model="ctlAssessment.assessment.platelets" />
+				</div>
+
+			</div>
+
+			<div class="col-xs-12 col-sm-6">
+				<div class="form-group">
+					<label for="assessment_remarks">Remarks*:</label>
+					<textarea id="assessment_remarks" class="form-control" cols="30" rows="6" ng-model="ctlAssessment.assessment.remarks"></textarea>
+				</div>
+
+				<div ng-if="!ctlAssessment.isNew">
+					<button class="btn btn-primary" type="button" ng-disabled="assessmentForm.$invalid" ng-click="ctlAssessment.save()">Save</button>
 				</div>
 			</div>
 
 		</div>
-	</div>
-</div>
 
-<div class="container">
+	</form>
+
+	<pre class="debug-output">{{ ctlAssessment.assessment | json }}</pre>
+
+</panel>
+
+<panel ng-if="!ctlAssessment.isNew" heading="Results">
 	<div class="row">
-		<div class="col-xs-12">
 
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Metadata</h3>
-				</div>
-				<div class="panel-body">
-
-					<form role="form" name="assessmentForm" novalidate>
-
-						<div class="row">
-
-							<div class="col-xs-12 col-sm-6">
-								<div class="form-group">
-									<label for="assessment_start_date">Date of assessment*:</label>
-									<input id="assessment_start_date" class="form-control" type="date" ng-model="ctlAssessment.startDate" ng-change="ctlAssessment.onDateChange()" required />
-								</div>
-								<div class="form-group">
-									<label for="assessment_start_time">Start time*:</label>
-									<input id="assessment_start_time" class="form-control" type="time" ng-model="ctlAssessment.startTime" ng-change="ctlAssessment.onTimeChange()" required />
-								</div>
-								<div class="form-group">
-									<label for="assessment_platelets">Platelets (G/l)*:</label>
-									<input id="assessment_platelets" class="form-control" type="text" ng-model="ctlAssessment.assessment.platelets" />
-								</div>
-
-							</div>
-
-							<div class="col-xs-12 col-sm-6">
-								<div class="form-group">
-									<label for="assessment_remarks">Remarks*:</label>
-									<textarea id="assessment_remarks" class="form-control" cols="30" rows="6" ng-model="ctlAssessment.assessment.remarks"></textarea>
-								</div>
-
-								<div ng-if="!ctlAssessment.isNew">
-									<button class="btn btn-primary" type="button" ng-disabled="assessmentForm.$invalid" ng-click="ctlAssessment.save()">Save</button>
-								</div>
-							</div>
-
-						</div>
-
-					</form>
-
-					<pre class="debug-output">{{ ctlAssessment.assessment | json }}</pre>
-
-				</div>
+		<div class="col-xs-12 col-sm-6">
+			<div class="debug-output">
+				<pre>{{ ctlAssessment.assessment.result | json }}</pre>
 			</div>
+		</div>
+
+		<div class="col-xs-12 col-sm-6">
 
 		</div>
-	</div>
-</div>
 
-<div class="container" ng-if="!ctlAssessment.isNew">
+	</div>
+</panel>
+
+<panel ng-if="!ctlAssessment.isNew" heading="Quick Links">
 	<div class="row">
 		<div class="col-xs-12">
-
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Results</h3>
-				</div>
-				<div class="panel-body">
-					<div class="row">
-
-						<div class="col-xs-12 col-sm-6">
-							<div class="debug-output">
-								<pre>{{ ctlAssessment.assessment.result | json }}</pre>
-							</div>
-						</div>
-
-						<div class="col-xs-12 col-sm-6">
-
-						</div>
-
-					</div>
-				</div>
-			</div>
-
+			<button class="btn btn-default">TBD</button>
 		</div>
 	</div>
-</div>
-
-<div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-
-			<div class="panel panel-default" ng-if="ctlAssessment.isNew">
-				<div class="panel-heading">
-					<h3 class="panel-title">Start new assessment</h3>
-				</div>
-				<div class="panel-body">
-
-					<div class="row">
-
-						<div class="col-xs-12 col-sm-6">
-							<h3>Bleeding</h3>
-							<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('demo')">DEMO</a>
-							<a href="" class="btn btn-block btn-default" ng-click="">WHO</a>
-							<a href="" class="btn btn-block btn-default" ng-click="">BSMS</a>
-						</div>
-
-						<div class="col-xs-12 col-sm-6">
-							<h3>GvHD</h3>
-							<a href="" class="btn btn-block btn-default" ng-click="">Features</a>
-							<hr>
-							<a href="" class="btn btn-block btn-default" ng-click="">First diagnosis</a>
-							<a href="" class="btn btn-block btn-default" ng-click="">Current staging</a>
-							<a href="" class="btn btn-block btn-default" ng-click="">Therapy response</a>
-							<hr>
-							<a href="" class="btn btn-block btn-default" ng-click="">Patient self report</a>
-						</div>
-
-					</div>
-
-				</div>
-			</div>
-
-			<div class="panel panel-default" ng-if="!ctlAssessment.isNew">
-				<div class="panel-heading">
-					<h3 class="panel-title">Quick Links</h3>
-				</div>
-				<div class="panel-body">
-					<div class="row">
-						<div class="col-xs-12">
-							<button class="btn btn-default">TBD</button>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-12">
-							<a class="btn btn-default pull-right" ng-href="#/assessment/{{ ctlAssessment.patientId }}/{{ ctlAssessment.assessment.id }}/start">Edit assessment</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
+			<a class="btn btn-default pull-right" ng-href="#/assessment/{{ ctlAssessment.patientId }}/{{ ctlAssessment.assessment.id }}/start">Edit assessment</a>
 		</div>
 	</div>
-</div>
+</panel>
+
+<panel ng-if="ctlAssessment.isNew" heading="Start new assessment">
+	<div class="row">
+
+		<div class="col-xs-12 col-sm-6">
+			<h3>Bleeding</h3>
+			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('demo')">DEMO</a>
+			<a href="" class="btn btn-block btn-default" ng-click="">WHO</a>
+			<a href="" class="btn btn-block btn-default" ng-click="">BSMS</a>
+		</div>
+
+		<div class="col-xs-12 col-sm-6">
+			<h3>GvHD</h3>
+			<a href="" class="btn btn-block btn-default" ng-click="">Features</a>
+			<hr>
+			<a href="" class="btn btn-block btn-default" ng-click="">First diagnosis</a>
+			<a href="" class="btn btn-block btn-default" ng-click="">Current staging</a>
+			<a href="" class="btn btn-block btn-default" ng-click="">Therapy response</a>
+			<hr>
+			<a href="" class="btn btn-block btn-default" ng-click="">Patient self report</a>
+		</div>
+
+	</div>
+</panel>
