@@ -8,6 +8,9 @@
 		this.$scope = $scope;
 		this.$location = $location;
 
+		this.startDate = new Date(this.assessment.start_date.date);
+		this.startTime = new Date(this.assessment.start_date.date);
+
 		this.isNew = (this.assessment.id === undefined);
 
 		// $scope.patient_number = parseInt(patient.patient_number);
@@ -38,6 +41,12 @@
 						ctl.$location.path(['/assessment', ctl.patientId, assessment.id, 'start'].join('/'));
 					});
 				}
+			},
+			onDateChange: function () {
+				this.assessment.start_date.setDate(this.startDate);
+			},
+			onTimeChange: function () {
+				this.assessment.start_date.setTime(this.startTime);
 			},
 		},
 		{

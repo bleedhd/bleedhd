@@ -1,9 +1,10 @@
 
 (function (angular, bleedHd) {
 
-	function PatientDataService($q, BleedApi) {
+	function PatientDataService($q, BleedApi, DateHelper) {
 		this.$q = $q;
 		this.BleedApi = BleedApi;
+		this.DateHelper = DateHelper;
 		this.patients = BleedApi.all('patients');
 	}
 
@@ -33,6 +34,7 @@
 		newPatient: function () {
 			return {
 				is_active: true,
+				birthdate: this.DateHelper.fromDate(undefined, false),
 			};
 		},
 		savePatient: function (patient) {
@@ -45,7 +47,7 @@
 		newStatus: function (patient) {
 			return {
 				patient_id: patient.id,
-				transplant_date: new Date(),
+				transplant_date: this.DateHelper.fromDate(new Date(), false),
 			};
 		},
 		saveStatus: function (status) {

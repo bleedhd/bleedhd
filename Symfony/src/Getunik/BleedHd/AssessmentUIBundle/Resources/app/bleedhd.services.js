@@ -61,6 +61,65 @@
 		},
 	});
 
+
+	function DateHelper(dateFilter, date, match) {
+		this.dateFilter = dateFilter;
+		if (date === undefined || angular.isDate(date)) {
+			this.date = date;
+			this.isDateTime = true;
+		} else {
+			this.date = new Date(Date.parse(date));
+			this.isDateTime = !!match[1];
+		}
+	}
+
+	angular.extend(DateHelper.prototype, {
+		toJSON: function () {
+			if (!angular.isDate(this.date))
+			{
+				return this.date;
+			}
+			return this.isDateTime ? this.dateFilter(this.date, 'yyyy-MM-ddTHH:mm:ss.sssZ') : this.dateFilter(this.date, 'yyyy-MM-dd');
+		},
+		toString: function () {
+			return (this.isDateTime ? 'DateTime(' : 'Date(') + this.toJSON() + ')';
+		},
+		setTime: function (time) {
+			if (time !== undefined && time !== null) {
+				this.date.setHours(time.getHours());
+				this.date.setMinutes(time.getMinutes());
+				this.date.setSeconds(time.getSeconds());
+				this.date.setMilliseconds(time.getMilliseconds());
+			}
+		},
+		setDate: function (date) {
+			if (time !== undefined && time !== null) {
+				this.date.setYear(date.getFullYear());
+				this.date.setMonth(date.getMonth());
+				this.date.setDate(date.getDate());
+			}
+		},
+	});
+
+	function DateHelperService($filter) {
+		this.dateFilter = $filter('date');
+	}
+
+	angular.extend(DateHelperService.prototype, {
+		iso8601RegEx: /^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?([+-]\d{4}|Z))?$/,
+		fromString: function (str) {
+			if (typeof(str) === 'string' && (match = str.match(this.iso8601RegEx))) {
+				return new DateHelper(this.dateFilter, str, match);
+			}
+		},
+		fromDate: function (date, isDateTime) {
+			var helper = new DateHelper(this.dateFilter, date);
+			helper.isDateTime = isDateTime;
+			return helper;
+		}
+	});
+
+
 	angular.module('bleedHdApp')
 
 		/**
@@ -71,14 +130,14 @@
 		 */
 		.service('AuthHandler', AuthHandler)
 
+		.service('DateHelper', DateHelperService)
+
 		/**
 		 * The JSON date interceptor is an HTTP interceptor implementation that transforms properties
 		 * with values that match an ISO-8601 date-time into a JavaScript Date object. It is added to
 		 * the default HTTP interceptors by this module's basic configuration.
 		 */
-		.factory('JsonDateInterceptor', function() {
-			var iso8601RegEx = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?([+-]\d{4}|Z)$/;
-
+		.factory('JsonDateInterceptor', function(DateHelper) {
 			function recursiveProcess (data, processor) {
 				angular.forEach(data, function(value, key, parent) {
 					if (typeof(value) === 'object') {
@@ -94,8 +153,10 @@
 			}
 
 			function transformDateString(key, value) {
-				if (typeof(value) === 'string' && value.match(iso8601RegEx)) {
-					return new Date(Date.parse(value));
+				var date = DateHelper.fromString(value);
+
+				if (date !== undefined) {
+					return date;
 				}
 			}
 

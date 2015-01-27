@@ -1,9 +1,10 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentDataService($q, BleedApi) {
+	function AssessmentDataService($q, BleedApi, DateHelper) {
 		this.$q = $q;
 		this.BleedApi = BleedApi;
+		this.DateHelper = DateHelper;
 	}
 
 	angular.extend(AssessmentDataService.prototype, {
@@ -13,8 +14,7 @@
 		newAssessment: function (patientId) {
 			return {
 				patient_id: patientId,
-				start_date: new Date(),
-				start_time: new Date(),
+				start_date: this.DateHelper.fromDate(new Date(), true),
 			};
 		},
 		saveAssessment: function (assessment) {
