@@ -25,12 +25,12 @@
 				<div class="bleed-answers-group" ng-repeat="question in containerCtl.question.questions">
 					<h4 ng-bind-html="question.intro.question"></h4>
 					<question definition="question" data="containerCtl.response[question.slug.full].result.data" ></question>
-					<pre>{{ containerCtl.response[question.slug.full].result|json }}</pre>
+					<pre class="debug-output">{{ containerCtl.response[question.slug.full].result|json }}</pre>
 				</div>
 			</div>
 			<div ng-switch-default class="bleed-answers">
 				<question definition="containerCtl.question" data="containerCtl.result.data" ></question>
-				<pre>{{ containerCtl.result|json }}</pre>
+				<pre class="debug-output">{{ containerCtl.result|json }}</pre>
 			</div>
 		</div>
 	</div>
@@ -40,7 +40,7 @@
 			<label ng-repeat="metaAnswer in containerCtl.question.meta_answers"><input type="radio" ng-model="binding.meta" ng-change="containerCtl.onMetaChange()" value="{{ metaAnswer }}">{{ metaAnswer }}</label>
 		</div>
 		<div class="pull-right">
-			TODO X/Y
+			TODO: X/Y
 		</div>
 	</div>
 

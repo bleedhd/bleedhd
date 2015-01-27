@@ -1,9 +1,9 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentContext($q, patientData, AssessmentData, QuestionnaireData) {
+	function AssessmentContext($q, PatientData, AssessmentData, QuestionnaireData) {
 		this.$q = $q;
-		this.PatientData = patientData;
+		this.PatientData = PatientData;
 		this.AssessmentData = AssessmentData;
 		this.QuestionnaireData = QuestionnaireData;
 		this.assessment = null;

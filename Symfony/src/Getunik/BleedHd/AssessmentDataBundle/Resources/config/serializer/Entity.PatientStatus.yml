@@ -12,6 +12,7 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\PatientStatus:
             since_version: 1.0
         transplantDate:
             since_version: 1.0
+            type: DateTime<'Y-m-d'>
         transplantType:
             since_version: 1.0
         transplantSource:

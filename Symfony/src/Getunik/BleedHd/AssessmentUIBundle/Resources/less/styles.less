@@ -1,6 +1,9 @@
 // import getunik mixins
 @import url('../getunikpreprocessormixins/_getunik_mixins.less');
 
+// webfonts
+@import url('_webfonts.less');
+
 // import bootstrap.less
 @import url('_bootstrap.less');
 
@@ -10,6 +13,22 @@
 
 
 
+// bootstrap elements tweaks here....
+.nav-tabs {
+	margin-bottom: 20px;
+}
+.radio {
+	label + label {
+		margin-left: 30px;
+	}
+}
+
+.radio,
+.checkbox {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
 
 // custom overrides here.....
 .bleed-header {
@@ -18,6 +37,15 @@
 	.btn {
 		margin-top: 10px;
 	}
+}
+
+.bleed-logo {
+	display: inline-block;
+	margin-top: 10px;
+}
+
+.bleed-btn-logout {
+	margin-top: 13px;
 }
 
 .bleed-answers {
@@ -46,6 +74,10 @@
 	.border-right-radius(@border-radius-base);
 	.border-bottom-radius(@border-radius-base);
 	.border-left-radius(@border-radius-base);
+
+	label + label {
+		margin-left: 30px;
+	}
 }
 
 .bleed-sub-answer {
@@ -57,12 +89,19 @@
 }
 
 .bleed-annotations {
-	font-size: 12px;
+	margin-top: 20px;
+	font-size: 16px;
 }
 
+.bleed-filter {
 
-.nav-tabs {
-	margin-bottom: 20px;
+	.checkbox {
+		margin-right: 30px;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
 }
 
 .environment-indicator {
@@ -75,4 +114,9 @@
 		top: 3px;
 		right: 3px;
 	}
+}
+
+.debug-output {
+	margin: 1em 0;
+	background-color: #FFFF94;
 }

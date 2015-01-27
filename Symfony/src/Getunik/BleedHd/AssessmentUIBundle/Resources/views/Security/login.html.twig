@@ -2,31 +2,53 @@
 
 {% trans_default_domain 'AssessmentUIBundle' %}
 
+{% block logo %}{% endblock logo %}
 {% block content %}
-{% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
+<div class="row-fluid">
 
-<form action="{{ path("fos_user_security_check") }}" method="post">
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+  <div class="col-sm-3 col-md-4"></div>
+  <div class="col-sm-6 col-md-4">
 
-    <div>
-        <label for="username">{{ 'security.login.username'|trans }}</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
-    </div>
 
-    <div>
-        <label for="password">{{ 'security.login.password'|trans }}</label>
-        <input type="password" id="password" name="_password" required="required" />
-    </div>
 
-    <div>
-        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-    </div>
+	<div class="panel panel-default bleed-panel-login">
 
-    <div>
-        <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-    </div>
-</form>
+		<div class="panel-body">
+
+			<img class="bleed-logo-login" src="{{ asset('bundles/getunikbleedhdassessmentui/images/logo.png') }}" width="220" alt="">
+
+			<form action="{{ path("fos_user_security_check") }}" method="post">
+
+				<div class="form-group"><!-- // TODO: add .has-error for error state! -->
+					<div class="controls">
+						<input id="username" class="form-control" name="_username" type="text" placeholder="{{ 'security.login.username'|trans }}" value="{{ last_username }}" required="required" />
+					</div>
+				</div>
+				<div class="form-group"><!-- // TODO: add .has-error for error state! -->
+					<div class="controls">
+						<input id="password" class="form-control" type="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" required="required" />
+					</div>
+				</div>
+
+
+				{% if error %}
+				<div class="form-group bleed-login-error">
+					<div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				</div>
+				{% endif %}
+
+				<input type="submit" id="_submit" class="btn btn-large btn-default btn-block" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+
+			</form>
+
+		</div><!-- /.panel-body -->
+		<div class="panel-footer bleed-panel-login-footer clearfix">
+			<a href="" class="pull-left" data-toggle="modal" data-target="#modal_about">TODO: about</a>
+			<span class="pull-right">TODO: v-1.0.0</span>
+		</div>
+
+	</div><!-- /.panel -->
+
+  </div><!-- /.col-sm-4 -->
+</div><!-- /.row-fluid -->
 {% endblock content %}

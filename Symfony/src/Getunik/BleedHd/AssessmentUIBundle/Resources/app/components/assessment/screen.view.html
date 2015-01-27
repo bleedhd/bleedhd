@@ -1,21 +1,40 @@
-<div>
 
-	<div>
-		<h1>Question Screen</h1>
+<div class="container bleed-header">
+	<div class="row">
+		<div class="col-xs-12 col-sm-6">
+			<h4>TODO: Assessment Bleeding WHO</h4>
+			<h5>Patient: {{ ctlScreen.context.patient | patientname }}</h5>
+			<h5>Date of birth: {{ ctlScreen.context.patient.birthdate.date | isodate }}</h5>
+		</div>
+		<div class="col-xs-12 col-sm-6">
+			<button class="btn btn-default pull-right" ng-click="ctlScreen.goOverview()">Save and return to assessment details</a>
+		</div>
 	</div>
+</div>
 
-	<div>
-		<div>TODO: header stuff</div>
-		<button type="button" ng-click="ctlScreen.goOverview()">Save and return to assessment details</button>
+<!-- question -->
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+
+			<container ng-repeat="question in ctlScreen.screen.questions" data="question" response="ctlScreen.context.getResponseForQuestion(question.slug)"></container>
+
+		</div>
 	</div>
+</div>
 
-	<div ng-repeat="question in ctlScreen.screen.questions">
-		<container data="question" response="ctlScreen.context.getResponseForQuestion(question.slug)"></container>
+<!-- question navigation -->
+<div class="container">
+	<div class="row bleed-question-navigation">
+		<div class="col-sm-12 col-sm-4">
+			<button class="pull-left btn btn-default bleed-prev" type="button" ng-if="ctlScreen.screen.index > 0" ng-click="ctlScreen.goPrev()">Save and previous question</button>
+		</div>
+		<div class="col-sm-12 col-sm-4 text-center">
+<!--			<a href="" class="btn btn-default">Save and finish assessement</a> -->
+		</div>
+		<div class="col-sm-12 col-sm-4">
+			<button class="pull-right btn btn-default bleed-next" type="button" ng-if="ctlScreen.screen.index < ctlScreen.context.questionnaire.getScreenCount() - 1" ng-click="ctlScreen.goNext()">Save and next question</button>
+<!--			<a href="" class="pull-right btn btn-default bleed-next">Save and finish assessement</a> -->
+		</div>
 	</div>
-
-	<div>
-		<button type="button" ng-if="ctlScreen.screen.index > 0" ng-click="ctlScreen.goPrev()">Save and previous question</button><br />
-		<button type="button" ng-if="ctlScreen.screen.index < ctlScreen.context.questionnaire.getScreenCount() - 1" ng-click="ctlScreen.goNext()">Save and next question</button>
-	</div>
-
 </div>

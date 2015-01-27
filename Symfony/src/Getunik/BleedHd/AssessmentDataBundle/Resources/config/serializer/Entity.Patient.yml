@@ -16,6 +16,7 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Patient:
             since_version: 1.0
         birthdate:
             since_version: 1.0
+            type: DateTime<'Y-m-d'>
         sex:
             since_version: 1.0
         patientNumber:
@@ -26,5 +27,6 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Patient:
             since_version: 1.0
         diagnosisDate:
             since_version: 1.0
+            type: DateTime<'Y-m-d'>
         remarks:
             since_version: 1.0

@@ -1,49 +1,73 @@
-<div>
-	<h1>Patient status details</h1>
-</div>
-<div>
-	<div>
-		{{ ctlStatus.patient | json }}
+
+<top-nav title="Patient status details"></top-nav>
+
+<panel>
+	<div class="row">
+		<div class="col-xs-12">
+			<h4>{{ ctlStatus.patient | patientname }}</h4>
+			Date of birth: {{ ctlStatus.patient.birthdate.date | isodate }}
+		</div>
 	</div>
-</div>
-<div>
-	<br /> <br />
-	<form name="statusForm" novalidate>
-		<div>
-			<label for="status_transplant_date">Date:</label>
-			<input id="status_transplant_date" type="date" ng-model="ctlStatus.status.transplant_date" ng-model-options="{ timezone: 'UTC' }" />
-		</div>
-		<div>
-			<label for="status_transplant_type">Transplant Type:</label>
-			<select id="status_transplant_type" ng-model="ctlStatus.status.transplant_type">
-				<option value="">not specified</option>
-				<option value="autologous">autologous</option>
-				<option value="allogenic">allogenic</option>
-				<option value="DLI">DLI</option>
-				<option value="other">other</option>
-			</select>
-		</div>
-		<div ng-show="ctlStatus.status.transplant_type == 'allogenic'">
-			<label for="status_transplant_source">Source:</label>
-			<select id="status_transplant_source" ng-model="ctlStatus.status.transplant_source">
-				<option value="">not specified</option>
-				<option value="Cord">Cord</option>
-				<option value="BM">BM</option>
-				<option value="PBSC">PBSC</option>
-			</select>
-		</div>
-		<div ng-show="ctlStatus.status.transplant_type == 'other'">
-			<label for="status_transplant_custom">Specify:</label>
-			<input id="status_transplant_custom" ng-model="ctlStatus.status.transplant_custom" />
+</panel>
+
+<panel>
+
+	<form role="form" name="statusForm" novalidate>
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-6">
+
+				<div class="form-group">
+					<label for="status_transplant_date">Date:</label>
+					<input id="status_transplant_date" class="form-control" type="date" ng-model="ctlStatus.status.transplant_date.date" />
+				</div>
+
+				<div class="form-group">
+					<label for="status_transplant_type">Intervention:</label>
+					<select id="status_transplant_type" class="form-control" ng-model="ctlStatus.status.transplant_type">
+						<option value="">not specified</option>
+						<option value="autologous">autologous</option>
+						<option value="allogenic">allogenic</option>
+						<option value="DLI">DLI</option>
+						<option value="other">other</option>
+					</select>
+				</div>
+
+				<div class="form-group" ng-show="ctlStatus.status.transplant_type == 'allogenic'">
+					<label for="status_transplant_source">Source:</label>
+					<select id="status_transplant_source" class="form-control" ng-model="ctlStatus.status.transplant_source">
+						<option value="">not specified</option>
+						<option value="Cord">Cord</option>
+						<option value="BM">BM</option>
+						<option value="PBSC">PBSC</option>
+					</select>
+				</div>
+
+				<div class="form-group" ng-show="ctlStatus.status.transplant_type == 'other'">
+					<label for="status_transplant_custom">Specify:</label>
+					<input id="status_transplant_custom" class="form-control" ng-model="ctlStatus.status.transplant_custom" />
+				</div>
+
+			</div>
+
+			<div class="col-xs-12 col-sm-6">
+
+			</div>
+
 		</div>
 
-		<div>
-			<a href="#/patients/detail/{{ ctlStatus.patient.id }}">Cancel</a>
-			<button type="button" ng-disabled="statusForm.$invalid" ng-click="ctlStatus.save()">Save</a>
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-sm-offset-6">
+				<a class="btn btn-default" href="#/patients/detail/{{ ctlStatus.patient.id }}">Cancel</a>
+				<button class="btn btn-primary" type="button" ng-disabled="statusForm.$invalid" ng-click="ctlStatus.save()">Save</button>
+			</div>
 		</div>
+
 	</form>
-</div>
-<div>
-	<br /> <br />
-	{{ ctlStatus.status | json }}
-</div>
+
+	<div ng-if="env.debug" class="debug-output">
+		<br /> <br />
+		{{ ctlStatus.status | json }}
+	</div>
+
+</panel>

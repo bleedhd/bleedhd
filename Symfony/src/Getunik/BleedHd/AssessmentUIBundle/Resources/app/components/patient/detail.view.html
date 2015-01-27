@@ -1,61 +1,176 @@
-<div>
-	<h1>Patient details</h1>
-</div>
-<div>
-	<code>
-		{{ ctlPatient.patient | json }}
-	</code>
-	<div>
-		<a href="#/patients/edit/{{ ctlPatient.patient.id }}">Edit patient</a>
+
+<!-- Header -->
+<top-nav title="Patient details" nav-url="#/patients" nav-label="Back to patient overview"></top-nav>
+
+<!-- Patient Details -->
+<panel>
+	<div class="row">
+		<div class="col-xs-12">
+			<h4>{{ ctlPatient.patient | patientname }}</h4>
+		</div>
 	</div>
-</div>
-<div>
-	<div>
-		<h2>Assessment overview</h2>
-		<a href="#/patients/{{ ctlPatient.patient.id }}/assessment/new">New Assessment</a>
-		<table>
-			<thead>
-				<tr>
-					<th>Date</th>
-					<th>Type</th>
-					<th>Unanswered</th>
-					<th>PLT</th>
-					<th>Result</th>
-					<th>&nbsp;</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="assessment in ctlPatient.patient.assessments | orderBy:'start_date':true">
-					<td>{{ assessment.start_date | date }}</td>
-					<td>{{ assessment.questionnaire }}</td>
-					<td>TODO</td>
-					<td>{{ assessment.platelets }}</td>
-					<td>{{ assessment.result | json }}</td>
-					<td><a href="#/patients/{{ ctlPatient.patient.id }}/assessment/edit/{{ assessment.id }}">Details</a></td>
-				</tr>
-			</tbody>
-		</table>
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-6">
+			Date of birth: {{ ctlPatient.patient.birthdate.date | isodate }}<br/>
+			Sex: {{ ctlPatient.patient.sex }}<br/>
+			Date of initial diagnosis: {{ ctlPatient.patient.diagnosis_date.date | isodate }}<br/>
+			Diagnosis: {{ ctlPatient.patient.diagnosis }}<br/>
+			TODO: Status since 15.08.2014: autologous
+		</div>
+		<div class="col-xs-12 col-sm-6">
+			Patient number: {{ ctlPatient.patient.patient_number }}<br/>
+			UPN-Numer: {{ ctlPatient.patient.upn }}
+		</div>
+		<div class="col-xs-12">
+			<a class="btn btn-default pull-right" href="#/patients/edit/{{ ctlPatient.patient.id }}">Edit patient</a>
+		</div>
 	</div>
-	<div>
-		<h2>Status overview</h2>
-		<a href="#/patients/{{ ctlPatient.patient.id }}/status/new">New Status</a>
-		<table>
-			<thead>
-				<tr>
-					<th>Date</th>
-					<th>Transplant</th>
-					<th>Source</th>
-					<th>&nbsp;</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="status in ctlPatient.patient.statuses | orderBy:'transplant_date':true" data-id="{{ status.id }}">
-					<td>{{ status.transplant_date | date }}</td>
-					<td>{{ status.transplant_type }}</td>
-					<td>{{ status.transplant_source || status.transplant_custom }}</td>
-					<td><a href="#/patients/{{ ctlPatient.patient.id }}/status/edit/{{ status.id }}">Details</a></td>
-				</tr>
-			</tbody>
-		</table>
+</panel>
+
+<!-- Assessments / Status Tabs -->
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+
+<!--
+			<ul id="tab_patient_details" class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active">
+					<a href="#assessments" id="tab_assessments" role="tab" data-toggle="tab" aria-controls="assessments" aria-expanded="true">Assessments</a>
+				</li>
+				<li role="presentation">
+					<a href="#status" role="tab" id="tab_status" data-toggle="tab" aria-controls="status">Status</a>
+				</li>
+			</ul>
+-->
+
+			<tabset>
+				<tab heading="Assessments">
+
+					<div class="row">
+						<div class="col-xs-12 clearfix">
+
+							<h3 class="pull-left">Assessment overview</h3>
+
+							<a class="btn btn-default pull-right" href="#/patients/{{ ctlPatient.patient.id }}/assessment/new">
+								New Assessment
+							</a>
+
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12">
+
+							<div class="well bleed-filter">
+								<form class="form form-inline clearfix" role="search">
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" checked="checked"> TODO Show WHO
+										</label>
+									</div>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" checked="checked"> TODO Show BSMS
+										</label>
+									</div>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" checked="checked"> TODO Show GvHD
+										</label>
+									</div>
+									<button class="btn btn-default pull-right">Show all</button>
+								</form>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12">
+
+							<div class="panel panel-default">
+								<div class="panel-body">
+
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Date</th>
+												<th>Type</th>
+												<th>PLT</th>
+												<th>Result</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="assessment in ctlPatient.patient.assessments | orderBy:'start_date.date':true">
+												<td>{{ assessment.start_date.date | isodate }}</td>
+												<td>{{ assessment.questionnaire }}</td>
+												<td>{{ assessment.platelets }}</td>
+												<td>{{ assessment.result | json }}</td>
+												<td align="right"><a class="btn btn-default btn-xs" href="#/patients/{{ ctlPatient.patient.id }}/assessment/edit/{{ assessment.id }}">Details</a></td>
+											</tr>
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</tab>
+
+				<tab heading="Status">
+
+					<div class="row">
+						<div class="col-xs-12 clearfix">
+
+							<h3 class="pull-left">Status overview</h3>
+
+							<a class="btn btn-default pull-right" href="#/patients/{{ ctlPatient.patient.id }}/status/new">
+								New Status
+							</a>
+
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12">
+
+							<div class="panel panel-default">
+								<div class="panel-body">
+
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Date</th>
+												<th>Intervention</th>
+												<th>Source</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="status in ctlPatient.patient.statuses | orderBy:'transplant_date':true" data-id="{{ status.id }}">
+												<td>{{ status.transplant_date.date | isodate }}</td>
+												<td>{{ status.transplant_type }}</td>
+												<td>{{ status.transplant_source || status.transplant_custom }}</td>
+												<td><a class="btn btn-default btn-xs" href="#/patients/{{ ctlPatient.patient.id }}/status/edit/{{ status.id }}">Details</a></td>
+											</tr>
+										</tbody>
+									</table>
+
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+
+				</tab>
+
+			</tabset>
+
+		</div>
 	</div>
 </div>

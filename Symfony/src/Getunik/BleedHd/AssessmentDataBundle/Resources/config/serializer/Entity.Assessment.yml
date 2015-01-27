@@ -14,8 +14,6 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
             since_version: 1.0
         startDate:
             since_version: 1.0
-        startTime:
-            since_version: 1.0
         platelets:
             since_version: 1.0
         remarks:

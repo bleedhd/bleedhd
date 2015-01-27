@@ -78,7 +78,7 @@
 			},
 		},
 		format: {
-			birthdate: 'dd.MM.yyyy',
+			isodate: 'yyyy-MM-dd',
 			yesno: ['yes', 'no'],
 		},
 	})
@@ -99,6 +99,12 @@
 			};
 
 			return $delegate;
+		});
+	})
+
+	.run(function ($rootScope) {
+		$rootScope.env = angular.extend({}, window.env, {
+			debug: location.search.match(/debug=true(&|$)/) !== null,
 		});
 	})
 
