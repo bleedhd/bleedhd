@@ -5,6 +5,7 @@
 		'bleedHdApp',
 		'typeRegistry',
 		'patient',
+		'common',
 	])
 
 	;
