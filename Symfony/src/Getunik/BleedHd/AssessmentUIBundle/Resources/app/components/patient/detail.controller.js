@@ -1,8 +1,8 @@
 
 (function (angular, bleedHd) {
 
-	function PatientDetailController($scope, patientData, patient) {
-		this.patientData = patientData;
+	function PatientDetailController($scope, PatientData, patient) {
+		this.PatientData = PatientData;
 		this.patient = patient;
 	}
 
@@ -12,7 +12,7 @@
 			asName: 'ctlPatient',
 			templateUrl: bleedHd.getView('patient', 'detail'),
 			resolve: {
-				patient: function ($route, patientData) { return patientData.getPatient($route.current.params.patientId); },
+				patient: function ($route, PatientData) { return PatientData.getPatient($route.current.params.patientId); },
 			},
 		}
 	);

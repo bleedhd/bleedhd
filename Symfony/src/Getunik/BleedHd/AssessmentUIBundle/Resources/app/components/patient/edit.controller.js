@@ -1,8 +1,8 @@
 
 (function (angular, bleedHd) {
 
-	function PatientEditController($scope, $location, patientData, patient) {
-		this.patientData = patientData;
+	function PatientEditController($scope, $location, PatientData, patient) {
+		this.PatientData = PatientData;
 		this.patient = patient;
 		this.$scope = $scope;
 		this.$location = $location;
@@ -27,7 +27,7 @@
 			save: function () {
 				var ctl = this;
 				if (ctl.$scope.patientForm.$valid) {
-					ctl.patientData.savePatient(ctl.patient).then(function () {
+					ctl.PatientData.savePatient(ctl.patient).then(function () {
 						ctl.$location.path('/patients');
 					});
 				}
@@ -37,11 +37,11 @@
 			asName: 'ctlPatient',
 			templateUrl: bleedHd.getView('patient', 'edit'),
 			resolve: {
-				patient: function($route, patientData) {
+				patient: function($route, PatientData) {
 					if ($route.current.params.patientId === undefined) {
-						return patientData.newPatient();
+						return PatientData.newPatient();
 					} else {
-						return patientData.getPatient($route.current.params.patientId);
+						return PatientData.getPatient($route.current.params.patientId);
 					}
 				}
 			},

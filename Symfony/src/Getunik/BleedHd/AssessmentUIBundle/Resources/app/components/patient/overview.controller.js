@@ -71,7 +71,7 @@
 			asName: 'ctlPatients',
 			templateUrl: bleedHd.getView('patient', 'overview'),
 			resolve: {
-				patients: function (patientData) { return patientData.getPatients(); },
+				patients: function (PatientData) { return PatientData.getPatients(); },
 			},
 		}
 	);

@@ -60,6 +60,6 @@
 	});
 
 	angular.module('patient')
-		.service('patientData', PatientDataService);
+		.service('PatientData', PatientDataService);
 
 })(angular, bleedHd);
