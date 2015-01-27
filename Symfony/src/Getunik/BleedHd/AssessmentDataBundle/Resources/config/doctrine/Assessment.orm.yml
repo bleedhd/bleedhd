@@ -22,10 +22,7 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
             length: 255
             nullable: false
         startDate:
-            type: date
-            nullable: true
-        startTime:
-            type: time
+            type: datetimetz
             nullable: true
         platelets:
             type: float

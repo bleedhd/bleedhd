@@ -45,8 +45,7 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Patient:
             length: 255
             nullable: true
         diagnosisDate:
-            type: datetimetz
-            length: 255
+            type: date
             nullable: true
         remarks:
             type: text
