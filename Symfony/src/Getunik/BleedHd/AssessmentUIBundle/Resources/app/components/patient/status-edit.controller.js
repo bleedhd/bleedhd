@@ -35,7 +35,7 @@
 		{
 			save: function () {
 				var ctl = this;
-				if (ctl.$scope.statusForm.$valid) {
+				if (ctl.statusForm.$valid) {
 					ctl.PatientData.saveStatus(ctl.status).then(function () {
 						ctl.$location.path('/patients/detail/' + ctl.patient.id);
 					});

@@ -3,7 +3,7 @@
 
 <panel>
 
-	<form role="form" name="patientForm" novalidate>
+	<form role="form" name="ctlPatient.patientForm" novalidate>
 
 		<div class="row">
 
@@ -81,7 +81,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<a class="btn btn-default" href="#/patients">Cancel</a>
-				<button class="btn btn-default" type="button" ng-disabled="patientForm.$invalid" ng-click="ctlPatient.save()">Save</button>
+				<button class="btn btn-default" type="button" ng-disabled="ctlPatient.patientForm.$invalid" ng-click="ctlPatient.save()">Save</button>
 			</div>
 		</div>
 
@@ -96,6 +96,6 @@
 is active: {{ ctlPatient.patient.is_active | boolyesno }}
 	</pre>
 
-	<pre ng-if="env.debug" class="debug-output">{{ patientForm | json }}</pre>
+	<pre ng-if="env.debug" class="debug-output">{{ ctlPatient.patientForm | json }}</pre>
 
 </panel>

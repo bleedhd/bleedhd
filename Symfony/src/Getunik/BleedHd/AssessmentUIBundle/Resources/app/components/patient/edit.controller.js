@@ -26,7 +26,7 @@
 		{
 			save: function () {
 				var ctl = this;
-				if (ctl.$scope.patientForm.$valid) {
+				if (ctl.patientForm.$valid) {
 					ctl.PatientData.savePatient(ctl.patient).then(function () {
 						ctl.$location.path('/patients');
 					});

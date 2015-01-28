@@ -12,7 +12,7 @@
 
 <panel heading="Metadata">
 
-	<form role="form" name="assessmentForm" novalidate>
+	<form role="form" name="ctlAssessment.assessmentForm" novalidate>
 
 		<div class="row">
 
@@ -39,7 +39,7 @@
 				</div>
 
 				<div ng-if="!ctlAssessment.isNew">
-					<button class="btn btn-primary" type="button" ng-disabled="assessmentForm.$invalid" ng-click="ctlAssessment.save()">Save</button>
+					<button class="btn btn-primary" type="button" ng-disabled="ctlAssessment.assessmentForm.$invalid" ng-click="ctlAssessment.save()">Save</button>
 				</div>
 			</div>
 
