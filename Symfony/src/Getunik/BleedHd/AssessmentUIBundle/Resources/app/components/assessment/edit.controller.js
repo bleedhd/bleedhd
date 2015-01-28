@@ -27,7 +27,7 @@
 		{
 			save: function () {
 				var ctl = this;
-				if (ctl.$scope.assessmentForm.$valid) {
+				if (ctl.assessmentForm.$valid) {
 					ctl.AssessmentData.saveAssessment(ctl.assessment).then(function () {
 						ctl.$location.path('/patients/detail/' + ctl.patient.id);
 					});
@@ -35,7 +35,7 @@
 			},
 			createAndStart: function (questionnaire) {
 				var ctl = this;
-				if (ctl.$scope.assessmentForm.$valid) {
+				if (ctl.assessmentForm.$valid) {
 					ctl.assessment.questionnaire = questionnaire;
 					ctl.AssessmentData.saveAssessment(ctl.assessment).then(function (assessment) {
 						ctl.$location.path(['/assessment', ctl.patient.id, assessment.id, 'start'].join('/'));

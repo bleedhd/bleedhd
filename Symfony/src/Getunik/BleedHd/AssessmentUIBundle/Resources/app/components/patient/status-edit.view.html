@@ -12,7 +12,7 @@
 
 <panel>
 
-	<form role="form" name="statusForm" novalidate>
+	<form role="form" name="ctlStatus.statusForm" novalidate>
 
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
@@ -59,7 +59,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-sm-offset-6">
 				<a class="btn btn-default" href="#/patients/detail/{{ ctlStatus.patient.id }}">Cancel</a>
-				<button class="btn btn-primary" type="button" ng-disabled="statusForm.$invalid" ng-click="ctlStatus.save()">Save</button>
+				<button class="btn btn-primary" type="button" ng-disabled="ctlStatus.statusForm.$invalid" ng-click="ctlStatus.save()">Save</button>
 			</div>
 		</div>
 
