@@ -13,13 +13,14 @@
 			return this.patients.getList();
 		},
 		getPatient: function (patientId) {
-			var patient = this.$q.defer();
+			var patient = this.$q.defer(),
+				p = this.BleedApi.one('patients', patientId);
 
 			this.$q
 				.all({
-					patient: this.patients.get(patientId),
-					statuses: this.BleedApi.one('patients', patientId).getList('statuses'),
-					assessments: this.BleedApi.one('patients', patientId).getList('assessments'),
+					patient: p.get(),
+					statuses: p.getList('statuses'),
+					assessments: p.getList('assessments'),
 				})
 				.then(function (promises) {
 					promises.patient.statuses = promises.statuses;
@@ -60,6 +61,24 @@
 	});
 
 	angular.module('patient')
-		.service('PatientData', PatientDataService);
+
+		.service('RawPatientData', PatientDataService)
+
+		.service('PatientData', function (CachingWrapper, RawPatientData) {
+			return CachingWrapper(RawPatientData, [
+				{
+					func: 'getPatients',
+					key: function (args) { return 'patients'; },
+					lifetime: 10,
+				},
+				{
+					func: 'getPatient',
+					key: function (args) { return 'patient-' + args[0]; },
+					lifetime: 30,
+				}
+			]);
+		})
+
+	;
 
 })(angular, bleedHd);
