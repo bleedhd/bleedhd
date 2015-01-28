@@ -14,7 +14,7 @@
 		execute: function () {
 			var that = this,
 				args = Array.prototype.slice.call(arguments),
-				key = that.key.call(that.target, args),
+				key = that.key.apply(that.target, args),
 				cacheEntry = that.cache.get(key),
 				now = new Date(),
 				result;
@@ -58,8 +58,8 @@
 		execute: function () {
 			var that = this,
 				args = Array.prototype.slice.call(arguments),
-				key = that.key.call(that.target, args),
-				val = that.value.call(that.target, args),
+				key = that.key.apply(that.target, args),
+				val = that.value.apply(that.target, args),
 				cacheEntry = that.cache.get(key),
 				now = new Date(),
 				result;
@@ -90,8 +90,8 @@
 
 			return result;
 		},
-		defaultValue: function (args) {
-			return args[0];
+		defaultValue: function (arg) {
+			return arg;
 		},
 	});
 
