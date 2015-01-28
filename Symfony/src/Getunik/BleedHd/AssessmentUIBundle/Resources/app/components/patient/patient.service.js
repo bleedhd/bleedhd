@@ -69,13 +69,19 @@
 				{
 					func: 'getPatients',
 					key: function (args) { return 'patients'; },
-					lifetime: 10,
+					lifetime: 60,
 				},
 				{
 					func: 'getPatient',
 					key: function (args) { return 'patient-' + args[0]; },
-					lifetime: 30,
-				}
+					lifetime: 60,
+				},
+				{
+					type: 'save',
+					func: 'savePatient',
+					key: function (args) { console.log('args', args); return 'patient-' + args[0].id; },
+					lifetime: 60,
+				},
 			]);
 		})
 
