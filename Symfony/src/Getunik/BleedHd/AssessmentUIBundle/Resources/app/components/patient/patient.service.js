@@ -104,6 +104,15 @@
 							});
 						}
 					});
+
+					// Saving responses has the side effect of recalculating (and storing) the assessment score.
+					// As a result, the patient (linked with assessments) has to be reloaded
+					DataEvents.on('responses-update', function (event) {
+						that.caches.default.remove(['patient', event.patientId].join('-'));
+					});
+
+					// Status objects are always accessed from the patient - they are never retrieved or modified
+					// directly - and should therefore always be in a consistent state.
 				}
 			);
 		})
