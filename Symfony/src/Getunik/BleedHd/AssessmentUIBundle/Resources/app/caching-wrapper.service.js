@@ -104,7 +104,7 @@
 
 	function CachingWrapperFactory($cacheFactory) {
 
-		function wrap (inner, wrapperDefinition) {
+		function wrap (inner, wrapperDefinition, initFunc) {
 			var wrapper = Object.create(inner),
 				caches = {};
 
@@ -120,6 +120,13 @@
 				directive = new directiveTypes[type](wrapper, caches[cacheName], definition);
 				wrapper[definition.func] = directive.execute.bind(directive);
 			});
+
+			wrapper.caches = caches;
+
+			if (!!initFunc) {
+				wrapper.init = initFunc;
+				wrapper.init();
+			}
 
 			return wrapper;
 		}

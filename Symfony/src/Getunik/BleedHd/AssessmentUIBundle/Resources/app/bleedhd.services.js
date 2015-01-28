@@ -132,6 +132,10 @@
 
 		.service('DateHelper', DateHelperService)
 
+		.service('DataEvents', function (EventChannelFactory) {
+			return EventChannelFactory('DataEvents');
+		})
+
 		/**
 		 * The JSON date interceptor is an HTTP interceptor implementation that transforms properties
 		 * with values that match an ISO-8601 date-time into a JavaScript Date object. It is added to

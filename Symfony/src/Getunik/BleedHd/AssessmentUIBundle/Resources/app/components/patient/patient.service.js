@@ -1,10 +1,11 @@
 
 (function (angular, bleedHd) {
 
-	function PatientDataService($q, BleedApi, DateHelper) {
+	function PatientDataService($q, BleedApi, DateHelper, DataEvents) {
 		this.$q = $q;
 		this.BleedApi = BleedApi;
 		this.DateHelper = DateHelper;
+		this.DataEvents = DataEvents;
 		this.patients = BleedApi.all('patients');
 	}
 
@@ -39,6 +40,7 @@
 			};
 		},
 		savePatient: function (patient) {
+			this.DataEvents.trigger('patient-update', patient);
 			if (patient.id === undefined) {
 				return this.patients.post(patient);
 			} else {
@@ -64,25 +66,33 @@
 
 		.service('RawPatientData', PatientDataService)
 
-		.service('PatientData', function (CachingWrapper, RawPatientData) {
+		.service('PatientData', function (CachingWrapper, RawPatientData, DataEvents) {
 			return CachingWrapper(RawPatientData, [
-				{
-					func: 'getPatients',
-					key: function (args) { return 'patients'; },
-					lifetime: 60,
-				},
-				{
-					func: 'getPatient',
-					key: function (args) { return 'patient-' + args[0]; },
-					lifetime: 60,
-				},
-				{
-					type: 'save',
-					func: 'savePatient',
-					key: function (args) { console.log('args', args); return 'patient-' + args[0].id; },
-					lifetime: 60,
-				},
-			]);
+					{
+						func: 'getPatients',
+						key: function (args) { return 'patients'; },
+						lifetime: 60,
+					},
+					{
+						func: 'getPatient',
+						key: function (args) { return 'patient-' + args[0]; },
+						lifetime: 60,
+					},
+					{
+						type: 'save',
+						func: 'savePatient',
+						key: function (args) { console.log('args', args); return 'patient-' + args[0].id; },
+						lifetime: 60,
+					},
+				],
+				function () {
+					var that = this;
+					DataEvents.on('patient-update', function (event) {
+						that.caches.default.remove('patients');
+						console.log(event.name, event.data);
+					});
+				}
+			);
 		})
 
 	;

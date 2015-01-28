@@ -62,6 +62,7 @@
 		'ui.router',
 		'restangular',
 		'typeRegistry',
+		'eventChannel',
 		'patient',
 		'assessment',
 		'question',
