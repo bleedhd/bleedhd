@@ -21,22 +21,25 @@
 
 			if (cacheEntry) {
 				if (now < cacheEntry.expiration) {
-					console.log('cache hit', cacheEntry);
+					console.log('cache hit', key, cacheEntry);
 					return cacheEntry.obj;
 				}
-				console.log('cache expired');
+				console.log('cache expired', key);
 			}
 
 			result = that.func.apply(that.target, args);
 
-			result.catch(function (error) {
-				that.cache.remove(key);
-			});
-
-			that.cache.put(key, {
-				obj: result,
-				expiration: new Date(now.getTime() + that.lifetime * 1000),
-			});
+			result.then(
+				function (data) {
+					that.cache.put(key, {
+						obj: result,
+						expiration: new Date(now.getTime() + that.lifetime * 1000),
+					});
+				},
+				function (error) {
+					that.cache.remove(key);
+				}
+			);
 
 			return result;
 		},
@@ -78,7 +81,6 @@
 
 			result
 				.then(function (data) {
-					console.log('post-updating cache entry', key, data);
 					that.cache.put(key, {
 						obj: data,
 						expiration: new Date(now.getTime() + that.lifetime * 1000),

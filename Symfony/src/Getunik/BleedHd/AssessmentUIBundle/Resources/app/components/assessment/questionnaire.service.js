@@ -94,6 +94,19 @@
 
 
 	angular.module('assessment')
-		.service('QuestionnaireData', QuestionnaireDataService);
+
+		.service('RawQuestionnaireData', QuestionnaireDataService)
+
+		.service('QuestionnaireData', function (CachingWrapper, RawQuestionnaireData) {
+			return CachingWrapper(RawQuestionnaireData, [
+					{
+						func: 'get',
+						key: function (name) { return name; },
+					},
+				]
+			);
+		})
+
+	;
 
 })(angular, bleedHd);

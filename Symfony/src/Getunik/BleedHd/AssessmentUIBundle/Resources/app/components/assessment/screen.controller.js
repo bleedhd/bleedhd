@@ -1,11 +1,12 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentScreenController($scope, $route, $location, context) {
+	function AssessmentScreenController($scope, $route, $location, $q, context) {
 		$scope.context = this.context = context;
 
 		this.$scope = $scope;
 		this.$location = $location;
+		this.$q = $q;
 
 		if ($route.current.params.screen === 'start') {
 			console.log('starting');
@@ -37,13 +38,15 @@
 				this.goToScreen(prev);
 			},
 			goOverview: function () {
-				this.saveModifiedResponses();
-				this.$location.path(['/patients', this.context.patient.id, 'assessment/edit', this.context.assessment.id].join('/'));
+				var that = this;
+				this.saveModifiedResponses().then(function () {
+					that.$location.path(['/patients', that.context.patient.id, 'assessment/edit', that.context.assessment.id].join('/'));
+				});
 			},
 			saveModifiedResponses: function () {
 				var responsesToSave = $.map(this.dirty, function(val) { return val; });
 				this.dirty = {};
-				return responsesToSave.length > 0 ? this.context.saveResponses(responsesToSave) : null;
+				return responsesToSave.length > 0 ? this.context.saveResponses(responsesToSave) : this.$q.when(null);
 			},
 			goToScreen: function (screen) {
 				this.$location.path(['/assessment', this.context.patient.id, this.context.assessment.id, screen.slug.short].join('/'));

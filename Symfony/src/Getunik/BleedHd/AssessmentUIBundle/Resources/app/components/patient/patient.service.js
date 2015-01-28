@@ -54,6 +54,7 @@
 			};
 		},
 		saveStatus: function (status) {
+			this.DataEvents.trigger('status-update', status);
 			if (status.id === undefined) {
 				return this.BleedApi.one('patients', status.patient_id).all('statuses').post(status);
 			} else {
@@ -87,9 +88,21 @@
 				],
 				function () {
 					var that = this;
+
+					// when a single patient is saved, the patient list would normally be outdated
 					DataEvents.on('patient-update', function (event) {
-						that.caches.default.remove('patients');
-						console.log(event.name, event.data);
+						var cacheEntry = that.caches.default.get('patients');
+						if (cacheEntry) {
+							// to get to the actual data array, we need to do it the restangular way
+							cacheEntry.obj.then(function (patients) {
+								angular.forEach(patients, function (value, index) {
+									//console.log('comparing', event.data.id, value);
+									if (event.data.id === value.id) {
+										patients[index] = event.data;
+									}
+								});
+							});
+						}
 					});
 				}
 			);

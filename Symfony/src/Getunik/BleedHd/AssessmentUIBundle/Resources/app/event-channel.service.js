@@ -7,11 +7,15 @@
 	}
 
 	angular.extend(EventChannel.prototype, {
-		trigger: function (name, data) {
+		trigger: function (name, data, props) {
 			var event = {
 				name: name,
 				data: data,
 			};
+
+			if (!!props) {
+				angular.extend(event, props);
+			}
 
 			angular.forEach(this.handlers[name], function (handler) {
 				handler(event);
