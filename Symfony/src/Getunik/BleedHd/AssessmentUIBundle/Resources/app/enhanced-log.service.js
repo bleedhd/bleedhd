@@ -14,7 +14,7 @@
 		'info',
 		'warn',
 		'error',
-		'fatal',
+		'error',
 	];
 
 
