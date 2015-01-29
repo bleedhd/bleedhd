@@ -1,13 +1,20 @@
 
 (function (angular) {
 
+	var defaultLifetime = {
+		value: 15 * 60, // 15 minutes
+		getExpirationDate: function () {
+			return new Date(Date.now() + this.value * 1000);
+		},
+	};
+
 	function CachingGetDirective(target, cache, definition) {
 		this.target = target;
 		this.cache = cache;
 
 		this.key = definition.key;
 		this.func = target[definition.func];
-		this.lifetime = definition.lifetime || (5 * 60);
+		this.lifetime = definition.lifetime;
 	}
 
 	angular.extend(CachingGetDirective.prototype, {
@@ -33,7 +40,7 @@
 				function (data) {
 					that.cache.put(key, {
 						obj: result,
-						expiration: new Date(now.getTime() + that.lifetime * 1000),
+						expiration: that.lifetime.getExpirationDate(),
 					});
 				},
 				function (error) {
@@ -52,7 +59,7 @@
 
 		this.key = definition.key;
 		this.func = target[definition.func];
-		this.lifetime = definition.lifetime || (5 * 60);
+		this.lifetime = definition.lifetime;
 		// usually the stored value is the first argument of the function
 		this.value = definition.value || this.defaultValue;
 	}
@@ -74,7 +81,7 @@
 			console.log('updating cache entry', key, val);
 			that.cache.put(key, {
 				obj: val,
-				expiration: new Date(now.getTime() + that.lifetime * 1000),
+				expiration: that.lifetime.getExpirationDate(),
 			});
 
 			result = that.func.apply(that.target, args);
@@ -83,7 +90,7 @@
 				.then(function (data) {
 					that.cache.put(key, {
 						obj: data,
-						expiration: new Date(now.getTime() + that.lifetime * 1000),
+						expiration: that.lifetime.getExpirationDate(),
 					});
 				})
 				.catch(function (error) {
@@ -104,20 +111,40 @@
 	};
 
 
-	function CachingWrapperFactory($cacheFactory) {
+	function CachingWrapperProvider($cacheFactoryProvider) {
 
 		function wrap (inner, wrapperDefinition, initFunc) {
 			var wrapper = Object.create(inner),
+				$cacheFactory = $cacheFactoryProvider.$get(),
 				caches = {};
+
+			// every caching wrapper has its own configurable default lifetime
+			// based on the global defaultLifetime helper object
+			wrapper.lifetime = Object.create(defaultLifetime);
+			wrapper.setDefaultLifetime = function (lifetime) {
+				wrapper.lifetime.value = lifetime;
+				return this;
+			};
 
 			angular.forEach(wrapperDefinition, function (definition) {
 				var cacheName = definition.cache || 'default',
 					type = definition.type || 'get',
-					directive;
+					directive,
+					// each directive has its lifetime based on the wrapper's which in turn
+					// is based on the default
+					lifetime = Object.create(wrapper.lifetime);
 
 				if (caches[cacheName] === undefined) {
 					caches[cacheName] = $cacheFactory(inner.constructor.name + '.' + cacheName);
 				}
+
+				// the wrapper definition contains the lifetime for the directive as a simple value (if any)
+				// and has to be set on the convenient lifetime object.
+				if (definition.lifetime) {
+					lifetime.value = definition.lifetime;
+				}
+
+				definition.lifetime = lifetime;
 
 				directive = new directiveTypes[type](wrapper, caches[cacheName], definition);
 				wrapper[definition.func] = directive.execute.bind(directive);
@@ -133,14 +160,19 @@
 			return wrapper;
 		}
 
-		return wrap;
+		//return wrap;
+		this.$get = function () { return wrap; };
+
+		this.setDefaultLifetime = function (lifetime) {
+			defaultLifetime.value = lifetime;
+		};
 
 	}
 
 
 	angular.module('cachingWrapper', [])
 
-		.factory('CachingWrapper', CachingWrapperFactory)
+		.provider('CachingWrapper', CachingWrapperProvider)
 
 	;
 

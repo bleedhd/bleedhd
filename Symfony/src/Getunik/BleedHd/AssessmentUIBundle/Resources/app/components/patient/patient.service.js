@@ -72,18 +72,15 @@
 					{
 						func: 'getPatients',
 						key: function () { return 'patients'; },
-						lifetime: 60,
 					},
 					{
 						func: 'getPatient',
 						key: function (patientId) { return 'patient-' + patientId; },
-						lifetime: 60,
 					},
 					{
 						type: 'save',
 						func: 'savePatient',
 						key: function (patient) { console.log('args', patient); return 'patient-' + patient.id; },
-						lifetime: 60,
 					},
 				],
 				function () {
