@@ -80,7 +80,7 @@
 					{
 						type: 'save',
 						func: 'savePatient',
-						key: function (patient) { console.log('args', patient); return 'patient-' + patient.id; },
+						key: function (patient) { return 'patient-' + patient.id; },
 					},
 				],
 				function () {
@@ -95,7 +95,6 @@
 							// to get to the actual data array, we need to do it the restangular way
 							cacheEntry.obj.then(function (patients) {
 								angular.forEach(patients, function (value, index) {
-									//console.log('comparing', event.data.id, value);
 									if (event.data.id === value.id) {
 										found = true;
 										patients[index] = event.data;
