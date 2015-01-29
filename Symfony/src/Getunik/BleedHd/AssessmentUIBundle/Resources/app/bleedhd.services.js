@@ -203,17 +203,36 @@
 		 * The BleedApi service provides a convenient pre-configured Restangular object with
 		 * integrated authorization.
 		 */
-		.factory('BleedApi', function (Restangular, AuthHandler, $window, $log) {
+		.factory('BleedApi', function (Restangular, AuthHandler, $window, $log, MessageEvents) {
 			return Restangular.withConfig(function(RestangularConfig) {
 				RestangularConfig
 					.setBaseUrl('/api')
 					.setDefaultHeaders({ 'Authorization': AuthHandler.getToken() })
 					.setErrorInterceptor(function (response) {
-						$log.info("resource request error", response);
+						var msg = {
+							type: 'danger',
+							text: '<strong>Fatal Error:</strong> an error occurred ' +
+									(response.config.method === 'GET' ? 'retrieving data from' : 'saving data to') +
+									' the server - try <a href="javascript:location.reload()">reloading the page</a>.',
+						};
+
 						if (response.status === 403 || response.status === 401) {
-							$log.warn("Login required. Redirecting...");
+							// TODO: split 403 and 401 in separate messages and behavior
+							$log.warn('Login required. Redirecting...');
 							$window.location.href='/user/login';
+						} else if (response.status >= 500 && response.status < 600) {
+							$log.fatal('REST API error: ' + response.statusText, response.data);
+						} else if (response.status === 404 || response.status === 405) {
+							$log.error('REST API error: ' + response.statusText, {
+								statusCode: response.status,
+								method: response.config.method,
+								url: response.config.url,
+							});
+						} else {
+							$log.error('Unknown REST API error', response);
 						}
+
+						MessageEvents.trigger('show-message', msg);
 
 						return false;
 					});

@@ -71,6 +71,7 @@
 		'typeRegistry',
 		'eventChannel',
 		'enhancedLog',
+		'common',
 		'patient',
 		'assessment',
 		'question',

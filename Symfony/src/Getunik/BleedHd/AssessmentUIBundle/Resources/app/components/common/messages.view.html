@@ -1,0 +1,9 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+
+			<alert ng-repeat="msg in messagesCtl.messages" type="{{ msg.type }}" close="messagesCtl.dismiss($index)"><div ng-bind-html="msg.text"></div></alert>
+
+		</div>
+	</div>
+</div>
