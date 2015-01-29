@@ -9,3 +9,7 @@ getunik_bleed_hd_assessment_data_patient:
 getunik_bleed_hd_assessment_data_questionnaire:
     type: rest
     resource: getunik.bleed_hd_data.questionnaire_controller
+
+getunik_bleed_hd_assessment_data_clientlogentry:
+    type: rest
+    resource: getunik.bleed_hd_data.clientlogentry_controller
