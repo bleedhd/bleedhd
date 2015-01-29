@@ -62,6 +62,7 @@
 		'ui.router',
 		'restangular',
 		'typeRegistry',
+		'eventChannel',
 		'patient',
 		'assessment',
 		'question',
@@ -83,7 +84,7 @@
 		},
 	})
 
-	.config(function ($provide, $httpProvider) {
+	.config(function ($provide, $httpProvider, CachingWrapperProvider) {
 		$httpProvider.interceptors.push('JsonDateInterceptor');
 
 		// extend the (customized) Restangular service implementation to wait for
@@ -100,6 +101,9 @@
 
 			return $delegate;
 		});
+
+		// sets default caching lifetime to 10 min
+		CachingWrapperProvider.setDefaultLifetime(10 * 60);
 	})
 
 	.run(function ($rootScope) {
