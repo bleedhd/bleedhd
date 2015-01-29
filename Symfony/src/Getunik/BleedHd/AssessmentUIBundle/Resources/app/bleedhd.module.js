@@ -118,7 +118,7 @@
 			.setUidFunc(function () { return bleedHd.env.uid; });
 	})
 
-	.run(function ($rootScope, ServerLogDump, $log) {
+	.run(function ($rootScope, ServerLogDump) {
 		angular.extend(bleedHd.env, window.env, {
 			debug: location.search.match(/debug=true(&|$)/) !== null,
 		});

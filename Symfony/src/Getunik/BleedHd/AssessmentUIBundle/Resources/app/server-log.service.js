@@ -81,7 +81,7 @@
 			logEntry = {
 				timestamp: new Date(),
 				level: level,
-				user: that.config.getUid(),
+				user: that.config.getUid() || -1,
 				location: window.location.href,
 				message: '',
 				data: args,
@@ -111,7 +111,7 @@
 		var config = {
 			logLevel: 3,
 			storeLogLevel: 3,
-			getUid: function () { return -1; },
+			getUid: function () { },
 		};
 
 		this.DEBUG = 0;

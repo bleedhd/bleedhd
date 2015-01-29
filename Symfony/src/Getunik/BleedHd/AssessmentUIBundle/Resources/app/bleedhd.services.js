@@ -201,15 +201,15 @@
 		 * The BleedApi service provides a convenient pre-configured Restangular object with
 		 * integrated authorization.
 		 */
-		.factory('BleedApi', function (Restangular, AuthHandler, $window) {
+		.factory('BleedApi', function (Restangular, AuthHandler, $window, $log) {
 			return Restangular.withConfig(function(RestangularConfig) {
 				RestangularConfig
 					.setBaseUrl('/api')
 					.setDefaultHeaders({ 'Authorization': AuthHandler.getToken() })
 					.setErrorInterceptor(function (response) {
-						console.log("resource request error", response);
+						$log.info("resource request error", response);
 						if (response.status === 403 || response.status === 401) {
-							console.log("Login required. Redirecting...");
+							$log.warn("Login required. Redirecting...");
 							$window.location.href='/user/login';
 						}
 
