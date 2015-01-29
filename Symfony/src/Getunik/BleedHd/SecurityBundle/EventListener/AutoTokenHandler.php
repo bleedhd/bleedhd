@@ -14,7 +14,7 @@ use Symfony\Component\Security\Http\HttpUtils;
 
 use Doctrine\ORM\EntityManager;
 
-use Getunik\Leech\AuthenticationBundle\Entity\User;
+use Getunik\BleedHd\SecurityBundle\Entity\User;
 
 /**
  * Custom authentication success handler
@@ -69,6 +69,9 @@ class AutoTokenHandler implements AuthenticationSuccessHandlerInterface
         // compute expiration date/time and add it to the token information
         $now = new \DateTime();
         $auth->expires_at = $now->add(new \DateInterval('PT' . 3600 . 'S'))->format(\DateTime::ISO8601);
+
+        $user = $token->getUser();
+        $auth->uid = ($user instanceof User ? $user->getId() : -1);
 
         $session = $request->getSession();
         $session->set('getunik_bleed_hd_security.oauth_token', $auth);

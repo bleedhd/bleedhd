@@ -17,26 +17,49 @@
 		'fatal',
 	];
 
-	function ServerLog($log, config) {
-		this.$log = $log;
-		this.config = config;
-		this.logEntries = this._retrieve();
-		this.storeKey = 'ServerLog.entries';
 
-		window.setInterval(this._dump.bind(this), this.config.dumpInterval * 60 * 1000);
-		this._dump();
+
+	function LogData() {
+		this.storeKey = 'ServerLog.entries';
+		this.logEntries = this._getFromLocalStore();
+	}
+
+	angular.extend(LogData.prototype, {
+		_getFromLocalStore: function () {
+			return window.localStorage ? angular.fromJson(window.localStorage.getItem(this.storeKey)) || [] : [];
+		},
+		add: function (logEntry) {
+			this.logEntries.push(logEntry);
+			if (window.localStorage) {
+				window.localStorage.setItem(this.storeKey, angular.toJson(this.logEntries, false));
+			}
+		},
+		getAll: function () {
+			return this.logEntries;
+		},
+		clear: function () {
+			this.logEntries = [];
+			if (window.localStorage) {
+				window.localStorage.removeItem(this.storeKey);
+			}
+		},
+	});
+
+
+
+	function ServerLog($log, LogData, config) {
+		this.$log = $log;
+		this.LogData = LogData;
+		this.config = config;
+		this.storeKey = 'ServerLog.entries';
 	}
 
 	angular.extend(ServerLog.prototype, {
-		DEBUG: 0,
-		VERBOSE: 1,
-		INFO: 2,
-		WARN: 3,
-		ERROR: 4,
-		FATAL: 5,
 		log: function (level, args) {
 			if (level >= this.config.logLevel) {
-				this._store(level, args);
+				if (level >= this.config.storeLogLevel) {
+					this._store(level, args);
+				}
 				this.$log[mapping[level]].apply(this.$log, args);
 			}
 		},
@@ -58,7 +81,7 @@
 			logEntry = {
 				timestamp: new Date(),
 				level: level,
-				user: -1,
+				user: that.config.getUid(),
 				location: window.location.href,
 				message: '',
 				data: args,
@@ -69,14 +92,7 @@
 				logEntry.data = args.slice(1);
 			}
 
-			that.logEntries.push(logEntry);
-
-			if (window.localStore) {
-				window.localStore.setItem(that.storeKey, angular.toJson(that.logEntries, false));
-			}
-		},
-		_retrieve: function () {
-			return window.localStore ? window.localStore.getItem(this.storeKey) || [] : [];
+			that.LogData.add(logEntry);
 		},
 		_transformError: function (arg) {
 			if (arg instanceof Error) {
@@ -88,39 +104,54 @@
 			}
 			return arg;
 		},
-		_dump: function () {
-			console.log('dumping log', this.logEntries);
-
-			if (this.logEntries.length > 0) {
-				this.logEntries = [];
-				if (window.localStore) {
-					window.localStore.removeItem(this.storeKey);
-				}
-			}
-		},
 	});
 
 
 	function ServerLogConfigProvider() {
-		this.config = {
-			logLevel: 0,
-			dumpInterval: 1, // 15 minutes
+		var config = {
+			logLevel: 3,
+			storeLogLevel: 3,
+			getUid: function () { return -1; },
+		};
+
+		this.DEBUG = 0;
+		this.VERBOSE = 1;
+		this.INFO = 2;
+		this.WARN = 3;
+		this.ERROR = 4;
+		this.FATAL = 5;
+
+		this.setLogLevel = function (logLevel) {
+			config.logLevel = logLevel;
+			return this;
+		};
+
+		this.setStoreLogLevel = function (logLevel) {
+			config.storeLogLevel = logLevel;
+			return this;
+		};
+
+		this.setUidFunc = function (uidFunc) {
+			config.getUid = uidFunc;
+			return this;
 		};
 
 		var that = this;
 		this.$get = function () {
-			return that.config;
+			return config;
 		};
 	}
 
 
 	angular.module('serverLog', [])
 
+		.service('LogData', LogData)
+
 		.provider('ServerLogConfig', ServerLogConfigProvider)
 
 		.config(function ($provide) {
-			$provide.decorator('$log', function($delegate, ServerLogConfig) {
-				return new ServerLog($delegate, ServerLogConfig);
+			$provide.decorator('$log', function($delegate, LogData, ServerLogConfig) {
+				return new ServerLog($delegate, LogData, ServerLogConfig);
 			});
 		})
 

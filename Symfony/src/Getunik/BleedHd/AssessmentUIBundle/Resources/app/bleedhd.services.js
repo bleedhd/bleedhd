@@ -33,6 +33,7 @@
 
 		this.deferred.promise.then(function (data) {
 			that.token.value = data.access_token;
+			bleedHd.env.uid = data.uid;
 		});
 	}
 
@@ -120,6 +121,28 @@
 	});
 
 
+	function ServerLogDump(BleedApi, LogData) {
+		this.BleedApi = BleedApi;
+		this.LogData = LogData;
+	}
+
+	angular.extend(ServerLogDump.prototype, {
+		start: function (interval) {
+			window.setInterval(this.dump.bind(this), interval * 60 * 1000);
+			this.dump();
+		},
+		dump: function () {
+			var entries = this.LogData.getAll(), response;
+
+			if (entries.length > 0) {
+				response = this.BleedApi.all('logentries').customPOST(entries, 'batch');
+				this.LogData.clear();
+				return response;
+			}
+		},
+	});
+
+
 	angular.module('bleedHdApp')
 
 		/**
@@ -135,6 +158,8 @@
 		.service('DataEvents', function (EventChannelFactory) {
 			return EventChannelFactory('DataEvents');
 		})
+
+		.service('ServerLogDump', ServerLogDump)
 
 		/**
 		 * The JSON date interceptor is an HTTP interceptor implementation that transforms properties

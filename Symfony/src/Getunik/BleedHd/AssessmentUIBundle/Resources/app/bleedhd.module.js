@@ -5,6 +5,12 @@
 	var bleedHd = window.bleedHd;
 
 	bleedHd.controllers = {};
+	bleedHd.env = {
+		environment: 'prod',
+		// the -2 signifies that the UID has not yet been retrieved from the server (unauthenticated)
+		// while a value of -1 would indicate an unauthenticated user
+		uid: -2,
+	};
 
 	/**
 	 * Registers a controller with the bleedHd helper so that it can be used to conveniently specify routes like so:
@@ -85,7 +91,7 @@
 		},
 	})
 
-	.config(function ($provide, $httpProvider, CachingWrapperProvider) {
+	.config(function ($provide, $httpProvider, CachingWrapperProvider, ServerLogConfigProvider) {
 		$httpProvider.interceptors.push('JsonDateInterceptor');
 
 		// extend the (customized) Restangular service implementation to wait for
@@ -105,12 +111,22 @@
 
 		// sets default caching lifetime to 10 min
 		CachingWrapperProvider.setDefaultLifetime(10 * 60);
+
+		ServerLogConfigProvider
+			.setLogLevel(ServerLogConfigProvider.DEBUG)
+			.setStoreLogLevel(ServerLogConfigProvider.INFO)
+			.setUidFunc(function () { return bleedHd.env.uid; });
 	})
 
-	.run(function ($rootScope) {
-		$rootScope.env = angular.extend({}, window.env, {
+	.run(function ($rootScope, ServerLogDump, $log) {
+		angular.extend(bleedHd.env, window.env, {
 			debug: location.search.match(/debug=true(&|$)/) !== null,
 		});
+
+		$rootScope.env = bleedHd.env;
+
+		// do the log dumping now (on load) and every 15min
+		ServerLogDump.start(15);
 	})
 
 	;
