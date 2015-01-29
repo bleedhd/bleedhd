@@ -92,6 +92,7 @@
 			console.log('dumping log', this.logEntries);
 
 			if (this.logEntries.length > 0) {
+				this.logEntries = [];
 				if (window.localStore) {
 					window.localStore.removeItem(this.storeKey);
 				}
