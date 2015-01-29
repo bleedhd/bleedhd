@@ -135,8 +135,10 @@
 			var entries = this.LogData.getAll(), response;
 
 			if (entries.length > 0) {
-				response = this.BleedApi.all('logentries').customPOST(entries, 'batch');
+				// make sure that an error in the stored log data doesn't permanently screw up
+				// all future attempts of sending log data
 				this.LogData.clear();
+				response = this.BleedApi.all('logentries').customPOST(entries, 'batch');
 				return response;
 			}
 		},

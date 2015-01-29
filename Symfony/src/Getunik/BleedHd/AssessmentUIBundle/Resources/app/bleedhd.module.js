@@ -5,12 +5,13 @@
 	var bleedHd = window.bleedHd;
 
 	bleedHd.controllers = {};
-	bleedHd.env = {
+	bleedHd.env = angular.extend({
+		debug: false,
 		environment: 'prod',
 		// the -2 signifies that the UID has not yet been retrieved from the server (unauthenticated)
 		// while a value of -1 would indicate an unauthenticated user
 		uid: -2,
-	};
+	}, window.env);
 
 	/**
 	 * Registers a controller with the bleedHd helper so that it can be used to conveniently specify routes like so:
@@ -119,10 +120,6 @@
 	})
 
 	.run(function ($rootScope, ServerLogDump) {
-		angular.extend(bleedHd.env, window.env, {
-			debug: location.search.match(/debug=true(&|$)/) !== null,
-		});
-
 		$rootScope.env = bleedHd.env;
 
 		// do the log dumping now (on load) and every 15min

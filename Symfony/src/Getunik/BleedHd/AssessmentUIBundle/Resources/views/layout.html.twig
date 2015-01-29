@@ -18,6 +18,7 @@
                 /* jshint ignore:start */
                 window.env = {
                     environment: '{{ app.environment }}',
+                    debug: {{ app.request.get('debug') == 'true' ? 'true' : 'false' }},
                 };
                 /* jshint ignore:end */
             </script>
