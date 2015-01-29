@@ -20,7 +20,7 @@
 
 
 	function LogData() {
-		this.storeKey = 'ServerLog.entries';
+		this.storeKey = 'EnhancedLog.LogData.entries';
 		this.logEntries = this._getFromLocalStore();
 	}
 
@@ -47,14 +47,13 @@
 
 
 
-	function ServerLog($log, LogData, config) {
+	function EnhancedLog($log, LogData, config) {
 		this.$log = $log;
 		this.LogData = LogData;
 		this.config = config;
-		this.storeKey = 'ServerLog.entries';
 	}
 
-	angular.extend(ServerLog.prototype, {
+	angular.extend(EnhancedLog.prototype, {
 		log: function (level, args) {
 			if (level >= this.config.logLevel) {
 				if (level >= this.config.storeLogLevel) {
@@ -107,7 +106,7 @@
 	});
 
 
-	function ServerLogConfigProvider() {
+	function EnhancedLogConfigProvider() {
 		var config = {
 			logLevel: 3,
 			storeLogLevel: 3,
@@ -143,15 +142,15 @@
 	}
 
 
-	angular.module('serverLog', [])
+	angular.module('enhancedLog', [])
 
 		.service('LogData', LogData)
 
-		.provider('ServerLogConfig', ServerLogConfigProvider)
+		.provider('EnhancedLogConfig', EnhancedLogConfigProvider)
 
 		.config(function ($provide) {
-			$provide.decorator('$log', function($delegate, LogData, ServerLogConfig) {
-				return new ServerLog($delegate, LogData, ServerLogConfig);
+			$provide.decorator('$log', function($delegate, LogData, EnhancedLogConfig) {
+				return new EnhancedLog($delegate, LogData, EnhancedLogConfig);
 			});
 		})
 

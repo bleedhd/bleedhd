@@ -69,7 +69,7 @@
 		'restangular',
 		'typeRegistry',
 		'eventChannel',
-		'serverLog',
+		'enhancedLog',
 		'patient',
 		'assessment',
 		'question',
@@ -91,7 +91,7 @@
 		},
 	})
 
-	.config(function ($provide, $httpProvider, CachingWrapperProvider, ServerLogConfigProvider) {
+	.config(function ($provide, $httpProvider, CachingWrapperProvider, EnhancedLogConfigProvider) {
 		$httpProvider.interceptors.push('JsonDateInterceptor');
 
 		// extend the (customized) Restangular service implementation to wait for
@@ -112,9 +112,9 @@
 		// sets default caching lifetime to 10 min
 		CachingWrapperProvider.setDefaultLifetime(10 * 60);
 
-		ServerLogConfigProvider
-			.setLogLevel(ServerLogConfigProvider.DEBUG)
-			.setStoreLogLevel(ServerLogConfigProvider.INFO)
+		EnhancedLogConfigProvider
+			.setLogLevel(EnhancedLogConfigProvider.DEBUG)
+			.setStoreLogLevel(EnhancedLogConfigProvider.INFO)
 			.setUidFunc(function () { return bleedHd.env.uid; });
 	})
 
