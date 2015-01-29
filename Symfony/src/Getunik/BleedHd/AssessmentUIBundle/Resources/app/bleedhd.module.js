@@ -63,6 +63,7 @@
 		'restangular',
 		'typeRegistry',
 		'eventChannel',
+		'serverLog',
 		'patient',
 		'assessment',
 		'question',

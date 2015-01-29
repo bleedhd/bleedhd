@@ -5,7 +5,7 @@
 	 * The AuthHandler manages an OAuth token and provides functionality to integrate the token
 	 * into webservice requests. @see BleedApi service for more information.
 	 */
-	function AuthHandler($http, $q) {
+	function AuthHandler($http, $log, $q) {
 		var that = this;
 
 		this.deferred = $q.defer();
@@ -16,7 +16,7 @@
 
 		$http.get('/user/gettoken').
 			success(function(data, status, headers, config) {
-				console.log("got the token", data);
+				$log.debug("got the token", data);
 				that.deferred.resolve(data);
 			}).error(function(msg, code) {
 				that.deferred.reject(msg);
