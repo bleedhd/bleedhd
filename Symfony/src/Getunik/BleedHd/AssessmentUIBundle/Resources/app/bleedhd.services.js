@@ -65,11 +65,13 @@
 
 	function DateHelper(dateFilter, date, match) {
 		this.dateFilter = dateFilter;
-		if (date === undefined || angular.isDate(date)) {
-			this.date = date;
-			this.isDateTime = true;
-		} else {
-			this.date = new Date(Date.parse(date));
+		this.isDateTime = true;
+
+		if (date !== undefined) {
+			// this works with strings AND dates
+			this.moment = moment(date);
+		}
+		if (match !== undefined) {
 			this.isDateTime = !!match[1];
 		}
 	}
@@ -87,20 +89,26 @@
 		},
 		setTime: function (time) {
 			if (time !== undefined && time !== null) {
-				this.date.setHours(time.getHours());
-				this.date.setMinutes(time.getMinutes());
-				this.date.setSeconds(time.getSeconds());
-				this.date.setMilliseconds(time.getMilliseconds());
+				this.moment.hour(time.getHours());
+				this.moment.minute(time.getMinutes());
+				this.moment.second(time.getSeconds());
+				this.moment.millisecond(time.getMilliseconds());
 			}
 		},
 		setDate: function (date) {
 			if (date !== undefined && date !== null) {
-				this.date.setYear(date.getFullYear());
-				this.date.setMonth(date.getMonth());
-				this.date.setDate(date.getDate());
+				this.moment.year(date.getFullYear());
+				this.moment.month(date.getMonth());
+				this.moment.date(date.getDate());
 			}
 		},
 	});
+
+	Object.defineProperty(DateHelper.prototype, 'date', {
+		get: function () { return !!this.moment ? this.moment.toDate() : undefined; },
+		set: function (val) { this.moment = moment(val); },
+	});
+
 
 	function DateHelperService($filter) {
 		this.dateFilter = $filter('date');
