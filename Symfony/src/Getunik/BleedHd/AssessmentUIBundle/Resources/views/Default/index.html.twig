@@ -61,5 +61,7 @@
 
 {% block content %}
 <messages></messages>
-<div ng-view autoscroll="true"></div>
+<route-change>
+	<div ng-view autoscroll="true"></div>
+</route-change>
 {% endblock content %}

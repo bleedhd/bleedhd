@@ -235,7 +235,7 @@
 
 						MessageBuilder.send(uiError, [response.status, response.config.method]);
 
-						return false;
+						return true;
 					});
 
 					// This piece of code can be used to simulate AJAX timeouts
