@@ -94,7 +94,7 @@
 			}
 		},
 		setDate: function (date) {
-			if (time !== undefined && time !== null) {
+			if (date !== undefined && date !== null) {
 				this.date.setYear(date.getFullYear());
 				this.date.setMonth(date.getMonth());
 				this.date.setDate(date.getDate());
