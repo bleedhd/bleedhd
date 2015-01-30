@@ -66,20 +66,20 @@
 								<form class="form form-inline clearfix" role="search">
 									<div class="checkbox">
 										<label>
-											<input type="checkbox" checked="checked"> TODO Show WHO
+											<input type="checkbox" checked="checked" ng-model="ctlPatient.assessmentFilter.who"> Show WHO
 										</label>
 									</div>
 									<div class="checkbox">
 										<label>
-											<input type="checkbox" checked="checked"> TODO Show BSMS
+											<input type="checkbox" checked="checked" ng-model="ctlPatient.assessmentFilter.bsms"> Show BSMS
 										</label>
 									</div>
 									<div class="checkbox">
 										<label>
-											<input type="checkbox" checked="checked"> TODO Show GvHD
+											<input type="checkbox" checked="checked" ng-model="ctlPatient.assessmentFilter.gvhd"> Show GvHD
 										</label>
 									</div>
-									<button class="btn btn-default pull-right">Show all</button>
+									<button class="btn btn-default pull-right" ng-click="ctlPatient.resetAssessmentFilter()">Show all</button>
 								</form>
 							</div>
 
@@ -103,7 +103,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr ng-repeat="assessment in ctlPatient.patient.assessments | orderBy:'start_date.date':true">
+											<tr ng-repeat="assessment in ctlPatient.patient.assessments | orderBy:'start_date.date':true | filter:ctlPatient.byAssessmentType()">
 												<td>{{ assessment.start_date.date | isodate }}</td>
 												<td>{{ assessment.questionnaire }}</td>
 												<td>{{ assessment.platelets }}</td>
