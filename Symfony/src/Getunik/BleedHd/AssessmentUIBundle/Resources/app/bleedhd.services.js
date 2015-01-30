@@ -203,18 +203,13 @@
 		 * The BleedApi service provides a convenient pre-configured Restangular object with
 		 * integrated authorization.
 		 */
-		.factory('BleedApi', function (Restangular, AuthHandler, $window, $log, MessageEvents) {
+		.factory('BleedApi', function (Restangular, AuthHandler, $window, $log, MessageBuilder) {
 			return Restangular.withConfig(function(RestangularConfig) {
 				RestangularConfig
 					.setBaseUrl('/api')
 					.setDefaultHeaders({ 'Authorization': AuthHandler.getToken() })
 					.setErrorInterceptor(function (response) {
-						var msg = {
-							type: 'danger',
-							text: '<strong>Fatal Error:</strong> an error occurred ' +
-									(response.config.method === 'GET' ? 'retrieving data from' : 'saving data to') +
-									' the server - try <a href="javascript:location.reload()">reloading the page</a>.',
-						};
+						var uiError = 'restApiError';
 
 						if (response.status === 403 || response.status === 401) {
 							// TODO: split 403 and 401 in separate messages and behavior
@@ -228,14 +223,25 @@
 								method: response.config.method,
 								url: response.config.url,
 							});
+						} else if (response.status === 0) {
+							$log.fatal('REST API error: no server response', {
+								method: response.config.method,
+								url: response.config.url,
+							});
+							uiError = 'noResponseError';
 						} else {
 							$log.error('Unknown REST API error', response);
 						}
 
-						MessageEvents.trigger('show-message', msg);
+						MessageBuilder.send(uiError, [response.status, response.config.method]);
 
 						return false;
 					});
+
+					// This piece of code can be used to simulate AJAX timeouts
+					//RestangularConfig.setDefaultHttpFields({
+					//	timeout: 50,
+					//});
 			});
 		})
 
