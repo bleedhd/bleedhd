@@ -1,15 +1,16 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentScreenController($scope, $route, $location, $q, context) {
+	function AssessmentScreenController($scope, $route, $location, $log, $q, context) {
 		$scope.context = this.context = context;
 
 		this.$scope = $scope;
 		this.$location = $location;
+		this.$log = $log;
 		this.$q = $q;
 
 		if ($route.current.params.screen === 'start') {
-			console.log('starting');
+			this.$log.verbose('starting assessment', context.assessment.id);
 			var firstScreen = context.questionnaire.getScreenByIndex(0);
 			this.goToScreen(firstScreen);
 		} else {
@@ -21,7 +22,7 @@
 
 		$scope.$on('q-response-changed', function (event, response) {
 			that.dirty[response.id] = response;
-			console.log(response);
+			that.$log.debug('dirty response', response);
 		});
 	}
 

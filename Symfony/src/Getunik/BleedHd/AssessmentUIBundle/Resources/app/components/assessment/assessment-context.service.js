@@ -1,7 +1,8 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentContext($q, PatientData, AssessmentData, QuestionnaireData) {
+	function AssessmentContext($log, $q, PatientData, AssessmentData, QuestionnaireData) {
+		this.$log = $log;
 		this.$q = $q;
 		this.PatientData = PatientData;
 		this.AssessmentData = AssessmentData;
@@ -32,7 +33,7 @@
 					return that.QuestionnaireData.get(that.assessment.questionnaire);
 				}).then(function (questionnaire) {
 					that.questionnaire = questionnaire;
-					console.log('questionnaire', questionnaire, that.responses);
+					that.$log.debug('questionnaire', questionnaire, that.responses);
 
 					return that;
 				});

@@ -8,7 +8,8 @@
 		},
 	};
 
-	function CachingGetDirective(target, cache, definition) {
+	function CachingGetDirective($log, target, cache, definition) {
+		this.$log = $log;
 		this.target = target;
 		this.cache = cache;
 
@@ -28,10 +29,10 @@
 
 			if (cacheEntry) {
 				if (now < cacheEntry.expiration) {
-					console.log('cache hit', key, cacheEntry);
+					that.$log.verbose('cache hit', key, cacheEntry);
 					return cacheEntry.obj;
 				}
-				console.log('cache expired', key);
+				that.$log.verbose('cache expired', key);
 			}
 
 			result = that.func.apply(that.target, args);
@@ -53,7 +54,8 @@
 	});
 
 
-	function CachingSaveDirective(target, cache, definition) {
+	function CachingSaveDirective($log, target, cache, definition) {
+		this.$log = $log;
 		this.target = target;
 		this.cache = cache;
 
@@ -78,7 +80,7 @@
 				return that.func.apply(that.target, args);
 			}
 
-			console.log('updating cache entry', key, val);
+			that.$log.verbose('updating cache entry', key, val);
 			that.cache.put(key, {
 				obj: val,
 				expiration: that.lifetime.getExpirationDate(),
@@ -113,9 +115,8 @@
 
 	function CachingWrapperProvider($cacheFactoryProvider) {
 
-		function wrap (inner, wrapperDefinition, initFunc) {
+		function wrap ($cacheFactory, $log, inner, wrapperDefinition, initFunc) {
 			var wrapper = Object.create(inner),
-				$cacheFactory = $cacheFactoryProvider.$get(),
 				caches = {};
 
 			// every caching wrapper has its own configurable default lifetime
@@ -146,7 +147,7 @@
 
 				definition.lifetime = lifetime;
 
-				directive = new directiveTypes[type](wrapper, caches[cacheName], definition);
+				directive = new directiveTypes[type]($log, wrapper, caches[cacheName], definition);
 				wrapper[definition.func] = directive.execute.bind(directive);
 			});
 
@@ -161,7 +162,7 @@
 		}
 
 		//return wrap;
-		this.$get = function () { return wrap; };
+		this.$get = function ($cacheFactory, $log) { return wrap.bind(this, $cacheFactory, $log); };
 
 		this.setDefaultLifetime = function (lifetime) {
 			defaultLifetime.value = lifetime;

@@ -15,9 +15,12 @@
                 <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
             <script type="text/javascript">
+                /* jshint ignore:start */
                 window.env = {
                     environment: '{{ app.environment }}',
+                    debug: {{ app.request.get('debug') == 'true' ? 'true' : 'false' }},
                 };
+                /* jshint ignore:end */
             </script>
         {% endblock scripts %}
 
@@ -32,7 +35,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <a href="/" class="bleed-logo"><img src="{{ asset('bundles/getunikbleedhdassessmentui/images/logo.png') }}" width="220" alt=""></a>
+                    <a href="#/" class="bleed-logo"><img src="{{ asset('bundles/getunikbleedhdassessmentui/images/logo.png') }}" width="220" alt=""></a>
                     <button class="btn btn-default pull-right bleed-btn-logout">Logout</button>
                     <hr>
                 </div>

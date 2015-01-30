@@ -10,6 +10,8 @@ parameters:
     getunik.bleed_hd_data.response_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\ResponsesController
     getunik.bleed_hd_data.questionnaire_handler.class: Getunik\BleedHd\AssessmentDataBundle\Handler\QuestionnaireHandler
     getunik.bleed_hd_data.questionnaire_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\QuestionnairesController
+    getunik.bleed_hd_data.clientlogentry_handler.class: Getunik\BleedHd\AssessmentDataBundle\Handler\ClientLogEntryHandler
+    getunik.bleed_hd_data.clientlogentry_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\ClientLogEntriesController
 
 
 services:
@@ -92,5 +94,18 @@ services:
         class: %getunik.bleed_hd_data.questionnaire_controller.class%
         arguments:
             - @getunik.bleed_hd_data.questionnaire_handler
+        calls:
+            - [setContainer, ["@service_container"]]
+
+
+    getunik.bleed_hd_data.clientlogentry_handler:
+        class: %getunik.bleed_hd_data.clientlogentry_handler.class%
+        arguments:
+            - @doctrine
+
+    getunik.bleed_hd_data.clientlogentry_controller:
+        class: %getunik.bleed_hd_data.clientlogentry_controller.class%
+        arguments:
+            - @getunik.bleed_hd_data.clientlogentry_handler
         calls:
             - [setContainer, ["@service_container"]]

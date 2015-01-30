@@ -5,7 +5,7 @@
 	 * The AuthHandler manages an OAuth token and provides functionality to integrate the token
 	 * into webservice requests. @see BleedApi service for more information.
 	 */
-	function AuthHandler($http, $q) {
+	function AuthHandler($http, $log, $q) {
 		var that = this;
 
 		this.deferred = $q.defer();
@@ -16,7 +16,7 @@
 
 		$http.get('/user/gettoken').
 			success(function(data, status, headers, config) {
-				console.log("got the token", data);
+				$log.debug("got the token", data);
 				that.deferred.resolve(data);
 			}).error(function(msg, code) {
 				that.deferred.reject(msg);
@@ -33,6 +33,7 @@
 
 		this.deferred.promise.then(function (data) {
 			that.token.value = data.access_token;
+			bleedHd.env.uid = data.uid;
 		});
 	}
 
@@ -120,6 +121,30 @@
 	});
 
 
+	function ServerLogDump(BleedApi, LogData) {
+		this.BleedApi = BleedApi;
+		this.LogData = LogData;
+	}
+
+	angular.extend(ServerLogDump.prototype, {
+		start: function (interval) {
+			window.setInterval(this.dump.bind(this), interval * 60 * 1000);
+			this.dump();
+		},
+		dump: function () {
+			var entries = this.LogData.getAll(), response;
+
+			if (entries.length > 0) {
+				// make sure that an error in the stored log data doesn't permanently screw up
+				// all future attempts of sending log data
+				this.LogData.clear();
+				response = this.BleedApi.all('logentries').customPOST(entries, 'batch');
+				return response;
+			}
+		},
+	});
+
+
 	angular.module('bleedHdApp')
 
 		/**
@@ -135,6 +160,8 @@
 		.service('DataEvents', function (EventChannelFactory) {
 			return EventChannelFactory('DataEvents');
 		})
+
+		.service('ServerLogDump', ServerLogDump)
 
 		/**
 		 * The JSON date interceptor is an HTTP interceptor implementation that transforms properties
@@ -176,20 +203,45 @@
 		 * The BleedApi service provides a convenient pre-configured Restangular object with
 		 * integrated authorization.
 		 */
-		.factory('BleedApi', function (Restangular, AuthHandler, $window) {
+		.factory('BleedApi', function (Restangular, AuthHandler, $window, $log, MessageBuilder) {
 			return Restangular.withConfig(function(RestangularConfig) {
 				RestangularConfig
 					.setBaseUrl('/api')
 					.setDefaultHeaders({ 'Authorization': AuthHandler.getToken() })
 					.setErrorInterceptor(function (response) {
-						console.log("resource request error", response);
+						var uiError = 'restApiError';
+
 						if (response.status === 403 || response.status === 401) {
-							console.log("Login required. Redirecting...");
+							// TODO: split 403 and 401 in separate messages and behavior
+							$log.warn('Login required. Redirecting...');
 							$window.location.href='/user/login';
+						} else if (response.status >= 500 && response.status < 600) {
+							$log.fatal('REST API error: ' + response.statusText, response.data);
+						} else if (response.status === 404 || response.status === 405) {
+							$log.error('REST API error: ' + response.statusText, {
+								statusCode: response.status,
+								method: response.config.method,
+								url: response.config.url,
+							});
+						} else if (response.status === 0) {
+							$log.fatal('REST API error: no server response', {
+								method: response.config.method,
+								url: response.config.url,
+							});
+							uiError = 'noResponseError';
+						} else {
+							$log.error('Unknown REST API error', response);
 						}
 
-						return false;
+						MessageBuilder.send(uiError, [response.status, response.config.method]);
+
+						return true;
 					});
+
+					// This piece of code can be used to simulate AJAX timeouts
+					//RestangularConfig.setDefaultHttpFields({
+					//	timeout: 50,
+					//});
 			});
 		})
 

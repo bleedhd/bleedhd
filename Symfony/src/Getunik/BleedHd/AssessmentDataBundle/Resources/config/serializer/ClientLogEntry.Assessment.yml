@@ -1,0 +1,18 @@
+Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
+    exclusion_policy: ALL
+    read_only: false
+    properties:
+        id:
+            since_version: 1.0
+        timestamp:
+            since_version: 1.0
+        level:
+            since_version: 1.0
+        user:
+            since_version: 1.0
+        location:
+            since_version: 1.0
+        message:
+            since_version: 1.0
+        data:
+            since_version: 1.0

@@ -60,5 +60,8 @@
 {% endblock scripts %}
 
 {% block content %}
-<div ng-view autoscroll="true"></div>
+<messages></messages>
+<route-change>
+	<div ng-view autoscroll="true"></div>
+</route-change>
 {% endblock content %}
