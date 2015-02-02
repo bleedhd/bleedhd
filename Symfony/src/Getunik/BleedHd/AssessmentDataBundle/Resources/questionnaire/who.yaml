@@ -4,27 +4,245 @@
 # are displayed on a single screen
 
 meta_answers:
-  nya: not yet answered
-  nass: not assessed
-  napp: not applicable
-  ns: no symptom
-questions:
-  chapter_1:
-    group_1:
-      section_1:
-        screen_1:
+  nya: Not yet answered
+  nass: Not assessed
+  napp: Not applicable
+  ns: No symptoms
+chapters:
+  -
+    sections:
+      -
+        screens:
           -
-            slug: question-yes-no
-            type: yesno
-            meta_answers: ['nya', 'nass']
-            question:
-              title: Do you agree or not?
-              description: "Some <strong>HTML</strong> markup"
-            options: # optional
-              yes:
-                label: "Yes"
-                value: true
-              no:
-                label: "No"
-                value: false
-            export: TODO
+            slug: mouth-and-nose
+            questions:
+              -
+                slug: petechiae
+                type: yesno
+                title: "Mucosal surface of mouth and nose"
+                meta_answers: ['nya']
+                intro:
+                  question: "Are there petechiae or hematomas in the mucosal surface of mouth or nose?"
+                  description: "Description"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: "1"
+                    supplements:
+                      -
+                        slug: isnew
+                        type: checkbox
+                        label: "New?"
+                        question:
+                          title:
+                  no:
+                    label: "No"
+                    value: "0"
+
+              -
+                slug: mouth-bleed
+                type: yesno
+                title: "Mucosal surface of mouth and nose"
+                meta_answers: ['nya']
+                intro:
+                  question: "Is there any bleeding from the mouth and/or throat?"
+                  description: "Description"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: "1"
+                    supplements:
+                      -
+                        slug: duration
+                        type: checkbox
+                        label: "If yes, longer than 30 minutes?"
+                        question:
+                          title:
+                  no:
+                    label: "No"
+                    value: "0"
+
+              -
+                slug: nose-bleed
+                type: yesno
+                title: "Mucosal surface of mouth and nose"
+                meta_answers: ['nya']
+                intro:
+                  question: "Was there a nose bleed?"
+                  description: "Description"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: "1"
+                    supplements:
+                      -
+                        slug: duration
+                        type: checkbox
+                        label: "If yes, longer than 30 minutes?"
+                        question:
+                          title:
+                  no:
+                    label: "No"
+                    value: "0"
+
+          -
+            slug: skin-and-tissue
+            questions:
+              -
+                slug: petechiae
+                type: yesno
+                title: "Skin, soft tissue and muscles"
+                meta_answers: ['nya']
+                intro:
+                  question: "Are there petechiae of the skin?"
+                  description: "Description"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: "1"
+                    supplements:
+                      -
+                        slug: isnew
+                        type: checkbox
+                        label: "New?"
+                        question:
+                          title:
+                      -
+                        slug: generalized
+                        type: checkbox
+                        label: "If yes, generalized?"
+                        question:
+                          title:
+                  no:
+                    label: "No"
+                    value: "0"
+
+              -
+                slug: skin-hematomas
+                type: yesno
+                title: "Skin, soft tissue and muscles"
+                meta_answers: ['nya']
+                intro:
+                  question: "Are there hematomas of the skin?"
+                  description: "Description"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: "1"
+                    supplements:
+                      -
+                        slug: isnew
+                        type: checkbox
+                        label: "New?"
+                        question:
+                          title:
+                      -
+                        slug: number
+                        type: radios
+                        question:
+                          title: "Number of hematomas >1cm"
+                        options: # optional
+                          -
+                            label: "0"
+                            value: "0"
+                          -
+                            label: "<3"
+                            value: "<3"
+                          -
+                            label: "3-5"
+                            value: "3-5"
+                          -
+                            label: ">5"
+                            value: >5
+                      -
+                        slug: size
+                        type: text
+                        label: "Maximal diameter of the largest hematoma (cm)?"
+                        question:
+                          title:
+                        pattern: "decimal"
+                  no:
+                    label: "No"
+                    value: "0"
+
+              -
+                slug: soft-tissue-hematomas
+                type: yesno
+                title: "Skin, soft tissue and muscles"
+                meta_answers: ['nya']
+                intro:
+                  question: "Are there 1 or more hematomas in the soft tissue or muscles >2.5cm?"
+                  description: "Description"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: "1"
+                    supplements:
+                      -
+                        slug: isnew
+                        type: checkbox
+                        label: "New?"
+                        question:
+                          title:
+                  no:
+                    label: "No"
+                    value: "0"
+              -
+                slug: deep-tissue-hematomas
+                type: yesno
+                title: "Skin, soft tissue and muscles"
+                meta_answers: ['nya']
+                intro:
+                  question: "Are there hematomas in deeper tissues?"
+                  description: "Description"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: "1"
+                    supplements:
+                      -
+                        slug: isnew
+                        type: checkbox
+                        label: "New?"
+                        question:
+                          title:
+                  no:
+                    label: "No"
+                    value: "0"
+              -
+                slug: joint-bleeding
+                type: yesno
+                title: "Skin, soft tissue and muscles"
+                meta_answers: ['nya']
+                intro:
+                  question: "Is there bleeding in a joint?"
+                  description: "Description"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: "1"
+                    supplements:
+                      -
+                        slug: isnew
+                        type: checkbox
+                        label: "New?"
+                        question:
+                          title:
+                  no:
+                    label: "No"
+                    value: "0"
+
+            slug: screen_3
+            questions:
+
+            slug: screen_4
+            questions:
+
+            slug: screen_5
+            questions:
+
+            slug: screen_6
+            questions:
+
+            slug: screen_7
+            questions:
