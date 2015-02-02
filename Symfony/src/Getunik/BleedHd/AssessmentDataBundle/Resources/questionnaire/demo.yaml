@@ -51,6 +51,8 @@ chapters:
                         slug: new
                         type: checkbox
                         label: New?
+                        true_value: 42
+                        false_value: ''
                         question:
                           title: Is this new?
                   no:
