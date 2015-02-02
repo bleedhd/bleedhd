@@ -3,6 +3,7 @@
 
 	function AssessmentQuestionContainerController($scope) {
 		this.scope = $scope;
+		this.debug = this.scope.debug();
 		this.question = this.scope.question();
 
 		// in case this is a multi-question, the response will be a mapping { _question-slug_: response } while
@@ -87,6 +88,7 @@
 				scope: {
 					question: '&data',
 					response: '&',
+					debug: '&',
 				},
 				controller: AssessmentQuestionContainerController,
 				controllerAs: 'containerCtl',

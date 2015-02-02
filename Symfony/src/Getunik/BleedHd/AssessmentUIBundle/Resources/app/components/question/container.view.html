@@ -25,12 +25,12 @@
 				<div class="bleed-answers-group" ng-repeat="question in containerCtl.question.questions">
 					<h4 ng-bind-html="question.intro.question"></h4>
 					<question definition="question" data="containerCtl.response[question.slug.full].result.data" ></question>
-					<pre class="debug-output">{{ containerCtl.response[question.slug.full].result|json }}</pre>
+					<pre ng-if="containerCtl.debug" class="debug-output">{{ containerCtl.response[question.slug.full].result|json }}</pre>
 				</div>
 			</div>
 			<div ng-switch-default class="bleed-answers">
 				<question definition="containerCtl.question" data="containerCtl.result.data" ></question>
-				<pre class="debug-output">{{ containerCtl.result|json }}</pre>
+				<pre ng-if="containerCtl.debug" class="debug-output">{{ containerCtl.result|json }}</pre>
 			</div>
 		</div>
 	</div>

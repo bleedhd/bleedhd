@@ -17,7 +17,7 @@
 	<div class="row">
 		<div class="col-xs-12">
 
-			<container ng-repeat="question in ctlScreen.screen.questions" data="question" response="ctlScreen.context.getResponseForQuestion(question.slug)"></container>
+			<container ng-repeat="question in ctlScreen.screen.questions" data="question" debug="env.debug" response="ctlScreen.context.getResponseForQuestion(question.slug)"></container>
 
 		</div>
 	</div>
