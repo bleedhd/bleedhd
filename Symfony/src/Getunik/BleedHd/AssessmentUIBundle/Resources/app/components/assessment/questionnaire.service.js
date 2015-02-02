@@ -7,11 +7,12 @@
 	}
 
 
-	function Questionnaire(yamlData) {
+	function Questionnaire(name, yamlData) {
 		this.screens = {};
 		this.screensLinear = [];
 		this.multiQuestions = {};
 		this.questions = [];
+		this.rootSlug = new Slug(yamlData.slug || name);
 
 		this._processYaml(yamlData);
 	}
@@ -36,7 +37,7 @@
 			var that = this, screenObj, chapterSlug, sectionSlug, screenSlug, screenIndex = 0;
 
 			angular.forEach(yamlData.chapters, function (chapter) {
-				chapterSlug = new Slug(chapter.slug);
+				chapterSlug = new Slug(chapter.slug, that.rootSlug);
 
 				angular.forEach(chapter.sections, function (section) {
 					sectionSlug = new Slug(section.slug, chapterSlug);
@@ -87,7 +88,7 @@
 		get: function (name) {
 			var that = this;
 			return this.questionnaires.get(name).then(function (yamlData) {
-				return new Questionnaire(yamlData);
+				return new Questionnaire(name, yamlData);
 			});
 		},
 	});
