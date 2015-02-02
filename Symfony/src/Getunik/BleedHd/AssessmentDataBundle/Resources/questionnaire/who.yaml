@@ -27,7 +27,7 @@ chapters:
                 options: # optional
                   yes:
                     label: "Yes"
-                    value: "1"
+                    value: 1
                     supplements:
                       -
                         slug: isnew
@@ -37,7 +37,7 @@ chapters:
                           title:
                   no:
                     label: "No"
-                    value: "0"
+                    value: 0
 
               -
                 slug: mouth-bleed
@@ -50,7 +50,7 @@ chapters:
                 options: # optional
                   yes:
                     label: "Yes"
-                    value: "1"
+                    value: 1
                     supplements:
                       -
                         slug: duration
@@ -60,7 +60,7 @@ chapters:
                           title:
                   no:
                     label: "No"
-                    value: "0"
+                    value: 0
 
               -
                 slug: nose-bleed
@@ -73,7 +73,7 @@ chapters:
                 options: # optional
                   yes:
                     label: "Yes"
-                    value: "1"
+                    value: 1
                     supplements:
                       -
                         slug: duration
@@ -83,7 +83,7 @@ chapters:
                           title:
                   no:
                     label: "No"
-                    value: "0"
+                    value: 0
 
           -
             slug: skin-and-tissue
@@ -99,7 +99,7 @@ chapters:
                 options: # optional
                   yes:
                     label: "Yes"
-                    value: "1"
+                    value: 1
                     supplements:
                       -
                         slug: isnew
@@ -115,7 +115,7 @@ chapters:
                           title:
                   no:
                     label: "No"
-                    value: "0"
+                    value: 0
 
               -
                 slug: skin-hematomas
@@ -128,7 +128,7 @@ chapters:
                 options: # optional
                   yes:
                     label: "Yes"
-                    value: "1"
+                    value: 1
                     supplements:
                       -
                         slug: isnew
@@ -153,9 +153,9 @@ chapters:
                             value: "3-5"
                           -
                             label: ">5"
-                            value: >5
+                            value: ">5"
                       -
-                        slug: size
+                        slug: maxsize
                         type: text
                         label: "Maximal diameter of the largest hematoma (cm)?"
                         question:
@@ -163,7 +163,7 @@ chapters:
                         pattern: "decimal"
                   no:
                     label: "No"
-                    value: "0"
+                    value: 0
 
               -
                 slug: soft-tissue-hematomas
@@ -176,7 +176,7 @@ chapters:
                 options: # optional
                   yes:
                     label: "Yes"
-                    value: "1"
+                    value: 1
                     supplements:
                       -
                         slug: isnew
@@ -186,7 +186,7 @@ chapters:
                           title:
                   no:
                     label: "No"
-                    value: "0"
+                    value: 0
               -
                 slug: deep-tissue-hematomas
                 type: yesno
@@ -198,7 +198,7 @@ chapters:
                 options: # optional
                   yes:
                     label: "Yes"
-                    value: "1"
+                    value: 1
                     supplements:
                       -
                         slug: isnew
@@ -208,7 +208,7 @@ chapters:
                           title:
                   no:
                     label: "No"
-                    value: "0"
+                    value: 0
               -
                 slug: joint-bleeding
                 type: yesno
@@ -220,7 +220,7 @@ chapters:
                 options: # optional
                   yes:
                     label: "Yes"
-                    value: "1"
+                    value: 1
                     supplements:
                       -
                         slug: isnew
@@ -230,7 +230,7 @@ chapters:
                           title:
                   no:
                     label: "No"
-                    value: "0"
+                    value: 0
 
             slug: screen_3
             questions:
