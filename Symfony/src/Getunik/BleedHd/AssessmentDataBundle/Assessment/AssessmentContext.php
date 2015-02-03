@@ -18,6 +18,7 @@ class AssessmentContext
 
     public function __construct(Assessment $assessment, array $questionnaire, array $responses)
     {
+        $this->assessment = $assessment;
         $this->processQuestionnaire($questionnaire, $responses);
     }
 
@@ -30,7 +31,9 @@ class AssessmentContext
             $responseMap[$response->getQuestionSlug()] = $response;
         }
 
-        $this->processHierarchySegment($questionnaire, $responseMap, 0);
+        $rootSlug = new Slug(isset($questionnaire['slug']) ? $questionnaire['slug'] : $this->assessment->getQuestionnaire(), NULL);
+
+        $this->processHierarchySegment($questionnaire, $responseMap, 0, $rootSlug);
     }
 
     protected function processHierarchySegment(array $segmentData, array $responseMap, $segmentIndex, Slug $slug = NULL)

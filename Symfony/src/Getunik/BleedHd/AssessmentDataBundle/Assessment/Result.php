@@ -53,6 +53,13 @@ class Result
         return NULL;
     }
 
+    public function getSupplement($slug)
+    {
+        return empty($this->result['data']) || empty($this->result['data']['supplements']) || !isset($this->result['data']['supplements'][$slug])
+                ? NULL
+                : $this->result['data']['supplements'][$slug];
+    }
+
     private static function isAssoc($arr)
     {
         return array_keys($arr) !== range(0, count($arr) - 1);

@@ -29,10 +29,12 @@ abstract class CalculatorBase implements ScoreCalculatorInterface
 
 	public function run(AssessmentContext $context)
 	{
+		$extractor = $this->getExtractor();
 		foreach ($context->getQuestions() as $question)
 		{
+			$scoreMappings = $extractor->extract($question);
 			$this->accumulateStats($question);
-			$this->accumulate($question);
+			$this->accumulate($question, $scoreMappings);
 		}
 
 		return $this;
@@ -61,5 +63,10 @@ abstract class CalculatorBase implements ScoreCalculatorInterface
 		}
 	}
 
-	protected abstract function accumulate(Question $question);
+	protected abstract function accumulate(Question $question, array $scoreMappings);
+
+	protected function getExtractor()
+	{
+		return new ScoreMappingExtractor();
+	}
 }

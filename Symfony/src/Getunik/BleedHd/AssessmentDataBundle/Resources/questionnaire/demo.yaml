@@ -26,6 +26,8 @@ chapters:
                 intro:
                   question: "Do you agree or not?"
                   description: "Some <strong>HTML</strong> markup"
+                score:
+                  grade: 7
                 options: # optional
                   yes:
                     label: "Yes"
@@ -51,13 +53,18 @@ chapters:
                         slug: new
                         type: checkbox
                         label: New?
-                        true_value: 42
-                        false_value: ''
+                        options:
+                          yes:
+                            value: 42
+                            score:
+                              grade: 42
                         question:
                           title: Is this new?
                   no:
                     label: "Nope"
                     value: false
+                    score:
+                      grade: -1
                     supplements:
                       -
                         slug: sure
@@ -80,18 +87,24 @@ chapters:
                   -
                     slug: first
                     type: yesno
+                    score:
+                      grade: 3
                     meta_answers: ['nya', 'nass']
                     intro:
                       question: "Is this the real life?"
                   -
                     slug: second
                     type: yesno
+                    score:
+                      grade: 4
                     meta_answers: ['nya', 'nass']
                     intro:
                       question: "Is this just fantasy?"
                   -
                     slug: third
                     type: yesno
+                    score:
+                      grade: 5
                     meta_answers: ['nya', 'nass']
                     intro:
                       question: "Caught in a landslide(?)"
@@ -103,6 +116,8 @@ chapters:
                 type: checkboxes
                 title: "Make your choices!"
                 meta_answers: ['nya']
+                score:
+                  grade: 4
                 intro:
                   question: "Make your choices!"
                   description: "Pick the things you like"

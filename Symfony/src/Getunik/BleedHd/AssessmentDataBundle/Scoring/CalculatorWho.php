@@ -13,7 +13,7 @@ class CalculatorWho extends CalculatorBase
 		$this->score->trueCount = 0;
 	}
 
-	protected function accumulate(Question $question)
+	protected function accumulate(Question $question, array $scoreMappings)
 	{
 		//$result = $question->getResult();
 	}
