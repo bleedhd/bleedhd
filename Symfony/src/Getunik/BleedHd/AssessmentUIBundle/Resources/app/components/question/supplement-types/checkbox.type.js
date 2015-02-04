@@ -5,14 +5,16 @@
 		SupplementTypeRegistryProvider.registerTypeWithName('checkbox', 'base', function (parent) {
 			return {
 				ctor: function CheckboxSupplement (scope, definition) {
-					parent(this)(scope, definition);
+					this.options = $.extend({
+						yes: { label: 'Yes', value: true },
+						no: { label: 'No', value: false },
+					}, definition.options);
 
-					this.trueValue = angular.isUndefined(definition.true_value) ? true : definition.true_value;
-					this.falseValue = angular.isUndefined(definition.false_value) ? false : definition.false_value;
+					parent(this)(scope, definition);
 				},
 				members: {
 					getDefault: function () {
-						return this.falseValue;
+						return this.options.no.value;
 					},
 				},
 			};
