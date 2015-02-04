@@ -67,7 +67,36 @@ abstract class CalculatorBase implements ScoreCalculatorInterface
 		}
 	}
 
-	protected abstract function accumulate(Question $question, array $scoreMappings);
+	protected function accumulate(Question $question, array $scoreMappings)
+	{
+		foreach ($scoreMappings as $questionMapping)
+		{
+			$this->logger->info("question " . $questionMapping->getSlug()->getFull());
+			$this->logger->info("  value: " . json_encode($questionMapping->getValue()));
+			$this->logger->info("  score relevant: " . ($questionMapping->hasConfig() ? 'true' : 'false'));
+
+			if ($questionMapping->hasConfig())
+			{
+				$this->accumulateMapping($questionMapping);
+			}
+
+			foreach ($questionMapping->getChildren() as $supplementMapping)
+			{
+				$this->logger->info("    supplement " . $supplementMapping->getSlug()->getFull());
+				$this->logger->info("      value: " . json_encode($supplementMapping->getValue()));
+				$this->logger->info("      score relevant: " . ($supplementMapping->hasConfig() ? 'true' : 'false'));
+
+				if ($supplementMapping->hasConfig())
+				{
+					$this->accumulateMapping($supplementMapping);
+				}
+			}
+		}
+	}
+
+	protected function accumulateMapping(ScoreMapping $mapping)
+	{
+	}
 
 	protected function getExtractor()
 	{

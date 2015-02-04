@@ -6,16 +6,10 @@ use Psr\Log\LoggerInterface;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
 
-class CalculatorWho extends CalculatorBase
+class CalculatorWho extends CalculatorMaxValue
 {
 	public function __construct(LoggerInterface $logger)
 	{
-		parent::__construct($logger);
-		$this->score->trueCount = 0;
-	}
-
-	protected function accumulate(Question $question, array $scoreMappings)
-	{
-		//$result = $question->getResult();
+		parent::__construct($logger, 'grade');
 	}
 }
