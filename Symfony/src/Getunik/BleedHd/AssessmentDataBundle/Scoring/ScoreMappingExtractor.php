@@ -56,7 +56,7 @@ class ScoreMappingExtractor
 		return array();
 	}
 
-	public function extractSupplements(ScoreMapping $parent, array $definition, Result $result)
+	public function extractSupplements(ScoreMapping $parent, array $definition, Result $result, $index)
 	{
 		if (isset($definition['supplements']))
 		{
@@ -66,7 +66,7 @@ class ScoreMappingExtractor
 				$slug = new Slug($supplement['slug'], $parent->getSlug());
 				$type = $supplement['type'];
 				$supplementTypeFn = $this->getTypeFunction($this->questionTypeMap, $type);
-				$this->{$supplementTypeFn}($acc, $slug, $supplement, $result->getSupplement($supplement['slug']));
+				$this->{$supplementTypeFn}($acc, $slug, $supplement, $result->getSupplement($supplement['slug'], $index));
 			}
 		}
 	}
@@ -104,14 +104,19 @@ class ScoreMappingExtractor
 	protected function extractMultiOptions(IAccumulator $acc, Slug $slug, array $definition, $value)
 	{
 		$defaultConfig = isset($definition['score']) ? $definition['score'] : NULL;
+		$options = array();
 
 		foreach ($definition['options'] as $option)
 		{
-			if (in_array($option['value'], $value))
-			{
-				$config = isset($option['score']) ? $option['score'] : $defaultConfig;
-				$acc->accumulate(new ScoreMapping($slug, $config, $value), $option);
-			}
+			$options[$option['value']] = $option;
+		}
+
+		foreach ($value as $index => $item)
+		{
+			$val = is_array($item) ? (isset($item['value']) ? $item['value'] : NULL) : $item;
+			$option = isset($options[$val]) ? $options[$val] : array();
+			$config = isset($option['score']) ? $option['score'] : $defaultConfig;
+			$acc->accumulate(new ScoreMapping($slug, $config, $val), $option, $index);
 		}
 	}
 
@@ -168,8 +173,8 @@ class QuestionAccumulator implements IAccumulator
 		$this->mappings = array();
 	}
 
-	public function accumulate(ScoreMapping $mapping, array $scope) {
-		$this->extractor->extractSupplements($mapping, $scope, $this->result);
+	public function accumulate(ScoreMapping $mapping, array $scope, $index = -1) {
+		$this->extractor->extractSupplements($mapping, $scope, $this->result, $index);
 		$this->mappings[] = $mapping;
 	}
 

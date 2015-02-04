@@ -45,19 +45,31 @@ class Result
 
     public function getValue()
     {
-        if ($this->hasValue() && self::isAssoc($this->result['data']))
+        if ($this->hasValue())
         {
-            return $this->result['data']['value'];
+            return self::isAssoc($this->result['data']) ? $this->result['data']['value'] : $this->result['data'];
         }
 
         return NULL;
     }
 
-    public function getSupplement($slug)
+    public function getSupplement($slug, $index = -1)
     {
-        return empty($this->result['data']) || empty($this->result['data']['supplements']) || !isset($this->result['data']['supplements'][$slug])
+        if (empty($this->result['data']))
+        {
+            return NULL;
+        }
+
+        $item = empty($this->result['data']) ? array() : $this->result['data'];
+
+        if ($index >= 0)
+        {
+            $item = isset($this->result['data'][$index]) ? $this->result['data'][$index] : array();
+        }
+
+        return empty($this->result['data']) || empty($item['supplements']) || !isset($item['supplements'][$slug])
                 ? NULL
-                : $this->result['data']['supplements'][$slug];
+                : $item['supplements'][$slug];
     }
 
     private static function isAssoc($arr)
