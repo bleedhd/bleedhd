@@ -29,6 +29,10 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.response, method: onResponse }
 
+    getunik.bleed_hd_data.score_calculator_factory:
+        class: Getunik\BleedHd\AssessmentDataBundle\Scoring\ScoreCalculatorFactory
+        arguments: ["@monolog.logger.score"]
+
 
     getunik.bleed_hd_data.patient_handler:
         class: %getunik.bleed_hd_data.patient_handler.class%
@@ -62,6 +66,7 @@ services:
             - @doctrine
             - @getunik.bleed_hd_data.response_handler
             - @getunik.bleed_hd_data.questionnaire_handler
+            - @getunik.bleed_hd_data.score_calculator_factory
 
     getunik.bleed_hd_data.assessment_controller:
         class: %getunik.bleed_hd_data.assessment_controller.class%

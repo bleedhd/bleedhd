@@ -2,14 +2,15 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Scoring;
 
+use Psr\Log\LoggerInterface;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
 
 class CalculatorWho extends CalculatorBase
 {
-	public function __construct()
+	public function __construct(LoggerInterface $logger)
 	{
-		parent::__construct();
+		parent::__construct($logger);
 		$this->score->trueCount = 0;
 	}
 

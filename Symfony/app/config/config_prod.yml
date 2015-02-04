@@ -17,9 +17,14 @@ monolog:
             type:         fingers_crossed
             action_level: error
             handler:      nested
+            channels: ["!score"]
         nested:
             type:  stream
             path:  "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
         console:
             type:  console
+        score:
+            type:     stream
+            path:     "%kernel.logs_dir%/score.log"
+            channels: ["score"]

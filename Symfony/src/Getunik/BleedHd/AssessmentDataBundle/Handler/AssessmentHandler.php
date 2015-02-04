@@ -18,8 +18,9 @@ class AssessmentHandler
     private $repository;
     private $responseHandler;
     private $questionnaireHandler;
+    private $scoreCalculatorFactory;
 
-    public function __construct(ManagerRegistry $managerRegistry, ResponseHandler $responseHandler, QuestionnaireHandler $questionnaireHandler)
+    public function __construct(ManagerRegistry $managerRegistry, ResponseHandler $responseHandler, QuestionnaireHandler $questionnaireHandler, ScoreCalculatorFactory $scoreCalculatorFactory)
     {
         $this->repository = $managerRegistry
                             ->getManagerForClass(self::$entityType)
@@ -27,6 +28,7 @@ class AssessmentHandler
 
         $this->responseHandler = $responseHandler;
         $this->questionnaireHandler = $questionnaireHandler;
+        $this->scoreCalculatorFactory = $scoreCalculatorFactory;
     }
 
     public function save(Assessment $assessment)
@@ -50,7 +52,7 @@ class AssessmentHandler
         $questionnaire = $this->questionnaireHandler->getQuestionnaireByName($assessment->getQuestionnaire());
 
         $context = new AssessmentContext($assessment, $questionnaire, $responses);
-        $calculator = ScoreCalculatorFactory::create($assessment->getQuestionnaire());
+        $calculator = $this->scoreCalculatorFactory->create($assessment->getQuestionnaire());
 
         $result = $calculator->run($context)->getResult();
         $assessment->setResult($result);

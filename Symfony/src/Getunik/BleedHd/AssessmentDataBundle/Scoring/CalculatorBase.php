@@ -2,6 +2,7 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Scoring;
 
+use Psr\Log\LoggerInterface;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
@@ -13,9 +14,12 @@ abstract class CalculatorBase implements ScoreCalculatorInterface
 {
 	protected $result;
 	protected $score;
+	protected $logger;
 
-	public function __construct()
+	public function __construct(LoggerInterface $logger)
 	{
+		$this->logger = $logger;
+
 		$this->result = new \stdClass();
 
 		$this->result->stats = new \stdClass();

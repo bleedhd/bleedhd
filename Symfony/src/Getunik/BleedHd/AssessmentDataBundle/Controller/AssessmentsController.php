@@ -73,4 +73,15 @@ class AssessmentsController extends FOSRestController
     {
         return $this->handleView($this->view("delete assessment"));
     }
+
+    /**
+     * @Get("/patients/{patient}/assessments/{assessment}/score")
+     * @ParamConverter("assessment", options={"id" = "assessment"})
+     */
+    public function getScoreAction($patient, Assessment $assessment)
+    {
+        //return $this->handleView($this->view("bla"));
+        $this->assessmentHandler->updateScore($assessment);
+        return $this->handleView($this->view(json_decode(json_encode($assessment->getResult()), true)));
+    }
 }

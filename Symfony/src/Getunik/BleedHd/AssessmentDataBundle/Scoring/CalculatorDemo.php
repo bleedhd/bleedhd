@@ -2,14 +2,15 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Scoring;
 
+use Psr\Log\LoggerInterface;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
 
 class CalculatorDemo extends CalculatorBase
 {
-	public function __construct()
+	public function __construct(LoggerInterface $logger)
 	{
-		parent::__construct();
+		parent::__construct($logger);
 		$this->score->trueCount = 0;
 		$this->score->grade = 0;
 	}
@@ -24,26 +25,28 @@ class CalculatorDemo extends CalculatorBase
 
 		foreach ($scoreMappings as $questionMapping)
 		{
-			//echo "question " . $questionMapping->getSlug()->getFull() . "\n";
-			//echo "  value: " . json_encode($questionMapping->getValue()) . "\n";
+			$this->logger->info("question " . $questionMapping->getSlug()->getFull());
+			$this->logger->info("  value: " . json_encode($questionMapping->getValue()));
+			$this->logger->info("  score relevant: " . ($questionMapping->hasConfig() ? 'true' : 'false'));
 
 			if ($questionMapping->hasConfig())
 			{
 				$config = $questionMapping->getConfig();
-				//echo "  scoring: " . $config['grade']. "\n";
+				$this->logger->info("  scoring: " . $config['grade']);
 
 				$this->score->grade = max($this->score->grade, $config['grade']);
 			}
 
 			foreach ($questionMapping->getChildren() as $supplementMapping)
 			{
-				//echo "    supplement " . $supplementMapping->getSlug()->getFull() . "\n";
-				//echo "      value: " . json_encode($supplementMapping->getValue()) . "\n";
+				$this->logger->info("    supplement " . $supplementMapping->getSlug()->getFull());
+				$this->logger->info("      value: " . json_encode($supplementMapping->getValue()));
+				$this->logger->info("      score relevant: " . ($supplementMapping->hasConfig() ? 'true' : 'false'));
 
 				if ($supplementMapping->hasConfig())
 				{
 					$config = $supplementMapping->getConfig();
-					//echo "      scoring: " . $config['grade']. "\n";
+					$this->logger->info("      scoring: " . $config['grade']);
 
 					$this->score->grade = max($this->score->grade, $config['grade']);
 				}
