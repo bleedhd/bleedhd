@@ -21,6 +21,8 @@ chapters:
                 type: yesno
                 title: "Mucosal surface of mouth and nose"
                 meta_answers: ['nya']
+                score:
+                  grade: 1
                 intro:
                   question: "Are there petechiae or hematomas in the mucosal surface of mouth or nose?"
                   description: "Description"
@@ -44,6 +46,8 @@ chapters:
                 type: yesno
                 title: "Mucosal surface of mouth and nose"
                 meta_answers: ['nya']
+                score:
+                  grade: 1
                 intro:
                   question: "Is there any bleeding from the mouth and/or throat?"
                   description: "Description"
@@ -55,6 +59,8 @@ chapters:
                       -
                         slug: duration
                         type: checkbox
+                        score:
+                          grade: 2
                         label: "If yes, longer than 30 minutes?"
                         question:
                           title:
@@ -67,6 +73,8 @@ chapters:
                 type: yesno
                 title: "Mucosal surface of mouth and nose"
                 meta_answers: ['nya']
+                score:
+                  grade: 1
                 intro:
                   question: "Was there a nose bleed?"
                   description: "Description"
@@ -78,6 +86,8 @@ chapters:
                       -
                         slug: duration
                         type: checkbox
+                        score:
+                          grade: 2
                         label: "If yes, longer than 30 minutes?"
                         question:
                           title:
@@ -93,6 +103,8 @@ chapters:
                 type: yesno
                 title: "Skin, soft tissue and muscles"
                 meta_answers: ['nya']
+                score:
+                  grade: 1
                 intro:
                   question: "Are there petechiae of the skin?"
                   description: "Description"
@@ -122,6 +134,8 @@ chapters:
                 type: yesno
                 title: "Skin, soft tissue and muscles"
                 meta_answers: ['nya']
+                score:
+                  grade: 1
                 intro:
                   question: "Are there hematomas of the skin?"
                   description: "Description"
@@ -155,7 +169,7 @@ chapters:
                             label: ">5"
                             value: ">5"
                       -
-                        slug: maxsize
+                        slug: size
                         type: text
                         label: "Maximal diameter of the largest hematoma (cm)?"
                         question:
@@ -170,6 +184,8 @@ chapters:
                 type: yesno
                 title: "Skin, soft tissue and muscles"
                 meta_answers: ['nya']
+                score:
+                  grade: 2
                 intro:
                   question: "Are there 1 or more hematomas in the soft tissue or muscles >2.5cm?"
                   description: "Description"
@@ -192,6 +208,8 @@ chapters:
                 type: yesno
                 title: "Skin, soft tissue and muscles"
                 meta_answers: ['nya']
+                score:
+                  grade: 2
                 intro:
                   question: "Are there hematomas in deeper tissues?"
                   description: "Description"
@@ -214,6 +232,8 @@ chapters:
                 type: yesno
                 title: "Skin, soft tissue and muscles"
                 meta_answers: ['nya']
+                score:
+                  grade: 2
                 intro:
                   question: "Is there bleeding in a joint?"
                   description: "Description"
@@ -240,6 +260,8 @@ chapters:
                 type: yesno
                 title: "Gastrointestinal"
                 meta_answers: ['nya']
+                score:
+                  grade: 2
                 intro:
                   question: "Is there black, melanotic stool?"
                   description: "Description"
@@ -249,7 +271,7 @@ chapters:
                     value: 1
                     supplements:
                       -
-                        slug: xxx
+                        slug: multiple
                         type: checkbox
                         label: "If yes, more than one occasion?"
                         question:
@@ -258,10 +280,12 @@ chapters:
                     label: "No"
                     value: 0
               -
-                slug: xxx
+                slug: blood-stool
                 type: yesno
                 title: "Gastrointestinal"
                 meta_answers: ['nya']
+                score:
+                  grade: 2
                 intro:
                   question: "Is there visible blood in the stool?"
                   description: "Description"
@@ -271,7 +295,7 @@ chapters:
                     value: 1
                     supplements:
                       -
-                        slug: xxx
+                        slug: multiple
                         type: checkbox
                         label: "If yes, more than one occasion?"
                         question:
@@ -280,10 +304,12 @@ chapters:
                     label: "No"
                     value: 0
               -
-                slug: xxx
+                slug: hematemesis
                 type: yesno
                 title: "Gastrointestinal"
                 meta_answers: ['nya']
+                score:
+                  grade: 2
                 intro:
                   question: "Is there visible blood at vomiting (hematemesis)?"
                   description: "Description"
@@ -293,7 +319,7 @@ chapters:
                     value: 1
                     supplements:
                       -
-                        slug: xxx
+                        slug: multiple
                         type: checkbox
                         label: "If yes, more than one occasion?"
                         question:
@@ -306,10 +332,12 @@ chapters:
             slug: urogenital
             questions:
               -
-                slug: xxx
+                slug: urine-microscopic-blood
                 type: yesno
                 title: "Urogenital"
                 meta_answers: ['nya']
+                score:
+                  grade: 1
                 intro:
                   question: "Is there microscopic blood in the urine?"
                   description: "Description"
@@ -323,10 +351,12 @@ chapters:
 
 
               -
-                slug: xxx
+                slug: urine-macroscopic-blood
                 type: yesno
                 title: "Urogenital"
                 meta_answers: ['nya']
+                score:
+                  grade: 2
                 intro:
                   question: "Is there macroscopic blood in the urine?"
                   description: "Description"
@@ -340,10 +370,12 @@ chapters:
 
 
               -
-                slug: xxx
+                slug: vaginal-bleeding
                 type: yesno
                 title: "Urogenital"
                 meta_answers: ['nya', 'nass']
+                score:
+                  grade: 1
                 intro:
                   question: "Was there abnormal vaginal bleeding with spotting?"
                   description: "Description"
@@ -353,8 +385,10 @@ chapters:
                     value: 1
                     supplements:
                       -
-                        slug: xxx
+                        slug: multiple
                         type: checkbox
+                        score:
+                          grade: 2
                         label: "If yes, more than spotting?"
                         question:
                           title:
@@ -367,10 +401,12 @@ chapters:
             slug: pulmonary
             questions:
               -
-                slug: xxx
+                slug: blood-cough
                 type: yesno
                 title: "Pulmonary"
                 meta_answers: ['nya']
+                score:
+                  grade: 2
                 intro:
                   question: "Is the patient coughing blood (hemoptysis)?"
                   description: "Description"
@@ -383,10 +419,12 @@ chapters:
                     value: 0
 
               -
-                slug: xxx
+                slug: blood-lavage
                 type: yesno
                 title: "Pulmonary"
                 meta_answers: ['nya']
+                score:
+                  grade: 2
                 intro:
                   question: "Is there blood in the broncho-pulmonary lavage?"
                   description: "Description"
@@ -399,10 +437,12 @@ chapters:
                     value: 0
 
               -
-                slug: xxx
+                slug: blood-sputum
                 type: yesno
                 title: "Pulmonary"
                 meta_answers: ['nya']
+                score:
+                  grade: 2
                 intro:
                   question: "Is there blood tinged sputum?"
                   description: "Description"
@@ -418,10 +458,12 @@ chapters:
             slug: body-cavities
             questions:
               -
-                slug: xxx
+                slug: blood-cavity-fluid
                 type: yesno
                 title: "Body cavities"
                 meta_answers: ['nya']
+                score:
+                  grade: 2
                 intro:
                   question: "Is there visible blood in body cavity fluid?"
                   description: "Description"
@@ -434,10 +476,12 @@ chapters:
                     value: 0
 
               -
-                slug: xxx
+                slug: intervention
                 type: yesno
                 title: "Body cavities"
                 meta_answers: ['nya']
+                score:
+                  grade: 3
                 intro:
                   question: "Is intervention (i.e. to aspirate) needed to relieve dysfunction/symptoms?"
                   description: "Description"
@@ -453,10 +497,12 @@ chapters:
             slug: cns
             questions:
               -
-                slug: xxx
+                slug: retinal-bleed-noimp
                 type: yesno
                 title: "Central nervous system and retina"
                 meta_answers: ['nya']
+                score:
+                  grade: 2
                 intro:
                   question: "Is there a retinal bleeding without visual impairment?"
                   description: "Description"
@@ -469,10 +515,12 @@ chapters:
                     value: 0
 
               -
-                slug: xxx
+                slug: retinal-bleed-imp
                 type: yesno
                 title: "Central nervous system and retina"
                 meta_answers: ['nya']
+                score:
+                  grade: 4
                 intro:
                   question: "Is there a retinal bleeding with visual impairment?"
                   description: "Description"
@@ -485,7 +533,7 @@ chapters:
                     value: 0
 
               -
-                slug: xxx
+                slug: liquor
                 type: yesno
                 title: "Central nervous system and retina"
                 meta_answers: ['nya']
@@ -498,14 +546,18 @@ chapters:
                     value: 1
                     supplements:
                       -
-                        slug: xxx
+                        slug: microscopic
                         type: checkbox
+                        score:
+                          grade: 2
                         label: "With microscopic blood without symptoms?"
                         question:
                           title:
                       -
-                        slug: xxx
+                        slug: macroscopic
                         type: checkbox
+                        score:
+                          grade: 3
                         label: "With macroscopic blood without symptoms?"
                         question:
                           title:
@@ -515,10 +567,12 @@ chapters:
 
 
               -
-                slug: xxx
+                slug: bleed-nosymptoms
                 type: yesno
                 title: "Central nervous system and retina"
                 meta_answers: ['nya']
+                score:
+                  grade: 3
                 intro:
                   question: "Is there a CNS bleeding without symptoms?"
                   description: "Description"
@@ -532,10 +586,12 @@ chapters:
 
 
               -
-                slug: xxx
+                slug: bleed-symptoms
                 type: yesno
                 title: "Central nervous system and retina"
                 meta_answers: ['nya']
+                score:
+                  grade: 4
                 intro:
                   question: "Is there a CNS bleeding with symptoms?"
                   description: "Description"
@@ -551,10 +607,12 @@ chapters:
             slug: invasive-sites
             questions:
               -
-                slug: xxx
+                slug: bleed
                 type: yesno
                 title: "Invasive Sites"
                 meta_answers: ['nya']
+                score:
+                  grade: 2
                 intro:
                   question: "Was there any bleeding at invasive sites lasting more than 1 hour?"
                   description: "Description"
@@ -567,7 +625,7 @@ chapters:
                     value: 0
 
               -
-                slug: xxx
+                slug: bleed-site
                 type: radios
                 title: "Invasive Sites"
                 meta_answers: ['nya']
@@ -592,10 +650,12 @@ chapters:
             slug: bleeding-complications
             questions:
               -
-                slug: xxx
+                slug: hemodynamic-instability
                 type: yesno
                 title: "Impact of bleeding complications"
                 meta_answers: ['nya']
+                score:
+                  grade: 3
                 intro:
                   question: "Was there a bleeding episode with hemodynamic instability?"
                   description: "Description"
@@ -614,10 +674,12 @@ chapters:
 
 
               -
-                slug: xxx
+                slug: fatal-bleed
                 type: yesno
                 title: "Impact of bleeding complications"
                 meta_answers: ['nya']
+                score:
+                  grade: 4
                 intro:
                   question: "Was there a life-threatening or fatal bleeding episode?"
                   description: "Description"
@@ -630,10 +692,12 @@ chapters:
                     value: 0
 
               -
-                slug: xxx
+                slug: rbc
                 type: yesno
                 title: "Impact of bleeding complications"
                 meta_answers: ['nya']
+                score:
+                  grade: 3
                 intro:
                   question: "Was there a bleeding requiring RBC transfusion over routine needs?"
                   description: "Description"
@@ -649,7 +713,7 @@ chapters:
             slug: intervention
             questions:
               -
-                slug: xxx
+                slug: intervention-needed
                 type: yesno
                 title: "Intervention, invasive investigation, medication"
                 meta_answers: ['nya']
@@ -665,7 +729,7 @@ chapters:
                     value: 0
 
               -
-                slug: xxx
+                slug: intervention-type
                 type: radios
                 title: "Intervention, invasive investigation, medication"
                 meta_answers: ['nya']
@@ -692,7 +756,7 @@ chapters:
                         label: specify
 
               -
-                slug: xxx
+                slug: medication-administered
                 type: yesno
                 title: "Intervention, invasive investigation, medication"
                 meta_answers: ['nya']
@@ -708,7 +772,7 @@ chapters:
                     value: 0
 
               -
-                slug: xxx
+                slug: medication-type
                 type: radios
                 title: "Intervention, invasive investigation, medication"
                 meta_answers: ['nya']
@@ -744,7 +808,7 @@ chapters:
             slug: source-check
             questions:
               -
-                slug: xxx
+                slug: nursing-documented
                 type: yesno
                 title: "Source check"
                 meta_answers: ['nya']
@@ -760,7 +824,7 @@ chapters:
                     value: 0
 
               -
-                slug: xxx
+                slug: medical-record
                 type: yesno
                 title: "Source check"
                 meta_answers: ['nya']
@@ -774,11 +838,3 @@ chapters:
                   no:
                     label: "No"
                     value: 0
-
-
-
-
-
-
-
-
