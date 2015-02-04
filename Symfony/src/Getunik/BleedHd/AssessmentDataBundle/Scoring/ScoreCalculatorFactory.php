@@ -12,7 +12,6 @@ class ScoreCalculatorFactory
 	public function __construct(LoggerInterface $logger)
 	{
 		$this->logger = $logger;
-		$this->logger->info('testing', array('bla', 42));
 	}
 
 	public function create($assessmentType)
