@@ -12,6 +12,7 @@ imports:
 #        query_cache_driver: apc
 
 monolog:
+    channels: ["score"]
     handlers:
         main:
             type:         fingers_crossed
