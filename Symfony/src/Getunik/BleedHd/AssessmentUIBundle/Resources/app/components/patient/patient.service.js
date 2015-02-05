@@ -116,6 +116,9 @@
 					DataEvents.on('responses-update', function (event) {
 						that.caches.default.remove(['patient', event.patientId].join('-'));
 					});
+					DataEvents.on(['status-update', 'assessment-update'], function (event) {
+						that.caches.default.remove(['patient', event.data.patient_id].join('-'));
+					});
 
 					// Status objects are always accessed from the patient - they are never retrieved or modified
 					// directly - and should therefore always be in a consistent state.

@@ -21,12 +21,19 @@
 				handler(event);
 			});
 		},
-		on: function (name, handler) {
-			if (!this.handlers[name]) {
-				this.handlers[name] = [];
+		on: function (names, handler) {
+			var that = this;
+			if (!angular.isArray(names)) {
+				names = [names];
 			}
 
-			this.handlers[name].push(handler);
+			angular.forEach(names, function (name) {
+				if (!that.handlers[name]) {
+					that.handlers[name] = [];
+				}
+
+				that.handlers[name].push(handler);
+			});
 		},
 	});
 
