@@ -7,16 +7,6 @@
 		this.isNew = (this.patient.id === undefined);
 		this.$scope = $scope;
 		this.$location = $location;
-
-		$scope.patient_number = parseInt(patient.patient_number);
-		$scope.$watch('patient_number', function (newValue) {
-			patient.patient_number = numberToId(newValue);
-		});
-
-		$scope.upn = parseInt(patient.upn);
-		$scope.$watch('upn', function (newValue) {
-			patient.upn = numberToId(newValue);
-		});
 	}
 
 	function numberToId(newValue) {
@@ -26,10 +16,11 @@
 	bleedHd.registerController('patient', PatientEditController,
 		{
 			save: function () {
-				var ctl = this;
+				var ctl = this,
+					target = (ctl.isNew ? '/patients' : '/patients/detail/' + this.patient.id);
 				if (ctl.patientForm.$valid) {
 					ctl.PatientData.savePatient(ctl.patient).then(function () {
-						ctl.$location.path('/patients');
+						ctl.$location.path(target);
 					});
 				}
 			},
