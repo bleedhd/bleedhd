@@ -101,8 +101,11 @@
 									}
 								});
 
+								// since the update events are triggered before the server request is sent,
+								// if we add a new patient, it will be missing its ID, so we just wipe the
+								// cache in this case.
 								if (!found) {
-									patients.push(event.data);
+									that.caches.default.remove('patients');
 								}
 							});
 						}
@@ -112,6 +115,9 @@
 					// As a result, the patient (linked with assessments) has to be reloaded
 					DataEvents.on('responses-update', function (event) {
 						that.caches.default.remove(['patient', event.patientId].join('-'));
+					});
+					DataEvents.on(['status-update', 'assessment-update'], function (event) {
+						that.caches.default.remove(['patient', event.data.patient_id].join('-'));
 					});
 
 					// Status objects are always accessed from the patient - they are never retrieved or modified

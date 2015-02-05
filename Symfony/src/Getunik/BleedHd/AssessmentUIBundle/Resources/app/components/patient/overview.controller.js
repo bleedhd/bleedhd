@@ -3,7 +3,7 @@
 
 	function PatientOverviewController($scope, $filter, patients) {
 		this.patients = patients;
-		this.patients.sort(function (a, b) { return a.lastname > b.lastname; });
+		this.patients.sort(function (a, b) { return a.lastname.toLowerCase().localeCompare(b.lastname.toLowerCase()); });
 
 		this.paging = {
 			items: [],
