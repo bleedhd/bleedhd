@@ -103,7 +103,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr ng-repeat="assessment in ctlPatient.patient.assessments | orderBy:'start_date.date':true | filter:ctlPatient.byAssessmentType()">
+											<tr link-row="true" ng-repeat="assessment in ctlPatient.patient.assessments | orderBy:'start_date.date':true | filter:ctlPatient.byAssessmentType()">
 												<td>{{ assessment.start_date.date | isodate }}</td>
 												<td>{{ assessment.questionnaire }}</td>
 												<td>{{ assessment.platelets }}</td>
@@ -151,7 +151,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr ng-repeat="status in ctlPatient.patient.statuses | orderBy:'transplant_date':true" data-id="{{ status.id }}">
+											<tr link-row="true" ng-repeat="status in ctlPatient.patient.statuses | orderBy:'transplant_date':true" data-id="{{ status.id }}">
 												<td>{{ status.transplant_date.date | isodate }}</td>
 												<td>{{ status.transplant_type }}</td>
 												<td>{{ status.transplant_source || status.transplant_custom }}</td>
