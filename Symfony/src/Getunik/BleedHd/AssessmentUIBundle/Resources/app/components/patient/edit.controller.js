@@ -4,6 +4,7 @@
 	function PatientEditController($scope, $location, PatientData, patient) {
 		this.PatientData = PatientData;
 		this.patient = patient;
+		this.isNew = (this.patient.id === undefined);
 		this.$scope = $scope;
 		this.$location = $location;
 
