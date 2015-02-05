@@ -7,6 +7,15 @@
 		this.patient = patient;
 
 		this.resetAssessmentFilter();
+		this.currentStatus = null;
+
+		var that = this;
+		angular.forEach(that.patient.statuses, function (status) {
+			console.log(status);
+			if (that.currentStatus === null || that.currentStatus.transplant_date < status.transplant_date) {
+				that.currentStatus = status;
+			}
+		});
 	}
 
 	bleedHd.registerController('patient', PatientDetailController,

@@ -16,7 +16,7 @@
 			Gender: {{ ctlPatient.patient.sex | gender }}<br/>
 			Date of initial diagnosis: {{ ctlPatient.patient.diagnosis_date.date | isodate }}<br/>
 			Diagnosis: {{ ctlPatient.patient.diagnosis }}<br/>
-			TODO: Status since 15.08.2014: autologous
+			<span ng-if="ctlPatient.currentStatus">Status since {{ ctlPatient.currentStatus.transplant_date.date | isodate }}: {{ ctlPatient.currentStatus.transplant_type }} <span ng-if="ctlPatient.currentStatus.transplant_source || ctlPatient.currentStatus.transplant_custom">({{ ctlPatient.currentStatus.transplant_source || ctlPatient.currentStatus.transplant_custom }})</span></span>
 		</div>
 		<div class="col-xs-12 col-sm-6">
 			Patient number: {{ ctlPatient.patient.patient_number }}<br/>
