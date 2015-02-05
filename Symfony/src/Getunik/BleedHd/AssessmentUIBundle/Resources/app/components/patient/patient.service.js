@@ -101,8 +101,11 @@
 									}
 								});
 
+								// since the update events are triggered before the server request is sent,
+								// if we add a new patient, it will be missing its ID, so we just wipe the
+								// cache in this case.
 								if (!found) {
-									patients.push(event.data);
+									that.caches.default.remove('patients');
 								}
 							});
 						}
