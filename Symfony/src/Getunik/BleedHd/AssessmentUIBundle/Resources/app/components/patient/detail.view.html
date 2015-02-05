@@ -13,7 +13,7 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-6">
 			Date of birth: {{ ctlPatient.patient.birthdate.date | isodate }}<br/>
-			Sex: {{ ctlPatient.patient.sex }}<br/>
+			Gender: {{ ctlPatient.patient.sex | gender }}<br/>
 			Date of initial diagnosis: {{ ctlPatient.patient.diagnosis_date.date | isodate }}<br/>
 			Diagnosis: {{ ctlPatient.patient.diagnosis }}<br/>
 			TODO: Status since 15.08.2014: autologous

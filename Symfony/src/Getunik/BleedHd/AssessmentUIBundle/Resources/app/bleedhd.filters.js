@@ -1,6 +1,12 @@
 
 (function (angular, bleedHd) {
 
+	var genderMap = {
+		m: 'male',
+		f: 'female',
+		unknown: 'Not specified',
+	};
+
 	angular.module('bleedHdApp')
 
 		/**
@@ -17,6 +23,12 @@
 			return function (value) {
 				return (value === true ? BleedHdConfig.format.yesno[0] : BleedHdConfig.format.yesno[1]);
 			};
+		})
+
+		.filter('gender', function () {
+			return function (sex) {
+				return (genderMap[sex] === undefined ? genderMap.unknown : genderMap[sex]);
+			}
 		})
 
 		; // finally end the giant statement
