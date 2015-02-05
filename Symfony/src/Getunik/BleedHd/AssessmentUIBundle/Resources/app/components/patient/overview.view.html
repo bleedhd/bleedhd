@@ -46,7 +46,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="patient in ctlPatients.paging.getPageItems()" data-id="{{ patient.id }}">
+							<tr link-row="true" ng-repeat="patient in ctlPatients.paging.getPageItems()" data-id="{{ patient.id }}">
 								<td>{{ patient.lastname }}</td>
 								<td>{{ patient.firstname }}</td>
 								<td>{{ patient.birthdate.date | isodate }}</td>
