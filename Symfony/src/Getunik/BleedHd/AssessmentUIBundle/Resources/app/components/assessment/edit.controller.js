@@ -29,7 +29,7 @@
 				var ctl = this;
 				if (ctl.assessmentForm.$valid) {
 					ctl.AssessmentData.saveAssessment(ctl.assessment).then(function () {
-						ctl.$location.path('/patients/detail/' + ctl.patient.id);
+						ctl.$location.path('/patients/detail/' + ctl.patient.id).search('tab', 'assessments');
 					});
 				}
 			},
