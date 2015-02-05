@@ -37,7 +37,7 @@
 				var ctl = this;
 				if (ctl.statusForm.$valid) {
 					ctl.PatientData.saveStatus(ctl.status).then(function () {
-						ctl.$location.path('/patients/detail/' + ctl.patient.id);
+						ctl.$location.path('/patients/detail/' + ctl.patient.id).search('tab', 'status');
 					});
 				}
 			},
