@@ -37,7 +37,7 @@
 
 	<div class="panel-footer clearfix">
 		<div class="bleed-meta-answers pull-left">
-			<label ng-repeat="metaAnswer in containerCtl.question.meta_answers"><input type="radio" ng-model="binding.meta" ng-change="containerCtl.onMetaChange()" value="{{ metaAnswer }}">{{ metaAnswer }}</label>
+			<label ng-repeat="metaAnswer in containerCtl.question.meta_answers"><input type="radio" ng-model="binding.meta" ng-change="containerCtl.onMetaChange()" value="{{ metaAnswer }}"> {{ containerCtl.question.globalMeta[metaAnswer] }}</label>
 		</div>
 		<div class="pull-right">
 			TODO: X/Y

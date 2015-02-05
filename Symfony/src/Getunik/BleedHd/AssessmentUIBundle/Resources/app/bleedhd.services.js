@@ -78,10 +78,12 @@
 
 	angular.extend(DateHelper.prototype, {
 		toJSON: function () {
-			if (!angular.isDate(this.date))
-			{
-				return this.date;
+			if (!angular.isDate(this.date)) {
+				return angular.toJson(this.date);
+			} else if (isNaN(this.date.getTime())) {
+				return undefined;
 			}
+
 			return this.isDateTime ? this.dateFilter(this.date, 'yyyy-MM-ddTHH:mm:ss.sssZ') : this.dateFilter(this.date, 'yyyy-MM-dd');
 		},
 		toString: function () {
@@ -106,7 +108,7 @@
 
 	Object.defineProperty(DateHelper.prototype, 'date', {
 		get: function () { return !!this.moment ? this.moment.toDate() : undefined; },
-		set: function (val) { this.moment = moment(val); },
+		set: function (val) { this.moment = (val === undefined ? undefined : moment(val)); },
 	});
 
 

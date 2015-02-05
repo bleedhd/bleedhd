@@ -1,5 +1,5 @@
 
-<top-nav title="Assessment details" nav-url="#/patients/detail/{{ ctlAssessment.patient.id }}" nav-label="Cancel and go back to patient details"></top-nav>
+<top-nav title="Assessment details" nav-url="#/patients/detail/{{ ctlAssessment.patient.id }}" nav-label="Back to patient details"></top-nav>
 
 <panel>
 	<div class="row">
@@ -17,25 +17,25 @@
 		<div class="row">
 
 			<div class="col-xs-12 col-sm-6">
-				<div class="form-group">
-					<label for="assessment_start_date">Date of assessment*:</label>
-					<input id="assessment_start_date" class="form-control" type="date" ng-model="ctlAssessment.startDate" ng-change="ctlAssessment.onDateChange()" required />
+				<div class="form-group" bs-validate-class="ctlAssessment.assessmentForm.assessment_start_date">
+					<label class="control-label" for="assessment_start_date">Date of assessment*:</label>
+					<input id="assessment_start_date" name="assessment_start_date" class="form-control" type="date" ng-model="ctlAssessment.startDate" ng-change="ctlAssessment.onDateChange()" required />
+				</div>
+				<div class="form-group" bs-validate-class="ctlAssessment.assessmentForm.assessment_start_time">
+					<label class="control-label" for="assessment_start_time">Start time*:</label>
+					<input id="assessment_start_time" name="assessment_start_time" class="form-control" type="time" ng-model="ctlAssessment.startTime" ng-change="ctlAssessment.onTimeChange()" required />
 				</div>
 				<div class="form-group">
-					<label for="assessment_start_time">Start time*:</label>
-					<input id="assessment_start_time" class="form-control" type="time" ng-model="ctlAssessment.startTime" ng-change="ctlAssessment.onTimeChange()" required />
-				</div>
-				<div class="form-group">
-					<label for="assessment_platelets">Platelets (G/l):</label>
-					<input id="assessment_platelets" class="form-control" type="text" ng-model="ctlAssessment.assessment.platelets" />
+					<label class="control-label" for="assessment_platelets">Platelets (G/l):</label>
+					<input id="assessment_platelets" name="assessment_platelets" class="form-control" type="text" ng-model="ctlAssessment.assessment.platelets" />
 				</div>
 
 			</div>
 
 			<div class="col-xs-12 col-sm-6">
 				<div class="form-group">
-					<label for="assessment_remarks">Remarks:</label>
-					<textarea id="assessment_remarks" class="form-control" cols="30" rows="6" ng-model="ctlAssessment.assessment.remarks"></textarea>
+					<label class="control-label" for="assessment_remarks">Remarks:</label>
+					<textarea id="assessment_remarks" name="assessment_remarks" class="form-control" cols="30" rows="6" ng-model="ctlAssessment.assessment.remarks"></textarea>
 				</div>
 
 				<div ng-if="!ctlAssessment.isNew">
@@ -67,7 +67,7 @@
 	</div>
 </panel>
 
-<panel ng-if="!ctlAssessment.isNew" heading="Quick Links">
+<panel ng-if="!ctlAssessment.isNew" heading="Quick links">
 	<div class="row">
 		<div class="col-xs-12">
 			<button class="btn btn-default">TBD</button>
@@ -84,14 +84,14 @@
 	<div class="row">
 
 		<div class="col-xs-12 col-sm-6">
-			<h3>Bleeding</h3>
+			<h4>Bleeding</h4>
 			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('demo')">DEMO</a>
 			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('who')">WHO</a>
 			<a href="" class="btn btn-block btn-default" ng-click="">BSMS</a>
 		</div>
 
 		<div class="col-xs-12 col-sm-6">
-			<h3>GvHD</h3>
+			<h4>GvHD</h4>
 			<a href="" class="btn btn-block btn-default" ng-click="">Features</a>
 			<hr>
 			<a href="" class="btn btn-block btn-default" ng-click="">First diagnosis</a>

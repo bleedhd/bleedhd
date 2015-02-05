@@ -25,7 +25,6 @@ chapters:
                   grade: 1
                 intro:
                   question: "Are there petechiae or hematomas in the mucosal surface of mouth or nose?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -50,7 +49,6 @@ chapters:
                   grade: 1
                 intro:
                   question: "Is there any bleeding from the mouth and/or throat?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -77,7 +75,6 @@ chapters:
                   grade: 1
                 intro:
                   question: "Was there a nose bleed?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -107,7 +104,6 @@ chapters:
                   grade: 1
                 intro:
                   question: "Are there petechiae of the skin?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -138,7 +134,6 @@ chapters:
                   grade: 1
                 intro:
                   question: "Are there hematomas of the skin?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -188,7 +183,6 @@ chapters:
                   grade: 2
                 intro:
                   question: "Are there 1 or more hematomas in the soft tissue or muscles >2.5cm?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -212,7 +206,6 @@ chapters:
                   grade: 2
                 intro:
                   question: "Are there hematomas in deeper tissues?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -236,7 +229,6 @@ chapters:
                   grade: 2
                 intro:
                   question: "Is there bleeding in a joint?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -264,7 +256,6 @@ chapters:
                   grade: 2
                 intro:
                   question: "Is there black, melanotic stool?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -288,7 +279,6 @@ chapters:
                   grade: 2
                 intro:
                   question: "Is there visible blood in the stool?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -312,7 +302,6 @@ chapters:
                   grade: 2
                 intro:
                   question: "Is there visible blood at vomiting (hematemesis)?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -340,7 +329,6 @@ chapters:
                   grade: 1
                 intro:
                   question: "Is there microscopic blood in the urine?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -359,7 +347,6 @@ chapters:
                   grade: 2
                 intro:
                   question: "Is there macroscopic blood in the urine?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -378,7 +365,6 @@ chapters:
                   grade: 1
                 intro:
                   question: "Was there abnormal vaginal bleeding with spotting?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -409,7 +395,6 @@ chapters:
                   grade: 2
                 intro:
                   question: "Is the patient coughing blood (hemoptysis)?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -427,7 +412,6 @@ chapters:
                   grade: 2
                 intro:
                   question: "Is there blood in the broncho-pulmonary lavage?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -445,7 +429,6 @@ chapters:
                   grade: 2
                 intro:
                   question: "Is there blood tinged sputum?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -466,7 +449,6 @@ chapters:
                   grade: 2
                 intro:
                   question: "Is there visible blood in body cavity fluid?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -484,7 +466,6 @@ chapters:
                   grade: 3
                 intro:
                   question: "Is intervention (i.e. to aspirate) needed to relieve dysfunction/symptoms?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -505,7 +486,6 @@ chapters:
                   grade: 2
                 intro:
                   question: "Is there a retinal bleeding without visual impairment?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -523,7 +503,6 @@ chapters:
                   grade: 4
                 intro:
                   question: "Is there a retinal bleeding with visual impairment?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -539,7 +518,6 @@ chapters:
                 meta_answers: ['nya']
                 intro:
                   question: "Was there a liquor (non-traumatic) tap?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -575,7 +553,6 @@ chapters:
                   grade: 3
                 intro:
                   question: "Is there a CNS bleeding without symptoms?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -594,7 +571,6 @@ chapters:
                   grade: 4
                 intro:
                   question: "Is there a CNS bleeding with symptoms?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -615,7 +591,6 @@ chapters:
                   grade: 2
                 intro:
                   question: "Was there any bleeding at invasive sites lasting more than 1 hour?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -631,7 +606,6 @@ chapters:
                 meta_answers: ['nya']
                 intro:
                   question: "What was the nature of the invasive site?"
-                  description: "Description"
                 options: # optional
                   -
                     label: "central venous catheter"
@@ -658,7 +632,6 @@ chapters:
                   grade: 3
                 intro:
                   question: "Was there a bleeding episode with hemodynamic instability?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -682,7 +655,6 @@ chapters:
                   grade: 4
                 intro:
                   question: "Was there a life-threatening or fatal bleeding episode?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -700,7 +672,6 @@ chapters:
                   grade: 3
                 intro:
                   question: "Was there a bleeding requiring RBC transfusion over routine needs?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -719,7 +690,6 @@ chapters:
                 meta_answers: ['nya']
                 intro:
                   question: "Was there an intervention, invasive investigation or monitoring needed to treat the bleeding other then transfusions?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -735,7 +705,6 @@ chapters:
                 meta_answers: ['nya']
                 intro:
                   question: "If yes, what kind of intervention?"
-                  description: "Description"
                 options: # optional
                   -
                     label: "surgery"
@@ -762,7 +731,6 @@ chapters:
                 meta_answers: ['nya']
                 intro:
                   question: "Was there any medication or a hemostatic compound administered to prevent or stop a bleeding other then transfusions?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -778,7 +746,6 @@ chapters:
                 meta_answers: ['nya']
                 intro:
                   question: "If yes, what kind of medication?"
-                  description: "Description"
                 options: # optional
                   -
                     label: "Tranexamic acid"
@@ -814,7 +781,6 @@ chapters:
                 meta_answers: ['nya']
                 intro:
                   question: "Is bleeding mentioned in the documentation of the nursing staff?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -830,7 +796,6 @@ chapters:
                 meta_answers: ['nya']
                 intro:
                   question: "Is bleeding mentioned in the medical record of the treating physician?"
-                  description: "Description"
                 options: # optional
                   yes:
                     label: "Yes"

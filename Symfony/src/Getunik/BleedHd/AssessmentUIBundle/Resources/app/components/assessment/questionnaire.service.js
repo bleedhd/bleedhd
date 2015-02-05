@@ -13,6 +13,7 @@
 		this.multiQuestions = {};
 		this.questions = [];
 		this.rootSlug = new Slug(yamlData.slug || name);
+		this.metaAnswers = yamlData.meta_answers;
 
 		this._processYaml(yamlData);
 	}
@@ -65,6 +66,7 @@
 			var that = this;
 
 			question.slug = new Slug(question.slug, parentSlug);
+			question.globalMeta = that.metaAnswers;
 			if (question.type === 'multi') {
 				that.multiQuestions[question.slug.full] = [];
 				angular.forEach(question.questions, function (child) { that._processQuestion(question.slug, child); });
