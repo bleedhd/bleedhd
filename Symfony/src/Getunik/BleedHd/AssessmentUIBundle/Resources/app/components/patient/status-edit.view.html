@@ -19,12 +19,12 @@
 
 				<div class="form-group" bs-validate-class="ctlStatus.statusForm.status_transplant_date">
 					<label class="control-label" for="status_transplant_date">Date:</label>
-					<input id="status_transplant_date" name="status_transplant_date" class="form-control" type="date" ng-model="ctlStatus.status.transplant_date.date" />
+					<input tabindex="1" id="status_transplant_date" name="status_transplant_date" class="form-control" type="date" ng-model="ctlStatus.status.transplant_date.date" />
 				</div>
 
 				<div class="form-group">
 					<label class="control-label" for="status_transplant_type">Intervention:</label>
-					<select id="status_transplant_type" name="status_transplant_type" class="form-control" ng-model="ctlStatus.status.transplant_type">
+					<select tabindex="2" id="status_transplant_type" name="status_transplant_type" class="form-control" ng-model="ctlStatus.status.transplant_type">
 						<option value="">not specified</option>
 						<option value="autologous">autologous</option>
 						<option value="allogenic">allogenic</option>
@@ -35,7 +35,7 @@
 
 				<div class="form-group" ng-show="ctlStatus.status.transplant_type == 'allogenic'">
 					<label class="control-label" for="status_transplant_source">Source:</label>
-					<select id="status_transplant_source" name="status_transplant_source" class="form-control" ng-model="ctlStatus.status.transplant_source">
+					<select tabindex="3" id="status_transplant_source" name="status_transplant_source" class="form-control" ng-model="ctlStatus.status.transplant_source">
 						<option value="">not specified</option>
 						<option value="Cord">Cord</option>
 						<option value="BM">BM</option>
@@ -45,7 +45,7 @@
 
 				<div class="form-group" ng-show="ctlStatus.status.transplant_type == 'other'">
 					<label class="control-label" for="status_transplant_custom">Specify:</label>
-					<input id="status_transplant_custom" name="status_transplant_custom" class="form-control" ng-model="ctlStatus.status.transplant_custom" />
+					<input tabindex="4" id="status_transplant_custom" name="status_transplant_custom" class="form-control" ng-model="ctlStatus.status.transplant_custom" />
 				</div>
 
 			</div>
@@ -59,7 +59,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-sm-offset-6">
 				<a class="btn btn-default" href="#/patients/detail/{{ ctlStatus.patient.id }}">Cancel</a>
-				<button class="btn btn-primary" type="button" ng-disabled="ctlStatus.statusForm.$invalid" ng-click="ctlStatus.save()">Save</button>
+				<button tabindex="5" class="btn btn-primary" type="button" ng-disabled="ctlStatus.statusForm.$invalid" ng-click="ctlStatus.save()">Save</button>
 			</div>
 		</div>
 
