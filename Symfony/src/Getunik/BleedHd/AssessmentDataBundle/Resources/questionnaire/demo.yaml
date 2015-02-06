@@ -3,6 +3,12 @@
 # to facilitate potential future navigation concepts. All questions in a screen
 # are displayed on a single screen
 
+title: Demo
+quick_links:
+  -
+    label: Test
+    screen: screen_1
+    question: question-yes-no-demo
 meta_answers:
   nya: not yet answered
   nass: not assessed

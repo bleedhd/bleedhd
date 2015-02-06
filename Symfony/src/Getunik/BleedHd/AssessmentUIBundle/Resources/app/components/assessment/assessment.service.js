@@ -1,16 +1,26 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentDataService($q, BleedApi, DateHelper, DataEvents) {
+	function AssessmentDataService($q, BleedApi, QuestionnaireData, DateHelper, DataEvents) {
 		this.$q = $q;
 		this.BleedApi = BleedApi;
 		this.DateHelper = DateHelper;
 		this.DataEvents = DataEvents;
+		this.QuestionnaireData = QuestionnaireData;
 	}
 
 	angular.extend(AssessmentDataService.prototype, {
 		getAssessment: function (patientId, assessmentId) {
 			return this.BleedApi.one('patients', patientId).all('assessments').get(assessmentId);
+		},
+		getAssessmentFull: function (patientId, assessmentId) {
+			var that = this;
+			return that.getAssessment(patientId, assessmentId).then(function (assessment) {
+				return that.QuestionnaireData.get(assessment.questionnaire).then(function (questionnaire) {
+					assessment.definition = questionnaire;
+					return assessment;
+				});
+			});
 		},
 		newAssessment: function (patientId) {
 			return {

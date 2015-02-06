@@ -55,6 +55,8 @@
 	<div class="row">
 
 		<div class="col-xs-12 col-sm-6">
+			<h4>{{ ctlAssessment.assessment.questionnaire | toQName }}</h4>
+			<h5>Score: {{ ctlAssessment.assessment.result | score }}</h5>
 			<div ng-if="env.debug" class="debug-output">
 				<pre>{{ ctlAssessment.assessment.result | json }}</pre>
 			</div>

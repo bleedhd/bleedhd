@@ -5,6 +5,17 @@
 		m: 'male',
 		f: 'female',
 		unknown: 'Not specified',
+	},
+
+	questionnaireMap = {
+		'demo': 'Demo Assessment',
+		'who': 'Bleeding WHO',
+		'bsms': 'Bleeding BSMS',
+		'gvhd.features': 'GvHD features',
+		'gvhd.first-diagnosis': 'GvHD first diagnosis',
+		'gvhd.current-staging': 'GvHD current staging',
+		'gvhd.therapy-response': 'GvHD therapy response',
+		'gvhd.self-report': 'GvHD patient self report',
 	};
 
 	angular.module('bleedHdApp')
@@ -28,6 +39,18 @@
 		.filter('gender', function () {
 			return function (sex) {
 				return (genderMap[sex] === undefined ? genderMap.unknown : genderMap[sex]);
+			}
+		})
+
+		.filter('score', function () {
+			return function (result) {
+				return (result.score !== undefined && result.score.total !== undefined ? result.score.total : '-');
+			};
+		})
+
+		.filter('toQName', function () {
+			return function (name) {
+				return questionnaireMap[name] || 'unknown';
 			}
 		})
 

@@ -59,7 +59,7 @@
 					if (params.assessmentId === undefined) {
 						return AssessmentData.newAssessment(params.patientId);
 					} else {
-						return AssessmentData.getAssessment(params.patientId, params.assessmentId);
+						return AssessmentData.getAssessmentFull(params.patientId, params.assessmentId);
 					}
 				},
 			},
