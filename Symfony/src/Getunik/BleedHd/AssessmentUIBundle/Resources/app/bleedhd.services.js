@@ -71,8 +71,13 @@
 			// this works with strings AND dates
 			this.moment = moment(date);
 		}
-		if (match !== undefined) {
-			this.isDateTime = !!match[1];
+		if (this.moment !== undefined) {
+			this.isDateTime = !(
+				this.moment.hour() === 0 &&
+				this.moment.minute() === 0 &&
+				this.moment.second() === 0 &&
+				this.moment.millisecond() === 0
+			);
 		}
 	}
 
@@ -128,10 +133,10 @@
 		},
 		fromTimeString: function (str) {
 			if (typeof(str) === 'string') {
-				var d = new DateHelper(this.dateFilter);
-				d.moment = moment(str, 'HH:mm:ss.SSS');
-				d.isDateTime = true;
-				return d;
+				var helper = new DateHelper(this.dateFilter);
+				helper.moment = moment(str, 'HH:mm:ss.SSS');
+				helper.isDateTime = true;
+				return helper;
 			}
 		},
 		fromDate: function (date, isDateTime) {
