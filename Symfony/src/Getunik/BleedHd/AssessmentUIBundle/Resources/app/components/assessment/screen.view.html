@@ -2,7 +2,7 @@
 <div class="container bleed-header">
 	<div class="row">
 		<div class="col-xs-12 col-sm-6">
-			<h4>TODO: Assessment Bleeding WHO</h4>
+			<h4>Assessment {{ ctlScreen.context.questionnaire.title }}</h4>
 			<h5>Patient: {{ ctlScreen.context.patient | patientname }}</h5>
 			<h5>Date of birth: {{ ctlScreen.context.patient.birthdate.date | isodate }}</h5>
 		</div>
