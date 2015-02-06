@@ -40,7 +40,7 @@
 			<label ng-repeat="metaAnswer in containerCtl.question.meta_answers"><input type="radio" ng-model="binding.meta" ng-change="containerCtl.onMetaChange()" value="{{ metaAnswer }}"> {{ containerCtl.question.globalMeta[metaAnswer] }}</label>
 		</div>
 		<div class="pull-right">
-			TODO: X/Y
+			{{ containerCtl.question.index }} / {{ containerCtl.question.questionnaire.questionCount }}
 		</div>
 	</div>
 

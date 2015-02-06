@@ -14,6 +14,7 @@
 		this.questions = [];
 		this.rootSlug = new Slug(yamlData.slug || name);
 		this.metaAnswers = yamlData.meta_answers;
+		this.questionCount = 0;
 
 		this._processYaml(yamlData);
 	}
@@ -54,7 +55,12 @@
 							questions: screen.questions,
 						};
 
-						angular.forEach(screenObj.questions, function (question) { that._processQuestion(screenSlug, question); });
+						angular.forEach(screenObj.questions, function (question, index) {
+							question.index = that.questionCount + index + 1;
+							that._processQuestion(screenSlug, question);
+						});
+						// the sub-questions of multi-questions don't "count"
+						that.questionCount += screenObj.questions.length;
 
 						that.screens[screen.slug] = screenObj;
 						that.screensLinear.push(screenObj);
@@ -65,6 +71,7 @@
 		_processQuestion: function (parentSlug, question) {
 			var that = this;
 
+			question.questionnaire = that;
 			question.slug = new Slug(question.slug, parentSlug);
 			question.globalMeta = that.metaAnswers;
 			if (question.type === 'multi') {
@@ -76,6 +83,7 @@
 					that.multiQuestions[parentSlug.full].push(question.slug);
 				}
 			}
+			console.log(question);
 		},
 	});
 
