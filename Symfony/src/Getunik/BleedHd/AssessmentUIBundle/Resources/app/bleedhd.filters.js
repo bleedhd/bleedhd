@@ -31,6 +31,12 @@
 			}
 		})
 
+		.filter('score', function () {
+			return function (result) {
+				return (result.score !== undefined && result.score.total !== undefined ? result.score.total : '-');
+			};
+		})
+
 		; // finally end the giant statement
 
 })(angular, bleedHd);
