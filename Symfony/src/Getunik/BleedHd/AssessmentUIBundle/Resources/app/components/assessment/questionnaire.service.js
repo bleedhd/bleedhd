@@ -13,7 +13,6 @@
 		this.multiQuestions = {};
 		this.questions = [];
 		this.rootSlug = new Slug(yamlData.slug || name);
-		this.metaAnswers = yamlData.meta_answers;
 		this.questionCount = 0;
 
 		this._processYaml(yamlData);
@@ -37,6 +36,10 @@
 		},
 		_processYaml: function (yamlData) {
 			var that = this, screenObj, chapterSlug, sectionSlug, screenSlug, screenIndex = 0;
+
+			this.metaAnswers = yamlData.meta_answers;
+			this.title = yamlData.title;
+			this.quickLinks = yamlData.quick_links;
 
 			angular.forEach(yamlData.chapters, function (chapter) {
 				chapterSlug = new Slug(chapter.slug, that.rootSlug);

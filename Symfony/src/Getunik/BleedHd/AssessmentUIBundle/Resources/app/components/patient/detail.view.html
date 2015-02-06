@@ -105,7 +105,7 @@
 										<tbody>
 											<tr link-row="true" ng-repeat="assessment in ctlPatient.patient.assessments | orderBy:'start_date.date':true | filter:ctlPatient.byAssessmentType()">
 												<td>{{ assessment.start_date.date | isodate }}</td>
-												<td>{{ assessment.questionnaire }}</td>
+												<td>{{ assessment.questionnaire | toQName }}</td>
 												<td>{{ assessment.platelets }}</td>
 												<td>{{ assessment.result | score }}</td>
 												<td align="right"><a class="btn btn-default btn-xs" href="#/patients/{{ ctlPatient.patient.id }}/assessment/edit/{{ assessment.id }}">Details</a></td>
