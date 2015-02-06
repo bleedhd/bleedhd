@@ -91,6 +91,7 @@
 			isodate: 'yyyy-MM-dd',
 			yesno: ['yes', 'no'],
 		},
+		resourcesPath: bleedHd.env.assetPath + '/getunikbleedhdassessmentui',
 	})
 
 	.config(function ($provide, $httpProvider, CachingWrapperProvider, EnhancedLogConfigProvider) {
@@ -120,8 +121,9 @@
 			.setUidFunc(function () { return bleedHd.env.uid; });
 	})
 
-	.run(function ($rootScope, ServerLogDump) {
+	.run(function ($rootScope, ServerLogDump, HeaderControl) {
 		$rootScope.env = bleedHd.env;
+		$rootScope.header = HeaderControl;
 
 		// do the log dumping now (on load) and every 15min
 		ServerLogDump.start(15);

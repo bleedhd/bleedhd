@@ -59,6 +59,12 @@
 	{% endjavascripts %}
 {% endblock scripts %}
 
+{% block logo %}
+{% verbatim %}
+<header ng-if="header.current.show" allow-logout="{{ header.current.allowLogout }}"></header>
+{% endverbatim %}
+{% endblock logo %}
+
 {% block content %}
 <messages></messages>
 <route-change>

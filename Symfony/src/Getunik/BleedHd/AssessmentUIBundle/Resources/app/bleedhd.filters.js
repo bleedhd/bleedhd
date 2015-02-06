@@ -20,6 +20,12 @@
 
 	angular.module('bleedHdApp')
 
+		.filter('resourcePath', function (BleedHdConfig) {
+			return function (path) {
+				return [BleedHdConfig.resourcesPath, path].join('/');
+			};
+		})
+
 		/**
 		 * Formats the given Date object as an ISO-8601 date
 		 */

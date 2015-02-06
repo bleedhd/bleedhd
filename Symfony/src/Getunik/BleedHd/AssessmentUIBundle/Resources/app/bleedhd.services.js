@@ -131,6 +131,40 @@
 	});
 
 
+	function HeaderControlService($rootScope) {
+		var that = this;
+
+		that.current = that.getDefaults();
+
+		$rootScope.$on('$routeChangeStart', function (event, current, previous) {
+			that.next = that.getDefaults();
+		});
+
+		$rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+			that.current = that.next;
+		});
+
+		$rootScope.$on('$routeChangeError', function (event, current, previous) {
+			that.current = that.next;
+		});
+	}
+
+	angular.extend(HeaderControlService.prototype, {
+		getDefaults: function () {
+			return {
+				show: true,
+				allowLogout: true,
+			};
+		},
+		hide: function () {
+			this.next.show = false;
+		},
+		disableLogout: function () {
+			this.next.allowLogout = false;
+		},
+	});
+
+
 	function ServerLogDump(BleedApi, LogData) {
 		this.BleedApi = BleedApi;
 		this.LogData = LogData;
@@ -170,6 +204,8 @@
 		.service('DataEvents', function (EventChannelFactory) {
 			return EventChannelFactory('DataEvents');
 		})
+
+		.service('HeaderControl', HeaderControlService)
 
 		.service('ServerLogDump', ServerLogDump)
 
