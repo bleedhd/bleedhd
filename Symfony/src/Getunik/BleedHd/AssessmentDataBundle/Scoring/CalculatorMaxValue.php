@@ -15,7 +15,7 @@ class CalculatorMaxValue extends CalculatorBase
 		parent::__construct($logger);
 
 		$this->valueKey = $valueKey;
-		$this->score->{$this->valueKey} = 0;
+		$this->score->total = 0;
 	}
 
 	protected function accumulateMapping(ScoreMapping $mapping)
@@ -24,7 +24,7 @@ class CalculatorMaxValue extends CalculatorBase
 		if (isset($config[$this->valueKey]))
 		{
 			$this->logger->info(" => scoring: " . $config[$this->valueKey]);
-			$this->score->{$this->valueKey} = max($this->score->{$this->valueKey}, $config[$this->valueKey]);
+			$this->score->total = max($this->score->total, $config[$this->valueKey]);
 		}
 	}
 }
