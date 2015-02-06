@@ -1,7 +1,9 @@
 
 (function (angular, bleedHd) {
 
-	function PatientEditController($scope, $location, PatientData, patient) {
+	function PatientEditController($scope, $location, PatientData, HeaderControl, patient) {
+		HeaderControl.disableLogout();
+
 		this.PatientData = PatientData;
 		this.patient = patient;
 		this.isNew = (this.patient.id === undefined);

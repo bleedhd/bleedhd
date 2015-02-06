@@ -1,7 +1,9 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentEditController($scope, $location, AssessmentData, patient, assessment) {
+	function AssessmentEditController($scope, $location, AssessmentData, HeaderControl, patient, assessment) {
+		HeaderControl.hide();
+
 		this.AssessmentData = AssessmentData;
 		this.patient = patient;
 		this.assessment = assessment;

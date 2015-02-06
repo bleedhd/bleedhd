@@ -1,7 +1,8 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentScreenController($scope, $route, $location, $log, $q, context) {
+	function AssessmentScreenController($scope, $route, $location, $log, $q, HeaderControl, context) {
+		HeaderControl.hide();
 		$scope.context = this.context = context;
 
 		this.$scope = $scope;
