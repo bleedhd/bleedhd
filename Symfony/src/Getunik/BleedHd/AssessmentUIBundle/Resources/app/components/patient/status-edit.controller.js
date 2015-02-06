@@ -1,7 +1,9 @@
 
 (function (angular, bleedHd) {
 
-	function PatientStatusEditController($scope, $location, $routeParams, PatientData, patient) {
+	function PatientStatusEditController($scope, $location, $routeParams, PatientData, HeaderControl, patient) {
+		HeaderControl.disableLogout();
+
 		this.$scope = $scope;
 		this.$location = $location;
 		this.PatientData = PatientData;
