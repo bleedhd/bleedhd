@@ -6,6 +6,7 @@
 	 * {
 	 *   type: ('success'|'info'|'warning'|'danger')
 	 *   text: HTML message text
+	 *   persistent: (true|false) - defaults to false
 	 * }
 	 */
 
@@ -18,14 +19,32 @@
 		this.messages = [];
 
 		this.MessageEvents.on('show-message', this.addMessage.bind(this));
+
+		var that = this;
+		this.$scope.$on('$routeChangeStart', function (event, current, previous) {
+			that.autoDismiss();
+		});
 	}
 
 	angular.extend(MessagesController.prototype, {
 		dismiss: function (index) {
 			this.messages.splice(index, 1);
 		},
+		autoDismiss: function () {
+			var now = Date.now(),
+				cleaned = [];
+
+			angular.forEach(this.messages, function (msg) {
+				if (msg.persistent === true || (now - msg.timestamp) < 2000) {
+					cleaned.push(msg);
+				}
+			});
+
+			this.messages = cleaned;
+		},
 		addMessage: function (event) {
 			event.data.text = this.$sce.trustAsHtml(event.data.text);
+			event.data.timestamp = Date.now();
 			this.messages.push(event.data);
 		},
 	});
