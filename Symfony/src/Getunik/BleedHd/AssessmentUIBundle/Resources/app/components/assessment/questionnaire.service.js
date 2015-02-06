@@ -83,7 +83,6 @@
 					that.multiQuestions[parentSlug.full].push(question.slug);
 				}
 			}
-			console.log(question);
 		},
 	});
 
