@@ -104,6 +104,9 @@
 				this.moment.date(date.getDate());
 			}
 		},
+		format: function (format) {
+			return this.moment === undefined ? 'Invalid Date' : this.moment.format(format);
+		},
 	});
 
 	Object.defineProperty(DateHelper.prototype, 'date', {
@@ -121,6 +124,14 @@
 		fromString: function (str) {
 			if (typeof(str) === 'string' && (match = str.match(this.iso8601RegEx))) {
 				return new DateHelper(this.dateFilter, str, match);
+			}
+		},
+		fromTimeString: function (str) {
+			if (typeof(str) === 'string') {
+				var d = new DateHelper(this.dateFilter);
+				d.moment = moment(str, 'HH:mm:ss.SSS');
+				d.isDateTime = true;
+				return d;
 			}
 		},
 		fromDate: function (date, isDateTime) {

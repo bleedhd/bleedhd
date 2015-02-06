@@ -3,13 +3,13 @@
 
 	angular.module('common')
 
-		.directive('dateInput', function (DateHelper) {
+		.directive('timeInput', function (DateHelper) {
 			return {
 				require: 'ngModel',
 				restrict: 'A',
 				scope: true,
 				link: function (scope, element, attrs, modelCtrl) {
-					element.inputmask('yyyy-mm-dd', {
+					element.inputmask('hh:mm', {
 						showMaskOnHover: false,
 						clearIncomplete: true,
 						// some weird handling of the last change to the mask (which clears it)
@@ -26,13 +26,13 @@
 						}
 
 						if (element.inputmask('isComplete')) {
-							return DateHelper.fromString(value);
+							return DateHelper.fromTimeString(value);
 						}
 					});
 
 					modelCtrl.$formatters.push(function (value) {
 						if (value) {
-							return value.toJSON();
+							return value.format('HH:mm');
 						}
 					});
 				},
