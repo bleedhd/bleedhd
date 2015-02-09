@@ -1,7 +1,7 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentEditController($scope, $location, AssessmentData, HeaderControl, patient, assessment) {
+	function AssessmentEditController($scope, $location, AssessmentData, HeaderControl, DateHelper, patient, assessment) {
 		HeaderControl.hide();
 
 		this.AssessmentData = AssessmentData;
@@ -10,8 +10,8 @@
 		this.$scope = $scope;
 		this.$location = $location;
 
-		this.startDate = new Date(this.assessment.start_date.date);
-		this.startTime = new Date(this.assessment.start_date.date);
+		this.startDate = DateHelper.fromDate(this.assessment.start_date.date, false);
+		this.startTime = DateHelper.fromDate(this.assessment.start_date.date, true);
 
 		this.isNew = (this.assessment.id === undefined);
 
@@ -45,10 +45,10 @@
 				}
 			},
 			onDateChange: function () {
-				this.assessment.start_date.setDate(this.startDate);
+				this.assessment.start_date.setDate(this.startDate === undefined ? undefined : this.startDate.date);
 			},
 			onTimeChange: function () {
-				this.assessment.start_date.setTime(this.startTime);
+				this.assessment.start_date.setTime(this.startTime === undefined ? undefined : this.startTime.date);
 			},
 		},
 		{

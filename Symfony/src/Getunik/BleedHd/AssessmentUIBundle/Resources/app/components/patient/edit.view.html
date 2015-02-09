@@ -14,7 +14,7 @@
 				</div>
 				<div class="form-group" bs-validate-class="ctlPatient.patientForm.patient_birthdate">
 					<label class="control-label" for="patient_birthdate">Date of birth*:</label>
-					<input tabindex="3" id="patient_birthdate" name="patient_birthdate" class="form-control" type="date" ng-model="ctlPatient.patient.birthdate.date" required />
+					<input tabindex="3" id="patient_birthdate" name="patient_birthdate" class="form-control" type="text" ng-model="ctlPatient.patient.birthdate" mask-input="yyyy-mm-dd" placeholder="yyyy-mm-dd" required />
 				</div>
 				<div class="form-group">
 					<label class="control-label" for="patient_patient_number">Patient number:</label>
@@ -65,7 +65,7 @@
 				</div>
 				<div class="form-group">
 					<label class="control-label" for="patient_diagnosis_date">Date initial diagnosis:</label>
-					<input tabindex="8" id="patient_diagnosis_date" name="patient_diagnosis_date" class="form-control" type="date" ng-model="ctlPatient.patient.diagnosis_date.date" />
+					<input tabindex="8" id="patient_diagnosis_date" name="patient_diagnosis_date" class="form-control" type="text" ng-model="ctlPatient.patient.diagnosis_date" mask-input="yyyy-mm-dd" placeholder="yyyy-mm-dd" />
 				</div>
 			</div>
 

@@ -19,11 +19,11 @@
 			<div class="col-xs-12 col-sm-6">
 				<div class="form-group" bs-validate-class="ctlAssessment.assessmentForm.assessment_start_date">
 					<label class="control-label" for="assessment_start_date">Date of assessment*:</label>
-					<input tabindex="1" id="assessment_start_date" name="assessment_start_date" class="form-control" type="date" ng-model="ctlAssessment.startDate" ng-change="ctlAssessment.onDateChange()" required />
+					<input tabindex="1" id="assessment_start_date" name="assessment_start_date" class="form-control" type="text" ng-model="ctlAssessment.startDate" ng-change="ctlAssessment.onDateChange()" mask-input="yyyy-mm-dd" placeholder="yyyy-mm-dd" required />
 				</div>
 				<div class="form-group" bs-validate-class="ctlAssessment.assessmentForm.assessment_start_time">
 					<label class="control-label" for="assessment_start_time">Start time*:</label>
-					<input tabindex="2" id="assessment_start_time" name="assessment_start_time" class="form-control" type="time" ng-model="ctlAssessment.startTime" ng-change="ctlAssessment.onTimeChange()" required />
+					<input tabindex="2" id="assessment_start_time" name="assessment_start_time" class="form-control" type="text" ng-model="ctlAssessment.startTime" ng-change="ctlAssessment.onTimeChange()" mask-input="hh:mm" placeholder="hh:mm" required />
 				</div>
 				<div class="form-group">
 					<label class="control-label" for="assessment_platelets">Platelets (G/l):</label>
