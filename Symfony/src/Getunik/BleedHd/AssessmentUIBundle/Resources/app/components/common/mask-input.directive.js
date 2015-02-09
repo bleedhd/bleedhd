@@ -18,7 +18,7 @@
 				return value.format('YYYY-MM-DD');
 			},
 		},
-	}
+	};
 
 	angular.module('common')
 

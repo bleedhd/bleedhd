@@ -132,40 +132,64 @@ Overall GvHD Severity score
 # WHO
 
 * who.mouth-and-nose.petechiae
-* who.mouth-and-nose.petechiae.isnew
+* who.mouth-and-nose.petechiae.isnew (+)
 * who.mouth-and-nose.mouth-bleed
-* who.mouth-and-nose.mouth-bleed.duration
+* who.mouth-and-nose.mouth-bleed.duration (+)
 * who.mouth-and-nose.nose-bleed
-* who.mouth-and-nose.nose-bleed.duration
+* who.mouth-and-nose.nose-bleed.duration (+)
 * who.skin-and-tissue.petechiae
-* who.skin-and-tissue.petechiae.isnew
-* who.skin-and-tissue.petechiae.generalized
+* who.skin-and-tissue.petechiae.isnew (+)
+* who.skin-and-tissue.petechiae.generalized (+)
 * who.skin-and-tissue.skin-hematomas
-* who.skin-and-tissue.skin-hematomas.isnew
-* who.skin-and-tissue.skin-hematomas.number
-* who.skin-and-tissue.skin-hematomas.size
+* who.skin-and-tissue.skin-hematomas.isnew (+)
+* who.skin-and-tissue.skin-hematomas.number (+)
+* who.skin-and-tissue.skin-hematomas.size (+)
 * who.skin-and-tissue.soft-tissue-hematomas
-* who.skin-and-tissue.soft-tissue-hematomas.isnew
+* who.skin-and-tissue.soft-tissue-hematomas.isnew (+)
 * who.skin-and-tissue.deep-tissue-hematomas
-* who.skin-and-tissue.deep-tissue-hematomas.isnew
+* who.skin-and-tissue.deep-tissue-hematomas.isnew (+)
 * who.skin-and-tissue.joint-bleeding
-* who.skin-and-tissue.joint-bleeding.isnew
+* who.skin-and-tissue.joint-bleeding.isnew (+)
 * who.gastrointestinal.melanotic-stool
-* who.gastrointestinal.melanotic-stool.multiple
+* who.gastrointestinal.melanotic-stool.multiple (+)
 * who.gastrointestinal.blood-stool
-* who.gastrointestinal.blood-stool.multiple
+* who.gastrointestinal.blood-stool.multiple (+)
 * who.gastrointestinal.hematemesis
-* who.gastrointestinal.hematemesis.multiple
+* who.gastrointestinal.hematemesis.multiple (+)
 * who.urogenital.urine-microscopic-blood
 * who.urogenital.urine-macroscopic-blood
 * who.urogenital.vaginal-bleeding
-* who.urogenital.vaginal-bleeding.multiple
+* who.urogenital.vaginal-bleeding.multiple (+)
 * who.pulmonary.blood-cough
 * who.pulmonary.blood-lavage
 * who.pulmonary.blood-sputum
+* who.body-cavities.blood-cavity-fluid
+* who.body-cavities.intervention
+* who.cns.retinal-bleed-noimp
+* who.cns.retinal-bleed-imp
+* who.cns.liquor
+* who.cns.liquor.microscopic (+)
+* who.cns.liquor.macroscopic (+)
+* who.cns.bleed-nosymptoms
+* who.cns.bleed-symptoms
+* who.invasive-sites.bleed
+* who.invasive-sites.bleed-site
+* who.bleeding-complications.hemodynamic-instability
+* who.bleeding-complications.hemodynamic-instability.severe (+)
+* who.bleeding-complications.fatal-bleed
+* who.bleeding-complications.rbc
+* who.intervention.intervention-needed
+* who.intervention.intervention-type
+* who.intervention.intervention-type.other (+)
+* who.intervention.medication-administered
+* who.intervention.medication-type
+* who.intervention.medication-type.other (+)
+* who.source-check.nursing-documented
+* who.source-check.medical-record
+
 
 # BSMS
 
-* bsms.grade
-* bsms.site
-* bsms.site.custom
+* bsms.general.grade
+* bsms.general.type-or-site
+* bsms.general.type-or-site.specify
