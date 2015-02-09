@@ -190,6 +190,6 @@ Overall GvHD Severity score
 
 # BSMS
 
-* bsms.grade
-* bsms.site
-* bsms.site.custom
+* bsms.general.grade
+* bsms.general.type-or-site
+* bsms.general.type-or-site.specify
