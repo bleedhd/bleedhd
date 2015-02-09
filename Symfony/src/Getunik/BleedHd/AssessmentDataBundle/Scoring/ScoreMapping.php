@@ -17,7 +17,7 @@ class ScoreMapping
 	private $config;
 	private $children;
 
-	public function __construct(Slug $slug, array $config = NULL, $value)
+	public function __construct(Slug $slug, $config = NULL, $value)
 	{
 		$this->slug = $slug;
 		$this->config = $config;

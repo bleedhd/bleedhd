@@ -87,11 +87,13 @@ class ScoreMappingExtractor
 
 	protected function extractOptions(IAccumulator $acc, Slug $slug, array $definition, $value)
 	{
+		$defaultConfig = isset($definition['score']) ? $definition['score'] : NULL;
+
 		foreach ($definition['options'] as $option)
 		{
 			if ($option['value'] == $value)
 			{
-				$acc->accumulate(new ScoreMapping($slug, isset($option['score']) ? $option['score'] : NULL, $value), $option);
+				$acc->accumulate(new ScoreMapping($slug, isset($option['score']) ? $option['score'] : $defaultConfig, $value), $option);
 				return;
 			}
 		}
