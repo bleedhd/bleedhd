@@ -45,7 +45,7 @@
 		.filter('gender', function () {
 			return function (sex) {
 				return (genderMap[sex] === undefined ? genderMap.unknown : genderMap[sex]);
-			}
+			};
 		})
 
 		.filter('score', function () {
@@ -57,7 +57,7 @@
 		.filter('toQName', function () {
 			return function (name) {
 				return questionnaireMap[name] || 'unknown';
-			}
+			};
 		})
 
 		; // finally end the giant statement
