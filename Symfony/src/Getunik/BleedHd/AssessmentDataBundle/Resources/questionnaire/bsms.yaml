@@ -22,6 +22,8 @@ chapters:
                 type: radios
                 title: "Grade"
                 meta_answers: ['nya']
+                info:
+                  resource: "documents/sample.pdf"
                 options: # optional
                   -
                     label: "No bleeding"
