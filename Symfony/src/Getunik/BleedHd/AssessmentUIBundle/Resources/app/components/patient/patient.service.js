@@ -15,23 +15,18 @@
 		},
 		getPatient: function (patientId) {
 			var patient = this.$q.defer(),
-				p = this.BleedApi.one('patients', patientId);
+				p = this._getPatient(patientId);
 
-			this.$q
+			return this.$q
 				.all({
-					patient: p.get(),
-					statuses: p.getList('statuses'),
-					assessments: p.getList('assessments'),
+					patient: p,
+					additions: this._getPatientAdditions(patientId),
 				})
 				.then(function (promises) {
-					promises.patient.statuses = promises.statuses;
-					promises.patient.assessments = promises.assessments;
-					patient.resolve(promises.patient);
-				}, function (reason) {
-					patient.reject(reason);
+					promises.patient.statuses = promises.additions.statuses;
+					promises.patient.assessments = promises.additions.assessments;
+					return promises.patient;
 				});
-
-			return patient.promise;
 		},
 		newPatient: function () {
 			return {
@@ -61,6 +56,17 @@
 				return status.put();
 			}
 		},
+		_getPatient: function (patientId) {
+			return this.BleedApi.one('patients', patientId).get();
+		},
+		_getPatientAdditions: function (patientId) {
+			var base = this.BleedApi.one('patients', patientId);
+			return this.$q
+				.all({
+					statuses: base.getList('statuses'),
+					assessments: base.getList('assessments'),
+				});
+		},
 	});
 
 	angular.module('patient')
@@ -74,8 +80,12 @@
 						key: function () { return 'patients'; },
 					},
 					{
-						func: 'getPatient',
+						func: '_getPatient',
 						key: function (patientId) { return 'patient-' + patientId; },
+					},
+					{
+						func: '_getPatientAdditions',
+						key: function (patientId) { return 'patient-additions-' + patientId; },
 					},
 					{
 						type: 'save',
