@@ -40,6 +40,7 @@ abstract class CalculatorBase implements ScoreCalculatorInterface
 			$this->accumulateStats($question);
 			$this->accumulate($question, $scoreMappings);
 		}
+		$this->finish();
 
 		return $this;
 	}
@@ -95,6 +96,10 @@ abstract class CalculatorBase implements ScoreCalculatorInterface
 	}
 
 	protected function accumulateMapping(ScoreMapping $mapping)
+	{
+	}
+
+	protected function finish()
 	{
 	}
 

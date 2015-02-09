@@ -3,28 +3,92 @@
 # to facilitate potential future navigation concepts. All questions in a screen
 # are displayed on a single screen
 
+title: Bleeding BSMS
 meta_answers:
-  nya: not yet answered
-  nass: not assessed
-  napp: not applicable
-  ns: no symptom
-questions:
-  chapter_1:
-    group_1:
-      section_1:
-        screen_1:
+  nya: Not yet answered
+  nass: Not assessed
+  napp: Not applicable
+  ns: No symptoms
+chapters:
+  -
+    sections:
+      -
+        screens:
           -
-            slug: question-yes-no
-            type: yesno
-            meta_answers: ['nya', 'nass']
-            question:
-              title: Do you agree or not?
-              description: "Some <strong>HTML</strong> markup"
-            options: # optional
-              yes:
-                label: "Yes"
-                value: true
-              no:
-                label: "No"
-                value: false
-            export: TODO
+            slug: general
+            questions:
+              -
+                slug: grade
+                type: radios
+                title: "Grade"
+                meta_answers: ['nya']
+                options: # optional
+                  -
+                    label: "No bleeding"
+                    value: "0"
+                    score:
+                      type: 0
+                  -
+                    label: "Trace bleeding"
+                    value: "1a"
+                    score:
+                      type: 1
+                      subtype: "a"
+                  -
+                    label: "Mild bleeding"
+                    value: "1b"
+                    score:
+                      type: 1
+                      subtype: "b"
+                  -
+                    label: "Serious bleeding"
+                    value: "2a"
+                    score:
+                      type: 2
+                      subtype: "a"
+                  -
+                    label: "Serious bleeding with significant morbidity"
+                    value: "2b"
+                    score:
+                      type: 2
+                      subtype: "b"
+                  -
+                    label: "Fatal bleeding"
+                    value: "2c"
+                    score:
+                      type: 2
+                      subtype: "c"
+              -
+                slug: type-or-site
+                type: checkboxes
+                title: "Type or site of bleeding"
+                meta_answers: ['nya']
+                options: # optional
+                  -
+                    label: "Oral and nasal"
+                    value: "oral-and-nasal"
+                  -
+                    label: "Skin, soft tissue, musculoskeletal"
+                    value: "skin-and-soft-tissue"
+                  -
+                    label: "Abdominal and GI"
+                    value: "abdominal-and-gi"
+                  -
+                    label: "Genitourinary"
+                    value: "genitourinary"
+                  -
+                    label: "Cardiopulmonary"
+                    value: "cardiopulmonary"
+                  -
+                    label: "Central nervous system"
+                    value: "cns"
+                  -
+                    label: "Related to invasive procedures"
+                    value: "invasive"
+                  -
+                    label: "Other"
+                    value: "other"
+                    supplements:
+                      -
+                        slug: specify
+                        type: text
