@@ -91,7 +91,7 @@
 			result
 				.then(function (data) {
 					that.cache.put(key, {
-						obj: data,
+						obj: result,
 						expiration: that.lifetime.getExpirationDate(),
 					});
 				})

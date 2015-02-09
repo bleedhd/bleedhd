@@ -17,7 +17,12 @@
 			var that = this;
 			return that.getAssessment(patientId, assessmentId).then(function (assessment) {
 				return that.QuestionnaireData.get(assessment.questionnaire).then(function (questionnaire) {
-					assessment.definition = questionnaire;
+					// add the definition as a non-enumerable property to avoid recursion
+					// issues when saving and displaying the assessment object
+					Object.defineProperty(assessment, 'definition', {
+						value: questionnaire,
+					});
+
 					return assessment;
 				});
 			});

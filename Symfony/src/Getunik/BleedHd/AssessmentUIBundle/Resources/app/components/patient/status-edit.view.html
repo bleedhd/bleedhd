@@ -19,7 +19,7 @@
 
 				<div class="form-group" bs-validate-class="ctlStatus.statusForm.status_transplant_date">
 					<label class="control-label" for="status_transplant_date">Date:</label>
-					<input tabindex="1" id="status_transplant_date" name="status_transplant_date" class="form-control" type="date" ng-model="ctlStatus.status.transplant_date.date" />
+					<input tabindex="1" id="status_transplant_date" name="status_transplant_date" class="form-control" type="text" ng-model="ctlStatus.status.transplant_date" mask-input="yyyy-mm-dd" placeholder="yyyy-mm-dd" />
 				</div>
 
 				<div class="form-group">
@@ -66,7 +66,6 @@
 	</form>
 
 	<div ng-if="env.debug" class="debug-output">
-		<br /> <br />
 		{{ ctlStatus.status | json }}
 	</div>
 
