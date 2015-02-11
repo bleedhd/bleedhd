@@ -1,0 +1,9 @@
+<div class="bleed-sub-answer">
+	<h6 ng-bind-html="supplementCtl.definition.question.title"></h6>
+
+	<div class="form-group">
+		<label class="control-label" ng-if="supplementCtl.definition.label" ng-bind="supplementCtl.definition.label"></label>
+		<input type="text" class="form-control" ng-disabled="!active" model-filter-expression="supplementCtl.filterExpression" placeholder="{{ supplementCtl.definition.placeholder }}" ng-model="supplementCtl.value" ng-model-options="{ getterSetter: true }" ng-change="supplementCtl.onChange()">
+	</div>
+
+</div>

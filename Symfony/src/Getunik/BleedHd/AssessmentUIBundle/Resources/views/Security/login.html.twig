@@ -1,0 +1,54 @@
+{% extends "GetunikBleedHdAssessmentUIBundle::layout.html.twig" %}
+
+{% trans_default_domain 'AssessmentUIBundle' %}
+
+{% block logo %}{% endblock logo %}
+{% block content %}
+<div class="row-fluid">
+
+  <div class="col-sm-3 col-md-4"></div>
+  <div class="col-sm-6 col-md-4">
+
+
+
+	<div class="panel panel-default bleed-panel-login">
+
+		<div class="panel-body">
+
+			<img class="bleed-logo-login" src="{{ asset('bundles/getunikbleedhdassessmentui/images/logo.png') }}" width="220" alt="">
+
+			<form action="{{ path("fos_user_security_check") }}" method="post">
+
+				<div class="form-group"><!-- // TODO: add .has-error for error state! -->
+					<div class="controls">
+						<input id="username" class="form-control" name="_username" type="text" placeholder="{{ 'security.login.username'|trans }}" value="{{ last_username }}" required="required" />
+					</div>
+				</div>
+				<div class="form-group"><!-- // TODO: add .has-error for error state! -->
+					<div class="controls">
+						<input id="password" class="form-control" type="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" required="required" />
+					</div>
+				</div>
+
+
+				{% if error %}
+				<div class="form-group bleed-login-error">
+					<div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				</div>
+				{% endif %}
+
+				<input type="submit" id="_submit" class="btn btn-large btn-default btn-block" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+
+			</form>
+
+		</div><!-- /.panel-body -->
+		<div class="panel-footer bleed-panel-login-footer clearfix">
+			<a href="" class="pull-left" data-toggle="modal" data-target="#modal_about">TODO: about</a>
+			<span class="pull-right">{{ app.request.get('debug') == 'true' ? app_version.getVersion(true) : app_version.getVersion(false) }}</span>
+		</div>
+
+	</div><!-- /.panel -->
+
+  </div><!-- /.col-sm-4 -->
+</div><!-- /.row-fluid -->
+{% endblock content %}

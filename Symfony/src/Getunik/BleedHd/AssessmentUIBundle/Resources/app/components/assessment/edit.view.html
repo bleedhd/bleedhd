@@ -1,0 +1,107 @@
+
+<top-nav title="Assessment details" nav-url="#/patients/detail/{{ ctlAssessment.patient.id }}?tab=assessments" nav-label="Back to patient details"></top-nav>
+
+<panel>
+	<div class="row">
+		<div class="col-xs-12">
+			<h4>{{ ctlAssessment.patient | patientname }}</h4>
+			Date of birth: {{ ctlAssessment.patient.birthdate.date | isodate }}
+		</div>
+	</div>
+</panel>
+
+<panel heading="Metadata">
+
+	<form role="form" name="ctlAssessment.assessmentForm" novalidate>
+
+		<div class="row">
+
+			<div class="col-xs-12 col-sm-6">
+				<div class="form-group" bs-validate-class="ctlAssessment.assessmentForm.assessment_start_date">
+					<label class="control-label" for="assessment_start_date">Date of assessment*</label>
+					<input tabindex="1" id="assessment_start_date" name="assessment_start_date" class="form-control" type="text" ng-model="ctlAssessment.startDate" ng-change="ctlAssessment.onDateChange()" mask-input="yyyy-mm-dd" placeholder="yyyy-mm-dd" required />
+				</div>
+				<div class="form-group" bs-validate-class="ctlAssessment.assessmentForm.assessment_start_time">
+					<label class="control-label" for="assessment_start_time">Start time*</label>
+					<input tabindex="2" id="assessment_start_time" name="assessment_start_time" class="form-control" type="text" ng-model="ctlAssessment.startTime" ng-change="ctlAssessment.onTimeChange()" mask-input="hh:mm" placeholder="hh:mm" required />
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="assessment_platelets">Platelets (G/l)</label>
+					<input tabindex="3" id="assessment_platelets" name="assessment_platelets" class="form-control" type="text" ng-model="ctlAssessment.assessment.platelets" />
+				</div>
+
+			</div>
+
+			<div class="col-xs-12 col-sm-6">
+				<div class="form-group">
+					<label class="control-label" for="assessment_remarks">Remarks</label>
+					<textarea tabindex="4" id="assessment_remarks" name="assessment_remarks" class="form-control" cols="30" rows="6" ng-model="ctlAssessment.assessment.remarks"></textarea>
+				</div>
+
+				<div ng-if="!ctlAssessment.isNew">
+					<button tabindex="5" class="btn btn-default" type="button" ng-disabled="ctlAssessment.assessmentForm.$invalid" ng-click="ctlAssessment.save()">Save</button>
+				</div>
+			</div>
+
+		</div>
+
+	</form>
+
+	<pre ng-if="env.debug" class="debug-output">{{ ctlAssessment.assessment | json }}</pre>
+
+</panel>
+
+<panel ng-if="!ctlAssessment.isNew" heading="Results">
+	<div class="row">
+
+		<div class="col-xs-12 col-sm-6">
+			<h4>{{ ctlAssessment.assessment.questionnaire | toQName }}</h4>
+			<h5>Score: {{ ctlAssessment.assessment.result | score }}</h5>
+			<div ng-if="env.debug" class="debug-output">
+				<pre>{{ ctlAssessment.assessment.result | json }}</pre>
+			</div>
+		</div>
+
+		<div class="col-xs-12 col-sm-6">
+
+		</div>
+
+	</div>
+</panel>
+
+<panel ng-if="!ctlAssessment.isNew" heading="Quick links">
+	<div class="row">
+		<div class="col-xs-12">
+			<button class="btn btn-default">TBD</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<a class="btn btn-default pull-right" ng-href="#/assessment/{{ ctlAssessment.patient.id }}/{{ ctlAssessment.assessment.id }}/start">Edit assessment</a>
+		</div>
+	</div>
+</panel>
+
+<panel ng-if="ctlAssessment.isNew" heading="Start new assessment">
+	<div class="row">
+
+		<div class="col-xs-12 col-sm-6">
+			<h4>Bleeding</h4>
+			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('demo')">DEMO</a>
+			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('who')">WHO</a>
+			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('bsms')">BSMS</a>
+		</div>
+
+		<div class="col-xs-12 col-sm-6">
+			<h4>GvHD</h4>
+			<a href="" class="btn btn-block btn-default" ng-click="">Features</a>
+			<hr>
+			<a href="" class="btn btn-block btn-default" ng-click="">First diagnosis</a>
+			<a href="" class="btn btn-block btn-default" ng-click="">Current staging</a>
+			<a href="" class="btn btn-block btn-default" ng-click="">Therapy response</a>
+			<hr>
+			<a href="" class="btn btn-block btn-default" ng-click="">Patient self report</a>
+		</div>
+
+	</div>
+</panel>

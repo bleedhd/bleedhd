@@ -1,0 +1,95 @@
+# Questions are structured in a hierarchy of
+#   Chapter - Group - Screen
+# to facilitate potential future navigation concepts. All questions in a screen
+# are displayed on a single screen
+
+meta_answers:
+  nya: not yet answered
+  nass: not assessed
+  napp: not applicable
+  ns: no symptom
+chapters:
+  -
+    slug: chapter_1
+    sections:
+      -
+        slug: section_1
+        screens:
+          -
+            slug: screen_1
+            questions:
+              -
+                slug: question-yes-no-demo
+                type: yesno
+                title: "Demo Question 1 (Yes/No)"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Do you agree or not?"
+                  description: "Some <strong>HTML</strong> markup"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: "heck-yes"
+                  no:
+                    label: "No"
+                    value: "heck-no"
+                export: TODO
+              -
+                slug: question-yes-no-demo2
+                type: yesno
+                title: "Demo Question 2 (Yes/No)"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Do you agree or not?"
+                  description: "Some fundamentally different <strong>HTML</strong> markup"
+                options: # optional
+                  yes:
+                    label: "Jupp"
+                    value: true
+                    supplements:
+                      -
+                        slug: new
+                        type: checkbox
+                        label: New?
+                        question:
+                          title: Is this new?
+                  no:
+                    label: "Nope"
+                    value: false
+                    supplements:
+                      -
+                        slug: sure
+                        type: checkbox
+                        label: Sure?
+                        question:
+                          title: Are you sure?
+                export: TODO
+          -
+            slug: screen_2
+            questions:
+              -
+                slug: multi-demo
+                type: multi
+                title: "These are multiple questions"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "What's the deal with the questions below?"
+                questions:
+                  -
+                    slug: first
+                    type: yesno
+                    meta_answers: ['nya', 'nass']
+                    intro:
+                      question: "Is this the real life?"
+                  -
+                    slug: second
+                    type: yesno
+                    meta_answers: ['nya', 'nass']
+                    intro:
+                      question: "Is this just fantasy?"
+                  -
+                    slug: third
+                    type: yesno
+                    meta_answers: ['nya', 'nass']
+                    intro:
+                      question: "Caught in a landslide(?)"

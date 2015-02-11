@@ -1,0 +1,15 @@
+Getunik\BleedHd\AssessmentDataBundle\Entity\Response:
+    exclusion_policy: ALL
+    read_only: false
+    properties:
+        lastUpdatedDate:
+            since_version: 1.0
+        lastUpdatedBy:
+            since_version: 1.0
+        assessmentId:
+            since_version: 1.0
+        questionSlug:
+            since_version: 1.0
+            serialized_name: id
+        result:
+            since_version: 1.0

@@ -1,0 +1,22 @@
+Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
+    exclusion_policy: ALL
+    read_only: false
+    properties:
+        id:
+            since_version: 1.0
+        lastUpdatedDate:
+            since_version: 1.0
+        lastUpdatedBy:
+            since_version: 1.0
+        patientId:
+            since_version: 1.0
+        questionnaire:
+            since_version: 1.0
+        startDate:
+            since_version: 1.0
+        platelets:
+            since_version: 1.0
+        remarks:
+            since_version: 1.0
+        result:
+            since_version: 1.0

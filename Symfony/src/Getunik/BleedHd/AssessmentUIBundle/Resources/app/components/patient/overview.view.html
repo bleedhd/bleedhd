@@ -1,0 +1,68 @@
+
+<top-nav title="Patient Overview" nav-url="#/export" nav-label="Export"></top-nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+
+			<div class="well">
+				<form class="form clearfix" role="search">
+					<input type="text" class="form-control" placeholder="Name or date of birth" ng-model="ctlPatients.filterSearch" ng-change="ctlPatients.onFilterChange()" />
+
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" checked="checked" id="filter_active" ng-model="ctlPatients.filterActive" ng-true-value="true" ng-false-value="false" ng-change="ctlPatients.onFilterChange()" /> Show only active patients
+						</label>
+					</div>
+					<button class="btn btn-default" ng-click="ctlPatients.resetFilter()">Reset Filter</button>
+				</form>
+			</div>
+
+			<div ng-if="env.debug" class="debug-output">
+				Searching for "{{ ctlPatients.filterSearch }}" with active {{ ctlPatients.filterActive }}
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+
+			<div class="panel panel-default">
+				<div class="panel-body">
+
+					<a class="btn btn-default pull-right" href="#/patients/new">New patient</a>
+
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Last Name</th>
+								<th>First Name</th>
+								<th>Date of birth</th>
+								<th>Active</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr link-row="true" ng-repeat="patient in ctlPatients.paging.getPageItems()" data-id="{{ patient.id }}">
+								<td>{{ patient.lastname }}</td>
+								<td>{{ patient.firstname }}</td>
+								<td>{{ patient.birthdate.date | isodate }}</td>
+								<td>{{ patient.is_active | boolyesno }}</td>
+								<td><a class="btn btn-default btn-xs" href="#/patients/detail/{{ patient.id }}">Details</a></td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+
+			<nav>
+				<pagination total-items="paging.items.length" items-per-page="paging.itemsPerPage" ng-model="paging.currentPage" class="pagination-sm" previous-text="«" next-text="»"></pagination>
+			</nav>
+
+		</div>
+	</div>
+</div>

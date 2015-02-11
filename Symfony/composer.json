@@ -6,6 +6,12 @@
     "autoload": {
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/getu-lar/AsseticAngularJsBundle"
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.5.*",
@@ -17,7 +23,14 @@
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~3.0",
         "sensio/framework-extra-bundle": "~3.0",
-        "incenteev/composer-parameter-handler": "~2.0"
+        "incenteev/composer-parameter-handler": "~2.0",
+        "doctrine/migrations": "1.0.*@dev",
+        "doctrine/doctrine-migrations-bundle": "2.1.*@dev",
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "friendsofsymfony/oauth-server-bundle": "dev-master",
+        "friendsofsymfony/rest-bundle": "~1.4",
+        "jms/serializer-bundle": "~0.13",
+        "getu-lar/assetic-angular-js-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
@@ -32,7 +45,8 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
+            "(cd bin; if [ ! -f node ]; then ln -s \"$(which node)\" node; fi; npm install)"
         ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
@@ -40,7 +54,8 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
+            "(cd bin; npm update)"
         ]
     },
     "config": {

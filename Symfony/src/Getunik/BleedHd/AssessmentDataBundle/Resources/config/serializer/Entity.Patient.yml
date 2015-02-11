@@ -1,0 +1,32 @@
+Getunik\BleedHd\AssessmentDataBundle\Entity\Patient:
+    exclusion_policy: ALL
+    read_only: false
+    properties:
+        id:
+            since_version: 1.0
+        lastUpdatedDate:
+            since_version: 1.0
+        lastUpdatedBy:
+            since_version: 1.0
+        isActive:
+            since_version: 1.0
+        firstname:
+            since_version: 1.0
+        lastname:
+            since_version: 1.0
+        birthdate:
+            since_version: 1.0
+            type: DateTime<'Y-m-d'>
+        sex:
+            since_version: 1.0
+        patientNumber:
+            since_version: 1.0
+        upn:
+            since_version: 1.0
+        diagnosis:
+            since_version: 1.0
+        diagnosisDate:
+            since_version: 1.0
+            type: DateTime<'Y-m-d'>
+        remarks:
+            since_version: 1.0

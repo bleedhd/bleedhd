@@ -1,0 +1,124 @@
+parameters:
+    getunik.bleed_hd_data.entity_manager_service: doctrine.orm.default_entity_manager
+    getunik.bleed_hd_data.patient_handler.class: Getunik\BleedHd\AssessmentDataBundle\Handler\PatientHandler
+    getunik.bleed_hd_data.patient_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\PatientsController
+    getunik.bleed_hd_data.patientstatus_handler.class: Getunik\BleedHd\AssessmentDataBundle\Handler\PatientStatusHandler
+    getunik.bleed_hd_data.patientstatus_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\PatientStatusesController
+    getunik.bleed_hd_data.assessment_handler.class: Getunik\BleedHd\AssessmentDataBundle\Handler\AssessmentHandler
+    getunik.bleed_hd_data.assessment_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\AssessmentsController
+    getunik.bleed_hd_data.response_handler.class: Getunik\BleedHd\AssessmentDataBundle\Handler\ResponseHandler
+    getunik.bleed_hd_data.response_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\ResponsesController
+    getunik.bleed_hd_data.questionnaire_handler.class: Getunik\BleedHd\AssessmentDataBundle\Handler\QuestionnaireHandler
+    getunik.bleed_hd_data.questionnaire_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\QuestionnairesController
+    getunik.bleed_hd_data.clientlogentry_handler.class: Getunik\BleedHd\AssessmentDataBundle\Handler\ClientLogEntryHandler
+    getunik.bleed_hd_data.clientlogentry_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\ClientLogEntriesController
+
+
+services:
+
+    getunik.bleed_hd_data.version_service:
+        class: Getunik\BleedHd\AssessmentDataBundle\Service\VersionService
+        arguments:
+            - @kernel
+            - '%getunik_bleed_hd_assessment_data.version_allow_git%'
+            - '%getunik_bleed_hd_assessment_data.version%'
+
+    getunik.bleed_hd_data.entity_update_listener:
+        class: Getunik\BleedHd\AssessmentDataBundle\Listener\UpdateInformationListener
+        arguments:
+            - @service_container
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: prePersist }
+
+    getunik.bleed_hd_data.flush_data_listener:
+        class: Getunik\BleedHd\AssessmentDataBundle\Listener\FlushDataListener
+        arguments: ['@service_container', '%getunik.bleed_hd_data.entity_manager_service%']
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onResponse }
+
+    getunik.bleed_hd_data.score_calculator_factory:
+        class: Getunik\BleedHd\AssessmentDataBundle\Scoring\ScoreCalculatorFactory
+        arguments: ["@monolog.logger.score"]
+
+
+    getunik.bleed_hd_data.patient_handler:
+        class: %getunik.bleed_hd_data.patient_handler.class%
+        arguments:
+            - @doctrine
+
+    getunik.bleed_hd_data.patient_controller:
+        class: %getunik.bleed_hd_data.patient_controller.class%
+        arguments:
+            - @getunik.bleed_hd_data.patient_handler
+        calls:
+            - [setContainer, ["@service_container"]]
+
+
+    getunik.bleed_hd_data.patientstatus_handler:
+        class: %getunik.bleed_hd_data.patientstatus_handler.class%
+        arguments:
+            - @doctrine
+
+    getunik.bleed_hd_data.patientstatus_controller:
+        class: %getunik.bleed_hd_data.patientstatus_controller.class%
+        arguments:
+            - @getunik.bleed_hd_data.patientstatus_handler
+        calls:
+            - [setContainer, ["@service_container"]]
+
+
+    getunik.bleed_hd_data.assessment_handler:
+        class: %getunik.bleed_hd_data.assessment_handler.class%
+        arguments:
+            - @doctrine
+            - @getunik.bleed_hd_data.response_handler
+            - @getunik.bleed_hd_data.questionnaire_handler
+            - @getunik.bleed_hd_data.score_calculator_factory
+
+    getunik.bleed_hd_data.assessment_controller:
+        class: %getunik.bleed_hd_data.assessment_controller.class%
+        arguments:
+            - @getunik.bleed_hd_data.assessment_handler
+        calls:
+            - [setContainer, ["@service_container"]]
+
+
+    getunik.bleed_hd_data.response_handler:
+        class: %getunik.bleed_hd_data.response_handler.class%
+        arguments:
+            - @doctrine
+
+    getunik.bleed_hd_data.response_controller:
+        class: %getunik.bleed_hd_data.response_controller.class%
+        arguments:
+            - @getunik.bleed_hd_data.response_handler
+            - @getunik.bleed_hd_data.assessment_handler
+        calls:
+            - [setContainer, ["@service_container"]]
+
+
+    getunik.bleed_hd_data.questionnaire_handler:
+        class: %getunik.bleed_hd_data.questionnaire_handler.class%
+        arguments:
+            - %kernel.root_dir%/../src/Getunik/BleedHd/AssessmentDataBundle/Resources/questionnaire
+
+    getunik.bleed_hd_data.questionnaire_controller:
+        class: %getunik.bleed_hd_data.questionnaire_controller.class%
+        arguments:
+            - @getunik.bleed_hd_data.questionnaire_handler
+        calls:
+            - [setContainer, ["@service_container"]]
+
+
+    getunik.bleed_hd_data.clientlogentry_handler:
+        class: %getunik.bleed_hd_data.clientlogentry_handler.class%
+        arguments:
+            - @doctrine
+
+    getunik.bleed_hd_data.clientlogentry_controller:
+        class: %getunik.bleed_hd_data.clientlogentry_controller.class%
+        arguments:
+            - @getunik.bleed_hd_data.clientlogentry_handler
+        calls:
+            - [setContainer, ["@service_container"]]

@@ -15,7 +15,16 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new Asoc\AsseticAngularJsBundle\AsocAsseticAngularJsBundle(),
+            new Getunik\BleedHd\SecurityBundle\GetunikBleedHdSecurityBundle(),
+            new Getunik\BleedHd\AssessmentDataBundle\GetunikBleedHdAssessmentDataBundle(),
+            new Getunik\BleedHd\AssessmentUIBundle\GetunikBleedHdAssessmentUIBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

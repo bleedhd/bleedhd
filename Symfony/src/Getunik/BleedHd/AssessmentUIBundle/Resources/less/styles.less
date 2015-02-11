@@ -1,0 +1,190 @@
+// import getunik mixins
+@import url('../getunikpreprocessormixins/_getunik_mixins.less');
+
+// webfonts
+@import url('_webfonts.less');
+
+// import bootstrap.less
+@import url('_bootstrap.less');
+
+// import components
+@import url('_login.less');
+@import url('_meta.less');
+
+
+
+// bootstrap elements tweaks here....
+.nav-tabs {
+	margin-bottom: 20px;
+}
+.radio {
+	label + label {
+		margin-left: 30px;
+	}
+}
+
+.radio,
+.checkbox {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+
+// custom overrides here.....
+.bleed-header {
+	margin-bottom: 30px;
+
+	.btn {
+		margin-top: 10px;
+	}
+}
+
+.bleed-logo {
+	display: inline-block;
+	margin-top: 10px;
+}
+
+.bleed-btn-logout {
+	margin-top: 13px;
+}
+
+.bleed-question {
+	h4 {
+		line-height: 1.4;
+	}
+}
+
+.bleed-answers {
+	font-size: 18px;
+
+	label {
+		margin-bottom: 5px;
+		font-weight: normal;
+	}
+
+	input[type="text"],
+	textarea {
+		margin-bottom: 10px;
+	}
+}
+
+.bleed-meta-answers {
+
+	label {
+		font-weight: normal;
+		color: #666666;
+		margin-right: 10px;
+	}
+}
+
+.bleed-answers-group {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: #eeeeee 1px solid;
+	.border-top-radius(@border-radius-base);
+	.border-right-radius(@border-radius-base);
+	.border-bottom-radius(@border-radius-base);
+	.border-left-radius(@border-radius-base);
+
+	label + label {
+		margin-left: 30px;
+	}
+}
+
+.bleed-sub-answer {
+	background: -moz-linear-gradient(left,  rgba(252,252,252,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  rgba(252,252,252,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  rgba(252,252,252,1) 0%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  rgba(252,252,252,1) 0%,rgba(255,255,255,0) 100%); /* IE10+ */
+	background: linear-gradient(to right,  rgba(252,252,252,1) 0%,rgba(255,255,255,0) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+
+
+	margin-left: 20px;
+
+
+	&:before {
+		content: " ";
+		display: block;
+		height: 1px;
+		position: relative;
+		left: -20px;
+		background: -moz-linear-gradient(left,  rgba(216,216,216,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(216,216,216,1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(left,  rgba(216,216,216,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(left,  rgba(216,216,216,1) 0%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(left,  rgba(216,216,216,1) 0%,rgba(255,255,255,0) 100%); /* IE10+ */
+		background: linear-gradient(to right,  rgba(216,216,216,1) 0%,rgba(255,255,255,0) 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d8d8d8', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+
+	}
+
+	//border-top: #cccccc 1px solid;
+
+	padding-left: 20px;
+	padding-bottom: 5px;
+
+	&.disabled {
+		color: #999999;
+	}
+
+	.radio,
+	.checkbox {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	.control-label {
+		padding-left: 0;
+	}
+
+	input[type="text"].form-control {
+		width: 98%;
+	}
+
+	h6 {
+		color: #999999;
+	}
+}
+
+.bleed-annotations {
+	margin-top: 20px;
+	font-size: 16px;
+}
+
+.bleed-filter {
+
+	.checkbox {
+		margin-right: 30px;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}
+
+.bleed-question-navigation {
+	margin-bottom: 60px;
+}
+
+.environment-indicator {
+	display: none;
+
+	&.dev {
+		background-color: #75FF47;
+		display: block;
+		position: fixed;
+		top: 3px;
+		right: 3px;
+	}
+}
+
+.link-row {
+	cursor: pointer;
+}
+
+.debug-output {
+	margin: 1em 0;
+	background-color: #FFFF94;
+}

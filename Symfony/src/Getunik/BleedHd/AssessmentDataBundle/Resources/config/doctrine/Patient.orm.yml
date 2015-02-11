@@ -1,0 +1,59 @@
+Getunik\BleedHd\AssessmentDataBundle\Entity\Patient:
+    type:  entity
+    table: Patient
+    repositoryClass: Getunik\BleedHd\AssessmentDataBundle\Entity\PatientRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        lastUpdatedDate:
+            type: datetimetz
+            nullable: false
+        lastUpdatedBy:
+            type: integer
+            nullable: false
+        isActive:
+            type: boolean
+            nullable: false
+        firstname:
+            type: string
+            nullable: false
+            length: 255
+        lastname:
+            type: string
+            nullable: false
+            length: 255
+        birthdate:
+            type: date
+            nullable: false
+        sex:
+            type: string
+            length: 10
+            nullable: true
+        patientNumber:
+            type: string
+            length: 255
+            nullable: true
+        upn:
+            type: string
+            length: 255
+            nullable: true
+        diagnosis:
+            type: string
+            length: 255
+            nullable: true
+        diagnosisDate:
+            type: date
+            nullable: true
+        remarks:
+            type: text
+            nullable: true
+    oneToMany:
+        statuses:
+            targetEntity: PatientStatus
+            mappedBy: patient
+        assessments:
+            targetEntity: Assessment
+            mappedBy: patient

@@ -1,12 +1,50 @@
 security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_EDITOR: ROLE_READER
+        ROLE_ADMIN: ROLE_EDITOR
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
     providers:
-        in_memory:
-            memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username
 
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+        oauth_token:
+            pattern: ^/oauth/v2/token
+            security: false
+            context: secured
+
+        oauth_authorize:
+            pattern: ^/oauth/v2/auth
+            anonymous: true
+            context: secured
+
+        user_management:
+            pattern: ^/user
+            form_login:
+                provider: fos_userbundle
+                check_path: /user/login_check
+                login_path: /user/login
+                success_handler: getunik_bleed_hd_security.auth_success_handler
+            logout:
+                path: /user/logout
+                target: /user/login
+            anonymous: true
+            context: secured
+
+        api:
+            pattern: ^/api
+            fos_oauth: true
+            stateless: true
+            anonymous: false # can be omitted as its default value
+            context: secured
 
         default:
             anonymous: ~

@@ -1,0 +1,806 @@
+# Questions are structured in a hierarchy of
+#   Chapter - Group - Screen
+# to facilitate potential future navigation concepts. All questions in a screen
+# are displayed on a single screen
+
+title: Bleeding WHO
+meta_answers:
+  nya: Not yet answered
+  nass: Not assessed
+  napp: Not applicable
+  ns: No symptoms
+chapters:
+  -
+    sections:
+      -
+        screens:
+          -
+            slug: mouth-and-nose
+            questions:
+              -
+                slug: petechiae
+                type: yesno
+                title: "Mucosal surface of mouth and nose"
+                meta_answers: ['nya']
+                score:
+                  grade: 1
+                intro:
+                  question: "Are there petechiae or hematomas in the mucosal surface of mouth or nose?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                    supplements:
+                      -
+                        slug: isnew
+                        type: checkbox
+                        label: "New?"
+                        question:
+                          title:
+                  no:
+                    label: "No"
+                    value: 0
+
+              -
+                slug: mouth-bleed
+                type: yesno
+                title: "Mucosal surface of mouth and nose"
+                meta_answers: ['nya']
+                score:
+                  grade: 1
+                intro:
+                  question: "Is there any bleeding from the mouth and/or throat?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                    supplements:
+                      -
+                        slug: duration
+                        type: checkbox
+                        score:
+                          grade: 2
+                        label: "If yes, longer than 30 minutes?"
+                        question:
+                          title:
+                  no:
+                    label: "No"
+                    value: 0
+
+              -
+                slug: nose-bleed
+                type: yesno
+                title: "Mucosal surface of mouth and nose"
+                meta_answers: ['nya']
+                score:
+                  grade: 1
+                intro:
+                  question: "Was there a nose bleed?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                    supplements:
+                      -
+                        slug: duration
+                        type: checkbox
+                        score:
+                          grade: 2
+                        label: "If yes, longer than 30 minutes?"
+                        question:
+                          title:
+                  no:
+                    label: "No"
+                    value: 0
+
+          -
+            slug: skin-and-tissue
+            questions:
+              -
+                slug: petechiae
+                type: yesno
+                title: "Skin, soft tissue and muscles"
+                meta_answers: ['nya']
+                score:
+                  grade: 1
+                intro:
+                  question: "Are there petechiae of the skin?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                    supplements:
+                      -
+                        slug: isnew
+                        type: checkbox
+                        label: "New?"
+                        question:
+                          title:
+                      -
+                        slug: generalized
+                        type: checkbox
+                        label: "If yes, generalized?"
+                        question:
+                          title:
+                  no:
+                    label: "No"
+                    value: 0
+
+              -
+                slug: skin-hematomas
+                type: yesno
+                title: "Skin, soft tissue and muscles"
+                meta_answers: ['nya']
+                score:
+                  grade: 1
+                intro:
+                  question: "Are there hematomas of the skin?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                    supplements:
+                      -
+                        slug: isnew
+                        type: checkbox
+                        label: "New?"
+                        question:
+                          title:
+                      -
+                        slug: number
+                        type: radios
+                        question:
+                          title: "Number of hematomas >1cm"
+                        options: # optional
+                          -
+                            label: "0"
+                            value: "0"
+                          -
+                            label: "<3"
+                            value: "<3"
+                          -
+                            label: "3-5"
+                            value: "3-5"
+                          -
+                            label: ">5"
+                            value: ">5"
+                      -
+                        slug: size
+                        type: text
+                        label: "Maximal diameter of the largest hematoma (cm)?"
+                        question:
+                          title:
+                        pattern: "decimal"
+                  no:
+                    label: "No"
+                    value: 0
+
+              -
+                slug: soft-tissue-hematomas
+                type: yesno
+                title: "Skin, soft tissue and muscles"
+                meta_answers: ['nya']
+                score:
+                  grade: 2
+                intro:
+                  question: "Are there 1 or more hematomas in the soft tissue or muscles >2.5cm?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                    supplements:
+                      -
+                        slug: isnew
+                        type: checkbox
+                        label: "New?"
+                        question:
+                          title:
+                  no:
+                    label: "No"
+                    value: 0
+              -
+                slug: deep-tissue-hematomas
+                type: yesno
+                title: "Skin, soft tissue and muscles"
+                meta_answers: ['nya']
+                score:
+                  grade: 2
+                intro:
+                  question: "Are there hematomas in deeper tissues?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                    supplements:
+                      -
+                        slug: isnew
+                        type: checkbox
+                        label: "New?"
+                        question:
+                          title:
+                  no:
+                    label: "No"
+                    value: 0
+              -
+                slug: joint-bleeding
+                type: yesno
+                title: "Skin, soft tissue and muscles"
+                meta_answers: ['nya']
+                score:
+                  grade: 2
+                intro:
+                  question: "Is there bleeding in a joint?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                    supplements:
+                      -
+                        slug: isnew
+                        type: checkbox
+                        label: "New?"
+                        question:
+                          title:
+                  no:
+                    label: "No"
+                    value: 0
+
+          -
+            slug: gastrointestinal
+            questions:
+              -
+                slug: melanotic-stool
+                type: yesno
+                title: "Gastrointestinal"
+                meta_answers: ['nya']
+                score:
+                  grade: 2
+                intro:
+                  question: "Is there black, melanotic stool?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                    supplements:
+                      -
+                        slug: multiple
+                        type: checkbox
+                        label: "If yes, more than one occasion?"
+                        question:
+                          title:
+                  no:
+                    label: "No"
+                    value: 0
+              -
+                slug: blood-stool
+                type: yesno
+                title: "Gastrointestinal"
+                meta_answers: ['nya']
+                score:
+                  grade: 2
+                intro:
+                  question: "Is there visible blood in the stool?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                    supplements:
+                      -
+                        slug: multiple
+                        type: checkbox
+                        label: "If yes, more than one occasion?"
+                        question:
+                          title:
+                  no:
+                    label: "No"
+                    value: 0
+              -
+                slug: hematemesis
+                type: yesno
+                title: "Gastrointestinal"
+                meta_answers: ['nya']
+                score:
+                  grade: 2
+                intro:
+                  question: "Is there visible blood at vomiting (hematemesis)?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                    supplements:
+                      -
+                        slug: multiple
+                        type: checkbox
+                        label: "If yes, more than one occasion?"
+                        question:
+                          title:
+                  no:
+                    label: "No"
+                    value: 0
+
+          -
+            slug: urogenital
+            questions:
+              -
+                slug: urine-microscopic-blood
+                type: yesno
+                title: "Urogenital"
+                meta_answers: ['nya']
+                score:
+                  grade: 1
+                intro:
+                  question: "Is there microscopic blood in the urine?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                  no:
+                    label: "No"
+                    value: 0
+
+
+              -
+                slug: urine-macroscopic-blood
+                type: yesno
+                title: "Urogenital"
+                meta_answers: ['nya']
+                score:
+                  grade: 2
+                intro:
+                  question: "Is there macroscopic blood in the urine?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                  no:
+                    label: "No"
+                    value: 0
+
+
+              -
+                slug: vaginal-bleeding
+                type: yesno
+                title: "Urogenital"
+                meta_answers: ['nya', 'nass']
+                score:
+                  grade: 1
+                intro:
+                  question: "Was there abnormal vaginal bleeding with spotting?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                    supplements:
+                      -
+                        slug: multiple
+                        type: checkbox
+                        score:
+                          grade: 2
+                        label: "If yes, more than spotting?"
+                        question:
+                          title:
+                  no:
+                    label: "No"
+                    value: 0
+
+
+          -
+            slug: pulmonary
+            questions:
+              -
+                slug: blood-cough
+                type: yesno
+                title: "Pulmonary"
+                meta_answers: ['nya']
+                score:
+                  grade: 2
+                intro:
+                  question: "Is the patient coughing blood (hemoptysis)?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                  no:
+                    label: "No"
+                    value: 0
+
+              -
+                slug: blood-lavage
+                type: yesno
+                title: "Pulmonary"
+                meta_answers: ['nya']
+                score:
+                  grade: 2
+                intro:
+                  question: "Is there blood in the broncho-pulmonary lavage?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                  no:
+                    label: "No"
+                    value: 0
+
+              -
+                slug: blood-sputum
+                type: yesno
+                title: "Pulmonary"
+                meta_answers: ['nya']
+                score:
+                  grade: 2
+                intro:
+                  question: "Is there blood tinged sputum?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                  no:
+                    label: "No"
+                    value: 0
+
+          -
+            slug: body-cavities
+            questions:
+              -
+                slug: blood-cavity-fluid
+                type: yesno
+                title: "Body cavities"
+                meta_answers: ['nya']
+                score:
+                  grade: 2
+                intro:
+                  question: "Is there visible blood in body cavity fluid?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                  no:
+                    label: "No"
+                    value: 0
+
+              -
+                slug: intervention
+                type: yesno
+                title: "Body cavities"
+                meta_answers: ['nya']
+                score:
+                  grade: 3
+                intro:
+                  question: "Is intervention (i.e. to aspirate) needed to relieve dysfunction/symptoms?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                  no:
+                    label: "No"
+                    value: 0
+
+          -
+            slug: cns
+            questions:
+              -
+                slug: retinal-bleed-noimp
+                type: yesno
+                title: "Central nervous system and retina"
+                meta_answers: ['nya']
+                score:
+                  grade: 2
+                intro:
+                  question: "Is there a retinal bleeding without visual impairment?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                  no:
+                    label: "No"
+                    value: 0
+
+              -
+                slug: retinal-bleed-imp
+                type: yesno
+                title: "Central nervous system and retina"
+                meta_answers: ['nya']
+                score:
+                  grade: 4
+                intro:
+                  question: "Is there a retinal bleeding with visual impairment?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                  no:
+                    label: "No"
+                    value: 0
+
+              -
+                slug: liquor
+                type: yesno
+                title: "Central nervous system and retina"
+                meta_answers: ['nya']
+                intro:
+                  question: "Was there a liquor (non-traumatic) tap?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                    supplements:
+                      -
+                        slug: microscopic
+                        type: checkbox
+                        score:
+                          grade: 2
+                        label: "With microscopic blood without symptoms?"
+                        question:
+                          title:
+                      -
+                        slug: macroscopic
+                        type: checkbox
+                        score:
+                          grade: 3
+                        label: "With macroscopic blood without symptoms?"
+                        question:
+                          title:
+                  no:
+                    label: "No"
+                    value: 0
+
+
+              -
+                slug: bleed-nosymptoms
+                type: yesno
+                title: "Central nervous system and retina"
+                meta_answers: ['nya']
+                score:
+                  grade: 3
+                intro:
+                  question: "Is there a CNS bleeding without symptoms?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                  no:
+                    label: "No"
+                    value: 0
+
+
+              -
+                slug: bleed-symptoms
+                type: yesno
+                title: "Central nervous system and retina"
+                meta_answers: ['nya']
+                score:
+                  grade: 4
+                intro:
+                  question: "Is there a CNS bleeding with symptoms?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                  no:
+                    label: "No"
+                    value: 0
+
+          -
+            slug: invasive-sites
+            questions:
+              -
+                slug: bleed
+                type: yesno
+                title: "Invasive Sites"
+                meta_answers: ['nya']
+                score:
+                  grade: 2
+                intro:
+                  question: "Was there any bleeding at invasive sites lasting more than 1 hour?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                  no:
+                    label: "No"
+                    value: 0
+
+              -
+                slug: bleed-site
+                type: radios
+                title: "Invasive Sites"
+                meta_answers: ['nya']
+                intro:
+                  question: "What was the nature of the invasive site?"
+                options: # optional
+                  -
+                    label: "central venous catheter"
+                    value: 1
+                  -
+                    label: "venous puncture"
+                    value: 2
+                  -
+                    label: "biopsy"
+                    value: 3
+                  -
+                    label: "other"
+                    value: 9
+
+          -
+            slug: bleeding-complications
+            questions:
+              -
+                slug: hemodynamic-instability
+                type: yesno
+                title: "Impact of bleeding complications"
+                meta_answers: ['nya']
+                score:
+                  grade: 3
+                intro:
+                  question: "Was there a bleeding episode with hemodynamic instability?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                    supplements:
+                      -
+                        slug: severe
+                        type: checkbox
+                        label: "Was the hemodynamic instability severe?"
+                  no:
+                    label: "No"
+                    value: 0
+
+
+              -
+                slug: fatal-bleed
+                type: yesno
+                title: "Impact of bleeding complications"
+                meta_answers: ['nya']
+                score:
+                  grade: 4
+                intro:
+                  question: "Was there a life-threatening or fatal bleeding episode?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                  no:
+                    label: "No"
+                    value: 0
+
+              -
+                slug: rbc
+                type: yesno
+                title: "Impact of bleeding complications"
+                meta_answers: ['nya']
+                score:
+                  grade: 3
+                intro:
+                  question: "Was there a bleeding requiring RBC transfusion over routine needs?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                  no:
+                    label: "No"
+                    value: 0
+
+          -
+            slug: intervention
+            questions:
+              -
+                slug: intervention-needed
+                type: yesno
+                title: "Intervention, invasive investigation, medication"
+                meta_answers: ['nya']
+                intro:
+                  question: "Was there an intervention, invasive investigation or monitoring needed to treat the bleeding other then transfusions?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                  no:
+                    label: "No"
+                    value: 0
+
+              -
+                slug: intervention-type
+                type: radios
+                title: "Intervention, invasive investigation, medication"
+                meta_answers: ['nya']
+                intro:
+                  question: "If yes, what kind of intervention?"
+                options: # optional
+                  -
+                    label: "surgery"
+                    value: 1
+                  -
+                    label: "radiologic"
+                    value: 2
+                  -
+                    label: "endoscopy"
+                    value: 3
+                  -
+                    label: "other"
+                    value: 4
+                    supplements:
+                      -
+                        slug: other
+                        type: text
+                        label: specify
+
+              -
+                slug: medication-administered
+                type: yesno
+                title: "Intervention, invasive investigation, medication"
+                meta_answers: ['nya']
+                intro:
+                  question: "Was there any medication or a hemostatic compound administered to prevent or stop a bleeding other then transfusions?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                  no:
+                    label: "No"
+                    value: 0
+
+              -
+                slug: medication-type
+                type: radios
+                title: "Intervention, invasive investigation, medication"
+                meta_answers: ['nya']
+                intro:
+                  question: "If yes, what kind of medication?"
+                options: # optional
+                  -
+                    label: "Tranexamic acid"
+                    value: 1
+                  -
+                    label: "Fibrinogen"
+                    value: 2
+                  -
+                    label: "Fresh frozen plasma"
+                    value: 3
+                  -
+                    label: "Prothombin-Complex"
+                    value: 4
+                  -
+                    label: "Activated factor VII"
+                    value: 5
+                  -
+                    label: "Other"
+                    value: 6
+                    supplements:
+                      -
+                        slug: other
+                        type: text
+                        label: "Specify"
+
+          -
+            slug: source-check
+            questions:
+              -
+                slug: nursing-documented
+                type: yesno
+                title: "Source check"
+                meta_answers: ['nya']
+                intro:
+                  question: "Is bleeding mentioned in the documentation of the nursing staff?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                  no:
+                    label: "No"
+                    value: 0
+
+              -
+                slug: medical-record
+                type: yesno
+                title: "Source check"
+                meta_answers: ['nya']
+                intro:
+                  question: "Is bleeding mentioned in the medical record of the treating physician?"
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: 1
+                  no:
+                    label: "No"
+                    value: 0

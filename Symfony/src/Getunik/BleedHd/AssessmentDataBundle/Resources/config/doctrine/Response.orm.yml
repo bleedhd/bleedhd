@@ -1,0 +1,27 @@
+Getunik\BleedHd\AssessmentDataBundle\Entity\Response:
+    type:  entity
+    table: Response
+    repositoryClass: Getunik\BleedHd\AssessmentDataBundle\Entity\ResponseRepository
+    id:
+        assessmentId:
+            type: integer
+        questionSlug:
+            type: string
+            length: 255
+    fields:
+        lastUpdatedDate:
+            type: datetimetz
+            nullable: false
+        lastUpdatedBy:
+            type: integer
+            nullable: false
+        result:
+            type: json_array
+            nullable: false
+    manyToOne:
+        assessment:
+            targetEntity: Assessment
+            inversedBy: responses
+            joinColumn:
+                name: assessmentId
+                referencedColumnName: id

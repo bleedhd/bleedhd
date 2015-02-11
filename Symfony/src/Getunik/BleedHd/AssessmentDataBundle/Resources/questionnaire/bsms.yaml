@@ -1,0 +1,96 @@
+# Questions are structured in a hierarchy of
+#   Chapter - Group - Screen
+# to facilitate potential future navigation concepts. All questions in a screen
+# are displayed on a single screen
+
+title: Bleeding BSMS
+meta_answers:
+  nya: Not yet answered
+  nass: Not assessed
+  napp: Not applicable
+  ns: No symptoms
+chapters:
+  -
+    sections:
+      -
+        screens:
+          -
+            slug: general
+            questions:
+              -
+                slug: grade
+                type: radios
+                title: "Grade"
+                meta_answers: ['nya']
+                info:
+                  resource: "documents/sample.pdf"
+                options: # optional
+                  -
+                    label: "No bleeding"
+                    value: "0"
+                    score:
+                      type: 0
+                  -
+                    label: "Trace bleeding"
+                    value: "1a"
+                    score:
+                      type: 1
+                      subtype: "a"
+                  -
+                    label: "Mild bleeding"
+                    value: "1b"
+                    score:
+                      type: 1
+                      subtype: "b"
+                  -
+                    label: "Serious bleeding"
+                    value: "2a"
+                    score:
+                      type: 2
+                      subtype: "a"
+                  -
+                    label: "Serious bleeding with significant morbidity"
+                    value: "2b"
+                    score:
+                      type: 2
+                      subtype: "b"
+                  -
+                    label: "Fatal bleeding"
+                    value: "2c"
+                    score:
+                      type: 2
+                      subtype: "c"
+              -
+                slug: type-or-site
+                type: checkboxes
+                title: "Type or site of bleeding"
+                meta_answers: ['nya']
+                options: # optional
+                  -
+                    label: "Oral and nasal"
+                    value: "oral-and-nasal"
+                  -
+                    label: "Skin, soft tissue, musculoskeletal"
+                    value: "skin-and-soft-tissue"
+                  -
+                    label: "Abdominal and GI"
+                    value: "abdominal-and-gi"
+                  -
+                    label: "Genitourinary"
+                    value: "genitourinary"
+                  -
+                    label: "Cardiopulmonary"
+                    value: "cardiopulmonary"
+                  -
+                    label: "Central nervous system"
+                    value: "cns"
+                  -
+                    label: "Related to invasive procedures"
+                    value: "invasive"
+                  -
+                    label: "Other"
+                    value: "other"
+                    supplements:
+                      -
+                        slug: specify
+                        type: text

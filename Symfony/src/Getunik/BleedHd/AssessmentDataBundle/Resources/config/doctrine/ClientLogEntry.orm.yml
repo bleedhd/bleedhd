@@ -1,0 +1,28 @@
+Getunik\BleedHd\AssessmentDataBundle\Entity\ClientLogEntry:
+    type:  entity
+    table: ClientLogEntry
+    repositoryClass: Getunik\BleedHd\AssessmentDataBundle\Entity\ClientLogEntryRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        timestamp:
+            type: datetime
+            nullable: false
+        level:
+            type: integer
+            nullable: false
+        user:
+            type: integer
+            nullable: false
+        location:
+            type: text
+            nullable: true
+        message:
+            type: text
+            nullable: true
+        data:
+            type: json_array
+            nullable: true

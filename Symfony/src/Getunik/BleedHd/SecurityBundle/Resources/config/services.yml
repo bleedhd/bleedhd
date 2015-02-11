@@ -1,0 +1,10 @@
+
+services:
+    getunik_bleed_hd_security.auth_success_handler:
+        class: Getunik\BleedHd\SecurityBundle\EventListener\AutoTokenHandler
+        public: false
+        arguments:
+            - '@kernel'
+            - '%getunik_bleed_hd_security.auto_token_client.id%'
+            - '%getunik_bleed_hd_security.auto_token_client.secret%'
+            - '%getunik_bleed_hd_security.auto_token_client.target_path%'

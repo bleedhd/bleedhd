@@ -1,0 +1,50 @@
+
+<div class="panel panel-default">
+
+	<div class="panel-heading clearfix">
+		<div class="pull-left panel-title">
+			{{ containerCtl.question.title }}
+		</div>
+		<div class="pull-right">
+			TBD
+			<a ng-if="containerCtl.infoUrl" ng-href="{{ containerCtl.infoUrl }}" target="_blank"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+		</div>
+	</div>
+
+	<div class="panel-body">
+		<div class="bleed-question">
+			<div class="row">
+				<div class="col-xs-12">
+					<h4 ng-bind-html="containerCtl.question.intro.question"></h2>
+					<p ng-bind-html="containerCtl.question.intro.description"></p>
+				</div>
+			</div>
+		</div>
+
+		<div ng-switch on="containerCtl.question.type">
+			<div ng-switch-when="multi" class="bleed-answers">
+				<div class="bleed-answers-group" ng-repeat="question in containerCtl.question.questions">
+					<h4 ng-bind-html="question.intro.question"></h4>
+					<question definition="question" data="containerCtl.response[question.slug.full].result.data" ></question>
+					<pre ng-if="containerCtl.debug" class="debug-output">{{ containerCtl.response[question.slug.full].result|json }}</pre>
+				</div>
+			</div>
+			<div ng-switch-default class="bleed-answers">
+				<question definition="containerCtl.question" data="containerCtl.result.data" ></question>
+				<pre ng-if="containerCtl.debug" class="debug-output">{{ containerCtl.result|json }}</pre>
+			</div>
+		</div>
+
+		<div class="bleed-annotations" ng-repeat="annotation in containerCtl.question.annotations" ng-bind="annotation"></div>
+	</div>
+
+	<div class="panel-footer clearfix">
+		<div class="bleed-meta-answers pull-left">
+			<label ng-repeat="metaAnswer in containerCtl.question.meta_answers"><input type="radio" ng-model="binding.meta" ng-change="containerCtl.onMetaChange()" value="{{ metaAnswer }}"> {{ containerCtl.question.globalMeta[metaAnswer] }}</label>
+		</div>
+		<div class="pull-right">
+			{{ containerCtl.question.index }} / {{ containerCtl.question.questionnaire.questionCount }}
+		</div>
+	</div>
+
+</div><!-- /.panel -->

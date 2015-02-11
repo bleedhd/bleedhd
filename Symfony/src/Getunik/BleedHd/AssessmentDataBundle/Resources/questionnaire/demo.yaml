@@ -1,0 +1,359 @@
+# Questions are structured in a hierarchy of
+#   Chapter - Group - Screen
+# to facilitate potential future navigation concepts. All questions in a screen
+# are displayed on a single screen
+
+title: Demo
+quick_links:
+  -
+    label: Test
+    screen: screen_1
+    question: question-yes-no-demo
+meta_answers:
+  nya: not yet answered
+  nass: not assessed
+  napp: not applicable
+  ns: no symptom
+chapters:
+  -
+    slug: chapter_1
+    sections:
+      -
+        slug: section_1
+        screens:
+          -
+            slug: screen_1
+            questions:
+              -
+                slug: question-yes-no-demo
+                type: yesno
+                title: "Demo Question 1 (Yes/No)"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Do you agree or not?"
+                  description: "Some <strong>HTML</strong> markup"
+                score:
+                  grade: 7
+                options: # optional
+                  yes:
+                    label: "Yes"
+                    value: "heck-yes"
+                  no:
+                    label: "No"
+                    value: "heck-no"
+                export: TODO
+              -
+                slug: question-yes-no-demo2
+                type: yesno
+                title: "Demo Question 2 (Yes/No)"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Do you agree or not?"
+                  description: "Some fundamentally different <strong>HTML</strong> markup"
+                options: # optional
+                  yes:
+                    label: "Jupp"
+                    value: true
+                    supplements:
+                      -
+                        slug: new
+                        type: checkbox
+                        label: New?
+                        options:
+                          yes:
+                            value: 42
+                            score:
+                              grade: 42
+                        question:
+                          title: Is this new?
+                  no:
+                    label: "Nope"
+                    value: false
+                    score:
+                      grade: -1
+                    supplements:
+                      -
+                        slug: sure
+                        type: checkbox
+                        label: Sure?
+                        question:
+                          title: Are you sure?
+                export: TODO
+          -
+            slug: screen_2
+            questions:
+              -
+                slug: multi-demo
+                type: multi
+                title: "These are multiple questions"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "What's the deal with the questions below?"
+                questions:
+                  -
+                    slug: first
+                    type: yesno
+                    score:
+                      grade: 3
+                    meta_answers: ['nya', 'nass']
+                    intro:
+                      question: "Is this the real life?"
+                  -
+                    slug: second
+                    type: yesno
+                    score:
+                      grade: 4
+                    meta_answers: ['nya', 'nass']
+                    intro:
+                      question: "Is this just fantasy?"
+                  -
+                    slug: third
+                    type: yesno
+                    score:
+                      grade: 5
+                    meta_answers: ['nya', 'nass']
+                    intro:
+                      question: "Caught in a landslide(?)"
+          -
+            slug: screen_3
+            questions:
+              -
+                slug: checkboxes-demo
+                type: checkboxes
+                title: "Make your choices!"
+                meta_answers: ['nya']
+                score:
+                  grade: 4
+                intro:
+                  question: "Make your choices!"
+                  description: "Pick the things you like"
+                option_reset:
+                  label: "Nothing at all you fool!"
+                options:
+                  -
+                    label: "Star Wars"
+                    value: star-wars
+                    supplements:
+                      -
+                        slug: all
+                        type: checkbox
+                        label: "All of them - even the prequels"
+                  -
+                    label: "Star-Trek"
+                    value: star-trek
+                  -
+                    label: "Harry Potter"
+                    value: harry-potter
+              -
+                slug: checkboxes-demo2
+                type: checkboxes
+                title: "More choices!"
+                meta_answers: ['nya']
+                intro:
+                  question: "Now for the important question!"
+                  description: "Pick the things you like"
+                options:
+                  -
+                    label: "StarCraft"
+                    value: sc
+                  -
+                    label: "Command & Conquer"
+                    value: cnc
+                  -
+                    label: "Age of Empires"
+                    value: AoE
+          -
+            slug: screen_4
+            questions:
+              -
+                slug: text-demo1
+                type: text
+                title: "Food stuff"
+                meta_answers: ['nya']
+                intro:
+                  question: "What is your favorite dessert?"
+                  description: "Only highly sugary food counts as dessert"
+                label: "Some sort of label (optional)"
+              -
+                slug: text-demo2
+                type: text
+                title: "Hobbies"
+                meta_answers: ['nya']
+                intro:
+                  question: "Which of your hobbies consumes the most time?"
+                  description: "Sleeping doesn't count!"
+                placeholder: "e.g. Skiing"
+                supplements:
+                  -
+                    slug: sports
+                    type: checkbox
+                    label: "Is it a sport?"
+                  -
+                    slug: indoors
+                    type: checkbox
+                    label: "Is it an indoor hobby?"
+              -
+                slug: text-demo3
+                type: text
+                title: "Awesomeness"
+                meta_answers: ['nya']
+                intro:
+                  question: "On a scale from 1 to 10, how awesome are you?"
+                pattern: "/^($|[1-9]$|10$)/"
+          -
+            slug: screen_5
+            questions:
+              -
+                slug: textarea-demo1
+                type: textarea
+                title: "Essay"
+                meta_answers: ['nya']
+                intro:
+                  question: "Tell me something about yourself"
+                  description: "Don't be shy..."
+                label: "About you"
+                placeholder: "I am ..."
+                rows: 20
+                cols: 100
+              -
+                slug: textarea-demo2
+                type: textarea
+                title: "Lyrics"
+                meta_answers: ['nya']
+                intro:
+                  question: "Carry on my wayward son..."
+                  description: "(complete the song text)"
+                supplements:
+                  -
+                    slug: like
+                    type: checkbox
+                    label: "Do you like this song?"
+          -
+            slug: screen_6
+            questions:
+              -
+                slug: radios-demo1
+                type: radios
+                title: "Multiple-Choice"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "What is <em>the</em> answer?"
+                options:
+                  -
+                    label: "There is no answer"
+                    value: nope
+                    supplements:
+                      -
+                        slug: new
+                        type: checkbox
+                        label: "New?"
+                        question:
+                          title: Is this new?
+                  -
+                    label: "42"
+                    value: 42
+                  -
+                    label: "666"
+                    value: 666
+                    supplements:
+                      -
+                        slug: beast
+                        type: checkbox
+                        label: "The number of the beast?"
+                  -
+                    label: "What was the question again?"
+                    value: wut
+                    supplements:
+                      -
+                        slug: adhd
+                        type: checkbox
+                        label: "Sorry man... I have ADHD"
+          -
+            slug: screen_7
+            questions:
+              -
+                slug: supplements-demo1
+                type: radios
+                title: "Supplement Choices"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Some question?"
+                  description: "Chose your option according to the supplements"
+                options:
+                  -
+                    label: "One"
+                    value: 1
+                    supplements:
+                      -
+                        slug: text
+                        type: text
+                        label: "Enter some text"
+                        placeholder: "Something"
+                        question:
+                          title: "What up dog?"
+                      -
+                        slug: number
+                        type: text
+                        label: "Enter an integer"
+                        placeholder: "e.g. 42"
+                        pattern: integer
+                        question:
+                          title: "How Many?"
+                  -
+                    label: "Two"
+                    value: 2
+                    supplements:
+                      -
+                        slug: textarea
+                        type: textarea
+                        label: "Describe stuff"
+                        placeholder: "Description..."
+                        question:
+                          title: "How you doin'?"
+                  -
+                    label: "Three"
+                    value: 3
+                    supplements:
+                      -
+                        slug: list
+                        type: checkboxes
+                        question:
+                          title: "Pick your companions (multiple)"
+                        options:
+                          -
+                            label: "Elves"
+                            value: elves
+                          -
+                            label: "Dwarves"
+                            value: dwarves
+                          -
+                            label: "Hobbits"
+                            value: hobbits
+                          -
+                            label: "Men"
+                            value: men
+                  -
+                    label: "Four"
+                    value: 4
+                    supplements:
+                      -
+                        slug: movie
+                        type: radios
+                        question:
+                          title: "Which of the movies series below is your favorite?"
+                        options:
+                          -
+                            label: "Back to the Future"
+                            value: bttf
+                          -
+                            label: "Matrix"
+                            value: matrix
+                          -
+                            label: "Lord of the Rings"
+                            value: lotr
+                          -
+                            label: "Toy Story"
+                            value: ts
+                  -
+                    label: "Five"
+                    value: 5
