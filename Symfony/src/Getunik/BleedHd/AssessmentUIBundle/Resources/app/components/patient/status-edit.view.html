@@ -18,12 +18,12 @@
 			<div class="col-xs-12 col-sm-6">
 
 				<div class="form-group" bs-validate-class="ctlStatus.statusForm.status_transplant_date">
-					<label class="control-label" for="status_transplant_date">Date:</label>
+					<label class="control-label" for="status_transplant_date">Date</label>
 					<input tabindex="1" id="status_transplant_date" name="status_transplant_date" class="form-control" type="text" ng-model="ctlStatus.status.transplant_date" mask-input="yyyy-mm-dd" placeholder="yyyy-mm-dd" />
 				</div>
 
 				<div class="form-group">
-					<label class="control-label" for="status_transplant_type">Intervention:</label>
+					<label class="control-label" for="status_transplant_type">Intervention</label>
 					<select tabindex="2" id="status_transplant_type" name="status_transplant_type" class="form-control" ng-model="ctlStatus.status.transplant_type">
 						<option value="">not specified</option>
 						<option value="autologous">autologous</option>
@@ -34,7 +34,7 @@
 				</div>
 
 				<div class="form-group" ng-show="ctlStatus.status.transplant_type == 'allogenic'">
-					<label class="control-label" for="status_transplant_source">Source:</label>
+					<label class="control-label" for="status_transplant_source">Source</label>
 					<select tabindex="3" id="status_transplant_source" name="status_transplant_source" class="form-control" ng-model="ctlStatus.status.transplant_source">
 						<option value="">not specified</option>
 						<option value="Cord">Cord</option>
@@ -44,7 +44,7 @@
 				</div>
 
 				<div class="form-group" ng-show="ctlStatus.status.transplant_type == 'other'">
-					<label class="control-label" for="status_transplant_custom">Specify:</label>
+					<label class="control-label" for="status_transplant_custom">Specify</label>
 					<input tabindex="4" id="status_transplant_custom" name="status_transplant_custom" class="form-control" ng-model="ctlStatus.status.transplant_custom" />
 				</div>
 
