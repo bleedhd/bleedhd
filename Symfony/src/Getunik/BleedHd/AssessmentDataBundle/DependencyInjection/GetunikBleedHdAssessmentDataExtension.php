@@ -24,5 +24,8 @@ class GetunikBleedHdAssessmentDataExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        $container->setParameter('getunik_bleed_hd_assessment_data.version', $config['version']);
+        $container->setParameter('getunik_bleed_hd_assessment_data.version_allow_git', $config['version_allow_git']);
     }
 }
