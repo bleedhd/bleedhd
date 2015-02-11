@@ -48,12 +48,23 @@
 	margin-top: 13px;
 }
 
+.bleed-question {
+	h4 {
+		line-height: 1.4;
+	}
+}
+
 .bleed-answers {
 	font-size: 18px;
 
 	label {
 		margin-bottom: 5px;
 		font-weight: normal;
+	}
+
+	input[type="text"],
+	textarea {
+		margin-bottom: 10px;
 	}
 }
 
@@ -81,9 +92,58 @@
 }
 
 .bleed-sub-answer {
-	padding-left: 60px;
+	background: -moz-linear-gradient(left,  rgba(252,252,252,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  rgba(252,252,252,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  rgba(252,252,252,1) 0%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  rgba(252,252,252,1) 0%,rgba(255,255,255,0) 100%); /* IE10+ */
+	background: linear-gradient(to right,  rgba(252,252,252,1) 0%,rgba(255,255,255,0) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+
+
+	margin-left: 20px;
+
+
+	&:before {
+		content: " ";
+		display: block;
+		height: 1px;
+		position: relative;
+		left: -20px;
+		background: -moz-linear-gradient(left,  rgba(216,216,216,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(216,216,216,1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(left,  rgba(216,216,216,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(left,  rgba(216,216,216,1) 0%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(left,  rgba(216,216,216,1) 0%,rgba(255,255,255,0) 100%); /* IE10+ */
+		background: linear-gradient(to right,  rgba(216,216,216,1) 0%,rgba(255,255,255,0) 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d8d8d8', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+
+	}
+
+	//border-top: #cccccc 1px solid;
+
+	padding-left: 20px;
+	padding-bottom: 5px;
 
 	&.disabled {
+		color: #999999;
+	}
+
+	.radio,
+	.checkbox {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	.control-label {
+		padding-left: 0;
+	}
+
+	input[type="text"].form-control {
+		width: 98%;
+	}
+
+	h6 {
 		color: #999999;
 	}
 }
