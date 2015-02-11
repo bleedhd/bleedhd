@@ -18,13 +18,15 @@
 	bleedHd.registerController('patient', PatientEditController,
 		{
 			save: function () {
-				var ctl = this,
-					target = (ctl.isNew ? '/patients' : '/patients/detail/' + this.patient.id);
+				var ctl = this;
 				if (ctl.patientForm.$valid) {
 					ctl.PatientData.savePatient(ctl.patient).then(function () {
-						ctl.$location.path(target);
+						ctl.$location.path(ctl.getReturnPath());
 					});
 				}
+			},
+			getReturnPath: function () {
+				return (this.isNew ? '/patients' : '/patients/detail/' + this.patient.id);
 			},
 		},
 		{

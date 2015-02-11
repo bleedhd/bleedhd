@@ -80,7 +80,7 @@
 
 		<div class="row">
 			<div class="col-xs-12">
-				<a class="btn btn-default" href="#/patients">Cancel</a>
+				<a class="btn btn-default" href="#{{ ctlPatient.getReturnPath() }}">Cancel</a>
 				<button tabindex="11" class="btn btn-default" type="button" ng-disabled="ctlPatient.patientForm.$invalid" ng-click="ctlPatient.save()">Save</button>
 			</div>
 		</div>
