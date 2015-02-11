@@ -34,6 +34,8 @@
 				<pre ng-if="containerCtl.debug" class="debug-output">{{ containerCtl.result|json }}</pre>
 			</div>
 		</div>
+
+		<div class="bleed-annotations" ng-repeat="annotation in containerCtl.question.annotations" ng-bind="annotation"></div>
 	</div>
 
 	<div class="panel-footer clearfix">
