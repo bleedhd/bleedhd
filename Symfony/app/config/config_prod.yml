@@ -29,3 +29,6 @@ monolog:
             type:     stream
             path:     "%kernel.logs_dir%/score.log"
             channels: ["score"]
+
+getunik_bleed_hd_assessment_data:
+    version_allow_git: false

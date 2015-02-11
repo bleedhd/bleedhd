@@ -19,18 +19,28 @@ class VersionService
 		$this->allowGitVersion = $allowGitVersion;
 		$this->configVersion = $configVersion;
 
-		$process = new Process('git describe --tags');
-		$process->run();
-
-		// executes after the command finishes
-		if ($process->isSuccessful())
+		if ($this->allowGitVersion)
 		{
-			$this->gitVersion = $process->getOutput();
+			$process = new Process('git describe --tags');
+			$process->run();
+
+			// executes after the command finishes
+			if ($process->isSuccessful())
+			{
+				$this->gitVersion = trim($process->getOutput());
+			}
 		}
 	}
 
-	public function getVersion()
+	public function getVersion($internal = false)
 	{
-		return $this->environment . ' ' . $this->configVersion . ' / ' . $this->gitVersion;
+		if ($internal)
+		{
+			return (isset($this->gitVersion) ? $this->gitVersion : $this->configVersion . '*');
+		}
+		else
+		{
+			return $this->configVersion;
+		}
 	}
 }
