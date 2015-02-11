@@ -1,0 +1,242 @@
+
+title: GvHD - first diagnosis
+meta_answers:
+  nya: Not yet answered
+  nass: Not assessed
+  napp: Not applicable
+  ns: No symptoms
+shared:
+  - &confirmation-supplement
+    slug: confirmation
+    type: radios
+    variant: horizontal
+    question:
+      title: "Confirmation"
+    options:
+      -
+        label: "Pending"
+        value: pending
+      -
+        label: "Positive"
+        value: positive
+      -
+        label: "Not needed"
+        value: not-needed
+      -
+        label: "Negative"
+        value: negative
+chapters:
+  -
+    sections:
+      -
+        screens:
+          -
+            slug: skin
+            questions:
+              -
+                slug: diagnostic
+                type: checkboxes
+                title: "Skin - diagnostic features"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Skin - diagnostic features"
+                  description: "Sufficient to establish the diagnosis of chronic GVHD"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: Poikiloderma
+                    value: poikiloderma
+                  -
+                    label: Lichen planus-like features
+                    value: lichen-planus-like-features
+                  -
+                    label: Sclerotic features
+                    value: sclerotic-features
+                  -
+                    label: Morphea-like features
+                    value: morphea-like-features
+                  -
+                    label: Lichen sclerosus-like features
+                    value: lichen-sclerosus-like-features
+              -
+                slug: distinctive
+                type: checkboxes
+                title: "Skin - distinctive features"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Skin - distinctive features"
+                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: Depigmentation
+                    value: depigmentation
+                    supplements:
+                      - *confirmation-supplement
+                  -
+                    label: Papulosquamous lesions
+                    value: papulosquamous-lesions
+                    supplements:
+                      - *confirmation-supplement
+              -
+                slug: other
+                type: checkboxes
+                title: "Skin - other features or unclassified entities"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Skin - other features or unclassified entities"
+                  description: "Can be acknowledged as part of the chronic GVHD symptomatology if diagnosis is confirmed"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: Sweat impairment
+                    value: sweat-impairment
+                  -
+                    label: Ichthyosis
+                    value: ichthyosis
+                  -
+                    label: Keratosis pilaris
+                    value: keratosis-pilaris
+                  -
+                    label: Hypopigmentation
+                    value: hypopigmentation
+                  -
+                    label: Hyperpigmentation
+                    value: hyperpigmentation
+              -
+                slug: common
+                type: checkboxes
+                title: "Skin - common features"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Skin - common features"
+                  description: "Seen with both acute and chronic GVHD"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: Erythema
+                    value: erythema
+                  -
+                    label: Maculopapular rash
+                    value: maculopapular-rash
+                  -
+                    label: Pruritus
+                    value: pruritus
+
+      -
+        screens:
+          -
+            slug: nails
+            questions:
+              -
+                slug: distinctive
+                type: checkboxes
+                title: "Nails - distinctive features"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Nails - distinctive features"
+                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                annotations:
+                  - "**In all cases, infection, drug effect, malignancy or other causes must be excluded."
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Dystrophy"
+                    value: dystrophy
+                    supplements:
+                      - *confirmation-supplement
+                  -
+                    label: "Longitudinal ridging, splitting or brittle features"
+                    value: ridging-splitting-brittle
+                    supplements:
+                      - *confirmation-supplement
+                  -
+                    label: "Onycholysis"
+                    value: onycholysis
+                    supplements:
+                      - *confirmation-supplement
+                  -
+                    label: "Pterygium unguis"
+                    value: pterygium-unguis
+                    supplements:
+                      - *confirmation-supplement
+                  -
+                    label: "Nail loss** (usually symmetric, affects most nails)"
+                    value: nail-loss
+                    supplements:
+                      - *confirmation-supplement
+
+      -
+        screens:
+          -
+            slug: hair
+            questions:
+              -
+
+      -
+        screens:
+          -
+            slug: mouth
+            questions:
+              -
+
+      -
+        screens:
+          -
+            slug: eyes
+            questions:
+              -
+
+      -
+        screens:
+          -
+            slug: genitalia
+            questions:
+              -
+
+      -
+        screens:
+          -
+            slug: gi-tract
+            questions:
+              -
+
+      -
+        screens:
+          -
+            slug: liver
+            questions:
+              -
+
+      -
+        screens:
+          -
+            slug: lung
+            questions:
+              -
+
+      -
+        screens:
+          -
+            slug: muscles-fascia-joints
+            questions:
+              -
+
+      -
+        screens:
+          -
+            slug: immune
+            questions:
+              -
+
+      -
+        screens:
+          -
+            slug: other
+            questions:
+              -
