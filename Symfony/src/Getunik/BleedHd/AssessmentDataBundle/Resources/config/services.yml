@@ -15,6 +15,14 @@ parameters:
 
 
 services:
+
+    getunik.bleed_hd_data.version_service:
+        class: Getunik\BleedHd\AssessmentDataBundle\Service\VersionService
+        arguments:
+            - @kernel
+            - '%getunik_bleed_hd_assessment_data.version_allow_git%'
+            - '%getunik_bleed_hd_assessment_data.version%'
+
     getunik.bleed_hd_data.entity_update_listener:
         class: Getunik\BleedHd\AssessmentDataBundle\Listener\UpdateInformationListener
         arguments:

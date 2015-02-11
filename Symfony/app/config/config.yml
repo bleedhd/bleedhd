@@ -113,6 +113,11 @@ getunik_bleed_hd_security:
         secret: "%oauth_client_secret%"
         target_path: /app
 
+getunik_bleed_hd_assessment_data:
+    version: "v-0.5.5"
+    version_allow_git: true
+
+
 jms_serializer:
     handlers:
         # Fix basic JavaScript date / time / serialization handling incompatibility
