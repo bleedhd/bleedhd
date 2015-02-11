@@ -125,9 +125,11 @@
 					// As a result, the patient (linked with assessments) has to be reloaded
 					DataEvents.on('responses-update', function (event) {
 						that.caches.default.remove(['patient', event.patientId].join('-'));
+						that.caches.default.remove(['patient-additions', event.patientId].join('-'));
 					});
 					DataEvents.on(['status-update', 'assessment-update'], function (event) {
 						that.caches.default.remove(['patient', event.data.patient_id].join('-'));
+						that.caches.default.remove(['patient-additions', event.data.patient_id].join('-'));
 					});
 
 					// Status objects are always accessed from the patient - they are never retrieved or modified
