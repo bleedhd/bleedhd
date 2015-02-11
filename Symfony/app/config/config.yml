@@ -28,6 +28,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        app_version: "@getunik.bleed_hd_data.version_service"
 
 # Assetic Configuration
 assetic:
@@ -112,6 +114,11 @@ getunik_bleed_hd_security:
         id: "%oauth_client_id%"
         secret: "%oauth_client_secret%"
         target_path: /app
+
+getunik_bleed_hd_assessment_data:
+    version: "v-0.6.0"
+    version_allow_git: true
+
 
 jms_serializer:
     handlers:
