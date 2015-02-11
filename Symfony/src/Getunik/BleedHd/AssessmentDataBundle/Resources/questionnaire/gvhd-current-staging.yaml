@@ -1,0 +1,128 @@
+
+title: GvHD - current staging
+meta_answers:
+  nya: Not yet answered
+  nass: Not assessed
+  napp: Not applicable
+  ns: No symptoms
+chapters:
+  -
+    sections:
+      -
+        screens:
+          -
+            slug: skin
+            questions:
+              -
+                slug: bsa-score
+                type: text
+                title: "Skin - score BSA"
+                meta_answers: ['nya']
+                pattern: integer
+                intro:
+                  question: "Score % BSA"
+              -
+                slug: bsa-features
+                type: checkboxes
+                title: "Skin - GvHD features to be scored by BSA"
+                meta_answers: ['nya']
+                intro:
+                  question: "Check all that apply"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Maculopapular rash/erythema"
+                    value: maculopapular-rash-erythema
+                  -
+                    label: "Lichen planus-like features"
+                    value: lichen-planus-like-features
+                  -
+                    label: "Sclerotic features"
+                    value: sclerotic-features
+                  -
+                    label: "Papulosquamous lesions or ichthyosis"
+                    value: papulosquamous-lesions-or-ichthyosis
+                  -
+                    label: "Keratosis pilaris-like GvHD"
+                    value: keratosis-pilaris-like-gvhd
+              -
+                slug: skin-score
+                type: radios
+                title: "Skin - GvHD score (NOT scored by BSA)"
+                meta_answers: ['nya']
+                intro:
+                  question: "Skin features score"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "No sclerotic features"
+                    value: 0
+                  -
+                    label: "Superficial sclerotic features \"not hidebound\" (able to pinch)"
+                    value: 2
+                  -
+                    label: "Deep sclerotic features"
+                    value: 3
+                    supplements:
+                      -
+                        slug: symptoms
+                        type: checkboxes
+                        question:
+                          title: "Check all that apply"
+                        options:
+                          -
+                            label: "\"Hidebound\" (unable to pinch)"
+                            value: hidebound
+                          -
+                            label: "Impaired mobility"
+                            value: impaired-mobility
+                          -
+                            label: "Ulceration"
+                            value: ulceration
+              -
+                slug: skin-features
+                type: checkboxes
+                title: "Skin - GvHD features (NOT scored by BSA)"
+                meta_answers: ['nya']
+                intro:
+                  question: "Other skin GvHD features"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Hyperpigmentation"
+                    value: hyperpigmentation
+                  -
+                    label: "Hypopigmentation"
+                    value: hypopigmentation
+                  -
+                    label: "Poikiloderma"
+                    value: poikiloderma
+                  -
+                    label: "Severe or generalized pruritus"
+                    value: pruritus
+                  -
+                    label: "Hair involvement"
+                    value: hair-involvement
+                  -
+                    label: "Nail involvement"
+                    value: nail-involvement
+              -
+                slug:
+                type: yesno
+                title: "Skin - non-GvHD causes"
+                meta_answers: ['nya']
+                intro:
+                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                options:
+                  yes:
+                    label: "Yes"
+                    value: true
+                    supplements:
+                      -
+                        slug: cause
+                        type: textarea
+                        question:
+                          title: "Specify"

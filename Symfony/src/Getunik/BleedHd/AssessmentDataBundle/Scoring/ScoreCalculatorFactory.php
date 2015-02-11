@@ -24,6 +24,10 @@ class ScoreCalculatorFactory
 		{
 			$name = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\CalculatorGvhdFirstDiagnosis';
 		}
+		else if ($assessmentType === 'gvhd-current-staging')
+		{
+			$name = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\CalculatorGvhdCurrentStaging';
+		}
 		else
 		{
 			$name = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\Calculator' . ucfirst($assessmentType);
