@@ -16,7 +16,14 @@ class ScoreCalculatorFactory
 
 	public function create($assessmentType)
 	{
-		$name = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\Calculator' . ucfirst($assessmentType);
+		if ($assessmentType === 'gvhd-features')
+		{
+			$name = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\CalculatorGvhdFeatures';
+		}
+		else
+		{
+			$name = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\Calculator' . ucfirst($assessmentType);
+		}
 
 		return new $name($this->logger);
 	}
