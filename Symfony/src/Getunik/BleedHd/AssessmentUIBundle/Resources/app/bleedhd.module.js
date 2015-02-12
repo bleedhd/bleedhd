@@ -95,17 +95,18 @@
 		resourcesPath: bleedHd.env.assetPath + '/getunikbleedhdassessmentui',
 	})
 
-	.config(function ($provide, $httpProvider, BleedHdConfig, CachingWrapperProvider, EnhancedLogConfigProvider, AuthHandlerProvider) {
+	.config(function ($provide, $httpProvider, CachingWrapperProvider, EnhancedLogConfigProvider, AuthHandlerProvider, LoginRedirectProvider) {
 		$httpProvider.interceptors.push('JsonDateInterceptor');
 
 		AuthHandlerProvider.addExpirationCallback(function () {
-			// there is no $window service available yet
-			window.location.href = BleedHdConfig.login;
+			// we have to work with the provider here, but we know the callback and therefore
+			// the $get function will only be called after proper initialization
+			LoginRedirectProvider.$get()();
 		});
 
 		// extend the (customized) Restangular service implementation to wait for
 		// the Authorization Handler promise to resolve before executing any HTTP request
-		$provide.decorator('RestangularResource', function ($delegate, $window, $log, BleedHdConfig, AuthHandler) {
+		$provide.decorator('RestangularResource', function ($delegate, $location, $log, AuthHandler, LoginRedirect) {
 			var oldExecuteRequest = $delegate.executeRequest;
 
 			// always wait for authorization before executing the request
@@ -114,7 +115,7 @@
 					return oldExecuteRequest(params);
 				}, function (error) {
 					$log.warn('AuthHandler refused, redirecting to login...', error);
-					$window.location.href = BleedHdConfig.login;
+					LoginRedirect();
 					throw error;
 				});
 			};
