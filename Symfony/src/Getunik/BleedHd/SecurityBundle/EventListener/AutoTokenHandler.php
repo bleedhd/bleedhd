@@ -6,6 +6,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Getunik\BleedHd\SecurityBundle\Entity\User;
 use Getunik\BleedHd\SecurityBundle\Service\OAuthHelper;
@@ -42,6 +43,22 @@ class AutoTokenHandler implements AuthenticationSuccessHandlerInterface
     function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
         $this->helper->generateToken($token->getUser(), $request->get('_username'), $request->get('_password'));
-        return new RedirectResponse($this->targetPath);
+        return new RedirectResponse($this->determineTargetUrl($request));
+    }
+
+    protected function determineTargetUrl(Request $request)
+    {
+        if ($targetUrl = $request->get('_target_path', null)) {
+            if (!empty($targetUrl)) {
+                return $targetUrl;
+            }
+        }
+
+        if ($targetUrl = $request->getSession()->get('authentication_target_path')) {
+            $request->getSession()->remove('authentication_target_path');
+            return $targetUrl;
+        }
+
+        return $this->targetPath;
     }
 }

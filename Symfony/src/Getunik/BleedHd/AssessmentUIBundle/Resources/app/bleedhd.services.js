@@ -143,6 +143,14 @@
 	});
 
 
+	function LoginRedirect($window, BleedHdConfig) {
+		return function () {
+			console.log($window.location.href);
+			$window.location.href = BleedHdConfig.login + '?_target_path=' + encodeURIComponent($window.location.href);
+		};
+	}
+
+
 	angular.module('bleedHdApp')
 
 		.service('DateHelper', DateHelperService)
@@ -154,6 +162,8 @@
 		.service('HeaderControl', HeaderControlService)
 
 		.service('ServerLogDump', ServerLogDump)
+
+		.factory('LoginRedirect', LoginRedirect)
 
 		/**
 		 * The JSON date interceptor is an HTTP interceptor implementation that transforms properties
@@ -195,7 +205,7 @@
 		 * The BleedApi service provides a convenient pre-configured Restangular object with
 		 * integrated authorization.
 		 */
-		.factory('BleedApi', function (Restangular, AuthHandler, $window, $log, MessageBuilder, BleedHdConfig) {
+		.factory('BleedApi', function (Restangular, AuthHandler, $window, $log, MessageBuilder, LoginRedirect) {
 			return Restangular.withConfig(function(RestangularConfig) {
 				RestangularConfig
 					.setBaseUrl('/api')
@@ -206,7 +216,7 @@
 						if (response.status === 403 || response.status === 401) {
 							// TODO: split 403 and 401 in separate messages and behavior
 							$log.warn('Login required. Redirecting...');
-							$window.location.href = BleedHdConfig.login;
+							LoginRedirect();
 						} else if (response.status >= 500 && response.status < 600) {
 							$log.fatal('REST API error: ' + response.statusText, response.data);
 						} else if (response.status === 404 || response.status === 405) {

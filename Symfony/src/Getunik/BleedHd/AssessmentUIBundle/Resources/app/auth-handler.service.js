@@ -130,6 +130,10 @@
 			}
 		},
 		_processTokenResponse: function (data) {
+			if (data.access_token === undefined || data.expires_at.date < new Date()) {
+				that.config.triggerExpirationCallbacks();
+				return;
+			}
 			this.authInfo = data;
 			this.token.value = data.access_token;
 			bleedHd.env.uid = data.uid;
