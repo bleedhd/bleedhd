@@ -5,18 +5,27 @@
 	 * The AuthHandler manages an OAuth token and provides functionality to integrate the token
 	 * into webservice requests. @see BleedApi service for more information.
 	 */
-	function AuthHandler($http, $log, $q) {
+	function AuthHandler($http, $log, $q, $interval) {
 		var that = this;
 
-		this.deferred = $q.defer();
-		this.token = {
+		that.$http = $http;
+		that.$log = $log;
+		that.$q = $q;
+
+		that.interval = 10000;
+		that.activityWindow = 30000;
+		that.lastActivity = Date.now();
+		that.deferred = $q.defer();
+		that.token = {
 			value: null,
 			toString: function () { return (this.value === null ? 'token not yet available' : 'Bearer ' + this.value); },
 		};
 
-		$http.get('/user/gettoken').
+		that.$http.get('/user/gettoken').
 			success(function(data, status, headers, config) {
-				$log.debug("got the token", data);
+				that._processTokenResponse(data);
+				that.$log.debug('got the token', that.authInfo);
+				$interval(that.checkToken.bind(that), that.interval);
 				that.deferred.resolve(data);
 			}).error(function(msg, code) {
 				that.deferred.reject(msg);
@@ -30,11 +39,6 @@
 				refresh_token: 'asdf',
 			});
 		}, 500);*/
-
-		this.deferred.promise.then(function (data) {
-			that.token.value = data.access_token;
-			bleedHd.env.uid = data.uid;
-		});
 	}
 
 	angular.extend(AuthHandler.prototype, {
@@ -55,10 +59,48 @@
 		 *
 		 * @param {function(object)} - callback that will be called whenever the authorization token has been resolved
 		 */
-		authorized: function (callback) {
+		authorized: function (callback, errorCallback) {
+			this.lastActivity = Date.now();
 			return this.deferred.promise.then(function (data) {
 				return callback(data);
-			});
+			}, errorCallback);
+		},
+		/**
+		 * Periodically checks the token expiration and refreshes the token if
+		 * - it would expire _before_ the next interval
+		 * - AND there was activity[*] within the activityWindow period
+		 *
+		 * [*] any call to the authorized function counts as activity
+		 */
+		checkToken: function () {
+			var that = this;
+
+			if (angular.isDefined(that.authInfo) && that.authInfo.expires_at.date.getTime() < Date.now() + that.interval) {
+				if (Date.now() < that.lastActivity + that.activityWindow) {
+					that.$log.debug('refreshing token');
+
+					that.deferred = that.$q.defer();
+					that.$http.get('/user/refreshtoken').
+						success(function(data, status, headers, config) {
+							that._processTokenResponse(data);
+							that.$log.debug('renewed the token', that.authInfo);
+							that.deferred.resolve(data);
+						}).error(function(msg, code) {
+							that.deferred.reject(msg);
+						});
+				} else {
+					that.$log.info('letting the token expire due to inactivity', new Date(that.lastActivity));
+					delete that.authInfo;
+					that.token.value = null;
+					that.deferred = that.$q.defer();
+					that.deferred.reject('inactivity');
+				}
+			}
+		},
+		_processTokenResponse: function (data) {
+			this.authInfo = data;
+			this.token.value = data.access_token;
+			bleedHd.env.uid = data.uid;
 		},
 	});
 

@@ -79,7 +79,7 @@
 	])
 
 	.constant('BleedHdConfig', {
-		version: '1.0.0',
+		login: '/user/login',
 		api: {
 			host: '',
 			base: '/api',
@@ -100,13 +100,17 @@
 
 		// extend the (customized) Restangular service implementation to wait for
 		// the Authorization Handler promise to resolve before executing any HTTP request
-		$provide.decorator('RestangularResource', function ($delegate, AuthHandler) {
+		$provide.decorator('RestangularResource', function ($delegate, $window, $log, BleedHdConfig, AuthHandler) {
 			var oldExecuteRequest = $delegate.executeRequest;
 
 			// always wait for authorization before executing the request
 			$delegate.executeRequest = function (params) {
 				return AuthHandler.authorized(function () {
 					return oldExecuteRequest(params);
+				}, function (error) {
+					$log.warn('AuthHandler refused, redirecting to login...', error);
+					$window.location.href = BleedHdConfig.login;
+					throw error;
 				});
 			};
 

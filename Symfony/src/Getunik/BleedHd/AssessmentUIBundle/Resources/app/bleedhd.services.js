@@ -195,7 +195,7 @@
 		 * The BleedApi service provides a convenient pre-configured Restangular object with
 		 * integrated authorization.
 		 */
-		.factory('BleedApi', function (Restangular, AuthHandler, $window, $log, MessageBuilder) {
+		.factory('BleedApi', function (Restangular, AuthHandler, $window, $log, MessageBuilder, BleedHdConfig) {
 			return Restangular.withConfig(function(RestangularConfig) {
 				RestangularConfig
 					.setBaseUrl('/api')
@@ -206,7 +206,7 @@
 						if (response.status === 403 || response.status === 401) {
 							// TODO: split 403 and 401 in separate messages and behavior
 							$log.warn('Login required. Redirecting...');
-							$window.location.href='/user/login';
+							$window.location.href = BleedHdConfig.login;
 						} else if (response.status >= 500 && response.status < 600) {
 							$log.fatal('REST API error: ' + response.statusText, response.data);
 						} else if (response.status === 404 || response.status === 405) {
