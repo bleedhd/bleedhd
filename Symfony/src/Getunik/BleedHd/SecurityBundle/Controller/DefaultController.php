@@ -5,7 +5,6 @@ namespace Getunik\BleedHd\SecurityBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 
 class DefaultController extends Controller
@@ -16,20 +15,21 @@ class DefaultController extends Controller
         $session = $request->getSession();
         $token = $session->get('getunik_bleed_hd_security.oauth_token');
 
+        // refresh the session lifetime
+        $session->migrate();
+
         return new JsonResponse($token);
     }
 
-    public function refreshTokenAction()
+    public function refreshTokenAction(Request $request)
     {
-        $request = Request::create(
-            '/getToken',
-            'GET'
-        );
+        $helper = $this->get('getunik_bleed_hd_security.oauth_helper');
+        $auth = $helper->refreshToken($this->getUser());
 
-        $kernel = $this->container->get('kernel');
+        if (empty($auth)) {
+            throw $this->createAccessDeniedException();
+        }
 
-        $response = $kernel->handle($request, HttpKernelInterface::SUB_REQUEST, false);
-
-        return new JsonResponse(array('fib' => array(1, 1, 2, 3, 5, 8, 13), 'res' => $response->getContent()));
+        return new JsonResponse($auth);
     }
 }

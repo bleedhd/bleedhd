@@ -68,6 +68,7 @@
 		'ngSanitize',
 		'ui.router',
 		'restangular',
+		'authHandler',
 		'typeRegistry',
 		'eventChannel',
 		'enhancedLog',
@@ -78,7 +79,7 @@
 	])
 
 	.constant('BleedHdConfig', {
-		version: '1.0.0',
+		login: '/user/login',
 		api: {
 			host: '',
 			base: '/api',
@@ -94,18 +95,27 @@
 		resourcesPath: bleedHd.env.assetPath + '/getunikbleedhdassessmentui',
 	})
 
-	.config(function ($provide, $httpProvider, CachingWrapperProvider, EnhancedLogConfigProvider) {
+	.config(function ($provide, $httpProvider, BleedHdConfig, CachingWrapperProvider, EnhancedLogConfigProvider, AuthHandlerProvider) {
 		$httpProvider.interceptors.push('JsonDateInterceptor');
+
+		AuthHandlerProvider.addExpirationCallback(function () {
+			// there is no $window service available yet
+			window.location.href = BleedHdConfig.login;
+		});
 
 		// extend the (customized) Restangular service implementation to wait for
 		// the Authorization Handler promise to resolve before executing any HTTP request
-		$provide.decorator('RestangularResource', function ($delegate, AuthHandler) {
+		$provide.decorator('RestangularResource', function ($delegate, $window, $log, BleedHdConfig, AuthHandler) {
 			var oldExecuteRequest = $delegate.executeRequest;
 
 			// always wait for authorization before executing the request
 			$delegate.executeRequest = function (params) {
 				return AuthHandler.authorized(function () {
 					return oldExecuteRequest(params);
+				}, function (error) {
+					$log.warn('AuthHandler refused, redirecting to login...', error);
+					$window.location.href = BleedHdConfig.login;
+					throw error;
 				});
 			};
 
