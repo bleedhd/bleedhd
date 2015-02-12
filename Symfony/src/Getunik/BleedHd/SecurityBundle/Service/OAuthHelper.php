@@ -90,7 +90,7 @@ class OAuthHelper
     {
         // compute expiration date/time and add it to the token information
         $now = new \DateTime();
-        $auth->expires_at = $now->add(new \DateInterval('PT' . 3600 . 'S'))->format(\DateTime::ISO8601);
+        $auth->expires_at = $now->add(new \DateInterval('PT' . $auth->expires_in . 'S'))->format(\DateTime::ISO8601);
         $auth->uid = ($user instanceof User ? $user->getId() : -1);
 
         $this->session->set('getunik_bleed_hd_security.oauth_token', $auth);
