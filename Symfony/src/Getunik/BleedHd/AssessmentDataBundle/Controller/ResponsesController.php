@@ -10,6 +10,7 @@ use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\FOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Response;
@@ -32,6 +33,7 @@ class ResponsesController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_READER')")
      */
     public function getResponsesAction($patient, $assessment)
     {
@@ -39,6 +41,7 @@ class ResponsesController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_READER')")
      * @Get("/patients/{patient}/assessments/{assessment}/responses/{response}", requirements={"response"=".*(?=\.json$|\.xml$)|.*"})
      * @ParamConverter("response", options={"id": "response", "mapping": {"assessment":"assessmentId","response":"questionSlug"}})
      */
@@ -48,6 +51,7 @@ class ResponsesController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_EDITOR')")
      * @Post("/patients/{patient}/assessments/{assessment}/responses", requirements={"response"=".*(?=\.json$|\.xml$)|.*"})
      * @ParamConverter("assessment", options={"id" = "assessment"})
      * @ParamConverter("response", converter="fos_rest.request_body")
@@ -62,6 +66,7 @@ class ResponsesController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_EDITOR')")
      * @Put("/patients/{patient}/assessments/{assessment}/responses/{response}", requirements={"response"=".*(?=\.json$|\.xml$)|.*"})
      * @ParamConverter("assessment", options={"id" = "assessment"})
      * @ParamConverter("response", options={"id": "response", "mapping": {"assessment":"assessmentId","response":"questionSlug"}})
@@ -77,6 +82,7 @@ class ResponsesController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_ADMIN')")
      * @Delete("/patients/{patient}/assessments/{assessment}/responses/{response}", requirements={"response"=".*(?=\.json$|\.xml$)|.*"})
      */
     public function deleteResponseAction($patient, $assessment, $response)
@@ -85,6 +91,7 @@ class ResponsesController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_EDITOR')")
      * @Post("/patients/{patient}/assessments/{assessment}/responses/batch")
      * @ParamConverter("assessment", options={"id" = "assessment"})
      * @ParamConverter("responsesBody", converter="fos_rest.request_body", class="ArrayCollection<Getunik\BleedHd\AssessmentDataBundle\Entity\Response>")
