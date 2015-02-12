@@ -98,8 +98,6 @@
 	.config(function ($provide, $httpProvider, BleedHdConfig, CachingWrapperProvider, EnhancedLogConfigProvider, AuthHandlerProvider) {
 		$httpProvider.interceptors.push('JsonDateInterceptor');
 
-		AuthHandlerProvider.setCheckInterval(10000);
-		AuthHandlerProvider.setActivityWindow(30000);
 		AuthHandlerProvider.addExpirationCallback(function () {
 			// there is no $window service available yet
 			window.location.href = BleedHdConfig.login;
