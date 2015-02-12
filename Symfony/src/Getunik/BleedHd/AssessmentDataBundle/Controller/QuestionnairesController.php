@@ -5,6 +5,7 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Post;
 
@@ -24,6 +25,7 @@ class QuestionnairesController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_READER')")
      */
     public function getQuestionnairesAction()
     {
@@ -31,6 +33,7 @@ class QuestionnairesController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_READER')")
      */
     public function getQuestionnaireAction($questionnaire)
     {

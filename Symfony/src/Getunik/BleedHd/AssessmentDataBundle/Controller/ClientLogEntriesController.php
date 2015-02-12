@@ -10,6 +10,7 @@ use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\FOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 use Getunik\BleedHd\AssessmentDataBundle\Entity\ClientLogEntry;
 use Getunik\BleedHd\AssessmentDataBundle\Handler\ClientLogEntryHandler;
@@ -28,6 +29,7 @@ class ClientLogEntriesController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_ADMIN')")
      * @ParamConverter("logEntry", options={"id": "logEntry"})
      */
     public function getLogentryAction(ClientLogEntry $logEntry)
@@ -36,6 +38,7 @@ class ClientLogEntriesController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_READER')")
      * @Post("/logentries", requirements={"_format"="json|xml"})
      * @ParamConverter("logEntry", converter="fos_rest.request_body")
      */
@@ -47,6 +50,7 @@ class ClientLogEntriesController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_READER')")
      * @Post("/logentries/batch")
      * @ParamConverter("logEntries", converter="fos_rest.request_body", class="ArrayCollection<Getunik\BleedHd\AssessmentDataBundle\Entity\ClientLogEntry>")
      */
