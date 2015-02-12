@@ -68,6 +68,7 @@
 		'ngSanitize',
 		'ui.router',
 		'restangular',
+		'authHandler',
 		'typeRegistry',
 		'eventChannel',
 		'enhancedLog',
