@@ -1,19 +1,48 @@
 
 (function (angular) {
 
+	function AuthHandlerProvider() {
+		// 5min check interval
+		this.checkInterval = 5 * 60 * 1000;
+		// 15min activity interval
+		this.activityWindow = 15 * 60 * 1000;
+		this.expirationCallbacks = [];
+	}
+
+	angular.extend(AuthHandlerProvider.prototype, {
+		$get: function ($http, $log, $q, $interval) {
+			return new AuthHandler($http, $log, $q, $interval, this);
+		},
+		setCheckInterval: function (interval) {
+			this.checkInterval = interval;
+		},
+		setActivityWindow: function (win) {
+			this.activityWindow = win;
+		},
+		addExpirationCallback: function (callback) {
+			this.expirationCallbacks.push(callback);
+		},
+		triggerExpirationCallbacks: function () {
+			angular.forEach(this.expirationCallbacks, function (callback) {
+				callback();
+			});
+		},
+	});
+
+
 	/**
 	 * The AuthHandler manages an OAuth token and provides functionality to integrate the token
 	 * into webservice requests. @see BleedApi service for more information.
 	 */
-	function AuthHandler($http, $log, $q, $interval) {
+	function AuthHandler($http, $log, $q, $interval, config) {
 		var that = this;
 
 		that.$http = $http;
 		that.$log = $log;
 		that.$q = $q;
 
-		that.interval = 10000;
-		that.activityWindow = 30000;
+		that.$log.debug('config', config);
+		that.config = config;
 		that.lastActivity = Date.now();
 		that.deferred = $q.defer();
 		that.token = {
@@ -25,7 +54,7 @@
 			success(function(data, status, headers, config) {
 				that._processTokenResponse(data);
 				that.$log.debug('got the token', that.authInfo);
-				$interval(that.checkToken.bind(that), that.interval);
+				$interval(that.checkToken.bind(that), that.config.checkInterval);
 				that.deferred.resolve(data);
 			}).error(function(msg, code) {
 				that.deferred.reject(msg);
@@ -68,15 +97,17 @@
 		/**
 		 * Periodically checks the token expiration and refreshes the token if
 		 * - it would expire _before_ the next interval
-		 * - AND there was activity[*] within the activityWindow period
+		 * - AND there was activity[*] within the config.activityWindow period
 		 *
 		 * [*] any call to the authorized function counts as activity
 		 */
 		checkToken: function () {
 			var that = this;
 
-			if (angular.isDefined(that.authInfo) && that.authInfo.expires_at.date.getTime() < Date.now() + that.interval) {
-				if (Date.now() < that.lastActivity + that.activityWindow) {
+			that.$log.debug('checking token expiration', that.authInfo.expires_at.date, new Date(that.lastActivity));
+
+			if (angular.isDefined(that.authInfo) && that.authInfo.expires_at.date.getTime() < Date.now() + that.config.checkInterval) {
+				if (Date.now() < that.lastActivity + that.config.activityWindow) {
 					that.$log.debug('refreshing token');
 
 					that.deferred = that.$q.defer();
@@ -94,6 +125,7 @@
 					that.token.value = null;
 					that.deferred = that.$q.defer();
 					that.deferred.reject('inactivity');
+					that.config.triggerExpirationCallbacks();
 				}
 			}
 		},
@@ -113,7 +145,7 @@
 		 * and passes the token as the resolution argument. See the secureResource service on how it
 		 * can be used.
 		 */
-		.service('AuthHandler', AuthHandler)
+		.provider('AuthHandler', AuthHandlerProvider)
 
 	;
 

@@ -95,8 +95,15 @@
 		resourcesPath: bleedHd.env.assetPath + '/getunikbleedhdassessmentui',
 	})
 
-	.config(function ($provide, $httpProvider, CachingWrapperProvider, EnhancedLogConfigProvider) {
+	.config(function ($provide, $httpProvider, BleedHdConfig, CachingWrapperProvider, EnhancedLogConfigProvider, AuthHandlerProvider) {
 		$httpProvider.interceptors.push('JsonDateInterceptor');
+
+		AuthHandlerProvider.setCheckInterval(10000);
+		AuthHandlerProvider.setActivityWindow(30000);
+		AuthHandlerProvider.addExpirationCallback(function () {
+			// there is no $window service available yet
+			window.location.href = BleedHdConfig.login;
+		});
 
 		// extend the (customized) Restangular service implementation to wait for
 		// the Authorization Handler promise to resolve before executing any HTTP request
