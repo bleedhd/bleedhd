@@ -144,9 +144,12 @@
 
 
 	function LoginRedirect($window, BleedHdConfig) {
-		return function () {
-			console.log($window.location.href);
-			$window.location.href = BleedHdConfig.login + '?_target_path=' + encodeURIComponent($window.location.href);
+		return function (forceLogout) {
+			if (forceLogout === true) {
+				$window.location.href = BleedHdConfig.logout + '?' + BleedHdConfig.redirectParam + '=' + encodeURIComponent($window.location.href);
+			} else {
+				$window.location.href = BleedHdConfig.login + '?' + BleedHdConfig.redirectParam + '=' + encodeURIComponent($window.location.href);
+			}
 		};
 	}
 

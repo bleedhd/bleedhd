@@ -5,6 +5,7 @@ namespace Getunik\BleedHd\SecurityBundle\Service;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Request;
+use FOS\OAuthServerBundle\Model\TokenManagerInterface;
 use Getunik\BleedHd\SecurityBundle\Entity\User;
 
 
@@ -15,6 +16,8 @@ class OAuthHelper
 {
     private $kernel;
     private $session;
+    private $accessTokenManager;
+    private $refreshTokenManager;
     private $clientId;
     private $clientSecret;
 
@@ -27,10 +30,12 @@ class OAuthHelper
     * @param string                $clientId
     * @param string                $clientSecret
     */
-    public function __construct(HttpKernelInterface $kernel, SessionInterface $session, $clientId, $clientSecret)
+    public function __construct(HttpKernelInterface $kernel, SessionInterface $session, TokenManagerInterface $accessTokenManager, TokenManagerInterface $refreshTokenManager, $clientId, $clientSecret)
     {
         $this->kernel = $kernel;
         $this->session = $session;
+        $this->accessTokenManager = $accessTokenManager;
+        $this->refreshTokenManager = $refreshTokenManager;
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
     }
@@ -86,8 +91,36 @@ class OAuthHelper
         return $auth;
     }
 
+    public function disableToken()
+    {
+        $token = $this->session->get('getunik_bleed_hd_security.oauth_token');
+
+        if (empty($token)) {
+            return NULL;
+        }
+
+        $this->accessTokenManager->deleteExpired();
+        $accessToken = $this->accessTokenManager->findTokenByToken($token->access_token);
+        if ($accessToken)
+        {
+            $this->accessTokenManager->deleteToken($accessToken);
+        }
+
+        $this->refreshTokenManager->deleteExpired();
+        $refreshToken = $this->refreshTokenManager->findTokenByToken($token->refresh_token);
+        if ($refreshToken)
+        {
+            $this->refreshTokenManager->deleteToken($refreshToken);
+        }
+    }
+
     protected function processToken($auth, $user)
     {
+        if (isset($auth->error))
+        {
+            throw new \Exception("Token error ({$auth->error}): {$auth->error_description}");
+        }
+
         // compute expiration date/time and add it to the token information
         $now = new \DateTime();
         $auth->expires_at = $now->add(new \DateInterval('PT' . $auth->expires_in . 'S'))->format(\DateTime::ISO8601);

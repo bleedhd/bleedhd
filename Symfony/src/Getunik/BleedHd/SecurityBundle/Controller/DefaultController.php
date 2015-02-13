@@ -23,13 +23,24 @@ class DefaultController extends Controller
 
     public function refreshTokenAction(Request $request)
     {
-        $helper = $this->get('getunik_bleed_hd_security.oauth_helper');
-        $auth = $helper->refreshToken($this->getUser());
-
-        if (empty($auth)) {
+        if (!$this->getUser()) {
             throw $this->createAccessDeniedException();
         }
 
-        return new JsonResponse($auth);
+        try
+        {
+            $helper = $this->get('getunik_bleed_hd_security.oauth_helper');
+            $auth = $helper->refreshToken($this->getUser());
+
+            if (empty($auth)) {
+                throw $this->createAccessDeniedException();
+            }
+
+            return new JsonResponse($auth);
+        }
+        catch (\Exception $e)
+        {
+            return $this->createAccessDeniedException();
+        }
     }
 }
