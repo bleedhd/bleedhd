@@ -108,12 +108,19 @@
 			return {
 				show: true,
 				allowLogout: true,
+				altLink: null,
+				altLabel: null,
 			};
 		},
 		hide: function () {
 			this.next.show = false;
 		},
 		disableLogout: function () {
+			this.next.allowLogout = false;
+		},
+		enableAltLink: function (targetUrl, label) {
+			this.next.altLink = targetUrl;
+			this.next.altLabel = label;
 			this.next.allowLogout = false;
 		},
 	});

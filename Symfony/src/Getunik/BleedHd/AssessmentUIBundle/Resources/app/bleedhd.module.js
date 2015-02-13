@@ -73,6 +73,7 @@
 		'eventChannel',
 		'enhancedLog',
 		'common',
+		'pages',
 		'patient',
 		'assessment',
 		'question',

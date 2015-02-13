@@ -46,7 +46,7 @@
 
 		</div><!-- /.panel-body -->
 		<div class="panel-footer bleed-panel-login-footer clearfix">
-			<a href="" class="pull-left" data-toggle="modal" data-target="#modal_about">TODO: about</a>
+			<a href="#" class="pull-left" data-toggle="modal" data-target="#modal_about">about</a>
 			<span class="pull-right">{{ app.request.get('debug') == 'true' ? app_version.getVersion(true) : app_version.getVersion(false) }}</span>
 		</div>
 
@@ -54,4 +54,24 @@
 
   </div><!-- /.col-sm-4 -->
 </div><!-- /.row-fluid -->
+
+<div class="modal fade" id="modal_about" tabindex="-1" role="dialog" aria-labelledby="modal_about_label" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="modal_about_label">About the Bleeding and GvHD Assessment Tool</h4>
+			</div>
+			<div class="modal-body">
+				<p>
+					Blutspendezentrum SRK beider Basel<br />
+					Hebelstrasse 10<br />
+					4056 Basel<br />
+					<br />
+					<a href="http://blutspende-basel.ch/forschung.html" target="_blank">http://blutspende-basel.ch/forschung.html</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock content %}
