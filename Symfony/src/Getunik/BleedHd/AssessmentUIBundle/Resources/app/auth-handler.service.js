@@ -131,7 +131,7 @@
 		},
 		_processTokenResponse: function (data) {
 			if (data.access_token === undefined || data.expires_at.date < new Date()) {
-				that.config.triggerExpirationCallbacks();
+				this.config.triggerExpirationCallbacks();
 				return;
 			}
 			this.authInfo = data;
