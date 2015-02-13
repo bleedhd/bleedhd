@@ -80,6 +80,8 @@
 
 	.constant('BleedHdConfig', {
 		login: '/user/login',
+		logout: '/user/logout',
+		redirectParam: '_target_path',
 		api: {
 			host: '',
 			base: '/api',
@@ -101,7 +103,7 @@
 		AuthHandlerProvider.addExpirationCallback(function () {
 			// we have to work with the provider here, but we know the callback and therefore
 			// the $get function will only be called after proper initialization
-			LoginRedirectProvider.$get()();
+			LoginRedirectProvider.$get()(true);
 		});
 
 		// extend the (customized) Restangular service implementation to wait for
