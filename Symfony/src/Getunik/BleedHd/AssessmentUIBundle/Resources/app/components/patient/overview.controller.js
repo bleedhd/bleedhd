@@ -23,13 +23,6 @@
 		this.asyncStatiPromise = null;
 		this.dateFilter = $filter('isodate');
 		this.resetFilter();
-
-		$scope.topNav = {
-			templateUrl: bleedHd.getView('common', 'top-nav'),
-			title: 'Patient Overview title',
-			navUrl: '#/export',
-			navLabel: 'Export label',
-		};
 	}
 
 	bleedHd.registerController('patient', PatientOverviewController,
