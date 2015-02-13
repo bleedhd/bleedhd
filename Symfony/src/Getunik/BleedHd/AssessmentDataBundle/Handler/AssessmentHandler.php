@@ -61,15 +61,30 @@ class AssessmentHandler
         return $assessment;
     }
 
+    /**
+     * Creates an associative array from patient IDs to their overall assessment status. The status indicates whether
+     * all of the patients assessments are completed (have a total score) or not.
+     *
+     * @param array $patientIds - a list of patient IDs
+     * @return array - a mapping from patient IDs to their assessment status
+     */
     public function getAssessmentStati(array $patientIds)
     {
-        $stati = array();
-
-        foreach ($patientIds as $patientId)
+        $result = array();
+        foreach ($patientIds as $id)
         {
-            $stati[$patientId] = 42;
+            $result[$id] = array('complete' => true);
         }
 
-        return $stati;
+        $stati = $this->repository->getPatientResults($patientIds);
+        foreach ($stati as $status)
+        {
+            if (!(isset($status['result']) && isset($status['result']['score']) && isset($status['result']['score']['total'])))
+            {
+                $result[$status['patientId']]['complete'] = false;
+            }
+        }
+
+        return $result;
     }
 }
