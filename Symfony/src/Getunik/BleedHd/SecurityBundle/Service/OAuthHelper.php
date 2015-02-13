@@ -99,12 +99,14 @@ class OAuthHelper
             return NULL;
         }
 
+        $this->accessTokenManager->deleteExpired();
         $accessToken = $this->accessTokenManager->findTokenByToken($token->access_token);
         if ($accessToken)
         {
             $this->accessTokenManager->deleteToken($accessToken);
         }
 
+        $this->refreshTokenManager->deleteExpired();
         $refreshToken = $this->refreshTokenManager->findTokenByToken($token->refresh_token);
         if ($refreshToken)
         {
