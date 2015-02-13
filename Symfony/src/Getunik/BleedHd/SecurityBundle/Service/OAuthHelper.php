@@ -116,6 +116,11 @@ class OAuthHelper
 
     protected function processToken($auth, $user)
     {
+        if (isset($auth->error))
+        {
+            throw new \Exception("Token error ({$auth->error}): {$auth->error_description}");
+        }
+
         // compute expiration date/time and add it to the token information
         $now = new \DateTime();
         $auth->expires_at = $now->add(new \DateInterval('PT' . $auth->expires_in . 'S'))->format(\DateTime::ISO8601);

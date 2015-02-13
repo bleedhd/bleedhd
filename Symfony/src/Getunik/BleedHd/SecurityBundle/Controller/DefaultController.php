@@ -27,13 +27,20 @@ class DefaultController extends Controller
             throw $this->createAccessDeniedException();
         }
 
-        $helper = $this->get('getunik_bleed_hd_security.oauth_helper');
-        $auth = $helper->refreshToken($this->getUser());
+        try
+        {
+            $helper = $this->get('getunik_bleed_hd_security.oauth_helper');
+            $auth = $helper->refreshToken($this->getUser());
 
-        if (empty($auth)) {
-            throw $this->createAccessDeniedException();
+            if (empty($auth)) {
+                throw $this->createAccessDeniedException();
+            }
+
+            return new JsonResponse($auth);
         }
-
-        return new JsonResponse($auth);
+        catch (\Exception $e)
+        {
+            return $this->createAccessDeniedException();
+        }
     }
 }
