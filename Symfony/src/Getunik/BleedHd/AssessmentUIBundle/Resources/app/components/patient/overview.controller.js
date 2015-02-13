@@ -1,7 +1,9 @@
 
 (function (angular, bleedHd) {
 
-	function PatientOverviewController($scope, $filter, patients) {
+	function PatientOverviewController($scope, $filter, $timeout, PatientData, patients) {
+		this.PatientData = PatientData;
+		this.$timeout = $timeout;
 		this.patients = patients;
 		this.patients.sort(function (a, b) { return a.lastname.toLowerCase().localeCompare(b.lastname.toLowerCase()); });
 
@@ -18,6 +20,7 @@
 		};
 		$scope.paging = this.paging;
 
+		this.asyncStatiPromise = null;
 		this.dateFilter = $filter('isodate');
 		this.resetFilter();
 
@@ -50,13 +53,11 @@
 			},
 			onFilterChange: function () {
 				this.paging.currentPage = 1;
-				this.paging.items = this.getPatientsPage();
+				this.paging.items = this.patients.filter(this.patientFilter.bind(this));
+				this.processPageItems();
 			},
-			getPatientsPage: function () {
-				var start = (this.paging.currentPage - 1) * this.paging.itemsPerPage,
-					end = start + this.paging.itemsPerPage;
-
-				return this.patients.filter(this.patientFilter.bind(this));
+			onPageChanged: function () {
+				this.processPageItems();
 			},
 			patientFilter: function (patient) {
 				if (this.filterActive && !patient.is_active) { return false; }
@@ -65,6 +66,36 @@
 					search = new RegExp(this.filterSearch, 'i');
 
 				return fullText.match(search) !== null;
+			},
+			processPageItems: function () {
+				var that = this,
+					start = (that.paging.currentPage - 1) * that.paging.itemsPerPage,
+					end = start + that.paging.itemsPerPage,
+					ids = [], patients = {}, index, item;
+
+				for (index = start; index < end && index < that.paging.items.length; index++) {
+					item = that.paging.items[index];
+					if (item.status === undefined || item.status === null) {
+						item.status = null;
+						ids.push(item.id);
+						patients[item.id] = item;
+					}
+				}
+
+				if (ids.length > 0) {
+					if (that.asyncStatiPromise !== null) {
+						that.$timeout.cancel(that.asyncStatiPromise);
+					}
+
+					that.asyncStatiPromise = that.$timeout(function () {
+						that.PatientData.getAssessmentStati(ids).then(function (stati) {
+							console.log('stati', stati.length, stati);
+							angular.forEach(stati, function (status) {
+								patients[status.patient_id].status = status.complete;
+							});
+						});
+					}, 300);
+				}
 			},
 		},
 		{

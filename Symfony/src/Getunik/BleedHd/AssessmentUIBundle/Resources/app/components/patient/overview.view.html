@@ -52,7 +52,10 @@
 								<td>{{ patient.firstname }}</td>
 								<td>{{ patient.birthdate.date | isodate }}</td>
 								<td>{{ patient.is_active | boolyesno }}</td>
-								<td><img ng-src="{{ 'images/logo.png' | resourcePath }}" width="16" height="16" /></td>
+								<td>
+									<img ng-if="patient.status === null" ng-src="{{ 'images/logo.png' | resourcePath }}" width="16" height="16" />
+									<span ng-if="patient.status !== null">{{ patient.status ? 'complete' : 'incomplete' }}</span>
+								</td>
 								<td><a class="btn btn-default btn-xs" href="#/patients/detail/{{ patient.id }}">Details</a></td>
 							</tr>
 						</tbody>
@@ -62,7 +65,7 @@
 			</div>
 
 			<nav>
-				<pagination total-items="paging.items.length" items-per-page="paging.itemsPerPage" ng-model="paging.currentPage" class="pagination-sm" previous-text="«" next-text="»"></pagination>
+				<pagination total-items="paging.items.length" items-per-page="paging.itemsPerPage" ng-model="paging.currentPage" ng-change="ctlPatients.onPageChanged()" class="pagination-sm" previous-text="«" next-text="»"></pagination>
 			</nav>
 
 		</div>
