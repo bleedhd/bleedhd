@@ -23,6 +23,10 @@ class DefaultController extends Controller
 
     public function refreshTokenAction(Request $request)
     {
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+
         $helper = $this->get('getunik_bleed_hd_security.oauth_helper');
         $auth = $helper->refreshToken($this->getUser());
 
