@@ -73,7 +73,7 @@ class AssessmentHandler
         $result = array();
         foreach ($patientIds as $id)
         {
-            $result[$id] = array('complete' => true);
+            $result[$id] = array('patient_id' => $id, 'complete' => true);
         }
 
         $stati = $this->repository->getPatientResults($patientIds);
@@ -85,6 +85,6 @@ class AssessmentHandler
             }
         }
 
-        return $result;
+        return array_values($result);
     }
 }
