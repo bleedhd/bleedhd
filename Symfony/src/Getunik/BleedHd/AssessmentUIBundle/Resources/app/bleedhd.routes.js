@@ -13,6 +13,7 @@
 				.when('/patients/:patientId/assessment/new', bleedHd.controllers.AssessmentEditController)
 				.when('/patients/:patientId/assessment/edit/:assessmentId', bleedHd.controllers.AssessmentEditController)
 				.when('/assessment/:patientId/:assessmentId/:screen', bleedHd.controllers.AssessmentScreenController)
+				.when('/page/:name', bleedHd.controllers.PagesController)
 				.otherwise('/patients');
 		}
 	]);
