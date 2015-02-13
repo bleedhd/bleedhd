@@ -60,4 +60,16 @@ class AssessmentHandler
 
         return $assessment;
     }
+
+    public function getAssessmentStati(array $patientIds)
+    {
+        $stati = array();
+
+        foreach ($patientIds as $patientId)
+        {
+            $stati[$patientId] = 42;
+        }
+
+        return $stati;
+    }
 }

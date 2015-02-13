@@ -51,6 +51,7 @@ services:
         class: %getunik.bleed_hd_data.patient_controller.class%
         arguments:
             - @getunik.bleed_hd_data.patient_handler
+            - @getunik.bleed_hd_data.assessment_handler
         calls:
             - [setContainer, ["@service_container"]]
 
