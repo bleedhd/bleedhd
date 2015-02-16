@@ -161,23 +161,24 @@
 	}
 
 
-	function FormWrapper(original) {
-		angular.copy(original, this);
-
-		Object.defineProperty(this, 'original', { value: original });
-	}
-
-	angular.extend(FormWrapper.prototype, {
-		persist: function () {
-			angular.copy(this, this.original);
-			console.log(this.original);
-			return this.original;
-		},
-	});
-
 	function FormWrapperFactory() {
 		return function (original) {
-			return new FormWrapper(original);
+			// Creates a 'proxy' object that forms can bind to. Each property that is changed will be set on
+			// this proxy, thereby creating an 'own-property' without touching the original value. Only by
+			// calling the (non-enumerable, non-modifiable) 'persist' function are the changes copied back
+			// to the original which is then returned. Neat trick, huh? ;)
+			return Object.create(original, {
+				persist: {
+					value: function () {
+						for (p in this) {
+							if (this.hasOwnProperty(p)) {
+								original[p] = this[p];
+							}
+						}
+						return original;
+					}
+				}
+			});
 		};
 	}
 
