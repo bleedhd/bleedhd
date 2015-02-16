@@ -126,6 +126,13 @@
 			return $delegate;
 		});
 
+		$provide.decorator('$exceptionHandler', function ($delegate, MessageBuilder) {
+			return function (exception, cause) {
+				MessageBuilder.send('unhandledException', [exception, cause]);
+				return $delegate(exception, cause);
+			};
+		});
+
 		// sets default caching lifetime to 10 min
 		CachingWrapperProvider.setDefaultLifetime(10 * 60);
 
