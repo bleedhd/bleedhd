@@ -1,7 +1,9 @@
 
 (function (angular, bleedHd) {
 
-	function PatientStatusEditController($scope, $location, $routeParams, PatientData, HeaderControl, patient) {
+	function PatientStatusEditController($scope, $location, $routeParams, PatientData, HeaderControl, FormWrapper, patient) {
+		var status;
+
 		HeaderControl.disableLogout();
 
 		this.$scope = $scope;
@@ -10,18 +12,15 @@
 		this.patient = patient;
 
 		if ($routeParams.statusId === undefined) {
-			this.status = PatientData.newStatus(patient);
+			status = PatientData.newStatus(patient);
 		} else {
-			var ctl = this;
 			angular.forEach(patient.statuses, function (value) {
 				if (value.id == $routeParams.statusId) {
-					ctl.status = value;
+					status = value;
 				}
 			});
 		}
-
-		this.origStatus = this.status;
-		this.status = angular.copy(this.origStatus);
+		this.status = FormWrapper(status);
 
 		// Only allogenic transplants can/should have a transplant source, so we reset the transplant source to empty
 		// string for all transplant types except for allogenic.
@@ -41,8 +40,7 @@
 			save: function () {
 				var ctl = this;
 				if (ctl.statusForm.$valid) {
-					angular.copy(ctl.status, ctl.origStatus)
-					ctl.PatientData.saveStatus(ctl.origStatus).then(function () {
+					ctl.PatientData.saveStatus(ctl.status.persist()).then(function () {
 						ctl.$location.path('/patients/detail/' + ctl.patient.id).search('tab', 'status');
 					});
 				}

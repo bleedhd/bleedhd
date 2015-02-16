@@ -1,13 +1,12 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentEditController($scope, $location, AssessmentData, HeaderControl, DateHelper, patient, assessment) {
+	function AssessmentEditController($scope, $location, AssessmentData, HeaderControl, DateHelper, FormWrapper, patient, assessment) {
 		HeaderControl.hide();
 
 		this.AssessmentData = AssessmentData;
 		this.patient = patient;
-		this.assessmentOrig = assessment;
-		this.assessment = angular.copy(assessment);
+		this.assessment = FormWrapper(assessment);
 		this.$scope = $scope;
 		this.$location = $location;
 
@@ -31,8 +30,7 @@
 			save: function () {
 				var ctl = this;
 				if (ctl.assessmentForm.$valid) {
-					angular.copy(ctl.assessment, ctl.assessmentOrig);
-					ctl.AssessmentData.saveAssessment(ctl.assessmentOrig).then(function () {
+					ctl.AssessmentData.saveAssessment(ctl.assessment.persist()).then(function () {
 						ctl.$location.path('/patients/detail/' + ctl.patient.id).search('tab', 'assessments');
 					});
 				}
