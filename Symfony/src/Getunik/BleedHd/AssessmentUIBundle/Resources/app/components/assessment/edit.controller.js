@@ -6,7 +6,8 @@
 
 		this.AssessmentData = AssessmentData;
 		this.patient = patient;
-		this.assessment = assessment;
+		this.assessmentOrig = assessment;
+		this.assessment = angular.copy(assessment);
 		this.$scope = $scope;
 		this.$location = $location;
 
@@ -30,7 +31,8 @@
 			save: function () {
 				var ctl = this;
 				if (ctl.assessmentForm.$valid) {
-					ctl.AssessmentData.saveAssessment(ctl.assessment).then(function () {
+					angular.copy(ctl.assessment, ctl.assessmentOrig);
+					ctl.AssessmentData.saveAssessment(ctl.assessmentOrig).then(function () {
 						ctl.$location.path('/patients/detail/' + ctl.patient.id).search('tab', 'assessments');
 					});
 				}

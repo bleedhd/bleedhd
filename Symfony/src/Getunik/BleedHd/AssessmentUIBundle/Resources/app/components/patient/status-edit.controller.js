@@ -20,6 +20,9 @@
 			});
 		}
 
+		this.origStatus = this.status;
+		this.status = angular.copy(this.origStatus);
+
 		// Only allogenic transplants can/should have a transplant source, so we reset the transplant source to empty
 		// string for all transplant types except for allogenic.
 		var status = this.status;
@@ -38,7 +41,8 @@
 			save: function () {
 				var ctl = this;
 				if (ctl.statusForm.$valid) {
-					ctl.PatientData.saveStatus(ctl.status).then(function () {
+					angular.copy(ctl.status, ctl.origStatus)
+					ctl.PatientData.saveStatus(ctl.origStatus).then(function () {
 						ctl.$location.path('/patients/detail/' + ctl.patient.id).search('tab', 'status');
 					});
 				}
