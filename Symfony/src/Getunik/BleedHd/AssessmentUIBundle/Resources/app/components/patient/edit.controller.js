@@ -1,11 +1,11 @@
 
 (function (angular, bleedHd) {
 
-	function PatientEditController($scope, $location, PatientData, HeaderControl, patient) {
+	function PatientEditController($scope, $location, PatientData, HeaderControl, FormWrapper, patient) {
 		HeaderControl.disableLogout();
 
 		this.PatientData = PatientData;
-		this.patient = patient;
+		this.patient = FormWrapper(patient);
 		this.isNew = (this.patient.id === undefined);
 		this.$scope = $scope;
 		this.$location = $location;
@@ -20,7 +20,7 @@
 			save: function () {
 				var ctl = this;
 				if (ctl.patientForm.$valid) {
-					ctl.PatientData.savePatient(ctl.patient).then(function () {
+					ctl.PatientData.savePatient(ctl.patient.persist()).then(function () {
 						ctl.$location.path(ctl.getReturnPath());
 					});
 				}

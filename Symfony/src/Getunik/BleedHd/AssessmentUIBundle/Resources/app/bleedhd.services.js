@@ -161,6 +161,27 @@
 	}
 
 
+	function FormWrapper(original) {
+		angular.copy(original, this);
+
+		Object.defineProperty(this, 'original', { value: original });
+	}
+
+	angular.extend(FormWrapper.prototype, {
+		persist: function () {
+			angular.copy(this, this.original);
+			console.log(this.original);
+			return this.original;
+		},
+	});
+
+	function FormWrapperFactory() {
+		return function (original) {
+			return new FormWrapper(original);
+		};
+	}
+
+
 	angular.module('bleedHdApp')
 
 		.service('DateHelper', DateHelperService)
@@ -174,6 +195,8 @@
 		.service('ServerLogDump', ServerLogDump)
 
 		.factory('LoginRedirect', LoginRedirect)
+
+		.factory('FormWrapper', FormWrapperFactory)
 
 		/**
 		 * The JSON date interceptor is an HTTP interceptor implementation that transforms properties
