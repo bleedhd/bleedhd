@@ -161,6 +161,28 @@
 	}
 
 
+	function FormWrapperFactory() {
+		return function (original) {
+			// Creates a 'proxy' object that forms can bind to. Each property that is changed will be set on
+			// this proxy, thereby creating an 'own-property' without touching the original value. Only by
+			// calling the (non-enumerable, non-modifiable) 'persist' function are the changes copied back
+			// to the original which is then returned. Neat trick, huh? ;)
+			return Object.create(original, {
+				persist: {
+					value: function () {
+						for (p in this) {
+							if (this.hasOwnProperty(p)) {
+								original[p] = this[p];
+							}
+						}
+						return original;
+					}
+				}
+			});
+		};
+	}
+
+
 	angular.module('bleedHdApp')
 
 		.service('DateHelper', DateHelperService)
@@ -174,6 +196,8 @@
 		.service('ServerLogDump', ServerLogDump)
 
 		.factory('LoginRedirect', LoginRedirect)
+
+		.factory('FormWrapper', FormWrapperFactory)
 
 		/**
 		 * The JSON date interceptor is an HTTP interceptor implementation that transforms properties

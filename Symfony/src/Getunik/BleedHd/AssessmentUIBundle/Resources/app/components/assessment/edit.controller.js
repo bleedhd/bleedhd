@@ -1,15 +1,18 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentEditController($scope, $location, AssessmentData, HeaderControl, DateHelper, patient, assessment) {
+	function AssessmentEditController($scope, $location, AssessmentData, HeaderControl, DateHelper, FormWrapper, patient, assessment) {
 		HeaderControl.hide();
 
 		this.AssessmentData = AssessmentData;
 		this.patient = patient;
-		this.assessment = assessment;
+		this.assessment = FormWrapper(assessment);
 		this.$scope = $scope;
 		this.$location = $location;
 
+		// this is necessary for the FormWrapper to set up a 'copy' of the start_date property
+		// since setDate and setTime would otherwise operate on the original value
+		this.assessment.start_date = DateHelper.fromDate(this.assessment.start_date.date, true);
 		this.startDate = DateHelper.fromDate(this.assessment.start_date.date, false);
 		this.startTime = DateHelper.fromDate(this.assessment.start_date.date, true);
 
@@ -30,7 +33,7 @@
 			save: function () {
 				var ctl = this;
 				if (ctl.assessmentForm.$valid) {
-					ctl.AssessmentData.saveAssessment(ctl.assessment).then(function () {
+					ctl.AssessmentData.saveAssessment(ctl.assessment.persist()).then(function () {
 						ctl.$location.path('/patients/detail/' + ctl.patient.id).search('tab', 'assessments');
 					});
 				}
