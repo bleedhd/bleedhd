@@ -10,6 +10,9 @@
 		this.$scope = $scope;
 		this.$location = $location;
 
+		// this is necessary for the FormWrapper to set up a 'copy' of the start_date property
+		// since setDate and setTime would otherwise operate on the original value
+		this.assessment.start_date = DateHelper.fromDate(this.assessment.start_date.date, true);
 		this.startDate = DateHelper.fromDate(this.assessment.start_date.date, false);
 		this.startTime = DateHelper.fromDate(this.assessment.start_date.date, true);
 
