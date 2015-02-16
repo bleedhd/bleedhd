@@ -1,0 +1,9 @@
+{% extends "GetunikBleedHdAssessmentUIBundle::layout.html.twig" %}
+
+{% trans_default_domain 'AssessmentUIBundle' %}
+
+{% block content %}
+<p>
+{{ 'resetting.check_email'|trans({'%email%': email}) }}
+</p>
+{% endblock content %}
