@@ -72,7 +72,9 @@
 <panel ng-if="!ctlAssessment.isNew" heading="Quick links">
 	<div class="row">
 		<div class="col-xs-12">
-			<button class="btn btn-default">TBD</button>
+			<div ng-repeat="link in ctlAssessment.assessment.definition.quickLinks">
+				<a ng-href="#/assessment/{{ ctlAssessment.patient.id }}/{{ ctlAssessment.assessment.id }}/{{ link.screen }}?q={{ link.question }}" class="btn btn-default">{{ link.label }}</a>
+			</div>
 		</div>
 	</div>
 	<div class="row">

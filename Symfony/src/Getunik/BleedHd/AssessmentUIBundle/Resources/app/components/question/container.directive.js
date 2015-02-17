@@ -102,6 +102,7 @@
 				controller: AssessmentQuestionContainerController,
 				controllerAs: 'containerCtl',
 				link: function (scope, element, attrs, controller) {
+					element.attr('id', controller.question.slug.short);
 				},
 			};
 		});

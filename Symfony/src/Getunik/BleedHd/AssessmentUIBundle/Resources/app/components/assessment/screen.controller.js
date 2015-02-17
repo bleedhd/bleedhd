@@ -1,7 +1,7 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentScreenController($scope, $route, $location, $log, $q, HeaderControl, context) {
+	function AssessmentScreenController($scope, $route, $location, $log, $q, $routeParams, $interval, HeaderControl, context) {
 		HeaderControl.hide();
 		$scope.context = this.context = context;
 
@@ -25,6 +25,20 @@
 			that.dirty[response.id] = response;
 			that.$log.debug('dirty response', response);
 		});
+
+		if (!!$routeParams.q) {
+			// there doesn't seem to be reliable "view ready" detection, so we have to do some
+			// polling here to do the scroll-to-question
+			$scope.$on('$viewContentLoaded', function () {
+				var poll = $interval(function () {
+					var targetQuestion = $('#' + $routeParams.q);
+					if (targetQuestion.length > 0) {
+						$('html, body').animate({ scrollTop: (targetQuestion.offset().top) }, 'slow');
+						$interval.cancel(poll);
+					}
+				}, 100, 10);
+			});
+		}
 	}
 
 	bleedHd.registerController('assessment', AssessmentScreenController,
