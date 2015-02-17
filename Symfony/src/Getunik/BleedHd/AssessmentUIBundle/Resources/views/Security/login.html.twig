@@ -1,60 +1,42 @@
-{% extends "GetunikBleedHdAssessmentUIBundle::layout.html.twig" %}
+{% extends "GetunikBleedHdAssessmentUIBundle::layout-user.html.twig" %}
 
 {% trans_default_domain 'AssessmentUIBundle' %}
 
-{% block logo %}{% endblock logo %}
-{% block content %}
-<div class="row-fluid">
+{% block fos_user_content %}
+<form action="{{ path("fos_user_security_check") }}" method="post">
 
-  <div class="col-sm-3 col-md-4"></div>
-  <div class="col-sm-6 col-md-4">
+	<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+	<input type="hidden" name="_target_path" value="{{ app.request.get('_target_path') }}" />
 
-
-
-	<div class="panel panel-default bleed-panel-login">
-
-		<div class="panel-body">
-
-			<img class="bleed-logo-login" src="{{ asset('bundles/getunikbleedhdassessmentui/images/logo.png') }}" width="220" alt="">
-
-			<form action="{{ path("fos_user_security_check") }}" method="post">
-
-				<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-				<input type="hidden" name="_target_path" value="{{ app.request.get('_target_path') }}" />
-
-				<div class="form-group"><!-- // TODO: add .has-error for error state! -->
-					<div class="controls">
-						<input id="username" class="form-control" name="_username" type="text" placeholder="{{ 'security.login.username'|trans }}" value="{{ last_username }}" required="required" />
-					</div>
-				</div>
-				<div class="form-group"><!-- // TODO: add .has-error for error state! -->
-					<div class="controls">
-						<input id="password" class="form-control" type="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" required="required" />
-					</div>
-				</div>
-
-
-				{% if error %}
-				<div class="form-group bleed-login-error">
-					<div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-				</div>
-				{% endif %}
-
-				<input type="submit" id="_submit" class="btn btn-large btn-default btn-block" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-
-			</form>
-
-		</div><!-- /.panel-body -->
-		<div class="panel-footer bleed-panel-login-footer clearfix">
-			<a href="#" class="pull-left" data-toggle="modal" data-target="#modal_about">about</a>
-			<span class="pull-right">{{ app.request.get('debug') == 'true' ? app_version.getVersion(true) : app_version.getVersion(false) }}</span>
+	<div class="form-group">
+		<div class="controls">
+			<input id="username" class="form-control" name="_username" type="text" placeholder="{{ 'security.login.username'|trans }}" value="{{ last_username }}" required="required" />
 		</div>
+	</div>
+	<div class="form-group">
+		<div class="controls">
+			<input id="password" class="form-control" type="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" required="required" />
+		</div>
+	</div>
 
-	</div><!-- /.panel -->
 
-  </div><!-- /.col-sm-4 -->
-</div><!-- /.row-fluid -->
+	{% if error %}
+	<div class="form-group bleed-login-error">
+		<div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+	</div>
+	{% endif %}
 
+	<input type="submit" id="_submit" class="btn btn-large btn-default btn-block" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+
+</form>
+{% endblock fos_user_content %}
+
+{% block fos_user_footer %}
+		<a href="#" class="pull-left" data-toggle="modal" data-target="#modal_about">about</a>
+		<span class="pull-right">{{ app.request.get('debug') == 'true' ? app_version.getVersion(true) : app_version.getVersion(false) }}</span>
+{% endblock fos_user_footer %}
+
+{% block bottom %}
 <div class="modal fade" id="modal_about" tabindex="-1" role="dialog" aria-labelledby="modal_about_label" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -74,4 +56,4 @@
 		</div>
 	</div>
 </div>
-{% endblock content %}
+{% endblock bottom %}

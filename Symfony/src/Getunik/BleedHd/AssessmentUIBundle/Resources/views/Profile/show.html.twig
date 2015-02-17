@@ -1,10 +1,10 @@
-{% extends "GetunikBleedHdAssessmentUIBundle::layout.html.twig" %}
+{% extends "GetunikBleedHdAssessmentUIBundle::layout-user.html.twig" %}
 
 {% trans_default_domain 'AssessmentUIBundle' %}
 
-{% block content %}
+{% block fos_user_content %}
 <div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+	<p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+	<p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
 </div>
-{% endblock content %}
+{% endblock fos_user_content %}

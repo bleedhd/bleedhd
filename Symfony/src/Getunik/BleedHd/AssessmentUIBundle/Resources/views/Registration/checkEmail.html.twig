@@ -1,7 +1,7 @@
-{% extends "GetunikBleedHdAssessmentUIBundle::layout.html.twig" %}
+{% extends "GetunikBleedHdAssessmentUIBundle::layout-user.html.twig" %}
 
 {% trans_default_domain 'AssessmentUIBundle' %}
 
-{% block content %}
+{% block fos_user_content %}
     <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
-{% endblock content %}
+{% endblock fos_user_content %}
