@@ -2,7 +2,7 @@
 	<h6 ng-bind-html="supplementCtl.definition.question.title"></h6>
 	<div class="checkbox" ng-repeat="option in supplementCtl.getOptions()">
 		<label>
-			<input type="checkbox" ng-disabled="!active" ng-model="option.binding.value" ng-change="supplementCtl.onChange(option)" ng-true-value="'{{ option.value }}'" ng-false-value="null">
+			<input type="checkbox" ng-disabled="!active" ng-model="option.binding.value" ng-change="supplementCtl.onChange(option)" ng-true-value="{{ option.value | json }}" ng-false-value="null">
 			{{ option.label }}
 		</label>
 	</div>
