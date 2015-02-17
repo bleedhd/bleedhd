@@ -123,7 +123,7 @@ getunik_bleed_hd_security:
         target_path: /app
 
 getunik_bleed_hd_assessment_data:
-    version: "v-0.6.1"
+    version: "v-0.8.0"
     version_allow_git: true
 
 
