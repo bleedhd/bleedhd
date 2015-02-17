@@ -5,6 +5,42 @@ meta_answers:
   nass: Not assessed
   napp: Not applicable
   ns: No symptoms
+shared:
+  - &p-rom-options-7
+    -
+      label: "1"
+      value: 1
+    -
+      label: "2"
+      value: 2
+    -
+      label: "3"
+      value: 3
+    -
+      label: "4"
+      value: 4
+    -
+      label: "5"
+      value: 5
+    -
+      label: "6"
+      value: 6
+    -
+      label: "7"
+      value: 7
+  - &p-rom-options-4
+    -
+      label: "1"
+      value: 1
+    -
+      label: "2"
+      value: 2
+    -
+      label: "3"
+      value: 3
+    -
+      label: "4"
+      value: 4
 chapters:
   -
     sections:
@@ -126,3 +162,102 @@ chapters:
                         type: text
                         question:
                           title: "Specify"
+          -
+            slug: p-rom
+            questions:
+              -
+                slug: shoulder
+                type: multi
+                title: "Photographic Range of Motion (P-ROM)"
+                meta_answers: ['nya']
+                intro:
+                  image: "images/p-rom-shoulder.jpg"
+                questions:
+                  -
+                    slug: left
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Left shoulder"
+                    options: *p-rom-options-7
+                  -
+                    slug: right
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Right shoulder"
+                    options: *p-rom-options-7
+              -
+                slug: elbow
+                type: multi
+                title: "Photographic Range of Motion (P-ROM)"
+                meta_answers: ['nya']
+                intro:
+                  image: "images/p-rom-elbow.jpg"
+                questions:
+                  -
+                    slug: left
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Left elbow"
+                    options: *p-rom-options-7
+                  -
+                    slug: right
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Right elbow"
+                    options: *p-rom-options-7
+              -
+                slug: wrist-finger
+                type: multi
+                title: "Photographic Range of Motion (P-ROM)"
+                meta_answers: ['nya']
+                intro:
+                  image: "images/p-rom-wrist-finger.jpg"
+                questions:
+                  -
+                    slug: left
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Left wrist / finger"
+                    options: *p-rom-options-7
+                  -
+                    slug: right
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Right wrist / finger"
+                    options: *p-rom-options-7
+              -
+                slug: ankle
+                type: multi
+                title: "Photographic Range of Motion (P-ROM)"
+                meta_answers: ['nya']
+                intro:
+                  image: "images/p-rom-ankle.jpg"
+                questions:
+                  -
+                    slug: left
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Left ankle"
+                    options: *p-rom-options-4
+                  -
+                    slug: right
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Right ankle"
+                    options: *p-rom-options-4
