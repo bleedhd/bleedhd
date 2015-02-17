@@ -17,7 +17,7 @@ chapters:
                 slug: features-present
                 type: yesno
                 title: "Any features of GvHD present"
-                meta_answers: ['nya', 'nass']
+                meta_answers: ['nya']
                 score:
                   grade: 1
                 intro:
