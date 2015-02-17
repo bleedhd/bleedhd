@@ -1,0 +1,9 @@
+{% extends "GetunikBleedHdSecurityBundle::layout.html.twig" %}
+
+{% trans_default_domain 'SecurityBundle' %}
+
+{% block fos_user_content %}
+<p>
+{{ 'resetting.check_email'|trans({'%email%': email}) }}
+</p>
+{% endblock fos_user_content %}

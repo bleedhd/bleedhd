@@ -1,0 +1,25 @@
+{% extends "GetunikBleedHdAssessmentUIBundle::layout.html.twig" %}
+
+{% block logo %}
+{% endblock logo %}
+
+{% block content %}
+<div class="row-fluid">
+    <div class="col-sm-3 col-md-4"></div>
+
+    <div class="col-sm-6 col-md-4">
+        <div class="panel panel-default bleed-panel-login">
+            <div class="panel-body">
+                <img class="bleed-logo-login" src="{{ asset('bundles/getunikbleedhdassessmentui/images/logo.png') }}" width="220" alt="">
+                {% block fos_user_content %}{% endblock fos_user_content %}
+            </div>
+
+            {% set _block = block('fos_user_footer') %}
+            {% if _block is not empty %}
+                <div class="panel-footer bleed-panel-login-footer clearfix">{{ _block|raw }}</div>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

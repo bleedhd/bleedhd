@@ -15,6 +15,7 @@ security:
             id: fos_user.user_provider.username
 
     access_control:
+        - { path: ^/user/register/?$, roles: ROLE_ADMIN }
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: '%http_channel%' }
 
     firewalls:

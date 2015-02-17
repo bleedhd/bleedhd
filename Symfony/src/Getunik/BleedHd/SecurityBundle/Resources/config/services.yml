@@ -25,3 +25,8 @@ services:
         arguments:  ['@security.http_utils', {}, '@getunik_bleed_hd_security.oauth_helper']
         tags:
             - { name: 'monolog.logger', channel: 'security' }
+
+    getunik_bleed_hd_security.registration.form.type:
+        class: Getunik\BleedHd\SecurityBundle\Form\Type\RegistrationFormType
+        tags:
+            - { name: form.type, alias: getunik_bleed_hd_user_registration }

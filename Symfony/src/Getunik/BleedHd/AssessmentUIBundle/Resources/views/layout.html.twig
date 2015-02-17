@@ -50,6 +50,8 @@
         <div>
             {% block content %}{% endblock content %}
         </div>
+
+        {% block bottom %}{% endblock bottom %}
         <div class="environment-indicator {{ app.environment }}">{{ app.environment }} {{ app_version.getVersion(true) }}</div>
     </body>
 </html>
