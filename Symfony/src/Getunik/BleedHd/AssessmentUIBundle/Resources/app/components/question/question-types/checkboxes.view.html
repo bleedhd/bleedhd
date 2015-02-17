@@ -7,7 +7,7 @@
 </div>
 <div class="checkbox" ng-repeat="option in questionCtl.getOptions()">
 	<label>
-		<input type="checkbox" ng-model="option.binding.value" ng-change="questionCtl.onChange(option)" ng-true-value="'{{ option.value }}'" ng-false-value="null">
+		<input type="checkbox" ng-model="option.binding.value" ng-change="questionCtl.onChange(option)" ng-true-value="{{ option.value | json }}" ng-false-value="null">
 		{{ option.label }}
 	</label>
 	<supplement
