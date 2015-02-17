@@ -33,4 +33,23 @@ OAuth access tokens are configured to last 60 minutes while the refresh token an
 
 Since we don't want unattended applications being permanently logged in, there is a mechanism in the client called _activity window_. The client only refreshes the token when it is about to run out **and** there has been some _activity_ within the configured time _window_. If there was no activity within that time, the token will be allowed to expire and the user is redirected to the login page. The activity window is set to 30 minutes and any API requests to the server will count as _activity_. If there was some activity within the last 30 minutes and the access token is about to expire, it is automatically refreshed behind the scenes and the whole thing starts anew with reset timers on the new access token, refresh token and session.
 
+# User Management
+The FOSUserBundle brings some simple user management functionality to the table - the login is part of that. There are however a number of other pages that are currently not linked anywhere in the application that can be useful:
+* `/user/profile`: shows the currently logged in user's name and email (profile)
+* `/user/profile/edit`: allows the currently logged in user to modify his/her profile information
+* `/user/resetting/request`: allows a user to reset his/her password by specifying the username or email address
+* `/user/profile/change-password`: allows the currently logged in user to change his/her password
+* `/user/register`: `ROLE_ADMIN` **only** - user creation form
 
+## Creating new Users
+Full control over user management can currently only be achieved through the Symfony console (requires a developer), but creating limited access users can be accomplished by any administrator (`ROLE_ADMIN`) through the web interface. For security reasons, new users cannot simply create their own accounts - otherwise anybody could do that. The following steps describe the process how this should be done:
+
+1. Log in with an administrator account
+2. Open `/user/register`
+3. Enter the new user's _email_ and _username_
+4. Enter an arbitrary password - it doesn't really matter since we'll reset it in a couple of seconds
+5. Select the role that the new user should have - probably _Editor_
+6. Create the account - you are now logged in as the new user!
+7. Open `/user/resetting/request`
+8. Enter the new user's email address again (it **must** match the one you entered before)
+9. Submit the form - the new user will now receive an email where he/she can reset their password
