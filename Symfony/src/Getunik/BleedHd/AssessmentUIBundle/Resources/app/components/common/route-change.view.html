@@ -2,7 +2,11 @@
 	<div class="row">
 		<div class="col-xs-12">
 
-			<div ng-if="routeChangeCtl.state === routeChangeCtl.STATE_LOADING">Loading...</div>
+			<div ng-if="routeChangeCtl.state === routeChangeCtl.STATE_LOADING">
+				<div class="bleed-loader">
+					<img ng-src="{{'images/ajax-loader.gif' | resourcePath}}" alt="" />
+				</div>
+			</div>
 			<div ng-if="routeChangeCtl.state === routeChangeCtl.STATE_ERROR">Unable to load view.</div>
 
 		</div>
