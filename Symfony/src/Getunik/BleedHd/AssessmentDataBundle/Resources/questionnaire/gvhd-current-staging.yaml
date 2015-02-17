@@ -123,6 +123,6 @@ chapters:
                     supplements:
                       -
                         slug: cause
-                        type: textarea
+                        type: text
                         question:
                           title: "Specify"
