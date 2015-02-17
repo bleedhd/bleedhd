@@ -6,7 +6,7 @@ use Psr\Log\LoggerInterface;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
 
-class CalculatorGvhdFeatures extends CalculatorBase
+class CalculatorGvhdFirstDiagnosis extends CalculatorBase
 {
 	public function __construct(LoggerInterface $logger)
 	{

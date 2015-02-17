@@ -177,6 +177,48 @@ chapters:
             slug: hair
             questions:
               -
+                slug: distinctive
+                type: checkboxes
+                title: "Scalp and Body Hair - distinctive features"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Scalp and Body Hair - distinctive features"
+                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "New onset of scarring or nonscarring scalp alopecia, (after recovery from chemoradiotherapy)"
+                    value: new-onset-scarring
+                    supplements:
+                      - *confirmation-supplement
+                  -
+                    label: "Loss of body hair"
+                    value: body-hair-loss
+                    supplements:
+                      - *confirmation-supplement
+                  -
+                    label: "Scaling"
+                    value: scaling
+                    supplements:
+                      - *confirmation-supplement
+              -
+                slug: other
+                type: checkboxes
+                title: "Scalp and Body Hair - other features or unclassified entities"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Scalp and Body Hair - other features or unclassified entities"
+                  description: "Can be acknowledged as part of the chronic GVHD symptomatology if diagnosis is confirmed"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Thinning scalp hair, typically patchy, coarse or dull (not explained by endocrine or other causes)"
+                    value: thinning-scalp-hair
+                  -
+                    label: "Premature gray hair"
+                    value: premature-gray-hair
 
       -
         screens:
@@ -184,6 +226,75 @@ chapters:
             slug: mouth
             questions:
               -
+                slug: diagnostic
+                type: checkboxes
+                title: "Mouth - diagnostic features"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Mouth - diagnostic features"
+                  description: "Sufficient to establish the diagnosis of chronic GVHD"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: Lichen planus-like changes
+                    value: lichen-planus-like-changes
+              -
+                slug: distinctive
+                type: checkboxes
+                title: "Mouth - distinctive features"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Mouth - distinctive features"
+                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                annotations:
+                  - "**In all cases, infection, drug effect, malignancy or other causes must be excluded."
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Xerostomia"
+                    value: xerostomia
+                    supplements:
+                      - *confirmation-supplement
+                  -
+                    label: "Mucoceles"
+                    value: mucoceles
+                    supplements:
+                      - *confirmation-supplement
+                  -
+                    label: "Mucosal atrophy"
+                    value: mucosal-atrophy
+                    supplements:
+                      - *confirmation-supplement
+                  -
+                    label: "Ulcers and Pseudomembranes**"
+                    value: ulcers-and-pseudomembranes
+                    supplements:
+                      - *confirmation-supplement
+              -
+                slug: common
+                type: checkboxes
+                title: "Mouth - common features"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Mouth - common features"
+                  description: "Seen with both acute and chronic GVHD"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Gingivitis"
+                    value: gingivitis
+                  -
+                    label: "Mucositis"
+                    value: mucositis
+                  -
+                    label: "Erythema"
+                    value: erythema
+                  -
+                    label: "Pain"
+                    value: pain
 
       -
         screens:
@@ -191,6 +302,56 @@ chapters:
             slug: eyes
             questions:
               -
+                slug: distinctive
+                type: checkboxes
+                title: "Eyes - distinctive features"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Eyes - distinctive features"
+                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "New onset dry, gritty, or painful eyes"
+                    value: dry-gritty-painful
+                    supplements:
+                      - *confirmation-supplement
+                  -
+                    label: "Cicatricial conjunctivitis"
+                    value: cicatricial-conjunctivitis
+                    supplements:
+                      - *confirmation-supplement
+                  -
+                    label: "Keratoconjunctivitis sicca"
+                    value: keratoconjunctivitis-sicca
+                    supplements:
+                      - *confirmation-supplement
+                  -
+                    label: "Confluent areas of punctate keratopathy"
+                    value: punctate-keratopathy
+                    supplements:
+                      - *confirmation-supplement
+              -
+                slug: other
+                type: checkboxes
+                title: "Eyes - other features or unclassified entities"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Eyes - other features or unclassified entities"
+                  description: "Can be acknowledged as part of the chronic GVHD symptomatology if diagnosis is confirmed"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Photophobia"
+                    value: photophobia
+                  -
+                    label: "Periorbital hyperpigmentation"
+                    value: periorbital-hyperpigmentation
+                  -
+                    label: "Blepharitis (erythema of the eye lids with edema)"
+                    value: blepharitis
 
       -
         screens:
@@ -198,6 +359,56 @@ chapters:
             slug: genitalia
             questions:
               -
+                slug: diagnostic
+                type: checkboxes
+                title: "Genitalia - diagnostic features"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Genitalia - diagnostic features"
+                  description: "Sufficient to establish the diagnosis of chronic GVHD"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Lichen planus-like features"
+                    value: lichen-planus-like-features
+                  -
+                    label: "Lichen sclerosus-like features"
+                    value: lichen-sclerosus-like-features
+                  -
+                    label: "Females: Vaginal scarring or clitoral/labial agglutination"
+                    value: vaginal-scarring
+                  -
+                    label: "Males: Phymosis or urethral/meatus scarring or stenosis"
+                    value: phymosis
+              -
+                slug: distinctive
+                type: checkboxes
+                title: "Genitalia - distinctive features"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Genitalia - distinctive features"
+                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                annotations:
+                  - "**In all cases, infection, drug effect, malignancy or other causes must be excluded."
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Erosions**"
+                    value: erosions
+                    supplements:
+                      - *confirmation-supplement
+                  -
+                    label: "Fissures**"
+                    value: fissures
+                    supplements:
+                      - *confirmation-supplement
+                  -
+                    label: "Ulcers**"
+                    value: ulcers
+                    supplements:
+                      - *confirmation-supplement
 
       -
         screens:
@@ -205,6 +416,67 @@ chapters:
             slug: gi-tract
             questions:
               -
+                slug: diagnostic
+                type: checkboxes
+                title: "GI Tract - diagnostic features"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "GI Tract - diagnostic features"
+                  description: "Sufficient to establish the diagnosis of chronic GVHD"
+                annotations:
+                  - "**In all cases, infection, drug effect, malignancy or other causes must be excluded."
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Esophageal web"
+                    value: esophageal-web
+                  -
+                    label: "Strictures or stenosis in the upper to mid third of the esophagus**"
+                    value: strictures-or-stenosis
+              -
+                slug: other
+                type: checkboxes
+                title: "GI Tract - other features or unclassified entities"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "GI Tract - other features or unclassified entities"
+                  description: "Can be acknowledged as part of the chronic GVHD symptomatology if diagnosis is confirmed"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Exocrine pancreatic insufficiency"
+                    value: exocrine-pancreatic-insufficiency
+              -
+                slug: common
+                type: checkboxes
+                title: "GI Tract - common features"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "GI Tract - common features"
+                  description: "Seen with both acute and chronic GVHD"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Anorexia"
+                    value: anorexia
+                  -
+                    label: "Nausea"
+                    value: nausea
+                  -
+                    label: "Vomiting"
+                    value: vomiting
+                  -
+                    label: "Diarrhea"
+                    value: diarrhea
+                  -
+                    label: "Weight loss"
+                    value: weight loss
+                  -
+                    label: "Failure to thrive (infants and children)"
+                    value: failure-to-thrive
 
       -
         screens:
@@ -212,6 +484,22 @@ chapters:
             slug: liver
             questions:
               -
+                slug: common
+                type: checkboxes
+                title: "Liver - common features"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Liver - common features"
+                  description: "Seen with both acute and chronic GVHD"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Total bilirubin, alkaline phosphatase > 2 x upper limit of normal"
+                    value: bilirubin-alkaline-phosphatase
+                  -
+                    label: "ALT > 2x upper limit of normal"
+                    value: atl
 
       -
         screens:
@@ -219,6 +507,57 @@ chapters:
             slug: lung
             questions:
               -
+                slug: diagnostic
+                type: checkboxes
+                title: "Lung - diagnostic features"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Lung - diagnostic features"
+                  description: "Sufficient to establish the diagnosis of chronic GVHD"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Bronchiolitis obliterans diagnosed with lung biopsy"
+                    value: bo
+                  -
+                    label: "Bronchiolitis obliterans syndrome"
+                    value: bos
+              -
+                slug: distinctive
+                type: checkboxes
+                title: "Lung - distinctive features"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Lung - distinctive features"
+                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: Air trapping and bronchiectasis on chest CT
+                    value: bronchiectasis-ct
+                    supplements:
+                      - *confirmation-supplement
+              -
+                slug: other
+                type: checkboxes
+                title: "Lung - other features or unclassified entities"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Lung - other features or unclassified entities"
+                  description: "Can be acknowledged as part of the chronic GVHD symptomatology if diagnosis is confirmed"
+                annotations:
+                  - "† Pulmonary entities under investigation or unclassified."
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Cryptogenic organizing pneumonia (COP)†"
+                    value: cop
+                  -
+                    label: "Restrictive lung disease†"
+                    value: restrictive-lung-disease
 
       -
         screens:
@@ -226,6 +565,60 @@ chapters:
             slug: muscles-fascia-joints
             questions:
               -
+                slug: diagnostic
+                type: checkboxes
+                title: "Muscles, Fascia, Joints - diagnostic features"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Muscles, Fascia, Joints - diagnostic features"
+                  description: "Sufficient to establish the diagnosis of chronic GVHD"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Fasciitis"
+                    value: fasciitis
+                  -
+                    label: "Joint stiffness or contractures secondary to sclerosis"
+                    value: joint-stiffness
+              -
+                slug: distinctive
+                type: checkboxes
+                title: "Muscles, Fascia, Joints - distinctive features"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Muscles, Fascia, Joints - distinctive features"
+                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                annotations:
+                  - "†† Pulmonary entities under investigation or unclassified."
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Myositis or polymyositis††"
+                    value: myositis
+                    supplements:
+                      - *confirmation-supplement
+              -
+                slug: other
+                type: checkboxes
+                title: "Muscles, Fascia, Joints - other features or unclassified entities"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Muscles, Fascia, Joints - other features or unclassified entities"
+                  description: "Can be acknowledged as part of the chronic GVHD symptomatology if diagnosis is confirmed"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Edema"
+                    value: edema
+                  -
+                    label: "Muscle cramps"
+                    value: muscle-cramps
+                  -
+                    label: "Arthralgia or arthritis"
+                    value: artharalgia-or-arthritis
 
       -
         screens:
@@ -233,6 +626,34 @@ chapters:
             slug: immune
             questions:
               -
+                slug: other
+                type: checkboxes
+                title: "Hematopoietic and Immune - other features or unclassified entities"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Hematopoietic and Immune - other features or unclassified entities"
+                  description: "Can be acknowledged as part of the chronic GVHD symptomatology if diagnosis is confirmed"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Thrombocytopenia"
+                    value: thrombocytopenia
+                  -
+                    label: "Eosinophilia"
+                    value: eosinophilia
+                  -
+                    label: "Lymphopenia"
+                    value: lymphopenia
+                  -
+                    label: "Hypo- or hyper- gammaglobulinemia"
+                    value: hypo-hyper-gammaglobulinemia
+                  -
+                    label: "Autoantibodies (AIHA, ITP)"
+                    value: autoantibodies
+                  -
+                    label: "Raynaud's phenomenon"
+                    value: raynauds-phenomenon
 
       -
         screens:
@@ -240,3 +661,31 @@ chapters:
             slug: other
             questions:
               -
+                slug: other
+                type: checkboxes
+                title: "Other - other features or unclassified entities"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Other - other features or unclassified entities"
+                  description: "Can be acknowledged as part of the chronic GVHD symptomatology if diagnosis is confirmed"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Pericardial or pleural effusions"
+                    value: effusions
+                  -
+                    label: "Ascites"
+                    value: ascites
+                  -
+                    label: "Peripheral neuropathy"
+                    value: peripheral-neuropathy
+                  -
+                    label: "Nephrotic syndrome"
+                    value: nephrotic syndrome
+                  -
+                    label: "Myasthenia gravis"
+                    value: myasthenia-gravis
+                  -
+                    label: "Cardiac conduction abnormality or cardiomyopathy"
+                    value: cardiomyopathy
