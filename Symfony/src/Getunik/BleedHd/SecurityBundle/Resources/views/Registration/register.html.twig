@@ -24,10 +24,19 @@
 			{{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'form.new_password_confirmation'|trans }}) }}
 		</div>
 	</div>
+	{% set _discard = form_widget(form.roles) %}
+	<div class="form-group">
+		<div class="controls">
+			<select name="fos_user_registration_form[roles][0]" id="fos_user_registration_form_roles_0" placeholder="{{ 'form.roles'|trans }}" class="form-control">
+				<option value="ROLE_READER">Reader</option>
+				<option value="ROLE_EDITOR">Editor</option>
+			</select>
+		</div>
+	</div>
 
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" class="btn btn-large btn-default btn-block" value="{{ 'registration.submit'|trans }}" />
-    </div>
+	{{ form_widget(form) }}
+	<div>
+		<input type="submit" class="btn btn-large btn-default btn-block" value="{{ 'registration.submit'|trans }}" />
+	</div>
 </form>
 {% endblock fos_user_content %}

@@ -91,6 +91,9 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Getunik\BleedHd\SecurityBundle\Entity\User
+    registration:
+        form:
+            type: getunik_bleed_hd_user_registration
 
 fos_oauth_server:
     db_driver: orm       # Driver availables: orm, mongodb, or propel
