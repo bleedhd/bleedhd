@@ -1,7 +1,7 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentScreenController($scope, $route, $location, $log, $q, $routeParams, $interval, HeaderControl, context) {
+	function AssessmentScreenController($scope, $route, $location, $log, $q, $routeParams, $timeout, HeaderControl, context) {
 		HeaderControl.hide();
 		$scope.context = this.context = context;
 
@@ -28,16 +28,13 @@
 
 		if (!!$routeParams.q) {
 			// there doesn't seem to be reliable "view ready" detection, so we have to do some
-			// polling here to do the scroll-to-question
-			$scope.$on('$viewContentLoaded', function () {
-				var poll = $interval(function () {
-					var targetQuestion = $('#' + $routeParams.q);
-					if (targetQuestion.length > 0) {
-						$('html, body').animate({ scrollTop: (targetQuestion.offset().top) }, 'slow');
-						$interval.cancel(poll);
-					}
-				}, 100, 10);
-			});
+			// interesting things here as described in http://lorenzmerdian.blogspot.de/2013/03/how-to-handle-dom-updates-in-angularjs.html
+			$timeout(function () {
+				var targetQuestion = $('#' + $routeParams.q);
+				if (targetQuestion.length > 0) {
+					$('html, body').animate({ scrollTop: (targetQuestion.offset().top) }, 'slow');
+				}
+			}, 0);
 		}
 	}
 
