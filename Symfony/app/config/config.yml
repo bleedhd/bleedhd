@@ -29,8 +29,6 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    globals:
-        app_version: "@getunik.bleed_hd_data.version_service"
 
 # Assetic Configuration
 assetic:
