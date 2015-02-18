@@ -50,7 +50,7 @@
 
 		.filter('score', function () {
 			return function (result) {
-				return (result.score !== undefined && result.score.total !== undefined ? result.score.total : 'not yet completed');
+				return (result.score !== undefined && result.score.total !== undefined ? result.score.total : 'pending');
 			};
 		})
 
