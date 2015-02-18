@@ -33,7 +33,7 @@
 
 {% block fos_user_footer %}
 		<a href="#" class="pull-left" data-toggle="modal" data-target="#modal_about">about</a>
-		<span class="pull-right">{{ app.request.get('debug') == 'true' ? app_version.getVersion(true) : app_version.getVersion(false) }}</span>
+		<span class="pull-right">{{ app.request.get('debug') == 'true' ? app_version_int : app_version_ext }}</span>
 {% endblock fos_user_footer %}
 
 {% block bottom %}

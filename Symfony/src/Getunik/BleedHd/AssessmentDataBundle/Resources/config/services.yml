@@ -23,6 +23,13 @@ services:
             - '%getunik_bleed_hd_assessment_data.version_allow_git%'
             - '%getunik_bleed_hd_assessment_data.version%'
 
+    getunik.bleed_hd_data.bleed_hd_extension:
+        class: Getunik\BleedHd\AssessmentDataBundle\Service\BleedHdExtension
+        arguments:
+            - @getunik.bleed_hd_data.version_service
+        tags:
+            - { name: twig.extension }
+
     getunik.bleed_hd_data.entity_update_listener:
         class: Getunik\BleedHd\AssessmentDataBundle\Listener\UpdateInformationListener
         arguments:
