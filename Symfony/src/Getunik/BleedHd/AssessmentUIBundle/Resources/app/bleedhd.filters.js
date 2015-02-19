@@ -50,13 +50,19 @@
 
 		.filter('score', function () {
 			return function (result) {
-				return (result.score !== undefined && result.score.total !== undefined ? result.score.total : 'not yet completed');
+				return (result.score !== undefined && result.score.total !== undefined ? result.score.total : 'pending');
 			};
 		})
 
 		.filter('toQName', function () {
 			return function (name) {
 				return questionnaireMap[name] || 'unknown';
+			};
+		})
+
+		.filter('progress', function () {
+			return function (progress) {
+				return !progress ? 'Tentative' : progress.charAt(0).toUpperCase() + progress.substr(1);
 			};
 		})
 

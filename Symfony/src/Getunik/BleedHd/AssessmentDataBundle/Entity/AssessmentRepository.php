@@ -28,4 +28,19 @@ class AssessmentRepository extends EntityRepository
 
         return $merged;
     }
+
+    public function getPatientProgress(array $patientIds)
+    {
+        $builder = $this->_em->createQueryBuilder();
+
+        $builder
+            ->select('a.patientId, a.progress')
+            ->from('GetunikBleedHdAssessmentDataBundle:Assessment', 'a')
+            ->where($builder->expr()->in('a.patientId', $patientIds));
+
+        $query = $builder->getQuery();
+        $array = $query->getArrayResult();
+
+        return $array;
+    }
 }

@@ -21,6 +21,7 @@ framework:
     session:
         # handler_id set to null will use default session handler from php.ini
         handler_id:  ~
+        cookie_lifetime: 7200
     fragments:       ~
     http_method_override: true
 
@@ -28,8 +29,6 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    globals:
-        app_version: "@getunik.bleed_hd_data.version_service"
 
 # Assetic Configuration
 assetic:
@@ -90,6 +89,12 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Getunik\BleedHd\SecurityBundle\Entity\User
+    registration:
+        form:
+            type: getunik_bleed_hd_user_registration
+    profile:
+        form:
+            type: getunik_bleed_hd_user_profile
 
 fos_oauth_server:
     db_driver: orm       # Driver availables: orm, mongodb, or propel
@@ -99,6 +104,9 @@ fos_oauth_server:
     auth_code_class:     Getunik\BleedHd\SecurityBundle\Entity\AuthCode
     service:
         user_provider: fos_user.user_manager
+        options:
+            access_token_lifetime: 3600
+            refresh_token_lifetime: 7200
 
 fos_rest:
     routing_loader:
@@ -116,7 +124,7 @@ getunik_bleed_hd_security:
         target_path: /app
 
 getunik_bleed_hd_assessment_data:
-    version: "v-0.6.0"
+    version: "v-0.8.0"
     version_allow_git: true
 
 

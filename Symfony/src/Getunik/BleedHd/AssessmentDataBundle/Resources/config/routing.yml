@@ -13,3 +13,7 @@ getunik_bleed_hd_assessment_data_questionnaire:
 getunik_bleed_hd_assessment_data_clientlogentry:
     type: rest
     resource: getunik.bleed_hd_data.clientlogentry_controller
+
+getunik_bleed_hd_assessment_data_user:
+    type: rest
+    resource: getunik.bleed_hd_data.user_controller

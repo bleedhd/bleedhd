@@ -7,6 +7,8 @@
 				restrict: 'E',
 				scope: {
 					allowLogout: '@',
+					altLink: '@',
+					altLabel: '@',
 				},
 				templateUrl: bleedHd.getView('common', 'header'),
 			};

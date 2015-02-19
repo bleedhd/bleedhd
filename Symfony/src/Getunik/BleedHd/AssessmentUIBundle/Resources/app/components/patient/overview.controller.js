@@ -1,9 +1,12 @@
 
 (function (angular, bleedHd) {
 
-	function PatientOverviewController($scope, $filter, patients) {
+	function PatientOverviewController($scope, $filter, $timeout, PatientData, patients) {
+		this.PatientData = PatientData;
+		this.$timeout = $timeout;
 		this.patients = patients;
 		this.patients.sort(function (a, b) { return a.lastname.toLowerCase().localeCompare(b.lastname.toLowerCase()); });
+		this.progress = {};
 
 		this.paging = {
 			items: [],
@@ -18,15 +21,9 @@
 		};
 		$scope.paging = this.paging;
 
+		this.asyncStatiPromise = null;
 		this.dateFilter = $filter('isodate');
 		this.resetFilter();
-
-		$scope.topNav = {
-			templateUrl: bleedHd.getView('common', 'top-nav'),
-			title: 'Patient Overview title',
-			navUrl: '#/export',
-			navLabel: 'Export label',
-		};
 	}
 
 	bleedHd.registerController('patient', PatientOverviewController,
@@ -50,13 +47,11 @@
 			},
 			onFilterChange: function () {
 				this.paging.currentPage = 1;
-				this.paging.items = this.getPatientsPage();
+				this.paging.items = this.patients.filter(this.patientFilter.bind(this));
+				this.processPageItems();
 			},
-			getPatientsPage: function () {
-				var start = (this.paging.currentPage - 1) * this.paging.itemsPerPage,
-					end = start + this.paging.itemsPerPage;
-
-				return this.patients.filter(this.patientFilter.bind(this));
+			onPageChanged: function () {
+				this.processPageItems();
 			},
 			patientFilter: function (patient) {
 				if (this.filterActive && !patient.is_active) { return false; }
@@ -65,6 +60,33 @@
 					search = new RegExp(this.filterSearch, 'i');
 
 				return fullText.match(search) !== null;
+			},
+			processPageItems: function () {
+				var that = this,
+					start = (that.paging.currentPage - 1) * that.paging.itemsPerPage,
+					end = start + that.paging.itemsPerPage,
+					ids = [], index, item;
+
+				for (index = start; index < end && index < that.paging.items.length; index++) {
+					item = that.paging.items[index];
+					if (that.progress[item.id] === undefined) {
+						ids.push(item.id);
+					}
+				}
+
+				if (ids.length > 0) {
+					if (that.asyncStatiPromise !== null) {
+						that.$timeout.cancel(that.asyncStatiPromise);
+					}
+
+					that.asyncStatiPromise = that.$timeout(function () {
+						that.PatientData.getAssessmentProgress(ids).then(function (progress) {
+							angular.forEach(progress, function (p) {
+								that.progress[p.patient_id] = p.progress;
+							});
+						});
+					}, 300);
+				}
 			},
 		},
 		{

@@ -99,6 +99,7 @@
 												<th>Type</th>
 												<th>PLT</th>
 												<th>Result</th>
+												<th>Progress</th>
 												<th></th>
 											</tr>
 										</thead>
@@ -108,6 +109,7 @@
 												<td>{{ assessment.questionnaire | toQName }}</td>
 												<td>{{ assessment.platelets }}</td>
 												<td>{{ assessment.result | score }}</td>
+												<td>{{ assessment.progress | progress }}</td>
 												<td align="right"><a class="btn btn-default btn-xs" href="#/patients/{{ ctlPatient.patient.id }}/assessment/edit/{{ assessment.id }}">Details</a></td>
 											</tr>
 										</tbody>
@@ -159,6 +161,33 @@
 											</tr>
 										</tbody>
 									</table>
+
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+
+				</tab>
+
+				<tab heading="Remarks" active="ctlPatient.tabs.remarks">
+
+					<div class="row">
+						<div class="col-xs-12 clearfix">
+
+							<h3 class="pull-left">Patient remarks</h3>
+
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12">
+
+							<div class="panel panel-default">
+								<div class="panel-body">
+
+									<p class="remarks" ng-bind="ctlPatient.patient.remarks"></p>
 
 								</div>
 

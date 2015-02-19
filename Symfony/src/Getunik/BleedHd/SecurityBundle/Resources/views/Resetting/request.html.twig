@@ -1,0 +1,22 @@
+{% extends "GetunikBleedHdSecurityBundle::layout.html.twig" %}
+
+{% trans_default_domain 'SecurityBundle' %}
+
+{% block fos_user_content %}
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+    <div>
+        {% if invalid_username is defined %}
+            <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+        {% endif %}
+        <div class="form-group">
+            <div class="controls">
+                <input type="text" id="username" class="form-control" name="username" required="required" placeholder="{{ 'resetting.request.username'|trans }}" />
+            </div>
+        </div>
+
+    </div>
+    <div>
+        <input type="submit" class="btn btn-large btn-default btn-block" value="{{ 'resetting.request.submit'|trans }}" />
+    </div>
+</form>
+{% endblock fos_user_content %}

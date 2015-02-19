@@ -1,3 +1,78 @@
+
+# Overall Structure
+
+```yaml
+title: Demo
+quick_links:
+  -
+    label: Test
+    screen: screen_1
+    question: question-yes-no-demo2
+  -
+    label: Multi-Valued Supplements
+    screen: screen_7
+    question: supplements-demo1
+meta_answers:
+  nya: not yet answered
+  nass: not assessed
+  napp: not applicable
+  ns: no symptom
+chapters:
+  -
+    sections:
+      -
+        screens:
+          -
+            questions:
+              - ...
+              - ...
+```
+
+## Quick Links
+Quick links can be arbitrarily defined in the `quick_links` section of the questionnaire. The `label` and `screen` properties are required, the `question` is optional and if present, the quick link will cause the loaded screen to scroll to that particular question.
+
+## Meta Answers
+The list of available meta answers - in particular their labels - must be defined for each questionnaire. The keys are well-defined, but the labels may differ from questionnaire to questionnaire.
+
+## The Hierarchy
+Note: even though most of it is currently not used, the hierarchy stayed in place because it will make future reorganizations and possibly extensions a bit easier.
+
+The questions are organized in a hierarchy of _chapters_, _sections_ and _screens_. Each level in the hierarchy can define a `slug` property that will be used to construct the full question slug. The items in the `screens` section **must** have a slug since this slug is used as part of the screen URL. The questionnaire itself may also define a `slug` property; if it is not present, the internal assessment name (file name) will be used.
+
+Given a questionnaire with the following structure,
+```yaml
+slug: sample
+chapters:
+  -
+    slug: ch01
+    sections:
+      -
+        screens:
+          -
+            slug: first
+            questions:
+              -
+                slug: question-one
+                ...
+              -
+                slug: question-two
+                ...
+      -
+        slug: sec01
+        screens:
+          -
+            slug: second
+            questions:
+              -
+                slug: question-three
+                ...
+```
+
+the resulting full question slugs will be
+* `sample.ch01.first.question-one`
+* `sample.ch01.first.question-two`
+* `sample.ch01.sec01.second.question-three`
+
 # Question Structure
 
 ```yaml

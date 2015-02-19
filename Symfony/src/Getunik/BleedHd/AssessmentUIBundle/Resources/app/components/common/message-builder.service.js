@@ -12,7 +12,9 @@
 				text: '<strong>Fatal Error (' + args[0] + '):</strong> An error occurred ' +
 						(args[1] === 'GET' ? 'retrieving data from' : 'saving data to') +
 						' the server - try <a href="javascript:location.reload()">reloading the page</a>' +
-						' and make sure your network connection is working.',
+						' and make sure your network connection is working. If you feel that this issue' +
+						' should be investigated, please note the time when the error occurred and and provide' +
+						' this information to the support team.',
 			};
 		},
 		noResponseError: function (args) {
@@ -24,6 +26,16 @@
 						' <a href="javascript:location.reload()">reload the page</a>.',
 			};
 		},
+		unhandledException: function (args) {
+			return {
+				type: 'danger',
+				text: '<strong>Fatal Error (unhandled exception):</strong> An unhandled error occurred in the' +
+						' application. Try <a href="javascript:location.reload()">reloading the page</a> and make' +
+						' sure your network connection is working. If you feel that this issue' +
+						' should be investigated, please note the time when the error occurred and and provide' +
+						' this information to the support team.',
+			};
+		}
 	};
 
 

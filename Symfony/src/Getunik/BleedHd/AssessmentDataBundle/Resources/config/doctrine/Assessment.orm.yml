@@ -14,6 +14,12 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
         lastUpdatedBy:
             type: integer
             nullable: false
+        createdDate:
+            type: datetimetz
+            nullable: false
+        createdBy:
+            type: integer
+            nullable: false
         patientId:
             type: integer
             nullable: false
@@ -33,8 +39,12 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
         result:
             type: json_array
             nullable: true
+        progress:
+            type: string
+            length: 50
+            nullable: true
     oneToMany:
-        statuses:
+        responses:
             targetEntity: Response
             mappedBy: assessment
     manyToOne:

@@ -68,17 +68,21 @@
 		'ngSanitize',
 		'ui.router',
 		'restangular',
+		'authHandler',
 		'typeRegistry',
 		'eventChannel',
 		'enhancedLog',
 		'common',
+		'pages',
 		'patient',
 		'assessment',
 		'question',
 	])
 
 	.constant('BleedHdConfig', {
-		version: '1.0.0',
+		login: '/user/login',
+		logout: '/user/logout',
+		redirectParam: '_target_path',
 		api: {
 			host: '',
 			base: '/api',
@@ -94,22 +98,39 @@
 		resourcesPath: bleedHd.env.assetPath + '/getunikbleedhdassessmentui',
 	})
 
-	.config(function ($provide, $httpProvider, CachingWrapperProvider, EnhancedLogConfigProvider) {
+	.config(function ($provide, $httpProvider, CachingWrapperProvider, EnhancedLogConfigProvider, AuthHandlerProvider, LoginRedirectProvider) {
 		$httpProvider.interceptors.push('JsonDateInterceptor');
+
+		AuthHandlerProvider.addExpirationCallback(function () {
+			// we have to work with the provider here, but we know the callback and therefore
+			// the $get function will only be called after proper initialization
+			LoginRedirectProvider.$get()(true);
+		});
 
 		// extend the (customized) Restangular service implementation to wait for
 		// the Authorization Handler promise to resolve before executing any HTTP request
-		$provide.decorator('RestangularResource', function ($delegate, AuthHandler) {
+		$provide.decorator('RestangularResource', function ($delegate, $location, $log, AuthHandler, LoginRedirect) {
 			var oldExecuteRequest = $delegate.executeRequest;
 
 			// always wait for authorization before executing the request
 			$delegate.executeRequest = function (params) {
 				return AuthHandler.authorized(function () {
 					return oldExecuteRequest(params);
+				}, function (error) {
+					$log.warn('AuthHandler refused, redirecting to login...', error);
+					LoginRedirect();
+					throw error;
 				});
 			};
 
 			return $delegate;
+		});
+
+		$provide.decorator('$exceptionHandler', function ($delegate, MessageBuilder) {
+			return function (exception, cause) {
+				MessageBuilder.send('unhandledException', [exception, cause]);
+				return $delegate(exception, cause);
+			};
 		});
 
 		// sets default caching lifetime to 10 min
