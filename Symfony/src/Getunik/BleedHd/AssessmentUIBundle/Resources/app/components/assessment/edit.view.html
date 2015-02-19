@@ -28,21 +28,25 @@
 				<div class="form-group">
 					<label class="control-label">Assessor:</label> {{ ctlAssessment.assessment.creator.email }}
 				</div>
-
+				<div class="checkbox">
+					<label class="control-label">
+						<input tabindex="3" id="assessment_progress" name="assessment_progress" type="checkbox" ng-model="ctlAssessment.assessment.progress" ng-true-value="'completed'" ng-false-value="'tentative'" /> Completed
+					</label>
+				</div>
 			</div>
 
 			<div class="col-xs-12 col-sm-6">
 				<div class="form-group">
 					<label class="control-label" for="assessment_platelets">Platelets (G/l)</label>
-					<input tabindex="3" id="assessment_platelets" name="assessment_platelets" class="form-control" type="text" ng-model="ctlAssessment.assessment.platelets" />
+					<input tabindex="4" id="assessment_platelets" name="assessment_platelets" class="form-control" type="text" ng-model="ctlAssessment.assessment.platelets" />
 				</div>
 				<div class="form-group">
 					<label class="control-label" for="assessment_remarks">Remarks</label>
-					<textarea tabindex="4" id="assessment_remarks" name="assessment_remarks" class="form-control" cols="30" rows="6" ng-model="ctlAssessment.assessment.remarks"></textarea>
+					<textarea tabindex="5" id="assessment_remarks" name="assessment_remarks" class="form-control" cols="30" rows="6" ng-model="ctlAssessment.assessment.remarks"></textarea>
 				</div>
 
 				<div ng-if="!ctlAssessment.isNew">
-					<button tabindex="5" class="btn btn-default" type="button" ng-disabled="ctlAssessment.assessmentForm.$invalid" ng-click="ctlAssessment.save()">Save</button>
+					<button tabindex="6" class="btn btn-default" type="button" ng-disabled="ctlAssessment.assessmentForm.$invalid" ng-click="ctlAssessment.save()">Save</button>
 				</div>
 			</div>
 

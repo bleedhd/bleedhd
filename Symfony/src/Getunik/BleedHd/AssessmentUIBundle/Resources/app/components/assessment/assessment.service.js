@@ -47,6 +47,7 @@
 				return {
 					patient_id: patientId,
 					start_date: that.DateHelper.fromDate(new Date(), true),
+					progress: 'tentative',
 					creator: user,
 				};
 			});
