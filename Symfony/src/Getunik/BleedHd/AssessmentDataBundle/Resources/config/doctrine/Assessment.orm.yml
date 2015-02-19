@@ -39,6 +39,10 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
         result:
             type: json_array
             nullable: true
+        progress:
+            type: string
+            length: 50
+            nullable: true
     oneToMany:
         responses:
             targetEntity: Response

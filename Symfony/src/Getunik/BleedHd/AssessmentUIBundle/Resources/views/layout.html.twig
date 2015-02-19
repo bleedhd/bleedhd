@@ -23,6 +23,7 @@
                     environment: '{{ app.environment }}',
                     debug: {{ app.request.get('debug') == 'true' ? 'true' : 'false' }},
                     assetPath: '{{ asset('bundles') }}',
+                    uid: {{ currentUid }},
                 };
                 /* jshint ignore:end */
             </script>

@@ -404,4 +404,32 @@ class Assessment implements UpdateInformationInterface, CreationInformationInter
     {
         return $this->responses;
     }
+    /**
+     * @var string
+     */
+    private $progress;
+
+
+    /**
+     * Set progress
+     *
+     * @param string $progress
+     * @return Assessment
+     */
+    public function setProgress($progress)
+    {
+        $this->progress = $progress;
+
+        return $this;
+    }
+
+    /**
+     * Get progress
+     *
+     * @return string 
+     */
+    public function getProgress()
+    {
+        return $this->progress;
+    }
 }

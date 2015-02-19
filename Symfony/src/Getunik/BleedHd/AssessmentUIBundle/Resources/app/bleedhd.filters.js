@@ -60,6 +60,12 @@
 			};
 		})
 
+		.filter('progress', function () {
+			return function (progress) {
+				return !progress ? 'Tentative' : progress.charAt(0).toUpperCase() + progress.substr(1);
+			};
+		})
+
 		; // finally end the giant statement
 
 })(angular, bleedHd);

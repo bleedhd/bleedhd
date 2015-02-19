@@ -1,12 +1,14 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentDataService($q, BleedApi, QuestionnaireData, DateHelper, DataEvents) {
+	function AssessmentDataService($q, $rootScope, BleedApi, QuestionnaireData, UserData, DateHelper, DataEvents) {
 		this.$q = $q;
+		this.env = $rootScope.env;
 		this.BleedApi = BleedApi;
 		this.DateHelper = DateHelper;
 		this.DataEvents = DataEvents;
 		this.QuestionnaireData = QuestionnaireData;
+		this.UserData = UserData;
 	}
 
 	angular.extend(AssessmentDataService.prototype, {
@@ -16,24 +18,39 @@
 		getAssessmentFull: function (patientId, assessmentId) {
 			var that = this;
 			return that.getAssessment(patientId, assessmentId).then(function (assessment) {
-				return that.QuestionnaireData.get(assessment.questionnaire).then(function (questionnaire) {
-					// add the definition as a non-enumerable property to avoid recursion
-					// issues when saving and displaying the assessment object
-					if (!('definition' in assessment)) {
-						Object.defineProperty(assessment, 'definition', {
-							value: questionnaire,
-						});
-					}
+				return that.$q.all({
+						questionnaire: that.QuestionnaireData.get(assessment.questionnaire),
+						creator: that.UserData.getUser(assessment.created_by),
+					})
+					.then(function (promises) {
+						// add the definition and creator as a non-enumerable property to avoid recursion
+						// issues when saving and displaying the assessment object
+						if (!('definition' in assessment)) {
+							Object.defineProperty(assessment, 'definition', {
+								value: promises.questionnaire,
+							});
+						}
 
-					return assessment;
-				});
+						if (!('creator' in assessment)) {
+							Object.defineProperty(assessment, 'creator', {
+								value: promises.creator,
+							});
+						}
+
+						return assessment;
+					});
 			});
 		},
 		newAssessment: function (patientId) {
-			return {
-				patient_id: patientId,
-				start_date: this.DateHelper.fromDate(new Date(), true),
-			};
+			var that = this;
+			return that.UserData.getUser(that.env.uid).then(function (user) {
+				return {
+					patient_id: patientId,
+					start_date: that.DateHelper.fromDate(new Date(), true),
+					progress: 'tentative',
+					creator: user,
+				};
+			});
 		},
 		saveAssessment: function (assessment) {
 			this.DataEvents.trigger('assessment-update', assessment);

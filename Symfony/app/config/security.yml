@@ -46,6 +46,11 @@ security:
             anonymous: true
             context: secured
 
+        app:
+            pattern: ^/app
+            security: false
+            context: secured
+
         api:
             pattern: ^/api
             fos_oauth: true

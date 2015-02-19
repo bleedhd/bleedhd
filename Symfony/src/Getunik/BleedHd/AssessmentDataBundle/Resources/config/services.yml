@@ -28,6 +28,7 @@ services:
         class: Getunik\BleedHd\AssessmentDataBundle\Service\BleedHdExtension
         arguments:
             - @getunik.bleed_hd_data.version_service
+            - @session
         tags:
             - { name: twig.extension }
 
