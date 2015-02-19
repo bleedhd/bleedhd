@@ -47,6 +47,46 @@ chapters:
       -
         screens:
           -
+            slug: performance
+            questions:
+              -
+                slug: type
+                type: radios
+                title: "Performance Score"
+                meta_answers: ['nya']
+                intro:
+                  question: "Select the performance score type used to assess the patient"
+                options:
+                  -
+                    label: "KPS"
+                    value: kps
+                  -
+                    label: "ECOG"
+                    value: ecog
+                  -
+                    label: "LPS"
+                    value: lps
+              -
+                slug: score
+                type: radios
+                title: "Performance Score"
+                meta_answers: ['nya']
+                intro:
+                  question: "Performance score"
+                options:
+                  -
+                    label: "Asymptomatic and fully active (ECOG 0; KPS or LPS 100%)"
+                    value: 0
+                  -
+                    label: "Symptomatic, fully ambulatory, restricted only in physically strenuous activity (ECOG 1, KPS or LPS 80-90%)"
+                    value: 1
+                  -
+                    label: "Symptomatic, ambulatory, capable of self-care, >50% of waking hours out of bed (ECOG 2,KPS or LPS 60-70%)"
+                    value: 2
+                  -
+                    label: "Symptomatic, limited self-care, >50% of waking hours in bed (ECOG 3-4, KPS or LPS <60%)"
+                    value: 3
+          -
             slug: skin
             questions:
               -
@@ -146,9 +186,305 @@ chapters:
                     label: "Nail involvement"
                     value: nail-involvement
               -
-                slug:
+                slug: non-gvhd
                 type: yesno
                 title: "Skin - non-GvHD causes"
+                meta_answers: ['nya']
+                intro:
+                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                options:
+                  yes:
+                    label: "Yes"
+                    value: true
+                    supplements:
+                      -
+                        slug: cause
+                        type: text
+                        question:
+                          title: "Specify"
+          -
+            slug: mouth
+            questions:
+              -
+                slug: score
+                type: radios
+                title: "Mouth - score"
+                meta_answers: ['nya']
+                intro:
+                  question: "Mouth score"
+                options:
+                  -
+                    label: "No symptoms"
+                    value: 0
+                  -
+                    label: "Mild symptoms with disease signs but not limiting oral intake significantly"
+                    value: 1
+                  -
+                    label: "Moderate symptoms with disease signs with partial limitation of oral intake"
+                    value: 2
+                  -
+                    label: "Severe symptoms with disease signs on examination with major limitation of oral intake"
+                    value: 3
+              -
+                slug: lichen-planus
+                type: yesno
+                title: "Mouth - Lichen planus-like features"
+                meta_answers: ['nya']
+                intro:
+                  question: "Lichen planus-like features present?"
+              -
+                slug:
+                type: yesno
+                title: "Mouth - non-GvHD causes"
+                meta_answers: ['nya']
+                intro:
+                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                options:
+                  yes:
+                    label: "Yes"
+                    value: true
+                    supplements:
+                      -
+                        slug: cause
+                        type: text
+                        question:
+                          title: "Specify"
+          -
+            slug: eyes
+            questions:
+              -
+                slug: score
+                type: radios
+                title: "Eyes - score"
+                meta_answers: ['nya']
+                intro:
+                  question: "Eyes score"
+                options:
+                  -
+                    label: "No symptoms"
+                    value: 0
+                  -
+                    label: "Mild dry eye symptoms not affecting ADL (requirement of lubricant eye drops < 3 x per day)"
+                    value: 1
+                  -
+                    label: "Moderate dry eye symptoms partially affecting ADL (requiring lubricant eye drops > 3 x per day or punctal plugs), WITHOUT new vision impairment due to KCS"
+                    value: 2
+                  -
+                    label: "Severe dry eye symptoms significantly affecting ADL (special eyeware to relieve pain) OR unable to work because of ocular symptoms OR loss of vision due to KCS"
+                    value: 3
+              -
+                slug: kcs
+                type: yesno
+                title: "Eyes - KCS"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Keratoconjunctivitis sicca (KCS) confirmed by ophthalmologist?"
+              -
+                slug: non-gvhd
+                type: yesno
+                title: "Eyes - non-GvHD causes"
+                meta_answers: ['nya']
+                intro:
+                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                options:
+                  yes:
+                    label: "Yes"
+                    value: true
+                    supplements:
+                      -
+                        slug: cause
+                        type: text
+                        question:
+                          title: "Specify"
+          -
+            slug: gi-tract
+            questions:
+              -
+                slug: score
+                type: radios
+                title: "GI Tract - score"
+                meta_answers: ['nya']
+                intro:
+                  question: "GI Tract score"
+                options:
+                  -
+                    label: "No symptoms"
+                    value: 0
+                  -
+                    label: "Symptoms without significant weight loss* (<5%)"
+                    value: 1
+                  -
+                    label: "Symptoms associated with mild to moderate weight loss* (5-15%) OR moderate diarrhea without significant interference with daily living"
+                    value: 2
+                  -
+                    label: "Symptoms associated with significant weight loss* >15%, requires nutritional supplement for most calorie needs OR esophageal dilation OR severe diarrhea with significant interference with daily living"
+                    value: 3
+              -
+                slug: features
+                type: checkboxes
+                title: "GI Tract - other symptoms"
+                meta_answers: ['nya']
+                intro:
+                  question: "Check all that apply"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Esophageal web / proximal stricture or ring"
+                    value: esophageal-web-proximal-stricture-ring
+                  -
+                    label: "Dysphagia"
+                    value: dysphagia
+                  -
+                    label: "Anorexia"
+                    value: anorexia
+                  -
+                    label: "Nausea"
+                    value: nausea
+                  -
+                    label: "Vomiting"
+                    value: vomiting
+                  -
+                    label: "Diarrhea"
+                    value: diarrhea
+                  -
+                    label: "Weight loss >5% (within 3 months)"
+                    value: weight-loss
+                  -
+                    label: "Failure to thrive"
+                    value: failure-to-thrive
+              -
+                slug: non-gvhd
+                type: yesno
+                title: "GI Tract - non-GvHD causes"
+                meta_answers: ['nya']
+                intro:
+                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                options:
+                  yes:
+                    label: "Yes"
+                    value: true
+                    supplements:
+                      -
+                        slug: cause
+                        type: text
+                        question:
+                          title: "Specify"
+          -
+            slug: liver
+            questions:
+              -
+                slug: score
+                type: radios
+                title: "Liver - score"
+                meta_answers: ['nya']
+                intro:
+                  question: "Liver score"
+                options:
+                  -
+                    label: "Normal total bilirubin and ALT or AP < 3 x ULN"
+                    value: 0
+                  -
+                    label: "Normal total bilirubin with ALT >3 to 5 x ULN or AP > 3 x ULN"
+                    value: 1
+                  -
+                    label: "Elevated total bilirubin but <3 mg/dL or ALT > 5 ULN"
+                    value: 2
+                  -
+                    label: "Elevated total bilirubin > 3 mg/dL"
+                    value: 3
+              -
+                slug: non-gvhd
+                type: yesno
+                title: "Liver - non-GvHD causes"
+                meta_answers: ['nya']
+                intro:
+                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                options:
+                  yes:
+                    label: "Yes"
+                    value: true
+                    supplements:
+                      -
+                        slug: cause
+                        type: text
+                        question:
+                          title: "Specify"
+          -
+            slug: lungs
+            questions:
+              -
+                slug: symptoms-score
+                type: radios
+                title: "Lungs - Symptoms score"
+                meta_answers: ['nya']
+                intro:
+                  question: "Lungs symptoms score"
+                options:
+                  -
+                    label: "No symptoms"
+                    value: 0
+                  -
+                    label: "Mild symptoms (shortness of breath after climbing one flight of steps)"
+                    value: 1
+                  -
+                    label: "Moderate symptoms (shortness of breath after walking on flat ground)"
+                    value: 2
+                  -
+                    label: "Severe symptoms (shortness of breath at rest; requiring 02)"
+                    value: 3
+              -
+                slug: fev1-score
+                type: text
+                title: "Lungs - Lung score"
+                meta_answers: ['nya', 'nass']
+                pattern: integer
+                intro:
+                  question: "Lung score % FEV1"
+              -
+                slug: non-gvhd
+                type: yesno
+                title: "Lungs - non-GvHD causes"
+                meta_answers: ['nya']
+                intro:
+                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                options:
+                  yes:
+                    label: "Yes"
+                    value: true
+                    supplements:
+                      -
+                        slug: cause
+                        type: text
+                        question:
+                          title: "Specify"
+          -
+            slug: joints-and-fascia
+            questions:
+              -
+                slug: score
+                type: radios
+                title: "Joints and Fascia - Symptoms score"
+                meta_answers: ['nya']
+                intro:
+                  question: "Joints and Fascia symptoms score"
+                options:
+                  -
+                    label: "No symptoms"
+                    value: 0
+                  -
+                    label: "Mild tightness of arms or legs, normal or mild decreased range of motion (ROM) AND not affecting ADL"
+                    value: 1
+                  -
+                    label: "Tightness of arms or legs OR joing contractures, erythema thought due to fasciitis, moderate decrease ROM AND mild to moderate limitation of ADL"
+                    value: 2
+                  -
+                    label: "Contractures WITH significant decrease of ROM AND significant limitation of ADL (unable to tie shoes, button shirts, dress self etc.)"
+                    value: 3
+              -
+                slug: non-gvhd
+                type: yesno
+                title: "Joints and Fascia - non-GvHD causes"
                 meta_answers: ['nya']
                 intro:
                   question: "Abnormality present but explained entirely by non-GvHD documented cause"
@@ -261,3 +597,111 @@ chapters:
                     intro:
                       question: "Right ankle"
                     options: *p-rom-options-4
+          -
+            slug: genital-tract
+            questions:
+              -
+                slug: score
+                type: radios
+                title: "Genital Tract - score"
+                meta_answers: ['nya']
+                intro:
+                  question: "Genital Tract score"
+                options:
+                  -
+                    label: "No symptoms"
+                    value: 0
+                  -
+                    label: "Mild signs and females may have symptoms* WITH discomfort on exam"
+                    value: 1
+                  -
+                    label: "Moderate signs and may have symptoms* with discomfort on exam"
+                    value: 2
+                  -
+                    label: "Severe signs with or without symptoms *"
+                    value: 3
+              -
+                slug: sexually-active
+                type: yesno
+                title: "Genital Tract - sexually active"
+                meta_answers: ['nya']
+                intro:
+                  question: "Currently sexually active"
+              -
+                slug: features
+                type: checkboxes
+                title: "Genital Tract - other symptoms"
+                meta_answers: ['nya']
+                intro:
+                  question: "Check all that apply"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Lichen planus-like features"
+                    value: lichen-planus-like-features
+                  -
+                    label: "Lichen sclerosis-like features"
+                    value: lichen-sclerosis-like-features
+                  -
+                    label: "Vaginal scarring (female)"
+                    value: vaginal-scarring
+                  -
+                    label: "Clitoral/labial agglutination (female)"
+                    value: clitoral-labial-agglutination
+                  -
+                    label: "Labial resorption (female)"
+                    value: labial-resorption
+                  -
+                    label: "Erosions"
+                    value: erosions
+                  -
+                    label: "Fissures"
+                    value: fissures
+                  -
+                    label: "Ulcers"
+                    value: ulcers
+                  -
+                    label: "Phimosis (male)"
+                    value: phimosis
+                  -
+                    label: "Urethral meatus scarring / stenosis (male)"
+                    value: urethral-meatus-scarring-stenosis
+              -
+                slug: causes
+                type: multi
+                meta_answers: ['nya']
+                title: "Genital Tract - non-GvHD causes"
+                questions:
+                  -
+                    slug: non-gvhd
+                    type: yesno
+                    meta_answers: ['nya']
+                    intro:
+                      question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                    options:
+                      yes:
+                        label: "Yes"
+                        value: true
+                        supplements:
+                          -
+                            slug: cause
+                            type: text
+                            question:
+                              title: "Specify"
+                  -
+                    slug: gvhd-plus
+                    type: yesno
+                    meta_answers: ['nya']
+                    intro:
+                      question: "Abnormality thought to represent GvHD PLUS other causes"
+                    options:
+                      yes:
+                        label: "Yes"
+                        value: true
+                        supplements:
+                          -
+                            slug: cause
+                            type: text
+                            question:
+                              title: "Specify"
