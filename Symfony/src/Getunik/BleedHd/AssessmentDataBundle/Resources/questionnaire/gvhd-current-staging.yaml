@@ -171,7 +171,7 @@ chapters:
                 title: "Photographic Range of Motion (P-ROM)"
                 meta_answers: ['nya']
                 intro:
-                  image: "images/p-rom-shoulder.jpg"
+                  image: "images/gvhd-p-rom-shoulder.png"
                 questions:
                   -
                     slug: left
@@ -195,7 +195,7 @@ chapters:
                 title: "Photographic Range of Motion (P-ROM)"
                 meta_answers: ['nya']
                 intro:
-                  image: "images/p-rom-elbow.jpg"
+                  image: "images/gvhd-p-rom-elbow.png"
                 questions:
                   -
                     slug: left
@@ -219,7 +219,7 @@ chapters:
                 title: "Photographic Range of Motion (P-ROM)"
                 meta_answers: ['nya']
                 intro:
-                  image: "images/p-rom-wrist-finger.jpg"
+                  image: "images/gvhd-p-rom-wrist-finger.png"
                 questions:
                   -
                     slug: left
@@ -243,7 +243,7 @@ chapters:
                 title: "Photographic Range of Motion (P-ROM)"
                 meta_answers: ['nya']
                 intro:
-                  image: "images/p-rom-ankle.jpg"
+                  image: "images/gvhd-p-rom-ankle.png"
                 questions:
                   -
                     slug: left
