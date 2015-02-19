@@ -40,7 +40,7 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
             type: json_array
             nullable: true
     oneToMany:
-        statuses:
+        responses:
             targetEntity: Response
             mappedBy: assessment
     manyToOne:

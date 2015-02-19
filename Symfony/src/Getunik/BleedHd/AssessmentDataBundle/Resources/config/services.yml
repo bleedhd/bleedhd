@@ -38,6 +38,14 @@ services:
             - { name: doctrine.event_listener, event: preUpdate }
             - { name: doctrine.event_listener, event: prePersist }
 
+    getunik.bleed_hd_data.entity_creation_listener:
+        class: Getunik\BleedHd\AssessmentDataBundle\Listener\CreationInformationListener
+        arguments:
+            - @service_container
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: prePersist }
+
     getunik.bleed_hd_data.flush_data_listener:
         class: Getunik\BleedHd\AssessmentDataBundle\Listener\FlushDataListener
         arguments: ['@service_container', '%getunik.bleed_hd_data.entity_manager_service%']
