@@ -349,4 +349,60 @@ class Assessment implements UpdateInformationInterface
     {
         return $this->result;
     }
+    /**
+     * @var datetimez
+     */
+    private $createdDate;
+
+    /**
+     * @var integer
+     */
+    private $createdBy;
+
+
+    /**
+     * Set createdDate
+     *
+     * @param \DateTime $createdDate
+     * @return Assessment
+     */
+    public function setCreatedDate($createdDate)
+    {
+        $this->createdDate = $createdDate;
+
+        return $this;
+    }
+
+    /**
+     * Get createdDate
+     *
+     * @return \DateTime
+     */
+    public function getCreatedDate()
+    {
+        return $this->createdDate;
+    }
+
+    /**
+     * Set createdBy
+     *
+     * @param integer $createdBy
+     * @return Assessment
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return integer 
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
 }
