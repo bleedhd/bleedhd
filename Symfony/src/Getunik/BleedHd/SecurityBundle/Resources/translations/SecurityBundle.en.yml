@@ -24,6 +24,7 @@ profile:
     show:
         username: Username
         email: Email
+        full_name: Full name
     edit:
         submit: Update
     flash:
@@ -92,3 +93,4 @@ form:
     password_confirmation: "Verification"
     new_password: "New password"
     new_password_confirmation: "Verification"
+    full_name: "Full name"
