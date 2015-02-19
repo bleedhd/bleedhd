@@ -20,6 +20,7 @@ class RegistrationFormType extends AbstractType
 				),
 			)
 		));
+		$builder->add('fullName');
 	}
 
 	public function getParent()

@@ -92,6 +92,9 @@ fos_user:
     registration:
         form:
             type: getunik_bleed_hd_user_registration
+    profile:
+        form:
+            type: getunik_bleed_hd_user_profile
 
 fos_oauth_server:
     db_driver: orm       # Driver availables: orm, mongodb, or propel

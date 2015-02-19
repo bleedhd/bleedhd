@@ -30,3 +30,8 @@ services:
         class: Getunik\BleedHd\SecurityBundle\Form\Type\RegistrationFormType
         tags:
             - { name: form.type, alias: getunik_bleed_hd_user_registration }
+
+    getunik_bleed_hd_security.profile.form.type:
+        class: Getunik\BleedHd\SecurityBundle\Form\Type\ProfileFormType
+        tags:
+            - { name: form.type, alias: getunik_bleed_hd_user_profile }

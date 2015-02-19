@@ -11,6 +11,11 @@
 	</div>
 	<div class="form-group">
 		<div class="controls">
+			{{ form_widget(form.fullName, {'attr': {'class': 'form-control', 'placeholder': 'form.full_name'|trans }}) }}
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="controls">
 			{{ form_widget(form.username, {'attr': {'class': 'form-control', 'placeholder': 'form.username'|trans }}) }}
 		</div>
 	</div>
