@@ -56,8 +56,8 @@
 				return status.put();
 			}
 		},
-		getAssessmentStati: function (patientIds) {
-			return this.patients.customPUT(patientIds, 'stati');
+		getAssessmentProgress: function (patientIds) {
+			return this.patients.customPUT(patientIds, 'progress');
 		},
 		_getPatient: function (patientId) {
 			return this.BleedApi.one('patients', patientId).get();
@@ -71,6 +71,7 @@
 				});
 		},
 	});
+
 
 	angular.module('patient')
 
@@ -124,15 +125,18 @@
 						}
 					});
 
+					function wipePatient(patientId) {
+						that.caches.default.remove(['patient', patientId].join('-'));
+						that.caches.default.remove(['patient-additions', patientId].join('-'));
+					}
+
 					// Saving responses has the side effect of recalculating (and storing) the assessment score.
 					// As a result, the patient (linked with assessments) has to be reloaded
 					DataEvents.on('responses-update', function (event) {
-						that.caches.default.remove(['patient', event.patientId].join('-'));
-						that.caches.default.remove(['patient-additions', event.patientId].join('-'));
+						wipePatient(event.patientId);
 					});
 					DataEvents.on(['status-update', 'assessment-update'], function (event) {
-						that.caches.default.remove(['patient', event.data.patient_id].join('-'));
-						that.caches.default.remove(['patient-additions', event.data.patient_id].join('-'));
+						wipePatient(event.data.patient_id);
 					});
 
 					// Status objects are always accessed from the patient - they are never retrieved or modified

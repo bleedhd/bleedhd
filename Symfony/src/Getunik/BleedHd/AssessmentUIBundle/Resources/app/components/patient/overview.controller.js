@@ -6,6 +6,7 @@
 		this.$timeout = $timeout;
 		this.patients = patients;
 		this.patients.sort(function (a, b) { return a.lastname.toLowerCase().localeCompare(b.lastname.toLowerCase()); });
+		this.progress = {};
 
 		this.paging = {
 			items: [],
@@ -64,14 +65,12 @@
 				var that = this,
 					start = (that.paging.currentPage - 1) * that.paging.itemsPerPage,
 					end = start + that.paging.itemsPerPage,
-					ids = [], patients = {}, index, item;
+					ids = [], index, item;
 
 				for (index = start; index < end && index < that.paging.items.length; index++) {
 					item = that.paging.items[index];
-					if (item.status === undefined || item.status === null) {
-						item.status = null;
+					if (that.progress[item.id] === undefined) {
 						ids.push(item.id);
-						patients[item.id] = item;
 					}
 				}
 
@@ -81,10 +80,9 @@
 					}
 
 					that.asyncStatiPromise = that.$timeout(function () {
-						that.PatientData.getAssessmentStati(ids).then(function (stati) {
-							console.log('stati', stati.length, stati);
-							angular.forEach(stati, function (status) {
-								patients[status.patient_id].status = status.complete;
+						that.PatientData.getAssessmentProgress(ids).then(function (progress) {
+							angular.forEach(progress, function (p) {
+								that.progress[p.patient_id] = p.progress;
 							});
 						});
 					}, 300);

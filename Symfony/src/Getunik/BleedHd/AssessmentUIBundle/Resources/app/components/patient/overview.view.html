@@ -42,7 +42,7 @@
 								<th>First name</th>
 								<th>Date of birth</th>
 								<th>Active</th>
-								<th>Status</th>
+								<th>Progress</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -53,8 +53,8 @@
 								<td>{{ patient.birthdate.date | isodate }}</td>
 								<td>{{ patient.is_active | boolyesno }}</td>
 								<td>
-									<img ng-if="patient.status === null" ng-src="{{ 'images/logo.png' | resourcePath }}" width="16" height="16" />
-									<span ng-if="patient.status !== null">{{ patient.status ? 'complete' : 'incomplete' }}</span>
+									<img ng-if="ctlPatients.progress[patient.id] === undefined" ng-src="{{ 'images/ajax-loader.gif' | resourcePath }}" width="16" height="16" />
+									<span ng-if="ctlPatients.progress[patient.id] !== undefined">{{ ctlPatients.progress[patient.id] | progress }}</span>
 								</td>
 								<td><a class="btn btn-default btn-xs" href="#/patients/detail/{{ patient.id }}">Details</a></td>
 							</tr>

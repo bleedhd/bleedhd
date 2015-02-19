@@ -29,12 +29,12 @@ class AssessmentRepository extends EntityRepository
         return $merged;
     }
 
-    public function getPatientResults(array $patientIds)
+    public function getPatientProgress(array $patientIds)
     {
         $builder = $this->_em->createQueryBuilder();
 
         $builder
-            ->select('a.patientId, a.result')
+            ->select('a.patientId, a.progress')
             ->from('GetunikBleedHdAssessmentDataBundle:Assessment', 'a')
             ->where($builder->expr()->in('a.patientId', $patientIds));
 

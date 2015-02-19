@@ -9,6 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Assessment implements UpdateInformationInterface, CreationInformationInterface
 {
+    const PROGRESS_COMPLETE = 'completed';
+    const PROGRESS_TENTATIVE = 'tentative';
+
     /**
      * @var integer
      */
@@ -426,7 +429,7 @@ class Assessment implements UpdateInformationInterface, CreationInformationInter
     /**
      * Get progress
      *
-     * @return string 
+     * @return string
      */
     public function getProgress()
     {

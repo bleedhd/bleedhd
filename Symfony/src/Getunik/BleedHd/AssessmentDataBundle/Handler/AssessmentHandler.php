@@ -68,20 +68,20 @@ class AssessmentHandler
      * @param array $patientIds - a list of patient IDs
      * @return array - a mapping from patient IDs to their assessment status
      */
-    public function getAssessmentStati(array $patientIds)
+    public function getAssessmentProgress(array $patientIds)
     {
         $result = array();
         foreach ($patientIds as $id)
         {
-            $result[$id] = array('patient_id' => $id, 'complete' => true);
+            $result[$id] = array('patient_id' => $id, 'progress' => Assessment::PROGRESS_COMPLETE);
         }
 
-        $stati = $this->repository->getPatientResults($patientIds);
-        foreach ($stati as $status)
+        $assessments = $this->repository->getPatientProgress($patientIds);
+        foreach ($assessments as $assessment)
         {
-            if (!(isset($status['result']) && isset($status['result']['score']) && isset($status['result']['score']['total'])))
+            if ($assessment['progress'] !== Assessment::PROGRESS_COMPLETE)
             {
-                $result[$status['patientId']]['complete'] = false;
+                $result[$assessment['patientId']]['progress'] = Assessment::PROGRESS_TENTATIVE;
             }
         }
 

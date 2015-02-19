@@ -31,13 +31,13 @@ class PatientsController extends FOSRestController
 
     /**
      * @Security("has_role('ROLE_READER')")
-     * @Put("/patients/stati", requirements={"_format"="json|xml"})
+     * @Put("/patients/progress", requirements={"_format"="json|xml"})
      * @ParamConverter("ids", converter="fos_rest.request_body", class="ArrayCollection<integer>")
      */
-    public function putPatientsStatiAction($ids)
+    public function putPatientsProgressAction($ids)
     {
-        $stati = $this->assessmentHandler->getAssessmentStati($ids);
-        return $this->handleView($this->view($stati));
+        $progress = $this->assessmentHandler->getAssessmentProgress($ids);
+        return $this->handleView($this->view($progress));
     }
 
     /**
