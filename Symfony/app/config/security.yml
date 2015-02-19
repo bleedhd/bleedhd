@@ -48,7 +48,7 @@ security:
 
         app:
             pattern: ^/app
-            security: false
+            anonymous: true
             context: secured
 
         api:
