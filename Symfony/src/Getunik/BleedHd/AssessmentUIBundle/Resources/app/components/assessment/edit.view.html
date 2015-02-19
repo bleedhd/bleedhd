@@ -29,7 +29,7 @@
 					<label class="control-label">Assessor:</label> {{ ctlAssessment.assessment.creator.email }}
 				</div>
 				<div class="checkbox">
-					<label class="control-label">
+					<label class="control-label" ng-if="!ctlAssessment.isNew">
 						<input tabindex="3" id="assessment_progress" name="assessment_progress" type="checkbox" ng-model="ctlAssessment.assessment.progress" ng-true-value="'completed'" ng-false-value="'tentative'" /> Completed
 					</label>
 				</div>
