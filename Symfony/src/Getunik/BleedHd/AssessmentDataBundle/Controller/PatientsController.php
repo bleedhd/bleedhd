@@ -8,9 +8,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Post;
+use FOS\RestBundle\Controller\Annotations\Put;
 
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Patient;
 use Getunik\BleedHd\AssessmentDataBundle\Handler\PatientHandler;
+use Getunik\BleedHd\AssessmentDataBundle\Handler\AssessmentHandler;
 
 
 /**
@@ -19,10 +21,23 @@ use Getunik\BleedHd\AssessmentDataBundle\Handler\PatientHandler;
 class PatientsController extends FOSRestController
 {
     protected $patientHandler;
+    protected $assessmentHandler;
 
-    public function __construct(PatientHandler $patientHandler)
+    public function __construct(PatientHandler $patientHandler, AssessmentHandler $assessmentHandler)
     {
         $this->patientHandler = $patientHandler;
+        $this->assessmentHandler = $assessmentHandler;
+    }
+
+    /**
+     * @Security("has_role('ROLE_READER')")
+     * @Put("/patients/progress", requirements={"_format"="json|xml"})
+     * @ParamConverter("ids", converter="fos_rest.request_body", class="ArrayCollection<integer>")
+     */
+    public function putPatientsProgressAction($ids)
+    {
+        $progress = $this->assessmentHandler->getAssessmentProgress($ids);
+        return $this->handleView($this->view($progress));
     }
 
     /**
