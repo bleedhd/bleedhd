@@ -12,6 +12,7 @@ parameters:
     getunik.bleed_hd_data.questionnaire_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\QuestionnairesController
     getunik.bleed_hd_data.clientlogentry_handler.class: Getunik\BleedHd\AssessmentDataBundle\Handler\ClientLogEntryHandler
     getunik.bleed_hd_data.clientlogentry_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\ClientLogEntriesController
+    getunik.bleed_hd_data.user_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\UsersController
 
 
 services:
@@ -135,5 +136,12 @@ services:
         class: %getunik.bleed_hd_data.clientlogentry_controller.class%
         arguments:
             - @getunik.bleed_hd_data.clientlogentry_handler
+        calls:
+            - [setContainer, ["@service_container"]]
+
+    getunik.bleed_hd_data.user_controller:
+        class: %getunik.bleed_hd_data.user_controller.class%
+        arguments:
+            - @fos_user.user_manager
         calls:
             - [setContainer, ["@service_container"]]
