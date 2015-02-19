@@ -56,6 +56,9 @@
 				return status.put();
 			}
 		},
+		getAssessmentStati: function (patientIds) {
+			return this.patients.customPUT(patientIds, 'stati');
+		},
 		_getPatient: function (patientId) {
 			return this.BleedApi.one('patients', patientId).get();
 		},
