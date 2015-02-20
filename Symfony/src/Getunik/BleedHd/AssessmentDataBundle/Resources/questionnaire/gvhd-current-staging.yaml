@@ -1,5 +1,30 @@
 
 title: GvHD - current staging
+quick_links:
+  -
+    label: "Skin"
+    screen: skin
+  -
+    label: "Mouth"
+    screen: mouth
+  -
+    label: "Eyes"
+    screen: eyes
+  -
+    label: "GI Tract"
+    screen: gi-tract
+  -
+    label: Liver
+    screen: liver
+  -
+    label: Lungs
+    screen: lungs
+  -
+    label: Joints and Fascia
+    screen: joints-and-fascia
+  -
+    label: Genital Tract
+    screen: genital-tract
 meta_answers:
   nya: Not yet answered
   nass: Not assessed
@@ -41,6 +66,45 @@ shared:
     -
       label: "4"
       value: 4
+  - &non-gvhd-cause-options
+    yes:
+      label: "Yes"
+      value: true
+      supplements:
+        -
+          slug: cause
+          type: text
+          question:
+            title: "Specify"
+  - &gvhd-severity-options
+    -
+      label: "Not assessed"
+      value: -1
+    -
+      label: "none"
+      value: 0
+    -
+      label: "mild"
+      value: 1
+    -
+      label: "moderate"
+      value: 2
+    -
+      label: "severe"
+      value: 3
+  - &gvhd-severity-options-single
+    -
+      label: "none"
+      value: 0
+    -
+      label: "mild"
+      value: 1
+    -
+      label: "moderate"
+      value: 2
+    -
+      label: "severe"
+      value: 3
 chapters:
   -
     sections:
@@ -192,16 +256,7 @@ chapters:
                 meta_answers: ['nya']
                 intro:
                   question: "Abnormality present but explained entirely by non-GvHD documented cause"
-                options:
-                  yes:
-                    label: "Yes"
-                    value: true
-                    supplements:
-                      -
-                        slug: cause
-                        type: text
-                        question:
-                          title: "Specify"
+                options: *non-gvhd-cause-options
           -
             slug: mouth
             questions:
@@ -233,22 +288,13 @@ chapters:
                 intro:
                   question: "Lichen planus-like features present?"
               -
-                slug:
+                slug: non-gvhd
                 type: yesno
                 title: "Mouth - non-GvHD causes"
                 meta_answers: ['nya']
                 intro:
                   question: "Abnormality present but explained entirely by non-GvHD documented cause"
-                options:
-                  yes:
-                    label: "Yes"
-                    value: true
-                    supplements:
-                      -
-                        slug: cause
-                        type: text
-                        question:
-                          title: "Specify"
+                options: *non-gvhd-cause-options
           -
             slug: eyes
             questions:
@@ -286,16 +332,7 @@ chapters:
                 meta_answers: ['nya']
                 intro:
                   question: "Abnormality present but explained entirely by non-GvHD documented cause"
-                options:
-                  yes:
-                    label: "Yes"
-                    value: true
-                    supplements:
-                      -
-                        slug: cause
-                        type: text
-                        question:
-                          title: "Specify"
+                options: *non-gvhd-cause-options
           -
             slug: gi-tract
             questions:
@@ -360,16 +397,7 @@ chapters:
                 meta_answers: ['nya']
                 intro:
                   question: "Abnormality present but explained entirely by non-GvHD documented cause"
-                options:
-                  yes:
-                    label: "Yes"
-                    value: true
-                    supplements:
-                      -
-                        slug: cause
-                        type: text
-                        question:
-                          title: "Specify"
+                options: *non-gvhd-cause-options
           -
             slug: liver
             questions:
@@ -400,16 +428,7 @@ chapters:
                 meta_answers: ['nya']
                 intro:
                   question: "Abnormality present but explained entirely by non-GvHD documented cause"
-                options:
-                  yes:
-                    label: "Yes"
-                    value: true
-                    supplements:
-                      -
-                        slug: cause
-                        type: text
-                        question:
-                          title: "Specify"
+                options: *non-gvhd-cause-options
           -
             slug: lungs
             questions:
@@ -448,56 +467,7 @@ chapters:
                 meta_answers: ['nya']
                 intro:
                   question: "Abnormality present but explained entirely by non-GvHD documented cause"
-                options:
-                  yes:
-                    label: "Yes"
-                    value: true
-                    supplements:
-                      -
-                        slug: cause
-                        type: text
-                        question:
-                          title: "Specify"
-          -
-            slug: joints-and-fascia
-            questions:
-              -
-                slug: score
-                type: radios
-                title: "Joints and Fascia - Symptoms score"
-                meta_answers: ['nya']
-                intro:
-                  question: "Joints and Fascia symptoms score"
-                options:
-                  -
-                    label: "No symptoms"
-                    value: 0
-                  -
-                    label: "Mild tightness of arms or legs, normal or mild decreased range of motion (ROM) AND not affecting ADL"
-                    value: 1
-                  -
-                    label: "Tightness of arms or legs OR joing contractures, erythema thought due to fasciitis, moderate decrease ROM AND mild to moderate limitation of ADL"
-                    value: 2
-                  -
-                    label: "Contractures WITH significant decrease of ROM AND significant limitation of ADL (unable to tie shoes, button shirts, dress self etc.)"
-                    value: 3
-              -
-                slug: non-gvhd
-                type: yesno
-                title: "Joints and Fascia - non-GvHD causes"
-                meta_answers: ['nya']
-                intro:
-                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
-                options:
-                  yes:
-                    label: "Yes"
-                    value: true
-                    supplements:
-                      -
-                        slug: cause
-                        type: text
-                        question:
-                          title: "Specify"
+                options: *non-gvhd-cause-options
           -
             slug: p-rom
             questions:
@@ -598,6 +568,37 @@ chapters:
                       question: "Right ankle"
                     options: *p-rom-options-4
           -
+            slug: joints-and-fascia
+            questions:
+              -
+                slug: score
+                type: radios
+                title: "Joints and Fascia - Symptoms score"
+                meta_answers: ['nya']
+                intro:
+                  question: "Joints and Fascia symptoms score"
+                options:
+                  -
+                    label: "No symptoms"
+                    value: 0
+                  -
+                    label: "Mild tightness of arms or legs, normal or mild decreased range of motion (ROM) AND not affecting ADL"
+                    value: 1
+                  -
+                    label: "Tightness of arms or legs OR joing contractures, erythema thought due to fasciitis, moderate decrease ROM AND mild to moderate limitation of ADL"
+                    value: 2
+                  -
+                    label: "Contractures WITH significant decrease of ROM AND significant limitation of ADL (unable to tie shoes, button shirts, dress self etc.)"
+                    value: 3
+              -
+                slug: non-gvhd
+                type: yesno
+                title: "Joints and Fascia - non-GvHD causes"
+                meta_answers: ['nya']
+                intro:
+                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                options: *non-gvhd-cause-options
+          -
             slug: genital-tract
             questions:
               -
@@ -607,18 +608,23 @@ chapters:
                 meta_answers: ['nya']
                 intro:
                   question: "Genital Tract score"
+                info:
+                  resource: "documents/sample.pdf"
+                annotations:
+                  - "‡ To be completed by specialist or trained medical providers"
+                  - "* Genital symptoms are not specific to cGvHD and can represent premature gonadal failure or genital tract infection."
                 options:
                   -
                     label: "No symptoms"
                     value: 0
                   -
-                    label: "Mild signs and females may have symptoms* WITH discomfort on exam"
+                    label: "Mild signs‡ and females may have symptoms* WITH discomfort on exam"
                     value: 1
                   -
-                    label: "Moderate signs and may have symptoms* with discomfort on exam"
+                    label: "Moderate signs‡ and may have symptoms* with discomfort on exam"
                     value: 2
                   -
-                    label: "Severe signs with or without symptoms *"
+                    label: "Severe signs‡ with or without symptoms *"
                     value: 3
               -
                 slug: sexually-active
@@ -679,16 +685,7 @@ chapters:
                     meta_answers: ['nya']
                     intro:
                       question: "Abnormality present but explained entirely by non-GvHD documented cause"
-                    options:
-                      yes:
-                        label: "Yes"
-                        value: true
-                        supplements:
-                          -
-                            slug: cause
-                            type: text
-                            question:
-                              title: "Specify"
+                    options: *non-gvhd-cause-options
                   -
                     slug: gvhd-plus
                     type: yesno
@@ -705,3 +702,164 @@ chapters:
                             type: text
                             question:
                               title: "Specify"
+          -
+            slug: genital-tract-biopsy
+            questions:
+              -
+                slug: obtained
+                type: yesno
+                title: "Genital Tract Biopsy - obtained"
+                meta_answers: ['nya']
+                intro:
+                  question: "Biopsy obtained?"
+                options:
+                  yes:
+                    label: "Yes"
+                    value: true
+                    supplements:
+                      -
+                        slug: site
+                        type: text
+                        label: Site biopsied
+              -
+                slug: gvhd-histology
+                type: yesno
+                title: "Genital Tract Biopsy - histology"
+                meta_answers: ['nya']
+                intro:
+                  question: "GvHD confirmed by histology"
+              -
+                slug: change
+                type: radios
+                title: "Genital Tract Biopsy - change"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Change from previous evaluation"
+                options:
+                  -
+                    label: "No prior or current GvHD"
+                    value: non-gvhd
+                  -
+                    label: "Improved"
+                    value: improved
+                  -
+                    label: "Stable"
+                    value: stable
+                  -
+                    label: "Worse"
+                    value: worse
+          -
+            slug: other-indicators
+            questions:
+              -
+                slug: features-score
+                type: multi
+                title: "Other indicators"
+                meta_answers: ['nya']
+                intro:
+                  question: "Other indicators, clinical features or complications related to chronic GvHD"
+                questions:
+                  -
+                    slug: ascites
+                    type: radios
+                    variant: horizontal
+                    intro:
+                      question: "Ascites (serositis)"
+                    options: *gvhd-severity-options
+                  -
+                    slug: pericardial-effusion
+                    type: radios
+                    variant: horizontal
+                    intro:
+                      question: "Pericardial Effusion"
+                    options: *gvhd-severity-options
+                  -
+                    slug: pleura-effusion
+                    type: radios
+                    variant: horizontal
+                    intro:
+                      question: "Pleural Effusion(s)"
+                    options: *gvhd-severity-options
+                  -
+                    slug: nephrotic-syndrome
+                    type: radios
+                    variant: horizontal
+                    intro:
+                      question: "Nephrotic syndrome"
+                    options: *gvhd-severity-options
+                  -
+                    slug: myasthenia-gravis
+                    type: radios
+                    variant: horizontal
+                    intro:
+                      question: "Myasthenia Gravis"
+                    options: *gvhd-severity-options
+                  -
+                    slug: peripheral-neuropathy
+                    type: radios
+                    variant: horizontal
+                    intro:
+                      question: "Peripheral Neuropathy"
+                    options: *gvhd-severity-options
+                  -
+                    slug: polymyositis
+                    type: radios
+                    variant: horizontal
+                    intro:
+                      question: "Polymyositis"
+                    options: *gvhd-severity-options
+              -
+                slug: features-present
+                type: multi
+                title: "Other indicators"
+                meta_answers: ['nya']
+                intro:
+                  question: "Other indicators, clinical features or complications related to chronic GvHD"
+                questions:
+                  -
+                    slug: weight-loss
+                    type: yesno
+                    intro:
+                      question: "Weight loss > 5% (within 3 months) without GI symptoms"
+                  -
+                    slug: eosinophilia
+                    type: yesno
+                    intro:
+                      question: "Eosinophilia"
+                    options:
+                      yes:
+                        label: "> 500/μl"
+                        value: true
+                      no:
+                        label: "< 500/μl"
+                        value: false
+                  -
+                    slug: platelets
+                    type: yesno
+                    intro:
+                      question: "Platelets"
+                    options:
+                      yes:
+                        label: "< 100'000/μl"
+                        value: true
+                      no:
+                        label: "> 100'000/μl"
+                        value: false
+                  -
+                    slug: others
+                    type: text
+                    intro:
+                      question: "Others (specify)"
+          -
+            slug: overall
+            questions:
+              -
+                slug: severity
+                type: radios
+                variant: horizontal
+                title: "Overall GvHD Severity"
+                meta_answers: ['nya']
+                intro:
+                  question: "Overall GvHD severity (opinion of the evaluator)"
+                options: *gvhd-severity-options-single
+
