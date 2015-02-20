@@ -8,9 +8,7 @@ use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
 class CalculatorMap extends CalculatorBase
 {
-	private $valueKey;
-
-	public function __construct(LoggerInterface $logger, $valueKey)
+	public function __construct(LoggerInterface $logger)
 	{
 		parent::__construct($logger);
 
@@ -28,7 +26,7 @@ class CalculatorMap extends CalculatorBase
 		else
 		{
 			foreach ($config as $key => $value) {
-				$this->logger->info(" => scoring: " . $key . " as " . $value);
+				$this->logger->info(" => scoring: " . $key . " as " . json_encode($value));
 				$this->score->{$key} = $value;
 			}
 		}

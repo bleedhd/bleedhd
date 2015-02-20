@@ -8,10 +8,10 @@
 					parent(this)(scope, definition);
 
 					var that = this,
-						optionsDef = $.extend({
-						yes: { label: 'Yes', value: true },
-						no: { label: 'No', value: false },
-					}, this.definition.options);
+						optionsDef = $.extend(true, {
+							yes: { label: 'Yes', value: true },
+							no: { label: 'No', value: false },
+						}, this.definition.options);
 
 					that.options = that.processOptions([optionsDef.yes, optionsDef.no], function (option) {
 						return {

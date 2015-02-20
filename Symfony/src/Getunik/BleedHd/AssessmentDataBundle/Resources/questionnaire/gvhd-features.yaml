@@ -18,7 +18,12 @@ chapters:
                 type: yesno
                 title: "Any features of GvHD present"
                 meta_answers: ['nya']
-                score:
-                  grade: 1
                 intro:
                   question: "Any features of GvHD present?"
+                options:
+                  yes:
+                    score:
+                      present: true
+                  no:
+                    score:
+                      present: false

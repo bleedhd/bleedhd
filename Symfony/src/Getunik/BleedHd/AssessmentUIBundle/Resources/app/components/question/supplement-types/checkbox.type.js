@@ -5,7 +5,7 @@
 		SupplementTypeRegistryProvider.registerTypeWithName('checkbox', 'base', function (parent) {
 			return {
 				ctor: function CheckboxSupplement (scope, definition) {
-					this.options = $.extend({
+					this.options = $.extend(true, {
 						yes: { label: 'Yes', value: true },
 						no: { label: 'No', value: false },
 					}, definition.options);
