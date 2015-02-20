@@ -10,7 +10,7 @@ class CalculatorBsms extends CalculatorMap
 {
 	public function __construct(LoggerInterface $logger)
 	{
-		parent::__construct($logger, 'grade');
+		parent::__construct($logger);
 
 		$this->score->total = 0;
 	}
