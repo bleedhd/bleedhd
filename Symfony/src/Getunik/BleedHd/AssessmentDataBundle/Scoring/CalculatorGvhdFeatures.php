@@ -6,12 +6,25 @@ use Psr\Log\LoggerInterface;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
 
-class CalculatorGvhdFeatures extends CalculatorBase
+class CalculatorGvhdFeatures extends CalculatorMap
 {
+	const SCORE_PRESENT = 'GvHD present';
+	const SCORE_NOT_PRESENT = 'No GvHD present';
+
 	public function __construct(LoggerInterface $logger)
 	{
 		parent::__construct($logger);
+	}
 
-		// 'GvHD present', 'No GvHD present'
+	protected function finish()
+	{
+		if (isset($this->score->present))
+		{
+			$this->score->total = ($this->score->present ? self::SCORE_PRESENT : self::SCORE_NOT_PRESENT);
+		}
+		else
+		{
+			$this->score->total = NULL;
+		}
 	}
 }
