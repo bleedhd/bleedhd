@@ -16,7 +16,22 @@ class ScoreCalculatorFactory
 
 	public function create($assessmentType)
 	{
-		$name = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\Calculator' . ucfirst($assessmentType);
+		if ($assessmentType === 'gvhd-features')
+		{
+			$name = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\CalculatorGvhdFeatures';
+		}
+		else if ($assessmentType === 'gvhd-first-diagnosis')
+		{
+			$name = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\CalculatorGvhdFirstDiagnosis';
+		}
+		else if ($assessmentType === 'gvhd-current-staging')
+		{
+			$name = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\CalculatorGvhdCurrentStaging';
+		}
+		else
+		{
+			$name = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\Calculator' . ucfirst($assessmentType);
+		}
 
 		return new $name($this->logger);
 	}

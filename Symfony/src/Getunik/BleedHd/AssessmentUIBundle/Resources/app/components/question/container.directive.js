@@ -16,15 +16,6 @@
 		// ng-model binding inside an ng-repeat appears to not work otherwise.
 		this.scope.binding = { meta: this.getInitialMetaValue() };
 
-		// extract and prepare info URL
-		if (this.question.info !== undefined) {
-			if (this.question.info.resource !== undefined) {
-				this.infoUrl = $filter('resourcePath')(this.question.info.resource);
-			} else if (this.question.info.url !== undefined) {
-				this.infoUrl = this.question.info.url;
-			}
-		}
-
 		var that = this;
 
 		$scope.$on('q-data-changed', function (event, questionCtl) {

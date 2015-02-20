@@ -96,6 +96,7 @@
 			yesno: ['yes', 'no'],
 		},
 		resourcesPath: bleedHd.env.assetPath + '/getunikbleedhdassessmentui',
+		assessmentResourcesPath: bleedHd.env.assetPath + '/getunikbleedhdassessmentdata',
 	})
 
 	.config(function ($provide, $httpProvider, CachingWrapperProvider, EnhancedLogConfigProvider, AuthHandlerProvider, LoginRedirectProvider) {

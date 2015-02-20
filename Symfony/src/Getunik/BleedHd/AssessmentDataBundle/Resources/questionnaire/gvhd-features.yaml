@@ -1,0 +1,24 @@
+
+title: GvHD - features
+meta_answers:
+  nya: Not yet answered
+  nass: Not assessed
+  napp: Not applicable
+  ns: No symptoms
+chapters:
+  -
+    sections:
+      -
+        screens:
+          -
+            slug: features
+            questions:
+              -
+                slug: features-present
+                type: yesno
+                title: "Any features of GvHD present"
+                meta_answers: ['nya']
+                score:
+                  grade: 1
+                intro:
+                  question: "Any features of GvHD present?"

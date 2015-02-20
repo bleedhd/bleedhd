@@ -26,6 +26,12 @@
 			};
 		})
 
+		.filter('assessmentResource', function (BleedHdConfig) {
+			return function (path) {
+				return path.match(/^https?:\/\//) || path.match(/^\//) ? path : [BleedHdConfig.assessmentResourcesPath, path].join('/');
+			};
+		})
+
 		/**
 		 * Formats the given Date object as an ISO-8601 date
 		 */
