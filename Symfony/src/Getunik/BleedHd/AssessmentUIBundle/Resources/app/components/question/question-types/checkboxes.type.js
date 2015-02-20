@@ -16,7 +16,7 @@
 						values = {};
 
 					// binding endpoint for the reset option (radio)
-					that.resetCheckboxes = false;
+					that.resetCheckboxes = (angular.isArray(that.data) && that.data.length === 0 && that.data.empty !== true);
 
 					// key values by 'value' so that we can link them to the supplement definitions
 					angular.forEach(that.data, function (item) {
@@ -34,7 +34,9 @@
 				},
 				members: {
 					emptyData: function () {
-						return [];
+						var values = [];
+						values.empty = true;
+						return values;
 					},
 					reset: function (event, data) {
 						this.resetCheckboxes = false;
