@@ -27,6 +27,10 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
             type: string
             length: 255
             nullable: false
+        questionnaireVersion:
+            type: string
+            length: 255
+            nullable: true
         startDate:
             type: datetimetz
             nullable: true
