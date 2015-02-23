@@ -40,6 +40,7 @@
 			this.metaAnswers = yamlData.meta_answers;
 			this.title = yamlData.title;
 			this.quickLinks = yamlData.quick_links;
+			this.version = yamlData.version || 'unknown';
 
 			angular.forEach(yamlData.chapters, function (chapter) {
 				chapterSlug = new Slug(chapter.slug, that.rootSlug);
