@@ -17,9 +17,13 @@ shared:
       -
         label: "Pending"
         value: pending
+        score:
+          status: pending
       -
         label: "Positive"
         value: positive
+        score:
+          status: positive
       -
         label: "Not needed"
         value: not-needed
@@ -39,6 +43,8 @@ chapters:
                 type: checkboxes
                 title: "Skin - diagnostic features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: diagnostic
                 intro:
                   question: "Skin - diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
@@ -65,6 +71,8 @@ chapters:
                 type: checkboxes
                 title: "Skin - distinctive features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: distinctive
                 intro:
                   question: "Skin - distinctive features"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
@@ -138,6 +146,8 @@ chapters:
                 type: checkboxes
                 title: "Nails - distinctive features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: distinctive
                 intro:
                   question: "Nails - distinctive features"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
@@ -182,6 +192,8 @@ chapters:
                 type: checkboxes
                 title: "Scalp and Body Hair - distinctive features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: distinctive
                 intro:
                   question: "Scalp and Body Hair - distinctive features"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
@@ -231,6 +243,8 @@ chapters:
                 type: checkboxes
                 title: "Mouth - diagnostic features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: diagnostic
                 intro:
                   question: "Mouth - diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
@@ -245,6 +259,8 @@ chapters:
                 type: checkboxes
                 title: "Mouth - distinctive features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: distinctive
                 intro:
                   question: "Mouth - distinctive features"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
@@ -307,6 +323,8 @@ chapters:
                 type: checkboxes
                 title: "Eyes - distinctive features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: distinctive
                 intro:
                   question: "Eyes - distinctive features"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
@@ -364,6 +382,8 @@ chapters:
                 type: checkboxes
                 title: "Genitalia - diagnostic features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: diagnostic
                 intro:
                   question: "Genitalia - diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
@@ -387,6 +407,8 @@ chapters:
                 type: checkboxes
                 title: "Genitalia - distinctive features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: distinctive
                 intro:
                   question: "Genitalia - distinctive features"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
@@ -421,6 +443,8 @@ chapters:
                 type: checkboxes
                 title: "GI Tract - diagnostic features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: diagnostic
                 intro:
                   question: "GI Tract - diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
@@ -512,6 +536,8 @@ chapters:
                 type: checkboxes
                 title: "Lung - diagnostic features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: diagnostic
                 intro:
                   question: "Lung - diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
@@ -529,6 +555,8 @@ chapters:
                 type: checkboxes
                 title: "Lung - distinctive features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: distinctive
                 intro:
                   question: "Lung - distinctive features"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
@@ -570,6 +598,8 @@ chapters:
                 type: checkboxes
                 title: "Muscles, Fascia, Joints - diagnostic features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: diagnostic
                 intro:
                   question: "Muscles, Fascia, Joints - diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
@@ -587,6 +617,8 @@ chapters:
                 type: checkboxes
                 title: "Muscles, Fascia, Joints - distinctive features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: distinctive
                 intro:
                   question: "Muscles, Fascia, Joints - distinctive features"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
