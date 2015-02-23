@@ -15,6 +15,7 @@ class AssessmentContext
 
     private $assessment;
     private $questions = array();
+    private $questionnaireVersion;
 
     public function __construct(Assessment $assessment, array $questionnaire, array $responses)
     {
@@ -24,6 +25,7 @@ class AssessmentContext
 
     protected function processQuestionnaire(array $questionnaire, array $responses)
     {
+        $this->questionnaireVersion = isset($questionnaire['version']) ? $questionnaire['version'] : 'unknown';
         $responseMap = array();
 
         foreach ($responses as $response)
@@ -71,5 +73,10 @@ class AssessmentContext
     public function getQuestions()
     {
         return $this->questions;
+    }
+
+    public function getQuestionnaireVersion()
+    {
+        return $this->questionnaireVersion;
     }
 }

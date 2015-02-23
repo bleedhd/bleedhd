@@ -56,6 +56,7 @@ class AssessmentHandler
 
         $result = $calculator->run($context)->getResult();
         $assessment->setResult($result);
+        $assessment->setQuestionnaireVersion($context->getQuestionnaireVersion());
         $this->repository->save($assessment, false);
 
         return $assessment;
