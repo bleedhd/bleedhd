@@ -4,6 +4,7 @@
 # are displayed on a single screen
 
 title: Bleeding WHO
+version: "1.0.0"
 meta_answers:
   nya: Not yet answered
   nass: Not assessed

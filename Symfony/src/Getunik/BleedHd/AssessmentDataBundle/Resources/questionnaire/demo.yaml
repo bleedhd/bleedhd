@@ -4,6 +4,7 @@
 # are displayed on a single screen
 
 title: Demo
+version: "1.0.0"
 quick_links:
   -
     label: Test

@@ -435,4 +435,32 @@ class Assessment implements UpdateInformationInterface, CreationInformationInter
     {
         return $this->progress;
     }
+    /**
+     * @var string
+     */
+    private $questionnaireVersion;
+
+
+    /**
+     * Set questionnaireVersion
+     *
+     * @param string $questionnaireVersion
+     * @return Assessment
+     */
+    public function setQuestionnaireVersion($questionnaireVersion)
+    {
+        $this->questionnaireVersion = $questionnaireVersion;
+
+        return $this;
+    }
+
+    /**
+     * Get questionnaireVersion
+     *
+     * @return string 
+     */
+    public function getQuestionnaireVersion()
+    {
+        return $this->questionnaireVersion;
+    }
 }
