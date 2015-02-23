@@ -863,4 +863,47 @@ chapters:
                 intro:
                   question: "Overall GvHD severity (opinion of the evaluator)"
                 options: *gvhd-severity-options-single
-
+              -
+                slug: immunosuppression
+                type: multi
+                title: "Immunosuppresion"
+                meta_answers: ['nya']
+                intro:
+                  question: "Medication for immunosuppression"
+                questions:
+                  -
+                    slug: cyclosporine
+                    type: text
+                    intro:
+                      question: "Cyclosporine (mg)"
+                    pattern: integer
+                  -
+                    slug: mycophenolate
+                    type: text
+                    intro:
+                      question: "Mycophenolate (mg)"
+                    pattern: integer
+                  -
+                    slug: tacrolimus
+                    type: text
+                    intro:
+                      question: "Tacrolimus (mg)"
+                    pattern: integer
+                  -
+                    slug: sirolimus
+                    type: text
+                    intro:
+                      question: "Sirolimus (mg)"
+                    pattern: integer
+                  -
+                    slug: prednisone
+                    type: text
+                    intro:
+                      question: "Prednisone (mg)"
+                    pattern: integer
+                  -
+                    slug: photopheresis
+                    type: text
+                    intro:
+                      question: "Photopheresis"
+                    pattern: integer
