@@ -35,7 +35,7 @@
 			return this.multiQuestions[slug.full];
 		},
 		_processYaml: function (yamlData) {
-			var that = this, screenObj, chapterSlug, sectionSlug, screenSlug, screenIndex = 0;
+			var that = this, screenObj, chapterSlug, sectionSlug, screenSlug, screenUrlSlug, screenIndex = 0;
 
 			this.metaAnswers = yamlData.meta_answers;
 			this.title = yamlData.title;
@@ -50,6 +50,10 @@
 
 					angular.forEach(section.screens, function (screen) {
 						screenSlug = new Slug(screen.slug, sectionSlug);
+						// the slug used in a screen's URL can be different from the one used in
+						// the question slug hierarchy since the screen short-slugs have to be
+						// unique across a questionnaire
+						screenUrlSlug = !screen.url_slug ? screen.slug : screen.url_slug;
 
 						var screenObj = {
 							chapter: chapterSlug,
@@ -66,7 +70,7 @@
 						// the sub-questions of multi-questions don't "count"
 						that.questionCount += screenObj.questions.length;
 
-						that.screens[screen.slug] = screenObj;
+						that.screens[screenUrlSlug] = screenObj;
 						that.screensLinear.push(screenObj);
 					});
 				});
