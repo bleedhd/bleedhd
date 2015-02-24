@@ -37,7 +37,7 @@ The list of available meta answers - in particular their labels - must be define
 ## The Hierarchy
 Note: even though most of it is currently not used, the hierarchy stayed in place because it will make future reorganizations and possibly extensions a bit easier.
 
-The questions are organized in a hierarchy of _chapters_, _sections_ and _screens_. Each level in the hierarchy can define a `slug` property that will be used to construct the full question slug. The items in the `screens` section **must** have a slug since this slug is used as part of the screen URL. The questionnaire itself may also define a `slug` property; if it is not present, the internal assessment name (file name) will be used.
+The questions are organized in a hierarchy of _chapters_, _sections_ and _screens_. Each level in the hierarchy can define a `slug` property that will be used to construct the full question slug. The items in the `screens` section **must** have a slug since this slug is used as part of the screen URL. Since this can cause problems when moving questions in an assessment or with duplicate screen (short-)slugs, screens **may** define a `url_slug` property that will be used as the screen's slug. The questionnaire itself may also define a `slug` property; if it is not present, the internal assessment name (file name) will be used.
 
 Given a questionnaire with the following structure,
 ```yaml
@@ -50,6 +50,7 @@ chapters:
         screens:
           -
             slug: first
+            url_slug: firsts-url-segment
             questions:
               -
                 slug: question-one
