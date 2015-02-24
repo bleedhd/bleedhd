@@ -136,6 +136,8 @@ chapters:
                 type: radios
                 title: "Performance Score"
                 meta_answers: ['nya']
+                score:
+                  category: performance
                 intro:
                   question: "Performance score"
                 options:
@@ -159,6 +161,21 @@ chapters:
                 type: text
                 title: "Skin - score BSA"
                 meta_answers: ['nya']
+                score:
+                  category: skin
+                  value:
+                    -
+                      range: [0]
+                      value: 0
+                    -
+                      range: [1,18]
+                      value: 1
+                    -
+                      range: [19,50]
+                      value: 2
+                    -
+                      range: []
+                      value: 3
                 pattern: integer
                 intro:
                   question: "Score % BSA"
@@ -192,6 +209,8 @@ chapters:
                 type: radios
                 title: "Skin - GvHD score (NOT scored by BSA)"
                 meta_answers: ['nya']
+                score:
+                  category: skin
                 intro:
                   question: "Skin features score"
                 option_reset:
@@ -255,6 +274,9 @@ chapters:
                 type: yesno
                 title: "Skin - non-GvHD causes"
                 meta_answers: ['nya']
+                score:
+                  category: skin
+                  nongvhd: true
                 intro:
                   question: "Abnormality present but explained entirely by non-GvHD documented cause"
                 options: *non-gvhd-cause-options
@@ -266,6 +288,8 @@ chapters:
                 type: radios
                 title: "Mouth - score"
                 meta_answers: ['nya']
+                score:
+                  category: mouth
                 intro:
                   question: "Mouth score"
                 options:
@@ -293,6 +317,9 @@ chapters:
                 type: yesno
                 title: "Mouth - non-GvHD causes"
                 meta_answers: ['nya']
+                score:
+                  category: mouth
+                  nongvhd: true
                 intro:
                   question: "Abnormality present but explained entirely by non-GvHD documented cause"
                 options: *non-gvhd-cause-options
@@ -304,6 +331,8 @@ chapters:
                 type: radios
                 title: "Eyes - score"
                 meta_answers: ['nya']
+                score:
+                  category: eyes
                 intro:
                   question: "Eyes score"
                 options:
@@ -331,6 +360,9 @@ chapters:
                 type: yesno
                 title: "Eyes - non-GvHD causes"
                 meta_answers: ['nya']
+                score:
+                  category: eyes
+                  nongvhd: true
                 intro:
                   question: "Abnormality present but explained entirely by non-GvHD documented cause"
                 options: *non-gvhd-cause-options
@@ -342,6 +374,8 @@ chapters:
                 type: radios
                 title: "GI Tract - score"
                 meta_answers: ['nya']
+                score:
+                  category: giTract
                 intro:
                   question: "GI Tract score"
                 options:
@@ -396,6 +430,9 @@ chapters:
                 type: yesno
                 title: "GI Tract - non-GvHD causes"
                 meta_answers: ['nya']
+                score:
+                  category: giTract
+                  nongvhd: true
                 intro:
                   question: "Abnormality present but explained entirely by non-GvHD documented cause"
                 options: *non-gvhd-cause-options
@@ -407,6 +444,8 @@ chapters:
                 type: radios
                 title: "Liver - score"
                 meta_answers: ['nya']
+                score:
+                  category: liver
                 intro:
                   question: "Liver score"
                 options:
@@ -427,6 +466,9 @@ chapters:
                 type: yesno
                 title: "Liver - non-GvHD causes"
                 meta_answers: ['nya']
+                score:
+                  category: liver
+                  nongvhd: true
                 intro:
                   question: "Abnormality present but explained entirely by non-GvHD documented cause"
                 options: *non-gvhd-cause-options
@@ -438,6 +480,8 @@ chapters:
                 type: radios
                 title: "Lungs - Symptoms score"
                 meta_answers: ['nya']
+                score:
+                  category: lungs
                 intro:
                   question: "Lungs symptoms score"
                 options:
@@ -458,6 +502,21 @@ chapters:
                 type: text
                 title: "Lungs - Lung score"
                 meta_answers: ['nya', 'nass']
+                score:
+                  category: lungs
+                  value:
+                    -
+                      range: [39]
+                      value: 3
+                    -
+                      range: [40, 59]
+                      value: 2
+                    -
+                      range: [60, 79]
+                      value: 1
+                    -
+                      range: []
+                      value: 0
                 pattern: integer
                 intro:
                   question: "Lung score % FEV1"
@@ -466,6 +525,9 @@ chapters:
                 type: yesno
                 title: "Lungs - non-GvHD causes"
                 meta_answers: ['nya']
+                score:
+                  category: lungs
+                  nongvhd: true
                 intro:
                   question: "Abnormality present but explained entirely by non-GvHD documented cause"
                 options: *non-gvhd-cause-options
@@ -576,6 +638,8 @@ chapters:
                 type: radios
                 title: "Joints and Fascia - Symptoms score"
                 meta_answers: ['nya']
+                score:
+                  category: joints
                 intro:
                   question: "Joints and Fascia symptoms score"
                 options:
@@ -596,6 +660,9 @@ chapters:
                 type: yesno
                 title: "Joints and Fascia - non-GvHD causes"
                 meta_answers: ['nya']
+                score:
+                  category: joints
+                  nongvhd: true
                 intro:
                   question: "Abnormality present but explained entirely by non-GvHD documented cause"
                 options: *non-gvhd-cause-options
@@ -607,6 +674,8 @@ chapters:
                 type: radios
                 title: "Genital Tract - score"
                 meta_answers: ['nya']
+                score:
+                  category: genital
                 intro:
                   question: "Genital Tract score"
                 info:
@@ -684,6 +753,9 @@ chapters:
                     slug: non-gvhd
                     type: yesno
                     meta_answers: ['nya']
+                    score:
+                      category: genital
+                      nongvhd: true
                     intro:
                       question: "Abnormality present but explained entirely by non-GvHD documented cause"
                     options: *non-gvhd-cause-options
@@ -764,6 +836,8 @@ chapters:
                     slug: ascites
                     type: radios
                     variant: horizontal
+                    score:
+                      category: other
                     intro:
                       question: "Ascites (serositis)"
                     options: *gvhd-severity-options
@@ -771,6 +845,8 @@ chapters:
                     slug: pericardial-effusion
                     type: radios
                     variant: horizontal
+                    score:
+                      category: other
                     intro:
                       question: "Pericardial Effusion"
                     options: *gvhd-severity-options
@@ -778,6 +854,8 @@ chapters:
                     slug: pleura-effusion
                     type: radios
                     variant: horizontal
+                    score:
+                      category: other
                     intro:
                       question: "Pleural Effusion(s)"
                     options: *gvhd-severity-options
@@ -785,6 +863,8 @@ chapters:
                     slug: nephrotic-syndrome
                     type: radios
                     variant: horizontal
+                    score:
+                      category: other
                     intro:
                       question: "Nephrotic syndrome"
                     options: *gvhd-severity-options
@@ -792,6 +872,8 @@ chapters:
                     slug: myasthenia-gravis
                     type: radios
                     variant: horizontal
+                    score:
+                      category: other
                     intro:
                       question: "Myasthenia Gravis"
                     options: *gvhd-severity-options
@@ -799,6 +881,8 @@ chapters:
                     slug: peripheral-neuropathy
                     type: radios
                     variant: horizontal
+                    score:
+                      category: other
                     intro:
                       question: "Peripheral Neuropathy"
                     options: *gvhd-severity-options
@@ -806,6 +890,8 @@ chapters:
                     slug: polymyositis
                     type: radios
                     variant: horizontal
+                    score:
+                      category: other
                     intro:
                       question: "Polymyositis"
                     options: *gvhd-severity-options
@@ -860,6 +946,8 @@ chapters:
                 variant: horizontal
                 title: "Overall GvHD Severity"
                 meta_answers: ['nya']
+                score:
+                  category: overall
                 intro:
                   question: "Overall GvHD severity (opinion of the evaluator)"
                 options: *gvhd-severity-options-single
