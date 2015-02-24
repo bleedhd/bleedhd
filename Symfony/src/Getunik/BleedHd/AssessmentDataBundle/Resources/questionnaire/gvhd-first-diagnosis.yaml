@@ -1,6 +1,40 @@
 
 title: GvHD - first diagnosis
 version: "0.9.0"
+quick_links:
+  -
+    label: "Skin"
+    screen: skin
+  -
+    label: "Nails"
+    screen: nails
+  -
+    label: "Hair"
+    screen: hair
+  -
+    label: "Mouth"
+    screen: mouth
+  -
+    label: "Eyes"
+    screen: eyes
+  -
+    label: "Genitalia"
+    screen: genitalia
+  -
+    label: "GI Tract"
+    screen: gi-tract
+  -
+    label: "Liver"
+    screen: liver
+  -
+    label: "Lung"
+    screen: lung
+  -
+    label: "Muscles, Fascia and Joints"
+    screen: muscles-fascia-joints
+  -
+    label: "Hematopoietic and Immune"
+    screen: immune
 meta_answers:
   nya: Not yet answered
   nass: Not assessed
