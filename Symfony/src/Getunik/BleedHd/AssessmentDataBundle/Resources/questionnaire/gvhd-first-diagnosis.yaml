@@ -1,6 +1,43 @@
 
 title: GvHD - first diagnosis
 version: "0.9.0"
+quick_links:
+  -
+    label: "Skin"
+    screen: skin
+  -
+    label: "Nails"
+    screen: nails
+  -
+    label: "Hair"
+    screen: hair
+  -
+    label: "Mouth"
+    screen: mouth
+  -
+    label: "Eyes"
+    screen: eyes
+  -
+    label: "Genitalia"
+    screen: genitalia
+  -
+    label: "GI Tract"
+    screen: gi-tract
+  -
+    label: "Liver"
+    screen: liver
+  -
+    label: "Lung"
+    screen: lung
+  -
+    label: "Muscles, Fascia and Joints"
+    screen: muscles-fascia-joints
+  -
+    label: "Hematopoietic and Immune"
+    screen: immune
+  -
+    label: "Acute GvHD"
+    screen: clinical-staging
 meta_answers:
   nya: Not yet answered
   nass: Not assessed
@@ -17,9 +54,13 @@ shared:
       -
         label: "Pending"
         value: pending
+        score:
+          status: pending
       -
         label: "Positive"
         value: positive
+        score:
+          status: positive
       -
         label: "Not needed"
         value: not-needed
@@ -28,6 +69,7 @@ shared:
         value: negative
 chapters:
   -
+    slug: chronic
     sections:
       -
         screens:
@@ -39,6 +81,8 @@ chapters:
                 type: checkboxes
                 title: "Skin - diagnostic features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: diagnostic
                 intro:
                   question: "Skin - diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
@@ -65,6 +109,8 @@ chapters:
                 type: checkboxes
                 title: "Skin - distinctive features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: distinctive
                 intro:
                   question: "Skin - distinctive features"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
@@ -138,6 +184,8 @@ chapters:
                 type: checkboxes
                 title: "Nails - distinctive features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: distinctive
                 intro:
                   question: "Nails - distinctive features"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
@@ -182,6 +230,8 @@ chapters:
                 type: checkboxes
                 title: "Scalp and Body Hair - distinctive features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: distinctive
                 intro:
                   question: "Scalp and Body Hair - distinctive features"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
@@ -231,6 +281,8 @@ chapters:
                 type: checkboxes
                 title: "Mouth - diagnostic features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: diagnostic
                 intro:
                   question: "Mouth - diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
@@ -245,6 +297,8 @@ chapters:
                 type: checkboxes
                 title: "Mouth - distinctive features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: distinctive
                 intro:
                   question: "Mouth - distinctive features"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
@@ -307,6 +361,8 @@ chapters:
                 type: checkboxes
                 title: "Eyes - distinctive features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: distinctive
                 intro:
                   question: "Eyes - distinctive features"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
@@ -364,6 +420,8 @@ chapters:
                 type: checkboxes
                 title: "Genitalia - diagnostic features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: diagnostic
                 intro:
                   question: "Genitalia - diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
@@ -387,6 +445,8 @@ chapters:
                 type: checkboxes
                 title: "Genitalia - distinctive features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: distinctive
                 intro:
                   question: "Genitalia - distinctive features"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
@@ -421,6 +481,8 @@ chapters:
                 type: checkboxes
                 title: "GI Tract - diagnostic features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: diagnostic
                 intro:
                   question: "GI Tract - diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
@@ -512,6 +574,8 @@ chapters:
                 type: checkboxes
                 title: "Lung - diagnostic features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: diagnostic
                 intro:
                   question: "Lung - diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
@@ -529,6 +593,8 @@ chapters:
                 type: checkboxes
                 title: "Lung - distinctive features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: distinctive
                 intro:
                   question: "Lung - distinctive features"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
@@ -570,6 +636,8 @@ chapters:
                 type: checkboxes
                 title: "Muscles, Fascia, Joints - diagnostic features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: diagnostic
                 intro:
                   question: "Muscles, Fascia, Joints - diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
@@ -587,6 +655,8 @@ chapters:
                 type: checkboxes
                 title: "Muscles, Fascia, Joints - distinctive features"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: distinctive
                 intro:
                   question: "Muscles, Fascia, Joints - distinctive features"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
@@ -690,3 +760,127 @@ chapters:
                   -
                     label: "Cardiac conduction abnormality or cardiomyopathy"
                     value: cardiomyopathy
+  -
+    slug: acute
+    sections:
+      -
+        screens:
+          -
+            slug: clinical-staging
+            questions:
+              -
+                slug: skin
+                type: radios
+                title: "Skin - aGvHD clinical staging"
+                meta_answers: ['nya']
+                score:
+                  acute: skin
+                intro:
+                  question: "Skin"
+                options:
+                  -
+                    label: "No rash"
+                    value: 0
+                  -
+                    label: "Rash < 25% body surface"
+                    value: 1
+                  -
+                    label: "Rash 25% - 50% body surface"
+                    value: 2
+                  -
+                    label: "Generalized erythrodema"
+                    value: 3
+                  -
+                    label: "Generalized erythroderma with bullae"
+                    value: 4
+              -
+                slug: liver
+                type: radios
+                title: "Liver - aGvHD clinical staging"
+                meta_answers: ['nya']
+                score:
+                  acute: liver
+                intro:
+                  question: "Liver"
+                options:
+                  -
+                    label: "Bilirubin < 34 µmol/L"
+                    value: 0
+                  -
+                    label: "Bilirubin 24 - 52 µmol/L"
+                    value: 1
+                  -
+                    label: "Bilirubin 53 - 103 µmol/L"
+                    value: 2
+                  -
+                    label: "Bilirubin 104 - 256 µmol/L"
+                    value: 3
+                  -
+                    label: "Bilirubin > 256 µmol/L"
+                    value: 4
+              -
+                slug: gut
+                type: radios
+                title: "Gut - aGvHD clinical staging"
+                meta_answers: ['nya']
+                score:
+                  acute: gut
+                intro:
+                  question: "Gut"
+                options:
+                  -
+                    label: "Diarrhea < 500 ml/d"
+                    value: 0
+                  -
+                    label: "Diarrhea 500 - 1000 ml/d"
+                    value: 1
+                  -
+                    label: "Diarrhea 1000 - 1500 ml/d"
+                    value: 2
+                  -
+                    label: "Diarrhea > 1500 ml/d"
+                    value: 3
+                  -
+                    label: "Severe abdominal pain with or without ileus"
+                    value: 4
+              -
+                slug: presentation
+                type: radios
+                title: "Clinical presentation - aGvHD clinical staging"
+                meta_answers: ['nya']
+                intro:
+                  question: "Clinical presentation"
+                options:
+                  -
+                    label: "No increase"
+                    value: 0
+                  -
+                    label: "Slight increase"
+                    value: 1
+                  -
+                    label: "Significant increase"
+                    value: 2
+                  -
+                    label: "Extreme increase"
+                    value: 3
+          -
+            slug: timing
+            questions:
+              -
+                slug: delay
+                type: radios
+                title: "Delay - aGvHD clinical staging"
+                meta_answers: ['nya']
+                intro:
+                  question: "Time since last allogeneic transplant?"
+                options:
+                  -
+                    label: "< 100 days"
+                    value: normal
+                    score:
+                      delay: normal
+                  -
+                    label: ">= 100 days"
+                    value: delayed
+                    score:
+                      delay: delayed
