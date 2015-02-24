@@ -4,40 +4,40 @@ version: "0.9.0"
 quick_links:
   -
     label: "Skin"
-    screen: skin
+    screen: chronic-skin
   -
     label: "Nails"
-    screen: nails
+    screen: chronic-nails
   -
     label: "Hair"
-    screen: hair
+    screen: chronic-hair
   -
     label: "Mouth"
-    screen: mouth
+    screen: chronic-mouth
   -
     label: "Eyes"
-    screen: eyes
+    screen: chronic-eyes
   -
     label: "Genitalia"
-    screen: genitalia
+    screen: chronic-genitalia
   -
     label: "GI Tract"
-    screen: gi-tract
+    screen: chronic-gi-tract
   -
     label: "Liver"
-    screen: liver
+    screen: chronic-liver
   -
     label: "Lung"
-    screen: lung
+    screen: chronic-lung
   -
     label: "Muscles, Fascia and Joints"
-    screen: muscles-fascia-joints
+    screen: chronic-muscles-fascia-joints
   -
     label: "Hematopoietic and Immune"
-    screen: immune
+    screen: chronic-immune
   -
     label: "Acute GvHD"
-    screen: clinical-staging
+    screen: acute-clinical-staging
 meta_answers:
   nya: Not yet answered
   nass: Not assessed
@@ -75,6 +75,7 @@ chapters:
         screens:
           -
             slug: skin
+            url_slug: chronic-skin
             questions:
               -
                 slug: diagnostic
@@ -178,6 +179,7 @@ chapters:
         screens:
           -
             slug: nails
+            url_slug: chronic-nails
             questions:
               -
                 slug: distinctive
@@ -224,6 +226,7 @@ chapters:
         screens:
           -
             slug: hair
+            url_slug: chronic-hair
             questions:
               -
                 slug: distinctive
@@ -275,6 +278,7 @@ chapters:
         screens:
           -
             slug: mouth
+            url_slug: chronic-mouth
             questions:
               -
                 slug: diagnostic
@@ -355,6 +359,7 @@ chapters:
         screens:
           -
             slug: eyes
+            url_slug: chronic-eyes
             questions:
               -
                 slug: distinctive
@@ -414,6 +419,7 @@ chapters:
         screens:
           -
             slug: genitalia
+            url_slug: chronic-genitalia
             questions:
               -
                 slug: diagnostic
@@ -475,6 +481,7 @@ chapters:
         screens:
           -
             slug: gi-tract
+            url_slug: chronic-gi-tract
             questions:
               -
                 slug: diagnostic
@@ -545,6 +552,7 @@ chapters:
         screens:
           -
             slug: liver
+            url_slug: chronic-liver
             questions:
               -
                 slug: common
@@ -568,6 +576,7 @@ chapters:
         screens:
           -
             slug: lung
+            url_slug: chronic-lung
             questions:
               -
                 slug: diagnostic
@@ -630,6 +639,7 @@ chapters:
         screens:
           -
             slug: muscles-fascia-joints
+            url_slug: chronic-muscles-fascia-joints
             questions:
               -
                 slug: diagnostic
@@ -695,6 +705,7 @@ chapters:
         screens:
           -
             slug: immune
+            url_slug: chronic-immune
             questions:
               -
                 slug: other
@@ -730,6 +741,7 @@ chapters:
         screens:
           -
             slug: other
+            url_slug: chronic-other
             questions:
               -
                 slug: other
@@ -767,6 +779,7 @@ chapters:
         screens:
           -
             slug: clinical-staging
+            url_slug: acute-clinical-staging
             questions:
               -
                 slug: skin
@@ -865,6 +878,7 @@ chapters:
                     value: 3
           -
             slug: timing
+            url_slug: acute-timing
             questions:
               -
                 slug: delay
