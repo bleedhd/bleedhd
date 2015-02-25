@@ -165,17 +165,20 @@ chapters:
                   category: skin
                   value:
                     -
-                      range: [0]
+                      range: [0, 1]
                       value: 0
                     -
-                      range: [1,18]
+                      range: [1,19]
                       value: 1
                     -
-                      range: [19,50]
+                      range: [19,51]
                       value: 2
                     -
-                      range: []
+                      range: [51,100]
                       value: 3
+                    -
+                      range: []
+                      value: -1
                 pattern: integer
                 intro:
                   question: "Score % BSA"
@@ -506,17 +509,20 @@ chapters:
                   category: lungs
                   value:
                     -
-                      range: [39]
+                      range: [0, 40]
                       value: 3
                     -
-                      range: [40, 59]
+                      range: [40, 60]
                       value: 2
                     -
-                      range: [60, 79]
+                      range: [60, 80]
                       value: 1
                     -
-                      range: []
+                      range: [79, 100]
                       value: 0
+                    -
+                      range: []
+                      value: -1
                 pattern: integer
                 intro:
                   question: "Lung score % FEV1"
