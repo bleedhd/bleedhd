@@ -8,7 +8,7 @@ use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
 class CalculatorGvhdCurrentStaging extends CalculatorBase
 {
-	private static $SPECIAL_CATEGORIES = array('lungs');
+	private static $SPECIAL_ORGANS = array('lungs');
 
 	public function __construct(LoggerInterface $logger)
 	{
@@ -52,6 +52,11 @@ class CalculatorGvhdCurrentStaging extends CalculatorBase
 					$this->logger->info(" => mapping range: " . $orig . " -> " . $value);
 				}
 
+				if (isset($config['organ']) && $config['organ'] === true)
+				{
+					$cat['organ'] = true;
+				}
+
 				if (isset($config['priority']))
 				{
 					if (isset($cat['priority']) && $cat['priority'] > $config['priority'])
@@ -92,7 +97,7 @@ class CalculatorGvhdCurrentStaging extends CalculatorBase
 		$categories = get_object_vars($this->score->category);
 		foreach ($categories as $name => $cat)
 		{
-			if (empty($cat['override']) && !in_array($name, self::$SPECIAL_CATEGORIES))
+			if (empty($cat['override']) && !empty($cat['organ']) && !in_array($name, self::$SPECIAL_ORGANS))
 			{
 				$severity[$cat['value']]++;
 			}
