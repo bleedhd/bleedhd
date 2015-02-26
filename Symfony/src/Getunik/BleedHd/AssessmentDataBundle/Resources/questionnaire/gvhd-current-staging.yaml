@@ -497,6 +497,7 @@ chapters:
                 score:
                   category: lungs
                   organ: true
+                  bump: 1
                   priority: 1
                 intro:
                   question: "Lungs symptoms score"
@@ -521,6 +522,7 @@ chapters:
                 score:
                   category: lungs
                   organ: true
+                  bump: 1
                   priority: 2
                   value:
                     -
