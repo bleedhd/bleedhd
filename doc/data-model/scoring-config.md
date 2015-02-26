@@ -67,3 +67,61 @@ score:
   delay: normal | delayed
 ```
 Indicates the delay between the last allogeneic transplant and onset of symptoms. At most one answer may have this property and its value defines the aGvHD delay status.
+
+## GvHD Current Staging
+This scoring algorithm is slightly more complicated than the previous ones. It is based on a grading system with values from 0 (good) to 3 (bad) and within a category/organ, the highest score usually counts. The total score involves some counting and some special handling with potential _overrides_, so the score configuration can be a bit tricky. The actual score values for each individual question are usually taken directly from the response value (which should then of course be in the range [0, 3]).
+
+**Grouping of Questions - Categories / Organs**
+```yaml
+score:
+  category: skin | lungs | liver | ...
+  organ: true | false (absence implies false)
+```
+Questions are generally grouped into _categories_ which _may_ represent organs, but also groups of questions like "performance" or "other" questions. Within such a group, the default case is that the highest score will count for this category. In addition, the `organ` property declarse the category to be an organ which means that it's score will be used to calculate the global severity in the final stage.
+
+**Non-GvHD Causes**
+```yaml
+score:
+  category: ...
+  nongvhd: true | false
+```
+The `nongvhd` property will effectively remove the organ/category from the global scoring _if_ the response value matches the property's value. This override is permanent and cannot be undone.
+
+**Bumping**
+```yaml
+score:
+  bump: 1 (integer value)
+```
+_Bumping_ a score means that any **non-zero** value will be increased by the `bump` value for the purpose of global scoring. This is used to increase the weight of the lung score and avoid explicit special handling of lungs in the calculator code.
+
+**Priority Overrides**
+```yaml
+score:
+  priority: 2 (integer value)
+```
+With the `priority` property, the category/organ max scoring can be tweaked to allow one priority level to override a lower one. For the organ scoring, specifying a priority means that:
+* if the current aggregate score has _no_ priority or a priority that is _lower_ than the current response value, it will override the current aggregate
+* if the current aggregate score has a priority that is _equal_ to the current response value's priority, then the `max` function is used as usual
+* if the current aggregate score has a _higher_ priority than the current response value, the current aggregate score remains unchanged
+
+**Range Value Mapping**
+```yaml
+score:
+  value:
+    -
+      range: [0, 40]
+      value: 3
+    -
+      range: [40, 60]
+      value: 2
+    -
+      range: [60, 80]
+      value: 1
+    -
+      range: [79, 100]
+      value: 0
+    -
+      range: []
+      value: -1
+```
+Certain response values cannot directly be used as the severity score, but they can be used to _compute_ the severity score. In this case, the possible values can be divided into ranges and the ranges can be mapped to a severity score. The `range`s in the `value` property are processed top to bottom and the first matching range that is found defines the severity `value`. The ranges themselves take the form of a 2-element array with the first element defining the (**inclusive**) low value and the second element defining the (**exclusive**) high value. If the response value happens to fall into that range, the matching severity value is used for scoring. A range with the empty array can be used as a catch-all range - make sure to put this range at the end of your list.
