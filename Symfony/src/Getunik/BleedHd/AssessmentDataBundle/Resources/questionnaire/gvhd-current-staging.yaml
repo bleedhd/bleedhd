@@ -485,6 +485,7 @@ chapters:
                 meta_answers: ['nya']
                 score:
                   category: lungs
+                  priority: 1
                 intro:
                   question: "Lungs symptoms score"
                 options:
@@ -507,6 +508,7 @@ chapters:
                 meta_answers: ['nya', 'nass']
                 score:
                   category: lungs
+                  priority: 2
                   value:
                     -
                       range: [0, 40]

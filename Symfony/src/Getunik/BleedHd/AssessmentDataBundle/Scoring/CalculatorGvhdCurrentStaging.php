@@ -8,6 +8,8 @@ use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
 class CalculatorGvhdCurrentStaging extends CalculatorBase
 {
+	private static $SPECIAL_CATEGORIES = array('lungs');
+
 	public function __construct(LoggerInterface $logger)
 	{
 		parent::__construct($logger);
@@ -50,7 +52,28 @@ class CalculatorGvhdCurrentStaging extends CalculatorBase
 					$this->logger->info(" => mapping range: " . $orig . " -> " . $value);
 				}
 
-				$this->logger->info(" => scoring: " . $config['category'] . " with " . $value);
+				if (isset($config['priority']))
+				{
+					if (isset($cat['priority']) && $cat['priority'] > $config['priority'])
+					{
+						$this->logger->info(" => higher priority value already present for " . $config['category'] . "; ignoring value: " . $value);
+						return;
+					}
+					else if (isset($cat['priority']) && $cat['priority'] == $config['priority'])
+					{
+						$this->logger->info(" => equal priority value (" . $config['priority'] . "): " . $value);
+					}
+					else
+					{
+						$this->logger->info(" => scoring with priority override: " . $config['category'] . " with " . $value);
+						$cat['value'] = $value;
+						$cat['priority'] = $config['priority'];
+						return;
+					}
+				}
+
+				// score maximizing
+				$this->logger->info(" => scoring (max): " . $config['category'] . " with " . $value);
 				$cat['value'] = max($cat['value'], $value);
 			}
 		}
@@ -58,7 +81,25 @@ class CalculatorGvhdCurrentStaging extends CalculatorBase
 
 	protected function finish()
 	{
-		//$this->score->total = $this->getTotalScore();
+		// mapping of severity score to number of organs with that score
+		$severity = array(
+			0 => 0,
+			1 => 0,
+			2 => 0,
+			3 => 0,
+		);
+
+		$categories = get_object_vars($this->score->category);
+		foreach ($categories as $name => $cat)
+		{
+			if (empty($cat['override']) && !in_array($name, self::$SPECIAL_CATEGORIES))
+			{
+				$severity[$cat['value']]++;
+			}
+		}
+
+		$this->score->severity = $severity;
+		$this->score->total = $this->getGlobalScore();
 	}
 
 	protected function getRangeValue($ranges, $value)
@@ -75,5 +116,21 @@ class CalculatorGvhdCurrentStaging extends CalculatorBase
 		}
 
 		return NULL;
+	}
+
+	protected function getGlobalScore()
+	{
+		$lung = (isset($this->score->category->lungs) ? $this->score->category->lungs['value'] : 0);
+
+		if ($lung >= 2 || $this->score->severity[3] > 0)
+			return 3;
+
+		if ($lung == 1 || $this->score->severity[2] > 0 || $this->score->severity[1] >= 3)
+			return 2;
+
+		if ($this->score->severity[1] > 0)
+			return 1;
+
+		return 0;
 	}
 }
