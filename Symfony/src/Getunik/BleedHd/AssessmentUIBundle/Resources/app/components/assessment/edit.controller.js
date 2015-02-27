@@ -1,7 +1,7 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentEditController($scope, $location, AssessmentData, HeaderControl, DateHelper, FormWrapper, patient, assessment) {
+	function AssessmentEditController($scope, $location, $templateCache, AssessmentData, HeaderControl, DateHelper, FormWrapper, patient, assessment) {
 		HeaderControl.hide();
 
 		this.AssessmentData = AssessmentData;
@@ -9,6 +9,7 @@
 		this.assessment = FormWrapper(assessment);
 		this.$scope = $scope;
 		this.$location = $location;
+		this.$templateCache = $templateCache;
 
 		// this is necessary for the FormWrapper to set up a 'copy' of the start_date property
 		// since setDate and setTime would otherwise operate on the original value
@@ -17,6 +18,7 @@
 		this.startTime = DateHelper.fromDate(this.assessment.start_date.date, true);
 
 		this.isNew = (this.assessment.id === undefined);
+		this.secondaryScoreTemplate = this.getSecondaryScoreTemplate();
 
 		// $scope.patient_number = parseInt(patient.patient_number);
 		// $scope.$watch('patient_number', function (newValue) {
@@ -52,6 +54,11 @@
 			},
 			onTimeChange: function () {
 				this.assessment.start_date.setTime(this.startTime === undefined ? undefined : this.startTime.date);
+			},
+			getSecondaryScoreTemplate: function () {
+				var view = bleedHd.getView('assessment', 'secondary-score-' + this.assessment.questionnaire);
+
+				return this.$templateCache.get(view) ? view : '';
 			},
 		},
 		{
