@@ -1,7 +1,7 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentDataService($q, $rootScope, BleedApi, QuestionnaireData, UserData, DateHelper, DataEvents) {
+	function AssessmentDataService($q, $rootScope, BleedApi, QuestionnaireData, UserData, DateHelper, DataEvents, DomainConst) {
 		this.$q = $q;
 		this.env = $rootScope.env;
 		this.BleedApi = BleedApi;
@@ -9,6 +9,7 @@
 		this.DataEvents = DataEvents;
 		this.QuestionnaireData = QuestionnaireData;
 		this.UserData = UserData;
+		this.DomainConst = DomainConst;
 	}
 
 	angular.extend(AssessmentDataService.prototype, {
@@ -47,7 +48,7 @@
 				return {
 					patient_id: patientId,
 					start_date: that.DateHelper.fromDate(new Date(), true),
-					progress: 'tentative',
+					progress: that.DomainConst.progress.tentative,
 					creator: user,
 				};
 			});

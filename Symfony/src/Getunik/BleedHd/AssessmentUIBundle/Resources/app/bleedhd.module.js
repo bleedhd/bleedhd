@@ -93,6 +93,14 @@
 		assessmentResourcesPath: bleedHd.env.assetPath + '/getunikbleedhdassessmentdata',
 	})
 
+	.constant('DomainConst', {
+		progress: {
+			completed: 'completed',
+			tentative: 'tentative',
+			none: 'none',
+		},
+	})
+
 	.config(function ($provide, $httpProvider, CachingWrapperProvider, EnhancedLogConfigProvider, AuthHandlerProvider, LoginRedirectProvider) {
 		$httpProvider.interceptors.push('JsonDateInterceptor');
 
