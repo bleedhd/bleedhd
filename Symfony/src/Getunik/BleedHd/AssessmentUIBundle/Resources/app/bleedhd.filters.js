@@ -68,6 +68,9 @@
 
 		.filter('progress', function () {
 			return function (progress) {
+				if (progress === 'none')
+					return '';
+
 				return !progress ? 'Tentative' : progress.charAt(0).toUpperCase() + progress.substr(1);
 			};
 		})
@@ -78,7 +81,7 @@
 					return '-';
 
 				return score.value;
-			}
+			};
 		})
 
 		; // finally end the giant statement
