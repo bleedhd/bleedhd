@@ -23,7 +23,7 @@
 				},
 				members: {
 					getDefault: function () {
-						return [];
+						return angular.isArray(this.definition.default) ? this.definition.default : [];
 					},
 					updateData: function () {
 						this.value($.map(this.getOptions(), function (option) {

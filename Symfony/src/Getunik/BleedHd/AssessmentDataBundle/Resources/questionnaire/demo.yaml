@@ -325,6 +325,7 @@ chapters:
                         type: checkboxes
                         question:
                           title: "Pick your companions (multiple)"
+                        default: ['elves', 'men']
                         options:
                           -
                             label: "Elves"
