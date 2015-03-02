@@ -30,7 +30,7 @@
 				</div>
 				<div class="checkbox">
 					<label class="control-label" ng-if="!ctlAssessment.isNew">
-						<input tabindex="3" id="assessment_progress" name="assessment_progress" type="checkbox" ng-model="ctlAssessment.assessment.progress" ng-true-value="'completed'" ng-false-value="'tentative'" /> Completed
+						<input tabindex="3" id="assessment_progress" name="assessment_progress" type="checkbox" ng-model="ctlAssessment.assessment.progress" ng-true-value="{{ ctlAssessment.DomainConst.progress.completed | json }}" ng-false-value="{{ ctlAssessment.DomainConst.progress.tentative | json }}" /> Completed
 					</label>
 				</div>
 			</div>

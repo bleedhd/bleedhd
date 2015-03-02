@@ -53,9 +53,9 @@
 			};
 		})
 
-		.filter('progress', function () {
+		.filter('progress', function (DomainConst) {
 			return function (progress) {
-				if (progress === 'none')
+				if (progress === DomainConst.progress.none)
 					return '';
 
 				return !progress ? 'Tentative' : progress.charAt(0).toUpperCase() + progress.substr(1);

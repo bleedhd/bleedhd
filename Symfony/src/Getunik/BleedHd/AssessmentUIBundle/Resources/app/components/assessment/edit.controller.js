@@ -1,10 +1,11 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentEditController($scope, $location, $templateCache, AssessmentData, HeaderControl, DateHelper, FormWrapper, patient, assessment) {
+	function AssessmentEditController($scope, $location, $templateCache, AssessmentData, HeaderControl, DateHelper, FormWrapper, DomainConst, patient, assessment) {
 		HeaderControl.hide();
 
 		this.AssessmentData = AssessmentData;
+		this.DomainConst = DomainConst;
 		this.patient = patient;
 		this.assessment = FormWrapper(assessment);
 		this.$scope = $scope;
