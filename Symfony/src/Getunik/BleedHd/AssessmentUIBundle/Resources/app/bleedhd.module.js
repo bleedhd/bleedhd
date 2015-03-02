@@ -83,6 +83,9 @@
 		login: '/user/login',
 		logout: '/user/logout',
 		redirectParam: '_target_path',
+		messages: {
+			hideDelay: 5000,
+		},
 		api: {
 			host: '',
 			base: '/api',

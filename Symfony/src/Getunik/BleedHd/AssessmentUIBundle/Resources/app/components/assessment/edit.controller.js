@@ -1,9 +1,10 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentEditController($scope, $location, $timeout, $templateCache, AssessmentData, HeaderControl, DateHelper, FormWrapper, patient, assessment) {
+	function AssessmentEditController($scope, $location, $timeout, $templateCache, BleedHdConfig, AssessmentData, HeaderControl, DateHelper, FormWrapper, patient, assessment) {
 		HeaderControl.hide();
 
+		this.BleedHdConfig = BleedHdConfig;
 		this.AssessmentData = AssessmentData;
 		this.patient = patient;
 		this.assessment = FormWrapper(assessment);
@@ -40,7 +41,7 @@
 						ctl.successMessage = 'Metadata saved';
 						ctl.$timeout(function () {
 							ctl.successMessage = null;
-						}, 2000);
+						}, ctl.BleedHdConfig.messages.hideDelay);
 					});
 				}
 			},
