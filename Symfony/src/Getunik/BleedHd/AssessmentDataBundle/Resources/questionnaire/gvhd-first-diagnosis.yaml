@@ -50,6 +50,7 @@ shared:
     variant: horizontal
     question:
       title: "Confirmation"
+    default: pending
     options:
       -
         label: "Pending"

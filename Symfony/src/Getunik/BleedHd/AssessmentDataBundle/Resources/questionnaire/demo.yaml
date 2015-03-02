@@ -294,6 +294,7 @@ chapters:
                         type: text
                         label: "Enter some text"
                         placeholder: "Something"
+                        default: "Some text"
                         question:
                           title: "What up dog?"
                       -
@@ -324,6 +325,7 @@ chapters:
                         type: checkboxes
                         question:
                           title: "Pick your companions (multiple)"
+                        default: ['elves', 'men']
                         options:
                           -
                             label: "Elves"
