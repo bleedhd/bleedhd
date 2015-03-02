@@ -9,8 +9,20 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Assessment implements UpdateInformationInterface, CreationInformationInterface
 {
+    /**
+     * Indicates a complete assessment
+     */
     const PROGRESS_COMPLETE = 'completed';
+    /**
+     * Indicates an incomplete assessment
+     */
     const PROGRESS_TENTATIVE = 'tentative';
+    /**
+     * "none" indicates that there is nothing that can have progress
+     * it is not used as an actual value on the assessment, but it is the result
+     * for a patient's status which does not have any assessments
+     */
+    const PROGRESS_NONE = 'none';
 
     /**
      * @var integer
@@ -457,7 +469,7 @@ class Assessment implements UpdateInformationInterface, CreationInformationInter
     /**
      * Get questionnaireVersion
      *
-     * @return string 
+     * @return string
      */
     public function getQuestionnaireVersion()
     {

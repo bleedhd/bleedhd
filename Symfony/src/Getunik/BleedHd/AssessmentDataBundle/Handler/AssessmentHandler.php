@@ -74,15 +74,21 @@ class AssessmentHandler
         $result = array();
         foreach ($patientIds as $id)
         {
-            $result[$id] = array('patient_id' => $id, 'progress' => Assessment::PROGRESS_COMPLETE);
+            $result[$id] = array('patient_id' => $id, 'progress' => Assessment::PROGRESS_NONE);
         }
 
         $assessments = $this->repository->getPatientProgress($patientIds);
         foreach ($assessments as $assessment)
         {
-            if ($assessment['progress'] !== Assessment::PROGRESS_COMPLETE)
+            $patient = &$result[$assessment['patientId']];
+
+            if ($assessment['progress'] === Assessment::PROGRESS_COMPLETE && $patient['progress'] === Assessment::PROGRESS_NONE)
             {
-                $result[$assessment['patientId']]['progress'] = Assessment::PROGRESS_TENTATIVE;
+                $patient['progress'] = Assessment::PROGRESS_COMPLETE;
+            }
+            else if ($assessment['progress'] === Assessment::PROGRESS_TENTATIVE || $assessment['progress'] === NULL)
+            {
+                $patient['progress'] = Assessment::PROGRESS_TENTATIVE;
             }
         }
 
