@@ -1,0 +1,87 @@
+
+title: GvHD - therapy response
+version: "0.11.0"
+quick_links:
+meta_answers:
+  nya: Not yet answered
+  nass: Not assessed
+  napp: Not applicable
+  ns: No symptoms
+shared:
+  - &non-gvhd-cause-options
+    yes:
+      label: "Yes"
+      value: true
+      supplements:
+        -
+          slug: cause
+          type: text
+          question:
+            title: "Specify"
+  - &gvhd-severity-options
+    -
+      label: "Not assessed"
+      value: -1
+    -
+      label: "none"
+      value: 0
+    -
+      label: "mild"
+      value: 1
+    -
+      label: "moderate"
+      value: 2
+    -
+      label: "severe"
+      value: 3
+  - &gvhd-severity-options-single
+    -
+      label: "none"
+      value: 0
+    -
+      label: "mild"
+      value: 1
+    -
+      label: "moderate"
+      value: 2
+    -
+      label: "severe"
+      value: 3
+chapters:
+  -
+    slug: clinitian
+    sections:
+      -
+        screens:
+          -
+            slug: patient
+            questions:
+              -
+                slug: weight
+                type: text
+                title: Clinitian
+                intro:
+                  question: Current patient weight (kg)
+                pattern: decimal
+          -
+            slug: global
+            questions:
+              -
+                slug: provider-rating
+                type: radios
+                title: Clinitian
+                intro:
+                  question: Health care provider global rating
+                options:
+                  -
+                    label: None
+                    value: 0
+                  -
+                    label: Mild
+                    value: 1
+                  -
+                    label: Moderate
+                    value: 2
+                  -
+                    label: Severe
+                    value: 3
