@@ -458,6 +458,25 @@ The `questions` property is simply an array of questions presented inside the co
 
 
 # Question Supplements
+The supplement configuration supports an additional `default` property - questions don't need that because they have meta-answers, but supplements in some cases must provide a meaningful default. The value of the default property obviously must be a value supported by the supplement type / options.
+
+```yaml
+supplements:
+  -
+    slug: some-supplement
+    type: radios
+    title: "This is a title"
+    intro:
+      question: "Any questions?"
+    default: 42
+    options:
+      -
+        label: "Forty-Two"
+        value: 42
+      -
+        label: "The number of the beast"
+        value: 666
+```
 
 ## "checkbox"
 
