@@ -1,15 +1,17 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentEditController($scope, $location, $templateCache, AssessmentData, HeaderControl, DateHelper, FormWrapper, DomainConst, patient, assessment) {
+	function AssessmentEditController($scope, $location, $templateCache, $timeout, BleedHdConfig, AssessmentData, HeaderControl, DateHelper, FormWrapper, DomainConst, patient, assessment) {
 		HeaderControl.hide();
 
+		this.BleedHdConfig = BleedHdConfig;
 		this.AssessmentData = AssessmentData;
 		this.DomainConst = DomainConst;
 		this.patient = patient;
 		this.assessment = FormWrapper(assessment);
 		this.$scope = $scope;
 		this.$location = $location;
+		this.$timeout = $timeout;
 		this.$templateCache = $templateCache;
 
 		// this is necessary for the FormWrapper to set up a 'copy' of the start_date property
@@ -37,7 +39,10 @@
 				var ctl = this;
 				if (ctl.assessmentForm.$valid) {
 					ctl.AssessmentData.saveAssessment(ctl.assessment.persist()).then(function () {
-						ctl.$location.path('/patients/detail/' + ctl.patient.id).search('tab', 'assessments');
+						ctl.successMessage = 'Metadata saved';
+						ctl.$timeout(function () {
+							ctl.successMessage = null;
+						}, ctl.BleedHdConfig.messages.hideDelay);
 					});
 				}
 			},
