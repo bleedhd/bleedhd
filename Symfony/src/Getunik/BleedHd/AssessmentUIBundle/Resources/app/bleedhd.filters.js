@@ -80,6 +80,9 @@
 				if (score === undefined || score === null)
 					return '-';
 
+				if (score.override !== undefined)
+					return '0 (' + score.value + '*)';
+
 				return score.value;
 			};
 		})
