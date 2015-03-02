@@ -64,7 +64,6 @@
 
 	bleedHd.app = angular.module('bleedHdApp', [
 		'ngRoute',
-		'ngResource',
 		'ngSanitize',
 		'ui.router',
 		'restangular',
@@ -84,12 +83,7 @@
 		logout: '/user/logout',
 		redirectParam: '_target_path',
 		api: {
-			host: '',
 			base: '/api',
-			resources: {
-				patients: 'patients',
-				statuses: 'patients/:patientId/statuses',
-			},
 		},
 		format: {
 			isodate: 'yyyy-MM-dd',
@@ -97,6 +91,14 @@
 		},
 		resourcesPath: bleedHd.env.assetPath + '/getunikbleedhdassessmentui',
 		assessmentResourcesPath: bleedHd.env.assetPath + '/getunikbleedhdassessmentdata',
+	})
+
+	.constant('DomainConst', {
+		progress: {
+			completed: 'completed',
+			tentative: 'tentative',
+			none: 'none',
+		},
 	})
 
 	.config(function ($provide, $httpProvider, CachingWrapperProvider, EnhancedLogConfigProvider, AuthHandlerProvider, LoginRedirectProvider) {
