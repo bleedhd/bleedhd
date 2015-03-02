@@ -59,6 +59,7 @@
 							chapter: chapterSlug,
 							section: sectionSlug,
 							slug: screenSlug,
+							urlSlug: screenUrlSlug,
 							index: screenIndex++,
 							questions: screen.questions,
 						};

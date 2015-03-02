@@ -62,7 +62,7 @@
 				return responsesToSave.length > 0 ? this.context.saveResponses(responsesToSave) : this.$q.when(null);
 			},
 			goToScreen: function (screen) {
-				this.$location.path(['/assessment', this.context.patient.id, this.context.assessment.id, screen.slug.short].join('/'));
+				this.$location.path(['/assessment', this.context.patient.id, this.context.assessment.id, screen.urlSlug].join('/'));
 			},
 		},
 		{
