@@ -170,7 +170,7 @@
 			return Object.create(original, {
 				persist: {
 					value: function () {
-						for (p in this) {
+						for (var p in this) {
 							if (this.hasOwnProperty(p)) {
 								original[p] = this[p];
 							}
@@ -239,10 +239,10 @@
 		 * The BleedApi service provides a convenient pre-configured Restangular object with
 		 * integrated authorization.
 		 */
-		.factory('BleedApi', function (Restangular, AuthHandler, $window, $log, MessageBuilder, LoginRedirect) {
+		.factory('BleedApi', function (Restangular, AuthHandler, $window, $log, MessageBuilder, LoginRedirect, BleedHdConfig) {
 			return Restangular.withConfig(function(RestangularConfig) {
 				RestangularConfig
-					.setBaseUrl('/api')
+					.setBaseUrl(BleedHdConfig.api.base)
 					.setDefaultHeaders({ 'Authorization': AuthHandler.getToken() })
 					.setErrorInterceptor(function (response) {
 						var uiError = 'restApiError';

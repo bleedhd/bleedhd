@@ -83,12 +83,7 @@
 		logout: '/user/logout',
 		redirectParam: '_target_path',
 		api: {
-			host: '',
 			base: '/api',
-			resources: {
-				patients: 'patients',
-				statuses: 'patients/:patientId/statuses',
-			},
 		},
 		format: {
 			isodate: 'yyyy-MM-dd',
