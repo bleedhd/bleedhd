@@ -294,6 +294,7 @@ chapters:
                         type: text
                         label: "Enter some text"
                         placeholder: "Something"
+                        default: "Some text"
                         question:
                           title: "What up dog?"
                       -

@@ -66,7 +66,7 @@
 					 * @returns {any} - depends on the supplement, the default assumption is null
 					 */
 					getDefault: function () {
-						return null;
+						return null || this.definition.default;
 					},
 					/**
 					 * AngularJS style getter/setter property for nice and convenient data binding "into"

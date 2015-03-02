@@ -11,7 +11,7 @@
 				},
 				members: {
 					getDefault: function () {
-						return '';
+						return '' || this.definition.default;
 					},
 				},
 			};
