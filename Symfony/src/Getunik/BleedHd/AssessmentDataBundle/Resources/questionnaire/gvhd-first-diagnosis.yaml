@@ -63,11 +63,11 @@ shared:
         score:
           status: positive
       -
-        label: "Not needed"
-        value: not-needed
-      -
         label: "Negative"
         value: negative
+      -
+        label: "Not needed"
+        value: not-needed
 chapters:
   -
     slug: chronic
