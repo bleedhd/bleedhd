@@ -16,7 +16,7 @@
 				<div class="col-xs-12">
 					<h4 ng-bind-html="containerCtl.question.intro.question"></h2>
 					<p ng-bind-html="containerCtl.question.intro.description"></p>
-					<img ng-if="containerCtl.question.intro.image" ng-src="{{ containerCtl.question.intro.image | assessmentResource }}" />
+					<img class="bleed-question-image" ng-if="containerCtl.question.intro.image" ng-src="{{ containerCtl.question.intro.image | assessmentResource }}" />
 				</div>
 			</div>
 		</div>
