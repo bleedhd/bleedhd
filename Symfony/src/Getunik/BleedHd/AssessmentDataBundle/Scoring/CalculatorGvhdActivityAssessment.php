@@ -12,4 +12,9 @@ class CalculatorGvhdActivityAssessment extends CalculatorBase
 	{
 		parent::__construct($logger);
 	}
+
+	protected function finish()
+	{
+		$this->score->total = '-';
+	}
 }
