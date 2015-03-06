@@ -981,6 +981,13 @@ chapters:
                 options: *gvhd-severity-options-single
               -
                 slug: immunosuppression
+                type: yesno
+                title: "Immunosuppresion"
+                meta_answers: ['nya']
+                intro:
+                  question: "Was there any immunosuppression medication administered?"
+              -
+                slug: immunosuppression-medication
                 type: multi
                 title: "Immunosuppresion"
                 meta_answers: ['nya']
