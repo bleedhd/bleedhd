@@ -16,35 +16,13 @@ class ScoreCalculatorFactory
 
 	public function create($assessmentType)
 	{
-		if ($assessmentType === 'gvhd-features')
-		{
-			$name = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\CalculatorGvhdFeatures';
-		}
-		else if ($assessmentType === 'gvhd-first-diagnosis')
-		{
-			$name = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\CalculatorGvhdFirstDiagnosis';
-		}
-		else if ($assessmentType === 'gvhd-current-staging')
-		{
-			$name = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\CalculatorGvhdCurrentStaging';
-		}
-		else if ($assessmentType === 'gvhd-activity-assessment')
-		{
-			$name = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\CalculatorGvhdActivityAssessment';
-		}
-		else if ($assessmentType === 'gvhd-self-report')
-		{
-			$name = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\CalculatorGvhdSelfReport';
-		}
-		else if ($assessmentType === 'gvhd-delayed-acute')
-		{
-			$name = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\CalculatorGvhdDelayedAcute';
-		}
-		else
-		{
-			$name = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\Calculator' . ucfirst($assessmentType);
-		}
+		// Transform the dash (-) separated assessment type name into a CamelCase class name
+		$parts = explode('-', $assessmentType);
+		array_walk($parts, function (&$element) {
+			$element = ucfirst($element);
+		});
+		$className = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\Calculator' . implode($parts);
 
-		return new $name($this->logger);
+		return new $className($this->logger);
 	}
 }
