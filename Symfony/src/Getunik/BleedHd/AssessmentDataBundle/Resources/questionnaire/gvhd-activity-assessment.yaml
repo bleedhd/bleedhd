@@ -18,6 +18,40 @@ shared:
           type: text
           question:
             title: "Specify"
+  - &gvhd-ten-point-scale
+    -
+      label: "0"
+      value: 0
+    -
+      label: "1"
+      value: 1
+    -
+      label: "2"
+      value: 2
+    -
+      label: "3"
+      value: 3
+    -
+      label: "4"
+      value: 4
+    -
+      label: "5"
+      value: 5
+    -
+      label: "6"
+      value: 6
+    -
+      label: "7"
+      value: 7
+    -
+      label: "8"
+      value: 8
+    -
+      label: "9"
+      value: 9
+    -
+      label: "10"
+      value: 10
   - &gvhd-severity-options
     -
       label: "Not assessed"
@@ -49,7 +83,7 @@ shared:
       value: 3
 chapters:
   -
-    slug: clinitian
+    slug: general
     sections:
       -
         screens:
@@ -59,9 +93,10 @@ chapters:
               -
                 slug: weight
                 type: text
-                title: Clinitian
+                meta_answers: ['nya']
+                title: "Clinitian"
                 intro:
-                  question: Current patient weight (kg)
+                  question: "Current patient weight (kg)"
                 pattern: decimal
           -
             slug: global
@@ -69,9 +104,10 @@ chapters:
               -
                 slug: provider-rating
                 type: radios
-                title: Clinitian
+                meta_answers: ['nya']
+                title: "Clinitian"
                 intro:
-                  question: Health care provider global rating
+                  question: "Health care provider global rating"
                 options:
                   -
                     label: None
@@ -85,3 +121,350 @@ chapters:
                   -
                     label: Severe
                     value: 3
+              -
+                slug: severity
+                type: radios
+                variant: horizontal
+                meta_answers: ['nya']
+                title: "Clinitian"
+                intro:
+                  question: "Where would you rate the severity of this patient’s chronic GvHD symptoms on the following scale, where 0 is cGVHD symptoms that are not at all severe and 10 is the most severe cGVHD symptoms possible"
+                options: *gvhd-ten-point-scale
+              -
+                slug: change
+                type: radios
+                meta_answers: ['nya']
+                title: "Clinitian"
+                intro:
+                  question: "Over the time would you say that this patient‘s cGvHD is"
+                options:
+                  -
+                    label: "Very much better"
+                    value: 3
+                  -
+                    label: "Moderately better"
+                    value: 2
+                  -
+                    label: "A little better"
+                    value: 1
+                  -
+                    label: "About the Same"
+                    value: 0
+                  -
+                    label: "A little worse"
+                    value: -1
+                  -
+                    label: "Moderately worse"
+                    value: -2
+                  -
+                    label: "Very much worse"
+                    value: -3
+  -
+    slug: organs
+    sections:
+      -
+        screens:
+          -
+            slug: mouth
+            questions:
+              -
+                slug: erythema
+                type: radios
+                meta_answers: ['nya']
+                title: "Clinitian - Mouth"
+                intro:
+                  question: "Erythema"
+                options:
+                  -
+                    label: "None"
+                    value: 0
+                  -
+                    label: "Mild erythema or moderate erythema (<25%)"
+                    value: 1
+                  -
+                    label: "Moderate (>= 25%) or Severe erythema (<25%)"
+                    value: 2
+                  -
+                    label: "Severe erythema (>=25%)"
+                    value: 3
+              -
+                slug: lichenoid
+                type: radios
+                meta_answers: ['nya']
+                title: "Clinitian - Mouth"
+                intro:
+                  question: "Lichenoid"
+                options:
+                  -
+                    label: "None"
+                    value: 0
+                  -
+                    label: "Lichen-like changes (<25%)"
+                    value: 1
+                  -
+                    label: "Lichen-like changes (25-50%)"
+                    value: 2
+                  -
+                    label: "Lichen-like changes (>50%)"
+                    value: 3
+              -
+                slug: ulcers
+                type: radios
+                meta_answers: ['nya']
+                title: "Clinitian - Mouth"
+                intro:
+                  question: "Ulcers"
+                options:
+                  -
+                    label: "None"
+                    value: 0
+                  -
+                    label: "Ulcers involving (≤20%)"
+                    value: 3
+                  -
+                    label: "Severe ulcerations (>20%)"
+                    value: 6
+          -
+            slug: gi-tract
+            questions:
+              -
+                slug: esophageal
+                type: radios
+                meta_answers: ['nya']
+                title: "Clinitian - Gastrointestinal-Esophageal"
+                intro:
+                  question: "Dysphagia OR Odynophagia"
+                options:
+                  -
+                    label: "No esophageal symptoms"
+                    value: 0
+                  -
+                    label: "Occasional dysphagia or odynophagia with solid food or pills during the past week"
+                    value: 1
+                  -
+                    label: "Intermittent dysphagia or odynophagia with solid foods or pills, but not for liquids or soft foods, during the past week"
+                    value: 2
+                  -
+                    label: "Dysphagia or odynophagia for almost all oral intake, on almost every day of the past week"
+                    value: 3
+              -
+                slug: upper-gi
+                type: radios
+                meta_answers: ['nya']
+                title: "Clinitian - Gastrointestinal-Upper GI"
+                intro:
+                  question: "Early satiety OR Anorexia OR Nausea & Vomiting"
+                options:
+                  -
+                    label: "No symptoms"
+                    value: 0
+                  -
+                    label: "Mild, occasional symptoms, with little reduction in oral intake during the past week"
+                    value: 1
+                  -
+                    label: "Moderate, intermittent symptoms, with some reduction in oral intake during the past week"
+                    value: 2
+                  -
+                    label: "More severe or persistent symptoms throughout the day, with marked reduction in oral intake, on almost every day of the past week"
+                    value: 3
+              -
+                slug: lower-gi
+                type: radios
+                meta_answers: ['nya']
+                title: "Clinitian - Gastrointestinal-Lower GI"
+                intro:
+                  question: "Diarrhea"
+                options:
+                  -
+                    label: "No loose or liquid stools during the past week"
+                    value: 0
+                  -
+                    label: "Occasional loose or liquid stools, on some days during the past week"
+                    value: 1
+                  -
+                    label: "Intermittent loose or liquid stools throughout the day, on almost every day of the last week, without requiring intervention to prevent or correct volume depletion"
+                    value: 2
+                  -
+                    label: "Voluminous diarrhea on almost every day of the past week, requiring intervention to prevent or correct volume depletion"
+                    value: 3
+              -
+                slug: non-gvhd
+                type: yesno
+                meta_answers: ['nya']
+                title: "Clinitian - Gastrointestinal-Lower GI"
+                intro:
+                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                options: *non-gvhd-cause-options
+          -
+            slug: lung-values
+            questions:
+              -
+                slug: fev1
+                type: text
+                meta_answers: ['nya']
+                pattern: integer
+                title: "Clinician - Lungs (Liters and % predicted)"
+                intro:
+                  question: "Bronchiolitis Obliterans - FEV1"
+              -
+                slug: fvc
+                type: text
+                meta_answers: ['nya']
+                pattern: integer
+                title: "Clinician - Lungs (Liters and % predicted)"
+                intro:
+                  question: "Bronchiolitis Obliterans - FVC"
+              -
+                slug: dlco
+                type: text
+                meta_answers: ['nya']
+                pattern: integer
+                title: "Clinician - Lungs (Liters and % predicted)"
+                intro:
+                  question: "Bronchiolitis Obliterans - Single Breath DLCO"
+              -
+                slug: tlc
+                type: text
+                meta_answers: ['nya']
+                pattern: integer
+                title: "Clinician - Lungs (Liters and % predicted)"
+                intro:
+                  question: "Bronchiolitis Obliterans - TLC"
+              -
+                slug: rv
+                type: text
+                meta_answers: ['nya']
+                pattern: integer
+                title: "Clinician - Lungs (Liters and % predicted)"
+                intro:
+                  question: "Bronchiolitis Obliterans - RV"
+              -
+                slug: non-gvhd
+                type: yesno
+                meta_answers: ['nya']
+                title: "Clinician - Lungs (Liters and % predicted)"
+                intro:
+                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                options: *non-gvhd-cause-options
+          -
+            slug: liver-values
+            questions:
+              -
+                slug: bilirubin
+                type: text
+                meta_answers: ['nya']
+                pattern: integer
+                title: "Clinician - Liver Values"
+                intro:
+                  question: "Total serum bilirubin (mg/dL)"
+              -
+                slug: bilirubin-uln
+                type: text
+                meta_answers: ['nya']
+                pattern: integer
+                title: "Clinician - Liver Values"
+                intro:
+                  question: "Upper limit of normal bilirubin (mg/dL)"
+              -
+                slug: alt
+                type: text
+                meta_answers: ['nya']
+                pattern: integer
+                title: "Clinician - Liver Values"
+                intro:
+                  question: "ALT (U/L)"
+              -
+                slug: alt-uln
+                type: text
+                meta_answers: ['nya']
+                pattern: integer
+                title: "Clinician - Liver Values"
+                intro:
+                  question: "Upper limit of normal ALT (U/L)"
+              -
+                slug: phosphatase
+                type: text
+                meta_answers: ['nya']
+                pattern: integer
+                title: "Clinician - Liver Values"
+                intro:
+                  question: "Alkaline phosphatase (U/L)"
+              -
+                slug: phosphatase-uln
+                type: text
+                meta_answers: ['nya']
+                pattern: integer
+                title: "Clinician - Liver Values"
+                intro:
+                  question: "Upper limit of normal alkaline phosphatase (U/L)"
+              -
+                slug: non-gvhd
+                type: yesno
+                meta_answers: ['nya']
+                title: "Clinician - Liver Values"
+                intro:
+                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                options: *non-gvhd-cause-options
+          -
+            slug: baseline-values
+            questions:
+              -
+                slug: distance-walked
+                type: radios
+                meta_answers: ['nya']
+                title: "Clinician - Baseline Values"
+                intro:
+                  question: "Total Distance Walked in 2 or 6 Mins"
+                options:
+                  -
+                    label: "2 minutes"
+                    value: 2
+                    supplements:
+                      -
+                        slug: distance
+                        type: text
+                        pattern: integer
+                        question:
+                          title: "Distance walked"
+                  -
+                    label: "6 minutes"
+                    value: 6
+                    supplements:
+                      -
+                        slug: distance
+                        type: text
+                        pattern: integer
+                        question:
+                          title: "Distance walked"
+              -
+                slug: karnofsky-lansky
+                type: text
+                meta_answers: ['nya']
+                pattern: integer
+                title: "Clinician - Baseline Values"
+                intro:
+                  question: "Karnofsky or Lansky"
+              -
+                slug: platelets
+                type: text
+                meta_answers: ['nya']
+                pattern: integer
+                title: "Clinician - Baseline Values"
+                intro:
+                  question: "Platelet Count (K/uL)"
+              -
+                slug: wbc
+                type: text
+                meta_answers: ['nya']
+                pattern: integer
+                title: "Clinician - Baseline Values"
+                intro:
+                  question: "Total WBC (K/uL)"
+              -
+                slug: eosinophilis
+                type: text
+                meta_answers: ['nya']
+                pattern: integer
+                title: "Clinician - Baseline Values"
+                intro:
+                  question: "Eosinophilis (%)"
