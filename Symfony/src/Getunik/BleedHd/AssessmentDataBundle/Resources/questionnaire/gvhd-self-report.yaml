@@ -1,0 +1,177 @@
+
+title: GvHD - patient self report
+version: "0.11.0"
+quick_links:
+  -
+    label: "Organs"
+    screen: organs
+  -
+    label: "Global"
+    screen: global
+meta_answers:
+  nya: Not yet answered
+  nass: Not assessed
+  napp: Not applicable
+  ns: No symptoms
+shared:
+  - &gvhd-ten-point-scale
+    -
+      label: "0"
+      value: 0
+    -
+      label: "1"
+      value: 1
+    -
+      label: "2"
+      value: 2
+    -
+      label: "3"
+      value: 3
+    -
+      label: "4"
+      value: 4
+    -
+      label: "5"
+      value: 5
+    -
+      label: "6"
+      value: 6
+    -
+      label: "7"
+      value: 7
+    -
+      label: "8"
+      value: 8
+    -
+      label: "9"
+      value: 9
+    -
+      label: "10"
+      value: 10
+chapters:
+  -
+    sections:
+      -
+        screens:
+          -
+            slug: organs
+            questions:
+              -
+                slug: skin
+                type: radios
+                variant: horizontal
+                meta_answers: ['nya']
+                title: "Skin symptoms"
+                intro:
+                  question: "Your skin itching at its WORST?"
+                  description: "Please rate how severe this symptom has been in the last seven days. Please choose the option below from 0 (symptom has not been present) to 10 (the symptom was as bad as you can imagine it could be) for each item."
+                options: *gvhd-ten-point-scale
+              -
+                slug: joint
+                type: radios
+                variant: horizontal
+                meta_answers: ['nya']
+                title: "Skin and joint symptoms"
+                intro:
+                  question: "Your skin and/or joint tightening at their WORST?"
+                  description: "Please rate how severe this symptom has been in the last seven days. Please choose the option below from 0 (symptom has not been present) to 10 (the symptom was as bad as you can imagine it could be) for each item."
+                options: *gvhd-ten-point-scale
+              -
+                slug: mouth
+                type: radios
+                variant: horizontal
+                meta_answers: ['nya']
+                title: "Mouth sensitivity"
+                intro:
+                  question: "Your mouth sensitivity at its WORST?"
+                  description: "Please rate how severe this symptom has been in the last seven days. Please choose the option below from 0 (symptom has not been present) to 10 (the symptom was as bad as you can imagine it could be) for each item."
+                options: *gvhd-ten-point-scale
+              -
+                slug: genitalia
+                type: radios
+                variant: horizontal
+                meta_answers: ['nya']
+                title: "Genitalia discomfort"
+                intro:
+                  question: "Your genital discomfort at its WORST? Women: vagina, vulva, or labia - Men: penis"
+                  description: "Please rate how severe this symptom has been in the last seven days. Please choose the option below from 0 (symptom has not been present) to 10 (the symptom was as bad as you can imagine it could be) for each item."
+                options: *gvhd-ten-point-scale
+              -
+                slug: eyes
+                type: multi
+                meta_answers: ['nya']
+                title: "Eyes symptoms"
+                questions:
+                  -
+                    slug: symptom
+                    type: text
+                    intro:
+                      question: "What is your main complaint with regard to your eyes?"
+                  -
+                    slug: severity
+                    type: radios
+                    variant: horizontal
+                    meta_answers: ['nya']
+                    title: "Eyes symptoms"
+                    intro:
+                      question: "Please rate how severe this symptom is"
+                      description: "From 0 (not at all severe) to 10 (most severe)"
+                    options: *gvhd-ten-point-scale
+          -
+            slug: global
+            questions:
+              -
+                slug: rating
+                type: radios
+                meta_answers: ['nya']
+                title: "Global Rating"
+                intro:
+                  question: "Overall, do you think that your chronic graft versus host disease is mild, moderate or severe?"
+                options:
+                  -
+                    label: "mild"
+                    value: 1
+                  -
+                    label: "moderate"
+                    value: 2
+                  -
+                    label: "severe"
+                    value: 3
+              -
+                slug: severity
+                type: radios
+                variant: horizontal
+                meta_answers: ['nya']
+                title: "Global Rating"
+                intro:
+                  question: "Please choose the number indicating how severe your chronic graft versus host disease symptoms are, where 0 is cGvHD symptoms that are not at all severe and 10 is the most severe chronic GvHD symptoms possible."
+                options: *gvhd-ten-point-scale
+              -
+                slug: change
+                type: radios
+                meta_answers: ['nya']
+                title: "Global Rating - Change"
+                intro:
+                  question: "Compared to a month ago, overall would you say that your cGvHD symptoms are"
+                options:
+                  -
+                    label: "Very much better"
+                    value: 3
+                  -
+                    label: "Moderately better"
+                    value: 2
+                  -
+                    label: "A little better"
+                    value: 1
+                  -
+                    label: "About the same"
+                    value: 0
+                  -
+                    label: "A little worse"
+                    value: -1
+                  -
+                    label: "Moderately worse"
+                    value: -2
+                  -
+                    label: "Very much worse"
+                    value: -3
