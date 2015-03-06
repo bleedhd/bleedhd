@@ -16,6 +16,7 @@
 		'gvhd-current-staging': 'GvHD current staging',
 		'gvhd-activity-assessment': 'GvHD activity assessment',
 		'gvhd-self-report': 'GvHD patient self report',
+		'gvhd-delayed-acute': 'delayed aGvHD classification',
 	};
 
 	angular.module('patient')

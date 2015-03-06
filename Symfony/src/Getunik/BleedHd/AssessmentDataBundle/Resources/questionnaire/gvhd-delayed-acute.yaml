@@ -1,0 +1,34 @@
+
+title: GvHD - delayed aGvHD classification
+version: "1.0.0"
+meta_answers:
+  nya: Not yet answered
+  nass: Not assessed
+  napp: Not applicable
+  ns: No symptoms
+chapters:
+  -
+    sections:
+      -
+        screens:
+          -
+            slug: classification
+            questions:
+              -
+                slug: interval
+                type: radios
+                title: "Delayed aGvHD classification"
+                meta_answers: ['nya']
+                intro:
+                  question: "Is the delayed acute GvHD persistent or recurrent?"
+                options:
+                  -
+                    label: "Persistent"
+                    value: persistent
+                    score:
+                      interval: persistent
+                  -
+                    label: "Recurrent"
+                    value: recurrent
+                    score:
+                      interval: recurrent
