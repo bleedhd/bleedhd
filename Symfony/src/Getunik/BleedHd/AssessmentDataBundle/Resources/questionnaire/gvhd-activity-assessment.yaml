@@ -2,6 +2,36 @@
 title: GvHD - activity assessment
 version: "0.11.0"
 quick_links:
+  -
+    label: "Global"
+    screen: global
+  -
+    label: "Mouth"
+    screen: skin
+  -
+    label: "GI Tract"
+    screen: gi-tract
+  -
+    label: "Lung Values"
+    screen: lung-values
+  -
+    label: "Liver Values"
+    screen: liver-values
+  -
+    label: "Baseline Values"
+    screen: baseline-values
+  -
+    label: "Skin"
+    screen: skin
+  -
+    label: "Joints and Fascia"
+    screen: joints-and-fascia
+  -
+    label: "Eyes"
+    screen: eyes
+  -
+    label: "Lungs"
+    screen: lungs
 meta_answers:
   nya: Not yet answered
   nass: Not assessed
@@ -52,35 +82,41 @@ shared:
     -
       label: "10"
       value: 10
-  - &gvhd-severity-options
+  - &p-rom-options-7
     -
-      label: "Not assessed"
-      value: -1
-    -
-      label: "none"
-      value: 0
-    -
-      label: "mild"
+      label: "1"
       value: 1
     -
-      label: "moderate"
+      label: "2"
       value: 2
     -
-      label: "severe"
+      label: "3"
       value: 3
-  - &gvhd-severity-options-single
     -
-      label: "none"
-      value: 0
+      label: "4"
+      value: 4
     -
-      label: "mild"
+      label: "5"
+      value: 5
+    -
+      label: "6"
+      value: 6
+    -
+      label: "7"
+      value: 7
+  - &p-rom-options-4
+    -
+      label: "1"
       value: 1
     -
-      label: "moderate"
+      label: "2"
       value: 2
     -
-      label: "severe"
+      label: "3"
       value: 3
+    -
+      label: "4"
+      value: 4
 chapters:
   -
     slug: general
@@ -468,3 +504,343 @@ chapters:
                 title: "Clinician - Baseline Values"
                 intro:
                   question: "Eosinophilis (%)"
+  -
+    slug: organ-score
+    sections:
+      -
+        screens:
+          -
+            slug: skin
+            questions:
+              -
+                slug: bsa-score
+                type: text
+                title: "Clinician - Skin Score BSA"
+                meta_answers: ['nya']
+                score:
+                  category: skin
+                  organ: true
+                  value:
+                    -
+                      range: [0, 1]
+                      value: 0
+                    -
+                      range: [1,19]
+                      value: 1
+                    -
+                      range: [19,51]
+                      value: 2
+                    -
+                      range: [51,100]
+                      value: 3
+                    -
+                      range: []
+                      value: -1
+                pattern: integer
+                intro:
+                  question: "Score % BSA"
+              -
+                slug: bsa-features
+                type: checkboxes
+                title: "Clinician - Skin Features"
+                meta_answers: ['nya']
+                intro:
+                  question: "Check all that apply"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Maculopapular rash/erythema"
+                    value: maculopapular-rash-erythema
+                  -
+                    label: "Lichen planus-like features"
+                    value: lichen-planus-like-features
+                  -
+                    label: "Sclerotic features"
+                    value: sclerotic-features
+                  -
+                    label: "Papulosquamous lesions or ichthyosis"
+                    value: papulosquamous-lesions-or-ichthyosis
+                  -
+                    label: "Keratosis pilaris-like GvHD"
+                    value: keratosis-pilaris-like-gvhd
+              -
+                slug: skin-score
+                type: radios
+                title: "Clinician - Skin Features Score"
+                meta_answers: ['nya']
+                score:
+                  category: skin
+                  organ: true
+                intro:
+                  question: "Skin features score"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "No sclerotic features"
+                    value: 0
+                  -
+                    label: "Superficial sclerotic features \"not hidebound\" (able to pinch)"
+                    value: 2
+                  -
+                    label: "Deep sclerotic features"
+                    value: 3
+                    supplements:
+                      -
+                        slug: symptoms
+                        type: checkboxes
+                        question:
+                          title: "Check all that apply"
+                        options:
+                          -
+                            label: "\"Hidebound\" (unable to pinch)"
+                            value: hidebound
+                          -
+                            label: "Impaired mobility"
+                            value: impaired-mobility
+                          -
+                            label: "Ulceration"
+                            value: ulceration
+                      -
+                        slug: non-moveable-bsa
+                        type: text
+                        pattern: integer
+                        question:
+                          title: "BSA % of non-moveable sclerosis / fasciitis"
+              -
+                slug: rating
+                type: radios
+                variant: horizontal
+                meta_answers: ['nya']
+                title: "Clinician - Skin Rating"
+                intro:
+                  question: "How would you rate the severity of this patient’s skin and/or joint tightening on the following scale, where 0 is not at all severe and 10 is the most severe symptoms possible"
+                options: *gvhd-ten-point-scale
+              -
+                slug: non-gvhd
+                type: yesno
+                title: "Clinician - Skin non-GvHD causes"
+                meta_answers: ['nya']
+                score:
+                  category: skin
+                  organ: true
+                  nongvhd: true
+                intro:
+                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                options: *non-gvhd-cause-options
+          -
+            slug: p-rom
+            questions:
+              -
+                slug: shoulder
+                type: multi
+                title: "Photographic Range of Motion (P-ROM)"
+                meta_answers: ['nya']
+                intro:
+                  image: "images/gvhd-p-rom-shoulder.jpg"
+                questions:
+                  -
+                    slug: left
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Left shoulder"
+                    options: *p-rom-options-7
+                  -
+                    slug: right
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Right shoulder"
+                    options: *p-rom-options-7
+              -
+                slug: elbow
+                type: multi
+                title: "Photographic Range of Motion (P-ROM)"
+                meta_answers: ['nya']
+                intro:
+                  image: "images/gvhd-p-rom-elbow.jpg"
+                questions:
+                  -
+                    slug: left
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Left elbow"
+                    options: *p-rom-options-7
+                  -
+                    slug: right
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Right elbow"
+                    options: *p-rom-options-7
+              -
+                slug: wrist-finger
+                type: multi
+                title: "Photographic Range of Motion (P-ROM)"
+                meta_answers: ['nya']
+                intro:
+                  image: "images/gvhd-p-rom-wrist-finger.jpg"
+                questions:
+                  -
+                    slug: left
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Left wrist / finger"
+                    options: *p-rom-options-7
+                  -
+                    slug: right
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Right wrist / finger"
+                    options: *p-rom-options-7
+              -
+                slug: ankle
+                type: multi
+                title: "Photographic Range of Motion (P-ROM)"
+                meta_answers: ['nya']
+                intro:
+                  image: "images/gvhd-p-rom-ankle.jpg"
+                questions:
+                  -
+                    slug: left
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Left ankle"
+                    options: *p-rom-options-4
+                  -
+                    slug: right
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Right ankle"
+                    options: *p-rom-options-4
+          -
+            slug: joints-and-fascia
+            questions:
+              -
+                slug: score
+                type: radios
+                title: "Clinician - Joints and Fascia"
+                meta_answers: ['nya']
+                score:
+                  category: joints
+                  organ: true
+                intro:
+                  question: "Joints and Fascia symptoms score"
+                options:
+                  -
+                    label: "No symptoms"
+                    value: 0
+                  -
+                    label: "Mild tightness of arms or legs, normal or mild decreased range of motion (ROM) AND not affecting ADL"
+                    value: 1
+                  -
+                    label: "Tightness of arms or legs OR joing contractures, erythema thought due to fasciitis, moderate decrease ROM AND mild to moderate limitation of ADL"
+                    value: 2
+                  -
+                    label: "Contractures WITH significant decrease of ROM AND significant limitation of ADL (unable to tie shoes, button shirts, dress self etc.)"
+                    value: 3
+              -
+                slug: non-gvhd
+                type: yesno
+                title: "Clinician - Joints and Fascia non-GvHD causes"
+                meta_answers: ['nya']
+                score:
+                  category: joints
+                  organ: true
+                  nongvhd: true
+                intro:
+                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                options: *non-gvhd-cause-options
+          -
+            slug: eyes
+            questions:
+              -
+                slug: score
+                type: radios
+                title: "Clinician - Eyes"
+                meta_answers: ['nya']
+                score:
+                  category: eyes
+                  organ: true
+                intro:
+                  question: "Eyes score"
+                options:
+                  -
+                    label: "No symptoms"
+                    value: 0
+                  -
+                    label: "Mild dry eye symptoms not affecting ADL (requirement of lubricant eye drops < 3 x per day)"
+                    value: 1
+                  -
+                    label: "Moderate dry eye symptoms partially affecting ADL (requiring lubricant eye drops > 3 x per day or punctal plugs), WITHOUT new vision impairment due to KCS"
+                    value: 2
+                  -
+                    label: "Severe dry eye symptoms significantly affecting ADL (special eyeware to relieve pain) OR unable to work because of ocular symptoms OR loss of vision due to KCS"
+                    value: 3
+              -
+                slug: non-gvhd
+                type: yesno
+                title: "Clinician - Eyes non-GvHD causes"
+                meta_answers: ['nya']
+                score:
+                  category: eyes
+                  organ: true
+                  nongvhd: true
+                intro:
+                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                options: *non-gvhd-cause-options
+          -
+            slug: lungs
+            questions:
+              -
+                slug: symptoms-score
+                type: radios
+                title: "Clinician - Lungs score"
+                meta_answers: ['nya']
+                score:
+                  category: lungs
+                  organ: true
+                  bump: 1
+                  priority: 1
+                intro:
+                  question: "Lungs symptoms score"
+                options:
+                  -
+                    label: "No symptoms"
+                    value: 0
+                  -
+                    label: "Mild symptoms (shortness of breath after climbing one flight of steps)"
+                    value: 1
+                  -
+                    label: "Moderate symptoms (shortness of breath after walking on flat ground)"
+                    value: 2
+                  -
+                    label: "Severe symptoms (shortness of breath at rest; requiring 02)"
+                    value: 3
+              -
+                slug: non-gvhd
+                type: yesno
+                title: "Clinician - Lungs non-GvHD causes"
+                meta_answers: ['nya']
+                score:
+                  category: lungs
+                  organ: true
+                  nongvhd: true
+                intro:
+                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                options: *non-gvhd-cause-options
