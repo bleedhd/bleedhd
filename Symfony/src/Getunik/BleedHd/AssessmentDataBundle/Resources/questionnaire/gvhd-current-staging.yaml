@@ -1,6 +1,6 @@
 
 title: GvHD - current staging
-version: "0.9.0"
+version: "1.0.0"
 quick_links:
   -
     label: "Skin"
@@ -981,6 +981,13 @@ chapters:
                 options: *gvhd-severity-options-single
               -
                 slug: immunosuppression
+                type: yesno
+                title: "Immunosuppresion"
+                meta_answers: ['nya']
+                intro:
+                  question: "Was there any immunosuppression medication administered?"
+              -
+                slug: immunosuppression-medication
                 type: multi
                 title: "Immunosuppresion"
                 meta_answers: ['nya']

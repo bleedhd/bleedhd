@@ -14,7 +14,7 @@
 		'gvhd-features': 'GvHD features',
 		'gvhd-first-diagnosis': 'GvHD first diagnosis',
 		'gvhd-current-staging': 'GvHD current staging',
-		'gvhd-therapy-response': 'GvHD therapy response',
+		'gvhd-activity-assessment': 'GvHD activity assessment',
 		'gvhd-self-report': 'GvHD patient self report',
 	};
 
