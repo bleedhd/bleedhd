@@ -48,7 +48,7 @@ class TokenRemoveLogoutHandler extends DefaultLogoutSuccessHandler
 
         if ($loginRedirectTarget = $request->get('_target_path', null)) {
             if (!empty($loginRedirectTarget)) {
-                $targetUrl = $targetUrl . (strpos($targetUrl, '?') === FALSE ? '?' : '&') . '_target_path=' . $loginRedirectTarget;
+                $targetUrl = $targetUrl . (strpos($targetUrl, '?') === FALSE ? '?' : '&') . '_target_path=' . rawurlencode($loginRedirectTarget);
             }
         }
 
