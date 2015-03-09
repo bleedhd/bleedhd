@@ -13,7 +13,7 @@
 		'bsms': 'Bleeding BSMS',
 		'gvhd-features': 'GvHD features',
 		'gvhd-first-diagnosis': 'GvHD first diagnosis',
-		'gvhd-current-staging': 'GvHD current staging',
+		'gvhd-organ-scoring': 'GvHD organ scoring',
 		'gvhd-activity-assessment': 'GvHD activity assessment',
 		'gvhd-self-report': 'GvHD patient self report',
 		'gvhd-delayed-acute': 'delayed aGvHD classification',
