@@ -2,8 +2,8 @@
 (function (angular) {
 
 	function AuthHandlerProvider() {
-		// 5min check interval
-		this.checkInterval = 5 * 60 * 1000;
+		// 3.3min check interval (not a factor of 15)
+		this.checkInterval = 3.3 * 60 * 1000;
 		// 15min activity interval
 		this.activityWindow = 15 * 60 * 1000;
 		this.expirationCallbacks = [];
@@ -56,6 +56,7 @@
 				that.$log.debug('got the token', that.authInfo);
 				$interval(that.checkToken.bind(that), that.config.checkInterval);
 				that.deferred.resolve(data);
+				that.checkToken();
 			}).error(function(msg, code) {
 				that.deferred.reject(msg);
 			});
@@ -89,10 +90,18 @@
 		 * @param {function(object)} - callback that will be called whenever the authorization token has been resolved
 		 */
 		authorized: function (callback, errorCallback) {
-			this.lastActivity = Date.now();
+			this.updateLastActivity();
 			return this.deferred.promise.then(function (data) {
 				return callback(data);
 			}, errorCallback);
+		},
+		/**
+		 * Updates the internal last activity timestamp that is used to determine if the user has been active within
+		 * the activityWindow. Calling the authorized function automatically does this already, but if your application
+		 * has other useful ways of determining user activity, this function can be called manually.
+		 */
+		updateLastActivity: function () {
+			this.lastActivity = Date.now();
 		},
 		/**
 		 * Periodically checks the token expiration and refreshes the token if
