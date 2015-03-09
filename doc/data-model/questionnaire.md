@@ -161,6 +161,11 @@ Each value object **must** have a _value_ property and it _may_ additionally hav
 
 Note that _supplement_ values **must** be primitive types or arrays of primitive types - objects are not allowed.
 
+## Ownership
+The different aspects of the respones / result object have different _owners_ in the client UI implementation. The owner is in charge of updating that particular piece of the response and the ownership is linked to the hierarchical view nature of the implementation. The following image illustrates who owns what:
+
+![Response Ownership](http://www.gliffy.com/go/publish/image/7454453/L.png)
+
 
 # Meta Answers
 
