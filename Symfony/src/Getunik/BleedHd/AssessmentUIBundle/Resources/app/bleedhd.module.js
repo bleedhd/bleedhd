@@ -148,12 +148,18 @@
 			.setUidFunc(function () { return bleedHd.env.uid; });
 	})
 
-	.run(function ($rootScope, ServerLogDump, HeaderControl) {
+	.run(function ($rootScope, ServerLogDump, HeaderControl, AuthHandler) {
 		$rootScope.env = bleedHd.env;
 		$rootScope.header = HeaderControl;
 
 		// do the log dumping now (on load) and every 15min
 		ServerLogDump.start(15);
+
+		$rootScope.$on('$routeChangeSuccess', function () {
+			// navigating counts as a noteworthy activity in the context of
+			// auto-logout behavior
+			AuthHandler.updateLastActivity();
+		});
 	})
 
 	;
