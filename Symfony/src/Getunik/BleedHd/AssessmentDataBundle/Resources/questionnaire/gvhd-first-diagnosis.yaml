@@ -109,13 +109,15 @@ chapters:
               -
                 slug: distinctive
                 type: checkboxes
-                title: "Skin - distinctive features"
+                title: "Skin - distinctive features*"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: distinctive
                 intro:
-                  question: "Skin - distinctive features"
+                  question: "Skin - distinctive features*"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                annotations:
+                  - "*In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -161,8 +163,10 @@ chapters:
                 title: "Skin - common features"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Skin - common features"
+                  question: "Skin - common features***"
                   description: "Seen with both acute and chronic GVHD"
+                annotations:
+                  - "***Common refers to shared features by both acute and chronic GVHD."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -190,10 +194,10 @@ chapters:
                 score:
                   type: distinctive
                 intro:
-                  question: "Nails - distinctive features"
+                  question: "Nails - distinctive features*"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
                 annotations:
-                  - "**In all cases, infection, drug effect, malignancy or other causes must be excluded."
+                  - "*In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -218,7 +222,7 @@ chapters:
                     supplements:
                       - *confirmation-supplement
                   -
-                    label: "Nail loss** (usually symmetric, affects most nails)"
+                    label: "Nail loss (usually symmetric, affects most nails)"
                     value: nail-loss
                     supplements:
                       - *confirmation-supplement
@@ -237,8 +241,10 @@ chapters:
                 score:
                   type: distinctive
                 intro:
-                  question: "Scalp and Body Hair - distinctive features"
+                  question: "Scalp and Body Hair - distinctive features*"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                annotations:
+                  - "*In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -305,10 +311,10 @@ chapters:
                 score:
                   type: distinctive
                 intro:
-                  question: "Mouth - distinctive features"
+                  question: "Mouth - distinctive features*"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
                 annotations:
-                  - "**In all cases, infection, drug effect, malignancy or other causes must be excluded."
+                  - "*In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -328,8 +334,13 @@ chapters:
                     supplements:
                       - *confirmation-supplement
                   -
-                    label: "Ulcers and Pseudomembranes**"
-                    value: ulcers-and-pseudomembranes
+                    label: "Ulcers"
+                    value: ulcers
+                    supplements:
+                      - *confirmation-supplement
+                  -
+                    label: "Pseudomembranes"
+                    value: pseudomembranes
                     supplements:
                       - *confirmation-supplement
               -
@@ -338,8 +349,10 @@ chapters:
                 title: "Mouth - common features"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Mouth - common features"
+                  question: "Mouth - common features***"
                   description: "Seen with both acute and chronic GVHD"
+                annotations:
+                  - "***Common refers to shared features by both acute and chronic GVHD."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -370,8 +383,10 @@ chapters:
                 score:
                   type: distinctive
                 intro:
-                  question: "Eyes - distinctive features"
+                  question: "Eyes - distinctive features*"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                annotations:
+                  - "*In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -445,8 +460,8 @@ chapters:
                     label: "Females: Vaginal scarring or clitoral/labial agglutination"
                     value: vaginal-scarring
                   -
-                    label: "Males: Phymosis or urethral/meatus scarring or stenosis"
-                    value: phymosis
+                    label: "Males: Phimosis or urethral/meatus scarring or stenosis"
+                    value: phimosis
               -
                 slug: distinctive
                 type: checkboxes
@@ -455,25 +470,25 @@ chapters:
                 score:
                   type: distinctive
                 intro:
-                  question: "Genitalia - distinctive features"
+                  question: "Genitalia - distinctive features*"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
                 annotations:
-                  - "**In all cases, infection, drug effect, malignancy or other causes must be excluded."
+                  - "*In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
                   label: "No symptoms"
                 options:
                   -
-                    label: "Erosions**"
+                    label: "Erosions"
                     value: erosions
                     supplements:
                       - *confirmation-supplement
                   -
-                    label: "Fissures**"
+                    label: "Fissures"
                     value: fissures
                     supplements:
                       - *confirmation-supplement
                   -
-                    label: "Ulcers**"
+                    label: "Ulcers"
                     value: ulcers
                     supplements:
                       - *confirmation-supplement
@@ -494,8 +509,6 @@ chapters:
                 intro:
                   question: "GI Tract - diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
-                annotations:
-                  - "**In all cases, infection, drug effect, malignancy or other causes must be excluded."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -503,7 +516,7 @@ chapters:
                     label: "Esophageal web"
                     value: esophageal-web
                   -
-                    label: "Strictures or stenosis in the upper to mid third of the esophagus**"
+                    label: "Strictures or stenosis in the upper to mid third of the esophagus"
                     value: strictures-or-stenosis
               -
                 slug: other
@@ -525,8 +538,10 @@ chapters:
                 title: "GI Tract - common features"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "GI Tract - common features"
+                  question: "GI Tract - common features***"
                   description: "Seen with both acute and chronic GVHD"
+                annotations:
+                  - "***Common refers to shared features by both acute and chronic GVHD."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -561,8 +576,10 @@ chapters:
                 title: "Liver - common features"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Liver - common features"
-                  description: "Seen with both acute and chronic GVHD"
+                  question: "Liver - common features***"
+                  description: "Seen with both acute and chronic GVHD***"
+                annotations:
+                  - "***Common refers to shared features by both acute and chronic GVHD."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -589,6 +606,8 @@ chapters:
                 intro:
                   question: "Lung - diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
+                annotations:
+                  - "‡BOS can be diagnostic for lung chronic GVHD only, if distinctive sign or symptom present in another organ."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -596,7 +615,7 @@ chapters:
                     label: "Bronchiolitis obliterans diagnosed with lung biopsy"
                     value: bo
                   -
-                    label: "Bronchiolitis obliterans syndrome"
+                    label: "Bronchiolitis obliterans syndrome‡"
                     value: bos
               -
                 slug: distinctive
@@ -606,8 +625,10 @@ chapters:
                 score:
                   type: diagnostic
                 intro:
-                  question: "Lung - distinctive features"
+                  question: "Lung - distinctive features*"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                annotations:
+                  - "*In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -667,8 +688,10 @@ chapters:
                 score:
                   type: distinctive
                 intro:
-                  question: "Muscles, Fascia, Joints - distinctive features"
+                  question: "Muscles, Fascia, Joints - distinctive features*"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                annotations:
+                  - "*In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 annotations:
                   - "†† Pulmonary entities under investigation or unclassified."
                 option_reset:
@@ -819,16 +842,16 @@ chapters:
                     label: "Bilirubin < 34 µmol/L"
                     value: 0
                   -
-                    label: "Bilirubin 24 - 52 µmol/L"
+                    label: "Bilirubin 34 - 50 µmol/L"
                     value: 1
                   -
-                    label: "Bilirubin 53 - 103 µmol/L"
+                    label: "Bilirubin 51 - 102 µmol/L"
                     value: 2
                   -
-                    label: "Bilirubin 104 - 256 µmol/L"
+                    label: "Bilirubin 103 - 255 µmol/L"
                     value: 3
                   -
-                    label: "Bilirubin > 256 µmol/L"
+                    label: "Bilirubin > 255 µmol/L"
                     value: 4
               -
                 slug: gut
