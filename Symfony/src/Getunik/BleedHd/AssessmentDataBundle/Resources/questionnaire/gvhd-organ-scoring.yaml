@@ -79,7 +79,7 @@ shared:
             title: "Specify"
   - &gvhd-severity-options
     -
-      label: "Not assessed"
+      label: "not assessed"
       value: -1
     -
       label: "none"
@@ -349,10 +349,10 @@ chapters:
                     label: "No symptoms"
                     value: 0
                   -
-                    label: "Mild dry eye symptoms not affecting ADL (requirement of lubricant eye drops < 3 x per day)"
+                    label: "Mild dry eye symptoms not affecting ADL (requirement of lubricant eye drops ≤3 x per day)"
                     value: 1
                   -
-                    label: "Moderate dry eye symptoms partially affecting ADL (requiring lubricant eye drops > 3 x per day or punctal plugs), WITHOUT new vision impairment due to KCS"
+                    label: "Moderate dry eye symptoms partially affecting ADL (requiring lubricant eye drops >3 x per day or punctal plugs), WITHOUT new vision impairment due to KCS"
                     value: 2
                   -
                     label: "Severe dry eye symptoms significantly affecting ADL (special eyeware to relieve pain) OR unable to work because of ocular symptoms OR loss of vision due to KCS"
@@ -389,6 +389,8 @@ chapters:
                   organ: true
                 intro:
                   question: "GI Tract score"
+                annotations:
+                  - "*Weight loss within 3 months."
                 options:
                   -
                     label: "No symptoms"
@@ -431,7 +433,7 @@ chapters:
                     label: "Diarrhea"
                     value: diarrhea
                   -
-                    label: "Weight loss >5% (within 3 months)"
+                    label: "Weight loss ≥5% (within 3 months)"
                     value: weight-loss
                   -
                     label: "Failure to thrive"
@@ -463,16 +465,16 @@ chapters:
                   question: "Liver score"
                 options:
                   -
-                    label: "Normal total bilirubin and ALT or AP < 3 x ULN"
+                    label: "Normal total bilirubin and ALT or AP <3 x ULN"
                     value: 0
                   -
-                    label: "Normal total bilirubin with ALT >3 to 5 x ULN or AP > 3 x ULN"
+                    label: "Normal total bilirubin with ALT ≥3 to 5 x ULN or AP ≥3 x ULN"
                     value: 1
                   -
-                    label: "Elevated total bilirubin but <3 mg/dL or ALT > 5 ULN"
+                    label: "Elevated total bilirubin but ≤3 mg/dL or ALT >5 ULN"
                     value: 2
                   -
-                    label: "Elevated total bilirubin > 3 mg/dL"
+                    label: "Elevated total bilirubin >3 mg/dL"
                     value: 3
               -
                 slug: non-gvhd
@@ -512,7 +514,7 @@ chapters:
                     label: "Moderate symptoms (shortness of breath after walking on flat ground)"
                     value: 2
                   -
-                    label: "Severe symptoms (shortness of breath at rest; requiring 02)"
+                    label: "Severe symptoms (shortness of breath at rest; requiring O2)"
                     value: 3
               -
                 slug: fev1-score
@@ -706,7 +708,7 @@ chapters:
                 intro:
                   question: "Genital Tract score"
                 info:
-                  resource: "documents/sample.pdf"
+                  resource: "documents/gvhd-organscoring-genitaltract-info.pdf"
                 annotations:
                   - "‡ To be completed by specialist or trained medical providers"
                   - "* Genital symptoms are not specific to cGvHD and can represent premature gonadal failure or genital tract infection."
@@ -856,7 +858,7 @@ chapters:
                 slug: features-score
                 type: multi
                 title: "Other indicators"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 intro:
                   question: "Other indicators, clinical features or complications related to chronic GvHD"
                 questions:
@@ -927,7 +929,7 @@ chapters:
                 slug: features-present
                 type: multi
                 title: "Other indicators"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 intro:
                   question: "Other indicators, clinical features or complications related to chronic GvHD"
                 questions:
@@ -935,7 +937,7 @@ chapters:
                     slug: weight-loss
                     type: yesno
                     intro:
-                      question: "Weight loss > 5% (within 3 months) without GI symptoms"
+                      question: "Weight loss >5% (within 3 months) without GI symptoms"
                   -
                     slug: eosinophilia
                     type: yesno
@@ -943,10 +945,10 @@ chapters:
                       question: "Eosinophilia"
                     options:
                       yes:
-                        label: "> 500/μl"
+                        label: ">500/μl"
                         value: true
                       no:
-                        label: "< 500/μl"
+                        label: "≤500/μl"
                         value: false
                   -
                     slug: platelets
@@ -955,10 +957,10 @@ chapters:
                       question: "Platelets"
                     options:
                       yes:
-                        label: "< 100'000/μl"
+                        label: "<100'000/μl"
                         value: true
                       no:
-                        label: "> 100'000/μl"
+                        label: ">100'000/μl"
                         value: false
                   -
                     slug: others
@@ -973,7 +975,7 @@ chapters:
                 type: radios
                 variant: horizontal
                 title: "Overall GvHD Severity"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 score:
                   category: overall
                 intro:
