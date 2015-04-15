@@ -1,6 +1,6 @@
 
 title: GvHD - activity assessment
-version: "0.11.0"
+version: "1.0.0"
 quick_links:
   -
     label: "Global"
@@ -129,8 +129,8 @@ chapters:
               -
                 slug: weight
                 type: text
-                meta_answers: ['nya']
-                title: "Clinitian"
+                meta_answers: ['nya', 'nass']
+                title: "Weight"
                 intro:
                   question: "Current patient weight (kg)"
                 pattern: decimal
@@ -140,10 +140,10 @@ chapters:
               -
                 slug: provider-rating
                 type: radios
-                meta_answers: ['nya']
-                title: "Clinitian"
+                meta_answers: ['nya', 'nass']
+                title: "Health care provider global rating"
                 intro:
-                  question: "Health care provider global rating"
+                  question:
                 options:
                   -
                     label: None
@@ -162,15 +162,15 @@ chapters:
                 type: radios
                 variant: horizontal
                 meta_answers: ['nya']
-                title: "Clinitian"
+                title: "Severity"
                 intro:
-                  question: "Where would you rate the severity of this patient’s chronic GvHD symptoms on the following scale, where 0 is cGVHD symptoms that are not at all severe and 10 is the most severe cGVHD symptoms possible"
+                  question: "Where would you rate the severity of this patient’s chronic GvHD symptoms on the following scale, where 0 is cGVHD symptoms that are not at all severe and 10 is the most severe cGVHD symptoms possible:"
                 options: *gvhd-ten-point-scale
               -
                 slug: change
                 type: radios
                 meta_answers: ['nya']
-                title: "Clinitian"
+                title: "Progression"
                 intro:
                   question: "Over the time would you say that this patient‘s cGvHD is"
                 options:
@@ -207,7 +207,7 @@ chapters:
                 slug: erythema
                 type: radios
                 meta_answers: ['nya']
-                title: "Clinitian - Mouth"
+                title: "Mouth"
                 intro:
                   question: "Erythema"
                 options:
@@ -215,19 +215,19 @@ chapters:
                     label: "None"
                     value: 0
                   -
-                    label: "Mild erythema or moderate erythema (<25%)"
+                    label: "Mild erythema or moderate erythema (< 25%)"
                     value: 1
                   -
-                    label: "Moderate (>= 25%) or Severe erythema (<25%)"
+                    label: "Moderate (≥ 25%) or Severe erythema (< 25%)"
                     value: 2
                   -
-                    label: "Severe erythema (>=25%)"
+                    label: "Severe erythema (≥ 25%)"
                     value: 3
               -
                 slug: lichenoid
                 type: radios
                 meta_answers: ['nya']
-                title: "Clinitian - Mouth"
+                title: "Mouth"
                 intro:
                   question: "Lichenoid"
                 options:
@@ -235,19 +235,19 @@ chapters:
                     label: "None"
                     value: 0
                   -
-                    label: "Lichen-like changes (<25%)"
+                    label: "Lichen-like changes (< 25%)"
                     value: 1
                   -
-                    label: "Lichen-like changes (25-50%)"
+                    label: "Lichen-like changes (25 - 50%)"
                     value: 2
                   -
-                    label: "Lichen-like changes (>50%)"
+                    label: "Lichen-like changes (> 50%)"
                     value: 3
               -
                 slug: ulcers
                 type: radios
                 meta_answers: ['nya']
-                title: "Clinitian - Mouth"
+                title: "Mouth"
                 intro:
                   question: "Ulcers"
                 options:
@@ -255,10 +255,10 @@ chapters:
                     label: "None"
                     value: 0
                   -
-                    label: "Ulcers involving (≤20%)"
+                    label: "Ulcers involving (≤ 20%)"
                     value: 3
                   -
-                    label: "Severe ulcerations (>20%)"
+                    label: "Severe ulcerations (> 20%)"
                     value: 6
           -
             slug: gi-tract
@@ -267,7 +267,7 @@ chapters:
                 slug: esophageal
                 type: radios
                 meta_answers: ['nya']
-                title: "Clinitian - Gastrointestinal-Esophageal"
+                title: "Gastrointestinal-Esophageal"
                 intro:
                   question: "Dysphagia OR Odynophagia"
                 options:
@@ -287,7 +287,7 @@ chapters:
                 slug: upper-gi
                 type: radios
                 meta_answers: ['nya']
-                title: "Clinitian - Gastrointestinal-Upper GI"
+                title: "Gastrointestinal-Upper GI"
                 intro:
                   question: "Early satiety OR Anorexia OR Nausea & Vomiting"
                 options:
@@ -307,7 +307,7 @@ chapters:
                 slug: lower-gi
                 type: radios
                 meta_answers: ['nya']
-                title: "Clinitian - Gastrointestinal-Lower GI"
+                title: "Gastrointestinal-Lower GI"
                 intro:
                   question: "Diarrhea"
                 options:
@@ -327,7 +327,7 @@ chapters:
                 slug: non-gvhd
                 type: yesno
                 meta_answers: ['nya']
-                title: "Clinitian - Gastrointestinal-Lower GI"
+                title: "Gastrointestinal"
                 intro:
                   question: "Abnormality present but explained entirely by non-GvHD documented cause"
                 options: *non-gvhd-cause-options
@@ -338,47 +338,47 @@ chapters:
                 slug: fev1
                 type: text
                 meta_answers: ['nya']
-                pattern: integer
-                title: "Clinician - Lungs (Liters and % predicted)"
+                pattern: decimal
+                title: "Lungs (Bronchiolitis Obliterans)"
                 intro:
-                  question: "Bronchiolitis Obliterans - FEV1"
+                  question: "FEV1 (liters)"
               -
                 slug: fvc
                 type: text
                 meta_answers: ['nya']
-                pattern: integer
-                title: "Clinician - Lungs (Liters and % predicted)"
+                pattern: decimal
+                title: "Lungs (Bronchiolitis Obliterans)"
                 intro:
-                  question: "Bronchiolitis Obliterans - FVC"
+                  question: "FVC (liters)"
               -
                 slug: dlco
                 type: text
                 meta_answers: ['nya']
                 pattern: integer
-                title: "Clinician - Lungs (Liters and % predicted)"
+                title: "Lungs (Bronchiolitis Obliterans)"
                 intro:
-                  question: "Bronchiolitis Obliterans - Single Breath DLCO"
+                  question: "Single Breath DLCO (% predicted)"
               -
                 slug: tlc
                 type: text
                 meta_answers: ['nya']
-                pattern: integer
-                title: "Clinician - Lungs (Liters and % predicted)"
+                pattern: decimal
+                title: "Lungs (Bronchiolitis Obliterans)"
                 intro:
-                  question: "Bronchiolitis Obliterans - TLC"
+                  question: "TLC (liters)"
               -
                 slug: rv
                 type: text
                 meta_answers: ['nya']
-                pattern: integer
-                title: "Clinician - Lungs (Liters and % predicted)"
+                pattern: decimal
+                title: "Lungs (Bronchiolitis Obliterans)"
                 intro:
-                  question: "Bronchiolitis Obliterans - RV"
+                  question: "RV (liters)"
               -
                 slug: non-gvhd
                 type: yesno
                 meta_answers: ['nya']
-                title: "Clinician - Lungs (Liters and % predicted)"
+                title: "Lungs (Bronchiolitis Obliterans)"
                 intro:
                   question: "Abnormality present but explained entirely by non-GvHD documented cause"
                 options: *non-gvhd-cause-options
@@ -389,8 +389,8 @@ chapters:
                 slug: bilirubin
                 type: text
                 meta_answers: ['nya']
-                pattern: integer
-                title: "Clinician - Liver Values"
+                pattern: decimal
+                title: "Liver Values"
                 intro:
                   question: "Total serum bilirubin (mg/dL)"
               -
@@ -398,46 +398,46 @@ chapters:
                 type: text
                 meta_answers: ['nya']
                 pattern: integer
-                title: "Clinician - Liver Values"
+                title: "Liver Values"
                 intro:
                   question: "Upper limit of normal bilirubin (mg/dL)"
               -
                 slug: alt
                 type: text
                 meta_answers: ['nya']
-                pattern: integer
-                title: "Clinician - Liver Values"
+                pattern: decimal
+                title: "Liver Values"
                 intro:
                   question: "ALT (U/L)"
               -
                 slug: alt-uln
                 type: text
                 meta_answers: ['nya']
-                pattern: integer
-                title: "Clinician - Liver Values"
+                pattern: decimal
+                title: "Liver Values"
                 intro:
                   question: "Upper limit of normal ALT (U/L)"
               -
                 slug: phosphatase
                 type: text
                 meta_answers: ['nya']
-                pattern: integer
-                title: "Clinician - Liver Values"
+                pattern: decimal
+                title: "Liver Values"
                 intro:
                   question: "Alkaline phosphatase (U/L)"
               -
                 slug: phosphatase-uln
                 type: text
                 meta_answers: ['nya']
-                pattern: integer
-                title: "Clinician - Liver Values"
+                pattern: decimal
+                title: "Liver Values"
                 intro:
                   question: "Upper limit of normal alkaline phosphatase (U/L)"
               -
                 slug: non-gvhd
                 type: yesno
                 meta_answers: ['nya']
-                title: "Clinician - Liver Values"
+                title: "Liver Values"
                 intro:
                   question: "Abnormality present but explained entirely by non-GvHD documented cause"
                 options: *non-gvhd-cause-options
@@ -448,7 +448,7 @@ chapters:
                 slug: distance-walked
                 type: radios
                 meta_answers: ['nya']
-                title: "Clinician - Baseline Values"
+                title: "Baseline Values"
                 intro:
                   question: "Total Distance Walked in 2 or 6 Mins"
                 options:
@@ -461,7 +461,7 @@ chapters:
                         type: text
                         pattern: integer
                         question:
-                          title: "Distance walked"
+                          title: "Distance walked (meters)"
                   -
                     label: "6 minutes"
                     value: 6
@@ -471,13 +471,13 @@ chapters:
                         type: text
                         pattern: integer
                         question:
-                          title: "Distance walked"
+                          title: "Distance walked (meters)"
               -
                 slug: karnofsky-lansky
                 type: text
                 meta_answers: ['nya']
                 pattern: integer
-                title: "Clinician - Baseline Values"
+                title: "Baseline Values"
                 intro:
                   question: "Karnofsky or Lansky"
               -
@@ -485,7 +485,7 @@ chapters:
                 type: text
                 meta_answers: ['nya']
                 pattern: integer
-                title: "Clinician - Baseline Values"
+                title: "Baseline Values"
                 intro:
                   question: "Platelet Count (K/uL)"
               -
@@ -493,7 +493,7 @@ chapters:
                 type: text
                 meta_answers: ['nya']
                 pattern: integer
-                title: "Clinician - Baseline Values"
+                title: "Baseline Values"
                 intro:
                   question: "Total WBC (K/uL)"
               -
@@ -501,7 +501,7 @@ chapters:
                 type: text
                 meta_answers: ['nya']
                 pattern: integer
-                title: "Clinician - Baseline Values"
+                title: "Baseline Values"
                 intro:
                   question: "Eosinophilis (%)"
   -
@@ -515,7 +515,7 @@ chapters:
               -
                 slug: bsa-score
                 type: text
-                title: "Clinician - Skin Score BSA"
+                title: "Skin"
                 meta_answers: ['nya']
                 score:
                   category: skin
@@ -539,35 +539,11 @@ chapters:
                 pattern: integer
                 intro:
                   question: "Score % BSA"
-              -
-                slug: bsa-features
-                type: checkboxes
-                title: "Clinician - Skin Features"
-                meta_answers: ['nya']
-                intro:
-                  question: "Check all that apply"
-                option_reset:
-                  label: "No symptoms"
-                options:
-                  -
-                    label: "Maculopapular rash/erythema"
-                    value: maculopapular-rash-erythema
-                  -
-                    label: "Lichen planus-like features"
-                    value: lichen-planus-like-features
-                  -
-                    label: "Sclerotic features"
-                    value: sclerotic-features
-                  -
-                    label: "Papulosquamous lesions or ichthyosis"
-                    value: papulosquamous-lesions-or-ichthyosis
-                  -
-                    label: "Keratosis pilaris-like GvHD"
-                    value: keratosis-pilaris-like-gvhd
+
               -
                 slug: skin-score
                 type: radios
-                title: "Clinician - Skin Features Score"
+                title: "Skin"
                 meta_answers: ['nya']
                 score:
                   category: skin
@@ -613,14 +589,14 @@ chapters:
                 type: radios
                 variant: horizontal
                 meta_answers: ['nya']
-                title: "Clinician - Skin Rating"
+                title: "Skin"
                 intro:
                   question: "How would you rate the severity of this patient’s skin and/or joint tightening on the following scale, where 0 is not at all severe and 10 is the most severe symptoms possible"
                 options: *gvhd-ten-point-scale
               -
                 slug: non-gvhd
                 type: yesno
-                title: "Clinician - Skin non-GvHD causes"
+                title: "Skin"
                 meta_answers: ['nya']
                 score:
                   category: skin
@@ -734,13 +710,13 @@ chapters:
               -
                 slug: score
                 type: radios
-                title: "Clinician - Joints and Fascia"
+                title: "Joints and Fascia"
                 meta_answers: ['nya']
                 score:
                   category: joints
                   organ: true
                 intro:
-                  question: "Joints and Fascia symptoms score"
+                  question: "Symptoms score"
                 options:
                   -
                     label: "No symptoms"
@@ -757,7 +733,7 @@ chapters:
               -
                 slug: non-gvhd
                 type: yesno
-                title: "Clinician - Joints and Fascia non-GvHD causes"
+                title: "Joints and Fascia"
                 meta_answers: ['nya']
                 score:
                   category: joints
@@ -772,13 +748,13 @@ chapters:
               -
                 slug: score
                 type: radios
-                title: "Clinician - Eyes"
+                title: "Eyes"
                 meta_answers: ['nya']
                 score:
                   category: eyes
                   organ: true
                 intro:
-                  question: "Eyes score"
+                  question: "Symptoms score"
                 options:
                   -
                     label: "No symptoms"
@@ -795,7 +771,7 @@ chapters:
               -
                 slug: non-gvhd
                 type: yesno
-                title: "Clinician - Eyes non-GvHD causes"
+                title: "Eyes"
                 meta_answers: ['nya']
                 score:
                   category: eyes
@@ -810,7 +786,7 @@ chapters:
               -
                 slug: symptoms-score
                 type: radios
-                title: "Clinician - Lungs score"
+                title: "Lungs score"
                 meta_answers: ['nya']
                 score:
                   category: lungs
@@ -818,7 +794,7 @@ chapters:
                   bump: 1
                   priority: 1
                 intro:
-                  question: "Lungs symptoms score"
+                  question: "Symptoms score"
                 options:
                   -
                     label: "No symptoms"
@@ -830,12 +806,12 @@ chapters:
                     label: "Moderate symptoms (shortness of breath after walking on flat ground)"
                     value: 2
                   -
-                    label: "Severe symptoms (shortness of breath at rest; requiring 02)"
+                    label: "Severe symptoms (shortness of breath at rest; requiring O2)"
                     value: 3
               -
                 slug: non-gvhd
                 type: yesno
-                title: "Clinician - Lungs non-GvHD causes"
+                title: "Lungs"
                 meta_answers: ['nya']
                 score:
                   category: lungs
@@ -850,14 +826,14 @@ chapters:
               -
                 slug: immunosuppression
                 type: yesno
-                title: "Clinician - Immunosuppresion"
+                title: "Immunosuppresion"
                 meta_answers: ['nya']
                 intro:
                   question: "Was there any immunosuppression medication administered?"
               -
                 slug: immunosuppression-medication
                 type: multi
-                title: "Clinician - Immunosuppresion"
+                title: "Immunosuppresion"
                 meta_answers: ['nya']
                 intro:
                   question: "Medication for immunosuppression"

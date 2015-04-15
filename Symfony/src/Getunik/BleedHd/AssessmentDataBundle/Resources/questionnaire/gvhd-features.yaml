@@ -17,7 +17,7 @@ chapters:
               -
                 slug: features-present
                 type: yesno
-                title: "Any features of GvHD present"
+                title: "GvHD features"
                 meta_answers: ['nya']
                 intro:
                   question: "Any features of GvHD present?"

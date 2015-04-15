@@ -1,6 +1,6 @@
 
 title: GvHD - patient self report
-version: "0.11.0"
+version: "1.0.0"
 quick_links:
   -
     label: "Organs"
@@ -150,7 +150,7 @@ chapters:
                 slug: change
                 type: radios
                 meta_answers: ['nya']
-                title: "Global Rating - Change"
+                title: "Progression"
                 intro:
                   question: "Compared to a month ago, overall would you say that your cGvHD symptoms are"
                 options:

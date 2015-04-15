@@ -118,9 +118,9 @@ chapters:
                 slug: type
                 type: radios
                 title: "Performance Score"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Select the performance score type used to assess the patient"
+                  question: "Performance score type used to assess the patient"
                 options:
                   -
                     label: "KPS"
@@ -135,23 +135,23 @@ chapters:
                 slug: score
                 type: radios
                 title: "Performance Score"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 score:
                   category: performance
                 intro:
-                  question: "Performance score"
+                  question:
                 options:
                   -
                     label: "Asymptomatic and fully active (ECOG 0; KPS or LPS 100%)"
                     value: 0
                   -
-                    label: "Symptomatic, fully ambulatory, restricted only in physically strenuous activity (ECOG 1, KPS or LPS 80-90%)"
+                    label: "Symptomatic, fully ambulatory, restricted only in physically strenuous activity (ECOG 1, KPS or LPS 80 - 90%)"
                     value: 1
                   -
-                    label: "Symptomatic, ambulatory, capable of self-care, >50% of waking hours out of bed (ECOG 2,KPS or LPS 60-70%)"
+                    label: "Symptomatic, ambulatory, capable of self-care, > 50% of waking hours out of bed (ECOG 2,KPS or LPS 60 - 70%)"
                     value: 2
                   -
-                    label: "Symptomatic, limited self-care, >50% of waking hours in bed (ECOG 3-4, KPS or LPS <60%)"
+                    label: "Symptomatic, limited self-care, > 50% of waking hours in bed (ECOG 3 - 4, KPS or LPS < 60%)"
                     value: 3
           -
             slug: skin
@@ -159,8 +159,8 @@ chapters:
               -
                 slug: bsa-score
                 type: text
-                title: "Skin - score BSA"
-                meta_answers: ['nya']
+                title: "Skin"
+                meta_answers: ['nya', 'nass']
                 score:
                   category: skin
                   organ: true
@@ -186,10 +186,10 @@ chapters:
               -
                 slug: bsa-features
                 type: checkboxes
-                title: "Skin - GvHD features to be scored by BSA"
-                meta_answers: ['nya']
+                title: "Skin"
+                meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Check all that apply"
+                  question: "GvHD features to be scored by BSA"
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -211,13 +211,13 @@ chapters:
               -
                 slug: skin-score
                 type: radios
-                title: "Skin - GvHD score (NOT scored by BSA)"
+                title: "Skin"
                 meta_answers: ['nya']
                 score:
                   category: skin
                   organ: true
                 intro:
-                  question: "Skin features score"
+                  question: "Skin features score (NOT scored by BSA)"
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -249,10 +249,10 @@ chapters:
               -
                 slug: skin-features
                 type: checkboxes
-                title: "Skin - GvHD features (NOT scored by BSA)"
-                meta_answers: ['nya']
+                title: "Skin"
+                meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Other skin GvHD features"
+                  question: "Other skin GvHD features (NOT scored by BSA)"
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -277,7 +277,7 @@ chapters:
               -
                 slug: non-gvhd
                 type: yesno
-                title: "Skin - non-GvHD causes"
+                title: "Skin"
                 meta_answers: ['nya']
                 score:
                   category: skin
@@ -292,13 +292,13 @@ chapters:
               -
                 slug: score
                 type: radios
-                title: "Mouth - score"
-                meta_answers: ['nya']
+                title: "Mouth"
+                meta_answers: ['nya', 'nass']
                 score:
                   category: mouth
                   organ: true
                 intro:
-                  question: "Mouth score"
+                  question: "Mouth symptoms score"
                 options:
                   -
                     label: "No symptoms"
@@ -315,14 +315,14 @@ chapters:
               -
                 slug: lichen-planus
                 type: yesno
-                title: "Mouth - Lichen planus-like features"
-                meta_answers: ['nya']
+                title: "Mouth"
+                meta_answers: ['nya', 'nass']
                 intro:
                   question: "Lichen planus-like features present?"
               -
                 slug: non-gvhd
                 type: yesno
-                title: "Mouth - non-GvHD causes"
+                title: "Mouth"
                 meta_answers: ['nya']
                 score:
                   category: mouth
@@ -337,22 +337,22 @@ chapters:
               -
                 slug: score
                 type: radios
-                title: "Eyes - score"
-                meta_answers: ['nya']
+                title: "Eyes"
+                meta_answers: ['nya', 'nass']
                 score:
                   category: eyes
                   organ: true
                 intro:
-                  question: "Eyes score"
+                  question: "Eyes symptoms score"
                 options:
                   -
                     label: "No symptoms"
                     value: 0
                   -
-                    label: "Mild dry eye symptoms not affecting ADL (requirement of lubricant eye drops ≤3 x per day)"
+                    label: "Mild dry eye symptoms not affecting ADL (requirement of lubricant eye drops ≤ 3 x per day)"
                     value: 1
                   -
-                    label: "Moderate dry eye symptoms partially affecting ADL (requiring lubricant eye drops >3 x per day or punctal plugs), WITHOUT new vision impairment due to KCS"
+                    label: "Moderate dry eye symptoms partially affecting ADL (requiring lubricant eye drops > 3 x per day or punctal plugs), WITHOUT new vision impairment due to KCS"
                     value: 2
                   -
                     label: "Severe dry eye symptoms significantly affecting ADL (special eyeware to relieve pain) OR unable to work because of ocular symptoms OR loss of vision due to KCS"
@@ -360,14 +360,14 @@ chapters:
               -
                 slug: kcs
                 type: yesno
-                title: "Eyes - KCS"
+                title: "Eyes"
                 meta_answers: ['nya', 'nass']
                 intro:
                   question: "Keratoconjunctivitis sicca (KCS) confirmed by ophthalmologist?"
               -
                 slug: non-gvhd
                 type: yesno
-                title: "Eyes - non-GvHD causes"
+                title: "Eyes"
                 meta_answers: ['nya']
                 score:
                   category: eyes
@@ -382,13 +382,13 @@ chapters:
               -
                 slug: score
                 type: radios
-                title: "GI Tract - score"
-                meta_answers: ['nya']
+                title: "GI Tract"
+                meta_answers: ['nya', 'nass']
                 score:
                   category: giTract
                   organ: true
                 intro:
-                  question: "GI Tract score"
+                  question: "GI Tract symptoms score"
                 annotations:
                   - "*Weight loss within 3 months."
                 options:
@@ -396,21 +396,21 @@ chapters:
                     label: "No symptoms"
                     value: 0
                   -
-                    label: "Symptoms without significant weight loss* (<5%)"
+                    label: "Symptoms without significant weight loss* (< 5%)"
                     value: 1
                   -
-                    label: "Symptoms associated with mild to moderate weight loss* (5-15%) OR moderate diarrhea without significant interference with daily living"
+                    label: "Symptoms associated with mild to moderate weight loss* (5 - 15%) OR moderate diarrhea without significant interference with daily living"
                     value: 2
                   -
-                    label: "Symptoms associated with significant weight loss* >15%, requires nutritional supplement for most calorie needs OR esophageal dilation OR severe diarrhea with significant interference with daily living"
+                    label: "Symptoms associated with significant weight loss* > 15%, requires nutritional supplement for most calorie needs OR esophageal dilation OR severe diarrhea with significant interference with daily living"
                     value: 3
               -
                 slug: features
                 type: checkboxes
-                title: "GI Tract - other symptoms"
-                meta_answers: ['nya']
+                title: "GI Tract"
+                meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Check all that apply"
+                  question: "GI Tract features"
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -433,7 +433,7 @@ chapters:
                     label: "Diarrhea"
                     value: diarrhea
                   -
-                    label: "Weight loss ≥5% (within 3 months)"
+                    label: "Weight loss ≥ 5% (within 3 months)"
                     value: weight-loss
                   -
                     label: "Failure to thrive"
@@ -441,7 +441,7 @@ chapters:
               -
                 slug: non-gvhd
                 type: yesno
-                title: "GI Tract - non-GvHD causes"
+                title: "GI Tract"
                 meta_answers: ['nya']
                 score:
                   category: giTract
@@ -456,8 +456,8 @@ chapters:
               -
                 slug: score
                 type: radios
-                title: "Liver - score"
-                meta_answers: ['nya']
+                title: "Liver"
+                meta_answers: ['nya', 'nass']
                 score:
                   category: liver
                   organ: true
@@ -465,21 +465,21 @@ chapters:
                   question: "Liver score"
                 options:
                   -
-                    label: "Normal total bilirubin and ALT or AP <3 x ULN"
+                    label: "Normal total bilirubin and ALT or AP < 3 x ULN"
                     value: 0
                   -
-                    label: "Normal total bilirubin with ALT ≥3 to 5 x ULN or AP ≥3 x ULN"
+                    label: "Normal total bilirubin with ALT ≥ 3 to 5 x ULN or AP ≥ 3 x ULN"
                     value: 1
                   -
-                    label: "Elevated total bilirubin but ≤3 mg/dL or ALT >5 ULN"
+                    label: "Elevated total bilirubin but ≤ 3 mg/dL or ALT > 5 ULN"
                     value: 2
                   -
-                    label: "Elevated total bilirubin >3 mg/dL"
+                    label: "Elevated total bilirubin > 3 mg/dL"
                     value: 3
               -
                 slug: non-gvhd
                 type: yesno
-                title: "Liver - non-GvHD causes"
+                title: "Liver"
                 meta_answers: ['nya']
                 score:
                   category: liver
@@ -494,8 +494,8 @@ chapters:
               -
                 slug: symptoms-score
                 type: radios
-                title: "Lungs - Symptoms score"
-                meta_answers: ['nya']
+                title: "Lungs"
+                meta_answers: ['nya', 'nass']
                 score:
                   category: lungs
                   organ: true
@@ -519,7 +519,7 @@ chapters:
               -
                 slug: fev1-score
                 type: text
-                title: "Lungs - Lung score"
+                title: "Lungs"
                 meta_answers: ['nya', 'nass']
                 score:
                   category: lungs
@@ -548,7 +548,7 @@ chapters:
               -
                 slug: non-gvhd
                 type: yesno
-                title: "Lungs - non-GvHD causes"
+                title: "Lungs"
                 meta_answers: ['nya']
                 score:
                   category: lungs
@@ -564,7 +564,7 @@ chapters:
                 slug: shoulder
                 type: multi
                 title: "Photographic Range of Motion (P-ROM)"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 intro:
                   image: "images/gvhd-p-rom-shoulder.jpg"
                 questions:
@@ -588,7 +588,7 @@ chapters:
                 slug: elbow
                 type: multi
                 title: "Photographic Range of Motion (P-ROM)"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 intro:
                   image: "images/gvhd-p-rom-elbow.jpg"
                 questions:
@@ -612,7 +612,7 @@ chapters:
                 slug: wrist-finger
                 type: multi
                 title: "Photographic Range of Motion (P-ROM)"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 intro:
                   image: "images/gvhd-p-rom-wrist-finger.jpg"
                 questions:
@@ -636,7 +636,7 @@ chapters:
                 slug: ankle
                 type: multi
                 title: "Photographic Range of Motion (P-ROM)"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 intro:
                   image: "images/gvhd-p-rom-ankle.jpg"
                 questions:
@@ -662,8 +662,8 @@ chapters:
               -
                 slug: score
                 type: radios
-                title: "Joints and Fascia - Symptoms score"
-                meta_answers: ['nya']
+                title: "Joints and Fascia"
+                meta_answers: ['nya', 'nass']
                 score:
                   category: joints
                   organ: true
@@ -685,7 +685,7 @@ chapters:
               -
                 slug: non-gvhd
                 type: yesno
-                title: "Joints and Fascia - non-GvHD causes"
+                title: "Joints and Fascia"
                 meta_answers: ['nya']
                 score:
                   category: joints
@@ -700,13 +700,13 @@ chapters:
               -
                 slug: score
                 type: radios
-                title: "Genital Tract - score"
-                meta_answers: ['nya']
+                title: "Genital Tract"
+                meta_answers: ['nya', 'nass']
                 score:
                   category: genital
                   organ: true
                 intro:
-                  question: "Genital Tract score"
+                  question: "Genital Tract symptoms score"
                 info:
                   resource: "documents/gvhd-organscoring-genitaltract-info.pdf"
                 annotations:
@@ -723,22 +723,22 @@ chapters:
                     label: "Moderate signs‡ and may have symptoms* with discomfort on exam"
                     value: 2
                   -
-                    label: "Severe signs‡ with or without symptoms *"
+                    label: "Severe signs‡ with or without symptoms*"
                     value: 3
               -
                 slug: sexually-active
                 type: yesno
-                title: "Genital Tract - sexually active"
-                meta_answers: ['nya']
+                title: "Genital Tract"
+                meta_answers: ['nya', 'nass']
                 intro:
                   question: "Currently sexually active"
               -
                 slug: features
                 type: checkboxes
-                title: "Genital Tract - other symptoms"
-                meta_answers: ['nya']
+                title: "Genital Tract"
+                meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Check all that apply"
+                  question: "Other symptoms"
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -776,7 +776,7 @@ chapters:
                 slug: causes
                 type: multi
                 meta_answers: ['nya']
-                title: "Genital Tract - non-GvHD causes"
+                title: "Genital Tract"
                 questions:
                   -
                     slug: non-gvhd
@@ -811,8 +811,8 @@ chapters:
               -
                 slug: obtained
                 type: yesno
-                title: "Genital Tract Biopsy - obtained"
-                meta_answers: ['nya']
+                title: "Genital Tract"
+                meta_answers: ['nya', 'nass']
                 intro:
                   question: "Biopsy obtained?"
                 options:
@@ -827,14 +827,14 @@ chapters:
               -
                 slug: gvhd-histology
                 type: yesno
-                title: "Genital Tract Biopsy - histology"
-                meta_answers: ['nya']
+                title: "Genital Tract"
+                meta_answers: ['nya', 'nass']
                 intro:
                   question: "GvHD confirmed by histology"
               -
                 slug: change
                 type: radios
-                title: "Genital Tract Biopsy - change"
+                title: "Genital Tract"
                 meta_answers: ['nya', 'nass']
                 intro:
                   question: "Change from previous evaluation"
@@ -937,7 +937,7 @@ chapters:
                     slug: weight-loss
                     type: yesno
                     intro:
-                      question: "Weight loss >5% (within 3 months) without GI symptoms"
+                      question: "Weight loss > 5% (within 3 months) without GI symptoms"
                   -
                     slug: eosinophilia
                     type: yesno
@@ -945,10 +945,10 @@ chapters:
                       question: "Eosinophilia"
                     options:
                       yes:
-                        label: ">500/μl"
+                        label: "> 500/μl"
                         value: true
                       no:
-                        label: "≤500/μl"
+                        label: "≤ 500/μl"
                         value: false
                   -
                     slug: platelets
@@ -957,10 +957,10 @@ chapters:
                       question: "Platelets"
                     options:
                       yes:
-                        label: "<100'000/μl"
+                        label: "< 100'000/μl"
                         value: true
                       no:
-                        label: ">100'000/μl"
+                        label: "≥ 100'000/μl"
                         value: false
                   -
                     slug: others
@@ -979,7 +979,7 @@ chapters:
                 score:
                   category: overall
                 intro:
-                  question: "Overall GvHD severity (opinion of the evaluator)"
+                  question: "Opinion of the evaluator"
                 options: *gvhd-severity-options-single
               -
                 slug: immunosuppression

@@ -18,8 +18,8 @@ quick_links:
     label: "Eyes"
     screen: chronic-eyes
   -
-    label: "Genitalia"
-    screen: chronic-genitalia
+    label: "Genital Tract"
+    screen: chronic-genital-tract
   -
     label: "GI Tract"
     screen: chronic-gi-tract
@@ -81,12 +81,12 @@ chapters:
               -
                 slug: diagnostic
                 type: checkboxes
-                title: "Skin - diagnostic features"
+                title: "Chronic GvHD - Skin"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: diagnostic
                 intro:
-                  question: "Skin - diagnostic features"
+                  question: "Diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
                 option_reset:
                   label: "No symptoms"
@@ -109,15 +109,15 @@ chapters:
               -
                 slug: distinctive
                 type: checkboxes
-                title: "Skin - distinctive features*"
+                title: "Chronic GvHD - Skin"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: distinctive
                 intro:
-                  question: "Skin - distinctive features*"
+                  question: "Distinctive features*"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
                 annotations:
-                  - "*In all cases, infection, drug effect, malignancy, or other causes must be excluded."
+                  - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -134,10 +134,10 @@ chapters:
               -
                 slug: other
                 type: checkboxes
-                title: "Skin - other features or unclassified entities"
+                title: "Chronic GvHD - Skin"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Skin - other features or unclassified entities"
+                  question: "Other features or unclassified entities"
                   description: "Can be acknowledged as part of the chronic GVHD symptomatology if diagnosis is confirmed"
                 option_reset:
                   label: "No symptoms"
@@ -160,13 +160,13 @@ chapters:
               -
                 slug: common
                 type: checkboxes
-                title: "Skin - common features"
+                title: "Chronic GvHD - Skin"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Skin - common features***"
+                  question: "Common features***"
                   description: "Seen with both acute and chronic GVHD"
                 annotations:
-                  - "***Common refers to shared features by both acute and chronic GVHD."
+                  - "*** Common refers to shared features by both acute and chronic GVHD."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -189,15 +189,15 @@ chapters:
               -
                 slug: distinctive
                 type: checkboxes
-                title: "Nails - distinctive features"
+                title: "Chronic GvHD - Nails"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: distinctive
                 intro:
-                  question: "Nails - distinctive features*"
+                  question: "Distinctive features*"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
                 annotations:
-                  - "*In all cases, infection, drug effect, malignancy, or other causes must be excluded."
+                  - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -236,15 +236,15 @@ chapters:
               -
                 slug: distinctive
                 type: checkboxes
-                title: "Scalp and Body Hair - distinctive features"
+                title: "Chronic GvHD - Scalp and Body Hair"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: distinctive
                 intro:
-                  question: "Scalp and Body Hair - distinctive features*"
+                  question: "Distinctive features*"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
                 annotations:
-                  - "*In all cases, infection, drug effect, malignancy, or other causes must be excluded."
+                  - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -266,10 +266,10 @@ chapters:
               -
                 slug: other
                 type: checkboxes
-                title: "Scalp and Body Hair - other features or unclassified entities"
+                title: "Chronic GvHD - Scalp and Body Hair"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Scalp and Body Hair - other features or unclassified entities"
+                  question: "Other features or unclassified entities"
                   description: "Can be acknowledged as part of the chronic GVHD symptomatology if diagnosis is confirmed"
                 option_reset:
                   label: "No symptoms"
@@ -290,12 +290,12 @@ chapters:
               -
                 slug: diagnostic
                 type: checkboxes
-                title: "Mouth - diagnostic features"
+                title: "Chronic GvHD - Mouth"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: diagnostic
                 intro:
-                  question: "Mouth - diagnostic features"
+                  question: "Diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
                 option_reset:
                   label: "No symptoms"
@@ -306,15 +306,15 @@ chapters:
               -
                 slug: distinctive
                 type: checkboxes
-                title: "Mouth - distinctive features"
+                title: "Chronic GvHD - Mouth"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: distinctive
                 intro:
-                  question: "Mouth - distinctive features*"
+                  question: "Distinctive features*"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
                 annotations:
-                  - "*In all cases, infection, drug effect, malignancy, or other causes must be excluded."
+                  - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -346,13 +346,13 @@ chapters:
               -
                 slug: common
                 type: checkboxes
-                title: "Mouth - common features"
+                title: "Chronic GvHD - Mouth"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Mouth - common features***"
+                  question: "Common features***"
                   description: "Seen with both acute and chronic GVHD"
                 annotations:
-                  - "***Common refers to shared features by both acute and chronic GVHD."
+                  - "*** Common refers to shared features by both acute and chronic GVHD."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -378,15 +378,15 @@ chapters:
               -
                 slug: distinctive
                 type: checkboxes
-                title: "Eyes - distinctive features"
+                title: "Chronic GvHD - Eyes"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: distinctive
                 intro:
-                  question: "Eyes - distinctive features*"
+                  question: "Distinctive features*"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
                 annotations:
-                  - "*In all cases, infection, drug effect, malignancy, or other causes must be excluded."
+                  - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -413,10 +413,10 @@ chapters:
               -
                 slug: other
                 type: checkboxes
-                title: "Eyes - other features or unclassified entities"
+                title: "Chronic GvHD - Eyes"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Eyes - other features or unclassified entities"
+                  question: "Other features or unclassified entities"
                   description: "Can be acknowledged as part of the chronic GVHD symptomatology if diagnosis is confirmed"
                 option_reset:
                   label: "No symptoms"
@@ -434,18 +434,18 @@ chapters:
       -
         screens:
           -
-            slug: genitalia
-            url_slug: chronic-genitalia
+            slug: genital-tract
+            url_slug: chronic-genital-tract
             questions:
               -
                 slug: diagnostic
                 type: checkboxes
-                title: "Genitalia - diagnostic features"
+                title: "Chronic GvHD - Genital Tract"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: diagnostic
                 intro:
-                  question: "Genitalia - diagnostic features"
+                  question: "Diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
                 option_reset:
                   label: "No symptoms"
@@ -465,15 +465,15 @@ chapters:
               -
                 slug: distinctive
                 type: checkboxes
-                title: "Genitalia - distinctive features"
+                title: "Chronic GvHD - Genital Tract"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: distinctive
                 intro:
-                  question: "Genitalia - distinctive features*"
+                  question: "Distinctive features*"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
                 annotations:
-                  - "*In all cases, infection, drug effect, malignancy, or other causes must be excluded."
+                  - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -502,12 +502,12 @@ chapters:
               -
                 slug: diagnostic
                 type: checkboxes
-                title: "GI Tract - diagnostic features"
+                title: "Chronic GvHD - GI Tract"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: diagnostic
                 intro:
-                  question: "GI Tract - diagnostic features"
+                  question: "Diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
                 option_reset:
                   label: "No symptoms"
@@ -521,10 +521,10 @@ chapters:
               -
                 slug: other
                 type: checkboxes
-                title: "GI Tract - other features or unclassified entities"
+                title: "Chronic GvHD - GI Tract"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "GI Tract - other features or unclassified entities"
+                  question: "Other features or unclassified entities"
                   description: "Can be acknowledged as part of the chronic GVHD symptomatology if diagnosis is confirmed"
                 option_reset:
                   label: "No symptoms"
@@ -535,13 +535,13 @@ chapters:
               -
                 slug: common
                 type: checkboxes
-                title: "GI Tract - common features"
+                title: "Chronic GvHD - GI Tract"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "GI Tract - common features***"
+                  question: "Common features***"
                   description: "Seen with both acute and chronic GVHD"
                 annotations:
-                  - "***Common refers to shared features by both acute and chronic GVHD."
+                  - "*** Common refers to shared features by both acute and chronic GVHD."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -573,21 +573,21 @@ chapters:
               -
                 slug: common
                 type: checkboxes
-                title: "Liver - common features"
+                title: "Chronic GvHD - Liver"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Liver - common features***"
+                  question: "Common features***"
                   description: "Seen with both acute and chronic GVHD***"
                 annotations:
-                  - "***Common refers to shared features by both acute and chronic GVHD."
+                  - "*** Common refers to shared features by both acute and chronic GVHD."
                 option_reset:
                   label: "No symptoms"
                 options:
                   -
-                    label: "Total bilirubin, alkaline phosphatase > 2 x upper limit of normal"
+                    label: "Total bilirubin, alkaline phosphatase > 2× upper limit of normal"
                     value: bilirubin-alkaline-phosphatase
                   -
-                    label: "ALT > 2x upper limit of normal"
+                    label: "ALT > 2× upper limit of normal"
                     value: atl
 
       -
@@ -599,15 +599,15 @@ chapters:
               -
                 slug: diagnostic
                 type: checkboxes
-                title: "Lung - diagnostic features"
+                title: "Chronic GvHD - Lung"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: diagnostic
                 intro:
-                  question: "Lung - diagnostic features"
+                  question: "Diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
                 annotations:
-                  - "‡BOS can be diagnostic for lung chronic GVHD only, if distinctive sign or symptom present in another organ."
+                  - "‡ BOS can be diagnostic for lung chronic GVHD only, if distinctive sign or symptom present in another organ."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -620,15 +620,15 @@ chapters:
               -
                 slug: distinctive
                 type: checkboxes
-                title: "Lung - distinctive features"
+                title: "Chronic GvHD - Lung"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: diagnostic
                 intro:
-                  question: "Lung - distinctive features*"
-                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                  question: "Distinctive features*"
+                  description: "No confirmation needed - treated as diagnostic feature"
                 annotations:
-                  - "*In all cases, infection, drug effect, malignancy, or other causes must be excluded."
+                  - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -638,10 +638,10 @@ chapters:
               -
                 slug: other
                 type: checkboxes
-                title: "Lung - other features or unclassified entities"
+                title: "Chronic GvHD - Lung"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Lung - other features or unclassified entities"
+                  question: "Other features or unclassified entities"
                   description: "Can be acknowledged as part of the chronic GVHD symptomatology if diagnosis is confirmed"
                 annotations:
                   - "† Pulmonary entities under investigation or unclassified."
@@ -664,12 +664,12 @@ chapters:
               -
                 slug: diagnostic
                 type: checkboxes
-                title: "Muscles, Fascia, Joints - diagnostic features"
+                title: "Chronic GvHD - Muscles, Fascia, Joints"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: diagnostic
                 intro:
-                  question: "Muscles, Fascia, Joints - diagnostic features"
+                  question: "Diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
                 option_reset:
                   label: "No symptoms"
@@ -683,15 +683,15 @@ chapters:
               -
                 slug: distinctive
                 type: checkboxes
-                title: "Muscles, Fascia, Joints - distinctive features"
+                title: "Chronic GvHD - Muscles, Fascia, Joints"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: distinctive
                 intro:
-                  question: "Muscles, Fascia, Joints - distinctive features*"
+                  question: "Distinctive features*"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
                 annotations:
-                  - "*In all cases, infection, drug effect, malignancy, or other causes must be excluded."
+                  - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 annotations:
                   - "†† Pulmonary entities under investigation or unclassified."
                 option_reset:
@@ -705,10 +705,10 @@ chapters:
               -
                 slug: other
                 type: checkboxes
-                title: "Muscles, Fascia, Joints - other features or unclassified entities"
+                title: "Chronic GvHD - Muscles, Fascia, Joints"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Muscles, Fascia, Joints - other features or unclassified entities"
+                  question: "Other features or unclassified entities"
                   description: "Can be acknowledged as part of the chronic GVHD symptomatology if diagnosis is confirmed"
                 option_reset:
                   label: "No symptoms"
@@ -732,10 +732,10 @@ chapters:
               -
                 slug: other
                 type: checkboxes
-                title: "Hematopoietic and Immune - other features or unclassified entities"
+                title: "Chronic GvHD - Hematopoietic and Immune"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Hematopoietic and Immune - other features or unclassified entities"
+                  question: "Other features or unclassified entities"
                   description: "Can be acknowledged as part of the chronic GVHD symptomatology if diagnosis is confirmed"
                 option_reset:
                   label: "No symptoms"
@@ -768,10 +768,10 @@ chapters:
               -
                 slug: other
                 type: checkboxes
-                title: "Other - other features or unclassified entities"
+                title: "Chronic GvHD - Other"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Other - other features or unclassified entities"
+                  question: "Other features or unclassified entities"
                   description: "Can be acknowledged as part of the chronic GVHD symptomatology if diagnosis is confirmed"
                 option_reset:
                   label: "No symptoms"
@@ -806,12 +806,12 @@ chapters:
               -
                 slug: skin
                 type: radios
-                title: "Skin - aGvHD clinical staging"
-                meta_answers: ['nya']
+                title: "Acute GvHD - Skin"
+                meta_answers: ['nya', 'nass']
                 score:
                   acute: skin
                 intro:
-                  question: "Skin"
+                  question:
                 options:
                   -
                     label: "No rash"
@@ -831,12 +831,12 @@ chapters:
               -
                 slug: liver
                 type: radios
-                title: "Liver - aGvHD clinical staging"
-                meta_answers: ['nya']
+                title: "Acute GvHD - Liver"
+                meta_answers: ['nya', 'nass']
                 score:
                   acute: liver
                 intro:
-                  question: "Liver"
+                  question:
                 options:
                   -
                     label: "Bilirubin < 34 µmol/L"
@@ -856,12 +856,12 @@ chapters:
               -
                 slug: gut
                 type: radios
-                title: "Gut - aGvHD clinical staging"
+                title: "Acute GvHD - Gut"
                 meta_answers: ['nya']
                 score:
                   acute: gut
                 intro:
-                  question: "Gut"
+                  question:
                 options:
                   -
                     label: "Diarrhea < 500 ml/d"
@@ -879,24 +879,24 @@ chapters:
                     label: "Severe abdominal pain with or without ileus"
                     value: 4
               -
-                slug: presentation
+                slug: performance
                 type: radios
-                title: "Clinical presentation - aGvHD clinical staging"
+                title: "Acute GvHD - Clinical performance"
                 meta_answers: ['nya']
                 intro:
-                  question: "Clinical presentation"
+                  question:
                 options:
                   -
-                    label: "No increase"
+                    label: "no decrease in clinical performance"
                     value: 0
                   -
-                    label: "Slight increase"
+                    label: "mild decrease in clinical performance"
                     value: 1
                   -
-                    label: "Significant increase"
+                    label: "marked decrease in clinical performance"
                     value: 2
                   -
-                    label: "Extreme increase"
+                    label: "extreme decrease in clincial performance"
                     value: 3
           -
             slug: timing
@@ -905,18 +905,18 @@ chapters:
               -
                 slug: delay
                 type: radios
-                title: "Delay - aGvHD clinical staging"
-                meta_answers: ['nya']
+                title: "Delay"
+                meta_answers: ['nya', 'nass']
                 intro:
                   question: "Time since last allogeneic transplant?"
                 options:
                   -
-                    label: "< 100 days"
+                    label: "≤ 100 days"
                     value: normal
                     score:
                       delay: normal
                   -
-                    label: ">= 100 days"
+                    label: "> 100 days"
                     value: delayed
                     score:
                       delay: delayed
