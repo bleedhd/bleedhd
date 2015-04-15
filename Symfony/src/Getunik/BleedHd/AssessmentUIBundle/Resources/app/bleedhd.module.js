@@ -148,7 +148,7 @@
 			.setUidFunc(function () { return bleedHd.env.uid; });
 	})
 
-	.run(function ($rootScope, ServerLogDump, HeaderControl, AuthHandler) {
+	.run(function ($rootScope, $interval, $http, $log, ServerLogDump, HeaderControl, AuthHandler) {
 		$rootScope.env = bleedHd.env;
 		$rootScope.header = HeaderControl;
 
@@ -160,6 +160,13 @@
 			// auto-logout behavior
 			AuthHandler.updateLastActivity();
 		});
+
+		// ping the server in a 5 minute interval to keep the user's PHP session alive
+		$interval(function () {
+			$http.get('/user/ping').error(function(msg, code) {
+				$log.info('error pinging server', msg, code);
+			});
+		}, 5 * 60 * 1000);
 	})
 
 	;
