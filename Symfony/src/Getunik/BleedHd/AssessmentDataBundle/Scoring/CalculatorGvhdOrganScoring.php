@@ -8,6 +8,13 @@ use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
 class CalculatorGvhdOrganScoring extends CalculatorBase
 {
+	const SCORE_NONE = 'No chronic GvHD';
+	const SCORE_MILD = 'Mild chronic GvHD';
+	const SCORE_MODERATE = 'Moderate chronic GvHD';
+	const SCORE_SEVERE = 'Severe chronic GvHD';
+
+	public static $VALUE_MAP = array(self::SCORE_NONE, self::SCORE_MILD, self::SCORE_MODERATE, self::SCORE_SEVERE);
+
 	public function __construct(LoggerInterface $logger)
 	{
 		parent::__construct($logger);
@@ -115,7 +122,8 @@ class CalculatorGvhdOrganScoring extends CalculatorBase
 		}
 
 		$this->score->severity = $severity;
-		$this->score->total = $this->getGlobalScore();
+		$this->score->value = $this->getGlobalScore();
+		$this->score->total = self::$VALUE_MAP[$this->score->value];
 	}
 
 	protected function getRangeValue($ranges, $value)
