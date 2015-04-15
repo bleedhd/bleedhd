@@ -95,7 +95,7 @@
 
 		<div class="col-xs-12 col-sm-6">
 			<h4>Bleeding</h4>
-			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('demo')">DEMO</a>
+			<a href="" ng-if="env.debug" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('demo')">DEMO</a>
 			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('who')">WHO</a>
 			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('bsms')">BSMS</a>
 		</div>
