@@ -52,12 +52,17 @@
 
 		that.$http.get('/user/gettoken').
 			success(function(data, status, headers, config) {
-				that._processTokenResponse(data);
-				that.$log.debug('got the token', that.authInfo);
-				$interval(that.checkToken.bind(that), that.config.checkInterval);
-				that.deferred.resolve(data);
-				that.checkToken();
+				if (that._processTokenResponse(data)) {
+					that.$log.debug('got the token', that.authInfo);
+					$interval(that.checkToken.bind(that), that.config.checkInterval);
+					that.deferred.resolve(data);
+					that.checkToken();
+				} else {
+					that.$log.warn('no valid token received', data);
+					that.deferred.reject(msg);
+				}
 			}).error(function(msg, code) {
+				that.$log.error('error retrieving user token', msg, code);
 				that.deferred.reject(msg);
 			});
 
@@ -123,7 +128,7 @@
 					that.$http.get('/user/refreshtoken').
 						success(function(data, status, headers, config) {
 							that._processTokenResponse(data);
-							that.$log.debug('renewed the token', that.authInfo);
+							that.$log.info('renewed the token', that.authInfo);
 							that.deferred.resolve(data);
 						}).error(function(msg, code) {
 							that.deferred.reject(msg);
@@ -141,11 +146,12 @@
 		_processTokenResponse: function (data) {
 			if (data.access_token === undefined || data.expires_at.date < new Date()) {
 				this.config.triggerExpirationCallbacks();
-				return;
+				return false;
 			}
 			this.authInfo = data;
 			this.token.value = data.access_token;
 			bleedHd.env.uid = data.uid;
+			return true;
 		},
 	});
 
