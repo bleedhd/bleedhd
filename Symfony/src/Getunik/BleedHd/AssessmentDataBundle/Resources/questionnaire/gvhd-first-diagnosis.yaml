@@ -577,7 +577,7 @@ chapters:
                 meta_answers: ['nya', 'nass']
                 intro:
                   question: "Common features***"
-                  description: "Seen with both acute and chronic GVHD***"
+                  description: "Seen with both acute and chronic GVHD"
                 annotations:
                   - "*** Common refers to shared features by both acute and chronic GVHD."
                 option_reset:
@@ -857,7 +857,7 @@ chapters:
                 slug: gut
                 type: radios
                 title: "Acute GvHD - Gut"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 score:
                   acute: gut
                 intro:
@@ -882,7 +882,7 @@ chapters:
                 slug: performance
                 type: radios
                 title: "Acute GvHD - Clinical performance"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 intro:
                   question:
                 options:
