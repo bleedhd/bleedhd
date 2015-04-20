@@ -133,7 +133,10 @@ class CalculatorGvhdOrganScoring extends CalculatorBase
 			$range = $segment['range'];
 			$result = $segment['value'];
 
-			if (count($range) === 0 || ($range[0] <= $value && $value < $range[1]))
+			if (count($range) === 0 || (
+					($range[0] === 'null' || $range[0] <= $value)
+						&&
+					($range[1] === 'null' || $value < $range[1])))
 			{
 				return $result;
 			}
