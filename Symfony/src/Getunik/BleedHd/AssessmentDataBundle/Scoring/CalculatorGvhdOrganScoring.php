@@ -115,8 +115,8 @@ class CalculatorGvhdOrganScoring extends CalculatorBase
 		{
 			if (empty($cat['override']) && !empty($cat['organ']))
 			{
-				// use bumped values for global scoring
-				$val = (isset($cat['bump']) ? $cat['bump'] : $cat['value']);
+				// use bumped values for global scoring, but limit to max-score of 3
+				$val = (isset($cat['bump']) ? min($cat['bump'], 3) : $cat['value']);
 				$severity[$val]++;
 			}
 		}
