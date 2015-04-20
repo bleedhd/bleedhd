@@ -537,11 +537,8 @@ chapters:
                       range: [60, 80]
                       value: 1
                     -
-                      range: [79, 100]
+                      range: [79, 'null']
                       value: 0
-                    -
-                      range: []
-                      value: -1
                 pattern: integer
                 intro:
                   question: "Lung score % FEV1"
