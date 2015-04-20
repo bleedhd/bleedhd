@@ -26,19 +26,19 @@ score:
   grade: 1
 ```
 
-## GvHD Features
-This is another trivial questionnaire in terms of scoring. There is one question and it establishes the presence or absence of GvHD features. The calculator expects at most one answer with a `present` property which may be either `true` or `false`
+## GVHD Features
+This is another trivial questionnaire in terms of scoring. There is one question and it establishes the presence or absence of GVHD features. The calculator expects at most one answer with a `present` property which may be either `true` or `false`
 
 ```yaml
 score:
   present: true
 ```
 
-## GvHD First Diagnosis
+## GVHD First Diagnosis
 Most of the first diagnosis scoring boils down to counting. Counting the number of unanswerd questions that are relevant for chronic and acute diagnosis, counting of diagnostic signs, counting of distinctive signs and counting of confirmed distinctive signs. The rest is a simple two stage aggregation of the counts that first boils everything down to an acute and a chronic score and then computes the total score out of those two. The following samples describe how the individual counts are controlled through the scoring configuration:
 
 
-**Diagnostic & Distinctive GvHD Signs/Symptoms**
+**Diagnostic & Distinctive GVHD Signs/Symptoms**
 ```yaml
 score:
   type: diagnostic | distinctive
@@ -66,9 +66,9 @@ The presence of the `acute` property implies that the question is relevant for t
 score:
   delay: normal | delayed
 ```
-Indicates the delay between the last allogeneic transplant and onset of symptoms. At most one answer may have this property and its value defines the aGvHD delay status.
+Indicates the delay between the last allogeneic transplant and onset of symptoms. At most one answer may have this property and its value defines the aGVHD delay status.
 
-## GvHD Current Staging
+## GVHD Current Staging
 This scoring algorithm is slightly more complicated than the previous ones. It is based on a grading system with values from 0 (good) to 3 (bad) and within a category/organ, the highest score usually counts. The total score involves some counting and some special handling with potential _overrides_, so the score configuration can be a bit tricky. The actual score values for each individual question are usually taken directly from the response value (which should then of course be in the range [0, 3]).
 
 **Grouping of Questions - Categories / Organs**
@@ -79,7 +79,7 @@ score:
 ```
 Questions are generally grouped into _categories_ which _may_ represent organs, but also groups of questions like "performance" or "other" questions. Within such a group, the default case is that the highest score will count for this category. In addition, the `organ` property declarse the category to be an organ which means that it's score will be used to calculate the global severity in the final stage.
 
-**Non-GvHD Causes**
+**Non-GVHD Causes**
 ```yaml
 score:
   category: ...

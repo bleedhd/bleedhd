@@ -8,8 +8,8 @@ use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
 class CalculatorGvhdFeatures extends CalculatorMap
 {
-	const SCORE_PRESENT = 'GvHD present';
-	const SCORE_NOT_PRESENT = 'No GvHD present';
+	const SCORE_PRESENT = 'GVHD present';
+	const SCORE_NOT_PRESENT = 'No GVHD present';
 
 	public function __construct(LoggerInterface $logger)
 	{

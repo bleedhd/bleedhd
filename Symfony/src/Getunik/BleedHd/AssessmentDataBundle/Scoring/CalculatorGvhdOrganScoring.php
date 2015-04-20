@@ -8,10 +8,10 @@ use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
 class CalculatorGvhdOrganScoring extends CalculatorBase
 {
-	const SCORE_NONE = 'No chronic GvHD';
-	const SCORE_MILD = 'Mild chronic GvHD';
-	const SCORE_MODERATE = 'Moderate chronic GvHD';
-	const SCORE_SEVERE = 'Severe chronic GvHD';
+	const SCORE_NONE = 'No chronic GVHD';
+	const SCORE_MILD = 'Mild chronic GVHD';
+	const SCORE_MODERATE = 'Moderate chronic GVHD';
+	const SCORE_SEVERE = 'Severe chronic GVHD';
 
 	public static $VALUE_MAP = array(self::SCORE_NONE, self::SCORE_MILD, self::SCORE_MODERATE, self::SCORE_SEVERE);
 
