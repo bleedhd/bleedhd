@@ -157,7 +157,7 @@ class CalculatorGvhdFirstDiagnosis extends CalculatorBase
 		if ($this->score->acute === self::STATUS_PENDING || !isset($this->score->acuteDelay))
 			return 'pending';
 
-		return $this->score->acuteDelay === self::DELAY_NORMAL ? 'classic aGVHD' : 'delayed aGVHD';
+		return $this->score->acuteDelay === self::DELAY_NORMAL ? 'classic aGVHD' : 'late-onset aGVHD';
 	}
 
 	protected function safeGetScore($name)
