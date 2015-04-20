@@ -16,7 +16,7 @@
 		'gvhd-organ-scoring': 'GVHD organ scoring',
 		'gvhd-activity-assessment': 'GVHD activity assessment',
 		'gvhd-self-report': 'GVHD patient self report',
-		'gvhd-delayed-acute': 'late-onset aGVHD classification',
+		'gvhd-delayed-acute': 'Late-onset aGVHD classification',
 	};
 
 	angular.module('patient')

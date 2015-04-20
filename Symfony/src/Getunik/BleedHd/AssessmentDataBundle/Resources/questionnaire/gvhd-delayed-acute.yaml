@@ -1,5 +1,5 @@
 
-title: GvHD - delayed aGvHD classification
+title: GVHD - late-onset aGVHD classification
 version: "1.0.0"
 meta_answers:
   nya: Not yet answered
@@ -17,10 +17,10 @@ chapters:
               -
                 slug: interval
                 type: radios
-                title: "Delayed aGvHD classification"
+                title: "Late-onset aGVHD classification"
                 meta_answers: ['nya']
                 intro:
-                  question: "Is the delayed acute GvHD persistent or recurrent?"
+                  question: "Is the late-onset acute GVHD persistent or recurrent?"
                 options:
                   -
                     label: "Persistent"

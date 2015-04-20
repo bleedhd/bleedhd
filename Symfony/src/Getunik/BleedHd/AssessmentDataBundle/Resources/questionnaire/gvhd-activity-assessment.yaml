@@ -1,13 +1,16 @@
 
-title: GvHD - activity assessment
+title: GVHD - activity assessment
 version: "1.0.0"
 quick_links:
   -
-    label: "Global"
+    label: "Patient weight"
+    screen: patient
+  -
+    label: "Global rating"
     screen: global
   -
     label: "Mouth"
-    screen: skin
+    screen: mouth
   -
     label: "GI Tract"
     screen: gi-tract
@@ -24,6 +27,9 @@ quick_links:
     label: "Skin"
     screen: skin
   -
+    label: "P-ROM score"
+    screen: p-rom
+  -
     label: "Joints and Fascia"
     screen: joints-and-fascia
   -
@@ -32,6 +38,9 @@ quick_links:
   -
     label: "Lungs"
     screen: lungs
+  -
+    label: "Immunosuppression"
+    screen: overall
 meta_answers:
   nya: Not yet answered
   nass: Not assessed
@@ -161,18 +170,18 @@ chapters:
                 slug: severity
                 type: radios
                 variant: horizontal
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 title: "Severity"
                 intro:
-                  question: "Where would you rate the severity of this patient’s chronic GvHD symptoms on the following scale, where 0 is cGVHD symptoms that are not at all severe and 10 is the most severe cGVHD symptoms possible:"
+                  question: "Where would you rate the severity of this patient’s chronic GVHD symptoms on the following scale, where 0 is cGVHD symptoms that are not at all severe and 10 is the most severe cGVHD symptoms possible:"
                 options: *gvhd-ten-point-scale
               -
                 slug: change
                 type: radios
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 title: "Progression"
                 intro:
-                  question: "Over the time would you say that this patient‘s cGvHD is"
+                  question: "Over the time would you say that this patient‘s cGVHD is"
                 options:
                   -
                     label: "Very much better"
@@ -206,7 +215,7 @@ chapters:
               -
                 slug: erythema
                 type: radios
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 title: "Mouth"
                 intro:
                   question: "Erythema"
@@ -226,7 +235,7 @@ chapters:
               -
                 slug: lichenoid
                 type: radios
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 title: "Mouth"
                 intro:
                   question: "Lichenoid"
@@ -246,7 +255,7 @@ chapters:
               -
                 slug: ulcers
                 type: radios
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 title: "Mouth"
                 intro:
                   question: "Ulcers"
@@ -266,7 +275,7 @@ chapters:
               -
                 slug: esophageal
                 type: radios
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 title: "Gastrointestinal-Esophageal"
                 intro:
                   question: "Dysphagia OR Odynophagia"
@@ -286,7 +295,7 @@ chapters:
               -
                 slug: upper-gi
                 type: radios
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 title: "Gastrointestinal-Upper GI"
                 intro:
                   question: "Early satiety OR Anorexia OR Nausea & Vomiting"
@@ -306,7 +315,7 @@ chapters:
               -
                 slug: lower-gi
                 type: radios
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 title: "Gastrointestinal-Lower GI"
                 intro:
                   question: "Diarrhea"
@@ -329,7 +338,7 @@ chapters:
                 meta_answers: ['nya']
                 title: "Gastrointestinal"
                 intro:
-                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                  question: "Abnormality present but explained entirely by non-GVHD documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: lung-values
@@ -337,7 +346,7 @@ chapters:
               -
                 slug: fev1
                 type: text
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 pattern: decimal
                 title: "Lungs (Bronchiolitis Obliterans)"
                 intro:
@@ -345,7 +354,7 @@ chapters:
               -
                 slug: fvc
                 type: text
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 pattern: decimal
                 title: "Lungs (Bronchiolitis Obliterans)"
                 intro:
@@ -353,7 +362,7 @@ chapters:
               -
                 slug: dlco
                 type: text
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 pattern: integer
                 title: "Lungs (Bronchiolitis Obliterans)"
                 intro:
@@ -361,7 +370,7 @@ chapters:
               -
                 slug: tlc
                 type: text
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 pattern: decimal
                 title: "Lungs (Bronchiolitis Obliterans)"
                 intro:
@@ -369,7 +378,7 @@ chapters:
               -
                 slug: rv
                 type: text
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 pattern: decimal
                 title: "Lungs (Bronchiolitis Obliterans)"
                 intro:
@@ -380,7 +389,7 @@ chapters:
                 meta_answers: ['nya']
                 title: "Lungs (Bronchiolitis Obliterans)"
                 intro:
-                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                  question: "Abnormality present but explained entirely by non-GVHD documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: liver-values
@@ -388,7 +397,7 @@ chapters:
               -
                 slug: bilirubin
                 type: text
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 pattern: decimal
                 title: "Liver Values"
                 intro:
@@ -404,7 +413,7 @@ chapters:
               -
                 slug: alt
                 type: text
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 pattern: decimal
                 title: "Liver Values"
                 intro:
@@ -412,7 +421,7 @@ chapters:
               -
                 slug: alt-uln
                 type: text
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 pattern: decimal
                 title: "Liver Values"
                 intro:
@@ -420,7 +429,7 @@ chapters:
               -
                 slug: phosphatase
                 type: text
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 pattern: decimal
                 title: "Liver Values"
                 intro:
@@ -428,7 +437,7 @@ chapters:
               -
                 slug: phosphatase-uln
                 type: text
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 pattern: decimal
                 title: "Liver Values"
                 intro:
@@ -439,7 +448,7 @@ chapters:
                 meta_answers: ['nya']
                 title: "Liver Values"
                 intro:
-                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                  question: "Abnormality present but explained entirely by non-GVHD documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: baseline-values
@@ -447,7 +456,7 @@ chapters:
               -
                 slug: distance-walked
                 type: radios
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 title: "Baseline Values"
                 intro:
                   question: "Total Distance Walked in 2 or 6 Mins"
@@ -475,7 +484,7 @@ chapters:
               -
                 slug: karnofsky-lansky
                 type: text
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 pattern: integer
                 title: "Baseline Values"
                 intro:
@@ -483,27 +492,27 @@ chapters:
               -
                 slug: platelets
                 type: text
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 pattern: integer
                 title: "Baseline Values"
                 intro:
-                  question: "Platelet Count (K/uL)"
+                  question: "Platelet Count (G/L)"
               -
                 slug: wbc
                 type: text
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 pattern: integer
                 title: "Baseline Values"
                 intro:
-                  question: "Total WBC (K/uL)"
+                  question: "Total WBC (G/L)"
               -
                 slug: eosinophilis
                 type: text
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 pattern: integer
                 title: "Baseline Values"
                 intro:
-                  question: "Eosinophilis (%)"
+                  question: "Eosinophilis (G/L)"
   -
     slug: organ-score
     sections:
@@ -516,7 +525,7 @@ chapters:
                 slug: bsa-score
                 type: text
                 title: "Skin"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 score:
                   category: skin
                   organ: true
@@ -544,7 +553,7 @@ chapters:
                 slug: skin-score
                 type: radios
                 title: "Skin"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 score:
                   category: skin
                   organ: true
@@ -588,7 +597,7 @@ chapters:
                 slug: rating
                 type: radios
                 variant: horizontal
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 title: "Skin"
                 intro:
                   question: "How would you rate the severity of this patient’s skin and/or joint tightening on the following scale, where 0 is not at all severe and 10 is the most severe symptoms possible"
@@ -603,7 +612,7 @@ chapters:
                   organ: true
                   nongvhd: true
                 intro:
-                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                  question: "Abnormality present but explained entirely by non-GVHD documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: p-rom
@@ -612,7 +621,7 @@ chapters:
                 slug: shoulder
                 type: multi
                 title: "Photographic Range of Motion (P-ROM)"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 intro:
                   image: "images/gvhd-p-rom-shoulder.jpg"
                 questions:
@@ -660,7 +669,7 @@ chapters:
                 slug: wrist-finger
                 type: multi
                 title: "Photographic Range of Motion (P-ROM)"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 intro:
                   image: "images/gvhd-p-rom-wrist-finger.jpg"
                 questions:
@@ -684,7 +693,7 @@ chapters:
                 slug: ankle
                 type: multi
                 title: "Photographic Range of Motion (P-ROM)"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 intro:
                   image: "images/gvhd-p-rom-ankle.jpg"
                 questions:
@@ -711,7 +720,7 @@ chapters:
                 slug: score
                 type: radios
                 title: "Joints and Fascia"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 score:
                   category: joints
                   organ: true
@@ -734,13 +743,13 @@ chapters:
                 slug: non-gvhd
                 type: yesno
                 title: "Joints and Fascia"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 score:
                   category: joints
                   organ: true
                   nongvhd: true
                 intro:
-                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                  question: "Abnormality present but explained entirely by non-GVHD documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: eyes
@@ -749,12 +758,12 @@ chapters:
                 slug: score
                 type: radios
                 title: "Eyes"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 score:
                   category: eyes
                   organ: true
                 intro:
-                  question: "Symptoms score"
+                  question: "Eyes symptoms score"
                 options:
                   -
                     label: "No symptoms"
@@ -778,7 +787,7 @@ chapters:
                   organ: true
                   nongvhd: true
                 intro:
-                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                  question: "Abnormality present but explained entirely by non-GVHD documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: lungs
@@ -787,14 +796,14 @@ chapters:
                 slug: symptoms-score
                 type: radios
                 title: "Lungs score"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 score:
                   category: lungs
                   organ: true
                   bump: 1
                   priority: 1
                 intro:
-                  question: "Symptoms score"
+                  question: "Lungs symptoms score"
                 options:
                   -
                     label: "No symptoms"
@@ -818,7 +827,7 @@ chapters:
                   organ: true
                   nongvhd: true
                 intro:
-                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                  question: "Abnormality present but explained entirely by non-GVHD documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: overall
@@ -834,7 +843,7 @@ chapters:
                 slug: immunosuppression-medication
                 type: multi
                 title: "Immunosuppresion"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 intro:
                   question: "Medication for immunosuppression"
                 questions:
@@ -874,3 +883,8 @@ chapters:
                     intro:
                       question: "Photopheresis"
                     pattern: integer
+                  -
+                    slug: other
+                    type: text
+                    intro:
+                      question: "Other: enter drug and dose (mg)"

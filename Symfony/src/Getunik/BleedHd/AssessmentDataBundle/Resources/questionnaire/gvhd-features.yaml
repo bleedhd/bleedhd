@@ -1,5 +1,5 @@
 
-title: GvHD - features
+title: GVHD - features
 version: "1.0.0"
 meta_answers:
   nya: Not yet answered
@@ -17,10 +17,10 @@ chapters:
               -
                 slug: features-present
                 type: yesno
-                title: "GvHD features"
+                title: "GVHD features"
                 meta_answers: ['nya']
                 intro:
-                  question: "Any features of GvHD present?"
+                  question: "Any features of GVHD present?"
                 options:
                   yes:
                     score:

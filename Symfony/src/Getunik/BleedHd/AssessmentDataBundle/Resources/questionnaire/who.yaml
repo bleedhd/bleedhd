@@ -5,6 +5,37 @@
 
 title: Bleeding WHO
 version: "1.0.0"
+quick_links:
+  -
+    label: "Mouth an Nose"
+    screen: mouth-and-nose
+  -
+    label: "Skin and Tissue"
+    screen: skin-and-tissue
+  -
+    label: "Gastrointestinal"
+    screen: gastrointestinal
+  -
+    label: "Urogenital"
+    screen: urogenital
+  -
+    label: "Pulmonary"
+    screen: pulmonary
+  -
+    label: "Body cavities"
+    screen: body-cavities
+  -
+    label: "CNS"
+    screen: cns
+  -
+    label: "Invasive sites"
+    screen: invasive-sites
+  -
+    label: "Intervention"
+    screen: intervention
+  -
+    label: "Source check"
+    screen: source-check
 meta_answers:
   nya: Not yet answered
   nass: Not assessed
@@ -526,21 +557,21 @@ chapters:
                     value: 1
                     supplements:
                       -
-                        slug: microscopic
-                        type: checkbox
-                        score:
-                          grade: 2
-                        label: "With microscopic blood without symptoms?"
+                        slug: liquor-tap
+                        type: radios
                         question:
                           title:
-                      -
-                        slug: macroscopic
-                        type: checkbox
-                        score:
-                          grade: 3
-                        label: "With macroscopic blood without symptoms?"
-                        question:
-                          title:
+                        options:
+                          -
+                            label: "With microscopic blood without symptoms?"
+                            value: microscopic
+                            score:
+                              grade: 2
+                          -
+                            label: "With macroscopic blood without symptoms?"
+                            value: macroscopic
+                            score:
+                              grade: 3
                   no:
                     label: "No"
                     value: 0

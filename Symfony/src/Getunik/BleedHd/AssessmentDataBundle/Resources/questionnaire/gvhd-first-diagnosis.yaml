@@ -1,5 +1,5 @@
 
-title: GvHD - first diagnosis
+title: GVHD - first diagnosis
 version: "1.0.0"
 quick_links:
   -
@@ -27,8 +27,8 @@ quick_links:
     label: "Liver"
     screen: chronic-liver
   -
-    label: "Lung"
-    screen: chronic-lung
+    label: "Lungs"
+    screen: chronic-lungs
   -
     label: "Muscles, Fascia and Joints"
     screen: chronic-muscles-fascia-joints
@@ -36,8 +36,14 @@ quick_links:
     label: "Hematopoietic and Immune"
     screen: chronic-immune
   -
-    label: "Acute GvHD"
+    label: "Chronic GVHD Other"
+    screen: chronic-other
+  -
+    label: "Acute GVHD"
     screen: acute-clinical-staging
+  -
+    label: "Delay"
+    screen: delay-timing
 meta_answers:
   nya: Not yet answered
   nass: Not assessed
@@ -81,7 +87,7 @@ chapters:
               -
                 slug: diagnostic
                 type: checkboxes
-                title: "Chronic GvHD - Skin"
+                title: "Chronic GVHD - Skin"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: diagnostic
@@ -109,7 +115,7 @@ chapters:
               -
                 slug: distinctive
                 type: checkboxes
-                title: "Chronic GvHD - Skin"
+                title: "Chronic GVHD - Skin"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: distinctive
@@ -134,7 +140,7 @@ chapters:
               -
                 slug: other
                 type: checkboxes
-                title: "Chronic GvHD - Skin"
+                title: "Chronic GVHD - Skin"
                 meta_answers: ['nya', 'nass']
                 intro:
                   question: "Other features or unclassified entities"
@@ -160,7 +166,7 @@ chapters:
               -
                 slug: common
                 type: checkboxes
-                title: "Chronic GvHD - Skin"
+                title: "Chronic GVHD - Skin"
                 meta_answers: ['nya', 'nass']
                 intro:
                   question: "Common features***"
@@ -189,7 +195,7 @@ chapters:
               -
                 slug: distinctive
                 type: checkboxes
-                title: "Chronic GvHD - Nails"
+                title: "Chronic GVHD - Nails"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: distinctive
@@ -236,7 +242,7 @@ chapters:
               -
                 slug: distinctive
                 type: checkboxes
-                title: "Chronic GvHD - Scalp and Body Hair"
+                title: "Chronic GVHD - Scalp and Body Hair"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: distinctive
@@ -266,7 +272,7 @@ chapters:
               -
                 slug: other
                 type: checkboxes
-                title: "Chronic GvHD - Scalp and Body Hair"
+                title: "Chronic GVHD - Scalp and Body Hair"
                 meta_answers: ['nya', 'nass']
                 intro:
                   question: "Other features or unclassified entities"
@@ -290,7 +296,7 @@ chapters:
               -
                 slug: diagnostic
                 type: checkboxes
-                title: "Chronic GvHD - Mouth"
+                title: "Chronic GVHD - Mouth"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: diagnostic
@@ -306,7 +312,7 @@ chapters:
               -
                 slug: distinctive
                 type: checkboxes
-                title: "Chronic GvHD - Mouth"
+                title: "Chronic GVHD - Mouth"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: distinctive
@@ -346,7 +352,7 @@ chapters:
               -
                 slug: common
                 type: checkboxes
-                title: "Chronic GvHD - Mouth"
+                title: "Chronic GVHD - Mouth"
                 meta_answers: ['nya', 'nass']
                 intro:
                   question: "Common features***"
@@ -378,7 +384,7 @@ chapters:
               -
                 slug: distinctive
                 type: checkboxes
-                title: "Chronic GvHD - Eyes"
+                title: "Chronic GVHD - Eyes"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: distinctive
@@ -413,7 +419,7 @@ chapters:
               -
                 slug: other
                 type: checkboxes
-                title: "Chronic GvHD - Eyes"
+                title: "Chronic GVHD - Eyes"
                 meta_answers: ['nya', 'nass']
                 intro:
                   question: "Other features or unclassified entities"
@@ -440,7 +446,7 @@ chapters:
               -
                 slug: diagnostic
                 type: checkboxes
-                title: "Chronic GvHD - Genital Tract"
+                title: "Chronic GVHD - Genital Tract"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: diagnostic
@@ -465,7 +471,7 @@ chapters:
               -
                 slug: distinctive
                 type: checkboxes
-                title: "Chronic GvHD - Genital Tract"
+                title: "Chronic GVHD - Genital Tract"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: distinctive
@@ -502,7 +508,7 @@ chapters:
               -
                 slug: diagnostic
                 type: checkboxes
-                title: "Chronic GvHD - GI Tract"
+                title: "Chronic GVHD - GI Tract"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: diagnostic
@@ -521,7 +527,7 @@ chapters:
               -
                 slug: other
                 type: checkboxes
-                title: "Chronic GvHD - GI Tract"
+                title: "Chronic GVHD - GI Tract"
                 meta_answers: ['nya', 'nass']
                 intro:
                   question: "Other features or unclassified entities"
@@ -535,7 +541,7 @@ chapters:
               -
                 slug: common
                 type: checkboxes
-                title: "Chronic GvHD - GI Tract"
+                title: "Chronic GVHD - GI Tract"
                 meta_answers: ['nya', 'nass']
                 intro:
                   question: "Common features***"
@@ -573,7 +579,7 @@ chapters:
               -
                 slug: common
                 type: checkboxes
-                title: "Chronic GvHD - Liver"
+                title: "Chronic GVHD - Liver"
                 meta_answers: ['nya', 'nass']
                 intro:
                   question: "Common features***"
@@ -593,13 +599,13 @@ chapters:
       -
         screens:
           -
-            slug: lung
-            url_slug: chronic-lung
+            slug: lungs
+            url_slug: chronic-lungs
             questions:
               -
                 slug: diagnostic
                 type: checkboxes
-                title: "Chronic GvHD - Lung"
+                title: "Chronic GVHD - Lung"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: diagnostic
@@ -620,7 +626,7 @@ chapters:
               -
                 slug: distinctive
                 type: checkboxes
-                title: "Chronic GvHD - Lung"
+                title: "Chronic GVHD - Lung"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: diagnostic
@@ -638,7 +644,7 @@ chapters:
               -
                 slug: other
                 type: checkboxes
-                title: "Chronic GvHD - Lung"
+                title: "Chronic GVHD - Lung"
                 meta_answers: ['nya', 'nass']
                 intro:
                   question: "Other features or unclassified entities"
@@ -664,7 +670,7 @@ chapters:
               -
                 slug: diagnostic
                 type: checkboxes
-                title: "Chronic GvHD - Muscles, Fascia, Joints"
+                title: "Chronic GVHD - Muscles, Fascia, Joints"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: diagnostic
@@ -683,7 +689,7 @@ chapters:
               -
                 slug: distinctive
                 type: checkboxes
-                title: "Chronic GvHD - Muscles, Fascia, Joints"
+                title: "Chronic GVHD - Muscles, Fascia, Joints"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: distinctive
@@ -692,8 +698,7 @@ chapters:
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
                 annotations:
                   - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
-                annotations:
-                  - "†† Pulmonary entities under investigation or unclassified."
+                  - "†† Diagnosis of chronic GVHD requires biopsy."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -705,7 +710,7 @@ chapters:
               -
                 slug: other
                 type: checkboxes
-                title: "Chronic GvHD - Muscles, Fascia, Joints"
+                title: "Chronic GVHD - Muscles, Fascia, Joints"
                 meta_answers: ['nya', 'nass']
                 intro:
                   question: "Other features or unclassified entities"
@@ -732,7 +737,7 @@ chapters:
               -
                 slug: other
                 type: checkboxes
-                title: "Chronic GvHD - Hematopoietic and Immune"
+                title: "Chronic GVHD - Hematopoietic and Immune"
                 meta_answers: ['nya', 'nass']
                 intro:
                   question: "Other features or unclassified entities"
@@ -768,7 +773,7 @@ chapters:
               -
                 slug: other
                 type: checkboxes
-                title: "Chronic GvHD - Other"
+                title: "Chronic GVHD - Other"
                 meta_answers: ['nya', 'nass']
                 intro:
                   question: "Other features or unclassified entities"
@@ -806,7 +811,7 @@ chapters:
               -
                 slug: skin
                 type: radios
-                title: "Acute GvHD - Skin"
+                title: "Acute GVHD - Skin"
                 meta_answers: ['nya', 'nass']
                 score:
                   acute: skin
@@ -831,7 +836,7 @@ chapters:
               -
                 slug: liver
                 type: radios
-                title: "Acute GvHD - Liver"
+                title: "Acute GVHD - Liver"
                 meta_answers: ['nya', 'nass']
                 score:
                   acute: liver
@@ -856,7 +861,7 @@ chapters:
               -
                 slug: gut
                 type: radios
-                title: "Acute GvHD - Gut"
+                title: "Acute GVHD - Gut"
                 meta_answers: ['nya', 'nass']
                 score:
                   acute: gut
@@ -864,7 +869,7 @@ chapters:
                   question:
                 options:
                   -
-                    label: "Diarrhea < 500 ml/d"
+                    label: "No Symptoms / Diarrhea < 500 ml/d"
                     value: 0
                   -
                     label: "Diarrhea 500 - 1000 ml/d"
@@ -881,7 +886,7 @@ chapters:
               -
                 slug: performance
                 type: radios
-                title: "Acute GvHD - Clinical performance"
+                title: "Acute GVHD - Clinical performance"
                 meta_answers: ['nya', 'nass']
                 intro:
                   question:
@@ -900,7 +905,7 @@ chapters:
                     value: 3
           -
             slug: timing
-            url_slug: acute-timing
+            url_slug: delay-timing
             questions:
               -
                 slug: delay
@@ -908,7 +913,7 @@ chapters:
                 title: "Delay"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Time since last allogeneic transplant?"
+                  question: "Time since last allogeneic transplant / DLI?"
                 options:
                   -
                     label: "≤ 100 days"

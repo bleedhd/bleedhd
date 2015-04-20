@@ -1,5 +1,5 @@
 
-title: GvHD - organ scoring
+title: GVHD - organ scoring
 version: "1.0.0"
 quick_links:
   -
@@ -15,17 +15,26 @@ quick_links:
     label: "GI Tract"
     screen: gi-tract
   -
-    label: Liver
+    label: "Liver"
     screen: liver
   -
-    label: Lungs
+    label: "Lungs"
     screen: lungs
   -
-    label: Joints and Fascia
+    label: "P-ROM score"
+    screen: p-rom
+  -
+    label: "Joints and Fascia"
     screen: joints-and-fascia
   -
-    label: Genital Tract
+    label: "Genital Tract"
     screen: genital-tract
+  -
+    label: "Other indicators"
+    screen: other-indicators
+  -
+    label: "Immunosuppression"
+    screen: overall
 meta_answers:
   nya: Not yet answered
   nass: Not assessed
@@ -189,7 +198,7 @@ chapters:
                 title: "Skin"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "GvHD features to be scored by BSA"
+                  question: "GVHD features to be scored by BSA"
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -206,7 +215,7 @@ chapters:
                     label: "Papulosquamous lesions or ichthyosis"
                     value: papulosquamous-lesions-or-ichthyosis
                   -
-                    label: "Keratosis pilaris-like GvHD"
+                    label: "Keratosis pilaris-like GVHD"
                     value: keratosis-pilaris-like-gvhd
               -
                 slug: skin-score
@@ -252,7 +261,7 @@ chapters:
                 title: "Skin"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Other skin GvHD features (NOT scored by BSA)"
+                  question: "Other skin GVHD features (NOT scored by BSA)"
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -284,7 +293,7 @@ chapters:
                   organ: true
                   nongvhd: true
                 intro:
-                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: mouth
@@ -329,7 +338,7 @@ chapters:
                   organ: true
                   nongvhd: true
                 intro:
-                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: eyes
@@ -374,7 +383,7 @@ chapters:
                   organ: true
                   nongvhd: true
                 intro:
-                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: gi-tract
@@ -448,7 +457,7 @@ chapters:
                   organ: true
                   nongvhd: true
                 intro:
-                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: liver
@@ -486,7 +495,7 @@ chapters:
                   organ: true
                   nongvhd: true
                 intro:
-                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: lungs
@@ -537,8 +546,11 @@ chapters:
                       range: [60, 80]
                       value: 1
                     -
-                      range: [79, 'null']
+                      range: [79, 100]
                       value: 0
+                    -
+                      range: []
+                      value: -1
                 pattern: integer
                 intro:
                   question: "Lung score % FEV1"
@@ -552,7 +564,7 @@ chapters:
                   organ: true
                   nongvhd: true
                 intro:
-                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: p-rom
@@ -689,7 +701,7 @@ chapters:
                   organ: true
                   nongvhd: true
                 intro:
-                  question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: genital-tract
@@ -708,7 +720,7 @@ chapters:
                   resource: "documents/gvhd-organscoring-genitaltract-info.pdf"
                 annotations:
                   - "‡ To be completed by specialist or trained medical providers"
-                  - "* Genital symptoms are not specific to cGvHD and can represent premature gonadal failure or genital tract infection."
+                  - "* Genital symptoms are not specific to cGVHD and can represent premature gonadal failure or genital tract infection."
                 options:
                   -
                     label: "No symptoms"
@@ -784,14 +796,14 @@ chapters:
                       organ: true
                       nongvhd: true
                     intro:
-                      question: "Abnormality present but explained entirely by non-GvHD documented cause"
+                      question: "Abnormality present but explained entirely by non-gvhd documented cause"
                     options: *non-gvhd-cause-options
                   -
                     slug: gvhd-plus
                     type: yesno
                     meta_answers: ['nya']
                     intro:
-                      question: "Abnormality thought to represent GvHD PLUS other causes"
+                      question: "Abnormality thought to represent GVHD PLUS other causes"
                     options:
                       yes:
                         label: "Yes"
@@ -827,7 +839,7 @@ chapters:
                 title: "Genital Tract"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "GvHD confirmed by histology"
+                  question: "GVHD confirmed by histology"
               -
                 slug: change
                 type: radios
@@ -837,7 +849,7 @@ chapters:
                   question: "Change from previous evaluation"
                 options:
                   -
-                    label: "No prior or current GvHD"
+                    label: "No prior or current GVHD"
                     value: non-gvhd
                   -
                     label: "Improved"
@@ -857,7 +869,7 @@ chapters:
                 title: "Other indicators"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Other indicators, clinical features or complications related to chronic GvHD"
+                  question: "Other indicators, clinical features or complications related to chronic GVHD"
                 questions:
                   -
                     slug: ascites
@@ -928,7 +940,7 @@ chapters:
                 title: "Other indicators"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Other indicators, clinical features or complications related to chronic GvHD"
+                  question: "Other indicators, clinical features or complications related to chronic GVHD"
                 questions:
                   -
                     slug: weight-loss
@@ -971,7 +983,7 @@ chapters:
                 slug: severity
                 type: radios
                 variant: horizontal
-                title: "Overall GvHD Severity"
+                title: "Overall GVHD Severity"
                 meta_answers: ['nya', 'nass']
                 score:
                   category: overall
@@ -989,7 +1001,7 @@ chapters:
                 slug: immunosuppression-medication
                 type: multi
                 title: "Immunosuppresion"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 intro:
                   question: "Medication for immunosuppression"
                 questions:
@@ -1029,3 +1041,8 @@ chapters:
                     intro:
                       question: "Photopheresis"
                     pattern: integer
+                  -
+                    slug: other
+                    type: text
+                    intro:
+                      question: "Other: enter drug and dose (mg)"

@@ -1,5 +1,5 @@
 
-title: GvHD - patient self report
+title: GVHD - patient self report
 version: "1.0.0"
 quick_links:
   -
@@ -60,7 +60,7 @@ chapters:
                 slug: skin
                 type: radios
                 variant: horizontal
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 title: "Skin symptoms"
                 intro:
                   question: "Your skin itching at its WORST?"
@@ -70,7 +70,7 @@ chapters:
                 slug: joint
                 type: radios
                 variant: horizontal
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 title: "Skin and joint symptoms"
                 intro:
                   question: "Your skin and/or joint tightening at their WORST?"
@@ -80,7 +80,7 @@ chapters:
                 slug: mouth
                 type: radios
                 variant: horizontal
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 title: "Mouth sensitivity"
                 intro:
                   question: "Your mouth sensitivity at its WORST?"
@@ -90,7 +90,7 @@ chapters:
                 slug: genitalia
                 type: radios
                 variant: horizontal
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 title: "Genitalia discomfort"
                 intro:
                   question: "Your genital discomfort at its WORST? Women: vagina, vulva, or labia - Men: penis"
@@ -99,7 +99,7 @@ chapters:
               -
                 slug: eyes
                 type: multi
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 title: "Eyes symptoms"
                 questions:
                   -
@@ -111,7 +111,7 @@ chapters:
                     slug: severity
                     type: radios
                     variant: horizontal
-                    meta_answers: ['nya']
+                    meta_answers: ['nya', 'nass']
                     title: "Eyes symptoms"
                     intro:
                       question: "Please rate how severe this symptom is"
@@ -123,7 +123,7 @@ chapters:
               -
                 slug: rating
                 type: radios
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 title: "Global Rating"
                 intro:
                   question: "Overall, do you think that your chronic graft versus host disease is mild, moderate or severe?"
@@ -141,18 +141,18 @@ chapters:
                 slug: severity
                 type: radios
                 variant: horizontal
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 title: "Global Rating"
                 intro:
-                  question: "Please choose the number indicating how severe your chronic graft versus host disease symptoms are, where 0 is cGvHD symptoms that are not at all severe and 10 is the most severe chronic GvHD symptoms possible."
+                  question: "Please choose the number indicating how severe your chronic graft versus host disease symptoms are, where 0 is cGVHD symptoms that are not at all severe and 10 is the most severe chronic GVHD symptoms possible."
                 options: *gvhd-ten-point-scale
               -
                 slug: change
                 type: radios
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 title: "Progression"
                 intro:
-                  question: "Compared to a month ago, overall would you say that your cGvHD symptoms are"
+                  question: "Compared to a month ago, overall would you say that your cGVHD symptoms are"
                 options:
                   -
                     label: "Very much better"
