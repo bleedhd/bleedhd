@@ -19,7 +19,7 @@ class CalculatorGvhdFirstDiagnosis extends CalculatorBase
 	{
 		parent::__construct($logger);
 
-		// 'GvHD present', 'No GvHD present'
+		// 'GVHD present', 'No GVHD present'
 		$this->score->missingChronic = 0;
 		$this->score->missingAcute = 0;
 		$this->score->diagnostic = 0;
@@ -82,7 +82,7 @@ class CalculatorGvhdFirstDiagnosis extends CalculatorBase
 		// acute delay
 		if (isset($config['delay']))
 		{
-			$this->logger->info(" => scoring: delay of aGvHD " . $config['delay']);
+			$this->logger->info(" => scoring: delay of aGVHD " . $config['delay']);
 			$this->score->acuteDelay = $config['delay'];
 		}
 	}
@@ -141,7 +141,7 @@ class CalculatorGvhdFirstDiagnosis extends CalculatorBase
 	}
 
 	/**
-	 * @return string - the score string describing the acute/chronic GvHD expression
+	 * @return string - the score string describing the acute/chronic GVHD expression
 	 */
 	protected function getTotalScore()
 	{
@@ -149,15 +149,15 @@ class CalculatorGvhdFirstDiagnosis extends CalculatorBase
 			return 'pending';
 
 		if ($this->score->chronic === self::STATUS_POSITIVE)
-			return ($this->score->acute === self::STATUS_PENDING ? 'chronic' : ($this->score->acute > 0 ? 'overlap cGvHD' : 'classic cGvHD'));
+			return ($this->score->acute === self::STATUS_PENDING ? 'chronic' : ($this->score->acute > 0 ? 'overlap cGVHD' : 'classic cGVHD'));
 
 		if ($this->score->acute === 0)
-			return 'no GvHD';
+			return 'no GVHD';
 
 		if ($this->score->acute === self::STATUS_PENDING || !isset($this->score->acuteDelay))
 			return 'pending';
 
-		return $this->score->acuteDelay === self::DELAY_NORMAL ? 'classic aGvHD' : 'delayed aGvHD';
+		return $this->score->acuteDelay === self::DELAY_NORMAL ? 'classic aGVHD' : 'late-onset aGVHD';
 	}
 
 	protected function safeGetScore($name)

@@ -11,12 +11,12 @@
 		'demo': 'Demo Assessment',
 		'who': 'Bleeding WHO',
 		'bsms': 'Bleeding BSMS',
-		'gvhd-features': 'GvHD features',
-		'gvhd-first-diagnosis': 'GvHD first diagnosis',
-		'gvhd-organ-scoring': 'GvHD organ scoring',
-		'gvhd-activity-assessment': 'GvHD activity assessment',
-		'gvhd-self-report': 'GvHD patient self report',
-		'gvhd-delayed-acute': 'delayed aGvHD classification',
+		'gvhd-features': 'GVHD features',
+		'gvhd-first-diagnosis': 'GVHD first diagnosis',
+		'gvhd-organ-scoring': 'GVHD organ scoring',
+		'gvhd-activity-assessment': 'GVHD activity assessment',
+		'gvhd-self-report': 'GVHD patient self report',
+		'gvhd-delayed-acute': 'late-onset aGVHD classification',
 	};
 
 	angular.module('patient')

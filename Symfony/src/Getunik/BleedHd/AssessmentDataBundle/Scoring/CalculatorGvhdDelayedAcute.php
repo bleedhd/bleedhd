@@ -8,8 +8,8 @@ use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
 class CalculatorGvhdDelayedAcute extends CalculatorMap
 {
-	const SCORE_PERSISTENT = 'persistent aGvHD';
-	const SCORE_RECURRENT = 'recurrent aGvHD';
+	const SCORE_PERSISTENT = 'persistent aGVHD';
+	const SCORE_RECURRENT = 'recurrent aGVHD';
 
 	public function __construct(LoggerInterface $logger)
 	{
