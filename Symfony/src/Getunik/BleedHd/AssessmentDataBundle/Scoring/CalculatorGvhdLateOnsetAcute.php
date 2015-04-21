@@ -6,7 +6,7 @@ use Psr\Log\LoggerInterface;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
 
-class CalculatorGvhdDelayedAcute extends CalculatorMap
+class CalculatorGvhdLateOnsetAcute extends CalculatorMap
 {
 	const SCORE_PERSISTENT = 'persistent aGVHD';
 	const SCORE_RECURRENT = 'recurrent aGVHD';

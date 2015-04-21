@@ -924,4 +924,4 @@ chapters:
                     label: "> 100 days"
                     value: delayed
                     score:
-                      delay: delayed
+                      delay: lateonset
