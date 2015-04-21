@@ -546,7 +546,7 @@ chapters:
                       range: [60, 80]
                       value: 1
                     -
-                      range: [79, 'null']
+                      range: [80, 'null']
                       value: 0
                 pattern: integer
                 intro:
