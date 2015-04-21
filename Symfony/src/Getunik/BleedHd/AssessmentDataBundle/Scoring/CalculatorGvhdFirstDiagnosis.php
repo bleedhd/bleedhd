@@ -13,7 +13,7 @@ class CalculatorGvhdFirstDiagnosis extends CalculatorBase
 	const STATUS_NEGATIVE = 'negative';
 
 	const DELAY_NORMAL = 'normal';
-	const DELAY_DELAYED = 'delayed';
+	const DELAY_LATE_ONSET = 'lateonset';
 
 	public function __construct(LoggerInterface $logger)
 	{
