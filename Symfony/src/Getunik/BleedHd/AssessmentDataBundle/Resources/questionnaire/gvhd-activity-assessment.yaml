@@ -645,7 +645,7 @@ chapters:
                 slug: elbow
                 type: multi
                 title: "Photographic Range of Motion (P-ROM)"
-                meta_answers: ['nya']
+                meta_answers: ['nya', 'nass']
                 intro:
                   image: "images/gvhd-p-rom-elbow.jpg"
                 questions:
