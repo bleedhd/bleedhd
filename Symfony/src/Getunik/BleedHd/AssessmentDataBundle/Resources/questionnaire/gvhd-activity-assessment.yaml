@@ -401,7 +401,7 @@ chapters:
                 pattern: decimal
                 title: "Liver Values"
                 intro:
-                  question: "Total serum bilirubin (mg/dL)"
+                  question: "Total serum bilirubin (mg/dl)"
               -
                 slug: bilirubin-uln
                 type: text
@@ -409,7 +409,7 @@ chapters:
                 pattern: integer
                 title: "Liver Values"
                 intro:
-                  question: "Upper limit of normal bilirubin (mg/dL)"
+                  question: "Upper limit of normal bilirubin (mg/dl)"
               -
                 slug: alt
                 type: text
@@ -417,7 +417,7 @@ chapters:
                 pattern: decimal
                 title: "Liver Values"
                 intro:
-                  question: "ALT (U/L)"
+                  question: "ALT (U/l)"
               -
                 slug: alt-uln
                 type: text
@@ -425,7 +425,7 @@ chapters:
                 pattern: decimal
                 title: "Liver Values"
                 intro:
-                  question: "Upper limit of normal ALT (U/L)"
+                  question: "Upper limit of normal ALT (U/l)"
               -
                 slug: phosphatase
                 type: text
@@ -433,7 +433,7 @@ chapters:
                 pattern: decimal
                 title: "Liver Values"
                 intro:
-                  question: "Alkaline phosphatase (U/L)"
+                  question: "Alkaline phosphatase (U/l)"
               -
                 slug: phosphatase-uln
                 type: text
@@ -441,7 +441,7 @@ chapters:
                 pattern: decimal
                 title: "Liver Values"
                 intro:
-                  question: "Upper limit of normal alkaline phosphatase (U/L)"
+                  question: "Upper limit of normal alkaline phosphatase (U/l)"
               -
                 slug: non-gvhd
                 type: yesno
@@ -496,7 +496,7 @@ chapters:
                 pattern: integer
                 title: "Baseline Values"
                 intro:
-                  question: "Platelet Count (G/L)"
+                  question: "Platelet Count (G/l)"
               -
                 slug: wbc
                 type: text
@@ -504,7 +504,7 @@ chapters:
                 pattern: integer
                 title: "Baseline Values"
                 intro:
-                  question: "Total WBC (G/L)"
+                  question: "Total WBC (G/l)"
               -
                 slug: eosinophilis
                 type: text
@@ -512,7 +512,7 @@ chapters:
                 pattern: integer
                 title: "Baseline Values"
                 intro:
-                  question: "Eosinophilis (G/L)"
+                  question: "Eosinophilis (G/l)"
   -
     slug: organ-score
     sections:

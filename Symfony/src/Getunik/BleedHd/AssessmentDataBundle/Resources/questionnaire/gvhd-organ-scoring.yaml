@@ -33,6 +33,9 @@ quick_links:
     label: "Other indicators"
     screen: other-indicators
   -
+    label: "Overall Rating"
+    screen: overall
+  -
     label: "Immunosuppression"
     screen: overall
 meta_answers:
