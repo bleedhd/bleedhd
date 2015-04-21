@@ -1,6 +1,28 @@
 
 (function (angular, bleedHd) {
 
+	function versionCompare(vA, vB) {
+		if (!vA || !vB)
+			return 0;
+
+		var segmentsA = vA.split('.'),
+			segmentsB = vB.split('.'),
+			index, currentA, currentB;
+
+		for (index = 0; index < 3; index++) {
+			currentA = parseInt(segmentsA[index]) || 0;
+			currentB = parseInt(segmentsB[index]) || 0;
+
+			if (currentA < currentB) {
+				return -(3 - index);
+			} else if (currentA > currentB) {
+				return (3 - index);
+			}
+		}
+
+		return 0;
+	}
+
 	function AssessmentContext($log, $q, PatientData, AssessmentData, QuestionnaireData) {
 		this.$log = $log;
 		this.$q = $q;
@@ -32,8 +54,16 @@
 
 					return that.QuestionnaireData.get(that.assessment.questionnaire);
 				}).then(function (questionnaire) {
+					var vDiff = versionCompare(that.assessment.questionnaire_version, questionnaire.version);
+
 					that.questionnaire = questionnaire;
 					that.$log.debug('questionnaire', questionnaire, that.responses);
+
+					// if the assessment was created / last edited with a questionnaire version that is at least
+					// one "major point" behind, then this might mean trouble / inconsistent data
+					if (vDiff < -1) {
+						that.$log.warn('loading assessment with legacy questionnaire data', that.assessment.questionnaire_version, questionnaire.version);
+					}
 
 					return that;
 				});

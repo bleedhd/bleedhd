@@ -19,10 +19,11 @@
             <script type="text/javascript">
                 /* jshint ignore:start */
                 window.env = {
-                    version: '{{ app_version.getVersion(true) }}',
+                    version: '{{ app_version_int }}',
                     environment: '{{ app.environment }}',
                     debug: {{ app.request.get('debug') == 'true' ? 'true' : 'false' }},
                     assetPath: '{{ asset('bundles') }}',
+                    uid: {{ currentUid }},
                 };
                 /* jshint ignore:end */
             </script>
@@ -50,6 +51,8 @@
         <div>
             {% block content %}{% endblock content %}
         </div>
-        <div class="environment-indicator {{ app.environment }}">{{ app.environment }} {{ app_version.getVersion(true) }}</div>
+
+        {% block bottom %}{% endblock bottom %}
+        <div class="environment-indicator {{ app.environment }}">{{ app.environment }} {{ app_version_int }}</div>
     </body>
 </html>

@@ -4,6 +4,9 @@ getunik_bleed_hd_security_get_token:
 getunik_bleed_hd_security_refresh_token:
     path:     /refreshtoken
     defaults: { _controller: GetunikBleedHdSecurityBundle:Default:refreshToken }
+getunik_bleed_hd_security_ping:
+    path:     /ping
+    defaults: { _controller: GetunikBleedHdSecurityBundle:Default:ping }
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

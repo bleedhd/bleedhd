@@ -7,8 +7,23 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Assessment
  */
-class Assessment implements UpdateInformationInterface
+class Assessment implements UpdateInformationInterface, CreationInformationInterface
 {
+    /**
+     * Indicates a complete assessment
+     */
+    const PROGRESS_COMPLETE = 'completed';
+    /**
+     * Indicates an incomplete assessment
+     */
+    const PROGRESS_TENTATIVE = 'tentative';
+    /**
+     * "none" indicates that there is nothing that can have progress
+     * it is not used as an actual value on the assessment, but it is the result
+     * for a patient's status which does not have any assessments
+     */
+    const PROGRESS_NONE = 'none';
+
     /**
      * @var integer
      */
@@ -55,11 +70,6 @@ class Assessment implements UpdateInformationInterface
     private $remarks;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $statuses;
-
-    /**
      * @var \Getunik\BleedHd\AssessmentDataBundle\Entity\Patient
      */
     private $patient;
@@ -69,7 +79,6 @@ class Assessment implements UpdateInformationInterface
      */
     public function __construct()
     {
-        $this->statuses = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -267,39 +276,6 @@ class Assessment implements UpdateInformationInterface
     }
 
     /**
-     * Add statuses
-     *
-     * @param \Getunik\BleedHd\AssessmentDataBundle\Entity\Response $statuses
-     * @return Assessment
-     */
-    public function addStatus(\Getunik\BleedHd\AssessmentDataBundle\Entity\Response $statuses)
-    {
-        $this->statuses[] = $statuses;
-
-        return $this;
-    }
-
-    /**
-     * Remove statuses
-     *
-     * @param \Getunik\BleedHd\AssessmentDataBundle\Entity\Response $statuses
-     */
-    public function removeStatus(\Getunik\BleedHd\AssessmentDataBundle\Entity\Response $statuses)
-    {
-        $this->statuses->removeElement($statuses);
-    }
-
-    /**
-     * Get statuses
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getStatuses()
-    {
-        return $this->statuses;
-    }
-
-    /**
      * Set patient
      *
      * @param \Getunik\BleedHd\AssessmentDataBundle\Entity\Patient $patient
@@ -343,10 +319,160 @@ class Assessment implements UpdateInformationInterface
     /**
      * Get result
      *
-     * @return array 
+     * @return array
      */
     public function getResult()
     {
         return $this->result;
+    }
+    /**
+     * @var datetimez
+     */
+    private $createdDate;
+
+    /**
+     * @var integer
+     */
+    private $createdBy;
+
+
+    /**
+     * Set createdDate
+     *
+     * @param \DateTime $createdDate
+     * @return Assessment
+     */
+    public function setCreatedDate($createdDate)
+    {
+        $this->createdDate = $createdDate;
+
+        return $this;
+    }
+
+    /**
+     * Get createdDate
+     *
+     * @return \DateTime
+     */
+    public function getCreatedDate()
+    {
+        return $this->createdDate;
+    }
+
+    /**
+     * Set createdBy
+     *
+     * @param integer $createdBy
+     * @return Assessment
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return integer
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $responses;
+
+
+    /**
+     * Add responses
+     *
+     * @param \Getunik\BleedHd\AssessmentDataBundle\Entity\Response $responses
+     * @return Assessment
+     */
+    public function addResponse(\Getunik\BleedHd\AssessmentDataBundle\Entity\Response $responses)
+    {
+        $this->responses[] = $responses;
+
+        return $this;
+    }
+
+    /**
+     * Remove responses
+     *
+     * @param \Getunik\BleedHd\AssessmentDataBundle\Entity\Response $responses
+     */
+    public function removeResponse(\Getunik\BleedHd\AssessmentDataBundle\Entity\Response $responses)
+    {
+        $this->responses->removeElement($responses);
+    }
+
+    /**
+     * Get responses
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getResponses()
+    {
+        return $this->responses;
+    }
+    /**
+     * @var string
+     */
+    private $progress;
+
+
+    /**
+     * Set progress
+     *
+     * @param string $progress
+     * @return Assessment
+     */
+    public function setProgress($progress)
+    {
+        $this->progress = $progress;
+
+        return $this;
+    }
+
+    /**
+     * Get progress
+     *
+     * @return string
+     */
+    public function getProgress()
+    {
+        return $this->progress;
+    }
+    /**
+     * @var string
+     */
+    private $questionnaireVersion;
+
+
+    /**
+     * Set questionnaireVersion
+     *
+     * @param string $questionnaireVersion
+     * @return Assessment
+     */
+    public function setQuestionnaireVersion($questionnaireVersion)
+    {
+        $this->questionnaireVersion = $questionnaireVersion;
+
+        return $this;
+    }
+
+    /**
+     * Get questionnaireVersion
+     *
+     * @return string
+     */
+    public function getQuestionnaireVersion()
+    {
+        return $this->questionnaireVersion;
     }
 }

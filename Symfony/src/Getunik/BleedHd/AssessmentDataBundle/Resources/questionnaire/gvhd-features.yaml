@@ -1,0 +1,30 @@
+
+title: GVHD - features
+version: "1.0.0"
+meta_answers:
+  nya: Not yet answered
+  nass: Not assessed
+  napp: Not applicable
+  ns: No symptoms
+chapters:
+  -
+    sections:
+      -
+        screens:
+          -
+            slug: features
+            questions:
+              -
+                slug: features-present
+                type: yesno
+                title: "GVHD features"
+                meta_answers: ['nya']
+                intro:
+                  question: "Any features of GVHD present?"
+                options:
+                  yes:
+                    score:
+                      present: true
+                  no:
+                    score:
+                      present: false

@@ -1,19 +1,27 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentEditController($scope, $location, AssessmentData, HeaderControl, DateHelper, patient, assessment) {
+	function AssessmentEditController($scope, $location, $templateCache, $timeout, BleedHdConfig, AssessmentData, HeaderControl, DateHelper, FormWrapper, DomainConst, patient, assessment) {
 		HeaderControl.hide();
 
+		this.BleedHdConfig = BleedHdConfig;
 		this.AssessmentData = AssessmentData;
+		this.DomainConst = DomainConst;
 		this.patient = patient;
-		this.assessment = assessment;
+		this.assessment = FormWrapper(assessment);
 		this.$scope = $scope;
 		this.$location = $location;
+		this.$timeout = $timeout;
+		this.$templateCache = $templateCache;
 
+		// this is necessary for the FormWrapper to set up a 'copy' of the start_date property
+		// since setDate and setTime would otherwise operate on the original value
+		this.assessment.start_date = DateHelper.fromDate(this.assessment.start_date.date, true);
 		this.startDate = DateHelper.fromDate(this.assessment.start_date.date, false);
 		this.startTime = DateHelper.fromDate(this.assessment.start_date.date, true);
 
 		this.isNew = (this.assessment.id === undefined);
+		this.secondaryScoreTemplate = this.getSecondaryScoreTemplate();
 
 		// $scope.patient_number = parseInt(patient.patient_number);
 		// $scope.$watch('patient_number', function (newValue) {
@@ -30,8 +38,11 @@
 			save: function () {
 				var ctl = this;
 				if (ctl.assessmentForm.$valid) {
-					ctl.AssessmentData.saveAssessment(ctl.assessment).then(function () {
-						ctl.$location.path('/patients/detail/' + ctl.patient.id).search('tab', 'assessments');
+					ctl.AssessmentData.saveAssessment(ctl.assessment.persist()).then(function () {
+						ctl.successMessage = 'Metadata saved';
+						ctl.$timeout(function () {
+							ctl.successMessage = null;
+						}, ctl.BleedHdConfig.messages.hideDelay);
 					});
 				}
 			},
@@ -49,6 +60,11 @@
 			},
 			onTimeChange: function () {
 				this.assessment.start_date.setTime(this.startTime === undefined ? undefined : this.startTime.date);
+			},
+			getSecondaryScoreTemplate: function () {
+				var view = bleedHd.getView('assessment', 'secondary-score-' + this.assessment.questionnaire);
+
+				return this.$templateCache.get(view) ? view : '';
 			},
 		},
 		{

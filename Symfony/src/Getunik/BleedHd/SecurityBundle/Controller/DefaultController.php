@@ -5,7 +5,6 @@ namespace Getunik\BleedHd\SecurityBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 
 class DefaultController extends Controller
@@ -16,20 +15,47 @@ class DefaultController extends Controller
         $session = $request->getSession();
         $token = $session->get('getunik_bleed_hd_security.oauth_token');
 
+        // refresh the session lifetime
+        $session->migrate();
+
         return new JsonResponse($token);
     }
 
-    public function refreshTokenAction()
+    public function refreshTokenAction(Request $request)
     {
-        $request = Request::create(
-            '/getToken',
-            'GET'
-        );
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
 
-        $kernel = $this->container->get('kernel');
+        try
+        {
+            $helper = $this->get('getunik_bleed_hd_security.oauth_helper');
+            $auth = $helper->refreshToken($this->getUser());
 
-        $response = $kernel->handle($request, HttpKernelInterface::SUB_REQUEST, false);
+            if (empty($auth)) {
+                throw $this->createAccessDeniedException();
+            }
 
-        return new JsonResponse(array('fib' => array(1, 1, 2, 3, 5, 8, 13), 'res' => $response->getContent()));
+            return new JsonResponse($auth);
+        }
+        catch (\Exception $e)
+        {
+            return $this->createAccessDeniedException();
+        }
+    }
+
+    /**
+     * The only purpose of this action is to keep the user's session alive...
+     * With PHP session handling, any session that has not been accessed for more
+     * than 1440 seconds (24 min; default value in php.ini) "may" be garbage collected.
+     * Since all REST requests don't actually access the session (as it should be),
+     * the sessions tend to expire after the 24 minutes unless we ping the server
+     * with a non-REST-ful request every now and then.
+     *
+     * See http://php.net/manual/en/session.configuration.php for more information
+     */
+    public function pingAction()
+    {
+        return new JsonResponse(array());
     }
 }

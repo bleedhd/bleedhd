@@ -16,8 +16,13 @@ class ScoreCalculatorFactory
 
 	public function create($assessmentType)
 	{
-		$name = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\Calculator' . ucfirst($assessmentType);
+		// Transform the dash (-) separated assessment type name into a CamelCase class name
+		$parts = explode('-', $assessmentType);
+		array_walk($parts, function (&$element) {
+			$element = ucfirst($element);
+		});
+		$className = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\Calculator' . implode($parts);
 
-		return new $name($this->logger);
+		return new $className($this->logger);
 	}
 }

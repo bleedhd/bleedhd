@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use FOS\RestBundle\Controller\FOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 
@@ -27,6 +28,7 @@ class AssessmentsController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_READER')")
      */
     public function getAssessmentsAction($patient)
     {
@@ -34,6 +36,7 @@ class AssessmentsController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_READER')")
      * @ParamConverter("assessment", options={"id": "assessment", "mapping": {"patient":"patientId","assessment":"id"}})
      */
     public function getAssessmentAction($patient, Assessment $assessment)
@@ -42,6 +45,7 @@ class AssessmentsController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_EDITOR')")
      * @Post("/patients/{patient}/assessments", requirements={"_format"="json|xml"})
      * @ParamConverter("patient", options={"id" = "patient"})
      * @ParamConverter("assessment", converter="fos_rest.request_body")
@@ -56,6 +60,7 @@ class AssessmentsController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_EDITOR')")
      * @ParamConverter("assessment", options={"id": "assessment", "mapping": {"patient":"patientId","assessment":"id"}})
      * @ParamConverter("assessmentBody", converter="fos_rest.request_body")
      */
@@ -68,6 +73,7 @@ class AssessmentsController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function deleteAssessmentAction($patient, $assessment)
     {
@@ -75,6 +81,7 @@ class AssessmentsController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_ADMIN')")
      * @Get("/patients/{patient}/assessments/{assessment}/score")
      * @ParamConverter("assessment", options={"id" = "assessment"})
      */

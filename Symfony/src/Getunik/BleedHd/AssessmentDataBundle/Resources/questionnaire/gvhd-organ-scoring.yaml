@@ -1,0 +1,1048 @@
+
+title: GVHD - organ scoring
+version: "1.0.0"
+quick_links:
+  -
+    label: "Skin"
+    screen: skin
+  -
+    label: "Mouth"
+    screen: mouth
+  -
+    label: "Eyes"
+    screen: eyes
+  -
+    label: "GI Tract"
+    screen: gi-tract
+  -
+    label: "Liver"
+    screen: liver
+  -
+    label: "Lungs"
+    screen: lungs
+  -
+    label: "P-ROM score"
+    screen: p-rom
+  -
+    label: "Joints and Fascia"
+    screen: joints-and-fascia
+  -
+    label: "Genital Tract"
+    screen: genital-tract
+  -
+    label: "Other indicators"
+    screen: other-indicators
+  -
+    label: "Overall Rating"
+    screen: overall
+  -
+    label: "Immunosuppression"
+    screen: overall
+meta_answers:
+  nya: Not yet answered
+  nass: Not assessed
+  napp: Not applicable
+  ns: No symptoms
+shared:
+  - &p-rom-options-7
+    -
+      label: "1"
+      value: 1
+    -
+      label: "2"
+      value: 2
+    -
+      label: "3"
+      value: 3
+    -
+      label: "4"
+      value: 4
+    -
+      label: "5"
+      value: 5
+    -
+      label: "6"
+      value: 6
+    -
+      label: "7"
+      value: 7
+  - &p-rom-options-4
+    -
+      label: "1"
+      value: 1
+    -
+      label: "2"
+      value: 2
+    -
+      label: "3"
+      value: 3
+    -
+      label: "4"
+      value: 4
+  - &non-gvhd-cause-options
+    yes:
+      label: "Yes"
+      value: true
+      supplements:
+        -
+          slug: cause
+          type: text
+          question:
+            title: "Specify"
+  - &gvhd-severity-options
+    -
+      label: "not assessed"
+      value: -1
+    -
+      label: "none"
+      value: 0
+    -
+      label: "mild"
+      value: 1
+    -
+      label: "moderate"
+      value: 2
+    -
+      label: "severe"
+      value: 3
+  - &gvhd-severity-options-single
+    -
+      label: "none"
+      value: 0
+    -
+      label: "mild"
+      value: 1
+    -
+      label: "moderate"
+      value: 2
+    -
+      label: "severe"
+      value: 3
+chapters:
+  -
+    sections:
+      -
+        screens:
+          -
+            slug: performance
+            questions:
+              -
+                slug: type
+                type: radios
+                title: "Performance Score"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Performance score type used to assess the patient"
+                options:
+                  -
+                    label: "KPS"
+                    value: kps
+                  -
+                    label: "ECOG"
+                    value: ecog
+                  -
+                    label: "LPS"
+                    value: lps
+              -
+                slug: score
+                type: radios
+                title: "Performance Score"
+                meta_answers: ['nya', 'nass']
+                score:
+                  category: performance
+                intro:
+                  question:
+                options:
+                  -
+                    label: "Asymptomatic and fully active (ECOG 0; KPS or LPS 100%)"
+                    value: 0
+                  -
+                    label: "Symptomatic, fully ambulatory, restricted only in physically strenuous activity (ECOG 1, KPS or LPS 80 - 90%)"
+                    value: 1
+                  -
+                    label: "Symptomatic, ambulatory, capable of self-care, > 50% of waking hours out of bed (ECOG 2,KPS or LPS 60 - 70%)"
+                    value: 2
+                  -
+                    label: "Symptomatic, limited self-care, > 50% of waking hours in bed (ECOG 3 - 4, KPS or LPS < 60%)"
+                    value: 3
+          -
+            slug: skin
+            questions:
+              -
+                slug: bsa-score
+                type: text
+                title: "Skin"
+                meta_answers: ['nya', 'nass']
+                score:
+                  category: skin
+                  organ: true
+                  value:
+                    -
+                      range: [0, 1]
+                      value: 0
+                    -
+                      range: [1,19]
+                      value: 1
+                    -
+                      range: [19,51]
+                      value: 2
+                    -
+                      range: [51,100]
+                      value: 3
+                    -
+                      range: []
+                      value: -1
+                pattern: integer
+                intro:
+                  question: "Score % BSA"
+              -
+                slug: bsa-features
+                type: checkboxes
+                title: "Skin"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "GVHD features to be scored by BSA"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Maculopapular rash/erythema"
+                    value: maculopapular-rash-erythema
+                  -
+                    label: "Lichen planus-like features"
+                    value: lichen-planus-like-features
+                  -
+                    label: "Sclerotic features"
+                    value: sclerotic-features
+                  -
+                    label: "Papulosquamous lesions or ichthyosis"
+                    value: papulosquamous-lesions-or-ichthyosis
+                  -
+                    label: "Keratosis pilaris-like GVHD"
+                    value: keratosis-pilaris-like-gvhd
+              -
+                slug: skin-score
+                type: radios
+                title: "Skin"
+                meta_answers: ['nya']
+                score:
+                  category: skin
+                  organ: true
+                intro:
+                  question: "Skin features score (NOT scored by BSA)"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "No sclerotic features"
+                    value: 0
+                  -
+                    label: "Superficial sclerotic features \"not hidebound\" (able to pinch)"
+                    value: 2
+                  -
+                    label: "Deep sclerotic features"
+                    value: 3
+                    supplements:
+                      -
+                        slug: symptoms
+                        type: checkboxes
+                        question:
+                          title: "Check all that apply"
+                        options:
+                          -
+                            label: "\"Hidebound\" (unable to pinch)"
+                            value: hidebound
+                          -
+                            label: "Impaired mobility"
+                            value: impaired-mobility
+                          -
+                            label: "Ulceration"
+                            value: ulceration
+              -
+                slug: skin-features
+                type: checkboxes
+                title: "Skin"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Other skin GVHD features (NOT scored by BSA)"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Hyperpigmentation"
+                    value: hyperpigmentation
+                  -
+                    label: "Hypopigmentation"
+                    value: hypopigmentation
+                  -
+                    label: "Poikiloderma"
+                    value: poikiloderma
+                  -
+                    label: "Severe or generalized pruritus"
+                    value: pruritus
+                  -
+                    label: "Hair involvement"
+                    value: hair-involvement
+                  -
+                    label: "Nail involvement"
+                    value: nail-involvement
+              -
+                slug: non-gvhd
+                type: yesno
+                title: "Skin"
+                meta_answers: ['nya']
+                score:
+                  category: skin
+                  organ: true
+                  nongvhd: true
+                intro:
+                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
+                options: *non-gvhd-cause-options
+          -
+            slug: mouth
+            questions:
+              -
+                slug: score
+                type: radios
+                title: "Mouth"
+                meta_answers: ['nya', 'nass']
+                score:
+                  category: mouth
+                  organ: true
+                intro:
+                  question: "Mouth symptoms score"
+                options:
+                  -
+                    label: "No symptoms"
+                    value: 0
+                  -
+                    label: "Mild symptoms with disease signs but not limiting oral intake significantly"
+                    value: 1
+                  -
+                    label: "Moderate symptoms with disease signs with partial limitation of oral intake"
+                    value: 2
+                  -
+                    label: "Severe symptoms with disease signs on examination with major limitation of oral intake"
+                    value: 3
+              -
+                slug: lichen-planus
+                type: yesno
+                title: "Mouth"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Lichen planus-like features present?"
+              -
+                slug: non-gvhd
+                type: yesno
+                title: "Mouth"
+                meta_answers: ['nya']
+                score:
+                  category: mouth
+                  organ: true
+                  nongvhd: true
+                intro:
+                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
+                options: *non-gvhd-cause-options
+          -
+            slug: eyes
+            questions:
+              -
+                slug: score
+                type: radios
+                title: "Eyes"
+                meta_answers: ['nya', 'nass']
+                score:
+                  category: eyes
+                  organ: true
+                intro:
+                  question: "Eyes symptoms score"
+                options:
+                  -
+                    label: "No symptoms"
+                    value: 0
+                  -
+                    label: "Mild dry eye symptoms not affecting ADL (requirement of lubricant eye drops ≤ 3 x per day)"
+                    value: 1
+                  -
+                    label: "Moderate dry eye symptoms partially affecting ADL (requiring lubricant eye drops > 3 x per day or punctal plugs), WITHOUT new vision impairment due to KCS"
+                    value: 2
+                  -
+                    label: "Severe dry eye symptoms significantly affecting ADL (special eyeware to relieve pain) OR unable to work because of ocular symptoms OR loss of vision due to KCS"
+                    value: 3
+              -
+                slug: kcs
+                type: yesno
+                title: "Eyes"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Keratoconjunctivitis sicca (KCS) confirmed by ophthalmologist?"
+              -
+                slug: non-gvhd
+                type: yesno
+                title: "Eyes"
+                meta_answers: ['nya']
+                score:
+                  category: eyes
+                  organ: true
+                  nongvhd: true
+                intro:
+                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
+                options: *non-gvhd-cause-options
+          -
+            slug: gi-tract
+            questions:
+              -
+                slug: score
+                type: radios
+                title: "GI Tract"
+                meta_answers: ['nya', 'nass']
+                score:
+                  category: giTract
+                  organ: true
+                intro:
+                  question: "GI Tract symptoms score"
+                annotations:
+                  - "*Weight loss within 3 months."
+                options:
+                  -
+                    label: "No symptoms"
+                    value: 0
+                  -
+                    label: "Symptoms without significant weight loss* (< 5%)"
+                    value: 1
+                  -
+                    label: "Symptoms associated with mild to moderate weight loss* (5 - 15%) OR moderate diarrhea without significant interference with daily living"
+                    value: 2
+                  -
+                    label: "Symptoms associated with significant weight loss* > 15%, requires nutritional supplement for most calorie needs OR esophageal dilation OR severe diarrhea with significant interference with daily living"
+                    value: 3
+              -
+                slug: features
+                type: checkboxes
+                title: "GI Tract"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "GI Tract features"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Esophageal web / proximal stricture or ring"
+                    value: esophageal-web-proximal-stricture-ring
+                  -
+                    label: "Dysphagia"
+                    value: dysphagia
+                  -
+                    label: "Anorexia"
+                    value: anorexia
+                  -
+                    label: "Nausea"
+                    value: nausea
+                  -
+                    label: "Vomiting"
+                    value: vomiting
+                  -
+                    label: "Diarrhea"
+                    value: diarrhea
+                  -
+                    label: "Weight loss ≥ 5% (within 3 months)"
+                    value: weight-loss
+                  -
+                    label: "Failure to thrive"
+                    value: failure-to-thrive
+              -
+                slug: non-gvhd
+                type: yesno
+                title: "GI Tract"
+                meta_answers: ['nya']
+                score:
+                  category: giTract
+                  organ: true
+                  nongvhd: true
+                intro:
+                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
+                options: *non-gvhd-cause-options
+          -
+            slug: liver
+            questions:
+              -
+                slug: score
+                type: radios
+                title: "Liver"
+                meta_answers: ['nya', 'nass']
+                score:
+                  category: liver
+                  organ: true
+                intro:
+                  question: "Liver score"
+                options:
+                  -
+                    label: "Normal total bilirubin and ALT or AP < 3 x ULN"
+                    value: 0
+                  -
+                    label: "Normal total bilirubin with ALT ≥ 3 to 5 x ULN or AP ≥ 3 x ULN"
+                    value: 1
+                  -
+                    label: "Elevated total bilirubin but ≤ 3 mg/dL or ALT > 5 ULN"
+                    value: 2
+                  -
+                    label: "Elevated total bilirubin > 3 mg/dL"
+                    value: 3
+              -
+                slug: non-gvhd
+                type: yesno
+                title: "Liver"
+                meta_answers: ['nya']
+                score:
+                  category: liver
+                  organ: true
+                  nongvhd: true
+                intro:
+                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
+                options: *non-gvhd-cause-options
+          -
+            slug: lungs
+            questions:
+              -
+                slug: symptoms-score
+                type: radios
+                title: "Lungs"
+                meta_answers: ['nya', 'nass']
+                score:
+                  category: lungs
+                  organ: true
+                  bump: 1
+                  priority: 1
+                intro:
+                  question: "Lungs symptoms score"
+                options:
+                  -
+                    label: "No symptoms"
+                    value: 0
+                  -
+                    label: "Mild symptoms (shortness of breath after climbing one flight of steps)"
+                    value: 1
+                  -
+                    label: "Moderate symptoms (shortness of breath after walking on flat ground)"
+                    value: 2
+                  -
+                    label: "Severe symptoms (shortness of breath at rest; requiring O2)"
+                    value: 3
+              -
+                slug: fev1-score
+                type: text
+                title: "Lungs"
+                meta_answers: ['nya', 'nass']
+                score:
+                  category: lungs
+                  organ: true
+                  bump: 1
+                  priority: 2
+                  value:
+                    -
+                      range: [0, 40]
+                      value: 3
+                    -
+                      range: [40, 60]
+                      value: 2
+                    -
+                      range: [60, 80]
+                      value: 1
+                    -
+                      range: [80, 'null']
+                      value: 0
+                pattern: integer
+                intro:
+                  question: "Lung score % FEV1"
+              -
+                slug: non-gvhd
+                type: yesno
+                title: "Lungs"
+                meta_answers: ['nya']
+                score:
+                  category: lungs
+                  organ: true
+                  nongvhd: true
+                intro:
+                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
+                options: *non-gvhd-cause-options
+          -
+            slug: p-rom
+            questions:
+              -
+                slug: shoulder
+                type: multi
+                title: "Photographic Range of Motion (P-ROM)"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  image: "images/gvhd-p-rom-shoulder.jpg"
+                questions:
+                  -
+                    slug: left
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Left shoulder"
+                    options: *p-rom-options-7
+                  -
+                    slug: right
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Right shoulder"
+                    options: *p-rom-options-7
+              -
+                slug: elbow
+                type: multi
+                title: "Photographic Range of Motion (P-ROM)"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  image: "images/gvhd-p-rom-elbow.jpg"
+                questions:
+                  -
+                    slug: left
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Left elbow"
+                    options: *p-rom-options-7
+                  -
+                    slug: right
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Right elbow"
+                    options: *p-rom-options-7
+              -
+                slug: wrist-finger
+                type: multi
+                title: "Photographic Range of Motion (P-ROM)"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  image: "images/gvhd-p-rom-wrist-finger.jpg"
+                questions:
+                  -
+                    slug: left
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Left wrist / finger"
+                    options: *p-rom-options-7
+                  -
+                    slug: right
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Right wrist / finger"
+                    options: *p-rom-options-7
+              -
+                slug: ankle
+                type: multi
+                title: "Photographic Range of Motion (P-ROM)"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  image: "images/gvhd-p-rom-ankle.jpg"
+                questions:
+                  -
+                    slug: left
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Left ankle"
+                    options: *p-rom-options-4
+                  -
+                    slug: right
+                    type: radios
+                    style: p-rom
+                    variant: horizontal
+                    intro:
+                      question: "Right ankle"
+                    options: *p-rom-options-4
+          -
+            slug: joints-and-fascia
+            questions:
+              -
+                slug: score
+                type: radios
+                title: "Joints and Fascia"
+                meta_answers: ['nya', 'nass']
+                score:
+                  category: joints
+                  organ: true
+                intro:
+                  question: "Joints and Fascia symptoms score"
+                options:
+                  -
+                    label: "No symptoms"
+                    value: 0
+                  -
+                    label: "Mild tightness of arms or legs, normal or mild decreased range of motion (ROM) AND not affecting ADL"
+                    value: 1
+                  -
+                    label: "Tightness of arms or legs OR joing contractures, erythema thought due to fasciitis, moderate decrease ROM AND mild to moderate limitation of ADL"
+                    value: 2
+                  -
+                    label: "Contractures WITH significant decrease of ROM AND significant limitation of ADL (unable to tie shoes, button shirts, dress self etc.)"
+                    value: 3
+              -
+                slug: non-gvhd
+                type: yesno
+                title: "Joints and Fascia"
+                meta_answers: ['nya']
+                score:
+                  category: joints
+                  organ: true
+                  nongvhd: true
+                intro:
+                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
+                options: *non-gvhd-cause-options
+          -
+            slug: genital-tract
+            questions:
+              -
+                slug: score
+                type: radios
+                title: "Genital Tract"
+                meta_answers: ['nya', 'nass']
+                score:
+                  category: genital
+                  organ: true
+                intro:
+                  question: "Genital Tract symptoms score"
+                info:
+                  resource: "documents/gvhd-organscoring-genitaltract-info.pdf"
+                annotations:
+                  - "‡ To be completed by specialist or trained medical providers"
+                  - "* Genital symptoms are not specific to cGVHD and can represent premature gonadal failure or genital tract infection."
+                options:
+                  -
+                    label: "No symptoms"
+                    value: 0
+                  -
+                    label: "Mild signs‡ and females may have symptoms* WITH discomfort on exam"
+                    value: 1
+                  -
+                    label: "Moderate signs‡ and may have symptoms* with discomfort on exam"
+                    value: 2
+                  -
+                    label: "Severe signs‡ with or without symptoms*"
+                    value: 3
+              -
+                slug: sexually-active
+                type: yesno
+                title: "Genital Tract"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Currently sexually active"
+              -
+                slug: features
+                type: checkboxes
+                title: "Genital Tract"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Other symptoms"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Lichen planus-like features"
+                    value: lichen-planus-like-features
+                  -
+                    label: "Lichen sclerosis-like features"
+                    value: lichen-sclerosis-like-features
+                  -
+                    label: "Vaginal scarring (female)"
+                    value: vaginal-scarring
+                  -
+                    label: "Clitoral/labial agglutination (female)"
+                    value: clitoral-labial-agglutination
+                  -
+                    label: "Labial resorption (female)"
+                    value: labial-resorption
+                  -
+                    label: "Erosions"
+                    value: erosions
+                  -
+                    label: "Fissures"
+                    value: fissures
+                  -
+                    label: "Ulcers"
+                    value: ulcers
+                  -
+                    label: "Phimosis (male)"
+                    value: phimosis
+                  -
+                    label: "Urethral meatus scarring / stenosis (male)"
+                    value: urethral-meatus-scarring-stenosis
+              -
+                slug: causes
+                type: multi
+                meta_answers: ['nya']
+                title: "Genital Tract"
+                questions:
+                  -
+                    slug: non-gvhd
+                    type: yesno
+                    meta_answers: ['nya']
+                    score:
+                      category: genital
+                      organ: true
+                      nongvhd: true
+                    intro:
+                      question: "Abnormality present but explained entirely by non-gvhd documented cause"
+                    options: *non-gvhd-cause-options
+                  -
+                    slug: gvhd-plus
+                    type: yesno
+                    meta_answers: ['nya']
+                    intro:
+                      question: "Abnormality thought to represent GVHD PLUS other causes"
+                    options:
+                      yes:
+                        label: "Yes"
+                        value: true
+                        supplements:
+                          -
+                            slug: cause
+                            type: text
+                            question:
+                              title: "Specify"
+          -
+            slug: genital-tract-biopsy
+            questions:
+              -
+                slug: obtained
+                type: yesno
+                title: "Genital Tract"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Biopsy obtained?"
+                options:
+                  yes:
+                    label: "Yes"
+                    value: true
+                    supplements:
+                      -
+                        slug: site
+                        type: text
+                        label: Site biopsied
+              -
+                slug: gvhd-histology
+                type: yesno
+                title: "Genital Tract"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "GVHD confirmed by histology"
+              -
+                slug: change
+                type: radios
+                title: "Genital Tract"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Change from previous evaluation"
+                options:
+                  -
+                    label: "No prior or current GVHD"
+                    value: non-gvhd
+                  -
+                    label: "Improved"
+                    value: improved
+                  -
+                    label: "Stable"
+                    value: stable
+                  -
+                    label: "Worse"
+                    value: worse
+          -
+            slug: other-indicators
+            questions:
+              -
+                slug: features-score
+                type: multi
+                title: "Other indicators"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Other indicators, clinical features or complications related to chronic GVHD"
+                questions:
+                  -
+                    slug: ascites
+                    type: radios
+                    variant: horizontal
+                    score:
+                      category: other
+                    intro:
+                      question: "Ascites (serositis)"
+                    options: *gvhd-severity-options
+                  -
+                    slug: pericardial-effusion
+                    type: radios
+                    variant: horizontal
+                    score:
+                      category: other
+                    intro:
+                      question: "Pericardial Effusion"
+                    options: *gvhd-severity-options
+                  -
+                    slug: pleura-effusion
+                    type: radios
+                    variant: horizontal
+                    score:
+                      category: other
+                    intro:
+                      question: "Pleural Effusion(s)"
+                    options: *gvhd-severity-options
+                  -
+                    slug: nephrotic-syndrome
+                    type: radios
+                    variant: horizontal
+                    score:
+                      category: other
+                    intro:
+                      question: "Nephrotic syndrome"
+                    options: *gvhd-severity-options
+                  -
+                    slug: myasthenia-gravis
+                    type: radios
+                    variant: horizontal
+                    score:
+                      category: other
+                    intro:
+                      question: "Myasthenia Gravis"
+                    options: *gvhd-severity-options
+                  -
+                    slug: peripheral-neuropathy
+                    type: radios
+                    variant: horizontal
+                    score:
+                      category: other
+                    intro:
+                      question: "Peripheral Neuropathy"
+                    options: *gvhd-severity-options
+                  -
+                    slug: polymyositis
+                    type: radios
+                    variant: horizontal
+                    score:
+                      category: other
+                    intro:
+                      question: "Polymyositis"
+                    options: *gvhd-severity-options
+              -
+                slug: features-present
+                type: multi
+                title: "Other indicators"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Other indicators, clinical features or complications related to chronic GVHD"
+                questions:
+                  -
+                    slug: weight-loss
+                    type: yesno
+                    intro:
+                      question: "Weight loss > 5% (within 3 months) without GI symptoms"
+                  -
+                    slug: eosinophilia
+                    type: yesno
+                    intro:
+                      question: "Eosinophilia"
+                    options:
+                      yes:
+                        label: "> 500/μl"
+                        value: true
+                      no:
+                        label: "≤ 500/μl"
+                        value: false
+                  -
+                    slug: platelets
+                    type: yesno
+                    intro:
+                      question: "Platelets"
+                    options:
+                      yes:
+                        label: "< 100'000/μl"
+                        value: true
+                      no:
+                        label: "≥ 100'000/μl"
+                        value: false
+                  -
+                    slug: others
+                    type: text
+                    intro:
+                      question: "Others (specify)"
+          -
+            slug: overall
+            questions:
+              -
+                slug: severity
+                type: radios
+                variant: horizontal
+                title: "Overall GVHD Severity"
+                meta_answers: ['nya', 'nass']
+                score:
+                  category: overall
+                intro:
+                  question: "Opinion of the evaluator"
+                options: *gvhd-severity-options-single
+              -
+                slug: immunosuppression
+                type: yesno
+                title: "Immunosuppresion"
+                meta_answers: ['nya']
+                intro:
+                  question: "Was there any immunosuppression medication administered?"
+              -
+                slug: immunosuppression-medication
+                type: multi
+                title: "Immunosuppresion"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Medication for immunosuppression"
+                questions:
+                  -
+                    slug: cyclosporine
+                    type: text
+                    intro:
+                      question: "Cyclosporine (mg)"
+                    pattern: integer
+                  -
+                    slug: mycophenolate
+                    type: text
+                    intro:
+                      question: "Mycophenolate (mg)"
+                    pattern: integer
+                  -
+                    slug: tacrolimus
+                    type: text
+                    intro:
+                      question: "Tacrolimus (mg)"
+                    pattern: integer
+                  -
+                    slug: sirolimus
+                    type: text
+                    intro:
+                      question: "Sirolimus (mg)"
+                    pattern: integer
+                  -
+                    slug: prednisone
+                    type: text
+                    intro:
+                      question: "Prednisone (mg)"
+                    pattern: integer
+                  -
+                    slug: photopheresis
+                    type: text
+                    intro:
+                      question: "Photopheresis"
+                    pattern: integer
+                  -
+                    slug: other
+                    type: text
+                    intro:
+                      question: "Other: enter drug and dose (mg)"

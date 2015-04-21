@@ -12,6 +12,10 @@
 @import url('_meta.less');
 
 
+body {
+	padding-bottom: 60px;
+}
+
 
 // bootstrap elements tweaks here....
 .nav-tabs {
@@ -39,6 +43,11 @@
 	}
 }
 
+.bleed-loader {
+	text-align: center;
+	margin-top: 10%;
+}
+
 .bleed-logo {
 	display: inline-block;
 	margin-top: 10px;
@@ -49,9 +58,14 @@
 }
 
 .bleed-question {
+
 	h4 {
 		line-height: 1.4;
 	}
+}
+
+.bleed-question-image {
+	max-width: 100%;
 }
 
 .bleed-answers {
@@ -148,6 +162,16 @@
 	}
 }
 
+// disabled text colors
+.disabled {
+
+	input,
+	label,
+	.control-label {
+		color: #999999;
+	}
+}
+
 .bleed-annotations {
 	margin-top: 20px;
 	font-size: 16px;
@@ -166,6 +190,19 @@
 
 .bleed-question-navigation {
 	margin-bottom: 60px;
+}
+
+.bleed-quick-links {
+	margin-bottom: 10px;
+}
+
+.bleed-quick-link {
+	margin-right: 10px;
+	margin-bottom: 10px;
+
+	&:last-child {
+		margin-right: 0;
+	}
 }
 
 .environment-indicator {

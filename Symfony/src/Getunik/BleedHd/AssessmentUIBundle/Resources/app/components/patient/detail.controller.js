@@ -12,6 +12,7 @@
 		this.tabs = {
 			assessments: ($routeParams.tab === 'assessments'),
 			status: ($routeParams.tab === 'status'),
+			remarks: ($routeParams.tab === 'remarks'),
 		}
 
 		var that = this;

@@ -8,9 +8,15 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
             since_version: 1.0
         lastUpdatedBy:
             since_version: 1.0
+        createdDate:
+            since_version: 1.0
+        createdBy:
+            since_version: 1.0
         patientId:
             since_version: 1.0
         questionnaire:
+            since_version: 1.0
+        questionnaireVersion:
             since_version: 1.0
         startDate:
             since_version: 1.0
@@ -19,4 +25,6 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
         remarks:
             since_version: 1.0
         result:
+            since_version: 1.0
+        progress:
             since_version: 1.0

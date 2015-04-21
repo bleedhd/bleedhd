@@ -1,5 +1,5 @@
 
-# cGvHD Table 3 / cGvHD staging / cGvHD organ scoring
+# cGVHD Table 3 / cGVHD staging / cGVHD organ scoring
 
 Performnance scrore type [not score relevant]
 : cgvhd-organ-scoring.performance.type
@@ -23,7 +23,7 @@ Score relevant Skin Features (non-BSA)
 Skin Features (non-BSA)
 : cgvhd-organ-scoring.skin.features-other
 
-Skin non-GvHD cause (override question)
+Skin non-GVHD cause (override question)
 : cgvhd-organ-scoring.skin.non-gvhd
 
 -----
@@ -34,7 +34,7 @@ Mouth symptom scoring
 Mouth lichen planus-like features (yes/no) [not score relevant]
 : cgvhd-organ-scoring.mouth.features
 
-Mouth non-GvHD cause (override question)
+Mouth non-GVHD cause (override question)
 : cgvhd-organ-scoring.mouth.non-gvhd
 
 -----
@@ -45,7 +45,7 @@ Eyes symptom scoring
 Eyes KCS symptoms (yes/no) [not score relevant]
 : cgvhd-organ-scoring.eyes.features
 
-Eyes non-GvHD cause (override question)
+Eyes non-GVHD cause (override question)
 : cgvhd-organ-scoring.eyes.non-gvhd
 
 -----
@@ -56,7 +56,7 @@ GI Tract symptom scoring
 GI Tract symptoms [not score relevant]
 : cgvhd-organ-scoring.gi-tract.features
 
-GI Tract non-GvHD cause (override question)
+GI Tract non-GVHD cause (override question)
 : cgvhd-organ-scoring.gi-tract.non-gvhd
 
 -----
@@ -64,7 +64,7 @@ GI Tract non-GvHD cause (override question)
 Liver symptom scoring
 : cgvhd-organ-scoring.liver.score
 
-Liver non-GvHD cause (override question)
+Liver non-GVHD cause (override question)
 : cgvhd-organ-scoring.liver.non-gvhd
 
 -----
@@ -77,7 +77,7 @@ Lugs symptom score
 Lung Pulmonary function test (FEV1) score
 : cgvhd-organ-scoring.lungs.pft-score
 
-Lungs non-GvHD cause (override question)
+Lungs non-GVHD cause (override question)
 : cgvhd-organ-scoring.lungs.non-gvhd
 
 -----
@@ -112,7 +112,7 @@ Sexually active?
 Genital Tract symptoms [not score relevant]
 : cgvhd-organ-scoring.genital-tract.features
 
-Genital Tract non-GvHD cause (override question)
+Genital Tract non-GVHD cause (override question)
 : cgvhd-organ-scoring.genital-tract.non-gvhd
 
 -----
@@ -126,7 +126,7 @@ Other indicators (multi question)
 
 -----
 
-Overall GvHD Severity score
+Overall GVHD Severity score
 : cgvhd-organ-scoring.evaluator.score
 
 # WHO
@@ -173,7 +173,7 @@ Overall GvHD Severity score
 * who.cns.bleed-nosymptoms
 * who.cns.bleed-symptoms
 * who.invasive-sites.bleed
-* who.invasive-sites.bleed-site
+* who.invasive-sites.bleed.site
 * who.bleeding-complications.hemodynamic-instability
 * who.bleeding-complications.hemodynamic-instability.severe (+)
 * who.bleeding-complications.fatal-bleed

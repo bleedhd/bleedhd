@@ -1,0 +1,34 @@
+
+title: GVHD - late-onset aGVHD classification
+version: "1.0.0"
+meta_answers:
+  nya: Not yet answered
+  nass: Not assessed
+  napp: Not applicable
+  ns: No symptoms
+chapters:
+  -
+    sections:
+      -
+        screens:
+          -
+            slug: classification
+            questions:
+              -
+                slug: interval
+                type: radios
+                title: "Late-onset aGVHD classification"
+                meta_answers: ['nya']
+                intro:
+                  question: "Is the late-onset acute GVHD persistent or recurrent?"
+                options:
+                  -
+                    label: "Persistent"
+                    value: persistent
+                    score:
+                      interval: persistent
+                  -
+                    label: "Recurrent"
+                    value: recurrent
+                    score:
+                      interval: recurrent

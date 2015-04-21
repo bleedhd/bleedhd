@@ -1,68 +1,6 @@
 
 (function (angular, bleedHd) {
 
-	/**
-	 * The AuthHandler manages an OAuth token and provides functionality to integrate the token
-	 * into webservice requests. @see BleedApi service for more information.
-	 */
-	function AuthHandler($http, $log, $q) {
-		var that = this;
-
-		this.deferred = $q.defer();
-		this.token = {
-			value: null,
-			toString: function () { return (this.value === null ? 'token not yet available' : 'Bearer ' + this.value); },
-		};
-
-		$http.get('/user/gettoken').
-			success(function(data, status, headers, config) {
-				$log.debug("got the token", data);
-				that.deferred.resolve(data);
-			}).error(function(msg, code) {
-				that.deferred.reject(msg);
-			});
-
-		// this is dummy code useful for testing without security
-		/*window.setTimeout(function () {
-			that.deferred.resolve({
-				access_token: 'qwer',
-				expires_at: new Date(),
-				refresh_token: 'asdf',
-			});
-		}, 500);*/
-
-		this.deferred.promise.then(function (data) {
-			that.token.value = data.access_token;
-			bleedHd.env.uid = data.uid;
-		});
-	}
-
-	angular.extend(AuthHandler.prototype, {
-		/**
-		 * The object returned by this function can be used as a proxy for the actual token since it is updated
-		 * as soon as the token is available. As long as the serialization (conversion to string) happens after
-		 * the token has been resolved, this will work; otherwise the token value will be reported as 'token not
-		 * yet available'.
-		 *
-		 * @return {object} - a token object with a 'toString' function that simple returns the authentication token
-		 */
-		getToken: function () {
-			return this.token;
-		},
-		/**
-		 * Similar to the 'then' function on promises, this method will call the callback function with
-		 * the token data object as soon as it is resolved.
-		 *
-		 * @param {function(object)} - callback that will be called whenever the authorization token has been resolved
-		 */
-		authorized: function (callback) {
-			return this.deferred.promise.then(function (data) {
-				return callback(data);
-			});
-		},
-	});
-
-
 	function DateHelper(dateFilter, date, match) {
 		this.dateFilter = dateFilter;
 		this.isDateTime = true;
@@ -170,12 +108,19 @@
 			return {
 				show: true,
 				allowLogout: true,
+				altLink: null,
+				altLabel: null,
 			};
 		},
 		hide: function () {
 			this.next.show = false;
 		},
 		disableLogout: function () {
+			this.next.allowLogout = false;
+		},
+		enableAltLink: function (targetUrl, label) {
+			this.next.altLink = targetUrl;
+			this.next.altLabel = label;
 			this.next.allowLogout = false;
 		},
 	});
@@ -205,15 +150,40 @@
 	});
 
 
-	angular.module('bleedHdApp')
+	function LoginRedirect($window, BleedHdConfig) {
+		return function (forceLogout) {
+			if (forceLogout === true) {
+				$window.location.href = BleedHdConfig.logout + '?' + BleedHdConfig.redirectParam + '=' + encodeURIComponent($window.location.href);
+			} else {
+				$window.location.href = BleedHdConfig.login + '?' + BleedHdConfig.redirectParam + '=' + encodeURIComponent($window.location.href);
+			}
+		};
+	}
 
-		/**
-		 * The AuthHandler service provides a central point to get the current user's authentication
-		 * token. It _is_ a promise ($q deferred) that resolves as soon as the current token is available
-		 * and passes the token as the resolution argument. See the secureResource service on how it
-		 * can be used.
-		 */
-		.service('AuthHandler', AuthHandler)
+
+	function FormWrapperFactory() {
+		return function (original) {
+			// Creates a 'proxy' object that forms can bind to. Each property that is changed will be set on
+			// this proxy, thereby creating an 'own-property' without touching the original value. Only by
+			// calling the (non-enumerable, non-modifiable) 'persist' function are the changes copied back
+			// to the original which is then returned. Neat trick, huh? ;)
+			return Object.create(original, {
+				persist: {
+					value: function () {
+						for (var p in this) {
+							if (this.hasOwnProperty(p)) {
+								original[p] = this[p];
+							}
+						}
+						return original;
+					}
+				}
+			});
+		};
+	}
+
+
+	angular.module('bleedHdApp')
 
 		.service('DateHelper', DateHelperService)
 
@@ -224,6 +194,10 @@
 		.service('HeaderControl', HeaderControlService)
 
 		.service('ServerLogDump', ServerLogDump)
+
+		.factory('LoginRedirect', LoginRedirect)
+
+		.factory('FormWrapper', FormWrapperFactory)
 
 		/**
 		 * The JSON date interceptor is an HTTP interceptor implementation that transforms properties
@@ -265,10 +239,10 @@
 		 * The BleedApi service provides a convenient pre-configured Restangular object with
 		 * integrated authorization.
 		 */
-		.factory('BleedApi', function (Restangular, AuthHandler, $window, $log, MessageBuilder) {
+		.factory('BleedApi', function (Restangular, AuthHandler, $window, $log, MessageBuilder, LoginRedirect, BleedHdConfig) {
 			return Restangular.withConfig(function(RestangularConfig) {
 				RestangularConfig
-					.setBaseUrl('/api')
+					.setBaseUrl(BleedHdConfig.api.base)
 					.setDefaultHeaders({ 'Authorization': AuthHandler.getToken() })
 					.setErrorInterceptor(function (response) {
 						var uiError = 'restApiError';
@@ -276,7 +250,7 @@
 						if (response.status === 403 || response.status === 401) {
 							// TODO: split 403 and 401 in separate messages and behavior
 							$log.warn('Login required. Redirecting...');
-							$window.location.href='/user/login';
+							LoginRedirect();
 						} else if (response.status >= 500 && response.status < 600) {
 							$log.fatal('REST API error: ' + response.statusText, response.data);
 						} else if (response.status === 404 || response.status === 405) {

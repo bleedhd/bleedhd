@@ -1,10 +1,37 @@
 
+parameters:
+    security.logout.success_handler.class: Getunik\BleedHd\SecurityBundle\EventListener\TokenRemoveLogoutHandler
+
 services:
+    getunik_bleed_hd_security.oauth_helper:
+        class: Getunik\BleedHd\SecurityBundle\Service\OAuthHelper
+        arguments:
+            - '@kernel'
+            - '@session'
+            - '@fos_oauth_server.access_token_manager'
+            - '@fos_oauth_server.refresh_token_manager'
+            - '%getunik_bleed_hd_security.auto_token_client.id%'
+            - '%getunik_bleed_hd_security.auto_token_client.secret%'
+
     getunik_bleed_hd_security.auth_success_handler:
         class: Getunik\BleedHd\SecurityBundle\EventListener\AutoTokenHandler
         public: false
         arguments:
-            - '@kernel'
-            - '%getunik_bleed_hd_security.auto_token_client.id%'
-            - '%getunik_bleed_hd_security.auto_token_client.secret%'
+            - '@getunik_bleed_hd_security.oauth_helper'
             - '%getunik_bleed_hd_security.auto_token_client.target_path%'
+
+    security.logout.success_handler:
+        class:  '%security.logout.success_handler.class%'
+        arguments:  ['@security.http_utils', {}, '@getunik_bleed_hd_security.oauth_helper']
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }
+
+    getunik_bleed_hd_security.registration.form.type:
+        class: Getunik\BleedHd\SecurityBundle\Form\Type\RegistrationFormType
+        tags:
+            - { name: form.type, alias: getunik_bleed_hd_user_registration }
+
+    getunik_bleed_hd_security.profile.form.type:
+        class: Getunik\BleedHd\SecurityBundle\Form\Type\ProfileFormType
+        tags:
+            - { name: form.type, alias: getunik_bleed_hd_user_profile }

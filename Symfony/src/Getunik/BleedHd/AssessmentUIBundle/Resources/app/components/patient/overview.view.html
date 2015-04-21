@@ -42,6 +42,7 @@
 								<th>First name</th>
 								<th>Date of birth</th>
 								<th>Active</th>
+								<th>Progress</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -51,6 +52,10 @@
 								<td>{{ patient.firstname }}</td>
 								<td>{{ patient.birthdate.date | isodate }}</td>
 								<td>{{ patient.is_active | boolyesno }}</td>
+								<td>
+									<img ng-if="ctlPatients.progress[patient.id] === undefined" ng-src="{{ 'images/ajax-loader.gif' | resourcePath }}" width="16" height="16" />
+									<span ng-if="ctlPatients.progress[patient.id] !== undefined">{{ ctlPatients.progress[patient.id] | progress }}</span>
+								</td>
 								<td><a class="btn btn-default btn-xs" href="#/patients/detail/{{ patient.id }}">Details</a></td>
 							</tr>
 						</tbody>
@@ -60,7 +65,7 @@
 			</div>
 
 			<nav>
-				<pagination total-items="paging.items.length" items-per-page="paging.itemsPerPage" ng-model="paging.currentPage" class="pagination-sm" previous-text="«" next-text="»"></pagination>
+				<pagination total-items="paging.items.length" items-per-page="paging.itemsPerPage" ng-model="paging.currentPage" ng-change="ctlPatients.onPageChanged()" class="pagination-sm" previous-text="«" next-text="»"></pagination>
 			</nav>
 
 		</div>

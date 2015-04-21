@@ -1,0 +1,59 @@
+{% extends "GetunikBleedHdSecurityBundle::layout.html.twig" %}
+
+{% trans_default_domain 'SecurityBundle' %}
+
+{% block fos_user_content %}
+<form action="{{ path("fos_user_security_check") }}" method="post">
+
+	<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+	<input type="hidden" name="_target_path" value="{{ app.request.get('_target_path') }}" />
+
+	<div class="form-group">
+		<div class="controls">
+			<input id="username" class="form-control" name="_username" type="text" placeholder="{{ 'security.login.username'|trans }}" value="{{ last_username }}" required="required" />
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="controls">
+			<input id="password" class="form-control" type="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" required="required" />
+		</div>
+	</div>
+
+
+	{% if error %}
+	<div class="form-group bleed-login-error">
+		<div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+	</div>
+	{% endif %}
+
+	<input type="submit" id="_submit" class="btn btn-large btn-default btn-block" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+
+</form>
+{% endblock fos_user_content %}
+
+{% block fos_user_footer %}
+		<a href="#" class="pull-left" data-toggle="modal" data-target="#modal_about">About</a>
+		<span class="pull-right">{{ app.request.get('debug') == 'true' ? app_version_int : app_version_ext }}</span>
+{% endblock fos_user_footer %}
+
+{% block bottom %}
+<div class="modal fade" id="modal_about" tabindex="-1" role="dialog" aria-labelledby="modal_about_label" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="modal_about_label">About the Bleeding and GVHD Assessment Tool</h4>
+			</div>
+			<div class="modal-body">
+				<p>
+					Blutspendezentrum SRK beider Basel<br />
+					Hebelstrasse 10<br />
+					4056 Basel<br />
+					<br />
+					<a href="http://blutspende-basel.ch/forschung.html" target="_blank">http://blutspende-basel.ch/forschung.html</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock bottom %}

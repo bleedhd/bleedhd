@@ -18,7 +18,6 @@ class ScoreMappingExtractor
 {
 	protected $questionTypeMap = array(
 		'yesno' => 'extractOptionsWithDefault',
-		'checkbox' => 'extractOptionsWithDefault',
 		'radios' => 'extractOptions',
 		'checkboxes' => 'extractMultiOptions',
 		'default' => 'extractDefault',

@@ -56,8 +56,42 @@ class AssessmentHandler
 
         $result = $calculator->run($context)->getResult();
         $assessment->setResult($result);
+        $assessment->setQuestionnaireVersion($context->getQuestionnaireVersion());
         $this->repository->save($assessment, false);
 
         return $assessment;
+    }
+
+    /**
+     * Creates an associative array from patient IDs to their overall assessment status. The status indicates whether
+     * all of the patients assessments are completed (have a total score) or not.
+     *
+     * @param array $patientIds - a list of patient IDs
+     * @return array - a mapping from patient IDs to their assessment status
+     */
+    public function getAssessmentProgress(array $patientIds)
+    {
+        $result = array();
+        foreach ($patientIds as $id)
+        {
+            $result[$id] = array('patient_id' => $id, 'progress' => Assessment::PROGRESS_NONE);
+        }
+
+        $assessments = $this->repository->getPatientProgress($patientIds);
+        foreach ($assessments as $assessment)
+        {
+            $patient = &$result[$assessment['patientId']];
+
+            if ($assessment['progress'] === Assessment::PROGRESS_COMPLETE && $patient['progress'] === Assessment::PROGRESS_NONE)
+            {
+                $patient['progress'] = Assessment::PROGRESS_COMPLETE;
+            }
+            else if ($assessment['progress'] === Assessment::PROGRESS_TENTATIVE || $assessment['progress'] === NULL)
+            {
+                $patient['progress'] = Assessment::PROGRESS_TENTATIVE;
+            }
+        }
+
+        return array_values($result);
     }
 }

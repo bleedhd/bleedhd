@@ -4,6 +4,7 @@
 # are displayed on a single screen
 
 title: Bleeding BSMS
+version: "1.0.0"
 meta_answers:
   nya: Not yet answered
   nass: Not assessed
@@ -23,7 +24,7 @@ chapters:
                 title: "Grade"
                 meta_answers: ['nya']
                 info:
-                  resource: "documents/sample.pdf"
+                  resource: "documents/bleedHD-BSMS-help.pdf"
                 options: # optional
                   -
                     label: "No bleeding"

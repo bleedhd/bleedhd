@@ -1,3 +1,6 @@
+imports:
+    - { resource: parameters.yml }
+
 security:
     encoders:
         FOS\UserBundle\Model\UserInterface: sha512
@@ -10,6 +13,10 @@ security:
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username
+
+    access_control:
+        - { path: ^/user/register/?$, roles: ROLE_ADMIN }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: '%http_channel%' }
 
     firewalls:
         dev:
@@ -36,6 +43,11 @@ security:
             logout:
                 path: /user/logout
                 target: /user/login
+            anonymous: true
+            context: secured
+
+        app:
+            pattern: ^/app
             anonymous: true
             context: secured
 

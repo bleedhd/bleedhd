@@ -6,3 +6,8 @@ Getunik\BleedHd\SecurityBundle\Entity\User:
             type: integer
             generator:
                 strategy: AUTO
+    fields:
+        full_name:
+            type: string
+            nullable: true
+            length: 255

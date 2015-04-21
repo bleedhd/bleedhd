@@ -26,26 +26,35 @@
 					<input tabindex="2" id="assessment_start_time" name="assessment_start_time" class="form-control" type="text" ng-model="ctlAssessment.startTime" ng-change="ctlAssessment.onTimeChange()" mask-input="hh:mm" placeholder="hh:mm" required />
 				</div>
 				<div class="form-group">
-					<label class="control-label" for="assessment_platelets">Platelets (G/l)</label>
-					<input tabindex="3" id="assessment_platelets" name="assessment_platelets" class="form-control" type="text" ng-model="ctlAssessment.assessment.platelets" />
+					<label class="control-label">Assessor:</label> {{ ctlAssessment.assessment.creator.email }}
 				</div>
-
+				<div class="checkbox">
+					<label class="control-label" ng-if="!ctlAssessment.isNew">
+						<input tabindex="3" id="assessment_progress" name="assessment_progress" type="checkbox" ng-model="ctlAssessment.assessment.progress" ng-true-value="{{ ctlAssessment.DomainConst.progress.completed | json }}" ng-false-value="{{ ctlAssessment.DomainConst.progress.tentative | json }}" /> Completed
+					</label>
+				</div>
 			</div>
 
 			<div class="col-xs-12 col-sm-6">
 				<div class="form-group">
+					<label class="control-label" for="assessment_platelets">Platelets (G/l)</label>
+					<input tabindex="4" id="assessment_platelets" name="assessment_platelets" class="form-control" type="text" ng-model="ctlAssessment.assessment.platelets" />
+				</div>
+				<div class="form-group">
 					<label class="control-label" for="assessment_remarks">Remarks</label>
-					<textarea tabindex="4" id="assessment_remarks" name="assessment_remarks" class="form-control" cols="30" rows="6" ng-model="ctlAssessment.assessment.remarks"></textarea>
+					<textarea tabindex="5" id="assessment_remarks" name="assessment_remarks" class="form-control" cols="30" rows="6" ng-model="ctlAssessment.assessment.remarks"></textarea>
 				</div>
 
-				<div ng-if="!ctlAssessment.isNew">
-					<button tabindex="5" class="btn btn-default" type="button" ng-disabled="ctlAssessment.assessmentForm.$invalid" ng-click="ctlAssessment.save()">Save</button>
+				<div ng-if="!ctlAssessment.isNew" class="form-group">
+					<button tabindex="6" class="btn btn-default" type="button" ng-disabled="ctlAssessment.assessmentForm.$invalid" ng-click="ctlAssessment.save()">Save</button>
 				</div>
 			</div>
 
 		</div>
 
 	</form>
+
+	<alert ng-show="ctlAssessment.successMessage" class="animate-show" type="success"><div ng-bind-html="ctlAssessment.successMessage"></div></alert>
 
 	<pre ng-if="env.debug" class="debug-output">{{ ctlAssessment.assessment | json }}</pre>
 
@@ -57,22 +66,21 @@
 		<div class="col-xs-12 col-sm-6">
 			<h4>{{ ctlAssessment.assessment.questionnaire | toQName }}</h4>
 			<h5>Score: {{ ctlAssessment.assessment.result | score }}</h5>
-			<div ng-if="env.debug" class="debug-output">
-				<pre>{{ ctlAssessment.assessment.result | json }}</pre>
-			</div>
 		</div>
 
-		<div class="col-xs-12 col-sm-6">
+		<div class="col-xs-12 col-sm-6" ng-include="ctlAssessment.secondaryScoreTemplate"></div>
 
+		<div class="col-xs-12" ng-if="env.debug">
+			<pre class="debug-output">{{ ctlAssessment.assessment.result | json }}</pre>
 		</div>
 
 	</div>
 </panel>
 
 <panel ng-if="!ctlAssessment.isNew" heading="Quick links">
-	<div class="row">
+	<div class="row bleed-quick-links">
 		<div class="col-xs-12">
-			<button class="btn btn-default">TBD</button>
+			<a ng-repeat="link in ctlAssessment.assessment.definition.quickLinks" ng-href="#/assessment/{{ ctlAssessment.patient.id }}/{{ ctlAssessment.assessment.id }}/{{ link.screen }}?q={{ link.question }}" class="btn btn-default bleed-quick-link">{{ link.label }}</a>
 		</div>
 	</div>
 	<div class="row">
@@ -87,20 +95,21 @@
 
 		<div class="col-xs-12 col-sm-6">
 			<h4>Bleeding</h4>
-			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('demo')">DEMO</a>
+			<a href="" ng-if="env.debug" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('demo')">DEMO</a>
 			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('who')">WHO</a>
 			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('bsms')">BSMS</a>
 		</div>
 
 		<div class="col-xs-12 col-sm-6">
-			<h4>GvHD</h4>
-			<a href="" class="btn btn-block btn-default" ng-click="">Features</a>
+			<h4>GVHD</h4>
+			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('gvhd-features')">Features</a>
 			<hr>
-			<a href="" class="btn btn-block btn-default" ng-click="">First diagnosis</a>
-			<a href="" class="btn btn-block btn-default" ng-click="">Current staging</a>
-			<a href="" class="btn btn-block btn-default" ng-click="">Therapy response</a>
+			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('gvhd-first-diagnosis')">First diagnosis</a>
+			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('gvhd-late-onset-acute')">Late-onset aGVHD classification</a>
+			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('gvhd-organ-scoring')">Organ scoring</a>
 			<hr>
-			<a href="" class="btn btn-block btn-default" ng-click="">Patient self report</a>
+			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('gvhd-activity-assessment')">Activity assessment</a>
+			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('gvhd-self-report')">Patient self report</a>
 		</div>
 
 	</div>

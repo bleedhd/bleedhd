@@ -1,3 +1,79 @@
+
+# Overall Structure
+
+```yaml
+title: Demo
+quick_links:
+  -
+    label: Test
+    screen: screen_1
+    question: question-yes-no-demo2
+  -
+    label: Multi-Valued Supplements
+    screen: screen_7
+    question: supplements-demo1
+meta_answers:
+  nya: not yet answered
+  nass: not assessed
+  napp: not applicable
+  ns: no symptom
+chapters:
+  -
+    sections:
+      -
+        screens:
+          -
+            questions:
+              - ...
+              - ...
+```
+
+## Quick Links
+Quick links can be arbitrarily defined in the `quick_links` section of the questionnaire. The `label` and `screen` properties are required, the `question` is optional and if present, the quick link will cause the loaded screen to scroll to that particular question.
+
+## Meta Answers
+The list of available meta answers - in particular their labels - must be defined for each questionnaire. The keys are well-defined, but the labels may differ from questionnaire to questionnaire.
+
+## The Hierarchy
+Note: even though most of it is currently not used, the hierarchy stayed in place because it will make future reorganizations and possibly extensions a bit easier.
+
+The questions are organized in a hierarchy of _chapters_, _sections_ and _screens_. Each level in the hierarchy can define a `slug` property that will be used to construct the full question slug. The items in the `screens` section **must** have a slug since this slug is used as part of the screen URL. Since this can cause problems when moving questions in an assessment or with duplicate screen (short-)slugs, screens **may** define a `url_slug` property that will be used as the screen's slug. The questionnaire itself may also define a `slug` property; if it is not present, the internal assessment name (file name) will be used.
+
+Given a questionnaire with the following structure,
+```yaml
+slug: sample
+chapters:
+  -
+    slug: ch01
+    sections:
+      -
+        screens:
+          -
+            slug: first
+            url_slug: firsts-url-segment
+            questions:
+              -
+                slug: question-one
+                ...
+              -
+                slug: question-two
+                ...
+      -
+        slug: sec01
+        screens:
+          -
+            slug: second
+            questions:
+              -
+                slug: question-three
+                ...
+```
+
+the resulting full question slugs will be
+* `sample.ch01.first.question-one`
+* `sample.ch01.first.question-two`
+* `sample.ch01.sec01.second.question-three`
+
 # Question Structure
 
 ```yaml
@@ -85,6 +161,11 @@ Each value object **must** have a _value_ property and it _may_ additionally hav
 
 Note that _supplement_ values **must** be primitive types or arrays of primitive types - objects are not allowed.
 
+## Ownership
+The different aspects of the respones / result object have different _owners_ in the client UI implementation. The owner is in charge of updating that particular piece of the response and the ownership is linked to the hierarchical view nature of the implementation. The following image illustrates who owns what:
+
+![Response Ownership](http://www.gliffy.com/go/publish/image/7454453/L.png)
+
 
 # Meta Answers
 
@@ -112,7 +193,7 @@ meta_answers: [...]
 variation: variation-name
 style: style-classes
 ...
-scoring:
+score:
   ...
 export:
   ...
@@ -129,8 +210,8 @@ export:
   that are functionally equivalent but render different markup (e.g. vertical vs. horizontal radio button list).
 * **style**: Style CSS classes string (space separated just like in a class attribute). This style string, if present, will be
   added to the question root element (not the container).
-* **scoring**: The scoring configuration for this question. The specifics of the scoring configuration depend on the scoring
-  implementation used and is defined in the scoring documentation. Depending on the implementation, questions without a
+* **score**: The scoring configuration for this question. The specifics of the scoring configuration depend on the scoring
+  implementation used and is defined in the [scoring documentation](scoring-config.md). Depending on the implementation, questions without a
   scoring configuration may not be included in the score.
 * **export**: The export configuration for this question. ???
 
@@ -382,6 +463,25 @@ The `questions` property is simply an array of questions presented inside the co
 
 
 # Question Supplements
+The supplement configuration supports an additional `default` property - questions don't need that because they have meta-answers, but supplements in some cases must provide a meaningful default. The value of the default property obviously must be a value supported by the supplement type / options.
+
+```yaml
+supplements:
+  -
+    slug: some-supplement
+    type: radios
+    title: "This is a title"
+    intro:
+      question: "Any questions?"
+    default: 42
+    options:
+      -
+        label: "Forty-Two"
+        value: 42
+      -
+        label: "The number of the beast"
+        value: 666
+```
 
 ## "checkbox"
 

@@ -64,52 +64,79 @@
 
 	bleedHd.app = angular.module('bleedHdApp', [
 		'ngRoute',
-		'ngResource',
 		'ngSanitize',
 		'ui.router',
 		'restangular',
+		'authHandler',
 		'typeRegistry',
 		'eventChannel',
 		'enhancedLog',
 		'common',
+		'pages',
 		'patient',
 		'assessment',
 		'question',
 	])
 
 	.constant('BleedHdConfig', {
-		version: '1.0.0',
+		login: '/user/login',
+		logout: '/user/logout',
+		redirectParam: '_target_path',
+		messages: {
+			hideDelay: 5000,
+		},
 		api: {
-			host: '',
 			base: '/api',
-			resources: {
-				patients: 'patients',
-				statuses: 'patients/:patientId/statuses',
-			},
 		},
 		format: {
 			isodate: 'yyyy-MM-dd',
 			yesno: ['yes', 'no'],
 		},
 		resourcesPath: bleedHd.env.assetPath + '/getunikbleedhdassessmentui',
+		assessmentResourcesPath: bleedHd.env.assetPath + '/getunikbleedhdassessmentdata',
 	})
 
-	.config(function ($provide, $httpProvider, CachingWrapperProvider, EnhancedLogConfigProvider) {
+	.constant('DomainConst', {
+		progress: {
+			completed: 'completed',
+			tentative: 'tentative',
+			none: 'none',
+		},
+	})
+
+	.config(function ($provide, $httpProvider, CachingWrapperProvider, EnhancedLogConfigProvider, AuthHandlerProvider, LoginRedirectProvider) {
 		$httpProvider.interceptors.push('JsonDateInterceptor');
+
+		AuthHandlerProvider.addExpirationCallback(function () {
+			// we have to work with the provider here, but we know the callback and therefore
+			// the $get function will only be called after proper initialization
+			LoginRedirectProvider.$get()(true);
+		});
 
 		// extend the (customized) Restangular service implementation to wait for
 		// the Authorization Handler promise to resolve before executing any HTTP request
-		$provide.decorator('RestangularResource', function ($delegate, AuthHandler) {
+		$provide.decorator('RestangularResource', function ($delegate, $location, $log, AuthHandler, LoginRedirect) {
 			var oldExecuteRequest = $delegate.executeRequest;
 
 			// always wait for authorization before executing the request
 			$delegate.executeRequest = function (params) {
 				return AuthHandler.authorized(function () {
 					return oldExecuteRequest(params);
+				}, function (error) {
+					$log.warn('AuthHandler refused, redirecting to login...', error);
+					LoginRedirect();
+					throw error;
 				});
 			};
 
 			return $delegate;
+		});
+
+		$provide.decorator('$exceptionHandler', function ($delegate, MessageBuilder) {
+			return function (exception, cause) {
+				MessageBuilder.send('unhandledException', [exception, cause]);
+				return $delegate(exception, cause);
+			};
 		});
 
 		// sets default caching lifetime to 10 min
@@ -121,12 +148,25 @@
 			.setUidFunc(function () { return bleedHd.env.uid; });
 	})
 
-	.run(function ($rootScope, ServerLogDump, HeaderControl) {
+	.run(function ($rootScope, $interval, $http, $log, ServerLogDump, HeaderControl, AuthHandler) {
 		$rootScope.env = bleedHd.env;
 		$rootScope.header = HeaderControl;
 
 		// do the log dumping now (on load) and every 15min
 		ServerLogDump.start(15);
+
+		$rootScope.$on('$routeChangeSuccess', function () {
+			// navigating counts as a noteworthy activity in the context of
+			// auto-logout behavior
+			AuthHandler.updateLastActivity();
+		});
+
+		// ping the server in a 5 minute interval to keep the user's PHP session alive
+		$interval(function () {
+			$http.get('/user/ping').error(function(msg, code) {
+				$log.info('error pinging server', msg, code);
+			});
+		}, 5 * 60 * 1000);
 	})
 
 	;

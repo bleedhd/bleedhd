@@ -4,11 +4,16 @@
 # are displayed on a single screen
 
 title: Demo
+version: "1.0.0"
 quick_links:
   -
     label: Test
     screen: screen_1
-    question: question-yes-no-demo
+    question: question-yes-no-demo2
+  -
+    label: Multi-Valued Supplements
+    screen: screen_7
+    question: supplements-demo1
 meta_answers:
   nya: not yet answered
   nass: not assessed
@@ -289,6 +294,7 @@ chapters:
                         type: text
                         label: "Enter some text"
                         placeholder: "Something"
+                        default: "Some text"
                         question:
                           title: "What up dog?"
                       -
@@ -319,6 +325,7 @@ chapters:
                         type: checkboxes
                         question:
                           title: "Pick your companions (multiple)"
+                        default: ['elves', 'men']
                         options:
                           -
                             label: "Elves"

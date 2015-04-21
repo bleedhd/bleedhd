@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use FOS\RestBundle\Controller\FOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 
@@ -27,6 +28,7 @@ class PatientStatusesController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_READER')")
      */
     public function getStatusesAction($patient)
     {
@@ -34,6 +36,7 @@ class PatientStatusesController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_READER')")
      * @ParamConverter("status", options={"id": "status", "mapping": {"patient":"patientId","status":"id"}})
      */
     public function getStatusAction($patient, PatientStatus $status)
@@ -42,6 +45,7 @@ class PatientStatusesController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_EDITOR')")
      * @Post("/patients/{patient}/statuses", requirements={"_format"="json|xml"})
      * @ParamConverter("patient", options={"id" = "patient"})
      * @ParamConverter("status", converter="fos_rest.request_body")
@@ -56,6 +60,7 @@ class PatientStatusesController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_EDITOR')")
      * @ParamConverter("status", options={"id": "status", "mapping": {"patient":"patientId","status":"id"}})
      * @ParamConverter("statusBody", converter="fos_rest.request_body")
      */
@@ -68,6 +73,7 @@ class PatientStatusesController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function deleteStatusAction($patient, $status)
     {

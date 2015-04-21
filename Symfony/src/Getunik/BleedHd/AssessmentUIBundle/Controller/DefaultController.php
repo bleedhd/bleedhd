@@ -32,6 +32,6 @@ class DefaultController extends Controller
 
     public function rootRedirectAction()
     {
-        return $this->redirect($this->generateUrl('getunik_bleed_hd_assessment_ui_app'));
+        return $this->redirect($this->generateUrl('fos_user_security_login'));
     }
 }

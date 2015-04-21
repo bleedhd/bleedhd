@@ -1,4 +1,4 @@
-Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
+Getunik\BleedHd\AssessmentDataBundle\Entity\ClientLogEntry:
     exclusion_policy: ALL
     read_only: false
     properties:
