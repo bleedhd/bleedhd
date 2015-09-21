@@ -476,7 +476,7 @@ chapters:
                 score:
                   type: distinctive
                 intro:
-                  question: "Distinctive features*"
+                  question: "Distinctive features (Males and Females)*"
                   description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
                 annotations:
                   - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
