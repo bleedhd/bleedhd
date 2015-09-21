@@ -22,11 +22,11 @@
 		}
 		this.status = FormWrapper(status);
 
-		// Only allogenic transplants can/should have a transplant source, so we reset the transplant source to empty
-		// string for all transplant types except for allogenic.
+		// Only allogeneic transplants can/should have a transplant source, so we reset the transplant source to empty
+		// string for all transplant types except for allogeneic.
 		var status = this.status;
 		$scope.$watch('ctlStatus.status.transplant_type', function (newValue, oldValue) {
-			if (status.transplant_type !== 'allogenic') {
+			if (status.transplant_type !== 'allogeneic') {
 				status.transplant_source = '';
 			}
 			if (status.transplant_type !== 'other') {
