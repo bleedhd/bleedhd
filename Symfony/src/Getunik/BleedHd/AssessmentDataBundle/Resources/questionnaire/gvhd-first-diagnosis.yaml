@@ -89,6 +89,8 @@ chapters:
                 type: checkboxes
                 title: "Chronic GVHD - Skin"
                 meta_answers: ['nya', 'nass']
+                info:
+                  resource: "documents/skin-diagnostic-signs.pdf"
                 score:
                   type: diagnostic
                 intro:
