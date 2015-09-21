@@ -23,13 +23,6 @@ class ScoreMappingExtractor
 		'default' => 'extractDefault',
 	);
 
-	protected $supplementTypeMap = array(
-		'checkbox' => 'extractSupplOptionsWithDefault',
-		'radios' => 'extractSupplOptions',
-		'checkboxes' => 'extractSupplMultiOptions',
-		'default' => 'extractSupplDefault',
-	);
-
 	protected $defaultOptions = array(
 		'yes' => array('value' => TRUE),
 		'no' => array('value' => FALSE),
