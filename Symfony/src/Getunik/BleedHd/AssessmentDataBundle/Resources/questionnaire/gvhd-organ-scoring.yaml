@@ -173,6 +173,8 @@ chapters:
                 type: text
                 title: "Skin"
                 meta_answers: ['nya', 'nass']
+                info:
+                  resource: "documents/body-surface-area-rules-of-9.pdf"
                 score:
                   category: skin
                   organ: true
