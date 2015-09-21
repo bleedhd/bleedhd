@@ -11,8 +11,6 @@ class CalculatorBsms extends CalculatorMap
 	public function __construct(LoggerInterface $logger)
 	{
 		parent::__construct($logger);
-
-		$this->score->total = 0;
 	}
 
 	protected function finish()
@@ -20,11 +18,10 @@ class CalculatorBsms extends CalculatorMap
 		if (isset($this->score->type))
 		{
 			$this->score->total = $this->score->type;
-		}
-
-		if (isset($this->score->subtype))
-		{
-			$this->score->total .= $this->score->subtype;
+			if (isset($this->score->subtype))
+			{
+				$this->score->total .= $this->score->subtype;
+			}
 		}
 	}
 }

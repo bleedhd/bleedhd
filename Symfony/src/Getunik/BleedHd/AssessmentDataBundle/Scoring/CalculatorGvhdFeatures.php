@@ -22,9 +22,5 @@ class CalculatorGvhdFeatures extends CalculatorMap
 		{
 			$this->score->total = ($this->score->present ? self::SCORE_PRESENT : self::SCORE_NOT_PRESENT);
 		}
-		else
-		{
-			$this->score->total = NULL;
-		}
 	}
 }

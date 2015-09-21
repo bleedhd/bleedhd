@@ -22,9 +22,5 @@ class CalculatorGvhdLateOnsetAcute extends CalculatorMap
 		{
 			$this->score->total = ($this->score->interval === 'persistent' ? self::SCORE_PERSISTENT : self::SCORE_RECURRENT);
 		}
-		else
-		{
-			$this->score->total = NULL;
-		}
 	}
 }
