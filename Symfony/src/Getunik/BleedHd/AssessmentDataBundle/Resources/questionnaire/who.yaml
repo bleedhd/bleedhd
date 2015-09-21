@@ -31,6 +31,9 @@ quick_links:
     label: "Invasive sites"
     screen: invasive-sites
   -
+    label: "Bleeding Complications"
+    screen: bleeding-complications
+  -
     label: "Intervention"
     screen: intervention
   -
