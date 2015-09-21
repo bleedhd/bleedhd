@@ -454,13 +454,13 @@ chapters:
                   question: "Diagnostic features"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
                 option_reset:
-                  label: "No symptoms"
+                  label: "Males/Females: No symptoms"
                 options:
                   -
-                    label: "Lichen planus-like features"
+                    label: "Males/Females: Lichen planus-like features"
                     value: lichen-planus-like-features
                   -
-                    label: "Lichen sclerosus-like features"
+                    label: "Males/Females: Lichen sclerosus-like features"
                     value: lichen-sclerosus-like-features
                   -
                     label: "Females: Vaginal scarring or clitoral/labial agglutination"
