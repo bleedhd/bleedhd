@@ -731,7 +731,7 @@ chapters:
                 title: "Intervention, invasive investigation, medication"
                 meta_answers: ['nya']
                 intro:
-                  question: "Was there an intervention, invasive investigation or monitoring needed to treat the bleeding other then transfusions?"
+                  question: "Was there an intervention, invasive investigation or monitoring needed to treat the bleeding other than transfusions?"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -772,7 +772,7 @@ chapters:
                 title: "Intervention, invasive investigation, medication"
                 meta_answers: ['nya']
                 intro:
-                  question: "Was there any medication or a hemostatic compound administered to prevent or stop a bleeding other then transfusions?"
+                  question: "Was there any medication or a hemostatic compound administered to prevent or stop a bleeding other than transfusions?"
                 options: # optional
                   yes:
                     label: "Yes"
