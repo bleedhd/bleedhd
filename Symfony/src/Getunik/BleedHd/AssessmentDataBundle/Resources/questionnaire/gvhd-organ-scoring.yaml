@@ -1044,6 +1044,9 @@ chapters:
                       question: "Photopheresis"
                     options:
                       -
+                        label: "None"
+                        value: ""
+                      -
                         label: "3 times per week"
                         value: 3in1
                       -
