@@ -1039,10 +1039,22 @@ chapters:
                     pattern: integer
                   -
                     slug: photopheresis
-                    type: text
+                    type: radios
                     intro:
                       question: "Photopheresis"
-                    pattern: integer
+                    options:
+                      -
+                        label: "None"
+                        value: ""
+                      -
+                        label: "3 times per week"
+                        value: 3in1
+                      -
+                        label: "2 times in 2 weeks"
+                        value: 2in2
+                      -
+                        label: "2 times in 4 weeks"
+                        value: 2in4
                   -
                     slug: other
                     type: text
