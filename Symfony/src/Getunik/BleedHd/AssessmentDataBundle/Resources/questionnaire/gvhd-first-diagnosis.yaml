@@ -605,26 +605,59 @@ chapters:
             url_slug: chronic-lungs
             questions:
               -
-                slug: diagnostic
-                type: checkboxes
+                slug: diagnostic-biopsy
+                type: radios
                 title: "Chronic GVHD - Lung"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: diagnostic
                 intro:
-                  question: "Diagnostic features"
+                  question: "Diagnostic feature - Lung biopsy"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
-                annotations:
-                  - "‡ BOS can be diagnostic for lung chronic GVHD only, if distinctive sign or symptom present in another organ."
-                option_reset:
-                  label: "No symptoms"
                 options:
+                  -
+                    label: "No symptoms"
+                    value: ""
                   -
                     label: "Bronchiolitis obliterans diagnosed with lung biopsy"
                     value: bo
+              -
+                slug: bos
+                type: radios
+                title: "Chronic GVHD - Lung"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Diagnostic feature - BOS"
+                  description: "BOS can be diagnostic for lung chronic GVHD only, if distinctive sign or symptom present in another organ."
+                info:
+                  resource: "documents/skin-diagnostic-signs.pdf"
+                options:
                   -
-                    label: "Bronchiolitis obliterans syndrome‡"
+                    label: "No symptoms"
+                    value: ""
+                  -
+                    label: "Bronchiolitis obliterans syndrome"
                     value: bos
+                    supplements:
+                      -
+                        slug: confirmation
+                        type: checkboxes
+                        question:
+                          title: "All of the following criteria must be met"
+                        default: pending
+                        options:
+                          -
+                            label: "FEV1 / vital capacity < 0.7 or the fifth percentile of predicted"
+                            value: criteria1
+                          -
+                            label: "FEV1 < 75% of predicted with >= 10% decline over less than two years"
+                            value: criteria2
+                          -
+                            label: "Absence of infection in the respiratory tract"
+                            value: criteria3
+                          -
+                            label: "One of the two supporting features of BOS; evidence of air trapping by expiratory CT or evidence of air trapping by PFTs"
+                            value: criteria4
               -
                 slug: distinctive
                 type: checkboxes
