@@ -169,6 +169,31 @@ chapters:
             slug: skin
             questions:
               -
+                slug: bsa-features
+                type: checkboxes
+                title: "Skin"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "GVHD features to be scored by BSA"
+                option_reset:
+                  label: "No symptoms"
+                options:
+                  -
+                    label: "Maculopapular rash/erythema"
+                    value: maculopapular-rash-erythema
+                  -
+                    label: "Lichen planus-like features"
+                    value: lichen-planus-like-features
+                  -
+                    label: "Sclerotic features"
+                    value: sclerotic-features
+                  -
+                    label: "Papulosquamous lesions or ichthyosis"
+                    value: papulosquamous-lesions-or-ichthyosis
+                  -
+                    label: "Keratosis pilaris-like GVHD"
+                    value: keratosis-pilaris-like-gvhd
+              -
                 slug: bsa-score
                 type: text
                 title: "Skin"
@@ -197,31 +222,6 @@ chapters:
                 pattern: integer
                 intro:
                   question: "Score % BSA"
-              -
-                slug: bsa-features
-                type: checkboxes
-                title: "Skin"
-                meta_answers: ['nya', 'nass']
-                intro:
-                  question: "GVHD features to be scored by BSA"
-                option_reset:
-                  label: "No symptoms"
-                options:
-                  -
-                    label: "Maculopapular rash/erythema"
-                    value: maculopapular-rash-erythema
-                  -
-                    label: "Lichen planus-like features"
-                    value: lichen-planus-like-features
-                  -
-                    label: "Sclerotic features"
-                    value: sclerotic-features
-                  -
-                    label: "Papulosquamous lesions or ichthyosis"
-                    value: papulosquamous-lesions-or-ichthyosis
-                  -
-                    label: "Keratosis pilaris-like GVHD"
-                    value: keratosis-pilaris-like-gvhd
               -
                 slug: skin-score
                 type: radios
