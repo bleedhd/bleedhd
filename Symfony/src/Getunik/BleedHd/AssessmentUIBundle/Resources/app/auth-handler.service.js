@@ -59,11 +59,17 @@
 					that.checkToken();
 				} else {
 					that.$log.warn('no valid token received', data);
-					that.deferred.reject(msg);
+					that.deferred.reject({
+						status: 498,
+						statusText: 'invalid token'
+					});
 				}
 			}).error(function(msg, code) {
 				that.$log.error('error retrieving user token', msg, code);
-				that.deferred.reject(msg);
+				that.deferred.reject({
+					status: 498,
+					statusText: msg
+				});
 			});
 
 		// this is dummy code useful for testing without security

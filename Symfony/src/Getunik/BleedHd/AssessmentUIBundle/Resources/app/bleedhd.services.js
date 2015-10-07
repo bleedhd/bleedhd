@@ -265,11 +265,14 @@
 								url: response.config.url,
 							});
 							uiError = 'noResponseError';
+						} else if (response.status === 498) { // 498: (custom) token expired/invalid
+							// this case is already handled with the restangular resource
+							// decorator in the core BleedHD module
 						} else {
 							$log.error('Unknown REST API error', response);
 						}
 
-						MessageBuilder.send(uiError, [response.status, response.config.method]);
+						MessageBuilder.send(uiError, [response.status, response.config === undefined ? null : response.config.method]);
 
 						return true;
 					});

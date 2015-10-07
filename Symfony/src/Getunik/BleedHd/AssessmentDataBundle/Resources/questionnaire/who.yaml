@@ -31,6 +31,9 @@ quick_links:
     label: "Invasive sites"
     screen: invasive-sites
   -
+    label: "Bleeding Complications"
+    screen: bleeding-complications
+  -
     label: "Intervention"
     screen: intervention
   -
@@ -616,41 +619,48 @@ chapters:
             slug: invasive-sites
             questions:
               -
-                slug: bleed
-                type: yesno
+                type: multi
                 title: "Invasive Sites"
                 meta_answers: ['nya']
-                score:
-                  grade: 2
-                intro:
-                  question: "Was there any bleeding at invasive sites lasting more than 1 hour?"
-                options: # optional
-                  yes:
-                    label: "Yes"
-                    value: 1
-                    supplements:
-                      -
-                        slug: site
-                        type: checkboxes
-                        meta_answers: ['nya']
-                        question:
-                          title: "What was the nature of the invasive site?"
-                        options: # optional
+                questions:
+                  -
+                    slug: bleed
+                    type: yesno
+                    score:
+                      grade: 2
+                    intro:
+                      question: "Was there any bleeding at invasive sites lasting more than 1 hour?"
+                    options: # optional
+                      yes:
+                        label: "Yes"
+                        value: 1
+                        supplements:
                           -
-                            label: "central venous catheter"
-                            value: 1
-                          -
-                            label: "venous puncture"
-                            value: 2
-                          -
-                            label: "biopsy"
-                            value: 3
-                          -
-                            label: "other"
-                            value: 9
-                  no:
-                    label: "No"
-                    value: 0
+                            slug: site
+                            type: checkboxes
+                            question:
+                              title: "What was the nature of the invasive site?"
+                            options: # optional
+                              -
+                                label: "central venous catheter"
+                                value: 1
+                              -
+                                label: "venous puncture"
+                                value: 2
+                              -
+                                label: "biopsy"
+                                value: 3
+                              -
+                                label: "other"
+                                value: 9
+                      no:
+                        label: "No"
+                        value: 0
+                  -
+                    slug: site-other
+                    type: text
+                    intro:
+                      question: "If yes and 'other', please specify"
 
           -
             slug: bleeding-complications
@@ -721,7 +731,7 @@ chapters:
                 title: "Intervention, invasive investigation, medication"
                 meta_answers: ['nya']
                 intro:
-                  question: "Was there an intervention, invasive investigation or monitoring needed to treat the bleeding other then transfusions?"
+                  question: "Was there an intervention, invasive investigation or monitoring needed to treat the bleeding other than transfusions?"
                 options: # optional
                   yes:
                     label: "Yes"
@@ -762,7 +772,7 @@ chapters:
                 title: "Intervention, invasive investigation, medication"
                 meta_answers: ['nya']
                 intro:
-                  question: "Was there any medication or a hemostatic compound administered to prevent or stop a bleeding other then transfusions?"
+                  question: "Was there any medication or a hemostatic compound administered to prevent or stop a bleeding other than transfusions?"
                 options: # optional
                   yes:
                     label: "Yes"

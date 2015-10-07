@@ -27,13 +27,13 @@
 					<select tabindex="2" id="status_transplant_type" name="status_transplant_type" class="form-control" ng-model="ctlStatus.status.transplant_type">
 						<option value="">not specified</option>
 						<option value="autologous">autologous</option>
-						<option value="allogenic">allogenic</option>
+						<option value="allogeneic">allogeneic</option>
 						<option value="DLI">DLI</option>
 						<option value="other">other</option>
 					</select>
 				</div>
 
-				<div class="form-group" ng-show="ctlStatus.status.transplant_type == 'allogenic'">
+				<div class="form-group" ng-show="ctlStatus.status.transplant_type == 'allogeneic'">
 					<label class="control-label" for="status_transplant_source">Source</label>
 					<select tabindex="3" id="status_transplant_source" name="status_transplant_source" class="form-control" ng-model="ctlStatus.status.transplant_source">
 						<option value="">not specified</option>

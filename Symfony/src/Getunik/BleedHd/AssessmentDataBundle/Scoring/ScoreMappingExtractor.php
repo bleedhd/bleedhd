@@ -18,16 +18,10 @@ class ScoreMappingExtractor
 {
 	protected $questionTypeMap = array(
 		'yesno' => 'extractOptionsWithDefault',
+		'checkbox' => 'extractOptionsWithDefault',
 		'radios' => 'extractOptions',
 		'checkboxes' => 'extractMultiOptions',
 		'default' => 'extractDefault',
-	);
-
-	protected $supplementTypeMap = array(
-		'checkbox' => 'extractSupplOptionsWithDefault',
-		'radios' => 'extractSupplOptions',
-		'checkboxes' => 'extractSupplMultiOptions',
-		'default' => 'extractSupplDefault',
 	);
 
 	protected $defaultOptions = array(

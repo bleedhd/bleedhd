@@ -169,33 +169,6 @@ chapters:
             slug: skin
             questions:
               -
-                slug: bsa-score
-                type: text
-                title: "Skin"
-                meta_answers: ['nya', 'nass']
-                score:
-                  category: skin
-                  organ: true
-                  value:
-                    -
-                      range: [0, 1]
-                      value: 0
-                    -
-                      range: [1,19]
-                      value: 1
-                    -
-                      range: [19,51]
-                      value: 2
-                    -
-                      range: [51,100]
-                      value: 3
-                    -
-                      range: []
-                      value: -1
-                pattern: integer
-                intro:
-                  question: "Score % BSA"
-              -
                 slug: bsa-features
                 type: checkboxes
                 title: "Skin"
@@ -220,6 +193,35 @@ chapters:
                   -
                     label: "Keratosis pilaris-like GVHD"
                     value: keratosis-pilaris-like-gvhd
+              -
+                slug: bsa-score
+                type: text
+                title: "Skin"
+                meta_answers: ['nya', 'nass']
+                info:
+                  resource: "documents/body-surface-area-rules-of-9.pdf"
+                score:
+                  category: skin
+                  organ: true
+                  value:
+                    -
+                      range: [0, 1]
+                      value: 0
+                    -
+                      range: [1,19]
+                      value: 1
+                    -
+                      range: [19,51]
+                      value: 2
+                    -
+                      range: [51,100]
+                      value: 3
+                    -
+                      range: []
+                      value: -1
+                pattern: integer
+                intro:
+                  question: "Score % BSA"
               -
                 slug: skin-score
                 type: radios
@@ -1037,10 +1039,22 @@ chapters:
                     pattern: integer
                   -
                     slug: photopheresis
-                    type: text
+                    type: radios
                     intro:
                       question: "Photopheresis"
-                    pattern: integer
+                    options:
+                      -
+                        label: "None"
+                        value: ""
+                      -
+                        label: "3 times per week"
+                        value: 3in1
+                      -
+                        label: "2 times in 2 weeks"
+                        value: 2in2
+                      -
+                        label: "2 times in 4 weeks"
+                        value: 2in4
                   -
                     slug: other
                     type: text

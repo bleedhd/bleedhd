@@ -11,8 +11,6 @@ class CalculatorMap extends CalculatorBase
 	public function __construct(LoggerInterface $logger)
 	{
 		parent::__construct($logger);
-
-		$this->score->total = 0;
 	}
 
 	protected function accumulateMapping(ScoreMapping $mapping)
