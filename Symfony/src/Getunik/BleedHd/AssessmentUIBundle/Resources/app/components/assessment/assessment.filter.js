@@ -39,7 +39,7 @@
 				if (score === undefined || score === null)
 					return '-';
 
-				return 'Grade ' + score;
+				return (isNaN(score) ? score : 'Grade ' + score);
 			};
 		})
 
