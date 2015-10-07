@@ -1,6 +1,16 @@
 
 (function (angular) {
 
+	var chronicMap = {
+			'positive': 'positive',
+			'pending': 'pending',
+			'negative': 'negative',
+		},
+		delayMap = {
+			'normal': 'normal',
+			'lateonset': 'late-onset',
+		};
+
 	angular.module('assessment')
 
 		.filter('organScore', function () {
@@ -12,6 +22,33 @@
 					return '0 (' + score.value + '*)';
 
 				return score.value;
+			};
+		})
+
+		.filter('firstDiagnosisScoreChronic', function () {
+			return function (score) {
+				if (score === undefined || score === null)
+					return '-';
+
+				return chronicMap[score] || score;
+			};
+		})
+
+		.filter('firstDiagnosisScoreAcute', function () {
+			return function (score) {
+				if (score === undefined || score === null)
+					return '-';
+
+				return 'Grade ' + score;
+			};
+		})
+
+		.filter('firstDiagnosisScoreDelay', function () {
+			return function (score) {
+				if (score === undefined || score === null)
+					return '-';
+
+				return delayMap[score] || score;
 			};
 		})
 
