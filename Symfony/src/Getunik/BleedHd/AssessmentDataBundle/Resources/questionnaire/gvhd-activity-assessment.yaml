@@ -401,7 +401,21 @@ chapters:
                 pattern: decimal
                 title: "Liver Values"
                 intro:
-                  question: "Total serum bilirubin (mg/dl)"
+                  question: "Total serum bilirubin"
+                supplements:
+                  -
+                    slug: unit
+                    type: radios
+                    question:
+                      title: "Unit"
+                    default: "mg/dl"
+                    options:
+                      -
+                        label: "mg/dl"
+                        value: "mg/dl"
+                      -
+                        label: "µmol/l"
+                        value: "µmol/l"
               -
                 slug: bilirubin-uln
                 type: text
@@ -409,7 +423,21 @@ chapters:
                 pattern: integer
                 title: "Liver Values"
                 intro:
-                  question: "Upper limit of normal bilirubin (mg/dl)"
+                  question: "Upper limit of normal bilirubin"
+                supplements:
+                  -
+                    slug: unit
+                    type: radios
+                    question:
+                      title: "Unit"
+                    default: "mg/dl"
+                    options:
+                      -
+                        label: "mg/dl"
+                        value: "mg/dl"
+                      -
+                        label: "µmol/l"
+                        value: "µmol/l"
               -
                 slug: alt
                 type: text
