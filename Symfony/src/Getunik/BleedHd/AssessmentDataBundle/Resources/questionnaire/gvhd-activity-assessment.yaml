@@ -142,7 +142,7 @@ chapters:
                 title: "Weight"
                 intro:
                   question: "Current patient weight (kg)"
-                pattern: decimal
+                pattern: decimalLimitOne
           -
             slug: global
             questions:
