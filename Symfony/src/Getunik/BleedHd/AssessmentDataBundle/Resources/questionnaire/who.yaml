@@ -205,7 +205,7 @@ chapters:
                         label: "Maximal diameter of the largest hematoma (cm)?"
                         question:
                           title:
-                        pattern: "decimal"
+                        pattern: "decimalLimitOne"
                   no:
                     label: "No"
                     value: 0
