@@ -160,10 +160,10 @@ chapters:
                     label: "Symptomatic, fully ambulatory, restricted only in physically strenuous activity (ECOG 1, KPS or LPS 80 - 90%)"
                     value: 1
                   -
-                    label: "Symptomatic, ambulatory, capable of self-care, > 50% of waking hours out of bed (ECOG 2,KPS or LPS 60 - 70%)"
+                    label: "Symptomatic, ambulatory, capable of self-care, &gt; 50% of waking hours out of bed (ECOG 2,KPS or LPS 60 - 70%)"
                     value: 2
                   -
-                    label: "Symptomatic, limited self-care, > 50% of waking hours in bed (ECOG 3 - 4, KPS or LPS < 60%)"
+                    label: "Symptomatic, limited self-care, &gt; 50% of waking hours in bed (ECOG 3 - 4, KPS or LPS &lt; 60%)"
                     value: 3
           -
             slug: skin
@@ -366,7 +366,7 @@ chapters:
                     label: "Mild dry eye symptoms not affecting ADL (requirement of lubricant eye drops ≤ 3 x per day)"
                     value: 1
                   -
-                    label: "Moderate dry eye symptoms partially affecting ADL (requiring lubricant eye drops > 3 x per day or punctal plugs), WITHOUT new vision impairment due to KCS"
+                    label: "Moderate dry eye symptoms partially affecting ADL (requiring lubricant eye drops &gt; 3 x per day or punctal plugs), WITHOUT new vision impairment due to KCS"
                     value: 2
                   -
                     label: "Severe dry eye symptoms significantly affecting ADL (special eyeware to relieve pain) OR unable to work because of ocular symptoms OR loss of vision due to KCS"
@@ -410,13 +410,13 @@ chapters:
                     label: "No symptoms"
                     value: 0
                   -
-                    label: "Symptoms without significant weight loss* (< 5%)"
+                    label: "Symptoms without significant weight loss* (&lt; 5%)"
                     value: 1
                   -
                     label: "Symptoms associated with mild to moderate weight loss* (5 - 15%) OR moderate diarrhea without significant interference with daily living"
                     value: 2
                   -
-                    label: "Symptoms associated with significant weight loss* > 15%, requires nutritional supplement for most calorie needs OR esophageal dilation OR severe diarrhea with significant interference with daily living"
+                    label: "Symptoms associated with significant weight loss* &gt; 15%, requires nutritional supplement for most calorie needs OR esophageal dilation OR severe diarrhea with significant interference with daily living"
                     value: 3
               -
                 slug: features
@@ -479,16 +479,16 @@ chapters:
                   question: "Liver score"
                 options:
                   -
-                    label: "Normal total bilirubin and ALT or AP < 3 x ULN"
+                    label: "Normal total bilirubin and ALT or AP &lt; 3 x ULN"
                     value: 0
                   -
                     label: "Normal total bilirubin with ALT ≥ 3 to 5 x ULN or AP ≥ 3 x ULN"
                     value: 1
                   -
-                    label: "Elevated total bilirubin but ≤ 3 mg/dL or ALT > 5 ULN"
+                    label: "Elevated total bilirubin but ≤ 3 mg/dL or ALT &gt; 5 ULN"
                     value: 2
                   -
-                    label: "Elevated total bilirubin > 3 mg/dL"
+                    label: "Elevated total bilirubin &gt; 3 mg/dL"
                     value: 3
               -
                 slug: non-gvhd
@@ -948,7 +948,7 @@ chapters:
                     slug: weight-loss
                     type: yesno
                     intro:
-                      question: "Weight loss > 5% (within 3 months) without GI symptoms"
+                      question: "Weight loss &gt; 5% (within 3 months) without GI symptoms"
                   -
                     slug: eosinophilia
                     type: yesno
@@ -956,7 +956,7 @@ chapters:
                       question: "Eosinophilia"
                     options:
                       yes:
-                        label: "> 500/μl"
+                        label: "&gt; 500/μl"
                         value: true
                       no:
                         label: "≤ 500/μl"
@@ -968,7 +968,7 @@ chapters:
                       question: "Platelets"
                     options:
                       yes:
-                        label: "< 100'000/μl"
+                        label: "&lt; 100'000/μl"
                         value: true
                       no:
                         label: "≥ 100'000/μl"

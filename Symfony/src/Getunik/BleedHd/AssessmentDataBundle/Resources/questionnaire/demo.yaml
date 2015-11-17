@@ -36,7 +36,7 @@ chapters:
                 meta_answers: ['nya', 'nass']
                 intro:
                   question: "Do you agree or not?"
-                  description: "Some <strong>HTML</strong> markup"
+                  description: "Some <strong>HTML</strong> markup and <a href=\"@res(documents/sample.pdf)\">a link</a>"
                 score:
                   grade: 7
                 options: # optional
@@ -162,7 +162,7 @@ chapters:
                     label: "StarCraft"
                     value: sc
                   -
-                    label: "Command & Conquer"
+                    label: "Command &amp; Conquer"
                     value: cnc
                   -
                     label: "Age of Empires"
