@@ -130,7 +130,7 @@ chapters:
                   label: "No symptoms"
                 options:
                   -
-                    label: Depigmentation
+                    label: Depigmentation (Vitiligo)
                     value: depigmentation
                     supplements:
                       - *confirmation-supplement
@@ -210,7 +210,7 @@ chapters:
                   label: "No symptoms"
                 options:
                   -
-                    label: "Dystrophy"
+                    label: "Dystrophy consting of longitudinal ridging, splitting or brittle features"
                     value: dystrophy
                     supplements:
                       - *confirmation-supplement
@@ -496,7 +496,7 @@ chapters:
                     supplements:
                       - *confirmation-supplement
                   -
-                    label: "Ulcers"
+                    label: "Females: Ulcers"
                     value: ulcers
                     supplements:
                       - *confirmation-supplement
