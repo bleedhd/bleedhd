@@ -2,9 +2,7 @@
 <div class="panel panel-default">
 
 	<div class="panel-heading clearfix">
-		<div class="pull-left panel-title">
-			{{ containerCtl.question.title }}
-		</div>
+		<div class="pull-left panel-title" ng-bind-html="containerCtl.question.title"></div>
 		<div class="pull-right">
 			<a ng-if="containerCtl.question.info.resource" ng-href="{{ containerCtl.question.info.resource | assessmentResource }}" target="_blank"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
 		</div>
@@ -35,7 +33,7 @@
 			</div>
 		</div>
 
-		<div class="bleed-annotations" ng-repeat="annotation in containerCtl.question.annotations" ng-bind="annotation"></div>
+		<div class="bleed-annotations" ng-repeat="annotation in containerCtl.question.annotations" ng-bind-html="annotation"></div>
 	</div>
 
 	<div class="panel-footer clearfix">

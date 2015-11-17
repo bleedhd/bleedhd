@@ -224,10 +224,10 @@ chapters:
                     label: "None"
                     value: 0
                   -
-                    label: "Mild erythema or moderate erythema (< 25%)"
+                    label: "Mild erythema or moderate erythema (&lt; 25%)"
                     value: 1
                   -
-                    label: "Moderate (≥ 25%) or Severe erythema (< 25%)"
+                    label: "Moderate (≥ 25%) or Severe erythema (&lt; 25%)"
                     value: 2
                   -
                     label: "Severe erythema (≥ 25%)"
@@ -244,13 +244,13 @@ chapters:
                     label: "None"
                     value: 0
                   -
-                    label: "Lichen-like changes (< 25%)"
+                    label: "Lichen-like changes (&lt; 25%)"
                     value: 1
                   -
                     label: "Lichen-like changes (25 - 50%)"
                     value: 2
                   -
-                    label: "Lichen-like changes (> 50%)"
+                    label: "Lichen-like changes (&gt; 50%)"
                     value: 3
               -
                 slug: ulcers
@@ -267,7 +267,7 @@ chapters:
                     label: "Ulcers involving (≤ 20%)"
                     value: 3
                   -
-                    label: "Severe ulcerations (> 20%)"
+                    label: "Severe ulcerations (&gt; 20%)"
                     value: 6
           -
             slug: gi-tract
@@ -298,7 +298,7 @@ chapters:
                 meta_answers: ['nya', 'nass']
                 title: "Gastrointestinal-Upper GI"
                 intro:
-                  question: "Early satiety OR Anorexia OR Nausea & Vomiting"
+                  question: "Early satiety OR Anorexia OR Nausea &amp; Vomiting"
                 options:
                   -
                     label: "No symptoms"
@@ -797,10 +797,10 @@ chapters:
                     label: "No symptoms"
                     value: 0
                   -
-                    label: "Mild dry eye symptoms not affecting ADL (requirement of lubricant eye drops < 3 x per day)"
+                    label: "Mild dry eye symptoms not affecting ADL (requirement of lubricant eye drops &lt; 3 x per day)"
                     value: 1
                   -
-                    label: "Moderate dry eye symptoms partially affecting ADL (requiring lubricant eye drops > 3 x per day or punctal plugs), WITHOUT new vision impairment due to KCS"
+                    label: "Moderate dry eye symptoms partially affecting ADL (requiring lubricant eye drops &gt; 3 x per day or punctal plugs), WITHOUT new vision impairment due to KCS"
                     value: 2
                   -
                     label: "Severe dry eye symptoms significantly affecting ADL (special eyeware to relieve pain) OR unable to work because of ocular symptoms OR loss of vision due to KCS"

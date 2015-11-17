@@ -3,7 +3,7 @@
 	<div class="checkbox" ng-repeat="option in supplementCtl.getOptions()">
 		<label>
 			<input type="checkbox" ng-disabled="!active" ng-model="option.binding.value" ng-change="supplementCtl.onChange(option)" ng-true-value="{{ option.value | json }}" ng-false-value="null">
-			{{ option.label }}
+			<span ng-bind-html="option.label"></span>
 		</label>
 	</div>
 </div>

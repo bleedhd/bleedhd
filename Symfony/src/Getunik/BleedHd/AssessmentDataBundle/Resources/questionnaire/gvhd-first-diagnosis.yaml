@@ -592,10 +592,10 @@ chapters:
                   label: "No symptoms"
                 options:
                   -
-                    label: "Total bilirubin, alkaline phosphatase > 2× upper limit of normal"
+                    label: "Total bilirubin, alkaline phosphatase &gt; 2× upper limit of normal"
                     value: bilirubin-alkaline-phosphatase
                   -
-                    label: "ALT > 2× upper limit of normal"
+                    label: "ALT &gt; 2× upper limit of normal"
                     value: atl
 
       -
@@ -824,7 +824,7 @@ chapters:
                     label: "No rash"
                     value: 0
                   -
-                    label: "Rash < 25% body surface"
+                    label: "Rash &lt; 25% body surface"
                     value: 1
                   -
                     label: "Rash 25% - 50% body surface"
@@ -846,7 +846,7 @@ chapters:
                   question:
                 options:
                   -
-                    label: "Bilirubin < 34 µmol/L"
+                    label: "Bilirubin &lt; 34 µmol/L"
                     value: 0
                   -
                     label: "Bilirubin 34 - 50 µmol/L"
@@ -858,7 +858,7 @@ chapters:
                     label: "Bilirubin 103 - 255 µmol/L"
                     value: 3
                   -
-                    label: "Bilirubin > 255 µmol/L"
+                    label: "Bilirubin &gt; 255 µmol/L"
                     value: 4
               -
                 slug: gut
@@ -871,7 +871,7 @@ chapters:
                   question:
                 options:
                   -
-                    label: "No Symptoms / Diarrhea < 500 ml/d"
+                    label: "No Symptoms / Diarrhea &lt; 500 ml/d"
                     value: 0
                   -
                     label: "Diarrhea 500 - 1000 ml/d"
@@ -880,7 +880,7 @@ chapters:
                     label: "Diarrhea 1000 - 1500 ml/d"
                     value: 2
                   -
-                    label: "Diarrhea > 1500 ml/d"
+                    label: "Diarrhea &gt; 1500 ml/d"
                     value: 3
                   -
                     label: "Severe abdominal pain with or without ileus"
@@ -923,7 +923,7 @@ chapters:
                     score:
                       delay: normal
                   -
-                    label: "> 100 days"
+                    label: "&gt; 100 days"
                     value: delayed
                     score:
                       delay: lateonset

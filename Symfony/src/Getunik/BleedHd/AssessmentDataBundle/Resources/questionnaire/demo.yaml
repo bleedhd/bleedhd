@@ -162,7 +162,7 @@ chapters:
                     label: "StarCraft"
                     value: sc
                   -
-                    label: "Command & Conquer"
+                    label: "Command &amp; Conquer"
                     value: cnc
                   -
                     label: "Age of Empires"
