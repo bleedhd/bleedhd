@@ -496,7 +496,7 @@ chapters:
                     supplements:
                       - *confirmation-supplement
                   -
-                    label: "Females: Ulcers"
+                    label: "Ulcers"
                     value: ulcers
                     supplements:
                       - *confirmation-supplement
