@@ -185,19 +185,19 @@ chapters:
                         slug: number
                         type: radios
                         question:
-                          title: "Number of hematomas >1cm"
+                          title: "Number of hematomas &gt;1cm"
                         options: # optional
                           -
                             label: "0"
                             value: "0"
                           -
-                            label: "< 3"
+                            label: "&lt; 3"
                             value: "< 3"
                           -
                             label: "3-5"
                             value: "3-5"
                           -
-                            label: "> 5"
+                            label: "&gt; 5"
                             value: "> 5"
                       -
                         slug: size
@@ -205,7 +205,7 @@ chapters:
                         label: "Maximal diameter of the largest hematoma (cm)?"
                         question:
                           title:
-                        pattern: "decimal"
+                        pattern: "decimalLimitOne"
                   no:
                     label: "No"
                     value: 0
@@ -218,7 +218,7 @@ chapters:
                 score:
                   grade: 2
                 intro:
-                  question: "Are there 1 or more hematomas in the soft tissue or muscles >2.5cm?"
+                  question: "Are there 1 or more hematomas in the soft tissue or muscles &gt;2.5cm?"
                 options: # optional
                   yes:
                     label: "Yes"

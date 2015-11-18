@@ -1,6 +1,6 @@
 <div class="bleed-sub-answer">
-	<h6 ng-bind-html="supplementCtl.definition.question.title"></h6>
+	<h6 ng-bind-html="supplementCtl.definition.question.title | questionProcessor"></h6>
 	<div class="checkbox">
-		<label><input type="checkbox" ng-disabled="!active" ng-model="supplementCtl.value" ng-model-options="{ getterSetter: true }" ng-true-value="{{ supplementCtl.options.yes.value | json }}" ng-false-value="{{ supplementCtl.options.no.value | json }}" ng-change="supplementCtl.onChange()">{{ supplementCtl.definition.label }}</label>
+		<label><input type="checkbox" ng-disabled="!active" ng-model="supplementCtl.value" ng-model-options="{ getterSetter: true }" ng-true-value="{{ supplementCtl.options.yes.value | json }}" ng-false-value="{{ supplementCtl.options.no.value | json }}" ng-change="supplementCtl.onChange()"><span ng-bind-html="supplementCtl.definition.label | questionProcessor"></span></label>
 	</div>
 </div>

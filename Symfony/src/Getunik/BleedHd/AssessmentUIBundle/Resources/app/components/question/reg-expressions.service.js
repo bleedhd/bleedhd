@@ -5,6 +5,7 @@
 		namedExpressions = {
 			integer: /^\d*$/,
 			decimal: /^\d*(\.\d*)?$/,
+			decimalLimitOne: /^\d*(\.\d{0,1})?$/,
 		};
 
 	function RegExpressionsService() {
