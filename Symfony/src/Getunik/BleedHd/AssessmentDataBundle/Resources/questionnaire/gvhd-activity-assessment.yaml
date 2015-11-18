@@ -341,50 +341,46 @@ chapters:
                   question: "Abnormality present but explained entirely by non-GVHD documented cause"
                 options: *non-gvhd-cause-options
           -
-            slug: lung-values
+            url_slug: lung-values
             questions:
               -
-                slug: fev1
-                type: text
-                meta_answers: ['nya', 'nass']
-                pattern: decimal
+                slug: lung-values
+                type: multi
                 title: "Lungs (Bronchiolitis Obliterans)"
-                intro:
-                  question: "FEV1 (liters)"
-              -
-                slug: fvc
-                type: text
                 meta_answers: ['nya', 'nass']
-                pattern: decimal
-                title: "Lungs (Bronchiolitis Obliterans)"
-                intro:
-                  question: "FVC (liters)"
+                questions:
+                  -
+                    slug: fev1
+                    type: text
+                    pattern: decimal
+                    intro:
+                      question: "FEV1 (liters)"
+                  -
+                    slug: fvc
+                    type: text
+                    pattern: decimal
+                    intro:
+                      question: "FVC (liters)"
+                  -
+                    slug: dlco
+                    type: text
+                    pattern: integer
+                    intro:
+                      question: "Single Breath DLCO (% predicted)"
+                  -
+                    slug: tlc
+                    type: text
+                    pattern: decimal
+                    intro:
+                      question: "TLC (liters)"
+                  -
+                    slug: rv
+                    type: text
+                    pattern: decimal
+                    intro:
+                      question: "RV (liters)"
               -
-                slug: dlco
-                type: text
-                meta_answers: ['nya', 'nass']
-                pattern: integer
-                title: "Lungs (Bronchiolitis Obliterans)"
-                intro:
-                  question: "Single Breath DLCO (% predicted)"
-              -
-                slug: tlc
-                type: text
-                meta_answers: ['nya', 'nass']
-                pattern: decimal
-                title: "Lungs (Bronchiolitis Obliterans)"
-                intro:
-                  question: "TLC (liters)"
-              -
-                slug: rv
-                type: text
-                meta_answers: ['nya', 'nass']
-                pattern: decimal
-                title: "Lungs (Bronchiolitis Obliterans)"
-                intro:
-                  question: "RV (liters)"
-              -
-                slug: non-gvhd
+                slug: lung-values.non-gvhd
                 type: yesno
                 meta_answers: ['nya']
                 title: "Lungs (Bronchiolitis Obliterans)"
