@@ -616,10 +616,10 @@ chapters:
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
                 options:
                   -
-                    label: "No symptoms"
+                    label: "Bronchiolitis obliterans not confirmed in lung biopsy"
                     value: ""
                   -
-                    label: "Bronchiolitis obliterans diagnosed with lung biopsy"
+                    label: "Bronchiolitis obliterans confirmed in lung biopsy"
                     value: bo
               -
                 slug: bos
