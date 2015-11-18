@@ -32,7 +32,7 @@
 			};
 		})
 
-		.filter('firstDiagnosisScoreChronic', function () {
+		.filter('newDiagnosisScoreChronic', function () {
 			return function (score) {
 				if (score === undefined || score === null)
 					return '-';
@@ -41,7 +41,7 @@
 			};
 		})
 
-		.filter('firstDiagnosisScoreAcute', function () {
+		.filter('newDiagnosisScoreAcute', function () {
 			return function (score) {
 				if (score === undefined || score === null)
 					return '-';
@@ -50,7 +50,7 @@
 			};
 		})
 
-		.filter('firstDiagnosisScoreDelay', function () {
+		.filter('newDiagnosisScoreDelay', function () {
 			return function (score) {
 				if (score === undefined || score === null)
 					return '-';
