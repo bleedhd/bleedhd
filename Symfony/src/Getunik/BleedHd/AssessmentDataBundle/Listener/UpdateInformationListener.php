@@ -69,11 +69,15 @@ class UpdateInformationListener
     {
         if ($entity instanceof UpdateInformationInterface)
         {
-            $user = $this->container->get('security.context')->getToken()->getUser();
-            $uid = ($user instanceof User ? $user->getId() : -1);
+            $token = $this->container->get('security.context')->getToken();
+            if (!empty($token))
+            {
+                $user = $this->container->get('security.context')->getToken()->getUser();
+                $uid = ($user instanceof User ? $user->getId() : -1);
 
-            $entity->setLastUpdatedDate(new \DateTime());
-            $entity->setLastUpdatedBy($uid);
+                $entity->setLastUpdatedDate(new \DateTime());
+                $entity->setLastUpdatedBy($uid);
+            }
         }
     }
 }
