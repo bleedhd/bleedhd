@@ -123,7 +123,9 @@ chapters:
                   type: distinctive
                 intro:
                   question: "Distinctive features*"
-                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                  description: >
+                    Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD<br />
+                    Requirement for confirmation: biopsy documenting histological features of chronic GVHD (at least "likely" cGVHD)
                 annotations:
                   - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
@@ -203,7 +205,9 @@ chapters:
                   type: distinctive
                 intro:
                   question: "Distinctive features*"
-                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                  description: >
+                    Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD<br />
+                    Requirement for confirmation: evaluation by a dermatologist and exclusion of other causes (see above)
                 annotations:
                   - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
@@ -250,7 +254,9 @@ chapters:
                   type: distinctive
                 intro:
                   question: "Distinctive features*"
-                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                  description: >
+                    Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD<br />
+                    Requirement for confirmation: evaluation by a dermatologist and exclusion of other causes (see above)
                 annotations:
                   - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
@@ -320,7 +326,9 @@ chapters:
                   type: distinctive
                 intro:
                   question: "Distinctive features*"
-                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                  description: >
+                    Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD<br />
+                    Requirement for confirmation: exlusion of infection by appropriate tests and malignancy by biopsy. Evaluation by dentist or otolaryngologist.
                 annotations:
                   - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
@@ -392,7 +400,9 @@ chapters:
                   type: distinctive
                 intro:
                   question: "Distinctive features*"
-                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                  description: >
+                    Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD<br />
+                    Requirement for confirmation: evaluation by opthalmologist + pathological Schirmer's test (with/without split lamp)
                 annotations:
                   - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
@@ -479,7 +489,9 @@ chapters:
                   type: distinctive
                 intro:
                   question: "Distinctive features (Males and Females)*"
-                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                  description: >
+                    Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD<br />
+                    Requirement for confirmation: evaluation by gynecologist + biopsy documenting histological features of chronic GVHD (at least "likely" cGVHD)
                 annotations:
                   - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
@@ -667,7 +679,8 @@ chapters:
                   type: diagnostic
                 intro:
                   question: "Distinctive features*"
-                  description: "No confirmation needed - treated as diagnostic feature"
+                  description: >
+                    Requirement for confirmation: biopsy documenting histological features of chronic GVHD (at least "likely" cGVHD) if only clinical manifestation in a patient without a prior established diagnosis of chronic GVHD
                 annotations:
                   - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                 option_reset:
@@ -730,7 +743,9 @@ chapters:
                   type: distinctive
                 intro:
                   question: "Distinctive features*"
-                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                  description: >
+                    Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD<br />
+                    Requirement for confirmation: muscle biopsy documenting histological features of chronic GVHD (at least "likely" cGVHD)
                 annotations:
                   - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                   - "†† Diagnosis of chronic GVHD requires biopsy."
