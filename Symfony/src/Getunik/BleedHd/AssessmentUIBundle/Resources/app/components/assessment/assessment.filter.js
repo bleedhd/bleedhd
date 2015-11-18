@@ -6,6 +6,13 @@
 			'pending': 'pending',
 			'negative': 'negative',
 		},
+		acuteMap = {
+			'0': 'no aGVHD',
+			'1': 'Grade I',
+			'2': 'Grade II',
+			'3': 'Grade III',
+			'4': 'Grade IV',
+		}
 		delayMap = {
 			'normal': 'normal',
 			'lateonset': 'late-onset',
@@ -39,7 +46,7 @@
 				if (score === undefined || score === null)
 					return '-';
 
-				return (isNaN(score) ? score : 'Grade ' + score);
+				return (isNaN(score) ? score : acuteMap[score]);
 			};
 		})
 
