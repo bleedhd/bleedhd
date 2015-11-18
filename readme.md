@@ -36,3 +36,18 @@
 	```bash
 	php app/console fos:user:create --super-admin
 	```
+
+# Deployment
+The project uses a Git based deplyoment process and the _usual suspects_ for any Symfony based project.
+
+**Before you update**: always make sure that you have a _very_ recent backup of the database.
+
+To update the target system, you do all this from the `Symfony` directory of the project:
+```bash
+git checkout v-A.B.C
+git submodules update --init --recursive
+php app/console cache:clear --env=dev
+php app/console cache:clear --env=prod
+php app/console assetic:dump
+php app/console doctrine:migrations:migrate
+```
