@@ -869,7 +869,7 @@ chapters:
                 title: "Immunosuppresion"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Medication for immunosuppression"
+                  question: "Medication for immunosuppression (daily dose)"
                 questions:
                   -
                     slug: cyclosporine
