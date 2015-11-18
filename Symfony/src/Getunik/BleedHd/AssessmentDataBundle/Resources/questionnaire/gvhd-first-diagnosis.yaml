@@ -647,16 +647,16 @@ chapters:
                         default: pending
                         options:
                           -
-                            label: "FEV1 / vital capacity < 0.7 or the fifth percentile of predicted"
+                            label: "FEV1/vital capacity &lt; .7 or the fifth percentile of predicted"
                             value: criteria1
                           -
-                            label: "FEV1 < 75% of predicted with >= 10% decline over less than two years"
+                            label: "FEV1 &lt; 75% of predicted with ≥10% decline over less than 2 years (assessment with albuterol)"
                             value: criteria2
                           -
                             label: "Absence of infection in the respiratory tract"
                             value: criteria3
                           -
-                            label: "One of the two supporting features of BOS; evidence of air trapping by expiratory CT or evidence of air trapping by PFTs"
+                            label: "One of the 2 supporting features of BOS:<br />a) Evidence of air trapping by expiratory CT or small airway thickening or bronchiectasis by CT<br />b) RV &gt;120% or RV/TLC elevated outside 90% CI by PFT"
                             value: criteria4
               -
                 slug: distinctive
