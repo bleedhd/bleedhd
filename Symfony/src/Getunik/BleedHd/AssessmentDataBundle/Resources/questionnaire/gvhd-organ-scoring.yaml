@@ -1055,6 +1055,14 @@ chapters:
                       -
                         label: "2 times in 4 weeks"
                         value: 2in4
+                      -
+                        label: "Other"
+                        value: other
+                        supplements:
+                          -
+                            slug: other
+                            type: text
+                            label: Specify
                   -
                     slug: other
                     type: text
