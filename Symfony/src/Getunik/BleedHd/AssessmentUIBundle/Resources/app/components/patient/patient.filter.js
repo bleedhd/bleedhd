@@ -12,7 +12,7 @@
 		'who': 'Bleeding WHO',
 		'bsms': 'Bleeding BSMS',
 		'gvhd-features': 'GVHD features',
-		'gvhd-first-diagnosis': 'GVHD first diagnosis',
+		'gvhd-new-diagnosis': 'GVHD new diagnosis',
 		'gvhd-organ-scoring': 'GVHD organ scoring',
 		'gvhd-activity-assessment': 'GVHD activity assessment',
 		'gvhd-self-report': 'GVHD patient self report',

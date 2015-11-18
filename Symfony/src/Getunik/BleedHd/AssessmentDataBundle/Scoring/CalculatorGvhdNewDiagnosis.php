@@ -6,7 +6,7 @@ use Psr\Log\LoggerInterface;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
 
-class CalculatorGvhdFirstDiagnosis extends CalculatorBase
+class CalculatorGvhdNewDiagnosis extends CalculatorBase
 {
 	const STATUS_POSITIVE = 'positive';
 	const STATUS_PENDING = 'pending';
