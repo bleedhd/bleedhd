@@ -678,11 +678,6 @@ chapters:
                   yes:
                     label: "Yes"
                     value: 1
-                    supplements:
-                      -
-                        slug: severe
-                        type: checkbox
-                        label: "Was the hemodynamic instability severe?"
                   no:
                     label: "No"
                     value: 0
