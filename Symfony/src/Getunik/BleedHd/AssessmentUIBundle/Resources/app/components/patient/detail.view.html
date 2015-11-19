@@ -102,7 +102,7 @@
 												<th>PLT</th>
 												<th>Result</th>
 												<th>Progress</th>
-												<th class="info-header"><a ng-href="{{ 'documents/Assessment-Overview-Info.pdf' | assessmentResource }}" target="_blank"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></th>
+												<th class="detail-col"><a ng-href="{{ 'documents/Assessment-Overview-Info.pdf' | assessmentResource }}" target="_blank"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -112,7 +112,7 @@
 												<td>{{ assessment.platelets }}</td>
 												<td>{{ assessment.result | score }}</td>
 												<td>{{ assessment.progress | progress }}</td>
-												<td align="right"><a class="btn btn-default btn-xs" href="#/patients/{{ ctlPatient.patient.id }}/assessment/edit/{{ assessment.id }}">Details</a></td>
+												<td class="detail-col"><a class="btn btn-default btn-xs" href="#/patients/{{ ctlPatient.patient.id }}/assessment/edit/{{ assessment.id }}">Details</a></td>
 											</tr>
 										</tbody>
 									</table>
