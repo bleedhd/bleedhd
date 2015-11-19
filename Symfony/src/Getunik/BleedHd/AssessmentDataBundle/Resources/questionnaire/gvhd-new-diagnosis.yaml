@@ -623,6 +623,8 @@ chapters:
                 type: radios
                 title: "Chronic GVHD - Lung"
                 meta_answers: ['nya', 'nass']
+                score:
+                  type: distinctiveDependent
                 intro:
                   question: "Diagnostic feature - BOS"
                   description: "BOS can be diagnostic for lung chronic GVHD only, if distinctive sign or symptom present in another organ."
@@ -661,7 +663,7 @@ chapters:
                 title: "Chronic GVHD - Lung"
                 meta_answers: ['nya', 'nass']
                 score:
-                  type: diagnostic
+                  type: distinctiveDependent
                 intro:
                   question: "Distinctive features"
                   description: >
