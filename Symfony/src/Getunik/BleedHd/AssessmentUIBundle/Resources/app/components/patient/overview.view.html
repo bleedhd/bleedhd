@@ -43,7 +43,7 @@
 								<th>Date of birth</th>
 								<th>Active</th>
 								<th>Progress</th>
-								<th></th>
+								<th class="detail-col"><a ng-href="{{ 'documents/Patient-Overview-Info.pdf' | assessmentResource }}" target="_blank"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -56,7 +56,7 @@
 									<img ng-if="ctlPatients.progress[patient.id] === undefined" ng-src="{{ 'images/ajax-loader.gif' | resourcePath }}" width="16" height="16" />
 									<span ng-if="ctlPatients.progress[patient.id] !== undefined">{{ ctlPatients.progress[patient.id] | progress }}</span>
 								</td>
-								<td><a class="btn btn-default btn-xs" href="#/patients/detail/{{ patient.id }}">Details</a></td>
+								<td class="detail-col"><a class="btn btn-default btn-xs" href="#/patients/detail/{{ patient.id }}">Details</a></td>
 							</tr>
 						</tbody>
 					</table>
