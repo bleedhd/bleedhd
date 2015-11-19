@@ -34,34 +34,40 @@ score:
   present: true
 ```
 
-## GVHD First Diagnosis
-Most of the first diagnosis scoring boils down to counting. Counting the number of unanswerd questions that are relevant for chronic and acute diagnosis, counting of diagnostic signs, counting of distinctive signs and counting of confirmed distinctive signs. The rest is a simple two stage aggregation of the counts that first boils everything down to an acute and a chronic score and then computes the total score out of those two. The following samples describe how the individual counts are controlled through the scoring configuration:
+## GVHD New Diagnosis
+Most of the new diagnosis scoring boils down to counting. Counting the number of unanswerd questions that are relevant for chronic and acute diagnosis, counting of diagnostic signs, counting of distinctive signs and counting of confirmed distinctive signs. The rest is a simple two stage aggregation of the counts that first boils everything down to an acute and a chronic score and then computes the total score out of those two. The following samples describe how the individual counts are controlled through the scoring configuration:
 
 
-**Diagnostic & Distinctive GVHD Signs/Symptoms**
+#### Diagnostic & Distinctive GVHD Signs/Symptoms
 ```yaml
 score:
-  type: diagnostic | distinctive
+  type: diagnostic | distinctive | distinctiveDependent
 ```
 The presence of the type attribute in a question's scoring configuration implies that
-1. The question is relevant for the chronic score and if left unanswered will count as a _missing chronic_ question
-2. If there is an answer associated with the score, it counts the presence of a diagnostic/distinctive sign
 
-**Confirmation Supplements**
+1. The question is relevant for the chronic score and if left unanswered will count as a _missing chronic_ question
+2. If there is an answer associated with the score, it counts the presence of a diagnostic/distinctive/distinctiveDependent sign
+
+#### Confirmation Supplements
 ```yaml
 score:
   status: pending | positive
 ```
-This scoring configuration is only valid on questions for distinctive signs. An answer with the `pending` status indicates that the confirmation is still pending while `positive` implies a positive test result and counts as a confirmed distinctive sign (a negative confirmation is implicitly everything else).
+This scoring configuration is only valid on questions for `distinctive` signs. An answer with the `pending` status indicates that the confirmation is still pending while `positive` implies a positive test result and counts as a confirmed distinctive sign (a negative confirmation is implicitly everything else).
 
-**Acute Grading**
+#### Distinctive Dependent Symptoms
+Like the `diagnostic` signs, the `distinctiveDependent` signs do not have explicit confirmation supplements. Instead distinctive dependent symptoms can only count towards the chronic GVHD scoring if there is at least one other _normal_ distinctive sign that is pending. This scoring mode is currently only used in two of the lung symptoms (BOS and air trapping on chest CT).
+
+**Note:** The wording in the original specification states that those special symptoms can only be confirmed "by a distinctive sign in _another organ_", which may or may not be a consequence of the fact that there cannot be any other distinctive sings in the lung. In any case, the scoring implementation implicitly ignores the "another organ" aspect at the moment and _any_ normal distinctive pending sign counts.
+
+#### Acute Grading
 ```yaml
 score:
   acute: skin
 ```
 The presence of the `acute` property implies that the question is relevant for the acute score and if left unanswered will count as a _missing acute_ question. Additionally, the answer value of the question (if present) is used as the acute score for the organ that is indicated by the property's value.
 
-**Acute Delay**
+#### Acute Delay
 ```yaml
 score:
   delay: normal | delayed
