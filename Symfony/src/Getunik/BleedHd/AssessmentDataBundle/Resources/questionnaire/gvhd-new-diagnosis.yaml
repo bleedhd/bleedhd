@@ -1,5 +1,5 @@
 
-title: GVHD - first diagnosis
+title: GVHD - new diagnosis
 version: "1.0.0"
 quick_links:
   -
@@ -71,9 +71,6 @@ shared:
       -
         label: "Negative"
         value: negative
-      -
-        label: "Not needed"
-        value: not-needed
 chapters:
   -
     slug: chronic
@@ -122,15 +119,15 @@ chapters:
                 score:
                   type: distinctive
                 intro:
-                  question: "Distinctive features*"
-                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
-                annotations:
-                  - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
+                  question: "Distinctive features"
+                  description: >
+                    Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD (see <a target="_blank" href="@res(documents/Chronic-GVHD-Distinctive-Features.pdf)">distinctive features confirmation</a>).<br /><br />
+                    Requirement for confirmation: biopsy documenting histological features of chronic GVHD (at least "likely" cGVHD)
                 option_reset:
                   label: "No symptoms"
                 options:
                   -
-                    label: Depigmentation
+                    label: Depigmentation (Vitiligo)
                     value: depigmentation
                     supplements:
                       - *confirmation-supplement
@@ -202,15 +199,15 @@ chapters:
                 score:
                   type: distinctive
                 intro:
-                  question: "Distinctive features*"
-                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
-                annotations:
-                  - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
+                  question: "Distinctive features"
+                  description: >
+                    Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD (see <a target="_blank" href="@res(documents/Chronic-GVHD-Distinctive-Features.pdf)">distinctive features confirmation</a>).<br /><br />
+                    Requirement for confirmation: evaluation by a dermatologist and exclusion of other causes (see above)
                 option_reset:
                   label: "No symptoms"
                 options:
                   -
-                    label: "Dystrophy"
+                    label: "Dystrophy consting of longitudinal ridging, splitting or brittle features"
                     value: dystrophy
                     supplements:
                       - *confirmation-supplement
@@ -249,10 +246,10 @@ chapters:
                 score:
                   type: distinctive
                 intro:
-                  question: "Distinctive features*"
-                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
-                annotations:
-                  - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
+                  question: "Distinctive features"
+                  description: >
+                    Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD (see <a target="_blank" href="@res(documents/Chronic-GVHD-Distinctive-Features.pdf)">distinctive features confirmation</a>).<br /><br />
+                    Requirement for confirmation: evaluation by a dermatologist and exclusion of other causes (see above)
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -319,10 +316,10 @@ chapters:
                 score:
                   type: distinctive
                 intro:
-                  question: "Distinctive features*"
-                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
-                annotations:
-                  - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
+                  question: "Distinctive features"
+                  description: >
+                    Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD (see <a target="_blank" href="@res(documents/Chronic-GVHD-Distinctive-Features.pdf)">distinctive features confirmation</a>).<br /><br />
+                    Requirement for confirmation: exlusion of infection by appropriate tests and malignancy by biopsy. Evaluation by dentist or otolaryngologist.
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -391,10 +388,10 @@ chapters:
                 score:
                   type: distinctive
                 intro:
-                  question: "Distinctive features*"
-                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
-                annotations:
-                  - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
+                  question: "Distinctive features"
+                  description: >
+                    Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD (see <a target="_blank" href="@res(documents/Chronic-GVHD-Distinctive-Features.pdf)">distinctive features confirmation</a>).<br /><br />
+                    Requirement for confirmation: evaluation by opthalmologist + pathological Schirmer's test (with/without split lamp)
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -478,10 +475,10 @@ chapters:
                 score:
                   type: distinctive
                 intro:
-                  question: "Distinctive features (Males and Females)*"
-                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
-                annotations:
-                  - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
+                  question: "Distinctive features (Males and Females)"
+                  description: >
+                    Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD (see <a target="_blank" href="@res(documents/Chronic-GVHD-Distinctive-Features.pdf)">distinctive features confirmation</a>).<br /><br />
+                    Requirement for confirmation: evaluation by gynecologist + biopsy documenting histological features of chronic GVHD (at least "likely" cGVHD)
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -592,10 +589,10 @@ chapters:
                   label: "No symptoms"
                 options:
                   -
-                    label: "Total bilirubin, alkaline phosphatase > 2× upper limit of normal"
+                    label: "Total bilirubin, alkaline phosphatase &gt; 2× upper limit of normal"
                     value: bilirubin-alkaline-phosphatase
                   -
-                    label: "ALT > 2× upper limit of normal"
+                    label: "ALT &gt; 2× upper limit of normal"
                     value: atl
 
       -
@@ -605,44 +602,63 @@ chapters:
             url_slug: chronic-lungs
             questions:
               -
-                slug: diagnostic
-                type: checkboxes
+                slug: diagnostic-biopsy
+                type: radios
                 title: "Chronic GVHD - Lung"
                 meta_answers: ['nya', 'nass']
                 score:
                   type: diagnostic
                 intro:
-                  question: "Diagnostic features"
+                  question: "Diagnostic feature - Bronchiolitis obliterans lung biopsy"
                   description: "Sufficient to establish the diagnosis of chronic GVHD"
-                annotations:
-                  - "‡ BOS can be diagnostic for lung chronic GVHD only, if distinctive sign or symptom present in another organ."
-                option_reset:
-                  label: "No symptoms"
                 options:
                   -
-                    label: "Bronchiolitis obliterans diagnosed with lung biopsy"
-                    value: bo
+                    label: "Lung biopsy with negative BO confirmation"
+                    value: ""
                   -
-                    label: "Bronchiolitis obliterans syndrome‡"
-                    value: bos
+                    label: "Lung biopsy with positive BO confirmation"
+                    value: bo
               -
-                slug: distinctive
+                slug: distinctive-dependent
                 type: checkboxes
                 title: "Chronic GVHD - Lung"
                 meta_answers: ['nya', 'nass']
                 score:
-                  type: diagnostic
+                  type: distinctiveDependent
                 intro:
-                  question: "Distinctive features*"
-                  description: "No confirmation needed - treated as diagnostic feature"
-                annotations:
-                  - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
+                  question: "Special features"
+                  description: >
+                    Can be diagnostic for lung chronic GVHD only, if distinctive sign or symptom present in another organ (see <a target="_blank" href="@res(documents/Chronic-GVHD-Distinctive-Features.pdf)">distinctive features confirmation</a>).<br /><br />
+                    Requirement for confirmation: biopsy documenting histological features of chronic GVHD (at least "likely" cGVHD) if only clinical manifestation in a patient without a prior established diagnosis of chronic GVHD
                 option_reset:
-                  label: "No symptoms"
+                  label: No symptoms
                 options:
+                  -
+                    label: "Bronchiolitis obliterans syndrome"
+                    value: bos
+                    supplements:
+                      -
+                        slug: confirmation
+                        type: checkboxes
+                        question:
+                          title: "All of the following criteria must be met"
+                        default: pending
+                        options:
+                          -
+                            label: "FEV1/vital capacity &lt; .7 or the fifth percentile of predicted"
+                            value: criteria1
+                          -
+                            label: "FEV1 &lt; 75% of predicted with ≥10% decline over less than 2 years (assessment with albuterol)"
+                            value: criteria2
+                          -
+                            label: "Absence of infection in the respiratory tract"
+                            value: criteria3
+                          -
+                            label: "One of the 2 supporting features of BOS:<br />a) Evidence of air trapping by expiratory CT or small airway thickening or bronchiectasis by CT<br />b) RV &gt;120% or RV/TLC elevated outside 90% CI by PFT"
+                            value: criteria4
                   -
                     label: Air trapping and bronchiectasis on chest CT
-                    value: bronchiectasis-ct
+                    value: air-trapping-ct
               -
                 slug: other
                 type: checkboxes
@@ -696,10 +712,11 @@ chapters:
                 score:
                   type: distinctive
                 intro:
-                  question: "Distinctive features*"
-                  description: "Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD"
+                  question: "Distinctive features"
+                  description: >
+                    Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD (see <a target="_blank" href="@res(documents/Chronic-GVHD-Distinctive-Features.pdf)">distinctive features confirmation</a>).<br /><br />
+                    Requirement for confirmation: muscle biopsy documenting histological features of chronic GVHD (at least "likely" cGVHD)
                 annotations:
-                  - "* In all cases, infection, drug effect, malignancy, or other causes must be excluded."
                   - "†† Diagnosis of chronic GVHD requires biopsy."
                 option_reset:
                   label: "No symptoms"
@@ -824,7 +841,7 @@ chapters:
                     label: "No rash"
                     value: 0
                   -
-                    label: "Rash < 25% body surface"
+                    label: "Rash &lt; 25% body surface"
                     value: 1
                   -
                     label: "Rash 25% - 50% body surface"
@@ -846,7 +863,7 @@ chapters:
                   question:
                 options:
                   -
-                    label: "Bilirubin < 34 µmol/L"
+                    label: "Bilirubin &lt; 34 µmol/L"
                     value: 0
                   -
                     label: "Bilirubin 34 - 50 µmol/L"
@@ -858,7 +875,7 @@ chapters:
                     label: "Bilirubin 103 - 255 µmol/L"
                     value: 3
                   -
-                    label: "Bilirubin > 255 µmol/L"
+                    label: "Bilirubin &gt; 255 µmol/L"
                     value: 4
               -
                 slug: gut
@@ -871,7 +888,7 @@ chapters:
                   question:
                 options:
                   -
-                    label: "No Symptoms / Diarrhea < 500 ml/d"
+                    label: "No Symptoms / Diarrhea &lt; 500 ml/d"
                     value: 0
                   -
                     label: "Diarrhea 500 - 1000 ml/d"
@@ -880,7 +897,7 @@ chapters:
                     label: "Diarrhea 1000 - 1500 ml/d"
                     value: 2
                   -
-                    label: "Diarrhea > 1500 ml/d"
+                    label: "Diarrhea &gt; 1500 ml/d"
                     value: 3
                   -
                     label: "Severe abdominal pain with or without ileus"
@@ -923,7 +940,7 @@ chapters:
                     score:
                       delay: normal
                   -
-                    label: "> 100 days"
+                    label: "&gt; 100 days"
                     value: delayed
                     score:
                       delay: lateonset

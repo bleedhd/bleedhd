@@ -6,7 +6,7 @@ use Psr\Log\LoggerInterface;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
 
-class CalculatorGvhdFirstDiagnosis extends CalculatorBase
+class CalculatorGvhdNewDiagnosis extends CalculatorBase
 {
 	const STATUS_POSITIVE = 'positive';
 	const STATUS_PENDING = 'pending';
@@ -24,6 +24,7 @@ class CalculatorGvhdFirstDiagnosis extends CalculatorBase
 		$this->score->missingAcute = 0;
 		$this->score->diagnostic = 0;
 		$this->score->distinctive = 0;
+		$this->score->distinctiveDependent = 0;
 		$this->score->distinctivePositive = 0;
 		$this->score->distinctivePending = 0;
 	}
@@ -59,28 +60,28 @@ class CalculatorGvhdFirstDiagnosis extends CalculatorBase
 		$value = $mapping->getValue();
 
 		// counting of 'diagnostic' / 'distinctive' types
-		if (isset($config['type']))
+		if (isset($config['type']) && !empty($value))
 		{
 			$this->logger->info(" => scoring: " . $config['type']);
 			$this->score->{$config['type']}++;
 		}
 
 		// counting confirmation status 'pending' / 'confirmed'
-		if (isset($config['status']))
+		if (isset($config['status']) && !empty($value))
 		{
 			$this->logger->info(" => scoring: distinctive " . $config['status']);
 			$this->score->{'distinctive' . ucfirst($config['status'])}++;
 		}
 
 		// grading acute by organ
-		if (isset($config['acute']))
+		if (isset($config['acute']) && !empty($value))
 		{
 			$this->logger->info(" => scoring: acute " . $config['acute'] . " with " . $value);
 			$this->score->{'acute' . ucfirst($config['acute'])} = $value;
 		}
 
 		// acute delay
-		if (isset($config['delay']))
+		if (isset($config['delay']) && !empty($value))
 		{
 			$this->logger->info(" => scoring: delay of aGVHD " . $config['delay']);
 			$this->score->acuteDelay = $config['delay'];
@@ -101,6 +102,22 @@ class CalculatorGvhdFirstDiagnosis extends CalculatorBase
 	protected function getChronicScore()
 	{
 		if ($this->score->diagnostic > 0 || $this->score->distinctivePositive > 0)
+		{
+			return self::STATUS_POSITIVE;
+		}
+
+		// BBSBLEED-245
+		// Special handling for lung special cases "BOS" and "air trapping on CT"
+		// this is modeled with the special distinctiveDependent score type which functionally
+		// acts like a distinctive sign that can only be confirmed by another _real_ distinctive
+		// sign that is at least pending. Since confirmed distinctive signs already trigger
+		// STATUS_POSITIVE on their own, this rule only considers pending distinctive signs
+		// Note:
+		//   The aspect of "distinctive sign in _another organ_" is not modeled explicity;
+		//   instead the assumption is that if it was possible (hypothetical) to have a _real_
+		//   distinctive sign in the lung, then this sign would also suffice as implicit
+		//   confirmation.
+		if ($this->score->distinctiveDependent > 0 && $this->score->distinctivePending > 0)
 		{
 			return self::STATUS_POSITIVE;
 		}

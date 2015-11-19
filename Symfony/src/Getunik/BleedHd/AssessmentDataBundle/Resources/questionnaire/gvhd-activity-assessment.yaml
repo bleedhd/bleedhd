@@ -142,7 +142,7 @@ chapters:
                 title: "Weight"
                 intro:
                   question: "Current patient weight (kg)"
-                pattern: decimal
+                pattern: decimalLimitOne
           -
             slug: global
             questions:
@@ -224,10 +224,10 @@ chapters:
                     label: "None"
                     value: 0
                   -
-                    label: "Mild erythema or moderate erythema (< 25%)"
+                    label: "Mild erythema or moderate erythema (&lt; 25%)"
                     value: 1
                   -
-                    label: "Moderate (≥ 25%) or Severe erythema (< 25%)"
+                    label: "Moderate (≥ 25%) or Severe erythema (&lt; 25%)"
                     value: 2
                   -
                     label: "Severe erythema (≥ 25%)"
@@ -244,13 +244,13 @@ chapters:
                     label: "None"
                     value: 0
                   -
-                    label: "Lichen-like changes (< 25%)"
+                    label: "Lichen-like changes (&lt; 25%)"
                     value: 1
                   -
                     label: "Lichen-like changes (25 - 50%)"
                     value: 2
                   -
-                    label: "Lichen-like changes (> 50%)"
+                    label: "Lichen-like changes (&gt; 50%)"
                     value: 3
               -
                 slug: ulcers
@@ -267,7 +267,7 @@ chapters:
                     label: "Ulcers involving (≤ 20%)"
                     value: 3
                   -
-                    label: "Severe ulcerations (> 20%)"
+                    label: "Severe ulcerations (&gt; 20%)"
                     value: 6
           -
             slug: gi-tract
@@ -298,7 +298,7 @@ chapters:
                 meta_answers: ['nya', 'nass']
                 title: "Gastrointestinal-Upper GI"
                 intro:
-                  question: "Early satiety OR Anorexia OR Nausea & Vomiting"
+                  question: "Early satiety OR Anorexia OR Nausea &amp; Vomiting"
                 options:
                   -
                     label: "No symptoms"
@@ -341,50 +341,46 @@ chapters:
                   question: "Abnormality present but explained entirely by non-GVHD documented cause"
                 options: *non-gvhd-cause-options
           -
-            slug: lung-values
+            url_slug: lung-values
             questions:
               -
-                slug: fev1
-                type: text
-                meta_answers: ['nya', 'nass']
-                pattern: decimal
+                slug: lung-values
+                type: multi
                 title: "Lungs (Bronchiolitis Obliterans)"
-                intro:
-                  question: "FEV1 (liters)"
-              -
-                slug: fvc
-                type: text
                 meta_answers: ['nya', 'nass']
-                pattern: decimal
-                title: "Lungs (Bronchiolitis Obliterans)"
-                intro:
-                  question: "FVC (liters)"
+                questions:
+                  -
+                    slug: fev1
+                    type: text
+                    pattern: decimal
+                    intro:
+                      question: "FEV1 (liters)"
+                  -
+                    slug: fvc
+                    type: text
+                    pattern: decimal
+                    intro:
+                      question: "FVC (liters)"
+                  -
+                    slug: dlco
+                    type: text
+                    pattern: integer
+                    intro:
+                      question: "Single Breath DLCO (% predicted)"
+                  -
+                    slug: tlc
+                    type: text
+                    pattern: decimal
+                    intro:
+                      question: "TLC (liters)"
+                  -
+                    slug: rv
+                    type: text
+                    pattern: decimal
+                    intro:
+                      question: "RV (liters)"
               -
-                slug: dlco
-                type: text
-                meta_answers: ['nya', 'nass']
-                pattern: integer
-                title: "Lungs (Bronchiolitis Obliterans)"
-                intro:
-                  question: "Single Breath DLCO (% predicted)"
-              -
-                slug: tlc
-                type: text
-                meta_answers: ['nya', 'nass']
-                pattern: decimal
-                title: "Lungs (Bronchiolitis Obliterans)"
-                intro:
-                  question: "TLC (liters)"
-              -
-                slug: rv
-                type: text
-                meta_answers: ['nya', 'nass']
-                pattern: decimal
-                title: "Lungs (Bronchiolitis Obliterans)"
-                intro:
-                  question: "RV (liters)"
-              -
-                slug: non-gvhd
+                slug: lung-values.non-gvhd
                 type: yesno
                 meta_answers: ['nya']
                 title: "Lungs (Bronchiolitis Obliterans)"
@@ -401,7 +397,21 @@ chapters:
                 pattern: decimal
                 title: "Liver Values"
                 intro:
-                  question: "Total serum bilirubin (mg/dl)"
+                  question: "Total serum bilirubin"
+                supplements:
+                  -
+                    slug: unit
+                    type: radios
+                    question:
+                      title: "Unit"
+                    default: "mg/dl"
+                    options:
+                      -
+                        label: "mg/dl"
+                        value: "mg/dl"
+                      -
+                        label: "µmol/l"
+                        value: "µmol/l"
               -
                 slug: bilirubin-uln
                 type: text
@@ -409,7 +419,21 @@ chapters:
                 pattern: integer
                 title: "Liver Values"
                 intro:
-                  question: "Upper limit of normal bilirubin (mg/dl)"
+                  question: "Upper limit of normal bilirubin"
+                supplements:
+                  -
+                    slug: unit
+                    type: radios
+                    question:
+                      title: "Unit"
+                    default: "mg/dl"
+                    options:
+                      -
+                        label: "mg/dl"
+                        value: "mg/dl"
+                      -
+                        label: "µmol/l"
+                        value: "µmol/l"
               -
                 slug: alt
                 type: text
@@ -769,10 +793,10 @@ chapters:
                     label: "No symptoms"
                     value: 0
                   -
-                    label: "Mild dry eye symptoms not affecting ADL (requirement of lubricant eye drops < 3 x per day)"
+                    label: "Mild dry eye symptoms not affecting ADL (requirement of lubricant eye drops &lt; 3 x per day)"
                     value: 1
                   -
-                    label: "Moderate dry eye symptoms partially affecting ADL (requiring lubricant eye drops > 3 x per day or punctal plugs), WITHOUT new vision impairment due to KCS"
+                    label: "Moderate dry eye symptoms partially affecting ADL (requiring lubricant eye drops &gt; 3 x per day or punctal plugs), WITHOUT new vision impairment due to KCS"
                     value: 2
                   -
                     label: "Severe dry eye symptoms significantly affecting ADL (special eyeware to relieve pain) OR unable to work because of ocular symptoms OR loss of vision due to KCS"
@@ -845,7 +869,7 @@ chapters:
                 title: "Immunosuppresion"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Medication for immunosuppression"
+                  question: "Medication for immunosuppression (daily dose)"
                 questions:
                   -
                     slug: cyclosporine
@@ -879,10 +903,30 @@ chapters:
                     pattern: integer
                   -
                     slug: photopheresis
-                    type: text
+                    type: radios
                     intro:
                       question: "Photopheresis"
-                    pattern: integer
+                    options:
+                      -
+                        label: "None"
+                        value: ""
+                      -
+                        label: "3 times per week"
+                        value: 3in1
+                      -
+                        label: "2 times in 2 weeks"
+                        value: 2in2
+                      -
+                        label: "2 times in 4 weeks"
+                        value: 2in4
+                      -
+                        label: "Other"
+                        value: other
+                        supplements:
+                          -
+                            slug: other
+                            type: text
+                            label: Specify
                   -
                     slug: other
                     type: text
