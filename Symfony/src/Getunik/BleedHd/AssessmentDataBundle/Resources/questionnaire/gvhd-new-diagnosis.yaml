@@ -630,8 +630,6 @@ chapters:
                   description: >
                     Can be diagnostic for lung chronic GVHD only, if distinctive sign or symptom present in another organ (see <a target="_blank" href="@res(documents/Chronic-GVHD-Distinctive-Features.pdf)">distinctive features confirmation</a>).<br /><br />
                     Requirement for confirmation: biopsy documenting histological features of chronic GVHD (at least "likely" cGVHD) if only clinical manifestation in a patient without a prior established diagnosis of chronic GVHD
-                info:
-                  resource: "documents/skin-diagnostic-signs.pdf"
                 option_reset:
                   label: No symptoms
                 options:
