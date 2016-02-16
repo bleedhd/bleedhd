@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Patient
  */
-class Patient implements UpdateInformationInterface
+class Patient implements UpdateInformationInterface, CreationInformationInterface, OwnerInterface
 {
     /**
      * @var integer
@@ -437,10 +437,94 @@ class Patient implements UpdateInformationInterface
     /**
      * Get assessments
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getAssessments()
     {
         return $this->assessments;
+    }
+    /**
+     * @var \DateTime
+     */
+    private $createdDate;
+
+    /**
+     * @var integer
+     */
+    private $createdBy;
+
+    /**
+     * @var boolean
+     */
+    private $isDeleted = 0;
+
+
+    /**
+     * Set createdDate
+     *
+     * @param \DateTime $createdDate
+     * @return Patient
+     */
+    public function setCreatedDate($createdDate)
+    {
+        $this->createdDate = $createdDate;
+
+        return $this;
+    }
+
+    /**
+     * Get createdDate
+     *
+     * @return \DateTime
+     */
+    public function getCreatedDate()
+    {
+        return $this->createdDate;
+    }
+
+    /**
+     * Set createdBy
+     *
+     * @param integer $createdBy
+     * @return Patient
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return integer
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * Set isDeleted
+     *
+     * @param boolean $isDeleted
+     * @return Patient
+     */
+    public function setIsDeleted($isDeleted)
+    {
+        $this->isDeleted = $isDeleted;
+
+        return $this;
+    }
+
+    /**
+     * Get isDeleted
+     *
+     * @return boolean
+     */
+    public function getIsDeleted()
+    {
+        return $this->isDeleted;
     }
 }

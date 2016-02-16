@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Assessment
  */
-class Assessment implements UpdateInformationInterface, CreationInformationInterface
+class Assessment implements UpdateInformationInterface, CreationInformationInterface, OwnerInterface
 {
     /**
      * Indicates a complete assessment
@@ -474,5 +474,33 @@ class Assessment implements UpdateInformationInterface, CreationInformationInter
     public function getQuestionnaireVersion()
     {
         return $this->questionnaireVersion;
+    }
+    /**
+     * @var boolean
+     */
+    private $isDeleted = 0;
+
+
+    /**
+     * Set isDeleted
+     *
+     * @param boolean $isDeleted
+     * @return Assessment
+     */
+    public function setIsDeleted($isDeleted)
+    {
+        $this->isDeleted = $isDeleted;
+
+        return $this;
+    }
+
+    /**
+     * Get isDeleted
+     *
+     * @return boolean
+     */
+    public function getIsDeleted()
+    {
+        return $this->isDeleted;
     }
 }

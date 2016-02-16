@@ -12,6 +12,8 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
             since_version: 1.0
         createdBy:
             since_version: 1.0
+        isDeleted:
+            since_version: 1.0
         patientId:
             since_version: 1.0
         questionnaire:
