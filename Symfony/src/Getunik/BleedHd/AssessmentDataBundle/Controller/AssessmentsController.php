@@ -73,11 +73,14 @@ class AssessmentsController extends FOSRestController
     }
 
     /**
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_SUPER_ADMIN') or (has_role('ROLE_ADMIN') and is_granted('isOwner', assessment))")
+     * @ParamConverter("assessment", options={"id" = "assessment"})
      */
-    public function deleteAssessmentAction($patient, $assessment)
+    public function deleteAssessmentAction($patient, Assessment $assessment)
     {
-        return $this->handleView($this->view("delete assessment"));
+        $this->assessmentHandler->delete($assessment);
+
+        return $this->handleView($this->view(true));
     }
 
     /**
