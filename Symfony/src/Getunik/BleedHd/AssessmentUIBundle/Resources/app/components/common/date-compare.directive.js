@@ -1,58 +1,42 @@
 
 (function (angular, bleedHd) {
 
-	var compareExp = /([<>=])\s*(.*)/;
-
 	angular.module('common')
 		.directive('dateCompare', function() {
 			return {
 				restrict: 'A',
 				require: '?ngModel',
+				scope: true,
 				link: function(scope, elm, attrs, ctrl) {
 					if (!ctrl) return;
 
-					var op = '', other = null;
+					var expression = attrs.dateCompare;
 
-					attrs.$observe('dateCompare', function (value) {
-						op = '';
-						other = null;
-						match = compareExp.exec(value);
+					scope.now = new Date();
+					scope.current = ctrl.$modelValue.date;
 
-						if (match) {
-							op = match[1];
-
-							if (match[2] === 'now') {
-								other = new Date();
-							} else {
-								var date = Date.parse(match[2]);
-								if (!isNaN(date)) {
-									other = new Date(date);
-								}
-							}
-						}
-
+					scope.$watch(expression, function (newValue, oldValue) {
 						ctrl.$validate();
 					});
 
 					ctrl.$validators.dateCompare = function(modelValue, viewValue) {
 
-						if (ctrl.$isEmpty(modelValue) || other === null) {
+						if (ctrl.$isEmpty(modelValue)) {
 							// consider empty models to be valid
 							return true;
 						}
 
-						switch (op) {
-							case '<':
-								return modelValue.date < other;
+						scope.current = modelValue.date;
 
-							case '>':
-								return modelValue.date > other;
-
-							case '=':
-								return modelValue.date = other;
+						try {
+							var result = scope.$eval(expression, {
+								now: new Date(),
+							});
+						} catch (e) {
+							return false;
 						}
 
-						return true;
+						return result;
 					};
 				},
 			};
