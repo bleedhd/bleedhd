@@ -56,6 +56,10 @@
 				return status.put();
 			}
 		},
+		deletePatient: function (patient) {
+			this.DataEvents.trigger('patient-delete', patient);
+			return this.BleedApi.one('patients', patient.id).remove();
+		},
 		getAssessmentProgress: function (patientIds) {
 			return this.patients.customPUT(patientIds, 'progress');
 		},
@@ -125,6 +129,10 @@
 						}
 					});
 
+					DataEvents.on('patient-delete', function (event) {
+						that.caches.default.remove('patients');
+					});
+
 					function wipePatient(patientId) {
 						that.caches.default.remove(['patient', patientId].join('-'));
 						that.caches.default.remove(['patient-additions', patientId].join('-'));
@@ -135,7 +143,7 @@
 					DataEvents.on('responses-update', function (event) {
 						wipePatient(event.patientId);
 					});
-					DataEvents.on(['status-update', 'assessment-update'], function (event) {
+					DataEvents.on(['status-update', 'assessment-update', 'assessment-delete'], function (event) {
 						wipePatient(event.data.patient_id);
 					});
 

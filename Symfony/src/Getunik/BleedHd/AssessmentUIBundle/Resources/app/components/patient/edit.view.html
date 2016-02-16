@@ -101,3 +101,31 @@ is active: {{ ctlPatient.patient.is_active | boolyesno }}
 	<pre ng-if="env.debug" class="debug-output">{{ ctlPatient.patientForm | json }}</pre>
 
 </panel>
+
+<panel ng-if="claims.permission('canDeleteResource', ctlPatient.patient)" heading="Admin">
+
+	<div class="row">
+		<div class="col-xs-12">
+			<button class="btn btn-default pull-right" data-toggle="modal" data-target="#modal_delete_confirm">Delete Patient Data {{ larTest }}</button>
+		</div>
+	</div>
+
+</panel>
+
+<div class="modal fade" id="modal_delete_confirm" tabindex="-1" role="dialog" aria-labelledby="modal_delete_confirm_label" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="modal_delete_confirm_label">Delete Patient Data</h4>
+			</div>
+			<div class="modal-body">
+				<p>Patient Data including assessments will be deleted permanently. Click "Delete" to continue.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="ctlPatient.delete()">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>

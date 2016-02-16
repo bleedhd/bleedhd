@@ -46,6 +46,12 @@
 					});
 				}
 			},
+			delete: function () {
+				var ctl = this;
+				ctl.AssessmentData.deleteAssessment(ctl.assessment).then(function () {
+					ctl.$location.path(['/patients', 'detail', ctl.patient.id].join('/'));
+				});
+			},
 			createAndStart: function (questionnaire) {
 				var ctl = this;
 				if (ctl.assessmentForm.$valid) {
