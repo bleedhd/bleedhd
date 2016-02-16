@@ -25,6 +25,12 @@
 					});
 				}
 			},
+			delete: function () {
+				var ctl = this;
+				ctl.PatientData.deletePatient(ctl.patient).then(function () {
+					ctl.$location.path('/patients');
+				});
+			},
 			getReturnPath: function () {
 				return (this.isNew ? '/patients' : '/patients/detail/' + this.patient.id);
 			},

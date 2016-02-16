@@ -41,9 +41,21 @@ class AssessmentHandler
         return $this->repository->update($assessment);
     }
 
+    public function delete(Assessment $assessment)
+    {
+        $assessment->setIsDeleted(true);
+        return $this->update($assessment);
+    }
+
+    public function restore(Assessment $assessment)
+    {
+        $assessment->setIsDeleted(false);
+        return $this->update($assessment);
+    }
+
     public function getPatientAssessments($patientId)
     {
-        return $this->repository->findBy(array('patientId' => $patientId));
+        return $this->repository->findBy(array('patientId' => $patientId, 'isDeleted' => 0));
     }
 
     public function updateScore(Assessment $assessment)

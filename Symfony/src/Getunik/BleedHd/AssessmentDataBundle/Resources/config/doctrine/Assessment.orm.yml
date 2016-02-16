@@ -20,6 +20,11 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment:
         createdBy:
             type: integer
             nullable: false
+        isDeleted:
+            type: boolean
+            nullable: false
+            options:
+                default: false
         patientId:
             type: integer
             nullable: false

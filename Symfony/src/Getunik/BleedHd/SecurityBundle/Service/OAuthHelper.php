@@ -125,6 +125,10 @@ class OAuthHelper
         $now = new \DateTime();
         $auth->expires_at = $now->add(new \DateInterval('PT' . $auth->expires_in . 'S'))->format(\DateTime::ISO8601);
         $auth->uid = ($user instanceof User ? $user->getId() : -1);
+        if ($auth->uid != -1)
+        {
+            $auth->roles = $user->getRoles();
+        }
 
         $this->session->set('getunik_bleed_hd_security.oauth_token', $auth);
         // refresh the session lifetime

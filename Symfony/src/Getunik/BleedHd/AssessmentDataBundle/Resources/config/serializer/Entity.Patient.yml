@@ -8,6 +8,12 @@ Getunik\BleedHd\AssessmentDataBundle\Entity\Patient:
             since_version: 1.0
         lastUpdatedBy:
             since_version: 1.0
+        createdDate:
+            since_version: 1.0
+        createdBy:
+            since_version: 1.0
+        isDeleted:
+            since_version: 1.0
         isActive:
             since_version: 1.0
         firstname:

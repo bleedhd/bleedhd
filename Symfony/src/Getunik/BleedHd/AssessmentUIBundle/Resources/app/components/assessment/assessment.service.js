@@ -61,6 +61,10 @@
 				return assessment.put();
 			}
 		},
+		deleteAssessment: function (assessment) {
+			this.DataEvents.trigger('assessment-delete', assessment);
+			return this.BleedApi.one('patients', assessment.patient_id).one('assessments', assessment.id).remove();
+		},
 		getResponses: function (patientId, assessmentId) {
 			return this.BleedApi.one('patients', patientId).one('assessments', assessmentId).all('responses').getList();
 		},

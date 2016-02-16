@@ -147,3 +147,8 @@ services:
             - @fos_user.user_manager
         calls:
             - [setContainer, ["@service_container"]]
+
+    getunik.bleed_hd_data.resource_owner_voter:
+        class: Getunik\BleedHd\AssessmentDataBundle\Security\ResourceOwnerVoter
+        tags:
+            - { name: security.voter }
