@@ -79,7 +79,12 @@ Assessment
 
 To update the entity PHP classes from the YAML mappings, do
 ```bash
-php app/console doctrine:generate:entities GetunikBleedHdAssessmentDataBundle
+php app/console doctrine:generate:entities --no-backup GetunikBleedHdAssessmentDataBundle
+```
+
+Create a migration script
+```bash
+php app/console doctrine:migrations:diff
 ```
 
 To execute pending migration and check the current migration status, do
