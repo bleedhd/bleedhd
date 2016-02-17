@@ -25,6 +25,9 @@
                     assetPath: '{{ asset('bundles') }}',
                     uid: {{ currentUid }},
                 };
+                {% if settings is defined %}
+                window.bleedHdSettings = {{ settings|json_encode()|raw }}
+                {% endif %}
                 /* jshint ignore:end */
             </script>
         {% endblock scripts %}

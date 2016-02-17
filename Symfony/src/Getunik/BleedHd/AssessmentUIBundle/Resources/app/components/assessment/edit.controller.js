@@ -72,6 +72,15 @@
 
 				return this.$templateCache.get(view) ? view : '';
 			},
+			supportsType: function (type) {
+				var allowed = false;
+
+				angular.forEach(this.BleedHdConfig.allowed_assessment_types, function (group) {
+					allowed = allowed || (group.indexOf(type) >= 0);
+				});
+
+				return allowed;
+			},
 		},
 		{
 			asName: 'ctlAssessment',
