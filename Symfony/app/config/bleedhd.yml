@@ -8,7 +8,7 @@ getunik_bleed_hd_assessment_data:
                 - "gvhd-new-diagnosis"
                 - "gvhd-organ-scoring"
                 - "gvhd-self-report"
-            # bleeding:
-            #     - "demo"
-            #     - "bsms"
-            #     - "who"
+            bleeding:
+                - "demo"
+                - "bsms"
+                - "who"
