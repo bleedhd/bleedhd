@@ -10,7 +10,7 @@
 				.when('/patients/detail/:patientId', bleedHd.controllers.PatientDetailController)
 				.when('/patients/:patientId/status/new', bleedHd.controllers.PatientStatusEditController)
 				.when('/patients/:patientId/status/edit/:statusId', bleedHd.controllers.PatientStatusEditController)
-				.when('/patients/:patientId/assessment/new', bleedHd.controllers.AssessmentEditController)
+				.when('/patients/:patientId/assessment/new/:group', bleedHd.controllers.AssessmentEditController)
 				.when('/patients/:patientId/assessment/edit/:assessmentId', bleedHd.controllers.AssessmentEditController)
 				.when('/assessment/:patientId/:assessmentId/:screen', bleedHd.controllers.AssessmentScreenController)
 				.when('/page/:name', bleedHd.controllers.PagesController)

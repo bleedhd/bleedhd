@@ -52,8 +52,12 @@
 
 							<h3 class="pull-left">Assessment overview</h3>
 
-							<a class="btn btn-default pull-right" href="#/patients/{{ ctlPatient.patient.id }}/assessment/new">
-								New Assessment
+							<a ng-disabled="!ctlPatient.supportsAssessmentGroup('gvhd')" class="btn btn-default pull-right" href="#/patients/{{ ctlPatient.patient.id }}/assessment/new/gvhd">
+								New GHVD Assessment
+							</a>
+
+							<a ng-disabled="!ctlPatient.supportsAssessmentGroup('bleeding')" class="btn btn-default pull-right" href="#/patients/{{ ctlPatient.patient.id }}/assessment/new/bleeding">
+								New Bleeding Assessment
 							</a>
 
 						</div>

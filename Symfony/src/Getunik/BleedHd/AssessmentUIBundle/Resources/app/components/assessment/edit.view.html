@@ -90,30 +90,7 @@
 	</div>
 </panel>
 
-<panel ng-if="ctlAssessment.isNew" heading="Start new assessment">
-	<div class="row">
-
-		<div class="col-xs-12 col-sm-6">
-			<h4>Bleeding</h4>
-			<a href="" ng-if="env.debug" ng-if="ctlAssessment.supportsType('demo')" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('demo')">DEMO</a>
-			<a href="" ng-if="ctlAssessment.supportsType('who')" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('who')">WHO</a>
-			<a href="" ng-if="ctlAssessment.supportsType('bsms')" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('bsms')">BSMS</a>
-		</div>
-
-		<div class="col-xs-12 col-sm-6">
-			<h4>GVHD</h4>
-			<a href="" ng-if="ctlAssessment.supportsType('gvhd-features')" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('gvhd-features')">Features</a>
-			<hr>
-			<a href="" ng-if="ctlAssessment.supportsType('gvhd-new-diagnosis')" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('gvhd-new-diagnosis')">New diagnosis</a>
-			<a href="" ng-if="ctlAssessment.supportsType('gvhd-late-onset-acute')" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('gvhd-late-onset-acute')">Late-onset aGVHD classification</a>
-			<a href="" ng-if="ctlAssessment.supportsType('gvhd-organ-scoring')" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('gvhd-organ-scoring')">Organ scoring</a>
-			<hr>
-			<a href="" ng-if="ctlAssessment.supportsType('gvhd-activity-assessment')" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('gvhd-activity-assessment')">Activity assessment</a>
-			<a href="" ng-if="ctlAssessment.supportsType('gvhd-self-report')" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('gvhd-self-report')">Patient self report</a>
-		</div>
-
-	</div>
-</panel>
+<div ng-include="ctlAssessment.assessmentGroupCreateTemplate"></div>
 
 <panel ng-if="!ctlAssessment.isNew && claims.permission('canDeleteResource', ctlAssessment.assessment)" heading="Admin">
 
