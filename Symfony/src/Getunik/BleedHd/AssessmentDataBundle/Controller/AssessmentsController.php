@@ -21,10 +21,12 @@ use Getunik\BleedHd\AssessmentDataBundle\Handler\AssessmentHandler;
 class AssessmentsController extends FOSRestController
 {
     protected $assessmentHandler;
+    protected $settings;
 
-    public function __construct(AssessmentHandler $assessmentHandler)
+    public function __construct(AssessmentHandler $assessmentHandler, $settings)
     {
         $this->assessmentHandler = $assessmentHandler;
+        $this->settings = $settings;
     }
 
     /**
@@ -52,6 +54,10 @@ class AssessmentsController extends FOSRestController
      */
     public function postAssessmentsAction(Patient $patient, Assessment $assessment)
     {
+        if (!$this->supportsType($assessment->getQuestionnaire()))
+        {
+            throw new HttpException(404, "Unsupported assessment type '" . $assessment->getQuestionnaire() . "'");
+        }
         $assessment->setPatient($patient);
 
         $this->assessmentHandler->save($assessment);
@@ -94,4 +100,10 @@ class AssessmentsController extends FOSRestController
         $this->assessmentHandler->updateScore($assessment);
         return $this->handleView($this->view(json_decode(json_encode($assessment->getResult()), true)));
     }*/
+
+    private function supportsType($type)
+    {
+        $allTypes = call_user_func_array("array_merge", $this->settings['allowed_assessment_types']);
+        return array_search($type, $allTypes) !== false;
+    }
 }
