@@ -1,11 +1,11 @@
 
-<top-nav title="Assessment details" nav-url="#/patients/detail/{{ ctlAssessment.patient.id }}?tab=assessments" nav-label="Back to patient details"></top-nav>
+<top-nav title="Assessment details" nav-url="#/patients/detail/{{ ctlAssessment.context.patient.id }}?tab=assessments" nav-label="Back to patient details"></top-nav>
 
 <panel>
 	<div class="row">
 		<div class="col-xs-12">
-			<h4>{{ ctlAssessment.patient | patientname }}</h4>
-			Date of birth: {{ ctlAssessment.patient.birthdate.date | isodate }}
+			<h4>{{ ctlAssessment.context.patient | patientname }}</h4>
+			Date of birth: {{ ctlAssessment.context.patient.birthdate.date | isodate }}
 		</div>
 	</div>
 </panel>
@@ -29,18 +29,7 @@
 	</div>
 </panel>
 
-<panel heading="Quick links">
-	<div class="row bleed-quick-links">
-		<div class="col-xs-12">
-			<a ng-repeat="link in ctlAssessment.context.questionnaire.quickLinks" ng-href="#/assessment/{{ ctlAssessment.patient.id }}/{{ ctlAssessment.context.assessment.id }}/{{ link.screen }}?q={{ link.question }}" class="btn btn-default bleed-quick-link">{{ link.label }}</a>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			<a class="btn btn-default pull-right" ng-href="#/assessment/{{ ctlAssessment.patient.id }}/{{ ctlAssessment.context.assessment.id }}/start">Edit assessment</a>
-		</div>
-	</div>
-</panel>
+<quick-links assessment-context="ctlAssessment.context"></quick-links>
 
 <panel ng-if="claims.permission('canDeleteResource', ctlAssessment.context.assessment)" heading="Admin">
 

@@ -29,6 +29,9 @@
 		this.assessment = assessment;
 		this.questionnaire = questionnaire;
 		this.responses = responses;
+
+		// quick-links are lazy-loaded since they require some processing
+		this.quickLinks = null;
 	}
 
 	angular.extend(AssessmentContext.prototype, {
@@ -49,7 +52,7 @@
 						multi = {};
 
 					angular.forEach(that.questionnaire.getMultiQuestionChildSlugs(slug), function (childSlug) {
-						multi[childSlug.full] =(that.responses[childSlug.full] === undefined ? that._newResponse(childSlug) : that.responses[childSlug.full]);
+						multi[childSlug.full] = (that.responses[childSlug.full] === undefined ? that._newResponse(childSlug) : that.responses[childSlug.full]);
 					});
 
 					return multi;
@@ -60,12 +63,63 @@
 				return this.responses[slug.full];
 			}
 		},
+		getQuickLinks: function () {
+			var that = this;
+
+			if (that.quickLinks === null) {
+				that.quickLinks = [];
+
+				angular.forEach(that.questionnaire.quickLinks, function (link) {
+					var screen = that.questionnaire.getScreenBySlug(link.screen),
+						completed = screen.questions.every(function (question) {
+							return that.isResponseComplete(question.slug);
+						});
+
+					that.quickLinks.push(angular.extend({ isCompleted: completed }, link));
+				});
+			}
+
+			return that.quickLinks;
+		},
+		isResponseComplete: function (slug) {
+			var that = this,
+				response = that.getResponseForQuestion(slug),
+				completed = true;
+
+			if (response === undefined) {
+				return false;
+			}
+
+			if (response.result === undefined) {
+				// multi question
+				angular.forEach(response, function (subResponse) {
+					completed = completed && that._isQuestionComplete(subResponse.result);
+				});
+			} else {
+				completed = that._isQuestionComplete(response.result);
+			}
+
+			return completed;
+		},
 		_newResponse: function (slug) {
 			return {
 				id: slug.full,
 				assessment_id: this.assessment.id,
 				result: { data: null, meta: 'nya' },
 			};
+		},
+		_isQuestionComplete: function (result) {
+			if (result.meta === 'nya') {
+				return false;
+			} else if (angular.isArray(result.data)) {
+				return result.data.every(function (value) {
+					// check every value - if the question has the confirmation supplement and the
+					// confirmation is still pending, then the result is incomplete
+					return !(angular.isObject(value.supplements) && value.supplements.confirmation === 'pending');
+				});
+			}
+
+			return true;
 		},
 	});
 

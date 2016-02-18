@@ -16,33 +16,6 @@
 		getAssessment: function (patientId, assessmentId) {
 			return this.BleedApi.one('patients', patientId).all('assessments').get(assessmentId);
 		},
-		// TODO: remove / obsolete
-		getAssessmentFull: function (patientId, assessmentId) {
-			var that = this;
-			return that.getAssessment(patientId, assessmentId).then(function (assessment) {
-				return that.$q.all({
-						questionnaire: that.QuestionnaireData.get(assessment.questionnaire),
-						creator: that.UserData.getUser(assessment.created_by),
-					})
-					.then(function (promises) {
-						// add the definition and creator as a non-enumerable property to avoid recursion
-						// issues when saving and displaying the assessment object
-						if (!('definition' in assessment)) {
-							Object.defineProperty(assessment, 'definition', {
-								value: promises.questionnaire,
-							});
-						}
-
-						if (!('creator' in assessment)) {
-							Object.defineProperty(assessment, 'creator', {
-								value: promises.creator,
-							});
-						}
-
-						return assessment;
-					});
-			});
-		},
 		newAssessment: function (patientId) {
 			var that = this;
 			return that.UserData.getUser(that.env.uid).then(function (user) {

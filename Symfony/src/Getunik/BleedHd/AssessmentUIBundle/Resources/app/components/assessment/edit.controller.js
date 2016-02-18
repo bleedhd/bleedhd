@@ -1,12 +1,11 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentEditController($location, $templateCache, BleedHdConfig, AssessmentData, HeaderControl, patient, context, group) {
+	function AssessmentEditController($location, $templateCache, BleedHdConfig, AssessmentData, HeaderControl, context, group) {
 		HeaderControl.hide();
 
 		this.BleedHdConfig = BleedHdConfig;
 		this.AssessmentData = AssessmentData;
-		this.patient = patient;
 		this.context = context;
 		this.$location = $location;
 		this.$templateCache = $templateCache;
@@ -19,7 +18,7 @@
 			delete: function () {
 				var ctl = this;
 				ctl.AssessmentData.deleteAssessment(ctl.context.assessment).then(function () {
-					ctl.$location.path(['/patients', 'detail', ctl.patient.id].join('/'));
+					ctl.$location.path(['/patients', 'detail', ctl.context.patient.id].join('/'));
 				});
 			},
 			getSubTemplate: function (name) {
@@ -31,7 +30,6 @@
 			asName: 'ctlAssessment',
 			templateUrl: bleedHd.getView('assessment', 'edit'),
 			resolve: {
-				patient: function ($route, PatientData) { return PatientData.getPatient($route.current.params.patientId); },
 				context: function ($route, AssessmentContext) {
 					var params = $route.current.params;
 					return AssessmentContext(params.patientId, params.assessmentId);

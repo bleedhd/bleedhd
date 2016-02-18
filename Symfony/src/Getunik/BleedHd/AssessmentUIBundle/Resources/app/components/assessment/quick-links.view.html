@@ -1,0 +1,15 @@
+<panel heading="Quick links">
+	<div class="row bleed-quick-links">
+		<div class="col-xs-12">
+			<a ng-repeat="link in quickLinkCtl.quickLinks"
+				ng-href="#/assessment/{{ quickLinkCtl.context.patient.id }}/{{ quickLinkCtl.context.assessment.id }}/{{ link.screen }}?q={{ link.question }}"
+				ng-class="{ completed: link.isCompleted }"
+				class="btn btn-default bleed-quick-link">{{ link.label }}</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<a class="btn btn-default pull-right" ng-href="#/assessment/{{ quickLinkCtl.context.patient.id }}/{{ quickLinkCtl.context.assessment.id }}/start">Edit assessment</a>
+		</div>
+	</div>
+</panel>
