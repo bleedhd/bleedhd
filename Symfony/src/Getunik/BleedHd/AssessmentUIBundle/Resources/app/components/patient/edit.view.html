@@ -102,7 +102,7 @@ is active: {{ ctlPatient.patient.is_active | boolyesno }}
 
 </panel>
 
-<panel ng-if="claims.permission('canDeleteResource', ctlPatient.patient)" heading="Admin">
+<panel ng-if="!ctlPatient.isNew && claims.permission('canDeleteResource', ctlPatient.patient)" heading="Admin">
 
 	<div class="row">
 		<div class="col-xs-12">

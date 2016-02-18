@@ -1,0 +1,14 @@
+getunik_bleed_hd_assessment_data:
+    settings:
+        allowed_assessment_types:
+            gvhd:
+                - "gvhd-activity-assessment"
+                - "gvhd-features"
+                - "gvhd-late-onset-acute"
+                - "gvhd-new-diagnosis"
+                - "gvhd-organ-scoring"
+                - "gvhd-self-report"
+            bleeding:
+                - "demo"
+                - "bsms"
+                - "who"

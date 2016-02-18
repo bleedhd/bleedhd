@@ -27,7 +27,8 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('GetunikBleedHdAssessmentUIBundle:Default:index.html.twig');
+        $settings = $this->container->getParameter('getunik_bleed_hd_assessment_data.settings');
+        return $this->render('GetunikBleedHdAssessmentUIBundle:Default:index.html.twig', array('settings' => $settings));
     }
 
     public function rootRedirectAction()

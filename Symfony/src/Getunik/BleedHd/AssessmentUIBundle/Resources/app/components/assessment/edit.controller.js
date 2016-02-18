@@ -1,7 +1,7 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentEditController($scope, $location, $templateCache, $timeout, BleedHdConfig, AssessmentData, HeaderControl, DateHelper, FormWrapper, DomainConst, patient, assessment) {
+	function AssessmentEditController($scope, $location, $templateCache, $timeout, BleedHdConfig, AssessmentData, HeaderControl, DateHelper, FormWrapper, DomainConst, patient, assessment, group) {
 		HeaderControl.hide();
 
 		this.BleedHdConfig = BleedHdConfig;
@@ -22,6 +22,7 @@
 
 		this.isNew = (this.assessment.id === undefined);
 		this.secondaryScoreTemplate = this.getSecondaryScoreTemplate();
+		this.assessmentGroupCreateTemplate = this.getAssessmentGroupCreateTemplate(group);
 
 		// $scope.patient_number = parseInt(patient.patient_number);
 		// $scope.$watch('patient_number', function (newValue) {
@@ -72,6 +73,20 @@
 
 				return this.$templateCache.get(view) ? view : '';
 			},
+			getAssessmentGroupCreateTemplate: function (group) {
+				var view = bleedHd.getView('assessment', 'group-create-' + group);
+
+				return this.$templateCache.get(view) ? view : '';
+			},
+			supportsType: function (type) {
+				var allowed = false;
+
+				angular.forEach(this.BleedHdConfig.allowed_assessment_types, function (group) {
+					allowed = allowed || (group.indexOf(type) >= 0);
+				});
+
+				return allowed;
+			},
 		},
 		{
 			asName: 'ctlAssessment',
@@ -86,6 +101,7 @@
 						return AssessmentData.getAssessmentFull(params.patientId, params.assessmentId);
 					}
 				},
+				group: function ($route) { return $route.current.params.group; },
 			},
 		}
 	);

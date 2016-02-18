@@ -10,7 +10,6 @@
 
 	var claims = {
 		canDeleteResource: function (subject) {
-			console.log("testing access", subject, this);
 			return this.hasRole('ROLE_SUPER_ADMIN') || (this.hasRole('ROLE_ADMIN') && this.userId === subject.created_by);
 		},
 	};

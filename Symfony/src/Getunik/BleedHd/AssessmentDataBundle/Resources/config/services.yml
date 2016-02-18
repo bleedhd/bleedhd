@@ -20,22 +20,22 @@ services:
     getunik.bleed_hd_data.version_service:
         class: Getunik\BleedHd\AssessmentDataBundle\Service\VersionService
         arguments:
-            - @kernel
+            - "@kernel"
             - '%getunik_bleed_hd_assessment_data.version_allow_git%'
             - '%getunik_bleed_hd_assessment_data.version%'
 
     getunik.bleed_hd_data.bleed_hd_extension:
         class: Getunik\BleedHd\AssessmentDataBundle\Service\BleedHdExtension
         arguments:
-            - @getunik.bleed_hd_data.version_service
-            - @session
+            - "@getunik.bleed_hd_data.version_service"
+            - "@session"
         tags:
             - { name: twig.extension }
 
     getunik.bleed_hd_data.entity_update_listener:
         class: Getunik\BleedHd\AssessmentDataBundle\Listener\UpdateInformationListener
         arguments:
-            - @service_container
+            - "@service_container"
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
             - { name: doctrine.event_listener, event: prePersist }
@@ -43,7 +43,7 @@ services:
     getunik.bleed_hd_data.entity_creation_listener:
         class: Getunik\BleedHd\AssessmentDataBundle\Listener\CreationInformationListener
         arguments:
-            - @service_container
+            - "@service_container"
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
             - { name: doctrine.event_listener, event: prePersist }
@@ -62,13 +62,13 @@ services:
     getunik.bleed_hd_data.patient_handler:
         class: %getunik.bleed_hd_data.patient_handler.class%
         arguments:
-            - @doctrine
+            - "@doctrine"
 
     getunik.bleed_hd_data.patient_controller:
         class: %getunik.bleed_hd_data.patient_controller.class%
         arguments:
-            - @getunik.bleed_hd_data.patient_handler
-            - @getunik.bleed_hd_data.assessment_handler
+            - "@getunik.bleed_hd_data.patient_handler"
+            - "@getunik.bleed_hd_data.assessment_handler"
         calls:
             - [setContainer, ["@service_container"]]
 
@@ -76,12 +76,12 @@ services:
     getunik.bleed_hd_data.patientstatus_handler:
         class: %getunik.bleed_hd_data.patientstatus_handler.class%
         arguments:
-            - @doctrine
+            - "@doctrine"
 
     getunik.bleed_hd_data.patientstatus_controller:
         class: %getunik.bleed_hd_data.patientstatus_controller.class%
         arguments:
-            - @getunik.bleed_hd_data.patientstatus_handler
+            - "@getunik.bleed_hd_data.patientstatus_handler"
         calls:
             - [setContainer, ["@service_container"]]
 
@@ -89,15 +89,16 @@ services:
     getunik.bleed_hd_data.assessment_handler:
         class: %getunik.bleed_hd_data.assessment_handler.class%
         arguments:
-            - @doctrine
-            - @getunik.bleed_hd_data.response_handler
-            - @getunik.bleed_hd_data.questionnaire_handler
-            - @getunik.bleed_hd_data.score_calculator_factory
+            - "@doctrine"
+            - "@getunik.bleed_hd_data.response_handler"
+            - "@getunik.bleed_hd_data.questionnaire_handler"
+            - "@getunik.bleed_hd_data.score_calculator_factory"
 
     getunik.bleed_hd_data.assessment_controller:
         class: %getunik.bleed_hd_data.assessment_controller.class%
         arguments:
-            - @getunik.bleed_hd_data.assessment_handler
+            - "@getunik.bleed_hd_data.assessment_handler"
+            - "%getunik_bleed_hd_assessment_data.settings%"
         calls:
             - [setContainer, ["@service_container"]]
 
@@ -105,13 +106,13 @@ services:
     getunik.bleed_hd_data.response_handler:
         class: %getunik.bleed_hd_data.response_handler.class%
         arguments:
-            - @doctrine
+            - "@doctrine"
 
     getunik.bleed_hd_data.response_controller:
         class: %getunik.bleed_hd_data.response_controller.class%
         arguments:
-            - @getunik.bleed_hd_data.response_handler
-            - @getunik.bleed_hd_data.assessment_handler
+            - "@getunik.bleed_hd_data.response_handler"
+            - "@getunik.bleed_hd_data.assessment_handler"
         calls:
             - [setContainer, ["@service_container"]]
 
@@ -124,7 +125,8 @@ services:
     getunik.bleed_hd_data.questionnaire_controller:
         class: %getunik.bleed_hd_data.questionnaire_controller.class%
         arguments:
-            - @getunik.bleed_hd_data.questionnaire_handler
+            - "@getunik.bleed_hd_data.questionnaire_handler"
+            - "%getunik_bleed_hd_assessment_data.settings%"
         calls:
             - [setContainer, ["@service_container"]]
 
@@ -132,19 +134,19 @@ services:
     getunik.bleed_hd_data.clientlogentry_handler:
         class: %getunik.bleed_hd_data.clientlogentry_handler.class%
         arguments:
-            - @doctrine
+            - "@doctrine"
 
     getunik.bleed_hd_data.clientlogentry_controller:
         class: %getunik.bleed_hd_data.clientlogentry_controller.class%
         arguments:
-            - @getunik.bleed_hd_data.clientlogentry_handler
+            - "@getunik.bleed_hd_data.clientlogentry_handler"
         calls:
             - [setContainer, ["@service_container"]]
 
     getunik.bleed_hd_data.user_controller:
         class: %getunik.bleed_hd_data.user_controller.class%
         arguments:
-            - @fos_user.user_manager
+            - "@fos_user.user_manager"
         calls:
             - [setContainer, ["@service_container"]]
 

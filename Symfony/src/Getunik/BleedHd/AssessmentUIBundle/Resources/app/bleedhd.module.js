@@ -78,7 +78,7 @@
 		'question',
 	])
 
-	.constant('BleedHdConfig', {
+	.constant('BleedHdConfig', angular.extend({
 		login: '/user/login',
 		logout: '/user/logout',
 		redirectParam: '_target_path',
@@ -94,7 +94,7 @@
 		},
 		resourcesPath: bleedHd.env.assetPath + '/getunikbleedhdassessmentui',
 		assessmentResourcesPath: bleedHd.env.assetPath + '/getunikbleedhdassessmentdata',
-	})
+	}, window.bleedHdSettings))
 
 	.constant('DomainConst', {
 		progress: {

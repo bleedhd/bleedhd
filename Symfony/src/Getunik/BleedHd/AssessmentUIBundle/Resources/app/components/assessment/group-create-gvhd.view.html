@@ -1,0 +1,38 @@
+<panel ng-if="ctlAssessment.isNew" heading="Start new GVHD assessment">
+
+	<div class="row">
+
+		<div class="col-xs-12 col-sm-6">
+
+			<div class="list-group">
+				<a href="" ng-if="ctlAssessment.supportsType('gvhd-features')" ng-click="ctlAssessment.createAndStart('gvhd-features')" class="list-group-item">
+					<h4 class="list-group-item-heading">Features</h4>
+				</a>
+			</div>
+
+			<div class="list-group">
+				<a href="" ng-if="ctlAssessment.supportsType('gvhd-new-diagnosis')" ng-click="ctlAssessment.createAndStart('gvhd-new-diagnosis')" class="list-group-item">
+					<h4 class="list-group-item-heading">New diagnosis</h4>
+				</a>
+				<a href="" ng-if="ctlAssessment.supportsType('gvhd-late-onset-acute')" ng-click="ctlAssessment.createAndStart('gvhd-late-onset-acute')" class="list-group-item">
+					<h4 class="list-group-item-heading">Late-onset aGVHD classification</h4>
+				</a>
+				<a href="" ng-if="ctlAssessment.supportsType('gvhd-organ-scoring')" ng-click="ctlAssessment.createAndStart('gvhd-organ-scoring')" class="list-group-item">
+					<h4 class="list-group-item-heading">Organ scoring</h4>
+				</a>
+			</div>
+
+			<div class="list-group">
+				<a href="" ng-if="ctlAssessment.supportsType('gvhd-activity-assessment')" ng-click="ctlAssessment.createAndStart('gvhd-activity-assessment')" class="list-group-item">
+					<h4 class="list-group-item-heading">Activity assessment</h4>
+				</a>
+				<a href="" ng-if="ctlAssessment.supportsType('gvhd-self-report')" ng-click="ctlAssessment.createAndStart('gvhd-self-report')" class="list-group-item">
+					<h4 class="list-group-item-heading">Patient self report</h4>
+				</a>
+			</div>
+
+		</div>
+
+	</div>
+
+</panel>

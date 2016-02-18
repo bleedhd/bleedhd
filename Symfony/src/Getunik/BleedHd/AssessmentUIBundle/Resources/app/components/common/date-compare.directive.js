@@ -20,8 +20,8 @@
 					});
 
 					ctrl.$validators.dateCompare = function(modelValue, viewValue) {
-
-						if (ctrl.$isEmpty(modelValue)) {
+						console.log("modelValue " + expression, modelValue, modelValue ? modelValue.date : null);
+						if (ctrl.$isEmpty(modelValue) || modelValue.date === undefined) {
 							// consider empty models to be valid
 							return true;
 						}
