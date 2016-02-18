@@ -10,57 +10,9 @@
 	</div>
 </panel>
 
-<panel heading="Metadata">
+<assessment-form assessment="ctlAssessment.assessment"></assessment-form>
 
-	<form role="form" name="ctlAssessment.assessmentForm" novalidate>
-
-		<div class="row">
-
-			<div class="col-xs-12 col-sm-6">
-				<div class="form-group" bs-validate-class="ctlAssessment.assessmentForm.assessment_start_date">
-					<label class="control-label" for="assessment_start_date">Date of assessment*</label>
-					<input tabindex="1" id="assessment_start_date" name="assessment_start_date" class="form-control" type="text" ng-model="ctlAssessment.startDate" ng-change="ctlAssessment.onDateChange()" mask-input="yyyy-mm-dd" placeholder="yyyy-mm-dd" required />
-				</div>
-				<div class="form-group" bs-validate-class="ctlAssessment.assessmentForm.assessment_start_time">
-					<label class="control-label" for="assessment_start_time">Start time*</label>
-					<input tabindex="2" id="assessment_start_time" name="assessment_start_time" class="form-control" type="text" ng-model="ctlAssessment.startTime" ng-change="ctlAssessment.onTimeChange()" mask-input="hh:mm" placeholder="hh:mm" required />
-				</div>
-				<div class="form-group">
-					<label class="control-label">Assessor:</label> {{ ctlAssessment.assessment.creator.email }}
-				</div>
-				<div class="checkbox">
-					<label class="control-label" ng-if="!ctlAssessment.isNew">
-						<input tabindex="3" id="assessment_progress" name="assessment_progress" type="checkbox" ng-model="ctlAssessment.assessment.progress" ng-true-value="{{ ctlAssessment.DomainConst.progress.completed | json }}" ng-false-value="{{ ctlAssessment.DomainConst.progress.tentative | json }}" /> Completed
-					</label>
-				</div>
-			</div>
-
-			<div class="col-xs-12 col-sm-6">
-				<div class="form-group">
-					<label class="control-label" for="assessment_platelets">Platelets (G/l)</label>
-					<input tabindex="4" id="assessment_platelets" name="assessment_platelets" class="form-control" type="text" ng-model="ctlAssessment.assessment.platelets" />
-				</div>
-				<div class="form-group">
-					<label class="control-label" for="assessment_remarks">Remarks</label>
-					<textarea tabindex="5" id="assessment_remarks" name="assessment_remarks" class="form-control" cols="30" rows="3" ng-model="ctlAssessment.assessment.remarks"></textarea>
-				</div>
-
-				<div ng-if="!ctlAssessment.isNew" class="form-group">
-					<button tabindex="6" class="btn btn-default pull-right" type="button" ng-disabled="ctlAssessment.assessmentForm.$invalid" ng-click="ctlAssessment.save()">Save</button>
-				</div>
-			</div>
-
-		</div>
-
-	</form>
-
-	<alert ng-show="ctlAssessment.successMessage" class="animate-show" type="success"><div ng-bind-html="ctlAssessment.successMessage"></div></alert>
-
-	<pre ng-if="env.debug" class="debug-output">{{ ctlAssessment.assessment | json }}</pre>
-
-</panel>
-
-<panel ng-if="!ctlAssessment.isNew" heading="Results">
+<panel heading="Results">
 	<div class="row">
 
 		<div class="col-xs-12 col-sm-6">
@@ -77,7 +29,7 @@
 	</div>
 </panel>
 
-<panel ng-if="!ctlAssessment.isNew" heading="Quick links">
+<panel heading="Quick links">
 	<div class="row bleed-quick-links">
 		<div class="col-xs-12">
 			<a ng-repeat="link in ctlAssessment.assessment.definition.quickLinks" ng-href="#/assessment/{{ ctlAssessment.patient.id }}/{{ ctlAssessment.assessment.id }}/{{ link.screen }}?q={{ link.question }}" class="btn btn-default bleed-quick-link">{{ link.label }}</a>
@@ -90,9 +42,7 @@
 	</div>
 </panel>
 
-<div ng-include="ctlAssessment.assessmentGroupCreateTemplate"></div>
-
-<panel ng-if="!ctlAssessment.isNew && claims.permission('canDeleteResource', ctlAssessment.assessment)" heading="Admin">
+<panel ng-if="claims.permission('canDeleteResource', ctlAssessment.assessment)" heading="Admin">
 
 	<div class="row">
 		<div class="col-xs-12">
