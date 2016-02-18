@@ -23,54 +23,15 @@
 		return 0;
 	}
 
-	function AssessmentContext($log, $q, PatientData, AssessmentData, QuestionnaireData) {
-		this.$log = $log;
-		this.$q = $q;
-		this.PatientData = PatientData;
+	function AssessmentContext(AssessmentData, patient, assessment, questionnaire, responses) {
 		this.AssessmentData = AssessmentData;
-		this.QuestionnaireData = QuestionnaireData;
-		this.assessment = null;
+		this.patient = patient;
+		this.assessment = assessment;
+		this.questionnaire = questionnaire;
+		this.responses = responses;
 	}
 
 	angular.extend(AssessmentContext.prototype, {
-		load: function (patientId, assessmentId) {
-			var that = this;
-
-			if (this.assessment === null || this.assessment.id != assessmentId) {
-				var self = this.$q.defer();
-
-				return that.$q.all({
-					patient: that.PatientData.getPatient(patientId),
-					assessment: that.AssessmentData.getAssessment(patientId, assessmentId),
-					responses: that.AssessmentData.getResponses(patientId, assessmentId),
-				}).then(function (promises) {
-					that.patient = promises.patient;
-					that.assessment = promises.assessment;
-
-					that.responses = {};
-					angular.forEach(promises.responses, function (response) {
-						that.responses[response.id] = response;
-					});
-
-					return that.QuestionnaireData.get(that.assessment.questionnaire);
-				}).then(function (questionnaire) {
-					var vDiff = versionCompare(that.assessment.questionnaire_version, questionnaire.version);
-
-					that.questionnaire = questionnaire;
-					that.$log.debug('questionnaire', questionnaire, that.responses);
-
-					// if the assessment was created / last edited with a questionnaire version that is at least
-					// one "major point" behind, then this might mean trouble / inconsistent data
-					if (vDiff < -1) {
-						that.$log.warn('loading assessment with legacy questionnaire data', that.assessment.questionnaire_version, questionnaire.version);
-					}
-
-					return that;
-				});
-			} else {
-				return that;
-			}
-		},
 		saveResponses: function (responses) {
 			var that = this;
 
@@ -109,7 +70,52 @@
 	});
 
 
+	function AssessmentContextFactory($log, $q, PatientData, AssessmentData, QuestionnaireData) {
+		// to avoid superfluous reconstruction of the same assessment context (which is a common
+		// scenario when opening an assessment), we simply cache the last retrieved assessment
+		// context.
+		var lastAssessmentContext = null;
+
+		return function (patientId, assessmentId) {
+			var patient, assessment, responses;
+
+			if (lastAssessmentContext !== null && lastAssessmentContext.assessment.id === assessmentId) {
+				return lastAssessmentContext;
+			}
+
+			return $q.all({
+				patient: PatientData.getPatient(patientId),
+				assessment: AssessmentData.getAssessment(patientId, assessmentId),
+				responses: AssessmentData.getResponses(patientId, assessmentId),
+			}).then(function (promises) {
+				patient = promises.patient;
+				assessment = promises.assessment;
+
+				responses = {};
+				angular.forEach(promises.responses, function (response) {
+					responses[response.id] = response;
+				});
+
+				return QuestionnaireData.get(assessment.questionnaire);
+			}).then(function (questionnaire) {
+				var vDiff = versionCompare(assessment.questionnaire_version, questionnaire.version);
+
+				$log.debug('questionnaire', questionnaire, responses);
+
+				// if the assessment was created / last edited with a questionnaire version that is at least
+				// one "major point" behind, then this might mean trouble / inconsistent data
+				if (vDiff < -1) {
+					$log.warn('loading assessment with legacy questionnaire data', assessment.questionnaire_version, questionnaire.version);
+				}
+
+				lastAssessmentContext = new AssessmentContext(AssessmentData, patient, assessment, questionnaire, responses);
+				return lastAssessmentContext;
+			});
+		};
+	}
+
+
 	angular.module('assessment')
-		.service('AssessmentContext', AssessmentContext);
+		.factory('AssessmentContext', AssessmentContextFactory);
 
 })(angular, bleedHd);

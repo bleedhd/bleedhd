@@ -16,6 +16,7 @@
 		getAssessment: function (patientId, assessmentId) {
 			return this.BleedApi.one('patients', patientId).all('assessments').get(assessmentId);
 		},
+		// TODO: remove / obsolete
 		getAssessmentFull: function (patientId, assessmentId) {
 			var that = this;
 			return that.getAssessment(patientId, assessmentId).then(function (assessment) {

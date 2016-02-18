@@ -71,7 +71,7 @@
 			resolve: {
 				context: function ($route, AssessmentContext) {
 					var params = $route.current.params;
-					return AssessmentContext.load(params.patientId, params.assessmentId);
+					return AssessmentContext(params.patientId, params.assessmentId);
 				},
 			},
 		}
