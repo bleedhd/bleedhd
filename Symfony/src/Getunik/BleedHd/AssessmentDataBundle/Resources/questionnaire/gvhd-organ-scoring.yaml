@@ -956,10 +956,10 @@ chapters:
                       question: "Eosinophilia"
                     options:
                       yes:
-                        label: "&gt; 500/μl"
+                        label: "&gt; 0.5 G/l"
                         value: true
                       no:
-                        label: "≤ 500/μl"
+                        label: "≤ 0.5 G/l"
                         value: false
                   -
                     slug: platelets
@@ -968,10 +968,10 @@ chapters:
                       question: "Platelets"
                     options:
                       yes:
-                        label: "&lt; 100'000/μl"
+                        label: "&lt; 100 G/l"
                         value: true
                       no:
-                        label: "≥ 100'000/μl"
+                        label: "≥ 100 G/l"
                         value: false
                   -
                     slug: others
@@ -1067,4 +1067,4 @@ chapters:
                     slug: other
                     type: text
                     intro:
-                      question: "Other: enter drug and dose (mg)"
+                      question: "Other: enter drug and daily dose (mg)"
