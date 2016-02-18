@@ -71,9 +71,15 @@
 
 				angular.forEach(that.questionnaire.quickLinks, function (link) {
 					var screen = that.questionnaire.getScreenBySlug(link.screen),
+						completed;
+
+					if (link.question) {
+						completed = that.isResponseComplete(screen.slug.getChild(link.question));
+					} else {
 						completed = screen.questions.every(function (question) {
 							return that.isResponseComplete(question.slug);
 						});
+					}
 
 					that.quickLinks.push(angular.extend({ isCompleted: completed }, link));
 				});
