@@ -21,13 +21,8 @@
 		this.startTime = DateHelper.fromDate(this.assessment.start_date.date, true);
 
 		this.isNew = (this.assessment.id === undefined);
-		this.secondaryScoreTemplate = this.getSecondaryScoreTemplate();
-		this.assessmentGroupCreateTemplate = this.getAssessmentGroupCreateTemplate(group);
-
-		// $scope.patient_number = parseInt(patient.patient_number);
-		// $scope.$watch('patient_number', function (newValue) {
-		// 	patient.patient_number = numberToId(newValue);
-		// });
+		this.secondaryScoreTemplate = this.getSubTemplate('secondary-score-' + this.assessment.questionnaire);
+		this.assessmentGroupCreateTemplate = this.getSubTemplate('group-create-' + group);
 	}
 
 	function numberToId(newValue) {
@@ -68,14 +63,8 @@
 			onTimeChange: function () {
 				this.assessment.start_date.setTime(this.startTime === undefined ? undefined : this.startTime.date);
 			},
-			getSecondaryScoreTemplate: function () {
-				var view = bleedHd.getView('assessment', 'secondary-score-' + this.assessment.questionnaire);
-
-				return this.$templateCache.get(view) ? view : '';
-			},
-			getAssessmentGroupCreateTemplate: function (group) {
-				var view = bleedHd.getView('assessment', 'group-create-' + group);
-
+			getSubTemplate: function (name) {
+				var view = bleedHd.getView('assessment', name);
 				return this.$templateCache.get(view) ? view : '';
 			},
 			supportsType: function (type) {
