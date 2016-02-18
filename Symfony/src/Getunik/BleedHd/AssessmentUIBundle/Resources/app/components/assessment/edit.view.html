@@ -10,20 +10,20 @@
 	</div>
 </panel>
 
-<assessment-form assessment="ctlAssessment.assessment"></assessment-form>
+<assessment-form assessment="ctlAssessment.context.assessment"></assessment-form>
 
 <panel heading="Results">
 	<div class="row">
 
 		<div class="col-xs-12 col-sm-6">
-			<h4>{{ ctlAssessment.assessment.questionnaire | toQName }}</h4>
-			<h5>Score: {{ ctlAssessment.assessment.result | score }}</h5>
+			<h4>{{ ctlAssessment.context.assessment.questionnaire | toQName }}</h4>
+			<h5>Score: {{ ctlAssessment.context.assessment.result | score }}</h5>
 		</div>
 
 		<div class="col-xs-12 col-sm-6" ng-include="ctlAssessment.secondaryScoreTemplate"></div>
 
 		<div class="col-xs-12" ng-if="env.debug">
-			<pre class="debug-output">{{ ctlAssessment.assessment.result | json }}</pre>
+			<pre class="debug-output">{{ ctlAssessment.context.assessment.result | json }}</pre>
 		</div>
 
 	</div>
@@ -32,17 +32,17 @@
 <panel heading="Quick links">
 	<div class="row bleed-quick-links">
 		<div class="col-xs-12">
-			<a ng-repeat="link in ctlAssessment.assessment.definition.quickLinks" ng-href="#/assessment/{{ ctlAssessment.patient.id }}/{{ ctlAssessment.assessment.id }}/{{ link.screen }}?q={{ link.question }}" class="btn btn-default bleed-quick-link">{{ link.label }}</a>
+			<a ng-repeat="link in ctlAssessment.context.questionnaire.quickLinks" ng-href="#/assessment/{{ ctlAssessment.patient.id }}/{{ ctlAssessment.context.assessment.id }}/{{ link.screen }}?q={{ link.question }}" class="btn btn-default bleed-quick-link">{{ link.label }}</a>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-xs-12">
-			<a class="btn btn-default pull-right" ng-href="#/assessment/{{ ctlAssessment.patient.id }}/{{ ctlAssessment.assessment.id }}/start">Edit assessment</a>
+			<a class="btn btn-default pull-right" ng-href="#/assessment/{{ ctlAssessment.patient.id }}/{{ ctlAssessment.context.assessment.id }}/start">Edit assessment</a>
 		</div>
 	</div>
 </panel>
 
-<panel ng-if="claims.permission('canDeleteResource', ctlAssessment.assessment)" heading="Admin">
+<panel ng-if="claims.permission('canDeleteResource', ctlAssessment.context.assessment)" heading="Admin">
 
 	<div class="row">
 		<div class="col-xs-12">
