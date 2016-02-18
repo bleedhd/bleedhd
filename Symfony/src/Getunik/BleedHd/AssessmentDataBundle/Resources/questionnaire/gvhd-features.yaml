@@ -20,7 +20,7 @@ chapters:
                 title: "GVHD features"
                 meta_answers: ['nya']
                 intro:
-                  question: "Any features of GVHD present?"
+                  question: "Are there signs or symptoms of acute and/or chronic GVHD?"
                 options:
                   yes:
                     score:
