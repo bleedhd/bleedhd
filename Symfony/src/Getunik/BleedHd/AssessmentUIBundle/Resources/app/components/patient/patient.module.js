@@ -5,6 +5,7 @@
 		'bleedHdApp',
 		'ui.bootstrap',
 		'cachingWrapper',
+		'assessment',
 		'common',
 	]);
 

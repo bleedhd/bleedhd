@@ -17,7 +17,7 @@
 
 		<div class="col-xs-12 col-sm-6">
 			<h4>{{ ctlAssessment.context.assessment.questionnaire | toQName }}</h4>
-			<h5>Score: {{ ctlAssessment.context.assessment.result | score }}</h5>
+			<h5>Score: {{ ctlAssessment.context.assessment | score }}</h5>
 		</div>
 
 		<div class="col-xs-12 col-sm-6" ng-include="ctlAssessment.secondaryScoreTemplate"></div>

@@ -6,7 +6,7 @@ use Psr\Log\LoggerInterface;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
 
-class CalculatorGvhdNewDiagnosis extends CalculatorBase
+class CalculatorGvhdNewDiagnosis extends CalculatorAgvhdFollowUp
 {
 	const STATUS_POSITIVE = 'positive';
 	const STATUS_PENDING = 'pending';
@@ -21,7 +21,6 @@ class CalculatorGvhdNewDiagnosis extends CalculatorBase
 
 		// 'GVHD present', 'No GVHD present'
 		$this->score->missingChronic = 0;
-		$this->score->missingAcute = 0;
 		$this->score->diagnostic = 0;
 		$this->score->distinctive = 0;
 		$this->score->distinctiveDependent = 0;
@@ -42,15 +41,9 @@ class CalculatorGvhdNewDiagnosis extends CalculatorBase
 				$this->logger->info("unanswered score relevant question " . $question->getSlug()->getFull());
 				$this->score->missingChronic++;
 			}
-
-			// counting of unanswered questions that are relevant for the chronic section
-			if (isset($questionDefinition['score']['acute']) && $result->isUnanswered())
-			{
-				$this->logger->info("unanswered score relevant question " . $question->getSlug()->getFull());
-				$this->score->missingAcute++;
-			}
 		}
 
+		// scoring of acute part is already implemented in CalculatorAgvhdFollowUp
 		parent::accumulate($question, $scoreMappings);
 	}
 
@@ -73,19 +66,15 @@ class CalculatorGvhdNewDiagnosis extends CalculatorBase
 			$this->score->{'distinctive' . ucfirst($config['status'])}++;
 		}
 
-		// grading acute by organ
-		if (isset($config['acute']) && !empty($value))
-		{
-			$this->logger->info(" => scoring: acute " . $config['acute'] . " with " . $value);
-			$this->score->{'acute' . ucfirst($config['acute'])} = $value;
-		}
-
 		// acute delay
 		if (isset($config['delay']) && !empty($value))
 		{
 			$this->logger->info(" => scoring: delay of aGVHD " . $config['delay']);
 			$this->score->acuteDelay = $config['delay'];
 		}
+
+		// scoring of acute part is already implemented in CalculatorAgvhdFollowUp
+		parent::accumulateMapping($mapping);
 	}
 
 	protected function finish()
@@ -131,33 +120,6 @@ class CalculatorGvhdNewDiagnosis extends CalculatorBase
 	}
 
 	/**
-	 * @return - a number in the range [0, 4] or the value self::STATUS_PENDING; 0 indicates no acute symptoms, while 1-4 indicate severity
-	 */
-	protected function getAcuteScore()
-	{
-		if ($this->score->missingAcute > 0)
-			return self::STATUS_PENDING;
-
-		$skin = $this->safeGetScore('acuteSkin');
-		$liver = $this->safeGetScore('acuteLiver');
-		$gut = $this->safeGetScore('acuteGut');
-
-		if ($skin == 4 || $liver == 4)
-			return 4;
-
-		if ($liver == 2 || $liver == 3 || $gut == 2 || $gut == 3 || $gut == 4)
-			return 3;
-
-		if ($skin == 3 || $liver == 1 || $gut == 1)
-			return 2;
-
-		if ($skin == 1 || $skin == 2)
-			return 1;
-
-		return 0;
-	}
-
-	/**
 	 * @return string - the score string describing the acute/chronic GVHD expression
 	 */
 	protected function getTotalScore()
@@ -175,10 +137,5 @@ class CalculatorGvhdNewDiagnosis extends CalculatorBase
 			return 'pending';
 
 		return $this->score->acuteDelay === self::DELAY_NORMAL ? 'classic aGVHD' : 'late-onset aGVHD';
-	}
-
-	protected function safeGetScore($name)
-	{
-		return isset($this->score->{$name}) ? $this->score->{$name} : -1;
 	}
 }

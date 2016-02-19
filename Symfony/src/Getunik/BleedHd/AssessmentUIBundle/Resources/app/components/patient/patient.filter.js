@@ -12,6 +12,7 @@
 		'bleeding-features': 'Bleeding Features',
 		'who': 'Bleeding WHO',
 		'bsms': 'Bleeding BSMS',
+		'agvhd-follow-up': 'aGVHD follow-up',
 		'gvhd-features': 'GVHD features',
 		'gvhd-new-diagnosis': 'GVHD new diagnosis',
 		'gvhd-organ-scoring': 'GVHD organ scoring',
@@ -40,12 +41,6 @@
 		.filter('gender', function () {
 			return function (sex) {
 				return (genderMap[sex] === undefined ? genderMap.unknown : genderMap[sex]);
-			};
-		})
-
-		.filter('score', function () {
-			return function (result) {
-				return (result.score !== undefined && result.score.total !== undefined ? result.score.total : 'pending');
 			};
 		})
 
