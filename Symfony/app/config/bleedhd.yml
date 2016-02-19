@@ -10,5 +10,6 @@ getunik_bleed_hd_assessment_data:
                 - "gvhd-self-report"
             bleeding:
                 - "demo"
+                - "bleeding-features"
                 - "bsms"
                 - "who"

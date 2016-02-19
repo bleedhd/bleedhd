@@ -8,6 +8,9 @@
 					<h4 class="list-group-item-heading">DEMO</h4>
 					<p class="list-group-item-text">This is a demo assessment that showcases different types of questions. It exists purely for debug reasons and only shows up if the debug flag is enabled.</p>
 				</a>
+				<a href="" ng-if="ctlAssessment.supportsType('bleeding-features')" ng-click="ctlAssessment.createAndStart('bleeding-features')" class="list-group-item">
+					<h4 class="list-group-item-heading">Bleeding Features</h4>
+				</a>
 				<a href="" ng-if="ctlAssessment.supportsType('who')" ng-click="ctlAssessment.createAndStart('who')" class="list-group-item">
 					<h4 class="list-group-item-heading">WHO</h4>
 				</a>

@@ -1,0 +1,30 @@
+
+title: Bleeding Features
+version: "1.0.0"
+meta_answers:
+  nya: Not yet answered
+  nass: Not assessed
+chapters:
+  -
+    sections:
+      -
+        screens:
+          -
+            slug: general
+            questions:
+              -
+                slug: features
+                type: yesno
+                title: "Are there signs or symptoms of Bleeding?"
+                meta_answers: ['nya']
+                options:
+                  yes:
+                    label: "Yes"
+                    value: 1
+                    score:
+                      present: true
+                  no:
+                    label: "No"
+                    value: 0
+                    score:
+                      present: false
