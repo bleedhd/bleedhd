@@ -9,6 +9,7 @@
 
 	questionnaireMap = {
 		'demo': 'Demo Assessment',
+		'bleeding-features': 'Bleeding Features',
 		'who': 'Bleeding WHO',
 		'bsms': 'Bleeding BSMS',
 		'gvhd-features': 'GVHD features',
