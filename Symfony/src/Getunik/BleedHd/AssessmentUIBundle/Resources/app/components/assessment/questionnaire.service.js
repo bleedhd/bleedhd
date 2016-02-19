@@ -6,6 +6,12 @@
 		this.short = slug;
 	}
 
+	angular.extend(Slug.prototype, {
+		getChild: function (slug) {
+			return new Slug(slug, this);
+		},
+	});
+
 
 	function Questionnaire(name, yamlData) {
 		this.screens = {};
@@ -43,13 +49,13 @@
 			this.version = yamlData.version || 'unknown';
 
 			angular.forEach(yamlData.chapters, function (chapter) {
-				chapterSlug = new Slug(chapter.slug, that.rootSlug);
+				chapterSlug = that.rootSlug.getChild(chapter.slug);
 
 				angular.forEach(chapter.sections, function (section) {
-					sectionSlug = new Slug(section.slug, chapterSlug);
+					sectionSlug = chapterSlug.getChild(section.slug);
 
 					angular.forEach(section.screens, function (screen) {
-						screenSlug = new Slug(screen.slug, sectionSlug);
+						screenSlug = sectionSlug.getChild(screen.slug);
 						// the slug used in a screen's URL can be different from the one used in
 						// the question slug hierarchy since the screen short-slugs have to be
 						// unique across a questionnaire
@@ -81,7 +87,7 @@
 			var that = this;
 
 			question.questionnaire = that;
-			question.slug = new Slug(question.slug, parentSlug);
+			question.slug = parentSlug.getChild(question.slug);
 			question.globalMeta = that.metaAnswers;
 			if (question.type === 'multi') {
 				that.multiQuestions[question.slug.full] = [];

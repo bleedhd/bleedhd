@@ -1,0 +1,49 @@
+<panel heading="Metadata">
+
+	<form role="form" name="assessmentFormCtl.assessmentForm" novalidate>
+
+		<div class="row">
+
+			<div class="col-xs-12 col-sm-6">
+				<div class="form-group" bs-validate-class="assessmentFormCtl.assessmentForm.assessment_start_date">
+					<label class="control-label" for="assessment_start_date">Date of assessment*</label>
+					<input tabindex="1" id="assessment_start_date" name="assessment_start_date" class="form-control" type="text" ng-model="assessmentFormCtl.startDate" ng-change="assessmentFormCtl.onDateChange()" mask-input="yyyy-mm-dd" placeholder="yyyy-mm-dd" required />
+				</div>
+				<div class="form-group" bs-validate-class="assessmentFormCtl.assessmentForm.assessment_start_time">
+					<label class="control-label" for="assessment_start_time">Start time*</label>
+					<input tabindex="2" id="assessment_start_time" name="assessment_start_time" class="form-control" type="text" ng-model="assessmentFormCtl.startTime" ng-change="assessmentFormCtl.onTimeChange()" mask-input="hh:mm" placeholder="hh:mm" required />
+				</div>
+				<div class="form-group">
+					<label class="control-label">Assessor:</label> {{ assessmentFormCtl.assessment.creator.email }}
+				</div>
+				<div class="checkbox">
+					<label class="control-label" ng-if="!assessmentFormCtl.isNew">
+						<input tabindex="3" id="assessment_progress" name="assessment_progress" type="checkbox" ng-model="assessmentFormCtl.assessment.progress" ng-true-value="{{ assessmentFormCtl.DomainConst.progress.completed | json }}" ng-false-value="{{ assessmentFormCtl.DomainConst.progress.tentative | json }}" /> Completed
+					</label>
+				</div>
+			</div>
+
+			<div class="col-xs-12 col-sm-6">
+				<div class="form-group">
+					<label class="control-label" for="assessment_platelets">Platelets (G/l)</label>
+					<input tabindex="4" id="assessment_platelets" name="assessment_platelets" class="form-control" type="text" ng-model="assessmentFormCtl.assessment.platelets" />
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="assessment_remarks">Remarks</label>
+					<textarea tabindex="5" id="assessment_remarks" name="assessment_remarks" class="form-control" cols="30" rows="3" ng-model="assessmentFormCtl.assessment.remarks"></textarea>
+				</div>
+
+				<div ng-if="!assessmentFormCtl.isNew" class="form-group">
+					<button tabindex="6" class="btn btn-default pull-right" type="button" ng-disabled="assessmentFormCtl.assessmentForm.$invalid" ng-click="assessmentFormCtl.save()">Save</button>
+				</div>
+			</div>
+
+		</div>
+
+	</form>
+
+	<alert ng-show="assessmentFormCtl.successMessage" class="animate-show" type="success"><div ng-bind-html="assessmentFormCtl.successMessage"></div></alert>
+
+	<pre ng-if="env.debug" class="debug-output">{{ assessmentFormCtl.assessment | json }}</pre>
+
+</panel>
