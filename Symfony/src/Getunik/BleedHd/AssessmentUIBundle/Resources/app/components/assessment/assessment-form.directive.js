@@ -46,7 +46,7 @@
 			if (ctl.assessmentForm.$valid) {
 				return ctl.AssessmentData.saveAssessment(ctl.assessment.persist());
 			}
-			return $q.when(null);
+			return ctl.$q.when(null);
 		}
 	});
 
