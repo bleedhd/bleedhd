@@ -38,6 +38,9 @@
 		saveResponses: function (responses) {
 			var that = this;
 
+			// reset quick-links
+			that.quickLinks = null;
+
 			// update responses in current context
 			angular.forEach(responses, function (response) {
 				that.responses[response.id] = response;
