@@ -2,6 +2,7 @@ getunik_bleed_hd_assessment_data:
     settings:
         allowed_assessment_types:
             gvhd:
+                - "agvhd-follow-up"
                 - "gvhd-activity-assessment"
                 - "gvhd-features"
                 - "gvhd-late-onset-acute"

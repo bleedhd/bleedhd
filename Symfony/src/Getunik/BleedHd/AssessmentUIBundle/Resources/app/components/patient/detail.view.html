@@ -114,7 +114,7 @@
 												<td>{{ assessment.start_date.date | isodate }}</td>
 												<td>{{ assessment.questionnaire | toQName }}</td>
 												<td>{{ assessment.platelets }}</td>
-												<td>{{ assessment.result | score }}</td>
+												<td>{{ assessment | score }}</td>
 												<td>{{ assessment.progress | progress }}</td>
 												<td class="detail-col"><a class="btn btn-default btn-xs" href="#/patients/{{ ctlPatient.patient.id }}/assessment/edit/{{ assessment.id }}">Details</a></td>
 											</tr>

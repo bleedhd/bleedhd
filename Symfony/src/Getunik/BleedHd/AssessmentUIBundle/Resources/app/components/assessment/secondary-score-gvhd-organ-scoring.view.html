@@ -1,14 +1,14 @@
 <h5>Organs</h5>
 <ul>
-	<li>General: {{ ctlAssessment.assessment.result.score.category.overall | organScore }}</li>
-	<li>Skin: {{ ctlAssessment.assessment.result.score.category.skin | organScore }}</li>
-	<li>Mouth: {{ ctlAssessment.assessment.result.score.category.mouth | organScore }}</li>
-	<li>Eyes: {{ ctlAssessment.assessment.result.score.category.eyes | organScore }}</li>
-	<li>GI tract: {{ ctlAssessment.assessment.result.score.category.giTract | organScore }}</li>
-	<li>Genitals: {{ ctlAssessment.assessment.result.score.category.genital | organScore }}</li>
-	<li>Liver: {{ ctlAssessment.assessment.result.score.category.liver | organScore }}</li>
-	<li>Lung: {{ ctlAssessment.assessment.result.score.category.lungs | organScore }}</li>
-	<li>Joint: {{ ctlAssessment.assessment.result.score.category.joints | organScore }}</li>
+	<li>General: {{ ctlAssessment.context.assessment.result.score.category.overall | organScore }}</li>
+	<li>Skin: {{ ctlAssessment.context.assessment.result.score.category.skin | organScore }}</li>
+	<li>Mouth: {{ ctlAssessment.context.assessment.result.score.category.mouth | organScore }}</li>
+	<li>Eyes: {{ ctlAssessment.context.assessment.result.score.category.eyes | organScore }}</li>
+	<li>GI tract: {{ ctlAssessment.context.assessment.result.score.category.giTract | organScore }}</li>
+	<li>Genitals: {{ ctlAssessment.context.assessment.result.score.category.genital | organScore }}</li>
+	<li>Liver: {{ ctlAssessment.context.assessment.result.score.category.liver | organScore }}</li>
+	<li>Lung: {{ ctlAssessment.context.assessment.result.score.category.lungs | organScore }}</li>
+	<li>Joint: {{ ctlAssessment.context.assessment.result.score.category.joints | organScore }}</li>
 </ul>
 <div class="bleed-annotations">
 	* Organ excluded from score calculation due to non-GVHD cause
