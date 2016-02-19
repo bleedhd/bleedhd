@@ -19,12 +19,13 @@
 		{
 			createAndStart: function (questionnaire) {
 				var ctl = this;
-				if (ctl.assessmentForm.$valid) {
-					ctl.assessment.questionnaire = questionnaire;
-					ctl.AssessmentData.saveAssessment(ctl.assessment).then(function (assessment) {
+				// set the questionnaire for the assessment creation
+				ctl.assessment.questionnaire = questionnaire;
+				ctl.formController.trySave().then(function (assessment) {
+					if (assessment !== null) {
 						ctl.$location.path(['/assessment', ctl.patient.id, assessment.id, 'start'].join('/'));
-					});
-				}
+					}
+				});
 			},
 			getSubTemplate: function (name) {
 				var view = bleedHd.getView('assessment', name);
@@ -38,6 +39,9 @@
 				});
 
 				return allowed;
+			},
+			registerForm: function (formController) {
+				this.formController = formController;
 			},
 		},
 		{

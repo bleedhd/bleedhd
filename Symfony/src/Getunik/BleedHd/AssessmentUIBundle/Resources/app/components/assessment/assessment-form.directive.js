@@ -1,9 +1,10 @@
 
 (function (angular, bleedHd) {
 
-	function AssessmentFormController($scope, $element, $attrs, $transclude, $timeout, BleedHdConfig, AssessmentData, DomainConst, FormWrapper, DateHelper) {
+	function AssessmentFormController($scope, $element, $attrs, $transclude, $timeout, $q, BleedHdConfig, AssessmentData, DomainConst, FormWrapper, DateHelper) {
 		this.$scope = $scope;
 		this.$timeout = $timeout;
+		this.$q = $q;
 		this.BleedHdConfig = BleedHdConfig;
 		this.AssessmentData = AssessmentData;
 		this.DomainConst = DomainConst;
@@ -17,6 +18,8 @@
 		this.startTime = DateHelper.fromDate(this.assessment.start_date.date, true);
 
 		this.isNew = (this.assessment.id === undefined);
+
+		$scope.register({ formController: this });
 	}
 
 	angular.extend(AssessmentFormController.prototype, {
@@ -28,15 +31,23 @@
 		},
 		save: function () {
 			var ctl = this;
-			if (ctl.assessmentForm.$valid) {
-				ctl.AssessmentData.saveAssessment(ctl.assessment.persist()).then(function () {
+
+			ctl.trySave().then(function (assessment) {
+				if (assessment !== null) {
 					ctl.successMessage = 'Metadata saved';
 					ctl.$timeout(function () {
 						ctl.successMessage = null;
 					}, ctl.BleedHdConfig.messages.hideDelay);
-				});
-			}
+				}
+			});
 		},
+		trySave: function () {
+			var ctl = this;
+			if (ctl.assessmentForm.$valid) {
+				return ctl.AssessmentData.saveAssessment(ctl.assessment.persist());
+			}
+			return $q.when(null);
+		}
 	});
 
 	angular.module('assessment')
@@ -45,6 +56,7 @@
 				restrict: 'E',
 				scope: {
 					assessment: '=',
+					register: '&',
 				},
 				templateUrl: bleedHd.getView('assessment', 'assessment-form'),
 				controllerAs: 'assessmentFormCtl',
