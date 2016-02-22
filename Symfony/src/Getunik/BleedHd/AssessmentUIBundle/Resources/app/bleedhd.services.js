@@ -50,6 +50,9 @@
 		format: function (format) {
 			return this.moment === undefined ? 'Invalid Date' : this.moment.format(format);
 		},
+		formatInput: function (format) {
+			return this.moment === undefined ? '' : this.moment.format(format);
+		}
 	});
 
 	Object.defineProperty(DateHelper.prototype, 'date', {
