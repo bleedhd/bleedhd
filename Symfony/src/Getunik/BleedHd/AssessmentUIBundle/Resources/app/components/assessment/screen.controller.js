@@ -7,6 +7,7 @@
 
 		this.$scope = $scope;
 		this.$location = $location;
+		this.$timeout = $timeout;
 		this.$log = $log;
 		this.$q = $q;
 
@@ -27,15 +28,11 @@
 		});
 
 		if (!!$routeParams.q) {
-			// there doesn't seem to be reliable "view ready" detection, so we have to do some
-			// interesting things here as described in http://lorenzmerdian.blogspot.de/2013/03/how-to-handle-dom-updates-in-angularjs.html
-			$timeout(function () {
-				var targetQuestion = $('#' + $routeParams.q);
-				if (targetQuestion.length > 0) {
-					$('html, body').animate({ scrollTop: (targetQuestion.offset().top) }, 'slow');
-				}
-			}, 0);
+			this.scrollToQuestion($routeParams.q);
 		}
+
+		// this is the controlling counterpart of the questionLink directive
+		that.$scope.$on('question-link-goto', angular.bind(that, that.goToQuestion));
 	}
 
 	bleedHd.registerController('assessment', AssessmentScreenController,
@@ -66,6 +63,25 @@
 			},
 			goToScreen: function (screen) {
 				this.$location.path(['/assessment', this.context.patient.id, this.context.assessment.id, screen.urlSlug].join('/'));
+			},
+			scrollToQuestion: function (questionSlug) {
+				// there doesn't seem to be reliable "view ready" detection, so we have to do some
+				// interesting things here as described in http://lorenzmerdian.blogspot.de/2013/03/how-to-handle-dom-updates-in-angularjs.html
+				this.$timeout(function () {
+					var targetQuestion = $('#' + questionSlug);
+					if (targetQuestion.length > 0) {
+						$('html, body').animate({ scrollTop: (targetQuestion.offset().top) }, 'slow');
+					}
+				}, 0);
+			},
+			goToQuestion: function (event, val) {
+				var slug = new this.context.questionnaire.Slug(val);
+
+				if (slug.isDescendantOf(this.screen.slug)) {
+					this.scrollToQuestion(slug.short);
+				} else {
+					this.$location.path(['/assessment', this.context.patient.id, this.context.assessment.id, slug.parent.short].join('/')).search('q', slug.short);
+				}
 			},
 		},
 		{

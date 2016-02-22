@@ -2,7 +2,7 @@
 <div class="panel panel-default">
 
 	<div class="panel-heading clearfix">
-		<div class="pull-left panel-title" ng-bind-html="containerCtl.question.title | questionProcessor"></div>
+		<div class="pull-left panel-title" question-markup="containerCtl.question.title"></div>
 		<div class="pull-right">
 			<a ng-if="containerCtl.question.info.resource" ng-href="{{ containerCtl.question.info.resource | assessmentResource }}" target="_blank"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
 		</div>
@@ -12,8 +12,8 @@
 		<div class="bleed-question">
 			<div class="row">
 				<div class="col-xs-12">
-					<h4 ng-bind-html="containerCtl.question.intro.question | questionProcessor"></h2>
-					<p ng-bind-html="containerCtl.question.intro.description | questionProcessor"></p>
+					<h4 question-markup="containerCtl.question.intro.question"></h2>
+					<p question-markup="containerCtl.question.intro.description"></p>
 					<img class="bleed-question-image" ng-if="containerCtl.question.intro.image" ng-src="{{ containerCtl.question.intro.image | assessmentResource }}" />
 				</div>
 			</div>
@@ -22,7 +22,7 @@
 		<div ng-switch on="containerCtl.question.type">
 			<div ng-switch-when="multi" class="bleed-answers">
 				<div class="bleed-answers-group" ng-repeat="question in containerCtl.question.questions">
-					<h4 ng-bind-html="question.intro.question | questionProcessor"></h4>
+					<h4 question-markup="question.intro.question"></h4>
 					<question definition="question" data="containerCtl.response[question.slug.full].result.data" ></question>
 					<pre ng-if="containerCtl.debug" class="debug-output">{{ containerCtl.response[question.slug.full].result|json }}</pre>
 				</div>
@@ -33,7 +33,7 @@
 			</div>
 		</div>
 
-		<div class="bleed-annotations" ng-repeat="annotation in containerCtl.question.annotations" ng-bind-html="annotation | questionProcessor"></div>
+		<div class="bleed-annotations" ng-repeat="annotation in containerCtl.question.annotations" question-markup="annotation"></div>
 	</div>
 
 	<div class="panel-footer clearfix">
