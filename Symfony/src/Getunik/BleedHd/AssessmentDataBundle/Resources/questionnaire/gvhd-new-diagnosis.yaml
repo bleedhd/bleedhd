@@ -626,10 +626,9 @@ chapters:
                 score:
                   type: distinctiveDependent
                 intro:
-                  question: "Special features"
+                  question: "Diagnostic feature - BOS"
                   description: >
-                    Can be diagnostic for lung chronic GVHD only, if distinctive sign or symptom present in another organ (see <a target="_blank" href="@res(documents/Chronic-GVHD-Distinctive-Features.pdf)">distinctive features confirmation</a>).<br /><br />
-                    Requirement for confirmation: biopsy documenting histological features of chronic GVHD (at least "likely" cGVHD) if only clinical manifestation in a patient without a prior established diagnosis of chronic GVHD
+                    Can be diagnostic for lung chronic GVHD only, if distinctive sign or symptom present in another organ (see <a target="_blank" href="@res(documents/Chronic-GVHD-Distinctive-Features.pdf)">distinctive features confirmation</a>).
                 option_reset:
                   label: No symptoms
                 options:
@@ -656,6 +655,19 @@ chapters:
                           -
                             label: "One of the 2 supporting features of BOS:<br />a) Evidence of air trapping by expiratory CT or small airway thickening or bronchiectasis by CT<br />b) RV &gt;120% or RV/TLC elevated outside 90% CI by PFT"
                             value: criteria4
+              -
+                slug: air-trapping
+                type: checkboxes
+                title: "Chronic GVHD - Lung"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Special feature - Air trapping and bronchiectasis on chest CT"
+                  description: >
+                    Requirement for confirmation: @question(gvhd-new-diagnosis.chronic.lungs.diagnostic-biopsy, biopsy documenting histological features) of chronic GVHD (at least "likely" cGVHD).<br /><br />
+                    For more details see: <a target="_blank" href="@res(documents/Chronic-GVHD-Distinctive-Features.pdf)">distinctive features confirmation</a>
+                option_reset:
+                  label: No symptoms
+                options:
                   -
                     label: Air trapping and bronchiectasis on chest CT
                     value: air-trapping-ct
