@@ -2,7 +2,7 @@
 
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SYMFONY="$SCRIPT_DIR/../Symfony"
-CONSOLE="$SYMFONY/app/console"
+CONSOLE="$SYMFONY/bin/console"
 ENV=${1:-prod}
 
 pushd "$SYMFONY"
@@ -12,11 +12,11 @@ HTTPDUSER=`ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]gin
 sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX var
 sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX var
 
-php "$CONSOLE" assets:install --symlink --env=$ENV
-php "$CONSOLE" assetic:dump --env=$ENV
-php "$CONSOLE" doctrine:migrations:migrate --env=$ENV
-php "$CONSOLE" getu:oauth-server:create-client BleedHD --grant-type="password" --grant-type="refresh_token"
-php "$CONSOLE" fos:user:create --super-admin
-php "$CONSOLE" cache:clear --env=$ENV
+$CONSOLE assets:install --symlink --env=$ENV
+$CONSOLE assetic:dump --env=$ENV
+$CONSOLE doctrine:migrations:migrate --env=$ENV
+$CONSOLE getu:oauth-server:create-client BleedHD --grant-type="password" --grant-type="refresh_token"
+$CONSOLE fos:user:create --super-admin
+$CONSOLE cache:clear --env=$ENV
 
 popd
