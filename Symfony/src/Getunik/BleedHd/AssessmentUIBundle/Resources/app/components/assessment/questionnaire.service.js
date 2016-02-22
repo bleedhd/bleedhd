@@ -2,6 +2,16 @@
 (function (angular, bleedHd) {
 
 	function Slug(slug, parent) {
+		if (parent === undefined) {
+			var segments = slug.split('.'),
+				slug = segments.pop();
+
+			parent = segments.reduce(function (last, current) {
+				return new Slug(current, last);
+			}, undefined);
+		}
+
+		this.parent = parent;
 		this.full = (parent === undefined ? [] : [parent.full]).concat(slug === undefined ? [] : [slug]).join('.');
 		this.short = slug;
 	}
@@ -9,6 +19,18 @@
 	angular.extend(Slug.prototype, {
 		getChild: function (slug) {
 			return new Slug(slug, this);
+		},
+		isDescendantOf: function (other) {
+			var current = this;
+
+			while (current !== undefined) {
+				if (current.full === other.full)
+					return true;
+
+				current = current.parent;
+			}
+
+			return false;
 		},
 	});
 
@@ -25,6 +47,8 @@
 	}
 
 	angular.extend(Questionnaire.prototype, {
+		// expose the Slug class to everybody working with questionnaires
+		Slug: Slug,
 		getScreenBySlug: function (slug) {
 			return this.screens[slug];
 		},
