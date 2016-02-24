@@ -24,7 +24,10 @@ $CONSOLE getu:oauth-server:create-client BleedHD --grant-type="password" --grant
 echo "Please note/copy the two OAuth tokens above and then press RETURN to continue"
 read
 
+echo "Creating your login - chose any username/email/password combination"
 $CONSOLE fos:user:create --super-admin
+
+echo "Finalizing application"
 $CONSOLE assets:install --symlink --env=$ENV
 $CONSOLE assetic:dump --env=$ENV
 $CONSOLE cache:clear --env=$ENV

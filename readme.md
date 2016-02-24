@@ -53,6 +53,7 @@ This should give you a version for your Node.js installation (no error).
    ```bash
    Symfony/bin/console server:run
    ```
+   If you chose to configure your existing webserver, make sure to point to the `Symfony/web` directory as the webroot.
 
 For more instructions about development see [Development Instructions](doc/notes/development.md).
 
