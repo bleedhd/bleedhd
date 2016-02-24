@@ -38,14 +38,20 @@
 	bleedHd.registerController('assessment', AssessmentScreenController,
 		{
 			goNext: function () {
-				var next = this.context.questionnaire.getScreenByIndex(this.screen.index + 1);
-				this.saveModifiedResponses();
-				this.goToScreen(next);
+				var that = this,
+					next = that.context.questionnaire.getScreenByIndex(that.screen.index + 1);
+
+				that.saveModifiedResponses().then(function () {
+					that.goToScreen(next);
+				});
 			},
 			goPrev: function () {
-				var prev = this.context.questionnaire.getScreenByIndex(this.screen.index - 1);
-				this.saveModifiedResponses();
-				this.goToScreen(prev);
+				var that = this;
+					prev = that.context.questionnaire.getScreenByIndex(that.screen.index - 1);
+
+				that.saveModifiedResponses().then(function () {
+					that.goToScreen(prev);
+				});
 			},
 			goOverview: function () {
 				var that = this;
