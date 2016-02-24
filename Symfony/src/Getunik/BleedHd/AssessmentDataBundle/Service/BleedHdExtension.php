@@ -5,7 +5,7 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Service;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
-class BleedHdExtension extends \Twig_Extension
+class BleedHdExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     protected $version;
     protected $session;

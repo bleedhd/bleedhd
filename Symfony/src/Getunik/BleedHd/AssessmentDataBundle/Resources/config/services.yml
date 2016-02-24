@@ -35,7 +35,7 @@ services:
     getunik.bleed_hd_data.entity_update_listener:
         class: Getunik\BleedHd\AssessmentDataBundle\Listener\UpdateInformationListener
         arguments:
-            - "@service_container"
+            - "@security.token_storage"
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
             - { name: doctrine.event_listener, event: prePersist }
@@ -43,7 +43,7 @@ services:
     getunik.bleed_hd_data.entity_creation_listener:
         class: Getunik\BleedHd\AssessmentDataBundle\Listener\CreationInformationListener
         arguments:
-            - "@service_container"
+            - "@security.token_storage"
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
             - { name: doctrine.event_listener, event: prePersist }
