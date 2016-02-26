@@ -28,7 +28,7 @@
 
 				switch (assessment.questionnaire) {
 					case 'agvhd-follow-up':
-						return $filter('newDiagnosisScoreAcute')(assessment.result.score);
+						return (assessment.result.score.acute === 0 ? '' : 'aGVHD ') + $filter('newDiagnosisScoreAcute')(assessment.result.score);
 					default:
 						return assessment.result.score.total;
 				}
