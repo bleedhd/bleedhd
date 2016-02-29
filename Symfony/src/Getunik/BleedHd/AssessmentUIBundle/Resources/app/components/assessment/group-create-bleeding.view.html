@@ -9,16 +9,11 @@
 		</div>
 		<div class="col-xs-12 col-sm-6">
 
-			<div class="list-group">
-				<a href="" ng-if="env.debug" ng-if="ctlAssessment.supportsType('demo')" ng-click="ctlAssessment.createAndStart('demo')" class="list-group-item">
-					<h4 class="list-group-item-heading">DEMO</h4>
-					<p class="list-group-item-text">This is a demo assessment that showcases different types of questions. It exists purely for debug reasons and only shows up if the debug flag is enabled.</p>
-				</a>
-				<a href="" ng-if="ctlAssessment.supportsType('bleeding-features')" ng-click="ctlAssessment.createAndStart('bleeding-features')" class="list-group-item">
-					<h4 class="list-group-item-heading">Bleeding Features</h4>
-					<p class="list-group-item-text">Gives a general information if signs or symptoms of bleeding are present or absent.</p>
-				</a>
-			</div>
+			<a href="" ng-if="env.debug" ng-if="ctlAssessment.supportsType('demo')" ng-click="ctlAssessment.createAndStart('demo')" class="btn btn-default bleed-btn-spacing">DEMO</a>
+			<p>This is a demo assessment that showcases different types of questions. It exists purely for debug reasons and only shows up if the debug flag is enabled.</p>
+
+			<a href="" ng-if="ctlAssessment.supportsType('bleeding-features')" ng-click="ctlAssessment.createAndStart('bleeding-features')" class="btn btn-default bleed-btn-spacing">Bleeding Features</a>
+			<p>Gives a general information if signs or symptoms of bleeding are present or absent.</p>
 
 		</div>
 		<div class="col-xs-12">
@@ -28,16 +23,12 @@
 		</div>
 		<div class="col-xs-12 col-sm-6">
 
-			<div class="list-group">
-				<a href="" ng-if="ctlAssessment.supportsType('who')" ng-click="ctlAssessment.createAndStart('who')" class="list-group-item">
-					<h4 class="list-group-item-heading">WHO</h4>
-					<p class="list-group-item-text">Scoring of bleeding features based on WHO criteria</p>
-				</a>
-				<a href="" ng-if="ctlAssessment.supportsType('bsms')" ng-click="ctlAssessment.createAndStart('bsms')" class="list-group-item">
-					<h4 class="list-group-item-heading">BSMS</h4>
-					<p class="list-group-item-text">Scoring of bleeding features based on BSMS criteria</p>
-				</a>
-			</div>
+			<a href="" ng-if="ctlAssessment.supportsType('who')" ng-click="ctlAssessment.createAndStart('who')" class="btn btn-default bleed-btn-spacing">WHO</a>
+			<p>Scoring of bleeding features based on WHO criteria</p>
+
+			<a href="" ng-if="ctlAssessment.supportsType('bsms')" ng-click="ctlAssessment.createAndStart('bsms')" class="btn btn-default bleed-btn-spacing">BSMS</a>
+			<p>Scoring of bleeding features based on BSMS criteria</p>
+
 		</div>
 
 	</div>
