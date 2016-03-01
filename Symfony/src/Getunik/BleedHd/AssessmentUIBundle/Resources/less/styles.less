@@ -16,7 +16,6 @@ body {
 	padding-bottom: 60px;
 }
 
-
 // bootstrap elements tweaks here....
 .nav-tabs {
 	margin-bottom: 20px;
@@ -60,6 +59,7 @@ body {
 .bleed-section-header {
 	.btn.pull-right {
 		margin-left: 10px;
+		margin-bottom: 10px;
 	}
 }
 
@@ -202,17 +202,32 @@ body {
 	margin-bottom: 10px;
 }
 
-.bleed-quick-link {
+.btn.btn-default.bleed-quick-link {
+	background-color: @brand-primary;
+	border-color: @brand-primary;
+	font-size: 13px;
 	margin-right: 10px;
 	margin-bottom: 10px;
+	border-radius: 25px;
+	padding: 3px 12px;
+	opacity: 0.70;
 
 	&:last-child {
 		margin-right: 0;
 	}
 
 	&.completed {
-		opacity: 0.65;
+		opacity: 0.30;
 	}
+
+	&.active {
+		opacity: 1;
+	}
+}
+
+.bleed-btn-spacing {
+	margin-top: 20px;
+	margin-bottom: 10px;
 }
 
 .environment-indicator {

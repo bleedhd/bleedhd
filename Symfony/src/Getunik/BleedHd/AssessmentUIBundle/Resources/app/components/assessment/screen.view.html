@@ -27,13 +27,13 @@
 <div class="container">
 	<div class="row bleed-question-navigation">
 		<div class="col-sm-12 col-sm-4">
-			<button class="pull-left btn btn-default bleed-prev" type="button" ng-if="ctlScreen.screen.index > 0" ng-click="ctlScreen.goPrev()">Save and previous</button>
+			<button class="pull-left btn btn-default bleed-prev" type="button" ng-if="ctlScreen.screen.index > 0" ng-click="ctlScreen.goPrev()"><span aria-hidden="true">&larr;</span> Save and previous</button>
 		</div>
 		<div class="col-sm-12 col-sm-4 text-center">
 <!--			<a href="" class="btn btn-default">Save and finish assessement</a> -->
 		</div>
 		<div class="col-sm-12 col-sm-4">
-			<button class="pull-right btn btn-default bleed-next" type="button" ng-if="ctlScreen.screen.index < ctlScreen.context.questionnaire.getScreenCount() - 1" ng-click="ctlScreen.goNext()">Save and next</button>
+			<button class="pull-right btn btn-default bleed-next" type="button" ng-if="ctlScreen.screen.index < ctlScreen.context.questionnaire.getScreenCount() - 1" ng-click="ctlScreen.goNext()">Save and next <span aria-hidden="true">&rarr;</span></button>
 <!--			<a href="" class="pull-right btn btn-default bleed-next">Save and finish assessement</a> -->
 		</div>
 	</div>
