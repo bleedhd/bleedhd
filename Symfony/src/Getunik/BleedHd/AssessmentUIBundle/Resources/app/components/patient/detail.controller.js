@@ -1,9 +1,10 @@
 
 (function (angular, bleedHd) {
 
-	function PatientDetailController($scope, $routeParams, PatientData, patient) {
+	function PatientDetailController($scope, $routeParams, PatientData, BleedHdConfig, patient) {
 		this.$scope = $scope;
 		this.PatientData = PatientData;
+		this.BleedHdConfig = BleedHdConfig;
 		this.patient = patient;
 
 		this.resetAssessmentFilter();
@@ -48,6 +49,9 @@
 					bsms: true,
 					gvhd: true,
 				};
+			},
+			supportsAssessmentGroup: function (group) {
+				return angular.isArray(this.BleedHdConfig.allowed_assessment_types[group]) && this.BleedHdConfig.allowed_assessment_types[group].length > 0;
 			},
 		},
 		{

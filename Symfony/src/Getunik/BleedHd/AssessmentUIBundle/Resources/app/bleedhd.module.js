@@ -78,7 +78,7 @@
 		'question',
 	])
 
-	.constant('BleedHdConfig', {
+	.constant('BleedHdConfig', angular.extend({
 		login: '/user/login',
 		logout: '/user/logout',
 		redirectParam: '_target_path',
@@ -94,7 +94,7 @@
 		},
 		resourcesPath: bleedHd.env.assetPath + '/getunikbleedhdassessmentui',
 		assessmentResourcesPath: bleedHd.env.assetPath + '/getunikbleedhdassessmentdata',
-	})
+	}, window.bleedHdSettings))
 
 	.constant('DomainConst', {
 		progress: {
@@ -148,7 +148,7 @@
 			.setUidFunc(function () { return bleedHd.env.uid; });
 	})
 
-	.run(function ($rootScope, $interval, $http, $log, ServerLogDump, HeaderControl, AuthHandler) {
+	.run(function ($rootScope, $interval, $http, $log, ServerLogDump, HeaderControl, AuthHandler, ClaimsHandler) {
 		$rootScope.env = bleedHd.env;
 		$rootScope.header = HeaderControl;
 
@@ -160,6 +160,8 @@
 			// auto-logout behavior
 			AuthHandler.updateLastActivity();
 		});
+
+		$rootScope.claims = ClaimsHandler;
 
 		// ping the server in a 5 minute interval to keep the user's PHP session alive
 		$interval(function () {

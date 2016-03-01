@@ -7,7 +7,7 @@
 				return DateHelper.fromTimeString(value);
 			},
 			display: function (DateHelper, value) {
-				return value.format('HH:mm:ss.SSS');
+				return value.formatInput('HH:mm:ss.SSS');
 			},
 		},
 		'yyyy-mm-dd': {
@@ -15,7 +15,7 @@
 				return DateHelper.fromString(value);
 			},
 			display: function (DateHelper, value) {
-				return value.format('YYYY-MM-DD');
+				return value.formatInput('YYYY-MM-DD');
 			},
 		},
 	};

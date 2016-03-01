@@ -7,6 +7,7 @@
 
 		this.$scope = $scope;
 		this.$location = $location;
+		this.$timeout = $timeout;
 		this.$log = $log;
 		this.$q = $q;
 
@@ -27,28 +28,30 @@
 		});
 
 		if (!!$routeParams.q) {
-			// there doesn't seem to be reliable "view ready" detection, so we have to do some
-			// interesting things here as described in http://lorenzmerdian.blogspot.de/2013/03/how-to-handle-dom-updates-in-angularjs.html
-			$timeout(function () {
-				var targetQuestion = $('#' + $routeParams.q);
-				if (targetQuestion.length > 0) {
-					$('html, body').animate({ scrollTop: (targetQuestion.offset().top) }, 'slow');
-				}
-			}, 0);
+			this.scrollToQuestion($routeParams.q);
 		}
+
+		// this is the controlling counterpart of the questionLink directive
+		that.$scope.$on('question-link-goto', angular.bind(that, that.goToQuestion));
 	}
 
 	bleedHd.registerController('assessment', AssessmentScreenController,
 		{
 			goNext: function () {
-				var next = this.context.questionnaire.getScreenByIndex(this.screen.index + 1);
-				this.saveModifiedResponses();
-				this.goToScreen(next);
+				var that = this,
+					next = that.context.questionnaire.getScreenByIndex(that.screen.index + 1);
+
+				that.saveModifiedResponses().then(function () {
+					that.goToScreen(next);
+				});
 			},
 			goPrev: function () {
-				var prev = this.context.questionnaire.getScreenByIndex(this.screen.index - 1);
-				this.saveModifiedResponses();
-				this.goToScreen(prev);
+				var that = this;
+					prev = that.context.questionnaire.getScreenByIndex(that.screen.index - 1);
+
+				that.saveModifiedResponses().then(function () {
+					that.goToScreen(prev);
+				});
 			},
 			goOverview: function () {
 				var that = this;
@@ -61,8 +64,30 @@
 				this.dirty = {};
 				return responsesToSave.length > 0 ? this.context.saveResponses(responsesToSave) : this.$q.when(null);
 			},
+			saveCallback: function () {
+				return angular.bind(this, this.saveModifiedResponses);
+			},
 			goToScreen: function (screen) {
 				this.$location.path(['/assessment', this.context.patient.id, this.context.assessment.id, screen.urlSlug].join('/'));
+			},
+			scrollToQuestion: function (questionSlug) {
+				// there doesn't seem to be reliable "view ready" detection, so we have to do some
+				// interesting things here as described in http://lorenzmerdian.blogspot.de/2013/03/how-to-handle-dom-updates-in-angularjs.html
+				this.$timeout(function () {
+					var targetQuestion = $('#' + questionSlug);
+					if (targetQuestion.length > 0) {
+						$('html, body').animate({ scrollTop: (targetQuestion.offset().top) }, 'slow');
+					}
+				}, 0);
+			},
+			goToQuestion: function (event, val) {
+				var slug = new this.context.questionnaire.Slug(val);
+
+				if (slug.isDescendantOf(this.screen.slug)) {
+					this.scrollToQuestion(slug.short);
+				} else {
+					this.$location.path(['/assessment', this.context.patient.id, this.context.assessment.id, slug.parent.short].join('/')).search('q', slug.short);
+				}
 			},
 		},
 		{
@@ -71,7 +96,7 @@
 			resolve: {
 				context: function ($route, AssessmentContext) {
 					var params = $route.current.params;
-					return AssessmentContext.load(params.patientId, params.assessmentId);
+					return AssessmentContext(params.patientId, params.assessmentId);
 				},
 			},
 		}

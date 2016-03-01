@@ -2,7 +2,7 @@
 <div class="radio" ng-repeat="option in questionCtl.getOptions()">
 	<label>
 		<input type="radio" ng-model="questionCtl.data.value" ng-change="questionCtl.onChange(option)" ng-value="option.value">
-		<span ng-bind-html="option.label | questionProcessor"></span>
+		<span question-markup="option.label"></span>
 	</label>
 	<supplement
 		ng-repeat="supplement in option.supplements"

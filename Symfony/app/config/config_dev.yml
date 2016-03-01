@@ -15,9 +15,9 @@ monolog:
     channels: ["score"]
     handlers:
         main:
-            type:   stream
-            path:   "%kernel.logs_dir%/%kernel.environment%.log"
-            level:  debug
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
             channels: ["!score"]
         console:
             type:   console
@@ -37,6 +37,3 @@ monolog:
 
 assetic:
     use_controller: "%use_assetic_controller%"
-
-#swiftmailer:
-#    delivery_address: me@example.com

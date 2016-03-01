@@ -931,4 +931,4 @@ chapters:
                     slug: other
                     type: text
                     intro:
-                      question: "Other: enter drug and dose (mg)"
+                      question: "Other: enter drug and daily dose (mg)"

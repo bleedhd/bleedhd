@@ -1,13 +1,19 @@
-/web/bundles/
-/web/js/
-/web/css/
-/app/bootstrap.php.cache
-/app/cache/*
+
+# Cache and logs (Symfony3)
+/var/cache/*
+/var/logs/*
+!var/cache/.gitkeep
+!var/logs/.gitkeep
+/var/bootstrap.php.cache
+
+# Symfony parameters
 /app/config/parameters.yml
-/app/logs/*
-!app/cache/.gitkeep
-!app/logs/.gitkeep
-/build/
+
+# Third party components
 /vendor/
 /bin/
 /composer.phar
+
+/web/bundles/
+/web/js/
+/web/css/

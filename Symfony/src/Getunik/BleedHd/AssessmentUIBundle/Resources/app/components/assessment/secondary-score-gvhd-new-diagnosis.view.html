@@ -1,6 +1,6 @@
 <h5>Partial Scores</h5>
 <ul>
-	<li>cGVHD: {{ ctlAssessment.assessment.result.score.chronic | newDiagnosisScoreChronic }}</li>
-	<li>aGVHD: {{ ctlAssessment.assessment.result.score.acute | newDiagnosisScoreAcute }}</li>
-	<li>Delay: {{ ctlAssessment.assessment.result.score.acuteDelay | newDiagnosisScoreDelay }}</li>
+	<li>cGVHD: {{ ctlAssessment.context.assessment.result.score | newDiagnosisScoreChronic }}</li>
+	<li>aGVHD: {{ ctlAssessment.context.assessment.result.score | newDiagnosisScoreAcute }}</li>
+	<li>Delay: {{ ctlAssessment.context.assessment.result.score | newDiagnosisScoreDelay }}</li>
 </ul>

@@ -1,0 +1,15 @@
+
+<top-nav title="Assessment details" nav-url="#/patients/detail/{{ ctlAssessment.patient.id }}?tab=assessments" nav-label="Back to patient details"></top-nav>
+
+<panel>
+	<div class="row">
+		<div class="col-xs-12">
+			<h4>{{ ctlAssessment.patient | patientname }}</h4>
+			Date of birth: {{ ctlAssessment.patient.birthdate.date | isodate }}
+		</div>
+	</div>
+</panel>
+
+<assessment-form assessment="ctlAssessment.assessment" register="ctlAssessment.registerForm(formController)"></assessment-form>
+
+<div ng-include="ctlAssessment.assessmentGroupCreateTemplate"></div>

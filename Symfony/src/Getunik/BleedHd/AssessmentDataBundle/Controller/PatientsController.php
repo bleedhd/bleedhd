@@ -86,10 +86,13 @@ class PatientsController extends FOSRestController
     }
 
     /**
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_SUPER_ADMIN') or (has_role('ROLE_ADMIN') and is_granted('isOwner', patient))")
+     * @ParamConverter("patient", options={"id" = "patient"})
      */
-    public function deletePatientAction($patient)
+    public function deletePatientAction(Patient $patient)
     {
-        return $this->handleView($this->view("delete patient"));
+        $this->patientHandler->delete($patient);
+
+        return $this->handleView($this->view(true));
     }
 }

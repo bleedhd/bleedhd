@@ -34,6 +34,18 @@ class PatientHandler
 
     public function getAllPatients()
     {
-        return $this->repository->findAll();
+        return $this->repository->findBy(array('isDeleted' => 0));
+    }
+
+    public function delete(Patient $patient)
+    {
+        $patient->setIsDeleted(true);
+        return $this->update($patient);
+    }
+
+    public function restore(Patient $patient)
+    {
+        $patient->setIsDeleted(false);
+        return $this->update($patient);
     }
 }

@@ -18,10 +18,12 @@ use Getunik\BleedHd\AssessmentDataBundle\Handler\QuestionnaireHandler;
 class QuestionnairesController extends FOSRestController
 {
     protected $questionnaireHandler;
+    protected $settings;
 
-    public function __construct(QuestionnaireHandler $questionnaireHandler)
+    public function __construct(QuestionnaireHandler $questionnaireHandler, $settings)
     {
         $this->questionnaireHandler = $questionnaireHandler;
+        $this->settings = $settings;
     }
 
     /**
@@ -44,6 +46,17 @@ class QuestionnairesController extends FOSRestController
             throw new HttpException(404, "Questionnaire '" . $questionnaire . "' does not exist");
         }
 
+        if (!$this->supportsType($questionnaire))
+        {
+            throw new HttpException(404, "Unsupported assessment type '" . $questionnaire . "'");
+        }
+
         return $this->handleView($this->view($data));
+    }
+
+    private function supportsType($type)
+    {
+        $allTypes = call_user_func_array("array_merge", $this->settings['allowed_assessment_types']);
+        return array_search($type, $allTypes) !== false;
     }
 }

@@ -2,9 +2,37 @@
 (function (angular, bleedHd) {
 
 	function Slug(slug, parent) {
+		if (parent === undefined) {
+			var segments = slug.split('.'),
+				slug = segments.pop();
+
+			parent = segments.reduce(function (last, current) {
+				return new Slug(current, last);
+			}, undefined);
+		}
+
+		this.parent = parent;
 		this.full = (parent === undefined ? [] : [parent.full]).concat(slug === undefined ? [] : [slug]).join('.');
 		this.short = slug;
 	}
+
+	angular.extend(Slug.prototype, {
+		getChild: function (slug) {
+			return new Slug(slug, this);
+		},
+		isDescendantOf: function (other) {
+			var current = this;
+
+			while (current !== undefined) {
+				if (current.full === other.full)
+					return true;
+
+				current = current.parent;
+			}
+
+			return false;
+		},
+	});
 
 
 	function Questionnaire(name, yamlData) {
@@ -19,6 +47,8 @@
 	}
 
 	angular.extend(Questionnaire.prototype, {
+		// expose the Slug class to everybody working with questionnaires
+		Slug: Slug,
 		getScreenBySlug: function (slug) {
 			return this.screens[slug];
 		},
@@ -43,13 +73,13 @@
 			this.version = yamlData.version || 'unknown';
 
 			angular.forEach(yamlData.chapters, function (chapter) {
-				chapterSlug = new Slug(chapter.slug, that.rootSlug);
+				chapterSlug = that.rootSlug.getChild(chapter.slug);
 
 				angular.forEach(chapter.sections, function (section) {
-					sectionSlug = new Slug(section.slug, chapterSlug);
+					sectionSlug = chapterSlug.getChild(section.slug);
 
 					angular.forEach(section.screens, function (screen) {
-						screenSlug = new Slug(screen.slug, sectionSlug);
+						screenSlug = sectionSlug.getChild(screen.slug);
 						// the slug used in a screen's URL can be different from the one used in
 						// the question slug hierarchy since the screen short-slugs have to be
 						// unique across a questionnaire
@@ -81,7 +111,7 @@
 			var that = this;
 
 			question.questionnaire = that;
-			question.slug = new Slug(question.slug, parentSlug);
+			question.slug = parentSlug.getChild(question.slug);
 			question.globalMeta = that.metaAnswers;
 			if (question.type === 'multi') {
 				that.multiQuestions[question.slug.full] = [];

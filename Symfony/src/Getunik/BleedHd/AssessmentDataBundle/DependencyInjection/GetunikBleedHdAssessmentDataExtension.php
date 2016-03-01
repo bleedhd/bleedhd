@@ -27,5 +27,6 @@ class GetunikBleedHdAssessmentDataExtension extends Extension
 
         $container->setParameter('getunik_bleed_hd_assessment_data.version', $config['version']);
         $container->setParameter('getunik_bleed_hd_assessment_data.version_allow_git', $config['version_allow_git']);
+        $container->setParameter('getunik_bleed_hd_assessment_data.settings', $config['settings']);
     }
 }

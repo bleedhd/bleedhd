@@ -19,7 +19,7 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Listener;
 
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Getunik\BleedHd\AssessmentDataBundle\Entity\CreationInformationInterface;
 use FOS\UserBundle\Model\User;
 
@@ -31,16 +31,14 @@ use FOS\UserBundle\Model\User;
  */
 class CreationInformationListener
 {
-    protected $container;
+    protected $tokenInterface;
 
     /**
-     * @param ContainerInterface $container - the DI container used to fetch the current user at a later point
+     * @param TokenStorageInterface $tokenInterface - the security token interface service
      */
-    public function __construct(ContainerInterface $container)
+    public function __construct(TokenStorageInterface $tokenInterface)
     {
-        // Note: it is not possible to directly inject the security.context here since that would
-        // introduce a circular dependency
-        $this->container = $container;
+        $this->tokenInterface = $tokenInterface;
     }
 
     /**
@@ -69,7 +67,7 @@ class CreationInformationListener
     {
         if ($entity instanceof CreationInformationInterface)
         {
-            $user = $this->container->get('security.context')->getToken()->getUser();
+            $user = $this->tokenInterface->getToken()->getUser();
             $uid = ($user instanceof User ? $user->getId() : -1);
 
             $entity->setCreatedDate(new \DateTime());

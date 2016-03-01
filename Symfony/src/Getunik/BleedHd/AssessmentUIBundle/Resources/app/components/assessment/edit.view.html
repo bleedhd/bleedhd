@@ -1,116 +1,60 @@
 
-<top-nav title="Assessment details" nav-url="#/patients/detail/{{ ctlAssessment.patient.id }}?tab=assessments" nav-label="Back to patient details"></top-nav>
+<top-nav title="Assessment details" nav-url="#/patients/detail/{{ ctlAssessment.context.patient.id }}?tab=assessments" nav-label="Back to patient details"></top-nav>
 
 <panel>
 	<div class="row">
 		<div class="col-xs-12">
-			<h4>{{ ctlAssessment.patient | patientname }}</h4>
-			Date of birth: {{ ctlAssessment.patient.birthdate.date | isodate }}
+			<h4>{{ ctlAssessment.context.patient | patientname }}</h4>
+			Date of birth: {{ ctlAssessment.context.patient.birthdate.date | isodate }}
 		</div>
 	</div>
 </panel>
 
-<panel heading="Metadata">
+<assessment-form assessment="ctlAssessment.context.assessment"></assessment-form>
 
-	<form role="form" name="ctlAssessment.assessmentForm" novalidate>
-
-		<div class="row">
-
-			<div class="col-xs-12 col-sm-6">
-				<div class="form-group" bs-validate-class="ctlAssessment.assessmentForm.assessment_start_date">
-					<label class="control-label" for="assessment_start_date">Date of assessment*</label>
-					<input tabindex="1" id="assessment_start_date" name="assessment_start_date" class="form-control" type="text" ng-model="ctlAssessment.startDate" ng-change="ctlAssessment.onDateChange()" mask-input="yyyy-mm-dd" placeholder="yyyy-mm-dd" required />
-				</div>
-				<div class="form-group" bs-validate-class="ctlAssessment.assessmentForm.assessment_start_time">
-					<label class="control-label" for="assessment_start_time">Start time*</label>
-					<input tabindex="2" id="assessment_start_time" name="assessment_start_time" class="form-control" type="text" ng-model="ctlAssessment.startTime" ng-change="ctlAssessment.onTimeChange()" mask-input="hh:mm" placeholder="hh:mm" required />
-				</div>
-				<div class="form-group">
-					<label class="control-label">Assessor:</label> {{ ctlAssessment.assessment.creator.email }}
-				</div>
-				<div class="checkbox">
-					<label class="control-label" ng-if="!ctlAssessment.isNew">
-						<input tabindex="3" id="assessment_progress" name="assessment_progress" type="checkbox" ng-model="ctlAssessment.assessment.progress" ng-true-value="{{ ctlAssessment.DomainConst.progress.completed | json }}" ng-false-value="{{ ctlAssessment.DomainConst.progress.tentative | json }}" /> Completed
-					</label>
-				</div>
-			</div>
-
-			<div class="col-xs-12 col-sm-6">
-				<div class="form-group">
-					<label class="control-label" for="assessment_platelets">Platelets (G/l)</label>
-					<input tabindex="4" id="assessment_platelets" name="assessment_platelets" class="form-control" type="text" ng-model="ctlAssessment.assessment.platelets" />
-				</div>
-				<div class="form-group">
-					<label class="control-label" for="assessment_remarks">Remarks</label>
-					<textarea tabindex="5" id="assessment_remarks" name="assessment_remarks" class="form-control" cols="30" rows="6" ng-model="ctlAssessment.assessment.remarks"></textarea>
-				</div>
-
-				<div ng-if="!ctlAssessment.isNew" class="form-group">
-					<button tabindex="6" class="btn btn-default" type="button" ng-disabled="ctlAssessment.assessmentForm.$invalid" ng-click="ctlAssessment.save()">Save</button>
-				</div>
-			</div>
-
-		</div>
-
-	</form>
-
-	<alert ng-show="ctlAssessment.successMessage" class="animate-show" type="success"><div ng-bind-html="ctlAssessment.successMessage"></div></alert>
-
-	<pre ng-if="env.debug" class="debug-output">{{ ctlAssessment.assessment | json }}</pre>
-
-</panel>
-
-<panel ng-if="!ctlAssessment.isNew" heading="Results">
+<panel heading="Results">
 	<div class="row">
 
 		<div class="col-xs-12 col-sm-6">
-			<h4>{{ ctlAssessment.assessment.questionnaire | toQName }}</h4>
-			<h5>Score: {{ ctlAssessment.assessment.result | score }}</h5>
+			<h4>{{ ctlAssessment.context.assessment.questionnaire | toQName }}</h4>
+			<h5>Score: {{ ctlAssessment.context.assessment | score }}</h5>
 		</div>
 
 		<div class="col-xs-12 col-sm-6" ng-include="ctlAssessment.secondaryScoreTemplate"></div>
 
 		<div class="col-xs-12" ng-if="env.debug">
-			<pre class="debug-output">{{ ctlAssessment.assessment.result | json }}</pre>
+			<pre class="debug-output">{{ ctlAssessment.context.assessment.result | json }}</pre>
 		</div>
 
 	</div>
 </panel>
 
-<panel ng-if="!ctlAssessment.isNew" heading="Quick links">
-	<div class="row bleed-quick-links">
-		<div class="col-xs-12">
-			<a ng-repeat="link in ctlAssessment.assessment.definition.quickLinks" ng-href="#/assessment/{{ ctlAssessment.patient.id }}/{{ ctlAssessment.assessment.id }}/{{ link.screen }}?q={{ link.question }}" class="btn btn-default bleed-quick-link">{{ link.label }}</a>
-		</div>
-	</div>
+<quick-links assessment-context="ctlAssessment.context" include-edit="true"></quick-links>
+
+<panel ng-if="claims.permission('canDeleteResource', ctlAssessment.context.assessment)" heading="Admin">
+
 	<div class="row">
 		<div class="col-xs-12">
-			<a class="btn btn-default pull-right" ng-href="#/assessment/{{ ctlAssessment.patient.id }}/{{ ctlAssessment.assessment.id }}/start">Edit assessment</a>
+			<button class="btn btn-default pull-right" data-toggle="modal" data-target="#modal_delete_confirm">Delete Assessment Data</button>
 		</div>
 	</div>
+
 </panel>
 
-<panel ng-if="ctlAssessment.isNew" heading="Start new assessment">
-	<div class="row">
-
-		<div class="col-xs-12 col-sm-6">
-			<h4>Bleeding</h4>
-			<a href="" ng-if="env.debug" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('demo')">DEMO</a>
-			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('who')">WHO</a>
-			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('bsms')">BSMS</a>
+<div class="modal fade" id="modal_delete_confirm" tabindex="-1" role="dialog" aria-labelledby="modal_delete_confirm_label" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="modal_delete_confirm_label">Delete Assessment Data</h4>
+			</div>
+			<div class="modal-body">
+				<p>Assessment answers and result will be deleted permanently. Click "Delete" to continue.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" bs-modal-action="ctlAssessment.delete()">Delete</button>
+			</div>
 		</div>
-
-		<div class="col-xs-12 col-sm-6">
-			<h4>GVHD</h4>
-			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('gvhd-features')">Features</a>
-			<hr>
-			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('gvhd-new-diagnosis')">New diagnosis</a>
-			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('gvhd-late-onset-acute')">Late-onset aGVHD classification</a>
-			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('gvhd-organ-scoring')">Organ scoring</a>
-			<hr>
-			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('gvhd-activity-assessment')">Activity assessment</a>
-			<a href="" class="btn btn-block btn-default" ng-click="ctlAssessment.createAndStart('gvhd-self-report')">Patient self report</a>
-		</div>
-
 	</div>
-</panel>
+</div>

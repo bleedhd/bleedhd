@@ -1,9 +1,9 @@
 <div class="bleed-sub-answer">
-	<h6 ng-bind-html="supplementCtl.definition.question.title | questionProcessor"></h6>
+	<h6 question-markup="supplementCtl.definition.question.title"></h6>
 	<div class="checkbox" ng-repeat="option in supplementCtl.getOptions()">
 		<label>
 			<input type="checkbox" ng-disabled="!active" ng-model="option.binding.value" ng-change="supplementCtl.onChange(option)" ng-true-value="{{ option.value | json }}" ng-false-value="null">
-			<span ng-bind-html="option.label | questionProcessor"></span>
+			<span question-markup="option.label"></span>
 		</label>
 	</div>
 </div>

@@ -1,0 +1,56 @@
+<panel heading="Start new GVHD assessment">
+
+	<div class="row">
+
+		<div class="col-xs-12">
+
+			<h3>GVHD - Initial diagnosis and classification:</h3>
+			<p>To be completed when patients are assessed for acute or chronic GVHD and have either no signs and symptoms of acute or chronic GVHD or if new signs and symptoms of acute or chronic GVHD are present.</p>
+
+		</div>
+		<div class="col-xs-12 col-sm-6">
+
+				<a href="" ng-if="ctlAssessment.supportsType('gvhd-features')" ng-click="ctlAssessment.createAndStart('gvhd-features')" class="btn btn-default bleed-btn-spacing">Features</a>
+				<p>Provides general information if signs or symptoms of acute and/or chronic GVHD are present or absent.</p>
+
+				<a href="" ng-if="ctlAssessment.supportsType('gvhd-new-diagnosis')" ng-click="ctlAssessment.createAndStart('gvhd-new-diagnosis')" class="btn btn-default bleed-btn-spacing">New diagnosis</a>
+				<p>Has to be completed when GVHD is suspected (first time manifestation of acute or chronic GVHD or new manifestations suggestive for cGVHD in patient who suffered from aGVHD only yet) to perform a complete assessment and confirm diagnosis of GVHD.</p>
+
+		</div>
+		<div class="col-xs-12">
+
+			<h3>GVHD-Scoring at diagnosis</h3>
+			<p>Complete this section after diagnosis of GVHD is confirmed for organ and overall scoring.</p>
+
+		</div>
+		<div class="col-xs-12 col-sm-6">
+
+				<a href="" ng-if="ctlAssessment.supportsType('gvhd-late-onset-acute')" ng-click="ctlAssessment.createAndStart('gvhd-late-onset-acute')" class="btn btn-default bleed-btn-spacing">Late-onset aGVHD classification</a>
+				<p>Further characterization of diagnosis “late-onset acute GVHD”: persistent or recurrent.</p>
+				<a href="" ng-if="ctlAssessment.supportsType('gvhd-organ-scoring')" ng-click="ctlAssessment.createAndStart('gvhd-organ-scoring')" class="btn btn-default bleed-btn-spacing">Organ scoring</a>
+				<p>Provides more detailed information about GVHD manifestation in organs involved.</p>
+
+		</div>
+		<div class="col-xs-12">
+
+			<h3>GVHD response assessment</h3>
+			<p>Use this section for follow-up assessments of signs and symptoms of acute or chronic GVHD after diagnosis and staging (GVHD-Scoring at diagnosis) have been completed.</p>
+			<p>Measurements should be made at regular intervals, for example every three months, and whenever a new systemic immunosuppressive treatment is started or the patient stops a treatment.</p>
+
+		</div>
+		<div class="col-xs-12 col-sm-6">
+
+				<a href="" ng-if="ctlAssessment.supportsType('agvhd-follow-up')" ng-click="ctlAssessment.createAndStart('agvhd-follow-up')" class="btn btn-default bleed-btn-spacing">aGVHD follow-up</a>
+				<p>Follow-up of acute GVHD by assessor if no chronic GVHD is present</p>
+
+				<a href="" ng-if="ctlAssessment.supportsType('gvhd-activity-assessment')" ng-click="ctlAssessment.createAndStart('gvhd-activity-assessment')" class="btn btn-default bleed-btn-spacing">Activity assessment</a>
+				<p>Follow-up of chronic GVHD by assessor</p>
+
+				<a href="" ng-if="ctlAssessment.supportsType('gvhd-self-report')" ng-click="ctlAssessment.createAndStart('gvhd-self-report')" class="btn btn-default bleed-btn-spacing">Patient self report</a>
+				<p>Follow-up of chronic GVHD by patient</p>
+
+		</div>
+
+	</div>
+
+</panel>

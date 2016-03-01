@@ -1,57 +1,35 @@
 # Prerequisites
 
 All of this documentation is fairly useless without some advanced understanding of the primary technologies involved:
-* Symfony2 / Composer
+* Symfony2 / [Composer](https://getcomposer.org/)
 * AngularJS (v1.3.5)
 * REST
-* Node.js / NPM
+* [Node.js / NPM](https://github.com/creationix/nvm)
 
 It assumes familiarity with all of these topics and uses their terminology where appropriate.
 
-# Dev Notes
-
-## Bootstrapping the Project
-
-### Prerequisites
-
 #### Composer
-Obviously, you need Composer and it needs to be in your PATH.
+Obviously, you need [Composer](https://getcomposer.org/) and it needs to be in your PATH.
 
 The `proc_open` function has to be available for the PHP command line INI. Depending on the environment (development, 3rd party hosting, etc.) this might need some tweaking. For linux systems, check the `/etc/php5/cli/php.ini` and comment out the line that defines the `disable_functions`.
 
 #### Node.js
-The Node.js and NPM executables (`node` and `npm`) need to be in your PATH in order for the custom _post-install-cmd_ in the _composer.json_ file to work.
+The Node.js and NPM executables (`node` and `npm`) need to be in your PATH in order for the custom _post-install-cmd_ in the _composer.json_ file to work. I recommend using [NVM](https://github.com/creationix/nvm) to manage/install Node.js.
 
-### Get the Code
-```bash
-git clone _path-to-this-repo_ [local-folder-name]
-cd _local-folder-name_/Symfony
-composer[.phar] install
-```
+# Development Instructions
 
-In the end, this will ask you for some parameters to set up the environment. You can stick to the defaults unless you have a particular database setup in which case, you should of course enter the correct values for the DB connection. Note that the values for `oauth_client_id` and `oauth_client_secret` are not yet known since you will have to generate the client in a later step.
+## Bootstrapping the Project
 
-### Get the Database Up
-```bash
-php app/console doctrine:schema:create
-```
-
-### Create an OAuth Client
-The OAuth client is needed
-```bash
-php app/console getu:oauth-server:create-client BleedHD --grant-type="password" --grant-type="refresh_token"
-```
-
-This will give you the ID and secret of the newly generated BleedHD client. Now open up the `p
+See the readme file in the repository root.
 
 ### Create User Accounts
 Create a user for yourself and a dedicated editor(-only) role
 ```bash
 # interactive with super admin role
-php app/console fos:user:create --super-admin
+bin/console fos:user:create --super-admin
 # non-interactive with explicit role
-php app/console fos:user:create editor editor@example.com editor
-php app/console fos:user:promote editor ROLE_EDITOR
+bin/console fos:user:create editor editor@example.com editor
+bin/console fos:user:promote editor ROLE_EDITOR
 ```
 
 
@@ -59,7 +37,7 @@ php app/console fos:user:promote editor ROLE_EDITOR
 
 Clearing the cache
 ```bash
-php app/console cache:clear [--env=prod]
+bin/console cache:clear [--env=prod]
 ```
 Remember to add the `--env=prod` when doing things on the production system, otherwise you will only delete the development cache which has no effect.
 
@@ -79,14 +57,19 @@ Assessment
 
 To update the entity PHP classes from the YAML mappings, do
 ```bash
-php app/console doctrine:generate:entities GetunikBleedHdAssessmentDataBundle
+bin/console doctrine:generate:entities --no-backup GetunikBleedHdAssessmentDataBundle
+```
+
+Create a migration script
+```bash
+bin/console doctrine:migrations:diff
 ```
 
 To execute pending migration and check the current migration status, do
 ```bash
-php app/console doctrine:migrations:migrate
+bin/console doctrine:migrations:migrate
 # check the status after successful migration
-php app/console doctrine:migrations:status
+bin/console doctrine:migrations:status
 ```
 
 

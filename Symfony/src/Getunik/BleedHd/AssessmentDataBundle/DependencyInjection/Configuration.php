@@ -27,8 +27,33 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('version')->end()
                 ->scalarNode('version_allow_git')->end()
+                ->arrayNode('settings')
+                    ->children()
+                        ->append($this->getAllowedAssessmentTypesNode())
+                    ->end()
+                ->end()
             ->end();
 
         return $treeBuilder;
+    }
+
+    public function getAllowedAssessmentTypesNode()
+    {
+        $builder = new TreeBuilder();
+        $node = $builder->root('allowed_assessment_types');
+
+        $node
+            ->isRequired()
+            ->children()
+                ->arrayNode('gvhd')
+                    ->prototype('scalar')->end()
+                ->end()
+                ->arrayNode('bleeding')
+                    ->prototype('scalar')->end()
+                ->end()
+            ->end()
+        ;
+
+        return $node;
     }
 }

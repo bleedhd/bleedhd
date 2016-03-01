@@ -14,32 +14,12 @@
 
 	angular.extend(AssessmentDataService.prototype, {
 		getAssessment: function (patientId, assessmentId) {
-			return this.BleedApi.one('patients', patientId).all('assessments').get(assessmentId);
-		},
-		getAssessmentFull: function (patientId, assessmentId) {
 			var that = this;
-			return that.getAssessment(patientId, assessmentId).then(function (assessment) {
-				return that.$q.all({
-						questionnaire: that.QuestionnaireData.get(assessment.questionnaire),
-						creator: that.UserData.getUser(assessment.created_by),
-					})
-					.then(function (promises) {
-						// add the definition and creator as a non-enumerable property to avoid recursion
-						// issues when saving and displaying the assessment object
-						if (!('definition' in assessment)) {
-							Object.defineProperty(assessment, 'definition', {
-								value: promises.questionnaire,
-							});
-						}
-
-						if (!('creator' in assessment)) {
-							Object.defineProperty(assessment, 'creator', {
-								value: promises.creator,
-							});
-						}
-
-						return assessment;
-					});
+			return that.BleedApi.one('patients', patientId).all('assessments').get(assessmentId).then(function (assessment) {
+				return that.UserData.getUser(assessment.created_by).then(function (user) {
+					assessment.creator = user;
+					return assessment;
+				});
 			});
 		},
 		newAssessment: function (patientId) {
@@ -60,6 +40,10 @@
 			} else {
 				return assessment.put();
 			}
+		},
+		deleteAssessment: function (assessment) {
+			this.DataEvents.trigger('assessment-delete', assessment);
+			return this.BleedApi.one('patients', assessment.patient_id).one('assessments', assessment.id).remove();
 		},
 		getResponses: function (patientId, assessmentId) {
 			return this.BleedApi.one('patients', patientId).one('assessments', assessmentId).all('responses').getList();

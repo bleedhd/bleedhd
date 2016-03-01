@@ -718,23 +718,21 @@ chapters:
                   organ: true
                 intro:
                   question: "Genital Tract symptoms score"
-                info:
-                  resource: "documents/gvhd-organscoring-genitaltract-info.pdf"
+                  description: "To be completed by <a target=\"_blank\" href=\"@res(documents/gvhd-organscoring-genitaltract-info.pdf)\">specialist or trained medical providers</a>"
                 annotations:
-                  - "‡ To be completed by specialist or trained medical providers"
                   - "* Genital symptoms are not specific to cGVHD and can represent premature gonadal failure or genital tract infection."
                 options:
                   -
                     label: "No symptoms"
                     value: 0
                   -
-                    label: "Mild signs‡ and females may have symptoms* WITH discomfort on exam"
+                    label: "Mild signs and females may have symptoms* WITH discomfort on exam"
                     value: 1
                   -
-                    label: "Moderate signs‡ and may have symptoms* with discomfort on exam"
+                    label: "Moderate signs and may have symptoms* with discomfort on exam"
                     value: 2
                   -
-                    label: "Severe signs‡ with or without symptoms*"
+                    label: "Severe signs with or without symptoms*"
                     value: 3
               -
                 slug: sexually-active
@@ -956,10 +954,10 @@ chapters:
                       question: "Eosinophilia"
                     options:
                       yes:
-                        label: "&gt; 500/μl"
+                        label: "&gt; 0.5 G/l"
                         value: true
                       no:
-                        label: "≤ 500/μl"
+                        label: "≤ 0.5 G/l"
                         value: false
                   -
                     slug: platelets
@@ -968,10 +966,10 @@ chapters:
                       question: "Platelets"
                     options:
                       yes:
-                        label: "&lt; 100'000/μl"
+                        label: "&lt; 100 G/l"
                         value: true
                       no:
-                        label: "≥ 100'000/μl"
+                        label: "≥ 100 G/l"
                         value: false
                   -
                     slug: others
@@ -1067,4 +1065,4 @@ chapters:
                     slug: other
                     type: text
                     intro:
-                      question: "Other: enter drug and dose (mg)"
+                      question: "Other: enter drug and daily dose (mg)"
