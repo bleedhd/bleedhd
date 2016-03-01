@@ -14,7 +14,13 @@
 
 	angular.extend(AssessmentDataService.prototype, {
 		getAssessment: function (patientId, assessmentId) {
-			return this.BleedApi.one('patients', patientId).all('assessments').get(assessmentId);
+			var that = this;
+			return that.BleedApi.one('patients', patientId).all('assessments').get(assessmentId).then(function (assessment) {
+				return that.UserData.getUser(assessment.created_by).then(function (user) {
+					assessment.creator = user;
+					return assessment;
+				});
+			});
 		},
 		newAssessment: function (patientId) {
 			var that = this;
