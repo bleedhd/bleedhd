@@ -47,6 +47,11 @@ This should give you a version for your Node.js installation (no error).
       3. `http_channel` here, you most likely want to enter `''` (empty string) if you don't have a properly configured HTTPS localhost
    2. At some point, the script will ask you to write down some generated OAuth tokens; do that. The text containing the tokens should look something like this: `Added a new client with public id XXX, secret YYY`
    3. Once the script is completed, open the file `Symfony/app/config/parameters.yml` and paste the OAuth tokens you copied in the previous step. The corresponding keys are `oauth_client_id: XXX` and `oauth_client_secret: YYY`
+   4. Flush all the caches
+   ```bash
+   bin/console cache:clear --env=dev
+   bin/console cache:clear --env=prod
+   ```
 
 4. Run a server
    You can either configure your webserver as you normally would, or if you want to keep it simple, just run
