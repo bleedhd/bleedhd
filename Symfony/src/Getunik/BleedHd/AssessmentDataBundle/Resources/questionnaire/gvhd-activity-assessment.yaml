@@ -193,7 +193,7 @@ chapters:
                     label: "A little better"
                     value: 1
                   -
-                    label: "About the Same"
+                    label: "About the same"
                     value: 0
                   -
                     label: "A little worse"
@@ -227,7 +227,7 @@ chapters:
                     label: "Mild erythema or moderate erythema (&lt; 25%)"
                     value: 1
                   -
-                    label: "Moderate (≥ 25%) or Severe erythema (&lt; 25%)"
+                    label: "Moderate (≥ 25%) or severe erythema (&lt; 25%)"
                     value: 2
                   -
                     label: "Severe erythema (≥ 25%)"
@@ -758,7 +758,7 @@ chapters:
                     label: "Mild tightness of arms or legs, normal or mild decreased range of motion (ROM) AND not affecting ADL"
                     value: 1
                   -
-                    label: "Tightness of arms or legs OR joing contractures, erythema thought due to fasciitis, moderate decrease ROM AND mild to moderate limitation of ADL"
+                    label: "Tightness of arms or legs OR joint contractures, erythema thought due to fasciitis, moderate decrease ROM AND mild to moderate limitation of ADL"
                     value: 2
                   -
                     label: "Contractures WITH significant decrease of ROM AND significant limitation of ADL (unable to tie shoes, button shirts, dress self etc.)"
