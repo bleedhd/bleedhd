@@ -957,10 +957,10 @@ chapters:
                       question: "Eosinophilia"
                     options:
                       yes:
-                        label: "&gt; 0.5 G/l"
+                        label: "&gt; 0.5 G/L"
                         value: true
                       no:
-                        label: "≤ 0.5 G/l"
+                        label: "≤ 0.5 G/L"
                         value: false
                   -
                     slug: platelets
@@ -969,10 +969,10 @@ chapters:
                       question: "Platelets"
                     options:
                       yes:
-                        label: "&lt; 100 G/l"
+                        label: "&lt; 100 G/L"
                         value: true
                       no:
-                        label: "≥ 100 G/l"
+                        label: "≥ 100 G/L"
                         value: false
                   -
                     slug: others

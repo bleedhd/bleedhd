@@ -404,14 +404,14 @@ chapters:
                     type: radios
                     question:
                       title: "Unit"
-                    default: "mg/dl"
+                    default: "mg/dL"
                     options:
                       -
-                        label: "mg/dl"
-                        value: "mg/dl"
+                        label: "mg/dL"
+                        value: "mg/dL"
                       -
-                        label: "µmol/l"
-                        value: "µmol/l"
+                        label: "µmol/L"
+                        value: "µmol/L"
               -
                 slug: bilirubin-uln
                 type: text
@@ -426,14 +426,14 @@ chapters:
                     type: radios
                     question:
                       title: "Unit"
-                    default: "mg/dl"
+                    default: "mg/dL"
                     options:
                       -
-                        label: "mg/dl"
-                        value: "mg/dl"
+                        label: "mg/dL"
+                        value: "mg/dL"
                       -
-                        label: "µmol/l"
-                        value: "µmol/l"
+                        label: "µmol/L"
+                        value: "µmol/L"
               -
                 slug: alt
                 type: text
@@ -441,7 +441,7 @@ chapters:
                 pattern: decimal
                 title: "Liver Values"
                 intro:
-                  question: "ALT (U/l)"
+                  question: "ALT (U/L)"
               -
                 slug: alt-uln
                 type: text
@@ -449,7 +449,7 @@ chapters:
                 pattern: decimal
                 title: "Liver Values"
                 intro:
-                  question: "Upper limit of normal ALT (U/l)"
+                  question: "Upper limit of normal ALT (U/L)"
               -
                 slug: phosphatase
                 type: text
@@ -457,7 +457,7 @@ chapters:
                 pattern: decimal
                 title: "Liver Values"
                 intro:
-                  question: "Alkaline phosphatase (U/l)"
+                  question: "Alkaline phosphatase (U/L)"
               -
                 slug: phosphatase-uln
                 type: text
@@ -465,7 +465,7 @@ chapters:
                 pattern: decimal
                 title: "Liver Values"
                 intro:
-                  question: "Upper limit of normal alkaline phosphatase (U/l)"
+                  question: "Upper limit of normal alkaline phosphatase (U/L)"
               -
                 slug: non-gvhd
                 type: yesno
@@ -520,7 +520,7 @@ chapters:
                 pattern: integer
                 title: "Baseline Values"
                 intro:
-                  question: "Platelet Count (G/l)"
+                  question: "Platelet Count (G/L)"
               -
                 slug: wbc
                 type: text
@@ -528,7 +528,7 @@ chapters:
                 pattern: decimalLimitOne
                 title: "Baseline Values"
                 intro:
-                  question: "Total WBC (G/l)"
+                  question: "Total WBC (G/L)"
               -
                 slug: eosinophilis
                 type: text
@@ -536,7 +536,7 @@ chapters:
                 pattern: decimalLimitOne
                 title: "Baseline Values"
                 intro:
-                  question: "Eosinophilis (G/l)"
+                  question: "Eosinophilis (G/L)"
   -
     slug: organ-score
     sections:
