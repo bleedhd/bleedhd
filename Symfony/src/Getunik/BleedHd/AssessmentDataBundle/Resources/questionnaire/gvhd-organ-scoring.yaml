@@ -157,13 +157,13 @@ chapters:
                   question:
                 options:
                   -
-                    label: "Asymptomatic and fully active (ECOG 0; KPS or LPS 100%)"
+                    label: "Asymptomatic and fully active (ECOG 0, KPS or LPS 100%)"
                     value: 0
                   -
                     label: "Symptomatic, fully ambulatory, restricted only in physically strenuous activity (ECOG 1, KPS or LPS 80 - 90%)"
                     value: 1
                   -
-                    label: "Symptomatic, ambulatory, capable of self-care, &gt; 50% of waking hours out of bed (ECOG 2,KPS or LPS 60 - 70%)"
+                    label: "Symptomatic, ambulatory, capable of self-care, &gt; 50% of waking hours out of bed (ECOG 2, KPS or LPS 60 - 70%)"
                     value: 2
                   -
                     label: "Symptomatic, limited self-care, &gt; 50% of waking hours in bed (ECOG 3 - 4, KPS or LPS &lt; 60%)"
@@ -301,7 +301,7 @@ chapters:
                   organ: true
                   nongvhd: true
                 intro:
-                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
+                  question: "Abnormality present but explained entirely by non-GVHD documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: mouth
@@ -346,7 +346,7 @@ chapters:
                   organ: true
                   nongvhd: true
                 intro:
-                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
+                  question: "Abnormality present but explained entirely by non-GVHD documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: eyes
@@ -391,7 +391,7 @@ chapters:
                   organ: true
                   nongvhd: true
                 intro:
-                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
+                  question: "Abnormality present but explained entirely by non-GVHD documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: gi-tract
@@ -419,7 +419,7 @@ chapters:
                     label: "Symptoms associated with mild to moderate weight loss* (5 - 15%) OR moderate diarrhea without significant interference with daily living"
                     value: 2
                   -
-                    label: "Symptoms associated with significant weight loss* &gt; 15%, requires nutritional supplement for most calorie needs OR esophageal dilation OR severe diarrhea with significant interference with daily living"
+                    label: "Symptoms associated with significant weight loss* &gt; 15%, requires nutritional supplement for most calorie needs OR esophageal dilatation OR severe diarrhea with significant interference with daily living"
                     value: 3
               -
                 slug: features
@@ -465,7 +465,7 @@ chapters:
                   organ: true
                   nongvhd: true
                 intro:
-                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
+                  question: "Abnormality present but explained entirely by non-GVHD documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: liver
@@ -488,10 +488,10 @@ chapters:
                     label: "Normal total bilirubin with ALT ≥ 3 to 5 x ULN or AP ≥ 3 x ULN"
                     value: 1
                   -
-                    label: "Elevated total bilirubin but ≤ 3 mg/dL or ALT &gt; 5 ULN"
+                    label: "Elevated total bilirubin but ≤ 3 mg/dL (51 µmol/L) or ALT &gt; 5 ULN"
                     value: 2
                   -
-                    label: "Elevated total bilirubin &gt; 3 mg/dL"
+                    label: "Elevated total bilirubin &gt; 3 mg/dL (51 µmol/L)"
                     value: 3
               -
                 slug: non-gvhd
@@ -503,7 +503,7 @@ chapters:
                   organ: true
                   nongvhd: true
                 intro:
-                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
+                  question: "Abnormality present but explained entirely by non-GVHD documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: lungs
@@ -569,7 +569,7 @@ chapters:
                   organ: true
                   nongvhd: true
                 intro:
-                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
+                  question: "Abnormality present but explained entirely by non-GVHD documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: p-rom
@@ -691,7 +691,7 @@ chapters:
                     label: "Mild tightness of arms or legs, normal or mild decreased range of motion (ROM) AND not affecting ADL"
                     value: 1
                   -
-                    label: "Tightness of arms or legs OR joing contractures, erythema thought due to fasciitis, moderate decrease ROM AND mild to moderate limitation of ADL"
+                    label: "Tightness of arms or legs OR joint contractures, erythema thought due to fasciitis, moderate decrease ROM AND mild to moderate limitation of ADL"
                     value: 2
                   -
                     label: "Contractures WITH significant decrease of ROM AND significant limitation of ADL (unable to tie shoes, button shirts, dress self etc.)"
@@ -706,7 +706,7 @@ chapters:
                   organ: true
                   nongvhd: true
                 intro:
-                  question: "Abnormality present but explained entirely by non-gvhd documented cause"
+                  question: "Abnormality present but explained entirely by non-GVHD documented cause"
                 options: *non-gvhd-cause-options
           -
             slug: genital-tract
@@ -799,7 +799,7 @@ chapters:
                       organ: true
                       nongvhd: true
                     intro:
-                      question: "Abnormality present but explained entirely by non-gvhd documented cause"
+                      question: "Abnormality present but explained entirely by non-GVHD documented cause"
                     options: *non-gvhd-cause-options
                   -
                     slug: gvhd-plus
