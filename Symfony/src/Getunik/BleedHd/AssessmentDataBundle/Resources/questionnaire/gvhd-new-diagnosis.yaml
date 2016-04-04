@@ -102,7 +102,7 @@ chapters:
                     label: "Rash 25% - 50% body surface"
                     value: 2
                   -
-                    label: "Generalized erythrodema"
+                    label: "Generalized erythroderma"
                     value: 3
                   -
                     label: "Generalized erythroderma with bullae"
@@ -297,10 +297,10 @@ chapters:
                 title: "Chronic GVHD - Skin"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Common features***"
+                  question: "Common features*"
                   description: "Seen with both acute and chronic GVHD"
                 annotations:
-                  - "*** Common refers to shared features by both acute and chronic GVHD."
+                  - "* Common refers to shared features by both acute and chronic GVHD."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -336,7 +336,7 @@ chapters:
                   label: "No symptoms"
                 options:
                   -
-                    label: "Dystrophy consting of longitudinal ridging, splitting or brittle features"
+                    label: "Dystrophy"
                     value: dystrophy
                     supplements:
                       - *confirmation-supplement
@@ -383,7 +383,7 @@ chapters:
                   label: "No symptoms"
                 options:
                   -
-                    label: "New onset of scarring or nonscarring scalp alopecia, (after recovery from chemoradiotherapy)"
+                    label: "New onset of scarring or nonscarring scalp alopecia (after recovery from chemoradiotherapy)"
                     value: new-onset-scarring
                     supplements:
                       - *confirmation-supplement
@@ -483,10 +483,10 @@ chapters:
                 title: "Chronic GVHD - Mouth"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Common features***"
+                  question: "Common features*"
                   description: "Seen with both acute and chronic GVHD"
                 annotations:
-                  - "*** Common refers to shared features by both acute and chronic GVHD."
+                  - "* Common refers to shared features by both acute and chronic GVHD."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -607,7 +607,7 @@ chapters:
                   question: "Distinctive features (Males and Females)"
                   description: >
                     Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD (see <a target="_blank" href="@res(documents/Chronic-GVHD-Distinctive-Features.pdf)">distinctive features confirmation</a>).<br /><br />
-                    Requirement for confirmation: evaluation by gynecologist + biopsy documenting histological features of chronic GVHD (at least "likely" cGVHD)
+                    Requirement for confirmation: evaluation by gynecologist and biopsy documenting histological features of chronic GVHD (at least "likely" cGVHD)
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -672,10 +672,10 @@ chapters:
                 title: "Chronic GVHD - GI Tract"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Common features***"
+                  question: "Common features*"
                   description: "Seen with both acute and chronic GVHD"
                 annotations:
-                  - "*** Common refers to shared features by both acute and chronic GVHD."
+                  - "* Common refers to shared features by both acute and chronic GVHD."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -710,10 +710,10 @@ chapters:
                 title: "Chronic GVHD - Liver"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Common features***"
+                  question: "Common features*"
                   description: "Seen with both acute and chronic GVHD"
                 annotations:
-                  - "*** Common refers to shared features by both acute and chronic GVHD."
+                  - "* Common refers to shared features by both acute and chronic GVHD."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -915,7 +915,7 @@ chapters:
                     label: "Lymphopenia"
                     value: lymphopenia
                   -
-                    label: "Hypo- or hyper- gammaglobulinemia"
+                    label: "Hypo- or hypergammaglobulinemia"
                     value: hypo-hyper-gammaglobulinemia
                   -
                     label: "Autoantibodies (AIHA, ITP)"
