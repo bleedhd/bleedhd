@@ -525,7 +525,7 @@ chapters:
                 slug: wbc
                 type: text
                 meta_answers: ['nya', 'nass']
-                pattern: integer
+                pattern: decimalLimitOne
                 title: "Baseline Values"
                 intro:
                   question: "Total WBC (G/l)"
@@ -533,7 +533,7 @@ chapters:
                 slug: eosinophilis
                 type: text
                 meta_answers: ['nya', 'nass']
-                pattern: integer
+                pattern: decimalLimitOne
                 title: "Baseline Values"
                 intro:
                   question: "Eosinophilis (G/l)"
