@@ -101,10 +101,12 @@ fos_user:
     user_class: Getunik\BleedHd\SecurityBundle\Entity\User
     registration:
         form:
-            type: getunik_bleed_hd_user_registration
+            type: Getunik\BleedHd\SecurityBundle\Form\Type\RegistrationFormType
+            name: getunik_bleed_hd_user_registration
     profile:
         form:
-            type: getunik_bleed_hd_user_profile
+            type: Getunik\BleedHd\SecurityBundle\Form\Type\ProfileFormType
+            name: getunik_bleed_hd_user_profile
 
 fos_oauth_server:
     db_driver: orm       # Driver availables: orm, mongodb, or propel

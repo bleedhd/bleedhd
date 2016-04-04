@@ -6,8 +6,9 @@ security:
         FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
-        ROLE_EDITOR: ROLE_READER
-        ROLE_ADMIN: ROLE_EDITOR
+        ROLE_ASSESSOR: ROLE_READER
+        ROLE_SUPERVISOR: ROLE_ASSESSOR
+        ROLE_ADMIN: ROLE_ASSESSOR
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     providers:

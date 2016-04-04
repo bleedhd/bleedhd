@@ -3,7 +3,8 @@
 ## Roles
 All roles are organized in a simple hierarchy where each higher layer includes all the layers below it:
 * `ROLE_READER`
-* `ROLE_EDITOR`
+* `ROLE_ASSESSOR`
+* `ROLE_SUPERVISOR`
 * `ROLE_ADMIN`
 * `ROLE_SUPER_ADMIN`
 
@@ -14,11 +15,13 @@ From the naming it should be fairly obvious what the roles are supposed to be al
 
 `ROLE_READER`: can only read data through the API and not add, modify or delete data - the one notable exception is dumping of client log entries which only requires read permission.
 
-`ROLE_EDITOR`: can basically do all the relevant things like create and edit patients, assessments, etc. - but editors cannot _delete_ anything.
+`ROLE_ASSESSOR`: can basically do all the relevant things like create and edit patients, assessments, etc. - but assessors cannot _delete_ anything.
 
-`ROLE_ADMIN`: admins can delete database entities where this is conceptually allowed.
+`ROLE_SUPERVISOR`: can delete their own database entities where this is allowed. "their own" here means entities they created themselves.
 
-`ROLE_SUPER_ADMIN`: super admins can always do everything!
+`ROLE_ADMIN`: admins can delete all database entities where this is conceptually allowed.
+
+`ROLE_SUPER_ADMIN`: super admins can always do everything! (this is a Symfony built-in concept)
 
 ## HTTPS
 Generally, the entire BleedHD application requires **https**. For development purposes, it is possible to allow both http and https by modifying the `app/config/parameters.yml` file and setting the `http_channel` to the empty string. This should **NEVER** be done on any non-development system **EVER**.
