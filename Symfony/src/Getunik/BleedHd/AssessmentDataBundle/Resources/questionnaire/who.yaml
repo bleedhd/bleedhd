@@ -737,7 +737,7 @@ chapters:
 
               -
                 slug: intervention-type
-                type: radios
+                type: checkboxes
                 title: "Intervention, invasive investigation, medication"
                 meta_answers: ['nya']
                 intro:
