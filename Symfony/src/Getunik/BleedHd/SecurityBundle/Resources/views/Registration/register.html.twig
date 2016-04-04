@@ -3,7 +3,7 @@
 {% trans_default_domain 'SecurityBundle' %}
 
 {% block fos_user_content %}
-<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+<form action="{{ path('fos_user_registration_register') }}" method="POST" class="fos_user_registration_register">
 	<div class="form-group">
 		<div class="controls">
 			{{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'form.email'|trans }}) }}
