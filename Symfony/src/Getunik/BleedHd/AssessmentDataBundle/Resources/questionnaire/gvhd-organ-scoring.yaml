@@ -3,6 +3,9 @@ title: GVHD - organ scoring
 version: "1.0.0"
 quick_links:
   -
+    label: "Performance"
+    screen: performance
+  -
     label: "Skin"
     screen: skin
   -
