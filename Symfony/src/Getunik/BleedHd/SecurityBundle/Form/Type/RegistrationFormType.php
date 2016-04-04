@@ -16,7 +16,9 @@ class RegistrationFormType extends AbstractType
 			'options'  => array(
 				'choices'  => array(
 					'ROLE_READER' => 'Reader',
-					'ROLE_EDITOR' => 'Editor',
+					'ROLE_ASSESSOR' => 'Assessor',
+					'ROLE_SUPERVISOR' => 'Supervisor',
+					'ROLE_ADMIN' => 'Admin',
 				),
 			)
 		));
