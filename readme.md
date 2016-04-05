@@ -62,13 +62,23 @@ This should give you a version for your Node.js installation (no error).
 
 For more instructions about development see [Development Instructions](doc/notes/development.md).
 
-# Deployment
+# Deployment / Release
 The project uses a Git based deplyoment process and the _usual suspects_ for any Symfony based project.
 
 **Before you update**:
 * always make sure that you have a _very_ recent backup of the database.
-* make sure to bump the version number in `Symfony/app/config/config.yml` under `getunik_bleed_hd_assessment_data.version`
+* make sure you have the proper version number for the upcoming release (the version number in the sample commands below is "A.B.C" - semantic versioning!)
 
+**Prepare the release**:
+
+```bash
+git flow release start A.B.C
+scripts/version-bump.sh A.B.C
+git flow release finish A.B.C
+git push origin master develop v-A.B.C
+```
+
+**Deploy the release**
 To update the target system, you do all this from the `Symfony` directory of the project:
 ```bash
 git checkout v-A.B.C
