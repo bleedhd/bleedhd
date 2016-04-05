@@ -56,3 +56,22 @@ Full control over user management can currently only be achieved through the Sym
 7. Open `/user/resetting/request`
 8. Enter the new user's email address again (it **must** match the one you entered before)
 9. Submit the form - the new user will now receive an email where he/she can reset their password
+
+## Creating new Users with CLI
+1. `bin/console fos:user:create "username" "email" "password"`
+2. `bin/console fos:user:promote "username" ROLE_XXX`
+3. Send the link to `/user/resetting/request` to the new user where he/she can enter their email and receive a password reset link
+
+To simplify the process of batch user creation, there is the `scripts/user-management/create-users.sh` script. It takes its input from `STDIN` in the form of comma separated fields like this:
+
+```
+andreas.buser,andreas.buser@usb.ch,ROLE_ROLE_ADMIN
+joerg.halter,joerg.halter@usb.ch,ROLE_ADMIN
+andreas.holbro,andreas.holbro@usb.ch,ROLE_ADMIN
+```
+
+```
+scripts/user-management/create-users.sh < users.txt
+```
+
+The users will be generated with a password derived from the user name (see the script for details). In any case, the first thing the created users should do is reset their password with the `/user/resetting/request`.
