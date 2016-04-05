@@ -73,8 +73,5 @@ To update the target system, you do all this from the `Symfony` directory of the
 ```bash
 git checkout v-A.B.C
 git submodule update --init --recursive
-php app/console cache:clear --env=dev
-php app/console cache:clear --env=prod
-php app/console assetic:dump --env=prod
-php app/console doctrine:migrations:migrate
+scripts/update.sh
 ```
