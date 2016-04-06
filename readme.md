@@ -47,6 +47,11 @@ This should give you a version for your Node.js installation (no error).
       3. `http_channel` here, you most likely want to enter `''` (empty string) if you don't have a properly configured HTTPS localhost
    2. At some point, the script will ask you to write down some generated OAuth tokens; do that. The text containing the tokens should look something like this: `Added a new client with public id XXX, secret YYY`
    3. Once the script is completed, open the file `Symfony/app/config/parameters.yml` and paste the OAuth tokens you copied in the previous step. The corresponding keys are `oauth_client_id: XXX` and `oauth_client_secret: YYY`
+   4. Flush all the caches
+   ```bash
+   bin/console cache:clear --env=dev
+   bin/console cache:clear --env=prod
+   ```
 
 4. Run a server
    You can either configure your webserver as you normally would, or if you want to keep it simple, just run
@@ -57,19 +62,26 @@ This should give you a version for your Node.js installation (no error).
 
 For more instructions about development see [Development Instructions](doc/notes/development.md).
 
-# Deployment
+# Deployment / Release
 The project uses a Git based deplyoment process and the _usual suspects_ for any Symfony based project.
 
 **Before you update**:
 * always make sure that you have a _very_ recent backup of the database.
-* make sure to bump the version number in `Symfony/app/config/config.yml` under `getunik_bleed_hd_assessment_data.version`
+* make sure you have the proper version number for the upcoming release (the version number in the sample commands below is "A.B.C" - semantic versioning!)
 
+**Prepare the release**:
+
+```bash
+git flow release start A.B.C
+scripts/version-bump.sh A.B.C
+git flow release finish A.B.C
+git push origin master develop v-A.B.C
+```
+
+**Deploy the release**
 To update the target system, you do all this from the `Symfony` directory of the project:
 ```bash
 git checkout v-A.B.C
 git submodule update --init --recursive
-php app/console cache:clear --env=dev
-php app/console cache:clear --env=prod
-php app/console assetic:dump --env=prod
-php app/console doctrine:migrations:migrate
+scripts/update.sh
 ```

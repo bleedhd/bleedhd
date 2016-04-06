@@ -3,14 +3,15 @@
 
 	var roleHierarchy = {
 		'ROLE_SUPER_ADMIN': 100,
-		'ROLE_ADMIN': 30,
-		'ROLE_EDITOR': 20,
+		'ROLE_ADMIN': 40,
+		'ROLE_SUPERVISOR': 30,
+		'ROLE_ASSESSOR': 20,
 		'ROLE_READER': 10,
 	}
 
 	var claims = {
 		canDeleteResource: function (subject) {
-			return this.hasRole('ROLE_SUPER_ADMIN') || (this.hasRole('ROLE_ADMIN') && this.userId === subject.created_by);
+			return this.hasRole('ROLE_ADMIN') || (this.hasRole('ROLE_SUPERVISOR') && this.userId === subject.created_by);
 		},
 	};
 

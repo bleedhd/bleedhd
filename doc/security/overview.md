@@ -3,7 +3,8 @@
 ## Roles
 All roles are organized in a simple hierarchy where each higher layer includes all the layers below it:
 * `ROLE_READER`
-* `ROLE_EDITOR`
+* `ROLE_ASSESSOR`
+* `ROLE_SUPERVISOR`
 * `ROLE_ADMIN`
 * `ROLE_SUPER_ADMIN`
 
@@ -14,11 +15,13 @@ From the naming it should be fairly obvious what the roles are supposed to be al
 
 `ROLE_READER`: can only read data through the API and not add, modify or delete data - the one notable exception is dumping of client log entries which only requires read permission.
 
-`ROLE_EDITOR`: can basically do all the relevant things like create and edit patients, assessments, etc. - but editors cannot _delete_ anything.
+`ROLE_ASSESSOR`: can basically do all the relevant things like create and edit patients, assessments, etc. - but assessors cannot _delete_ anything.
 
-`ROLE_ADMIN`: admins can delete database entities where this is conceptually allowed.
+`ROLE_SUPERVISOR`: can delete their own database entities where this is allowed. "their own" here means entities they created themselves.
 
-`ROLE_SUPER_ADMIN`: super admins can always do everything!
+`ROLE_ADMIN`: admins can delete all database entities where this is conceptually allowed.
+
+`ROLE_SUPER_ADMIN`: super admins can always do everything! (this is a Symfony built-in concept)
 
 ## HTTPS
 Generally, the entire BleedHD application requires **https**. For development purposes, it is possible to allow both http and https by modifying the `app/config/parameters.yml` file and setting the `http_channel` to the empty string. This should **NEVER** be done on any non-development system **EVER**.
@@ -53,3 +56,22 @@ Full control over user management can currently only be achieved through the Sym
 7. Open `/user/resetting/request`
 8. Enter the new user's email address again (it **must** match the one you entered before)
 9. Submit the form - the new user will now receive an email where he/she can reset their password
+
+## Creating new Users with CLI
+1. `bin/console fos:user:create "username" "email" "password"`
+2. `bin/console fos:user:promote "username" ROLE_XXX`
+3. Send the link to `/user/resetting/request` to the new user where he/she can enter their email and receive a password reset link
+
+To simplify the process of batch user creation, there is the `scripts/user-management/create-users.sh` script. It takes its input from `STDIN` in the form of comma separated fields like this:
+
+```
+andreas.buser,andreas.buser@usb.ch,ROLE_ROLE_ADMIN
+joerg.halter,joerg.halter@usb.ch,ROLE_ADMIN
+andreas.holbro,andreas.holbro@usb.ch,ROLE_ADMIN
+```
+
+```
+scripts/user-management/create-users.sh < users.txt
+```
+
+The users will be generated with a password derived from the user name (see the script for details). In any case, the first thing the created users should do is reset their password with the `/user/resetting/request`.

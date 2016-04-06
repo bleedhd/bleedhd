@@ -51,7 +51,7 @@ class ResponsesController extends FOSRestController
     }
 
     /**
-     * @Security("has_role('ROLE_EDITOR')")
+     * @Security("has_role('ROLE_ASSESSOR')")
      * @Post("/patients/{patient}/assessments/{assessment}/responses", requirements={"response"=".*(?=\.json$|\.xml$)|.*"})
      * @ParamConverter("assessment", options={"id" = "assessment"})
      * @ParamConverter("response", converter="fos_rest.request_body")
@@ -66,7 +66,7 @@ class ResponsesController extends FOSRestController
     }
 
     /**
-     * @Security("has_role('ROLE_EDITOR')")
+     * @Security("has_role('ROLE_ASSESSOR')")
      * @Put("/patients/{patient}/assessments/{assessment}/responses/{response}", requirements={"response"=".*(?=\.json$|\.xml$)|.*"})
      * @ParamConverter("assessment", options={"id" = "assessment"})
      * @ParamConverter("response", options={"id": "response", "mapping": {"assessment":"assessmentId","response":"questionSlug"}})
@@ -91,7 +91,7 @@ class ResponsesController extends FOSRestController
     }
 
     /**
-     * @Security("has_role('ROLE_EDITOR')")
+     * @Security("has_role('ROLE_ASSESSOR')")
      * @Post("/patients/{patient}/assessments/{assessment}/responses/batch")
      * @ParamConverter("assessment", options={"id" = "assessment"})
      * @ParamConverter("responsesBody", converter="fos_rest.request_body", class="ArrayCollection<Getunik\BleedHd\AssessmentDataBundle\Entity\Response>")

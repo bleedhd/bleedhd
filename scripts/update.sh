@@ -7,6 +7,7 @@ ENV=${1:-prod}
 
 pushd "$SYMFONY"
 
+composer install
 $CONSOLE assets:install --symlink --env=$ENV
 $CONSOLE assetic:dump --env=$ENV
 $CONSOLE doctrine:migrations:migrate --env=$ENV

@@ -47,7 +47,7 @@ class AssessmentsController extends FOSRestController
     }
 
     /**
-     * @Security("has_role('ROLE_EDITOR')")
+     * @Security("has_role('ROLE_ASSESSOR')")
      * @Post("/patients/{patient}/assessments", requirements={"_format"="json|xml"})
      * @ParamConverter("patient", options={"id" = "patient"})
      * @ParamConverter("assessment", converter="fos_rest.request_body")
@@ -66,7 +66,7 @@ class AssessmentsController extends FOSRestController
     }
 
     /**
-     * @Security("has_role('ROLE_EDITOR')")
+     * @Security("has_role('ROLE_ASSESSOR')")
      * @ParamConverter("assessment", options={"id": "assessment", "mapping": {"patient":"patientId","assessment":"id"}})
      * @ParamConverter("assessmentBody", converter="fos_rest.request_body")
      */
@@ -79,7 +79,7 @@ class AssessmentsController extends FOSRestController
     }
 
     /**
-     * @Security("has_role('ROLE_SUPER_ADMIN') or (has_role('ROLE_ADMIN') and is_granted('isOwner', assessment))")
+     * @Security("has_role('ROLE_ADMIN') or (has_role('ROLE_SUPERVISOR') and is_granted('isOwner', assessment))")
      * @ParamConverter("assessment", options={"id" = "assessment"})
      */
     public function deleteAssessmentAction($patient, Assessment $assessment)

@@ -3,6 +3,12 @@ title: GVHD - new diagnosis
 version: "1.0.0"
 quick_links:
   -
+    label: "Acute GVHD"
+    screen: acute-clinical-staging
+  -
+    label: "Delay"
+    screen: delay-timing
+  -
     label: "Skin"
     screen: chronic-skin
   -
@@ -38,12 +44,6 @@ quick_links:
   -
     label: "Chronic GVHD Other"
     screen: chronic-other
-  -
-    label: "Acute GVHD"
-    screen: acute-clinical-staging
-  -
-    label: "Delay"
-    screen: delay-timing
 meta_answers:
   nya: Not yet answered
   nass: Not assessed
@@ -72,6 +72,135 @@ shared:
         label: "Negative"
         value: negative
 chapters:
+  # BEGIN acute
+  -
+    slug: acute
+    sections:
+      -
+        screens:
+          -
+            slug: clinical-staging
+            url_slug: acute-clinical-staging
+            questions:
+              -
+                slug: skin
+                type: radios
+                title: "Acute GVHD - Skin"
+                meta_answers: ['nya', 'nass']
+                score:
+                  acute: skin
+                intro:
+                  question:
+                options:
+                  -
+                    label: "No rash"
+                    value: 0
+                  -
+                    label: "Rash &lt; 25% body surface"
+                    value: 1
+                  -
+                    label: "Rash 25% - 50% body surface"
+                    value: 2
+                  -
+                    label: "Generalized erythroderma"
+                    value: 3
+                  -
+                    label: "Generalized erythroderma with bullae"
+                    value: 4
+              -
+                slug: liver
+                type: radios
+                title: "Acute GVHD - Liver"
+                meta_answers: ['nya', 'nass']
+                score:
+                  acute: liver
+                intro:
+                  question:
+                options:
+                  -
+                    label: "Bilirubin &lt; 34 µmol/L"
+                    value: 0
+                  -
+                    label: "Bilirubin 34 - 50 µmol/L"
+                    value: 1
+                  -
+                    label: "Bilirubin 51 - 102 µmol/L"
+                    value: 2
+                  -
+                    label: "Bilirubin 103 - 255 µmol/L"
+                    value: 3
+                  -
+                    label: "Bilirubin &gt; 255 µmol/L"
+                    value: 4
+              -
+                slug: gut
+                type: radios
+                title: "Acute GVHD - Gut"
+                meta_answers: ['nya', 'nass']
+                score:
+                  acute: gut
+                intro:
+                  question:
+                options:
+                  -
+                    label: "No Symptoms / Diarrhea &lt; 500 ml/d"
+                    value: 0
+                  -
+                    label: "Diarrhea 500 - 1000 ml/d"
+                    value: 1
+                  -
+                    label: "Diarrhea 1000 - 1500 ml/d"
+                    value: 2
+                  -
+                    label: "Diarrhea &gt; 1500 ml/d"
+                    value: 3
+                  -
+                    label: "Severe abdominal pain with or without ileus"
+                    value: 4
+              -
+                slug: performance
+                type: radios
+                title: "Acute GVHD - Clinical performance"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question:
+                options:
+                  -
+                    label: "no decrease in clinical performance"
+                    value: 0
+                  -
+                    label: "mild decrease in clinical performance"
+                    value: 1
+                  -
+                    label: "marked decrease in clinical performance"
+                    value: 2
+                  -
+                    label: "extreme decrease in clincial performance"
+                    value: 3
+          -
+            slug: timing
+            url_slug: delay-timing
+            questions:
+              -
+                slug: delay
+                type: radios
+                title: "Delay"
+                meta_answers: ['nya', 'nass']
+                intro:
+                  question: "Time since last allogeneic transplant / DLI?"
+                options:
+                  -
+                    label: "≤ 100 days"
+                    value: normal
+                    score:
+                      delay: normal
+                  -
+                    label: "&gt; 100 days"
+                    value: delayed
+                    score:
+                      delay: lateonset
+  # END acute
+  # BEGIN chronic
   -
     slug: chronic
     sections:
@@ -168,10 +297,10 @@ chapters:
                 title: "Chronic GVHD - Skin"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Common features***"
+                  question: "Common features*"
                   description: "Seen with both acute and chronic GVHD"
                 annotations:
-                  - "*** Common refers to shared features by both acute and chronic GVHD."
+                  - "* Common refers to shared features by both acute and chronic GVHD."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -207,7 +336,7 @@ chapters:
                   label: "No symptoms"
                 options:
                   -
-                    label: "Dystrophy consting of longitudinal ridging, splitting or brittle features"
+                    label: "Dystrophy"
                     value: dystrophy
                     supplements:
                       - *confirmation-supplement
@@ -254,7 +383,7 @@ chapters:
                   label: "No symptoms"
                 options:
                   -
-                    label: "New onset of scarring or nonscarring scalp alopecia, (after recovery from chemoradiotherapy)"
+                    label: "New onset of scarring or nonscarring scalp alopecia (after recovery from chemoradiotherapy)"
                     value: new-onset-scarring
                     supplements:
                       - *confirmation-supplement
@@ -354,10 +483,10 @@ chapters:
                 title: "Chronic GVHD - Mouth"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Common features***"
+                  question: "Common features*"
                   description: "Seen with both acute and chronic GVHD"
                 annotations:
-                  - "*** Common refers to shared features by both acute and chronic GVHD."
+                  - "* Common refers to shared features by both acute and chronic GVHD."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -478,7 +607,7 @@ chapters:
                   question: "Distinctive features (Males and Females)"
                   description: >
                     Seen in chronic GVHD, but insufficient alone to establish a diagnosis of chronic GVHD (see <a target="_blank" href="@res(documents/Chronic-GVHD-Distinctive-Features.pdf)">distinctive features confirmation</a>).<br /><br />
-                    Requirement for confirmation: evaluation by gynecologist + biopsy documenting histological features of chronic GVHD (at least "likely" cGVHD)
+                    Requirement for confirmation: evaluation by gynecologist and biopsy documenting histological features of chronic GVHD (at least "likely" cGVHD)
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -543,10 +672,10 @@ chapters:
                 title: "Chronic GVHD - GI Tract"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Common features***"
+                  question: "Common features*"
                   description: "Seen with both acute and chronic GVHD"
                 annotations:
-                  - "*** Common refers to shared features by both acute and chronic GVHD."
+                  - "* Common refers to shared features by both acute and chronic GVHD."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -581,10 +710,10 @@ chapters:
                 title: "Chronic GVHD - Liver"
                 meta_answers: ['nya', 'nass']
                 intro:
-                  question: "Common features***"
+                  question: "Common features*"
                   description: "Seen with both acute and chronic GVHD"
                 annotations:
-                  - "*** Common refers to shared features by both acute and chronic GVHD."
+                  - "* Common refers to shared features by both acute and chronic GVHD."
                 option_reset:
                   label: "No symptoms"
                 options:
@@ -786,7 +915,7 @@ chapters:
                     label: "Lymphopenia"
                     value: lymphopenia
                   -
-                    label: "Hypo- or hyper- gammaglobulinemia"
+                    label: "Hypo- or hypergammaglobulinemia"
                     value: hypo-hyper-gammaglobulinemia
                   -
                     label: "Autoantibodies (AIHA, ITP)"
@@ -830,129 +959,4 @@ chapters:
                   -
                     label: "Cardiac conduction abnormality or cardiomyopathy"
                     value: cardiomyopathy
-  -
-    slug: acute
-    sections:
-      -
-        screens:
-          -
-            slug: clinical-staging
-            url_slug: acute-clinical-staging
-            questions:
-              -
-                slug: skin
-                type: radios
-                title: "Acute GVHD - Skin"
-                meta_answers: ['nya', 'nass']
-                score:
-                  acute: skin
-                intro:
-                  question:
-                options:
-                  -
-                    label: "No rash"
-                    value: 0
-                  -
-                    label: "Rash &lt; 25% body surface"
-                    value: 1
-                  -
-                    label: "Rash 25% - 50% body surface"
-                    value: 2
-                  -
-                    label: "Generalized erythrodema"
-                    value: 3
-                  -
-                    label: "Generalized erythroderma with bullae"
-                    value: 4
-              -
-                slug: liver
-                type: radios
-                title: "Acute GVHD - Liver"
-                meta_answers: ['nya', 'nass']
-                score:
-                  acute: liver
-                intro:
-                  question:
-                options:
-                  -
-                    label: "Bilirubin &lt; 34 µmol/L"
-                    value: 0
-                  -
-                    label: "Bilirubin 34 - 50 µmol/L"
-                    value: 1
-                  -
-                    label: "Bilirubin 51 - 102 µmol/L"
-                    value: 2
-                  -
-                    label: "Bilirubin 103 - 255 µmol/L"
-                    value: 3
-                  -
-                    label: "Bilirubin &gt; 255 µmol/L"
-                    value: 4
-              -
-                slug: gut
-                type: radios
-                title: "Acute GVHD - Gut"
-                meta_answers: ['nya', 'nass']
-                score:
-                  acute: gut
-                intro:
-                  question:
-                options:
-                  -
-                    label: "No Symptoms / Diarrhea &lt; 500 ml/d"
-                    value: 0
-                  -
-                    label: "Diarrhea 500 - 1000 ml/d"
-                    value: 1
-                  -
-                    label: "Diarrhea 1000 - 1500 ml/d"
-                    value: 2
-                  -
-                    label: "Diarrhea &gt; 1500 ml/d"
-                    value: 3
-                  -
-                    label: "Severe abdominal pain with or without ileus"
-                    value: 4
-              -
-                slug: performance
-                type: radios
-                title: "Acute GVHD - Clinical performance"
-                meta_answers: ['nya', 'nass']
-                intro:
-                  question:
-                options:
-                  -
-                    label: "no decrease in clinical performance"
-                    value: 0
-                  -
-                    label: "mild decrease in clinical performance"
-                    value: 1
-                  -
-                    label: "marked decrease in clinical performance"
-                    value: 2
-                  -
-                    label: "extreme decrease in clincial performance"
-                    value: 3
-          -
-            slug: timing
-            url_slug: delay-timing
-            questions:
-              -
-                slug: delay
-                type: radios
-                title: "Delay"
-                meta_answers: ['nya', 'nass']
-                intro:
-                  question: "Time since last allogeneic transplant / DLI?"
-                options:
-                  -
-                    label: "≤ 100 days"
-                    value: normal
-                    score:
-                      delay: normal
-                  -
-                    label: "&gt; 100 days"
-                    value: delayed
-                    score:
-                      delay: lateonset
+  # END chronic

@@ -4,13 +4,13 @@
 
 		<div class="col-xs-12">
 
-			<h3>Bleeding - Initial diagnosis and classification:</h3>
+			<h3>Bleeding - Initial diagnosis and classification</h3>
 
 		</div>
 		<div class="col-xs-12 col-sm-6">
 
 			<a href="" ng-if="env.debug" ng-if="ctlAssessment.supportsType('demo')" ng-click="ctlAssessment.createAndStart('demo')" class="btn btn-default bleed-btn-spacing">DEMO</a>
-			<p>This is a demo assessment that showcases different types of questions. It exists purely for debug reasons and only shows up if the debug flag is enabled.</p>
+			<p ng-if="env.debug">This is a demo assessment that showcases different types of questions. It exists purely for debug reasons and only shows up if the debug flag is enabled.</p>
 
 			<a href="" ng-if="ctlAssessment.supportsType('bleeding-features')" ng-click="ctlAssessment.createAndStart('bleeding-features')" class="btn btn-default bleed-btn-spacing">Bleeding Features</a>
 			<p>Gives a general information if signs or symptoms of bleeding are present or absent.</p>
@@ -24,10 +24,10 @@
 		<div class="col-xs-12 col-sm-6">
 
 			<a href="" ng-if="ctlAssessment.supportsType('who')" ng-click="ctlAssessment.createAndStart('who')" class="btn btn-default bleed-btn-spacing">WHO</a>
-			<p>Scoring of bleeding features based on WHO criteria</p>
+			<p>Scoring of bleeding features based on WHO criteria.</p>
 
 			<a href="" ng-if="ctlAssessment.supportsType('bsms')" ng-click="ctlAssessment.createAndStart('bsms')" class="btn btn-default bleed-btn-spacing">BSMS</a>
-			<p>Scoring of bleeding features based on BSMS criteria</p>
+			<p>Scoring of bleeding features based on BSMS criteria.</p>
 
 		</div>
 

@@ -58,7 +58,7 @@ class PatientsController extends FOSRestController
     }
 
     /**
-     * @Security("has_role('ROLE_EDITOR')")
+     * @Security("has_role('ROLE_ASSESSOR')")
      * @Post("/patients", requirements={"_format"="json|xml"})
      * @ParamConverter("patient", converter="fos_rest.request_body")
      */
@@ -70,7 +70,7 @@ class PatientsController extends FOSRestController
     }
 
     /**
-     * @Security("has_role('ROLE_EDITOR')")
+     * @Security("has_role('ROLE_ASSESSOR')")
      * @ParamConverter("patientBody", converter="fos_rest.request_body")
      */
     public function putPatientAction($patient, Patient $patientBody)
@@ -86,7 +86,7 @@ class PatientsController extends FOSRestController
     }
 
     /**
-     * @Security("has_role('ROLE_SUPER_ADMIN') or (has_role('ROLE_ADMIN') and is_granted('isOwner', patient))")
+     * @Security("has_role('ROLE_ADMIN') or (has_role('ROLE_SUPERVISOR') and is_granted('isOwner', patient))")
      * @ParamConverter("patient", options={"id" = "patient"})
      */
     public function deletePatientAction(Patient $patient)

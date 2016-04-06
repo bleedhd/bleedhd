@@ -101,10 +101,15 @@ fos_user:
     user_class: Getunik\BleedHd\SecurityBundle\Entity\User
     registration:
         form:
-            type: getunik_bleed_hd_user_registration
+            type: Getunik\BleedHd\SecurityBundle\Form\Type\RegistrationFormType
+            name: getunik_bleed_hd_user_registration
     profile:
         form:
-            type: getunik_bleed_hd_user_profile
+            type: Getunik\BleedHd\SecurityBundle\Form\Type\ProfileFormType
+            name: getunik_bleed_hd_user_profile
+    from_email:
+        address: admin@medbleedhdlp01.uhbs.ch
+        sender_name: BleedHD Admin
 
 fos_oauth_server:
     db_driver: orm       # Driver availables: orm, mongodb, or propel
@@ -134,7 +139,7 @@ getunik_bleed_hd_security:
         target_path: /app
 
 getunik_bleed_hd_assessment_data:
-    version: "v-1.0.0-rc5"
+    version: "v-1.0.0"
     version_allow_git: true
 
 

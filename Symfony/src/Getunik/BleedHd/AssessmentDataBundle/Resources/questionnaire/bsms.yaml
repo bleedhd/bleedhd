@@ -66,6 +66,8 @@ chapters:
                 type: checkboxes
                 title: "Type or site of bleeding"
                 meta_answers: ['nya']
+                intro:
+                  question: "Answers are optional and not part of the BSMS Score."
                 options: # optional
                   -
                     label: "Oral and nasal"

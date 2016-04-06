@@ -45,7 +45,7 @@ class PatientStatusesController extends FOSRestController
     }
 
     /**
-     * @Security("has_role('ROLE_EDITOR')")
+     * @Security("has_role('ROLE_ASSESSOR')")
      * @Post("/patients/{patient}/statuses", requirements={"_format"="json|xml"})
      * @ParamConverter("patient", options={"id" = "patient"})
      * @ParamConverter("status", converter="fos_rest.request_body")
@@ -60,7 +60,7 @@ class PatientStatusesController extends FOSRestController
     }
 
     /**
-     * @Security("has_role('ROLE_EDITOR')")
+     * @Security("has_role('ROLE_ASSESSOR')")
      * @ParamConverter("status", options={"id": "status", "mapping": {"patient":"patientId","status":"id"}})
      * @ParamConverter("statusBody", converter="fos_rest.request_body")
      */
