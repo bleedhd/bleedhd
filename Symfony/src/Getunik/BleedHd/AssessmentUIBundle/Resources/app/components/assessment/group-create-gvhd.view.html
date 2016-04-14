@@ -16,17 +16,18 @@
 				<a href="" ng-if="ctlAssessment.supportsType('gvhd-new-diagnosis')" ng-click="ctlAssessment.createAndStart('gvhd-new-diagnosis')" class="btn btn-default bleed-btn-spacing">New diagnosis</a>
 				<p>Has to be completed when GVHD is suspected (first time manifestation of acute or chronic GVHD or new manifestations suggestive for cGVHD in patient who suffered from aGVHD only yet) to perform a complete assessment and confirm diagnosis of GVHD.</p>
 
+				<a href="" ng-if="ctlAssessment.supportsType('gvhd-late-onset-acute')" ng-click="ctlAssessment.createAndStart('gvhd-late-onset-acute')" class="btn btn-default bleed-btn-spacing">Late-onset aGVHD classification</a>
+				<p>Further characterization of diagnosis “late-onset acute GVHD”: persistent or recurrent.</p>
+
 		</div>
 		<div class="col-xs-12">
 
-			<h3>GVHD-Scoring at diagnosis</h3>
+			<h3>Chronic GVHD scoring at diagnosis</h3>
 			<p>Complete this section after diagnosis of GVHD is confirmed for organ and overall scoring.</p>
 
 		</div>
 		<div class="col-xs-12 col-sm-6">
 
-				<a href="" ng-if="ctlAssessment.supportsType('gvhd-late-onset-acute')" ng-click="ctlAssessment.createAndStart('gvhd-late-onset-acute')" class="btn btn-default bleed-btn-spacing">Late-onset aGVHD classification</a>
-				<p>Further characterization of diagnosis “late-onset acute GVHD”: persistent or recurrent.</p>
 				<a href="" ng-if="ctlAssessment.supportsType('gvhd-organ-scoring')" ng-click="ctlAssessment.createAndStart('gvhd-organ-scoring')" class="btn btn-default bleed-btn-spacing">Organ scoring</a>
 				<p>Provides more detailed information about GVHD manifestation in organs involved.</p>
 

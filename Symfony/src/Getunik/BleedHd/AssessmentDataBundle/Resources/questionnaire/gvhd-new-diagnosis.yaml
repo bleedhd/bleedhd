@@ -336,13 +336,8 @@ chapters:
                   label: "No symptoms"
                 options:
                   -
-                    label: "Dystrophy"
+                    label: "Dystrophy consisting of longitudinal ridging, splitting or brittle features"
                     value: dystrophy
-                    supplements:
-                      - *confirmation-supplement
-                  -
-                    label: "Longitudinal ridging, splitting or brittle features"
-                    value: ridging-splitting-brittle
                     supplements:
                       - *confirmation-supplement
                   -
@@ -773,7 +768,7 @@ chapters:
                         default: pending
                         options:
                           -
-                            label: "FEV1/vital capacity &lt; .7 or the fifth percentile of predicted"
+                            label: "FEV1/vital capacity &lt; 0.7 or the fifth percentile of predicted"
                             value: criteria1
                           -
                             label: "FEV1 &lt; 75% of predicted with ≥10% decline over less than 2 years (assessment with albuterol)"

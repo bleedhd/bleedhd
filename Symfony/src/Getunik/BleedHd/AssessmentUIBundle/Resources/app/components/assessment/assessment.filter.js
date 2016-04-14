@@ -14,7 +14,7 @@
 			'4': 'Grade IV',
 		},
 		delayMap = {
-			'normal': 'normal',
+			'normal': 'No delay',
 			'lateonset': 'late-onset',
 		};
 
