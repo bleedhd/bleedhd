@@ -42,6 +42,17 @@ body {
 	}
 }
 
+// the "return" buttons in the top navigation element should be highlighted
+// in those cases where the user leaves the assessment (back to patient) or
+// patient (back to overview) scope.
+.bleed-meta {
+	.btn.scope-overview,
+	.btn.scope-patient {
+		background-color: @brand-primary;
+		border-color: @brand-primary
+	}
+}
+
 .bleed-loader {
 	text-align: center;
 	margin-top: 10%;
