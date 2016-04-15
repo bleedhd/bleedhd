@@ -108,7 +108,7 @@ fos_user:
             type: Getunik\BleedHd\SecurityBundle\Form\Type\ProfileFormType
             name: getunik_bleed_hd_user_profile
     from_email:
-        address: admin@medbleedhdlp01.uhbs.ch
+        address: medbleedhdlp01@usb.ch
         sender_name: BleedHD Admin
 
 fos_oauth_server:
