@@ -66,8 +66,11 @@ For more instructions about development see [Development Instructions](doc/notes
 The project uses a Git based deplyoment process and the _usual suspects_ for any Symfony based project.
 
 **Before you update**:
+* make sure that everything has been tested properly
 * always make sure that you have a _very_ recent backup of the database.
-* make sure you have the proper version number for the upcoming release (the version number in the sample commands below is "A.B.C" - semantic versioning!)
+* make sure you have a Jira release in the BBSBLEED project with the proper version number for the upcoming release (the version number in the sample commands below is "A.B.C" - semantic versioning!)
+
+The release and deployment steps are deliberatly not _fully_ automated. This gives you a chance to do some deliberate sanity checks between each of the manual steps and avoid _accidentally_ incomplete releases.
 
 **Prepare the release**:
 
@@ -81,7 +84,13 @@ git push origin master develop v-A.B.C
 **Deploy the release**
 To update the target system, you do all this from the `Symfony` directory of the project:
 ```bash
+git fetch
 git checkout v-A.B.C
 git submodule update --init --recursive
 scripts/update.sh
 ```
+
+**Post-Deployment**
+* Resolve and close all remaining Jira issues
+* _Release_ the Jira release
+* Send release info mail to project manager including Jira release notes link

@@ -151,6 +151,8 @@ chapters:
                 type: radios
                 title: "Performance Score"
                 meta_answers: ['nya', 'nass']
+                info:
+                  resource: "documents/gvhd-organscoring-performancescore-info.pdf"
                 score:
                   category: performance
                 intro:
