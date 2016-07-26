@@ -13,6 +13,7 @@
 				.when('/patients/:patientId/assessment/new/:group', bleedHd.controllers.AssessmentCreateController)
 				.when('/patients/:patientId/assessment/edit/:assessmentId', bleedHd.controllers.AssessmentEditController)
 				.when('/assessment/:patientId/:assessmentId/:screen', bleedHd.controllers.AssessmentScreenController)
+				.when('/export', bleedHd.controllers.ExportController)
 				.when('/page/:name', bleedHd.controllers.PagesController)
 				.otherwise('/patients');
 		}

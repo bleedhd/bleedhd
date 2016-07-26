@@ -76,6 +76,7 @@
 		'patient',
 		'assessment',
 		'question',
+		'export',
 	])
 
 	.constant('BleedHdConfig', angular.extend({
