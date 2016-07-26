@@ -5,15 +5,33 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Export;
 
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
 use Getunik\BleedHd\AssessmentDataBundle\Handler\AssessmentHandler;
+use Getunik\BleedHd\AssessmentDataBundle\Handler\QuestionnaireHandler;
+use Getunik\BleedHd\AssessmentDataBundle\Handler\ResponseHandler;
 
 class ExportService
 {
+	/**
+	 * @var AssessmentHandler
+	 */
 	private $assessmentHandler;
+	/**
+	 * @var QuestionnaireHandler
+	 */
+	private $questionnaireHandler;
+	/**
+	 * @var ResponseHandler
+	 */
+	private $responseHandler;
+	/**
+	 * @var string
+	 */
 	private $exportConfigPath;
 
-	public function __construct(AssessmentHandler $assessmentHandler, $exportConfigPath)
+	public function __construct(AssessmentHandler $assessmentHandler, QuestionnaireHandler $questionnaireHandler, ResponseHandler $responseHandler, $exportConfigPath)
 	{
 		$this->assessmentHandler = $assessmentHandler;
+		$this->questionnaireHandler = $questionnaireHandler;
+		$this->responseHandler = $responseHandler;
 		$this->exportConfigPath = $exportConfigPath;
 	}
 
@@ -21,6 +39,7 @@ class ExportService
 	{
 		$assessmentType = 'who';
 		$exportType = 'default';
+		$questionnaire = $this->questionnaireHandler->getQuestionnaireByName($assessmentType);
 		$filter = new AssessmentFilter($this->assessmentHandler);
 
 		$filePath = $this->exportConfigPath . '/' . $assessmentType . '/' . $exportType .  '.yaml';
@@ -31,7 +50,8 @@ class ExportService
 		$config = new ExportConfig($filePath);
 
 		$table = new Table($config);
+		$iterator = new AssessmentContextIterator($filter->getAssessments($assessmentType), $questionnaire, $this->responseHandler);
 
-		$table->generate($fileHandle, $filter->getAssessments($assessmentType));
+		$table->generate($fileHandle, $iterator);
 	}
 }

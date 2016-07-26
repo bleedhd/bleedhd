@@ -37,6 +37,8 @@ services:
         class: Getunik\BleedHd\AssessmentDataBundle\Export\ExportService
         arguments:
             - "@getunik.bleed_hd_data.assessment_handler"
+            - "@getunik.bleed_hd_data.questionnaire_handler"
+            - "@getunik.bleed_hd_data.response_handler"
             - %kernel.root_dir%/../src/Getunik/BleedHd/AssessmentDataBundle/Resources/export
 
     getunik.bleed_hd_data.entity_update_listener:

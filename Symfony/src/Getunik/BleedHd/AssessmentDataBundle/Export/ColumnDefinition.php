@@ -41,7 +41,8 @@ class ColumnDefinition
 
 	public function extract(AssessmentContext $context)
 	{
-		return 'gurray';
+		$raw = $this->extractor->extract($context);
+		return $this->transform->transform($raw);
 	}
 
 	public function getLabel()

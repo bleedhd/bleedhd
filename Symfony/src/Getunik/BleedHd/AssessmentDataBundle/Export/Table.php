@@ -3,6 +3,7 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export;
 
 
+use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
 
 class Table
@@ -17,7 +18,7 @@ class Table
 		$this->config = $config;
 	}
 
-	public function generate($fileHandle, array $assessments)
+	public function generate($fileHandle, AssessmentContextIterator $assessments)
 	{
 		$columns = $this->config->getColumns();
 
@@ -31,8 +32,17 @@ class Table
 		/**
 		 * @var Assessment $assessment
 		 */
-		foreach ($assessments as $assessment) {
-			fputcsv($fileHandle, [$assessment->getPatient()->getFirstname(), $assessment->getPatient()->getLastname(), $assessment->getQuestionnaire(), $assessment->getId()]);
+		foreach ($assessments as $context) {
+			/** @var AssessmentContext $context */
+			$row = [];
+
+			foreach ($columns as $col) {
+				$row[] = $col->extract($context);
+			}
+
+			fputcsv($fileHandle, $row);
+
+			//fputcsv($fileHandle, [$assessment->getPatient()->getFirstname(), $assessment->getPatient()->getLastname(), $assessment->getQuestionnaire(), $assessment->getId()]);
 		}
 	}
 }
