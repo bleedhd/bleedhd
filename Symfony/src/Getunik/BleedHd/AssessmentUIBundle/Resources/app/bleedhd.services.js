@@ -239,6 +239,45 @@
 		})
 
 		/**
+		 * Wrapper for the $http service that adds BleedHD authorization header to all requests.
+		 */
+		.factory('BleedHttp', function ($http, AuthHandler) {
+			function delegateWithAuth(target, configIndex) {
+				return function () {
+					var that = this,
+						args = Array.prototype.slice.call(arguments),
+						config = args[configIndex] || {};
+
+					if (args.length <= configIndex) {
+						args.push(config);
+					}
+
+					if (config.headers === undefined) {
+						config.headers = {};
+					}
+
+					return AuthHandler.authorized(function () {
+						config.headers['Authorization'] = AuthHandler.getToken();
+						return target.apply(that, args);
+					});
+				}
+			}
+
+			var httpWrapper = delegateWithAuth($http, 0);
+			angular.extend(httpWrapper, {
+				'get': delegateWithAuth($http.get, 1),
+				'head': delegateWithAuth($http.head, 1),
+				'post': delegateWithAuth($http.post, 2),
+				'put': delegateWithAuth($http.put, 2),
+				'delete': delegateWithAuth($http.delete, 1),
+				'jsonp': delegateWithAuth($http.jsonp, 1),
+				'patch': delegateWithAuth($http.patch, 1),
+			});
+
+			return httpWrapper;
+		})
+
+		/**
 		 * The BleedApi service provides a convenient pre-configured Restangular object with
 		 * integrated authorization.
 		 */
