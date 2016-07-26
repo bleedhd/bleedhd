@@ -1,15 +1,18 @@
 
 (function (angular, bleedHd) {
 
-    function ExportController($scope, PatientData, BleedHdConfig) {
+    function ExportController($scope, Export, PatientData, BleedHdConfig) {
         this.$scope = $scope;
+		this.Export = Export;
         this.PatientData = PatientData;
         this.BleedHdConfig = BleedHdConfig;
     }
 
     bleedHd.registerController('export', ExportController,
         {
-
+			generate: function () {
+				this.Export.test();
+			}
         },
         {
             asName: 'ctlExport',

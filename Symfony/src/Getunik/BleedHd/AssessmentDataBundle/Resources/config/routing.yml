@@ -17,3 +17,7 @@ getunik_bleed_hd_assessment_data_clientlogentry:
 getunik_bleed_hd_assessment_data_user:
     type: rest
     resource: getunik.bleed_hd_data.user_controller
+
+getunik_bleed_hd_assessment_data_export:
+    type: rest
+    resource: getunik.bleed_hd_data.export_controller

@@ -13,6 +13,7 @@ parameters:
     getunik.bleed_hd_data.clientlogentry_handler.class: Getunik\BleedHd\AssessmentDataBundle\Handler\ClientLogEntryHandler
     getunik.bleed_hd_data.clientlogentry_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\ClientLogEntriesController
     getunik.bleed_hd_data.user_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\UsersController
+    getunik.bleed_hd_data.export_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\ExportController
 
 
 services:
@@ -154,3 +155,8 @@ services:
         class: Getunik\BleedHd\AssessmentDataBundle\Security\ResourceOwnerVoter
         tags:
             - { name: security.voter }
+
+    getunik.bleed_hd_data.export_controller:
+        class: %getunik.bleed_hd_data.export_controller.class%
+        calls:
+            - [setContainer, ["@service_container"]]
