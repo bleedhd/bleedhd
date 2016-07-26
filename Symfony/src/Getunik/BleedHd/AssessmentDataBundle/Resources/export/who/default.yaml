@@ -1,0 +1,50 @@
+
+name: Default
+type: who
+columns:
+  -
+      label: First name
+      extractor: PatientField
+      reference: firstname
+      # identity is the default transform and does not have to be specified
+      transform: Identity
+  -
+      label: Last name
+      extractor: PatientField
+      reference: lastname
+      transform: Identity
+  -
+      label: Date of birth
+      extractor: PatientField
+      reference: birthdate
+      transform: Identity
+  -
+      label: Questionnaire
+      extractor: AssessmentField
+      reference: questionnaire
+  -
+      label: Version
+      extractor: AssessmentField
+      reference: questionnaireVersion
+  -
+      label: Start date
+      extractor: AssessmentField
+      reference: startDate
+  -
+      label: Score
+      extractor: Score
+      reference: total
+  -
+      # label is optional if same as reference
+      label: gvhd-new-diagnosis.chronic.skin.diagnostic
+      extractor: Response
+      reference: gvhd-new-diagnosis.chronic.skin.diagnostic
+  -
+      extractor: Response
+      reference: gvhd-new-diagnosis.chronic.skin.distinctive
+  -
+      extractor: Response
+      reference: gvhd-new-diagnosis.chronic.skin.other
+  -
+      extractor: Response
+      reference: gvhd-new-diagnosis.chronic.skin.common
