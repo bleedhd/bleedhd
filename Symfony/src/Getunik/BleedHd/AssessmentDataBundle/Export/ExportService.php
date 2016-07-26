@@ -9,10 +9,12 @@ use Getunik\BleedHd\AssessmentDataBundle\Handler\AssessmentHandler;
 class ExportService
 {
 	private $assessmentHandler;
+	private $exportConfigPath;
 
-	public function __construct(AssessmentHandler $assessmentHandler)
+	public function __construct(AssessmentHandler $assessmentHandler, $exportConfigPath)
 	{
 		$this->assessmentHandler = $assessmentHandler;
+		$this->exportConfigPath = $exportConfigPath;
 	}
 
 	public function export($fileHandle) {
@@ -23,17 +25,19 @@ class ExportService
 			['first', 'second with space'],
 		];
 
+		$assessmentType = 'who';
+		$exportType = 'default';
 		$filter = new AssessmentFilter($this->assessmentHandler);
 
-		/**
-		 * @var Assessment $assessment
-		 */
-		foreach ($filter->getAssessments() as $assessment) {
-			fputcsv($fileHandle, [$assessment->getPatient()->getFirstname(), $assessment->getPatient()->getLastname(), $assessment->getQuestionnaire(), $assessment->getId()]);
+		$filePath = $this->exportConfigPath . '/' . $assessmentType . '/' . $exportType .  '.yaml';
+		if (!file_exists($filePath)) {
+			throw new \Exception('Cannot find export configuration "' . $exportType . '" for assessment type "' . $assessmentType . '"');
 		}
 
-		foreach ($data as $line) {
-			fputcsv($fileHandle, $line, ',', '"', '\\');
-		}
+		$config = new ExportConfig($filePath);
+
+		$table = new Table($config);
+
+		$table->generate($fileHandle, $filter->getAssessments($assessmentType));
 	}
 }

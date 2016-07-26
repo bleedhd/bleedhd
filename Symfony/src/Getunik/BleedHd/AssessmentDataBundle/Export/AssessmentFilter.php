@@ -17,7 +17,7 @@ class AssessmentFilter
 	/**
 	 * @return array
 	 */
-	public function getAssessments()
+	public function getAssessments($assessmentType)
 	{
 		return $this->assessmentHandler->getPatientAssessments(5);
 	}
