@@ -19,6 +19,15 @@ class Table
 
 	public function generate($fileHandle, array $assessments)
 	{
+		$columns = $this->config->getColumns();
+
+		$headers = array_map(function ($col) {
+			/** @var ColumnDefinition $col */
+			return $col->getLabel();
+		}, $columns);
+
+		fputcsv($fileHandle, $headers);
+
 		/**
 		 * @var Assessment $assessment
 		 */

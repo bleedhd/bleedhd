@@ -17,14 +17,8 @@ class ExportService
 		$this->exportConfigPath = $exportConfigPath;
 	}
 
-	public function export($fileHandle) {
-		$data = [
-			['Header1', 'Header2'],
-			['alpha', 'beta \' with apostrophe'],
-			['one', 'two " with quote'],
-			['first', 'second with space'],
-		];
-
+	public function export($fileHandle)
+	{
 		$assessmentType = 'who';
 		$exportType = 'default';
 		$filter = new AssessmentFilter($this->assessmentHandler);
