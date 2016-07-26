@@ -10,7 +10,7 @@ class ExtractorFactory
 	 * @return IExtractor the extractor instance from the given type name
 	 * @throws \Exception if the requested extractor type does not exist
 	 */
-	public static function create($extractorType)
+	public static function create($extractorType, $reference)
 	{
 		$className = 'Getunik\BleedHd\AssessmentDataBundle\Export\Extractor\\' . $extractorType;
 
@@ -18,6 +18,6 @@ class ExtractorFactory
 			throw new \Exception('Unknown extractor type "' . $extractorType . '"');
 		}
 
-		return new $className();
+		return new $className($reference);
 	}
 }

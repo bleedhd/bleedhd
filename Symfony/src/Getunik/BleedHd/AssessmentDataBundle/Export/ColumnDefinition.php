@@ -35,7 +35,7 @@ class ColumnDefinition
 	{
 		$this->spec = $columnSpec;
 
-		$this->extractor = ExtractorFactory::create($columnSpec['extractor']);
+		$this->extractor = ExtractorFactory::create($columnSpec['extractor'], $columnSpec['reference']);
 		$this->transform = TransformFactory::create(isset($columnSpec['transform']) ? $columnSpec['transform'] : self::DEFAULT_TRANSFORM);
 	}
 

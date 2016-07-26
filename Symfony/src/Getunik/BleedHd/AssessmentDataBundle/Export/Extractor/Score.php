@@ -11,7 +11,7 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Export\Extractor;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
 
 
-class Score implements IExtractor
+class Score extends BaseExtractor
 {
 	/**
 	 * @inheritdoc

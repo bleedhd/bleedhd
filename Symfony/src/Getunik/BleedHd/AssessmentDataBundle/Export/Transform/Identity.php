@@ -10,6 +10,10 @@ class Identity implements ITransform
 	 */
 	public function transform($raw)
 	{
-		return (string) $raw;
+		try {
+			return (string) $raw;
+		} catch (\Exception $e) {
+			return 'unable to display value (' . get_class($raw) . ')';
+		}
 	}
 }
