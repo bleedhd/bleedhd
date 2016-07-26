@@ -36,7 +36,12 @@ class ColumnDefinition
 		$this->spec = $columnSpec;
 
 		$this->extractor = ExtractorFactory::create($columnSpec['extractor'], $columnSpec['reference']);
-		$this->transform = TransformFactory::create(isset($columnSpec['transform']) ? $columnSpec['transform'] : self::DEFAULT_TRANSFORM);
+
+		if (isset($columnSpec['transform'])) {
+			$this->transform = TransformFactory::create($columnSpec['transform']['type'], $columnSpec['transform']);
+		} else {
+			$this->transform = TransformFactory::create(self::DEFAULT_TRANSFORM, []);
+		}
 	}
 
 	public function extract(AssessmentContext $context)

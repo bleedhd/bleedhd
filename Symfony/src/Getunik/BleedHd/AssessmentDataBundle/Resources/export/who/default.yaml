@@ -7,17 +7,20 @@ columns:
       extractor: PatientField
       reference: firstname
       # identity is the default transform and does not have to be specified
-      transform: Identity
+      transform:
+        type: Identity
   -
       label: Last name
       extractor: PatientField
       reference: lastname
-      transform: Identity
+      transform:
+        type: Identity
   -
       label: Date of birth
       extractor: PatientField
       reference: birthdate
-      transform: Identity
+      transform:
+        type: Identity
   -
       label: Questionnaire
       extractor: AssessmentField

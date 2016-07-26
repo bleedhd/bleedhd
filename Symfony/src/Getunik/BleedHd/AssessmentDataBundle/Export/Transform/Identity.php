@@ -3,7 +3,7 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Transform;
 
 
-class Identity implements ITransform
+class Identity extends BaseTransform
 {
 	/**
 	 * @inheritdoc
