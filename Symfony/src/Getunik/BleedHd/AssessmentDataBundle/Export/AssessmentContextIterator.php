@@ -7,6 +7,11 @@ use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
 use Getunik\BleedHd\AssessmentDataBundle\Handler\ResponseHandler;
 
+
+/**
+ * Class AssessmentContextIterator
+ * @package Getunik\BleedHd\AssessmentDataBundle\Export
+ */
 class AssessmentContextIterator implements \Iterator
 {
 	private $assessments;

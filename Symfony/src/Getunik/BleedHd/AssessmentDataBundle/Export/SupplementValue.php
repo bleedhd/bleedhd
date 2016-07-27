@@ -6,6 +6,12 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Export;
 
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Result;
 
+/**
+ * Class SupplementValue
+ * @package Getunik\BleedHd\AssessmentDataBundle\Export
+ *
+ * Wrapper type that is returned by the supplement extractor to facilitate subsequent transforms.
+ */
 class SupplementValue
 {
 	/**

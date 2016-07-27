@@ -2,13 +2,20 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Export;
 
-
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
 use Getunik\BleedHd\AssessmentDataBundle\Export\Extractor\ExtractorFactory;
 use Getunik\BleedHd\AssessmentDataBundle\Export\Extractor\IExtractor;
 use Getunik\BleedHd\AssessmentDataBundle\Export\Transform\TransformFactory;
 use Getunik\BleedHd\AssessmentDataBundle\Export\Transform\ITransform;
 
+
+/**
+ * Class ColumnDefinition
+ * @package Getunik\BleedHd\AssessmentDataBundle\Export
+ *
+ * Represents a column in a CSV export. It is created from the export column configuration and extracts the relevant
+ * value for this column from the given assessment context.
+ */
 class ColumnDefinition
 {
 	/**
@@ -44,12 +51,22 @@ class ColumnDefinition
 		}
 	}
 
+	/**
+	 * Extracts and transforms a value from the assessment context according to the column configuration.
+	 *
+	 * @param AssessmentContext $context the assessment context from which a value should be extracted
+	 * @return string
+	 */
 	public function extract(AssessmentContext $context)
 	{
 		$raw = $this->extractor->extract($context);
 		return $this->transform->transform($raw);
 	}
 
+	/**
+	 * Returns the label of the column.
+	 * @return string
+	 */
 	public function getLabel()
 	{
 		return isset($this->spec['label']) ? $this->spec['label'] : $this->spec['reference'];

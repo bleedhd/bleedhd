@@ -2,10 +2,16 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Export;
 
-
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
 
+
+/**
+ * Class Table
+ * @package Getunik\BleedHd\AssessmentDataBundle\Export
+ * 
+ * Represents a CSV table with a fixed set of columns defined by the @see ExportConfig.
+ */
 class Table
 {
 	/**
@@ -41,8 +47,6 @@ class Table
 			}
 
 			fputcsv($fileHandle, $row);
-
-			//fputcsv($fileHandle, [$assessment->getPatient()->getFirstname(), $assessment->getPatient()->getLastname(), $assessment->getQuestionnaire(), $assessment->getId()]);
 		}
 	}
 }

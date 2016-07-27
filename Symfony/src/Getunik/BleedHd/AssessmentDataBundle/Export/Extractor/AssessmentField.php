@@ -2,8 +2,8 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Extractor;
 
-
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
+
 
 class AssessmentField extends BaseExtractor
 {
