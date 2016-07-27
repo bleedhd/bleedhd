@@ -18,11 +18,20 @@ columns:
       extractor: Response
       reference: who.mouth-and-nose.petechiae
   -
+      extractor: Supplement
+      reference: who.mouth-and-nose.petechiae.isnew
+  -
       extractor: Response
       reference: who.mouth-and-nose.nose-bleed
   -
+      extractor: Supplement
+      reference: who.mouth-and-nose.nose-bleed.duration
+  -
       extractor: Response
       reference: who.mouth-and-nose.mouth-bleed
+  -
+      extractor: Supplement
+      reference: who.mouth-and-nose.mouth-bleed.duration
   -
       extractor: Response
       reference: who.skin-and-tissue.deep-tissue-hematomas

@@ -4,27 +4,28 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export;
 
 
-use Getunik\BleedHd\AssessmentDataBundle\Entity\Response;
+use Getunik\BleedHd\AssessmentDataBundle\Assessment\Result;
 
 class ResponseValue
 {
 	/**
-	 * @var array
+	 * @var Result
 	 */
 	private $result;
 
-	public function __construct(Response $response)
+	public function __construct(Result $result)
 	{
-		$this->result = $response->getResult();
+		$this->result = $result;
 	}
 
 	public function __toString()
 	{
-		if (isset($this->result['data']) && is_array($this->result['data']) && isset($this->result['data']['value'])) {
-			$value = $this->result['data']['value'];
-			return is_array($value) ? json_encode($value) : (string) $value;
+		$value = $this->result->getValue();
+
+		if ($value === NULL) {
+			return '';
 		}
 
-		return '';
+		return is_array($value) ? json_encode($value) : (string) $value;
 	}
 }
