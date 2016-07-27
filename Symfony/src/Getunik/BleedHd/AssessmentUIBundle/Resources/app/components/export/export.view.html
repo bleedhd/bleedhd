@@ -8,6 +8,13 @@
 
             <button class="btn btn-default" ng-click="ctlExport.generate()">Export</button>
 
+			<div ng-if="ctlExport.downloadLink">
+				<iframe style="display: none;" src="{{ ctlExport.downloadLink }}" />
+				<p>Your download should start immediately, if it does not, please click on the following link to
+					download your export</p>
+				<p><a href="{{ ctlExport.downloadLink }}">{{ ctlExport.downloadName }}</a></p>
+			</div>
+
         </div>
     </div>
 </div>

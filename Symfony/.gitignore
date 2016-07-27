@@ -17,3 +17,7 @@
 /web/bundles/
 /web/js/
 /web/css/
+
+/web/export/*
+!/web/export/.gitkeep
+!/web/export/.htaccess

@@ -9,8 +9,11 @@
 	}
 
 	angular.extend(ExportService.prototype, {
-		test: function () {
-			this.BleedHttp.post('/api/export/generate',{ bla: 42, nested: { some: 'value' } });
+		generate: function (settings) {
+			return this.BleedHttp.post('/api/export/generate', settings).then(function (response) {
+				console.log("export response", response);
+				return response.data;
+			});
 		},
 	});
 
