@@ -20,7 +20,7 @@ columns:
       extractor: PatientField
       reference: birthdate
       transform:
-        type: Identity
+        type: DateTimeFormat
   -
       label: Questionnaire
       extractor: AssessmentField
