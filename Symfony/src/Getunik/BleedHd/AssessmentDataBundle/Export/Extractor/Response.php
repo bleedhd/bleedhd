@@ -3,6 +3,7 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Extractor;
 
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
+use Getunik\BleedHd\AssessmentDataBundle\Export\ResponseValue;
 
 
 class Response extends BaseExtractor
@@ -12,6 +13,12 @@ class Response extends BaseExtractor
 	 */
 	public function extract(AssessmentContext $context)
 	{
-		return 'unknown';
+		$responses = $context->getResponseMap();
+
+		if (!isset($responses[$this->reference])) {
+			return NULL;
+		}
+
+		return new ResponseValue($responses[$this->reference]);
 	}
 }

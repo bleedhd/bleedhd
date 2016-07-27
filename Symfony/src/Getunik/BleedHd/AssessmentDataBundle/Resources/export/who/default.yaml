@@ -15,16 +15,26 @@ columns:
       extractor: Score
       reference: total
   -
-      # label is optional if same as reference
-      label: gvhd-new-diagnosis.chronic.skin.diagnostic
       extractor: Response
-      reference: gvhd-new-diagnosis.chronic.skin.diagnostic
+      reference: who.mouth-and-nose.petechiae
   -
       extractor: Response
-      reference: gvhd-new-diagnosis.chronic.skin.distinctive
+      reference: who.mouth-and-nose.nose-bleed
   -
       extractor: Response
-      reference: gvhd-new-diagnosis.chronic.skin.other
+      reference: who.mouth-and-nose.mouth-bleed
   -
       extractor: Response
-      reference: gvhd-new-diagnosis.chronic.skin.common
+      reference: who.skin-and-tissue.deep-tissue-hematomas
+  -
+      extractor: Response
+      reference: who.skin-and-tissue.joint-bleeding
+  -
+      extractor: Response
+      reference: who.skin-and-tissue.petechiae
+  -
+      extractor: Response
+      reference: who.skin-and-tissue.skin-hematomas
+  -
+      extractor: Response
+      reference: who.skin-and-tissue.soft-tissue-hematomas
