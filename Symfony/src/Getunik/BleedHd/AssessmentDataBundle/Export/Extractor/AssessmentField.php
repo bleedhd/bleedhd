@@ -18,6 +18,13 @@ class AssessmentField extends BaseExtractor
 	 */
 	public function extract(AssessmentContext $context)
 	{
-		return 'unknown';
+		$assessment = $context->getAssessment();
+
+		$getter = 'get' . ucfirst($this->reference);
+		if (!method_exists($assessment, $getter)) {
+			throw new \Exception('Assessment entity does not have a getter called "' . $getter . '"');
+		}
+
+		return $assessment->{$getter}();
 	}
 }
