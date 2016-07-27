@@ -1,0 +1,15 @@
+-
+  label: First name
+  extractor: PatientField
+  reference: firstname
+-
+  label: Last name
+  extractor: PatientField
+  reference: lastname
+-
+  label: Date of birth
+  extractor: PatientField
+  reference: birthdate
+  transform:
+    type: DateTimeFormat
+    format: Y-m-d
