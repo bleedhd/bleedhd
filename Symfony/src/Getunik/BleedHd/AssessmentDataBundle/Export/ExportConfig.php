@@ -2,8 +2,8 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Export;
 
-
 use Symfony\Component\Yaml\Yaml;
+
 
 class ExportConfig
 {
@@ -11,7 +11,7 @@ class ExportConfig
 	 * @var array
 	 */
 	private $config;
-	
+
 	/**
 	 * @var ColumnDefinition[]
 	 */
@@ -100,12 +100,19 @@ class ExportConfig
 		$targetIterator->seek($index + count($include) - 1);
 	}
 
+	/**
+	 * @return ColumnDefinition[]
+	 */
 	private function loadColumns()
 	{
-		return array_map(function ($column) { return new ColumnDefinition($column); }, $this->config['columns']);
+		return array_map(function ($column) {
+			return new ColumnDefinition($column);
+		}, $this->config['columns']);
 	}
 
 	/**
+	 * Returns the name of the export configuration.
+	 *
 	 * @return string
 	 */
 	public function getName()
@@ -114,6 +121,8 @@ class ExportConfig
 	}
 
 	/**
+	 * Returns the assessment type of the export configuration.
+	 *
 	 * @return string
 	 */
 	public function getAssessmentType()
@@ -121,6 +130,11 @@ class ExportConfig
 		return $this->config['type'];
 	}
 
+	/**
+	 * Returns a lazily initialized array of column definitions
+	 *
+	 * @return ColumnDefinition[]
+	 */
 	public function getColumns()
 	{
 		if ($this->columns === NULL) {

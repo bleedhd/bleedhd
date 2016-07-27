@@ -16,6 +16,7 @@ class AssessmentContext
     private $assessment;
     private $questions = array();
     private $questionnaireVersion;
+	private $responseMap = NULL;
 
     public function __construct(Assessment $assessment, array $questionnaire, array $responses)
     {
@@ -79,4 +80,20 @@ class AssessmentContext
     {
         return $this->questionnaireVersion;
     }
+
+	/**
+	 * @return Response[]|null an associative array from question slugs to responses
+	 */
+	public function getResponseMap()
+	{
+		if ($this->responseMap === NULL) {
+			$this->responseMap = [];
+			foreach ($this->getAssessment()->getResponses() as $response) {
+				/** @var $response Response */
+				$this->responseMap[$response->getQuestionSlug()] = $response;
+			}
+		}
+
+		return $this->responseMap;
+	}
 }

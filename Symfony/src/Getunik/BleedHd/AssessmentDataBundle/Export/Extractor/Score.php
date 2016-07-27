@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lukas
- * Date: 26.07.16
- * Time: 13:54
- */
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Extractor;
 
@@ -18,6 +12,18 @@ class Score extends BaseExtractor
 	 */
 	public function extract(AssessmentContext $context)
 	{
-		return 'unknown';
+		$result = $context->getAssessment()->getResult();
+		$current = isset($result['score']) ? $result['score'] : [];
+
+		$segments = explode('.', $this->reference);
+		foreach ($segments as $key) {
+			if (!is_array($current) || !isset($current[$key])) {
+				return NULL;
+			}
+
+			$current = $current[$key];
+		}
+
+		return $current;
 	}
 }

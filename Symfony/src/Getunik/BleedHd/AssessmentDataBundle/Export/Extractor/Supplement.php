@@ -4,10 +4,10 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Export\Extractor;
 
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Result;
-use Getunik\BleedHd\AssessmentDataBundle\Export\ResponseValue;
+use Getunik\BleedHd\AssessmentDataBundle\Export\SupplementValue;
 
 
-class Response extends BaseExtractor
+class Supplement extends BaseExtractor
 {
 	/**
 	 * @inheritdoc
@@ -16,10 +16,14 @@ class Response extends BaseExtractor
 	{
 		$responses = $context->getResponseMap();
 
-		if (!isset($responses[$this->reference])) {
+		$segments = explode('.', $this->reference);
+		$supplement = array_pop($segments);
+		$question = implode('.', $segments);
+
+		if (!isset($responses[$question])) {
 			return NULL;
 		}
 
-		return new ResponseValue(new Result($responses[$this->reference]->getResult()));
+		return new SupplementValue(new Result($responses[$question]->getResult()), $supplement);
 	}
 }

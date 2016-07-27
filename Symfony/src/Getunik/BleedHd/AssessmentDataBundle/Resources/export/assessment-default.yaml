@@ -10,3 +10,5 @@
   label: Start date
   extractor: AssessmentField
   reference: startDate
+  transform:
+    type: DateTimeFormat

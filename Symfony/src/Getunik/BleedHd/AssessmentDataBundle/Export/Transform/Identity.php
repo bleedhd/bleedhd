@@ -11,9 +11,10 @@ class Identity extends BaseTransform
 	public function transform($raw)
 	{
 		try {
-			return (string) $raw;
+			return (string)$raw;
 		} catch (\Exception $e) {
-			return 'unable to display value (' . get_class($raw) . ')';
+			$type = is_object($raw) ? get_class($raw) : gettype($raw);
+			return 'unable to display value (' . $type . ')';
 		}
 	}
 }

@@ -14,17 +14,170 @@ columns:
       label: Score
       extractor: Score
       reference: total
-  -
-      # label is optional if same as reference
-      label: gvhd-new-diagnosis.chronic.skin.diagnostic
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.skin.diagnostic
+  # screen 1
   -
       extractor: Response
-      reference: gvhd-new-diagnosis.chronic.skin.distinctive
+      reference: who.mouth-and-nose.petechiae
+  -
+      extractor: Supplement
+      reference: who.mouth-and-nose.petechiae.isnew
   -
       extractor: Response
-      reference: gvhd-new-diagnosis.chronic.skin.other
+      reference: who.mouth-and-nose.nose-bleed
+  -
+      extractor: Supplement
+      reference: who.mouth-and-nose.nose-bleed.duration
   -
       extractor: Response
-      reference: gvhd-new-diagnosis.chronic.skin.common
+      reference: who.mouth-and-nose.mouth-bleed
+  -
+      extractor: Supplement
+      reference: who.mouth-and-nose.mouth-bleed.duration
+  # screen 2
+  -
+      extractor: Response
+      reference: who.skin-and-tissue.petechiae
+  -
+      extractor: Supplement
+      reference: who.skin-and-tissue.petechiae.isnew
+  -
+      extractor: Supplement
+      reference: who.skin-and-tissue.petechiae.generalized
+  -
+      extractor: Response
+      reference: who.skin-and-tissue.skin-hematomas
+  -
+      extractor: Supplement
+      reference: who.skin-and-tissue.skin-hematomas.isnew
+  -
+      extractor: Supplement
+      reference: who.skin-and-tissue.skin-hematomas.number
+  -
+      extractor: Supplement
+      reference: who.skin-and-tissue.skin-hematomas.size
+  -
+      extractor: Response
+      reference: who.skin-and-tissue.soft-tissue-hematomas
+  -
+      extractor: Supplement
+      reference: who.skin-and-tissue.soft-tissue-hematomas.isnew
+  -
+      extractor: Response
+      reference: who.skin-and-tissue.deep-tissue-hematomas
+  -
+      extractor: Supplement
+      reference: who.skin-and-tissue.deep-tissue-hematomas.isnew
+  -
+      extractor: Response
+      reference: who.skin-and-tissue.joint-bleeding
+  -
+      extractor: Supplement
+      reference: who.skin-and-tissue.joint-bleeding.isnew
+  # screen 3
+  -
+      extractor: Response
+      reference: who.gastrointestinal.melanotic-stool
+  -
+      extractor: Supplement
+      reference: who.gastrointestinal.melanotic-stool.multiple
+  -
+      extractor: Response
+      reference: who.gastrointestinal.blood-stool
+  -
+      extractor: Supplement
+      reference: who.gastrointestinal.blood-stool.multiple
+  -
+      extractor: Response
+      reference: who.gastrointestinal.hematemesis
+  -
+      extractor: Supplement
+      reference: who.gastrointestinal.hematemesis.multiple
+  # screen 4
+  -
+      extractor: Response
+      reference: who.urogenital.urine-microscopic-blood
+  -
+      extractor: Response
+      reference: who.urogenital.urine-macroscopic-blood
+  -
+      extractor: Response
+      reference: who.urogenital.vaginal-bleeding
+  -
+      extractor: Supplement
+      reference: who.urogenital.vaginal-bleeding.multiple
+  # screen 5
+  -
+      extractor: Response
+      reference: who.pulmonary.blood-cough
+  -
+      extractor: Response
+      reference: who.pulmonary.blood-lavage
+  -
+      extractor: Response
+      reference: who.pulmonary.blood-sputum
+  # screen 6
+  -
+      extractor: Response
+      reference: who.body-cavities.blood-cavity-fluid
+  -
+      extractor: Response
+      reference: who.body-cavities.intervention
+  # screen 7
+  -
+      extractor: Response
+      reference: who.cns.retinal-bleed-noimp
+  -
+      extractor: Response
+      reference: who.cns.retinal-bleed-imp
+  -
+      extractor: Response
+      reference: who.cns.liquor
+  -
+      extractor: Supplement
+      reference: who.cns.liquor.liquor-tap
+  -
+      extractor: Response
+      reference: who.cns.bleed-nosymptoms
+  -
+      extractor: Response
+      reference: who.cns.bleed-symptoms
+  # screen 8
+  -
+      extractor: Response
+      reference: who.invasive-sites.bleed
+  -
+      extractor: Supplement
+      reference: who.invasive-sites.bleed.site
+  -
+      extractor: Response
+      reference: who.invasive-sites.site-other
+  # screen 9
+  -
+      extractor: Response
+      reference: who.bleeding-complications.hemodynamic-instability
+  -
+      extractor: Response
+      reference: who.bleeding-complications.fatal-bleed
+  -
+      extractor: Response
+      reference: who.bleeding-complications.rbc
+  # screen 10
+  -
+      extractor: Response
+      reference: who.intervention.intervention-needed
+  -
+      extractor: Response
+      reference: who.intervention.intervention-type
+  -
+      extractor: Response
+      reference: who.intervention.medication-administered
+  -
+      extractor: Response
+      reference: who.intervention.medication-type
+  # screen 11
+  -
+      extractor: Response
+      reference: who.source-check.nursing-documented
+  -
+      extractor: Response
+      reference: who.source-check.medical-record

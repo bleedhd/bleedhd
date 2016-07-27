@@ -2,12 +2,17 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Export;
 
-
-use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
 use Getunik\BleedHd\AssessmentDataBundle\Handler\AssessmentHandler;
 use Getunik\BleedHd\AssessmentDataBundle\Handler\QuestionnaireHandler;
 use Getunik\BleedHd\AssessmentDataBundle\Handler\ResponseHandler;
 
+
+/**
+ * Class ExportService
+ * @package Getunik\BleedHd\AssessmentDataBundle\Export
+ * 
+ * This is the driving force behind the data export mechanism. @see ExportService::export
+ */
 class ExportService
 {
 	/**
@@ -42,7 +47,7 @@ class ExportService
 		$questionnaire = $this->questionnaireHandler->getQuestionnaireByName($assessmentType);
 		$filter = new AssessmentFilter($this->assessmentHandler);
 
-		$filePath = $this->exportConfigPath . '/' . $assessmentType . '/' . $exportType .  '.yaml';
+		$filePath = $this->exportConfigPath . '/' . $assessmentType . '/' . $exportType . '.yaml';
 		if (!file_exists($filePath)) {
 			throw new \Exception('Cannot find export configuration "' . $exportType . '" for assessment type "' . $assessmentType . '"');
 		}
