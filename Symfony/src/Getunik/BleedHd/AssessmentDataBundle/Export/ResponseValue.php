@@ -26,6 +26,10 @@ class ResponseValue
 			return '';
 		}
 
-		return is_array($value) ? json_encode($value) : (string) $value;
+		if (is_array($value)) {
+			return implode(',', array_map(function ($item) { return isset($item['value']) ? $item['value'] : ''; }, $value));
+		}
+
+		return (string) $value;
 	}
 }

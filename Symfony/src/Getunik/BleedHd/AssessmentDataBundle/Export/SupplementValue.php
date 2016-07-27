@@ -24,6 +24,10 @@ class SupplementValue
 			return '';
 		}
 
-		return is_array($this->supplement) ? json_encode($this->supplement) : (string) $this->supplement;
+		if (is_array($this->supplement)) {
+			return implode(',', $this->supplement);
+		}
+
+		return (string) $this->supplement;
 	}
 }
