@@ -1,16 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lukas
- * Date: 27.07.16
- * Time: 11:16
- */
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;

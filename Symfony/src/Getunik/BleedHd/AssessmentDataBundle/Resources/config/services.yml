@@ -168,5 +168,6 @@ services:
         class: %getunik.bleed_hd_data.export_controller.class%
         arguments:
             - "@getunik.bleed_hd_data.export_service"
+            - %kernel.root_dir%/../web/export
         calls:
             - [setContainer, ["@service_container"]]
