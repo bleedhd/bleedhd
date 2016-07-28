@@ -18,15 +18,9 @@ class ExportController extends FOSRestController
 	 */
 	private $exportService;
 
-	/**
-	 * @var string
-	 */
-	private $exportsPath;
-
-	public function __construct(ExportService $exportService, $exportsPath)
+	public function __construct(ExportService $exportService)
 	{
 		$this->exportService = $exportService;
-		$this->exportsPath = $exportsPath;
 	}
 
 	/**
@@ -40,7 +34,7 @@ class ExportController extends FOSRestController
 	 */
 	public function exportAction(Request $request, $settings)
 	{
-		$export = $this->exportService->export($this->exportsPath, $settings);
+		$export = $this->exportService->export($settings);
 
 		// store the generated export ID in the session - this is used by the ExportDownloadController to ensure
 		// that only the person who generated the export can download it

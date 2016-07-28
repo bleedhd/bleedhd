@@ -14,6 +14,9 @@ parameters:
     getunik.bleed_hd_data.clientlogentry_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\ClientLogEntriesController
     getunik.bleed_hd_data.user_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\UsersController
     getunik.bleed_hd_data.export_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\ExportController
+    getunik.bleed_hd_data.questionnaire_config_path: "%kernel.root_dir%/../src/Getunik/BleedHd/AssessmentDataBundle/Resources/questionnaire"
+    getunik.bleed_hd_data.export_config_path: "%kernel.root_dir%/../src/Getunik/BleedHd/AssessmentDataBundle/Resources/export"
+    getunik.bleed_hd_data.export_storage_dir: "%kernel.root_dir%/../var/export"
 
 
 services:
@@ -39,7 +42,8 @@ services:
             - "@getunik.bleed_hd_data.assessment_handler"
             - "@getunik.bleed_hd_data.questionnaire_handler"
             - "@getunik.bleed_hd_data.response_handler"
-            - %kernel.root_dir%/../src/Getunik/BleedHd/AssessmentDataBundle/Resources/export
+            - "%getunik.bleed_hd_data.export_config_path%"
+            - "%getunik.bleed_hd_data.export_storage_dir%"
 
     getunik.bleed_hd_data.entity_update_listener:
         class: Getunik\BleedHd\AssessmentDataBundle\Listener\UpdateInformationListener
@@ -129,7 +133,7 @@ services:
     getunik.bleed_hd_data.questionnaire_handler:
         class: %getunik.bleed_hd_data.questionnaire_handler.class%
         arguments:
-            - %kernel.root_dir%/../src/Getunik/BleedHd/AssessmentDataBundle/Resources/questionnaire
+            - "%getunik.bleed_hd_data.questionnaire_config_path%"
 
     getunik.bleed_hd_data.questionnaire_controller:
         class: %getunik.bleed_hd_data.questionnaire_controller.class%
@@ -168,6 +172,5 @@ services:
         class: %getunik.bleed_hd_data.export_controller.class%
         arguments:
             - "@getunik.bleed_hd_data.export_service"
-            - %kernel.root_dir%/../var/export
         calls:
             - [setContainer, ["@service_container"]]

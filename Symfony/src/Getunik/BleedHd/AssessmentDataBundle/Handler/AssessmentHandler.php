@@ -142,17 +142,7 @@ class AssessmentHandler
 			$this->buildQueryFromFilterSpec($builder, $filterSpec)
 		);
 
-//		$filter = $builder->expr()->andX(
-//			$baseConditions,
-//			$builder->expr()->eq('p.isActive', ':isActive'),
-//			$builder->expr()->gt('a.startDate', ':startDate'),
-//			$builder->expr()->like('p.lastname', $builder->expr()->literal('%Muster%'))
-//		);
-
 		$builder->where($filter);
-
-//		$builder->setParameter('isActive', true);
-//		$builder->setParameter('startDate', \DateTime::createFromFormat(\DateTime::ISO8601, '2016-06-05'));
 
 		$query = $builder->getQuery();
 		$dql = $query->getDQL();

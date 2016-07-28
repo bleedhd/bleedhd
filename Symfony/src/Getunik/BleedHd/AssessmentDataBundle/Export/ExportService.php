@@ -2,6 +2,7 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Export;
 
+use Getunik\BleedHd\AssessmentDataBundle\Controller\ExportDownloadController;
 use Getunik\BleedHd\AssessmentDataBundle\Handler\AssessmentHandler;
 use Getunik\BleedHd\AssessmentDataBundle\Handler\QuestionnaireHandler;
 use Getunik\BleedHd\AssessmentDataBundle\Handler\ResponseHandler;
@@ -32,22 +33,42 @@ class ExportService
 	 * @var string
 	 */
 	private $exportConfigPath;
+	/**
+	 * @var string
+	 */
+	private $exportStorageDir;
 
-	public function __construct(AssessmentHandler $assessmentHandler, QuestionnaireHandler $questionnaireHandler, ResponseHandler $responseHandler, $exportConfigPath)
+	/**
+	 * ExportService constructor.
+	 * @param AssessmentHandler $assessmentHandler
+	 * @param QuestionnaireHandler $questionnaireHandler
+	 * @param ResponseHandler $responseHandler
+	 * @param $exportConfigPath string path to the export configuration files
+	 * @param $exportStorageDir string path to the directory where generated export files will be stored
+	 */
+	public function __construct(AssessmentHandler $assessmentHandler, QuestionnaireHandler $questionnaireHandler, ResponseHandler $responseHandler, $exportConfigPath, $exportStorageDir)
 	{
 		$this->assessmentHandler = $assessmentHandler;
 		$this->questionnaireHandler = $questionnaireHandler;
 		$this->responseHandler = $responseHandler;
 		$this->exportConfigPath = $exportConfigPath;
+		$this->exportStorageDir = $exportStorageDir;
 	}
 
-	public function export($exportsPath, $settings)
+	/**
+	 * Generates an export file for the given export settings and returns an array with the generated file's ID and
+	 * name which can be used to download the file via the @see ExportDownloadController.
+	 *
+	 * @param $settings array export settings structure
+	 * @return array information about the generated export ('id' and 'name')
+	 */
+	public function export($settings)
 	{
 		$this->verifySettings($settings);
 
 		// generate a random file name and make sure it only contains "nice" characters
 		$id = preg_replace('/[+\/=]/', '', base64_encode(random_bytes(16)));
-		$path = $exportsPath . '/' . $id;
+		$path = $this->exportStorageDir . '/' . $id;
 		$fileHandle = fopen($path, 'w');
 
 		if (count($settings['typeMap']) === 1) {
@@ -81,7 +102,9 @@ class ExportService
 	}
 
 	private function exportBatch()
-	{}
+	{
+		// not yet implemented
+	}
 
 	private function verifySettings($settings)
 	{
