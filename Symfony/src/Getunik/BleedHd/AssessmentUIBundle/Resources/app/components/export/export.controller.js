@@ -1,14 +1,35 @@
 
 (function (angular, bleedHd) {
 
-    function ExportController($scope, Export, PatientData, BleedHdConfig) {
+    function ExportController($scope, Export, PatientData, BleedHdConfig, DomainConst) {
         this.$scope = $scope;
 		this.Export = Export;
         this.PatientData = PatientData;
         this.BleedHdConfig = BleedHdConfig;
+		this.DomainConst = DomainConst;
 
 		this.downloadLink = null;
 		this.downloadName = '[empty]';
+
+		this.filter = {
+			patient: {
+				active: true,
+			},
+			assessment: {
+				progress: this.DomainConst.progress.completed,
+			},
+		}
+
+		this.exportSettings = {
+			baseName: 'export-' + moment().format('YYYYMMDD-HHmmss'),
+			filters: [],
+			typeMap: [
+				{
+					questionnaire: null,
+					export: 'default',
+				}
+			],
+		};
     }
 
     bleedHd.registerController('export', ExportController,
@@ -49,7 +70,10 @@
 						that.downloadName = result.name;
 					}
 				});
-			}
+			},
+			onFilterChange: function () {
+
+			},
         },
         {
             asName: 'ctlExport',

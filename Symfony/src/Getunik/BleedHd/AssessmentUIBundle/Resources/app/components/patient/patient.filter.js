@@ -1,26 +1,6 @@
 
 (function (angular) {
 
-	var genderMap = {
-		m: 'male',
-		f: 'female',
-		unknown: 'Not specified',
-	},
-
-	questionnaireMap = {
-		'demo': 'Demo Assessment',
-		'bleeding-features': 'Bleeding Features',
-		'who': 'Bleeding WHO',
-		'bsms': 'Bleeding BSMS',
-		'agvhd-follow-up': 'aGVHD follow-up',
-		'gvhd-features': 'GVHD features',
-		'gvhd-new-diagnosis': 'GVHD new diagnosis',
-		'gvhd-organ-scoring': 'GVHD organ scoring',
-		'gvhd-activity-assessment': 'GVHD activity assessment',
-		'gvhd-self-report': 'GVHD patient self report',
-		'gvhd-late-onset-acute': 'Late-onset aGVHD classification',
-	};
-
 	angular.module('patient')
 
 		/**
@@ -38,15 +18,15 @@
 			};
 		})
 
-		.filter('gender', function () {
+		.filter('gender', function (DomainConst) {
 			return function (sex) {
-				return (genderMap[sex] === undefined ? genderMap.unknown : genderMap[sex]);
+				return (DomainConst.genders[sex] === undefined ? DomainConst.genders.unknown : DomainConst.genders[sex]);
 			};
 		})
 
-		.filter('toQName', function () {
+		.filter('toQName', function (DomainConst) {
 			return function (name) {
-				return questionnaireMap[name] || 'unknown';
+				return DomainConst.questionnaires[name] || 'unknown';
 			};
 		})
 

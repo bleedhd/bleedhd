@@ -103,6 +103,24 @@
 			tentative: 'tentative',
 			none: 'none',
 		},
+		questionnaires: {
+			'demo': 'Demo Assessment',
+			'bleeding-features': 'Bleeding Features',
+			'who': 'Bleeding WHO',
+			'bsms': 'Bleeding BSMS',
+			'agvhd-follow-up': 'aGVHD follow-up',
+			'gvhd-features': 'GVHD features',
+			'gvhd-new-diagnosis': 'GVHD new diagnosis',
+			'gvhd-organ-scoring': 'GVHD organ scoring',
+			'gvhd-activity-assessment': 'GVHD activity assessment',
+			'gvhd-self-report': 'GVHD patient self report',
+			'gvhd-late-onset-acute': 'Late-onset aGVHD classification',
+		},
+		genders: {
+			m: 'male',
+			f: 'female',
+			unknown: 'Not specified',
+		},
 	})
 
 	.config(function ($provide, $httpProvider, CachingWrapperProvider, EnhancedLogConfigProvider, AuthHandlerProvider, LoginRedirectProvider) {
