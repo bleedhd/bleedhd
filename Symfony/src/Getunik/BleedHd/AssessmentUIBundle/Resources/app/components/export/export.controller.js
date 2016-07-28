@@ -30,6 +30,8 @@
 				}
 			],
 		};
+
+		this.onFilterChange();
     }
 
     bleedHd.registerController('export', ExportController,
@@ -72,7 +74,27 @@
 				});
 			},
 			onFilterChange: function () {
+				var filters = [];
 
+				if (this.filter.patient.active === true) {
+					filters.push({
+						target: 'patient',
+						property: 'isActive',
+						op: 'eq',
+						value: true,
+					});
+				}
+
+				if (this.filter.assessment.progress === this.DomainConst.progress.completed) {
+					filters.push({
+						target: 'assessment',
+						property: 'progress',
+						op: 'eq',
+						value: this.DomainConst.progress.completed,
+					});
+				}
+
+				this.exportSettings.filters = filters;
 			},
         },
         {
