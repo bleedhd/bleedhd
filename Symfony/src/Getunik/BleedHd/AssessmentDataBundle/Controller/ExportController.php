@@ -25,7 +25,7 @@ class ExportController extends FOSRestController
 
 	/**
 	 * @param $request Request the request object
-	 * @param $settings array the export settings configuration
+	 * @param $settings array the export settings configuration; see @see ExportService::export($settings)
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 *
 	 * @Security("has_role('ROLE_READER')")

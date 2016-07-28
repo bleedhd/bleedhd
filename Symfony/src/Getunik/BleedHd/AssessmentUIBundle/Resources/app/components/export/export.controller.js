@@ -39,7 +39,7 @@
 					],
 					typeMap: [
 						{
-							assessmentType: 'who',
+							questionnaire: 'who',
 							export: 'default',
 						}
 					],

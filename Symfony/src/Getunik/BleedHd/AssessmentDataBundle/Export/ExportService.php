@@ -60,6 +60,14 @@ class ExportService
 	 * name which can be used to download the file via the @see ExportDownloadController.
 	 *
 	 * @param $settings array export settings structure
+	 * 	[
+	 * 		'baseName' - the base name used for the export file when downloaded (this is combined with some generated sufix)
+	 * 		'filters' - see $filterSpec parameter on @see AssessmentHandler::getFilteredAssessments()
+	 * 		'typeMap' [ - array of mappings from assessment type / questionnaire to export configuration names
+	 * 			'questionnaire' - the questionnaire name to map
+	 * 			'export' - the name of an export configuration for that questionnaire
+	 * 		]
+	 * 	]
 	 * @return array information about the generated export ('id' and 'name')
 	 */
 	public function export($settings)
@@ -73,30 +81,30 @@ class ExportService
 
 		if (count($settings['typeMap']) === 1) {
 			$currentMapping = reset($settings['typeMap']);
-			$assessmentType = $currentMapping['assessmentType'];
+			$questionnaire = $currentMapping['questionnaire'];
 			$exportType = $currentMapping['export'];
 			$filter = new AssessmentFilter($this->assessmentHandler, $settings['filters']);
 
-			$this->exportSingle($fileHandle, $filter, $assessmentType, $exportType);
+			$this->exportSingle($fileHandle, $filter, $questionnaire, $exportType);
 
 			fclose($fileHandle);
 
 			return [
 				'id' => $id,
-				'name' => implode('-', [$settings['baseName'], $assessmentType, $exportType]) . '.csv',
+				'name' => implode('-', [$settings['baseName'], $questionnaire, $exportType]) . '.csv',
 			];
 		} else {
 			throw new NotImplementedException('batch export not yet implemented');
 		}
 	}
 
-	private function exportSingle($fileHandle, AssessmentFilter $filter, $assessmentType, $exportType)
+	private function exportSingle($fileHandle, AssessmentFilter $filter, $questionnaireName, $exportType)
 	{
-		$config = ExportConfig::load($this->exportConfigPath, $assessmentType, $exportType);
+		$config = ExportConfig::load($this->exportConfigPath, $questionnaireName, $exportType);
 		$table = new Table($config);
 
-		$questionnaire = $this->questionnaireHandler->getQuestionnaireByName($assessmentType);
-		$iterator = new AssessmentContextIterator($filter->getAssessments($assessmentType), $questionnaire, $this->responseHandler);
+		$questionnaire = $this->questionnaireHandler->getQuestionnaireByName($questionnaireName);
+		$iterator = new AssessmentContextIterator($filter->getAssessments($questionnaireName), $questionnaire, $this->responseHandler);
 
 		$table->generate($fileHandle, $iterator);
 	}

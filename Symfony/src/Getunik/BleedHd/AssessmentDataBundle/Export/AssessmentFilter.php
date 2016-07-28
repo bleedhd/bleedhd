@@ -29,11 +29,11 @@ class AssessmentFilter
 	}
 
 	/**
-	 * @param $assessmentType string the type of assessment that should be retrieved
+	 * @param $questionnaire string the questionnaire / type of assessment that should be retrieved
 	 * @return Assessment[]
 	 */
-	public function getAssessments($assessmentType)
+	public function getAssessments($questionnaire)
 	{
-		return $this->assessmentHandler->getFilteredAssessments($this->filterSpec, $assessmentType);
+		return $this->assessmentHandler->getFilteredAssessments($this->filterSpec, $questionnaire);
 	}
 }

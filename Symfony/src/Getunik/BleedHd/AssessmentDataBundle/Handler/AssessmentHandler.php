@@ -126,11 +126,19 @@ class AssessmentHandler
 	 *
 	 * @param $filterSpec array the assessment filter specification; this sequence of conditions will be
 	 * translated into a Doctrine query for assessments that should be exported.
-	 * @param null $assessmentType string if specified, the returned assessments are additionally limited to the given
-	 * assessment type (questionnaire name)
+	 * 	[ - array of filter conditions
+	 * 		[
+	 * 			'target' - target entity type for the conditions; see @see self::ENTITY_TARGET_MAP
+	 * 			'property' - name of the entity property to which the condition should apply
+	 * 			'op' - Doctrine expression operator ('eq', 'gt', 'like', ...) for the condition
+	 * 			'value' - the value against which the condition is checked
+	 * 		]
+	 * 	]
+	 * @param null $questionnaire string if specified, the returned assessments are additionally limited to the given
+	 * questionnaire / assessment type
 	 * @return Assessment[]
 	 */
-	public function getFilteredAssessments($filterSpec, $assessmentType = NULL)
+	public function getFilteredAssessments($filterSpec, $questionnaire = NULL)
 	{
 		$builder = $this->repository->createQueryBuilder('a');
 		$x = $builder->expr();
@@ -142,8 +150,8 @@ class AssessmentHandler
 			$x->eq('a.isDeleted', $x->literal(false))
 		);
 
-		if ($assessmentType) {
-			$baseConditions->add($x->eq('a.questionnaire', $x->literal($assessmentType)));
+		if ($questionnaire) {
+			$baseConditions->add($x->eq('a.questionnaire', $x->literal($questionnaire)));
 		}
 
 		$filter = $builder->expr()->andX(
