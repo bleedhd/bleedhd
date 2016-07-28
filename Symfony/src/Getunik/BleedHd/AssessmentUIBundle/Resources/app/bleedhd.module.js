@@ -65,7 +65,6 @@
 	bleedHd.app = angular.module('bleedHdApp', [
 		'ngRoute',
 		'ngSanitize',
-		'ui.router',
 		'restangular',
 		'authHandler',
 		'typeRegistry',
