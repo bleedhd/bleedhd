@@ -121,6 +121,15 @@ class AssessmentHandler
 		return array_values($result);
 	}
 
+	/**
+	 * Returns a list of assessments filterd by the given filter specification.
+	 *
+	 * @param $filterSpec array the assessment filter specification; this sequence of conditions will be
+	 * translated into a Doctrine query for assessments that should be exported.
+	 * @param null $assessmentType string if specified, the returned assessments are additionally limited to the given
+	 * assessment type (questionnaire name)
+	 * @return Assessment[]
+	 */
 	public function getFilteredAssessments($filterSpec, $assessmentType = NULL)
 	{
 		$builder = $this->repository->createQueryBuilder('a');
@@ -178,15 +187,17 @@ class AssessmentHandler
 				throw new \Exception('Missing condition value in condition #' . $index);
 			}
 
-			extract($condition);
+			// since we know the values are there and safe, we can just extract them from the associative array
 			/** @var string $target */
 			/** @var string $property */
 			/** @var string $op */
 			/** @var mixed $value */
+			extract($condition);
 
 			$paramName = ':' . implode('_', [$target, $property]);
 			$fieldName = $map[$target] . '.' . $property;
 
+			// this only works for binary operators - at some point this should probably be extended
 			$group->add($x->{$op}($fieldName, $paramName));
 			$builder->setParameter($paramName, $value);
 

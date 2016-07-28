@@ -101,7 +101,7 @@ class ExportService
 		$table->generate($fileHandle, $iterator);
 	}
 
-	private function exportBatch()
+	private function exportBatch($fileHandle, AssessmentFilter $filter, $typeMap)
 	{
 		// not yet implemented
 	}
