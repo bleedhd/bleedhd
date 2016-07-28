@@ -21,14 +21,20 @@
 						{
 							target: 'assessment',
 							property: 'startDate',
-							op: '>',
+							op: 'gt',
 							value: '2016-05-05',
 						},
 						{
 							target: 'patient',
 							property: 'isActive',
-							op: '=',
+							op: 'eq',
 							value: true,
+						},
+						{
+							target: 'patient',
+							property: 'lastname',
+							op: 'like',
+							value: '%Osteron%',
 						},
 					],
 					typeMap: [

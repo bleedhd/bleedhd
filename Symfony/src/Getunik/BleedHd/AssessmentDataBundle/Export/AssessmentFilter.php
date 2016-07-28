@@ -14,10 +14,12 @@ use Getunik\BleedHd\AssessmentDataBundle\Handler\AssessmentHandler;
 class AssessmentFilter
 {
 	private $assessmentHandler;
+	private $filterSpec;
 
-	public function __construct(AssessmentHandler $assessmentHandler)
+	public function __construct(AssessmentHandler $assessmentHandler, $filterSpec)
 	{
 		$this->assessmentHandler = $assessmentHandler;
+		$this->filterSpec = $filterSpec;
 	}
 
 	/**
@@ -26,6 +28,6 @@ class AssessmentFilter
 	 */
 	public function getAssessments($assessmentType)
 	{
-		return $this->assessmentHandler->getPatientAssessments(5);
+		return $this->assessmentHandler->getFilteredAssessments($this->filterSpec, $assessmentType);
 	}
 }

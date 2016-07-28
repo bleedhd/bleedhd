@@ -43,6 +43,8 @@ class ExportService
 
 	public function export($exportsPath, $settings)
 	{
+		$this->verifySettings($settings);
+
 		// generate a random file name and make sure it only contains "nice" characters
 		$id = preg_replace('/[+\/=]/', '', base64_encode(random_bytes(16)));
 		$path = $exportsPath . '/' . $id;
@@ -52,7 +54,7 @@ class ExportService
 			$currentMapping = reset($settings['typeMap']);
 			$assessmentType = $currentMapping['assessmentType'];
 			$exportType = $currentMapping['export'];
-			$filter = new AssessmentFilter($this->assessmentHandler);
+			$filter = new AssessmentFilter($this->assessmentHandler, $settings['filters']);
 
 			$this->exportSingle($fileHandle, $filter, $assessmentType, $exportType);
 
@@ -87,7 +89,7 @@ class ExportService
 			throw new \Exception('Missing "baseName" in export configuration');
 		}
 
-		if (!isset($settings['filters']) || !is_array($settings['filter'])) {
+		if (!isset($settings['filters']) || !is_array($settings['filters'])) {
 			throw new \Exception('Missing "filters" in export configuration');
 		}
 
