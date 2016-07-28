@@ -40,12 +40,7 @@ class ExportController extends FOSRestController
 	 */
 	public function exportAction(Request $request, $settings)
 	{
-		// generate a random file name and make sure it only contains "nice" characters
-		$id = preg_replace('/[+\/=]/', '', base64_encode(random_bytes(16)));
-		$path = $this->exportsPath . '/' . $id;
-
-		$fp = fopen($path, 'w');
-		$this->exportService->export($fp);
+		$export = $this->exportService->export($this->exportsPath, $settings);
 
 		// store the generated export ID in the session - this is used by the ExportDownloadController to ensure
 		// that only the person who generated the export can download it
@@ -54,14 +49,13 @@ class ExportController extends FOSRestController
 			$exportIds = [];
 		}
 
-		$exportIds[] = $id;
+		$exportIds[] = $export['id'];
 		$request->getSession()->set(self::EXPORT_DOWNLOAD_IDS_SESSION, $exportIds);
 
-		return $this->handleView($this->view([
+		return $this->handleView($this->view(array_merge([
 			'status' => 'ok',
 			'settings' => $settings,
-			'id' => $id,
-			'name' => 'export-name.csv',
-		]));
+			], $export
+		)));
 	}
 }

@@ -12,7 +12,7 @@ class ExportDownloadController extends Controller
 {
 	public function downloadExportAction(Request $request, $id, $name)
 	{
-		$path = $this->get('kernel')->getRootDir() . '/../web/export/' . $id;
+		$path = $this->get('kernel')->getRootDir() . '/../var/export/' . $id;
 		$sessionIds = $request->getSession()->get(ExportController::EXPORT_DOWNLOAD_IDS_SESSION);
 
 		if (empty($sessionIds) || array_search($id, $sessionIds) === false) {
