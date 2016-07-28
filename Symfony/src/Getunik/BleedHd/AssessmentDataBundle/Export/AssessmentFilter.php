@@ -2,6 +2,7 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Export;
 
+use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
 use Getunik\BleedHd\AssessmentDataBundle\Handler\AssessmentHandler;
 
 
@@ -14,18 +15,25 @@ use Getunik\BleedHd\AssessmentDataBundle\Handler\AssessmentHandler;
 class AssessmentFilter
 {
 	private $assessmentHandler;
+	private $filterSpec;
 
-	public function __construct(AssessmentHandler $assessmentHandler)
+	/**
+	 * AssessmentFilter constructor.
+	 * @param AssessmentHandler $assessmentHandler
+	 * @param $filterSpec
+	 */
+	public function __construct(AssessmentHandler $assessmentHandler, $filterSpec)
 	{
 		$this->assessmentHandler = $assessmentHandler;
+		$this->filterSpec = $filterSpec;
 	}
 
 	/**
-	 * @param $assessmentType string the type of assessment that should be retrieved
-	 * @return array
+	 * @param $questionnaire string the questionnaire / type of assessment that should be retrieved
+	 * @return Assessment[]
 	 */
-	public function getAssessments($assessmentType)
+	public function getAssessments($questionnaire)
 	{
-		return $this->assessmentHandler->getPatientAssessments(5);
+		return $this->assessmentHandler->getFilteredAssessments($this->filterSpec, $questionnaire);
 	}
 }

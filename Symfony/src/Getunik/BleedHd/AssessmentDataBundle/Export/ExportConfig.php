@@ -17,6 +17,25 @@ class ExportConfig
 	 */
 	private $columns = NULL;
 
+	/**
+	 * Loads an export configuration for the given assessment type and export type.
+	 *
+	 * @param $basePath string base path of export type configurations
+	 * @param $assessmentType string assessment type
+	 * @param $exportType string name of the export type
+	 * @return ExportConfig
+	 * @throws \Exception if no such type configuration can be found
+	 */
+	public static function load($basePath, $assessmentType, $exportType)
+	{
+		$filePath = $basePath . '/' . $assessmentType . '/' . $exportType . '.yaml';
+		if (!file_exists($filePath)) {
+			throw new \Exception('Cannot find export type configuration "' . $exportType . '" for assessment type "' . $assessmentType . '"');
+		}
+
+		return new ExportConfig($filePath);
+	}
+
 	public function __construct($configPath)
 	{
 		$this->config = $this->processFile($configPath);
