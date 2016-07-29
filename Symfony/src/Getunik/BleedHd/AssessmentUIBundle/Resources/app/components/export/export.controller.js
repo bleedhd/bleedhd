@@ -11,6 +11,8 @@
 
 		this.exportConfigMap = Export.getConfigurationMap();
 		this.availableExportConfigs = null;
+		this.availableQuestionnaires = null;
+		this.assessmentCounts = {};
 
 		// this.datepickerOptions = {
 		// 	minDate: DateHelper.fromString('2000-01-01'),
@@ -99,9 +101,38 @@
 				}
 
 				this.exportSettings.filters = filters;
+
+				var that = this;
+				that.Export.count(that.exportSettings).then(function (count) {
+					that.assessmentCounts = { total: 0 };
+					that.availableQuestionnaires = [];
+
+					angular.forEach(count, function (row) {
+						var count = parseInt(row.num);
+						that.assessmentCounts[row.questionnaire] = count;
+						that.assessmentCounts.total += count;
+						that.availableQuestionnaires.push({
+							key: row.questionnaire,
+							count: count,
+							name: that.DomainConst.questionnaires[row.questionnaire],
+						});
+					});
+
+					that.availableQuestionnaires.sort(function (a, b) {
+						return a.name > b.name;
+					});
+
+					if (that.assessmentCounts[that.typeMap.questionnaire] === undefined) {
+						that.typeMap.questionnaire = null;
+					}
+
+					that.onQuestionnaireChange();
+				});
 			},
 			onQuestionnaireChange: function () {
 				var that = this;
+
+				that.filteredAssessmentCount = that.typeMap.questionnaire ? that.assessmentCounts[that.typeMap.questionnaire] : that.assessmentCounts.total;
 
 				that.exportConfigMap.then(function (map) {
 					if (!that.typeMap.questionnaire || !map[that.typeMap.questionnaire]) {

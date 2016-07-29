@@ -66,6 +66,24 @@ class ExportService
 	}
 
 	/**
+	 * Counts the assessments matched by the given export filter settings and returns the count grouped by questionnaire.
+	 *
+	 * @param $settings array @see export(), but only 'filters' is required
+	 * @return array
+	 * @throws \Exception
+	 */
+	public function count($settings)
+	{
+		if (!isset($settings['filters']) || !is_array($settings['filters'])) {
+			throw new \Exception('Missing "filters" in export configuration');
+		}
+
+		$filter = new AssessmentFilter($this->assessmentHandler, $settings['filters']);
+
+		return $filter->getCount();
+	}
+
+	/**
 	 * Generates an export file for the given export settings and returns an array with the generated file's ID and
 	 * name which can be used to download the file via the @see ExportDownloadController.
 	 *

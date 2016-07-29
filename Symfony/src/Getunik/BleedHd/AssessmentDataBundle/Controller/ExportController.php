@@ -55,6 +55,24 @@ class ExportController extends FOSRestController
 	}
 
 	/**
+	 * @param $settings array the export settings configuration; see @see ExportService::export($settings)
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 *
+	 * @Security("has_role('ROLE_READER')")
+	 * @Post("/export/count", requirements={"_format"="json|xml"})
+	 * @ParamConverter("settings", converter="fos_rest.request_body", class="ArrayCollection")
+	 */
+	public function countAction($settings)
+	{
+		$count = $this->exportService->count($settings);
+
+		return $this->handleView($this->view([
+			'status' => 'ok',
+			'count' => $count,
+		]));
+	}
+
+	/**
 	 * @Security("has_role('ROLE_READER')")
 	 * @Get("/exportconfigs")
 	 */

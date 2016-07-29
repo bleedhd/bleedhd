@@ -3,6 +3,7 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Handler;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query\Expr\Comparison;
 use Doctrine\ORM\QueryBuilder;
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
@@ -122,6 +123,24 @@ class AssessmentHandler
 	}
 
 	/**
+	 * @param $filterSpec array @see getFilteredAssessments
+	 * @return array a list of questionnaires and counts
+	 */
+	public function countFilteredAssessments($filterSpec)
+	{
+		$builder = $this->getFilterQuery($filterSpec);
+		$x = $builder->expr();
+
+		$builder
+			->select('a.questionnaire')
+			->addSelect($x->count('a.questionnaire') . ' AS num')
+			->groupBy('a.questionnaire');
+
+		$query = $builder->getQuery();
+		return $query->getArrayResult();
+	}
+
+	/**
 	 * Returns a list of assessments filterd by the given filter specification.
 	 *
 	 * @param $filterSpec array the assessment filter specification; this sequence of conditions will be
@@ -140,6 +159,22 @@ class AssessmentHandler
 	 */
 	public function getFilteredAssessments($filterSpec, $questionnaire = NULL)
 	{
+		$builder = $this->getFilterQuery($filterSpec);
+
+		if ($questionnaire) {
+			$builder->andWhere($builder->expr()->eq('a.questionnaire', $builder->expr()->literal($questionnaire)));
+		}
+
+		$query = $builder->getQuery();
+		return $query->getResult();
+	}
+
+	/**
+	 * @param $filterSpec
+	 * @return QueryBuilder
+	 */
+	private function getFilterQuery($filterSpec)
+	{
 		$builder = $this->repository->createQueryBuilder('a');
 		$x = $builder->expr();
 
@@ -150,10 +185,6 @@ class AssessmentHandler
 			$x->eq('a.isDeleted', $x->literal(false))
 		);
 
-		if ($questionnaire) {
-			$baseConditions->add($x->eq('a.questionnaire', $x->literal($questionnaire)));
-		}
-
 		$filter = $builder->expr()->andX(
 			$baseConditions,
 			$this->buildQueryFromFilterSpec($builder, $filterSpec)
@@ -161,10 +192,7 @@ class AssessmentHandler
 
 		$builder->where($filter);
 
-		$query = $builder->getQuery();
-		$dql = $query->getDQL();
-
-		return $query->getResult();
+		return $builder;
 	}
 
 	private function buildQueryFromFilterSpec(QueryBuilder $builder, $filterSpec)

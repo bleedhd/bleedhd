@@ -10,6 +10,11 @@
 	}
 
 	angular.extend(ExportService.prototype, {
+		count: function (settings) {
+			return this.BleedHttp.post('/api/export/count', settings).then(function (response) {
+				return response.data.count;
+			});
+		},
 		generate: function (settings) {
 			return this.BleedHttp.post('/api/export/generate', settings).then(function (response) {
 				return response.data;
