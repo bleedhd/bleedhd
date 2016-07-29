@@ -1,15 +1,19 @@
 
 (function (angular, bleedHd) {
 
-    function ExportController($scope, Export, PatientData, BleedHdConfig, DomainConst) {
+    function ExportController($scope, Export, PatientData, DateHelper, BleedHdConfig, DomainConst) {
         this.$scope = $scope;
 		this.Export = Export;
         this.PatientData = PatientData;
         this.BleedHdConfig = BleedHdConfig;
 		this.DomainConst = DomainConst;
+		this.exportFile = null;
 
-		this.downloadLink = null;
-		this.downloadName = '[empty]';
+		// this.datepickerOptions = {
+		// 	minDate: DateHelper.fromString('2000-01-01'),
+		// 	maxDate: DateHelper.fromDate(new Date()),
+		// 	startingDay: 1,
+		// };
 
 		this.filter = {
 			patient: {
@@ -17,8 +21,10 @@
 			},
 			assessment: {
 				progress: this.DomainConst.progress.completed,
+				startFrom: undefined,
+				startTo: undefined,
 			},
-		}
+		};
 
 		this.exportSettings = {
 			baseName: 'export-' + moment().format('YYYYMMDD-HHmmss'),
@@ -38,38 +44,13 @@
         {
 			generate: function () {
 				var that = this;
-				that.Export.generate({
-					baseName: 'sample-export-' + moment().format('YYYYMMDD-HHmmss'),
-					filters: [
-						{
-							target: 'assessment',
-							property: 'startDate',
-							op: 'gt',
-							value: '2016-05-05',
-						},
-						{
-							target: 'patient',
-							property: 'isActive',
-							op: 'eq',
-							value: true,
-						},
-						{
-							target: 'patient',
-							property: 'lastname',
-							op: 'like',
-							value: '%Osteron%',
-						},
-					],
-					typeMap: [
-						{
-							questionnaire: 'who',
-							export: 'default',
-						}
-					],
-				}).then(function (result) {
+				that.Export.generate(that.exportSettings).then(function (result) {
 					if (result.status === 'ok') {
-						that.downloadLink = '/download/export/' + result.id + '/' + result.name;
-						that.downloadName = result.name;
+						that.exportFile = {
+							id: result.id,
+							name: result.name,
+							url: ['/download/export', result.id, result.name].join('/'),
+						};
 					}
 				});
 			},
@@ -91,6 +72,24 @@
 						property: 'progress',
 						op: 'eq',
 						value: this.DomainConst.progress.completed,
+					});
+				}
+
+				if (this.filter.assessment.startFrom) {
+					filters.push({
+						target: 'assessment',
+						property: 'startDate',
+						op: 'gte',
+						value: this.filter.assessment.startFrom.toJSON(),
+					});
+				}
+
+				if (this.filter.assessment.startTo) {
+					filters.push({
+						target: 'assessment',
+						property: 'startDate',
+						op: 'lte',
+						value: this.filter.assessment.startTo.toJSON(),
 					});
 				}
 

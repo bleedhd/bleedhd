@@ -1,61 +1,81 @@
 
 <top-nav title="Export" nav-url="#/patients" nav-label="Back to patient overview" nav-scope="overview"></top-nav>
 
+<form role="form" name="ctlExport.filterForm" novalidate>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 clearfix">
 
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 clearfix">
-
-			<div>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" name="patient_active" checked="checked" ng-model="ctlExport.filter.patient.active" ng-true-value="true" ng-false-value="false" ng-change="ctlExport.onFilterChange()" /> Export only assessments from active patients
-					</label>
-				</div>
-			</div>
-
-			<div>
-				<div class="checkbox">
-					<label class="control-label">
-						<input type="checkbox" name="assessment_progress" ng-model="ctlExport.filter.assessment.progress" ng-true-value="{{ ctlExport.DomainConst.progress.completed | json }}" ng-false-value="{{ ctlExport.DomainConst.progress.tentative | json }}" ng-change="ctlExport.onFilterChange()" /> Export only completed assessments
-					</label>
-				</div>
-			</div>
-
-			<div>
-				<div class="form-group">
-					<label class="control-label" for="questionnaire">Assessment Type</label>
-					<select tabindex="7" id="questionnaire" name="questionnaire" class="form-control" ng-model="ctlExport.exportSettings.typeMap[0].questionnaire">
-						<option ng-repeat="(key, name) in ctlExport.DomainConst.questionnaires" ng-value="key">{{name}}</option>
-					</select>
+				<div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" name="patient_active" checked="checked" ng-model="ctlExport.filter.patient.active" ng-true-value="true" ng-false-value="false" ng-change="ctlExport.onFilterChange()" /> Export only assessments from active patients
+						</label>
+					</div>
 				</div>
 
-				<div class="form-group">
-					<label class="control-label" for="export">Export Type</label>
-					<select tabindex="7" id="export" name="export" class="form-control" ng-model="ctlExport.exportSettings.typeMap[0].export">
-						<option value="default">Default</option>
-					</select>
+				<div>
+					<div class="checkbox">
+						<label class="control-label">
+							<input type="checkbox" name="assessment_progress" ng-model="ctlExport.filter.assessment.progress" ng-true-value="{{ ctlExport.DomainConst.progress.completed | json }}" ng-false-value="{{ ctlExport.DomainConst.progress.tentative | json }}" ng-change="ctlExport.onFilterChange()" /> Export only completed assessments
+						</label>
+					</div>
+
+					<!--
+					<div class="input-group">
+						<input type="text" class="form-control" uib-datepicker-popup="{{ ctlExport.BleedHdConfig.format.isodate }}" ng-model="ctlExport.filter.assessment.startFrom.date" is-open="startFromOpen" datepicker-options="ctlExport.datepickerOptions" close-text="Close" />
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default" ng-click="startFromOpen = true"><i class="glyphicon glyphicon-calendar"></i></button>
+						</span>
+					</div>
+					-->
+
+					<div class="form-group">
+						<label class="control-label" for="assessment_start_date_from">From</label>
+						<input id="assessment_start_date_from" name="assessment_start_date_from" class="form-control" type="text" ng-model="ctlExport.filter.assessment.startFrom" mask-input="yyyy-mm-dd" placeholder="yyyy-mm-dd" ng-change="ctlExport.onFilterChange()" />
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="assessment_start_date_to">To</label>
+						<input id="assessment_start_date_to" name="assessment_start_date_to" class="form-control" type="text" ng-model="ctlExport.filter.assessment.startTo" mask-input="yyyy-mm-dd" placeholder="yyyy-mm-dd" ng-change="ctlExport.onFilterChange()" />
+					</div>
 				</div>
-			</div>
 
-			<div>
-				<div class="form-group">
-					<label class="control-label" for="export_base_name">File name</label>
-					<input id="export_base_name" name="export_base_name" class="form-control" type="text" ng-model="ctlExport.exportSettings.baseName" />
+				<div>
+					<div class="form-group">
+						<label class="control-label" for="questionnaire">Assessment Type</label>
+						<select tabindex="7" id="questionnaire" name="questionnaire" class="form-control" ng-model="ctlExport.exportSettings.typeMap[0].questionnaire" required>
+							<option ng-repeat="(key, name) in ctlExport.DomainConst.questionnaires" ng-value="key">{{name}}</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="export">Export Type</label>
+						<select tabindex="7" id="export" name="export" class="form-control" ng-model="ctlExport.exportSettings.typeMap[0].export" required>
+							<option value="default">Default</option>
+						</select>
+					</div>
 				</div>
+
+				<div>
+					<div class="form-group">
+						<label class="control-label" for="export_base_name">File name</label>
+						<input id="export_base_name" name="export_base_name" class="form-control" type="text" ng-model="ctlExport.exportSettings.baseName" />
+					</div>
+				</div>
+
+				<pre ng-if="env.debug" class="debug-output">{{ ctlExport.exportSettings | json }}</pre>
+
+				<button class="btn btn-default" ng-disabled="ctlExport.filterForm.$invalid" ng-click="ctlExport.generate()">Export</button>
+
+				<div ng-if="ctlExport.exportFile">
+					<iframe style="display: none;" src="{{ ctlExport.exportFile.url }}" />
+					<p>Your download should start immediately, if it does not, please click on the following link to
+						download your export</p>
+					<p><a href="{{ ctlExport.exportFile.url }}">{{ ctlExport.exportFile.name }}</a></p>
+				</div>
+
 			</div>
-
-			<pre ng-if="env.debug" class="debug-output">{{ ctlExport.exportSettings | json }}</pre>
-
-            <button class="btn btn-default" ng-click="ctlExport.generate()">Export</button>
-
-			<div ng-if="ctlExport.downloadLink">
-				<iframe style="display: none;" src="{{ ctlExport.downloadLink }}" />
-				<p>Your download should start immediately, if it does not, please click on the following link to
-					download your export</p>
-				<p><a href="{{ ctlExport.downloadLink }}">{{ ctlExport.downloadName }}</a></p>
-			</div>
-
-        </div>
-    </div>
-</div>
+		</div>
+	</div>
+</form>
