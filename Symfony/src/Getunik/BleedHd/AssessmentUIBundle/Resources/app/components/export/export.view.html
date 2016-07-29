@@ -44,15 +44,15 @@
 				<div>
 					<div class="form-group">
 						<label class="control-label" for="questionnaire">Assessment Type</label>
-						<select tabindex="7" id="questionnaire" name="questionnaire" class="form-control" ng-model="ctlExport.exportSettings.typeMap[0].questionnaire" required>
+						<select id="questionnaire" name="questionnaire" class="form-control" ng-model="ctlExport.typeMap.questionnaire" ng-change="ctlExport.onQuestionnaireChange()" required>
 							<option ng-repeat="(key, name) in ctlExport.DomainConst.questionnaires" ng-value="key">{{name}}</option>
 						</select>
 					</div>
 
 					<div class="form-group">
 						<label class="control-label" for="export">Export Type</label>
-						<select tabindex="7" id="export" name="export" class="form-control" ng-model="ctlExport.exportSettings.typeMap[0].export" required>
-							<option value="default">Default</option>
+						<select id="export" name="export" class="form-control" ng-model="ctlExport.typeMap.export" required>
+							<option ng-repeat="exportType in ctlExport.availableExportConfigs" ng-value="exportType.key" ng-selected="exportType.key === ctlExport.typeMap.export">{{exportType.name}}</option>
 						</select>
 					</div>
 				</div>

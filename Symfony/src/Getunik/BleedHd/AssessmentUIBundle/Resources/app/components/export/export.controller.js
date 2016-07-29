@@ -9,6 +9,9 @@
 		this.DomainConst = DomainConst;
 		this.exportFile = null;
 
+		this.exportConfigMap = Export.getConfigurationMap();
+		this.availableExportConfigs = null;
+
 		// this.datepickerOptions = {
 		// 	minDate: DateHelper.fromString('2000-01-01'),
 		// 	maxDate: DateHelper.fromDate(new Date()),
@@ -36,6 +39,8 @@
 				}
 			],
 		};
+
+		this.typeMap = this.exportSettings.typeMap[0];
 
 		this.onFilterChange();
     }
@@ -94,6 +99,19 @@
 				}
 
 				this.exportSettings.filters = filters;
+			},
+			onQuestionnaireChange: function () {
+				var that = this;
+
+				that.exportConfigMap.then(function (map) {
+					if (!that.typeMap.questionnaire || !map[that.typeMap.questionnaire]) {
+						that.availableExportConfigs = null;
+						that.typeMap.export = null;
+					} else {
+						that.availableExportConfigs = map[that.typeMap.questionnaire];
+						that.typeMap.export = that.availableExportConfigs[0] ? that.availableExportConfigs[0].key : null;
+					}
+				});
 			},
         },
         {
