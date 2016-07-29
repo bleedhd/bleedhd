@@ -56,6 +56,16 @@ class ExportService
 	}
 
 	/**
+	 * Gets the export configurations for all questionnaires.
+	 *
+	 * @return array a map from questionnaires to export configurations for that questionnaire.
+	 */
+	public function getConfigurationMap()
+	{
+		return ExportConfig::getConfigurationMap($this->exportConfigPath, $this->questionnaireHandler->getQuestionnaires());
+	}
+
+	/**
 	 * Generates an export file for the given export settings and returns an array with the generated file's ID and
 	 * name which can be used to download the file via the @see ExportDownloadController.
 	 *

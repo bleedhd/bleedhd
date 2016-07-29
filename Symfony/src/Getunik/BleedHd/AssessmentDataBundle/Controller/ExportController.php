@@ -2,6 +2,7 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Controller;
 
+use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\FOSRestController;
 use Getunik\BleedHd\AssessmentDataBundle\Export\ExportService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -51,5 +52,14 @@ class ExportController extends FOSRestController
 			'settings' => $settings,
 			], $export
 		)));
+	}
+
+	/**
+	 * @Security("has_role('ROLE_READER')")
+	 * @Get("/exportconfigs")
+	 */
+	public function getConfigurationsAction()
+	{
+		return $this->handleView($this->view($this->exportService->getConfigurationMap()));
 	}
 }
