@@ -1,7 +1,7 @@
 
 (function (angular, bleedHd) {
 
-	angular.module('bleedHdApp').config(['$routeProvider', '$stateProvider',
+	angular.module('bleedHdApp').config(['$routeProvider',
 		function($routeProvider) {
 			$routeProvider
 				.when('/patients', bleedHd.controllers.PatientOverviewController)

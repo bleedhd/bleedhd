@@ -21,34 +21,58 @@ class ExportConfig
 	 * Loads an export configuration for the given assessment type and export type.
 	 *
 	 * @param $basePath string base path of export type configurations
-	 * @param $assessmentType string assessment type
+	 * @param $questionnaire string questionnaire / assessment type
 	 * @param $exportType string name of the export type
 	 * @return ExportConfig
 	 * @throws \Exception if no such type configuration can be found
 	 */
-	public static function load($basePath, $assessmentType, $exportType)
+	public static function load($basePath, $questionnaire, $exportType)
 	{
-		$filePath = $basePath . '/' . $assessmentType . '/' . $exportType . '.yaml';
+		$filePath = $basePath . '/' . $questionnaire . '/' . $exportType . '.yaml';
 		if (!file_exists($filePath)) {
-			throw new \Exception('Cannot find export type configuration "' . $exportType . '" for assessment type "' . $assessmentType . '"');
+			throw new \Exception('Cannot find export type configuration "' . $exportType . '" for assessment type "' . $questionnaire . '"');
 		}
 
 		return new ExportConfig($filePath);
 	}
 
-	public function __construct($configPath)
+	public static function getConfigurationMap($basePath, $questionnaires)
 	{
-		$this->config = $this->processFile($configPath);
+		$map = [];
+
+		foreach ($questionnaires as $questionnaire) {
+			$types = [];
+
+			foreach (glob($basePath . '/' . $questionnaire . '/*.yaml') as $fileName)
+			{
+				$config = new ExportConfig($fileName, false);
+				$types[] = [
+					'key' => basename($fileName, '.yaml'),
+					'name' => $config->getName(),
+				];
+			}
+
+			$map[$questionnaire] = $types;
+		}
+
+		return $map;
 	}
 
-	private function processFile($filePath)
+	public function __construct($configPath, $process = true)
+	{
+		$this->config = $this->processFile($configPath, $process);
+	}
+
+	private function processFile($filePath, $processDirectives)
 	{
 		$data = Yaml::parse(file_get_contents($filePath));
 
-		$this->searchDirectives($data, NULL, [
-			'path' => $filePath,
-			'ancestors' => [],
-		]);
+		if ($processDirectives) {
+			$this->searchDirectives($data, NULL, [
+				'path' => $filePath,
+				'ancestors' => [],
+			]);
+		}
 
 		return $data;
 	}
@@ -107,7 +131,7 @@ class ExportConfig
 		$targetIterator = $targetContext['iterator'];
 		$sourcePath = dirname($context['path']) . '/' . $directive['source'];
 
-		$include = $this->processFile($sourcePath);
+		$include = $this->processFile($sourcePath, true);
 		if (!is_array($include) || self::isAssoc($include)) {
 			// if the include is a single element (scalar or 'object'), then the item is simply used to replace
 			// the array element containing the directive

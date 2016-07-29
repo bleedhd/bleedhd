@@ -1,6 +1,12 @@
 
 (function (angular, bleedHd) {
 
+	var tabs = {
+		assessment: 0,
+		status: 1,
+		remarks: 2,
+	};
+
 	function PatientDetailController($scope, $routeParams, PatientData, BleedHdConfig, patient) {
 		this.$scope = $scope;
 		this.PatientData = PatientData;
@@ -10,11 +16,7 @@
 		this.resetAssessmentFilter();
 		this.currentStatus = null;
 		// this is necessary due to the way the ui.bootstrap handles the tab active state
-		this.tabs = {
-			assessments: ($routeParams.tab === 'assessments'),
-			status: ($routeParams.tab === 'status'),
-			remarks: ($routeParams.tab === 'remarks'),
-		}
+		this.currentTab = tabs[$routeParams.tab];
 
 		var that = this;
 		angular.forEach(that.patient.statuses, function (status) {
