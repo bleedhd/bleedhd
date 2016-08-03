@@ -32,9 +32,21 @@ class ResponseValue
 		}
 
 		if (is_array($value)) {
-			return implode(',', array_map(function ($item) { return isset($item['value']) ? $item['value'] : ''; }, $value));
+			return implode(',', array_map(function ($item) {
+				return isset($item['value']) ? $item['value'] : '';
+			}, $value));
 		}
 
-		return (string) $value;
+		return (string)$value;
+	}
+
+	public function hasValue()
+	{
+		return $this->result->hasValue();
+	}
+
+	public function getResult()
+	{
+		return $this->result;
 	}
 }

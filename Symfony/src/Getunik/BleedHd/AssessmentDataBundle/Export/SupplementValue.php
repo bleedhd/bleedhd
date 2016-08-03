@@ -1,10 +1,9 @@
 <?php
 
-
 namespace Getunik\BleedHd\AssessmentDataBundle\Export;
 
-
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Result;
+
 
 /**
  * Class SupplementValue
@@ -15,25 +14,43 @@ use Getunik\BleedHd\AssessmentDataBundle\Assessment\Result;
 class SupplementValue
 {
 	/**
-	 * @var array
+	 * @var Result
 	 */
-	private $supplement;
+	private $result;
+
+	/**
+	 * @var string
+	 */
+	private $slug;
 
 	public function __construct(Result $result, $slug)
 	{
-		$this->supplement = $result->getSupplement($slug);
+		$this->result = $result;
+		$this->slug = $slug;
 	}
 
 	public function __toString()
 	{
-		if ($this->supplement === NULL) {
+		$value = $this->result->getSupplement($this->slug);
+
+		if ($value === NULL) {
 			return '';
 		}
 
-		if (is_array($this->supplement)) {
-			return implode(',', $this->supplement);
+		if (is_array($value)) {
+			return implode(',', $value);
 		}
 
-		return (string) $this->supplement;
+		return (string)$value;
+	}
+
+	public function hasValue()
+	{
+		return !empty($this->result->getSupplement($this->slug));
+	}
+
+	public function getResult()
+	{
+		return $this->result;
 	}
 }
