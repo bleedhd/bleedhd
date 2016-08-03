@@ -6,12 +6,12 @@ use Getunik\BleedHd\AssessmentDataBundle\Assessment\Result;
 
 
 /**
- * Class ResponseValue
+ * Class MetaResponseValue
  * @package Getunik\BleedHd\AssessmentDataBundle\Export
  *
- * Wrapper type that is returned by the response extractor to facilitate subsequent transforms.
+ * Wrapper type that is returned by the meta-response extractor to facilitate subsequent transforms.
  */
-class ResponseValue
+class MetaResponseValue
 {
 	/**
 	 * @var Result
@@ -25,14 +25,10 @@ class ResponseValue
 
 	public function __toString()
 	{
-		$value = $this->result->getValue();
+		$value = $this->result->getMetaValue();
 
 		if ($value === NULL) {
 			return '';
-		}
-
-		if (is_array($value)) {
-			return implode(',', array_map(function ($item) { return isset($item['value']) ? $item['value'] : ''; }, $value));
 		}
 
 		return (string) $value;

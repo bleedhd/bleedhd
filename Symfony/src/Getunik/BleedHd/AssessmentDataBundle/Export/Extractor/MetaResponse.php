@@ -4,10 +4,10 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Export\Extractor;
 
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Result;
-use Getunik\BleedHd\AssessmentDataBundle\Export\ResponseValue;
+use Getunik\BleedHd\AssessmentDataBundle\Export\MetaResponseValue;
 
 
-class Response extends BaseExtractor
+class MetaResponse extends BaseExtractor
 {
 	/**
 	 * @inheritdoc
@@ -18,6 +18,6 @@ class Response extends BaseExtractor
 
 		$resultData = isset($responses[$this->reference]) ? $responses[$this->reference]->getResult() : NULL;
 
-		return new ResponseValue(new Result($resultData));
+		return new MetaResponseValue(new Result($resultData));
 	}
 }
