@@ -29,6 +29,14 @@ class AssessmentFilter
 	}
 
 	/**
+	 * @return array a list of questionnaire and count pairs
+	 */
+	public function getCount()
+	{
+		return $this->assessmentHandler->countFilteredAssessments($this->filterSpec);
+	}
+
+	/**
 	 * @param $questionnaire string the questionnaire / type of assessment that should be retrieved
 	 * @return Assessment[]
 	 */
