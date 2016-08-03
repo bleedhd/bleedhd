@@ -108,6 +108,8 @@
 				this.exportSettings.filters = filters;
 
 				var that = this;
+
+				that.filteredAssessmentCount = '?';
 				that.Export.count(that.exportSettings).then(function (count) {
 					that.assessmentCounts = { total: 0 };
 					that.availableQuestionnaires = [];
