@@ -13,6 +13,7 @@
 		this.availableExportConfigs = null;
 		this.availableQuestionnaires = null;
 		this.assessmentCounts = {};
+		this.exportModal = angular.element('#modal_export_process');
 
 		// this.datepickerOptions = {
 		// 	minDate: DateHelper.fromString('2000-01-01'),
@@ -51,7 +52,11 @@
         {
 			generate: function () {
 				var that = this;
+
+				that.exportModal.modal('show');
+
 				that.Export.generate(that.exportSettings).then(function (result) {
+					that.exportModal.modal('hide');
 					if (result.status === 'ok') {
 						that.exportFile = {
 							id: result.id,
