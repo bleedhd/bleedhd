@@ -1,0 +1,32 @@
+
+name: Inline Metaanswers
+type: bsms
+columns:
+  -
+      __directive:
+        op: insert
+        source: ../patient-default.yaml
+  -
+      __directive:
+        op: insert
+        source: ../assessment-default.yaml
+  -
+      label: Score
+      extractor: Score
+      reference: total
+# screen 1
+  -
+      extractor: Response
+      reference: bsms.general.grade
+      transform:
+        type: ValueOrMeta
+  -
+      extractor: Response
+      reference: bsms.general.type-or-site
+      transform:
+        type: ValueOrMeta
+  -
+      extractor: Supplement
+      reference: bsms.general.type-or-site.specify
+      transform:
+        type: ValueOrMeta

@@ -20,10 +20,8 @@ class Supplement extends BaseExtractor
 		$supplement = array_pop($segments);
 		$question = implode('.', $segments);
 
-		if (!isset($responses[$question])) {
-			return NULL;
-		}
+		$resultData = isset($responses[$question]) ? $responses[$question]->getResult() : NULL;
 
-		return new SupplementValue(new Result($responses[$question]->getResult()), $supplement);
+		return new SupplementValue(new Result($resultData), $supplement);
 	}
 }

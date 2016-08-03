@@ -85,19 +85,23 @@
 					<input id="export_base_name" name="export_base_name" class="form-control" type="text" ng-model="ctlExport.exportSettings.baseName" />
 				</div>
 
-				<div class="form-group">
-					<button class="btn btn-default" ng-disabled="ctlExport.filterForm.$invalid" ng-click="ctlExport.generate()">Export ({{ ctlExport.filteredAssessmentCount || 0 }})</button>
-				</div>
-
 			</div>
-
-			<div ng-if="ctlExport.exportFile" class="row">
-				<div class="col-xs-12 col-sm-6">
+			<div class="col-xs-12 col-sm-6">
+				<div ng-if="ctlExport.exportFile">
 					<iframe style="display: none;" src="{{ ctlExport.exportFile.url }}" />
 					<p>Your download should start immediately, if it does not, please click on the following link to
 						download your export</p>
 					<p><a href="{{ ctlExport.exportFile.url }}">{{ ctlExport.exportFile.name }}</a></p>
 				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+
+				<div class="form-group">
+					<button class="btn btn-default pull-right" ng-disabled="ctlExport.filterForm.$invalid" ng-click="ctlExport.generate()">Export ({{ ctlExport.filteredAssessmentCount || 0 }})</button>
+				</div>
+
 			</div>
 
 		</div>
