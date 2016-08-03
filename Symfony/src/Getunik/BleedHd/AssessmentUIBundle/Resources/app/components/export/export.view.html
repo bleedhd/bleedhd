@@ -88,12 +88,10 @@
 			</div>
 			<div class="col-xs-12 col-sm-6">
 				<div ng-if="ctlExport.exportFile">
-					<div class="col-xs-12 col-sm-6">
-						<iframe style="display: none;" src="{{ ctlExport.exportFile.url }}" />
-						<p>Your download should start immediately, if it does not, please click on the following link to
-							download your export</p>
-						<p><a href="{{ ctlExport.exportFile.url }}">{{ ctlExport.exportFile.name }}</a></p>
-					</div>
+					<iframe style="display: none;" src="{{ ctlExport.exportFile.url }}" />
+					<p>Your download should start immediately, if it does not, please click on the following link to
+						download your export</p>
+					<p><a href="{{ ctlExport.exportFile.url }}">{{ ctlExport.exportFile.name }}</a></p>
 				</div>
 			</div>
 		</div>
