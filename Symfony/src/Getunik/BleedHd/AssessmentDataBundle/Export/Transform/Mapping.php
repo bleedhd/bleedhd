@@ -34,8 +34,8 @@ class Mapping extends BaseTransform
 		$source = $raw->getValue();
 
 		foreach ($this->map as $matcher) {
-			if ($matcher['predicate']($source)) {
-				return $matcher['value'];
+			if ($res = $matcher['predicate']($source)) {
+				return is_callable($matcher['value']) ? $matcher['value']($res) : $matcher['value'];
 			}
 		}
 
@@ -49,12 +49,15 @@ class Mapping extends BaseTransform
 				'predicate' => [self::class, 'predicateTrue'],
 				'value' => $item['default'],
 			];
-		}
-
-		if (isset($item['source'])) {
+		} else if (isset($item['source'])) {
 			return [
 				'predicate' => self::simpleMatch($item['source']),
 				'value' => $item['value'],
+			];
+		} else if (isset($item['regex'])) {
+			return [
+				'predicate' => self::regexMatch($item['regex'], $item['value']),
+				'value' => function ($res) { return $res; },
 			];
 		}
 
@@ -70,6 +73,17 @@ class Mapping extends BaseTransform
 	{
 		return function ($valueToTest) use ($referenceValue) {
 			return $referenceValue == $valueToTest;
+		};
+	}
+
+	private static function regexMatch($regex, $replacement)
+	{
+		return function ($valueToTest) use ($regex, $replacement) {
+			if (preg_match($regex, $valueToTest)) {
+				return preg_replace($regex, $replacement, $valueToTest);
+			}
+
+			return false;
 		};
 	}
 }
