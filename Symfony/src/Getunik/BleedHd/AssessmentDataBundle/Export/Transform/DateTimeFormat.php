@@ -24,7 +24,7 @@ class DateTimeFormat extends BaseTransform
 
 		$value = $raw->getValue();
 		if (!($value instanceof \DateTime)) {
-			throw new \Exception('DateTimeFormat transform can only be used on DateTime objects, but given ' . get_class($value));
+			throw new \Exception('DateTimeFormat transform can only be used on DateTime objects, but given ' . $raw->getType());
 		}
 
 		return $value->format(isset($this->config['format']) ? $this->config['format'] : self::DEFAULT_FORMAT);

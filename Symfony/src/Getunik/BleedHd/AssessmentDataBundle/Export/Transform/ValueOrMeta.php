@@ -15,7 +15,7 @@ class ValueOrMeta extends BaseTransform
 	public function transform(IDataValue $raw)
 	{
 		if (!($raw instanceof ResponseValue) && !($raw instanceof SupplementValue)) {
-			throw new \Exception('ValueOrMeta transform requires a ResponseValue or SupplementValue but received "' . get_class($raw) . '"');
+			throw new \Exception('ValueOrMeta transform requires a ResponseValue or SupplementValue but received "' . $raw->getType() . '"');
 		}
 
 		if ($raw->hasValue()) {
