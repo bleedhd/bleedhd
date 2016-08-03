@@ -22,8 +22,9 @@
 			Patient number: {{ ctlPatient.patient.patient_number }}<br/>
 			UPN-Numer: {{ ctlPatient.patient.upn }}
 		</div>
-		<div class="col-xs-12">
+		<div class="col-xs-12 bleed-button-group">
 			<a class="btn btn-default pull-right" href="#/patients/edit/{{ ctlPatient.patient.id }}">Edit patient</a>
+			<a class="btn btn-default pull-right" href="#/export/patient/{{ ctlPatient.patient.id }}">Export patient</a>
 		</div>
 	</div>
 </panel>

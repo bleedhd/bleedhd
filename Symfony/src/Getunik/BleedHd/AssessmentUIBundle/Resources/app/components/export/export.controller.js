@@ -1,12 +1,12 @@
-
 (function (angular, bleedHd) {
 
-    function ExportController($scope, Export, PatientData, DateHelper, BleedHdConfig, DomainConst) {
-        this.$scope = $scope;
+	function ExportController($scope, Export, PatientData, DateHelper, BleedHdConfig, DomainConst, patient) {
+		this.$scope = $scope;
 		this.Export = Export;
-        this.PatientData = PatientData;
-        this.BleedHdConfig = BleedHdConfig;
+		this.PatientData = PatientData;
+		this.BleedHdConfig = BleedHdConfig;
 		this.DomainConst = DomainConst;
+		this.patient = patient;
 		this.exportFile = null;
 
 		this.exportConfigMap = Export.getConfigurationMap();
@@ -46,10 +46,10 @@
 		this.typeMap = this.exportSettings.typeMap[0];
 
 		this.onFilterChange();
-    }
+	}
 
-    bleedHd.registerController('export', ExportController,
-        {
+	bleedHd.registerController('export', ExportController,
+		{
 			generate: function () {
 				var that = this;
 
@@ -69,7 +69,14 @@
 			onFilterChange: function () {
 				var filters = [];
 
-				if (this.filter.patient.active === true) {
+				if (this.patient) {
+					filters.push({
+						target: 'patient',
+						property: 'id',
+						op: 'eq',
+						value: this.patient.id,
+					});
+				} else if (this.filter.patient.active === true) {
 					filters.push({
 						target: 'patient',
 						property: 'isActive',
@@ -111,7 +118,7 @@
 
 				that.filteredAssessmentCount = '?';
 				that.Export.count(that.exportSettings).then(function (count) {
-					that.assessmentCounts = { total: 0 };
+					that.assessmentCounts = {total: 0};
 					that.availableQuestionnaires = [];
 
 					angular.forEach(count, function (row) {
@@ -151,11 +158,16 @@
 					}
 				});
 			},
-        },
-        {
-            asName: 'ctlExport',
-            templateUrl: bleedHd.getView('export', 'export'),
-        }
-    );
+		},
+		{
+			asName: 'ctlExport',
+			templateUrl: bleedHd.getView('export', 'export'),
+			resolve: {
+				patient: function ($route, PatientData) {
+					return $route.current.params.patientId ? PatientData.getPatient($route.current.params.patientId) : null;
+				},
+			},
+		}
+	);
 
 })(angular, bleedHd);
