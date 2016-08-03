@@ -4,7 +4,7 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Export\Extractor;
 
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Result;
-use Getunik\BleedHd\AssessmentDataBundle\Export\MetaResponseValue;
+use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\MetaResponseValue;
 
 
 class MetaResponse extends BaseExtractor

@@ -4,7 +4,7 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Export\Extractor;
 
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Result;
-use Getunik\BleedHd\AssessmentDataBundle\Export\SupplementValue;
+use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\SupplementValue;
 
 
 class Supplement extends BaseExtractor
