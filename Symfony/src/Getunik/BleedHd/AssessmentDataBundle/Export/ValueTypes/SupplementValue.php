@@ -27,6 +27,14 @@ class SupplementValue extends BaseResultValue
 	/**
 	 * @inheritdoc
 	 */
+	public function hasValue()
+	{
+		return $this->getValue() !== NULL;
+	}
+
+	/**
+	 * @inheritdoc
+	 */
 	public function getValue()
 	{
 		return $this->result->getSupplement($this->slug);
