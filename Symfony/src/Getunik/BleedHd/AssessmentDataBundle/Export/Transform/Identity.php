@@ -3,18 +3,16 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Transform;
 
 
+use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\IDataValue;
+
+
 class Identity extends BaseTransform
 {
 	/**
 	 * @inheritdoc
 	 */
-	public function transform($raw)
+	public function transform(IDataValue $raw)
 	{
-		try {
-			return (string)$raw;
-		} catch (\Exception $e) {
-			$type = is_object($raw) ? get_class($raw) : gettype($raw);
-			return 'unable to display value (' . $type . ')';
-		}
+		return $raw->toString();
 	}
 }

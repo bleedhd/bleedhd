@@ -3,6 +3,9 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Transform;
 
 
+use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\IDataValue;
+
+
 class Mapping extends BaseTransform
 {
 	/**
@@ -22,9 +25,13 @@ class Mapping extends BaseTransform
 	/**
 	 * @inheritdoc
 	 */
-	public function transform($raw)
+	public function transform(IDataValue $raw)
 	{
-		$source = (string)$raw;
+		if (!$raw->hasValue()) {
+			return '';
+		}
+
+		$source = $raw->getValue();
 
 		foreach ($this->map as $matcher) {
 			if ($matcher['predicate']($source)) {

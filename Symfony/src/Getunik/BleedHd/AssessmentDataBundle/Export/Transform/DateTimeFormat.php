@@ -3,6 +3,9 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Transform;
 
 
+use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\IDataValue;
+
+
 class DateTimeFormat extends BaseTransform
 {
 	/**
@@ -13,12 +16,17 @@ class DateTimeFormat extends BaseTransform
 	/**
 	 * @inheritdoc
 	 */
-	public function transform($raw)
+	public function transform(IDataValue $raw)
 	{
-		if ($raw !== NULL && !($raw instanceof \DateTime)) {
-			throw new \Exception('DateTimeFormat transform can only be used on DateTime objects, but given ' . get_class($raw));
+		if (!$raw->hasValue()) {
+			return '';
 		}
 
-		return $raw->format(isset($this->config['format']) ? $this->config['format'] : self::DEFAULT_FORMAT);
+		$value = $raw->getValue();
+		if (!($value instanceof \DateTime)) {
+			throw new \Exception('DateTimeFormat transform can only be used on DateTime objects, but given ' . get_class($value));
+		}
+
+		return $value->format(isset($this->config['format']) ? $this->config['format'] : self::DEFAULT_FORMAT);
 	}
 }

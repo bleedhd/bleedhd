@@ -3,6 +3,7 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Extractor;
 
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
+use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\SimpleValue;
 
 
 class PatientField extends BaseExtractor
@@ -19,6 +20,6 @@ class PatientField extends BaseExtractor
 			throw new \Exception('Patient entity does not have a getter called "' . $getter . '"');
 		}
 
-		return $patient->{$getter}();
+		return new SimpleValue($patient->{$getter}());
 	}
 }
