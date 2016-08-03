@@ -16,6 +16,15 @@ abstract class BaseValue implements IDataValue
 	/**
 	 * @inheritdoc
 	 */
+	public function getType()
+	{
+		$value = $this->getValue();
+		return is_object($value) ? get_class($value) : gettype($value);
+	}
+
+	/**
+	 * @inheritdoc
+	 */
 	public function toString()
 	{
 		if ($this->getValue() === NULL) {
@@ -25,17 +34,12 @@ abstract class BaseValue implements IDataValue
 		try {
 			return (string) $this->getValue();
 		} catch (\Exception $e) {
-			return 'unable to display value (' . self::getType($this->getValue()) . ')';
+			return 'unable to display value (' . $this->getType() . ')';
 		}
 	}
 
 	public function __toString()
 	{
 		return $this->toString();
-	}
-
-	public static function getType($value)
-	{
-		return is_object($value) ? get_class($value) : gettype($value);
 	}
 }

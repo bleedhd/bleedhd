@@ -16,6 +16,11 @@ interface IDataValue
 	public function getValue();
 
 	/**
+	 * @return string gets a string representation describing the type of value that is wrapped
+	 */
+	public function getType();
+
+	/**
 	 * @return string returns a string representation of the wrapped value
 	 */
 	public function toString();

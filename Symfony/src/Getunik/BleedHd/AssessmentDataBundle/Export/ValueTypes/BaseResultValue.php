@@ -30,7 +30,7 @@ abstract class BaseResultValue extends BaseValue
 		}
 
 		if (is_array($value)) {
-			return implode(',', array_map([$this, 'arrayValueExtract'], $value));
+			return implode(',', $this->getValueArray());
 		}
 
 		return (string)$value;
@@ -39,6 +39,11 @@ abstract class BaseResultValue extends BaseValue
 	protected function arrayValueExtract($item)
 	{
 		return $item;
+	}
+
+	public function getValueArray()
+	{
+		return array_map([$this, 'arrayValueExtract'], $this->getValue());
 	}
 
 	public function getResult()
