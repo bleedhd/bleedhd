@@ -1,8 +1,18 @@
 
-<top-nav title="Export" nav-url="#/patients" nav-label="Back to patient overview" nav-scope="overview"></top-nav>
+<top-nav ng-if="ctlExport.patient" title="Export" nav-url="#/patients/detail/{{ ctlExport.patient.id }}" nav-label="Back to patient detail" nav-scope="overview"></top-nav>
+<top-nav ng-if="!ctlExport.patient" title="Export" nav-url="#/patients" nav-label="Back to patient overview" nav-scope="overview"></top-nav>
+
+<panel ng-if="ctlExport.patient">
+	<div class="row">
+		<div class="col-xs-12">
+			<h4>{{ ctlExport.patient | patientname }}</h4>
+			Date of birth: {{ ctlExport.patient.birthdate.date | isodate }}
+		</div>
+	</div>
+</panel>
 
 <form role="form" name="ctlExport.filterForm" novalidate>
-	<panel heading="Patient data">
+	<panel ng-if="!ctlExport.patient" heading="Patient data">
 		<div class="row">
 			<div class="col-xs-12 clearfix">
 
