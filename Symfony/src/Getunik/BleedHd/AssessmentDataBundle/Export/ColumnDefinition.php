@@ -59,8 +59,14 @@ class ColumnDefinition
 	 */
 	public function extract(AssessmentContext $context)
 	{
-		$raw = $this->extractor->extract($context);
-		return $this->transform->transform($raw);
+		try {
+			$raw = $this->extractor->extract($context);
+			$result = $this->transform->transform($raw);
+		} catch (\Exception $e) {
+			$result = 'ERROR: ' . $e->getMessage();
+		}
+
+		return $result;
 	}
 
 	/**
