@@ -19,7 +19,7 @@ abstract class BaseTransform implements ITransform
 	}
 
 	/**
-	 * @param $raw IDataValue raw value to check
+	 * @param IDataValue $raw raw value to check
 	 * @return BaseResultValue
 	 * @throws \Exception if the given raw value does not derive from BaseResultValue
 	 */
@@ -33,7 +33,7 @@ abstract class BaseTransform implements ITransform
 	}
 
 	/**
-	 * @param $raw IDataValue raw value to check
+	 * @param IDataValue $raw raw value to check
 	 * @return ResponseValue|SupplementValue
 	 * @throws \Exception if the given raw value is neither a ResponseValue nor a SupplementValue
 	 */
@@ -41,6 +41,20 @@ abstract class BaseTransform implements ITransform
 	{
 		if (!($raw instanceof ResponseValue) && !($raw instanceof SupplementValue)) {
 			throw new \Exception(self::class . ' transform requires a ResponseValue or SupplementValue but received "' . $raw->getType() . '"');
+		}
+
+		return $raw;
+	}
+
+	/**
+	 * @param IDataValue $raw raw value to check
+	 * @return ResponseValue
+	 * @throws \Exception if the given raw value is not a ResponseValue
+	 */
+	protected static function requireResponseValue(IDataValue $raw)
+	{
+		if (!($raw instanceof ResponseValue)) {
+			throw new \Exception(self::class . ' transform requires a ResponseValue but received "' . $raw->getType() . '"');
 		}
 
 		return $raw;
