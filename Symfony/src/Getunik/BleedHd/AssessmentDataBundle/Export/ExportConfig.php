@@ -81,14 +81,15 @@ class ExportConfig
 	{
 		$childContext = $context;
 		$iterator = new \ArrayIterator($data);
-		$childContext['ancestors'][] = [
+		$current = [
 			'index' => $index,
 			'data' => &$data,
 			'iterator' => $iterator
 		];
+		$childContext['ancestors'][] = &$current;
 
-		while ($iterator->valid()) {
-			$index = $iterator->key();
+		while ($current['iterator']->valid()) {
+			$index = $current['iterator']->key();
 			$value = &$data[$index];
 
 			if (is_array($value)) {
@@ -99,7 +100,7 @@ class ExportConfig
 				}
 			}
 
-			$iterator->next();
+			$current['iterator']->next();
 		}
 
 		unset($value);
@@ -128,7 +129,6 @@ class ExportConfig
 		// with inserts, the included data is inserted into the directive's parent array
 		$targetContext = end($ancestors);
 		$targetArray = &$targetContext['data'];
-		$targetIterator = $targetContext['iterator'];
 		$sourcePath = dirname($context['path']) . '/' . $directive['source'];
 
 		$include = $this->processFile($sourcePath, true);
@@ -139,8 +139,9 @@ class ExportConfig
 		}
 
 		array_splice($targetArray, $index, 1, $include);
-		// set iterator position to the end of the newly inserted elements
-		$targetIterator->seek($index + count($include) - 1);
+		// re-create the iterator and set its position to the end of the newly inserted elements
+		$targetContext['iterator'] = new \ArrayIterator($targetArray);
+		$targetContext['iterator']->seek($index + count($include) - 1);
 	}
 
 	/**
