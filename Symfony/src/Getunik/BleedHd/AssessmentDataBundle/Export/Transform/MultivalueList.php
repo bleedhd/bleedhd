@@ -21,11 +21,7 @@ class MultivalueList extends BaseTransform
 		$emptyList = isset($this->config['emptyValue']) ? $this->config['emptyValue'] : '';
 		$separator = isset($this->config['separator']) ? $this->config['separator'] : ',';
 
-		if (!is_array($raw->getValue())) {
-			throw new \Exception('Expecting value for MultivalueList transform to be an array, but given ' . $raw->getType());
-		}
-
-		$valueArray = $raw->getValueArray();
+		$valueArray = self::requireMultivalued($raw);
 
 		if (empty($valueArray)) {
 			return $emptyList;

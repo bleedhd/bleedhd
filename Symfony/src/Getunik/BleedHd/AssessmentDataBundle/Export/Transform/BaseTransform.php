@@ -45,4 +45,18 @@ abstract class BaseTransform implements ITransform
 
 		return $raw;
 	}
+
+	/**
+	 * @param BaseResultValue $raw
+	 * @return array
+	 * @throws \Exception thrown if the result value is not an array
+	 */
+	protected static function requireMultivalued(BaseResultValue $raw)
+	{
+		if ($raw->getValue() !== NULL && !is_array($raw->getValue())) {
+			throw new \Exception(self::class . ' transform requires a multi-valued result (array), but given ' . $raw->getType());
+		}
+
+		return $raw->getValueArray();
+	}
 }
