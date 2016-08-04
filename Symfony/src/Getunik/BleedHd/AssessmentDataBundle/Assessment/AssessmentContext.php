@@ -3,7 +3,6 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Assessment;
 
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
-use Getunik\BleedHd\AssessmentDataBundle\Entity\Response;
 
 
 /**
@@ -16,7 +15,7 @@ class AssessmentContext
     private $assessment;
     private $questions = array();
     private $questionnaireVersion;
-	private $responseMap = NULL;
+	private $questionMap = NULL;
 
     public function __construct(Assessment $assessment, array $questionnaire, array $responses)
     {
@@ -82,18 +81,29 @@ class AssessmentContext
     }
 
 	/**
-	 * @return Response[]|null an associative array from question slugs to responses
+	 * @return Question[]|null an associative array from question slugs to Question objects
 	 */
-	public function getResponseMap()
+	public function getQuestionMap()
 	{
-		if ($this->responseMap === NULL) {
-			$this->responseMap = [];
-			foreach ($this->getAssessment()->getResponses() as $response) {
-				/** @var $response Response */
-				$this->responseMap[$response->getQuestionSlug()] = $response;
+		if ($this->questionMap === NULL) {
+			$this->questionMap = [];
+			foreach ($this->getQuestions() as $question) {
+				/** @var $question Question */
+				$this->questionMap[$question->getSlug()->getFull()] = $question;
 			}
 		}
 
-		return $this->responseMap;
+		return $this->questionMap;
+	}
+
+	/**
+	 * @param $slug string
+	 * @return Question|null the question for the given slug
+	 */
+	public function getQuestion($slug)
+	{
+		$map = $this->getQuestionMap();
+
+		return isset($map[$slug]) ? $map[$slug] : NULL;
 	}
 }

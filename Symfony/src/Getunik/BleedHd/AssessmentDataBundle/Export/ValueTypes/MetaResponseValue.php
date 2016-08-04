@@ -16,6 +16,6 @@ class MetaResponseValue extends BaseResultValue
 	 */
 	public function getValue()
 	{
-		return $this->result->getMetaValue();
+		return $this->getResult()->getMetaValue();
 	}
 }

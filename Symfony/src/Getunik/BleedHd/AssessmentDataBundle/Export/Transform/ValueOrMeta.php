@@ -3,8 +3,6 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Transform;
 
 use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\IDataValue;
-use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\ResponseValue;
-use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\SupplementValue;
 
 
 class ValueOrMeta extends BaseTransform
@@ -14,9 +12,7 @@ class ValueOrMeta extends BaseTransform
 	 */
 	public function transform(IDataValue $raw)
 	{
-		if (!($raw instanceof ResponseValue) && !($raw instanceof SupplementValue)) {
-			throw new \Exception('ValueOrMeta transform requires a ResponseValue or SupplementValue but received "' . $raw->getType() . '"');
-		}
+		$raw = self::requireActualResultValue($raw);
 
 		if ($raw->hasValue()) {
 			return $raw->toString();

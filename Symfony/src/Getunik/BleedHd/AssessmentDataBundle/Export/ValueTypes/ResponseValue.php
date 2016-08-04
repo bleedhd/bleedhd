@@ -16,7 +16,7 @@ class ResponseValue extends BaseResultValue
 	 */
 	public function hasValue()
 	{
-		return $this->result->hasValue();
+		return $this->getResult()->hasValue();
 	}
 
 	/**
@@ -24,7 +24,7 @@ class ResponseValue extends BaseResultValue
 	 */
 	public function getValue()
 	{
-		return $this->result->getValue();
+		return $this->getResult()->getValue();
 	}
 
 	/**
