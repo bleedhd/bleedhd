@@ -3,7 +3,7 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Extractor;
 
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
-use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\SupplementValue;
+use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\SupplementSource;
 
 
 class Supplement extends BaseExtractor
@@ -19,6 +19,6 @@ class Supplement extends BaseExtractor
 
 		$question = $context->getQuestion($questionSlug);
 
-		return new SupplementValue($question, $supplement);
+		return new SupplementSource($question, $supplement);
 	}
 }

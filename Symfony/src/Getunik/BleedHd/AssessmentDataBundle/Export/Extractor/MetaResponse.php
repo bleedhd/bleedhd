@@ -3,7 +3,7 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Extractor;
 
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
-use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\MetaResponseValue;
+use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\MetaResponseSource;
 
 
 class MetaResponse extends BaseExtractor
@@ -15,6 +15,6 @@ class MetaResponse extends BaseExtractor
 	{
 		$question = $context->getQuestion($this->reference);
 
-		return new MetaResponseValue($question);
+		return new MetaResponseSource($question);
 	}
 }

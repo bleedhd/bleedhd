@@ -1,9 +1,9 @@
 <?php
 
-namespace Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes;
+namespace Getunik\BleedHd\AssessmentDataBundle\Export\Sources;
 
 
-class SimpleValue extends BaseValue
+class SimpleSource extends BaseSource
 {
 	/**
 	 * @var mixed

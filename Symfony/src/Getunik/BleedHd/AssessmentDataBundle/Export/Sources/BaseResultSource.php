@@ -1,12 +1,12 @@
 <?php
 
-namespace Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes;
+namespace Getunik\BleedHd\AssessmentDataBundle\Export\Sources;
 
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Result;
 
 
-abstract class BaseResultValue extends BaseValue
+abstract class BaseResultSource extends BaseSource
 {
 	/**
 	 * @var Question

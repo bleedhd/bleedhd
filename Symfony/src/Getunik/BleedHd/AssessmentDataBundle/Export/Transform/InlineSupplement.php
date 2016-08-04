@@ -4,7 +4,7 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Export\Transform;
 
 
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Result;
-use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\IDataValue;
+use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\ISource;
 
 
 class InlineSupplement extends BaseTransform
@@ -27,7 +27,7 @@ class InlineSupplement extends BaseTransform
 	/**
 	 * @inheritdoc
 	 */
-	public function transform(IDataValue $raw)
+	public function transform(ISource $raw)
 	{
 		if (!$raw->hasValue()) {
 			return '';

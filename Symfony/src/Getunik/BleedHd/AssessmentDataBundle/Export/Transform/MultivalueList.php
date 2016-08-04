@@ -2,7 +2,7 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Transform;
 
-use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\IDataValue;
+use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\ISource;
 
 
 class MultivalueList extends BaseTransform
@@ -10,7 +10,7 @@ class MultivalueList extends BaseTransform
 	/**
 	 * @inheritdoc
 	 */
-	public function transform(IDataValue $raw)
+	public function transform(ISource $raw)
 	{
 		if (!$raw->hasValue()) {
 			return '';

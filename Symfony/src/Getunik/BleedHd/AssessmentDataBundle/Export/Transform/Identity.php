@@ -3,7 +3,7 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Transform;
 
 
-use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\IDataValue;
+use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\ISource;
 
 
 class Identity extends BaseTransform
@@ -11,7 +11,7 @@ class Identity extends BaseTransform
 	/**
 	 * @inheritdoc
 	 */
-	public function transform(IDataValue $raw)
+	public function transform(ISource $raw)
 	{
 		return $raw->toString();
 	}
