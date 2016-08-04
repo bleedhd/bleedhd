@@ -2,7 +2,7 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes;
 
-use Getunik\BleedHd\AssessmentDataBundle\Assessment\Result;
+use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
 
 /**
@@ -18,9 +18,9 @@ class SupplementValue extends BaseResultValue
 	 */
 	private $slug;
 
-	public function __construct(Result $result, $slug)
+	public function __construct(Question $question, $slug)
 	{
-		parent::__construct($result);
+		parent::__construct($question);
 		$this->slug = $slug;
 	}
 
@@ -37,7 +37,7 @@ class SupplementValue extends BaseResultValue
 	 */
 	public function getValue()
 	{
-		return $this->result->getSupplement($this->slug);
+		return $this->getResult()->getSupplement($this->slug);
 	}
 
 	/**

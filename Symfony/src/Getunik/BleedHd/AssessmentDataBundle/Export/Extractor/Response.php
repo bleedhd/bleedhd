@@ -15,6 +15,6 @@ class Response extends BaseExtractor
 	{
 		$question = $context->getQuestion($this->reference);
 
-		return new ResponseValue($question->getResult());
+		return new ResponseValue($question);
 	}
 }

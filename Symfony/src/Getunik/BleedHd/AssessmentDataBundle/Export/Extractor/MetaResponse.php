@@ -15,6 +15,6 @@ class MetaResponse extends BaseExtractor
 	{
 		$question = $context->getQuestion($this->reference);
 
-		return new MetaResponseValue($question->getResult());
+		return new MetaResponseValue($question);
 	}
 }

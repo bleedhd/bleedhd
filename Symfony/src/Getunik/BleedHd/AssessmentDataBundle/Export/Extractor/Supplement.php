@@ -19,6 +19,6 @@ class Supplement extends BaseExtractor
 
 		$question = $context->getQuestion($questionSlug);
 
-		return new SupplementValue($question->getResult(), $supplement);
+		return new SupplementValue($question, $supplement);
 	}
 }

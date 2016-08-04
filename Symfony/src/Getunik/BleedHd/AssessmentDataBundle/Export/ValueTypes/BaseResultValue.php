@@ -2,20 +2,19 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes;
 
-
-use Getunik\BleedHd\AssessmentDataBundle\Assessment\Result;
+use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
 
 abstract class BaseResultValue extends BaseValue
 {
 	/**
-	 * @var Result
+	 * @var Question
 	 */
-	protected $result;
+	private $question;
 
-	public function __construct(Result $result)
+	public function __construct(Question $question)
 	{
-		$this->result = $result;
+		$this->question = $question;
 	}
 
 	/**
@@ -46,8 +45,13 @@ abstract class BaseResultValue extends BaseValue
 		return array_map([$this, 'arrayValueExtract'], $this->getValue());
 	}
 
+	public function getQuestion()
+	{
+		return $this->question;
+	}
+
 	public function getResult()
 	{
-		return $this->result;
+		return $this->question->getResult();
 	}
 }
