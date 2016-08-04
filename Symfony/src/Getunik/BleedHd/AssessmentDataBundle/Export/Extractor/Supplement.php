@@ -3,7 +3,6 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Extractor;
 
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
-use Getunik\BleedHd\AssessmentDataBundle\Assessment\Result;
 use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\SupplementValue;
 
 
@@ -14,14 +13,12 @@ class Supplement extends BaseExtractor
 	 */
 	public function extract(AssessmentContext $context)
 	{
-		$responses = $context->getResponseMap();
-
 		$segments = explode('.', $this->reference);
 		$supplement = array_pop($segments);
-		$question = implode('.', $segments);
+		$questionSlug = implode('.', $segments);
 
-		$resultData = isset($responses[$question]) ? $responses[$question]->getResult() : NULL;
+		$question = $context->getQuestion($questionSlug);
 
-		return new SupplementValue(new Result($resultData), $supplement);
+		return new SupplementValue($question->getResult(), $supplement);
 	}
 }
