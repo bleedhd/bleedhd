@@ -3,8 +3,6 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Transform;
 
 use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\IDataValue;
-use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\ResponseValue;
-use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\SupplementValue;
 
 
 class MultivalueList extends BaseTransform
@@ -18,9 +16,7 @@ class MultivalueList extends BaseTransform
 			return '';
 		}
 
-		if (!($raw instanceof ResponseValue) && !($raw instanceof SupplementValue)) {
-			throw new \Exception('ValueOrMeta transform requires a ResponseValue or SupplementValue but received "' . $raw->getType() . '"');
-		}
+		$raw = self::requireActualResultValue($raw);
 
 		$emptyList = isset($this->config['emptyValue']) ? $this->config['emptyValue'] : '';
 		$separator = isset($this->config['separator']) ? $this->config['separator'] : ',';
