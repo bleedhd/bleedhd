@@ -47,4 +47,22 @@ class SupplementValue extends BaseResultValue
 	{
 		return $item;
 	}
+
+	/**
+	 * @return array
+	 */
+	public function getQuestionConfig()
+	{
+		$parentConfig = parent::getQuestionConfig();
+
+		if (isset($parentConfig['supplements'])) {
+			foreach ($parentConfig['supplements'] as $supplement) {
+				if (isset($supplement['slug']) && $supplement['slug'] === $this->slug) {
+					return $supplement;
+				}
+			}
+		}
+
+		return [];
+	}
 }
