@@ -13,10 +13,43 @@ abstract class BaseTransform implements ITransform
 {
 	protected $config;
 
+	protected $inlineMeta;
+	protected $listItemSeparator;
+	protected $listEmptyValue;
+
 	public function __construct($config)
 	{
 		$this->config = $config;
+
+		$this->inlineMeta = isset($this->config['inlineMeta']) ? $this->config['inlineMeta'] : false;
+		$this->listItemSeparator = isset($this->config['listItemSeparator']) ? $this->config['listItemSeparator'] : ',';
+		$this->listEmptyValue = isset($this->config['listEmptyValue']) ? $this->config['listEmptyValue'] : '';
 	}
+
+	public function transform(ISource $raw)
+	{
+		if (!$raw->hasValue()) {
+			if ($this->inlineMeta && $result = self::isActualResultSource($raw)) {
+				return $result->getResult()->getMetaValue();
+			} else {
+				return '';
+			}
+		}
+
+		$transformed = $this->transformData($raw);
+
+		if (is_array($transformed)) {
+			if (empty($transformed)) {
+				return $this->listEmptyValue;
+			}
+
+			return implode($this->listItemSeparator, $transformed);
+		}
+
+		return $transformed;
+	}
+
+	public abstract function transformData(ISource $raw);
 
 	/**
 	 * @param ISource $raw raw value to check
@@ -44,6 +77,15 @@ abstract class BaseTransform implements ITransform
 		}
 
 		return $raw;
+	}
+
+	/**
+	 * @param ISource $raw
+	 * @return BaseResultSource|null
+	 */
+	protected static function isActualResultSource(ISource $raw)
+	{
+		return (($raw instanceof ResponseSource) || ($raw instanceof SupplementSource)) ? $raw : NULL;
 	}
 
 	/**

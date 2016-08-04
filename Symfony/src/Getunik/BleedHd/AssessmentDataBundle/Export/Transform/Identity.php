@@ -11,8 +11,8 @@ class Identity extends BaseTransform
 	/**
 	 * @inheritdoc
 	 */
-	public function transform(ISource $raw)
+	public function transformData(ISource $raw)
 	{
-		return $raw->toString();
+		return $raw->getValue();
 	}
 }

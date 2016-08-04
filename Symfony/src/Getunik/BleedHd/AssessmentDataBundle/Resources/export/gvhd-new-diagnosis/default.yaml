@@ -40,7 +40,9 @@ columns:
       reference: gvhd-new-diagnosis.chronic.skin.distinctive
       transform:
         type: InlineSupplement
-        supplement: confirmation
+        supplements:
+            -
+                slug: confirmation
   -
       extractor: Response
       reference: gvhd-new-diagnosis.chronic.skin.other
@@ -53,14 +55,18 @@ columns:
       reference: gvhd-new-diagnosis.chronic.nails.distinctive
       transform:
         type: InlineSupplement
-        supplement: confirmation
+        supplements:
+            -
+                slug: confirmation
   # screen 5
   -
       extractor: Response
       reference: gvhd-new-diagnosis.chronic.hair.distinctive
       transform:
         type: InlineSupplement
-        supplement: confirmation
+        supplements:
+            -
+                slug: confirmation
   -
       extractor: Response
       reference: gvhd-new-diagnosis.chronic.hair.other
@@ -73,7 +79,9 @@ columns:
       reference: gvhd-new-diagnosis.chronic.mouth.distinctive
       transform:
         type: InlineSupplement
-        supplement: confirmation
+        supplements:
+            -
+                slug: confirmation
   -
       extractor: Response
       reference: gvhd-new-diagnosis.chronic.mouth.common
@@ -83,7 +91,9 @@ columns:
       reference: gvhd-new-diagnosis.chronic.eyes.distinctive
       transform:
         type: InlineSupplement
-        supplement: confirmation
+        supplements:
+            -
+                slug: confirmation
   -
       extractor: Response
       reference: gvhd-new-diagnosis.chronic.eyes.other
@@ -96,7 +106,9 @@ columns:
       reference: gvhd-new-diagnosis.chronic.genital-tract.distinctive
       transform:
         type: InlineSupplement
-        supplement: confirmation
+        supplements:
+            -
+                slug: confirmation
   # screen 9
   -
       extractor: Response
@@ -136,7 +148,9 @@ columns:
       reference: gvhd-new-diagnosis.chronic.muscles-fascia-joints.distinctive
       transform:
         type: InlineSupplement
-        supplement: confirmation
+        supplements:
+            -
+                slug: confirmation
   -
       extractor: Response
       reference: gvhd-new-diagnosis.chronic.muscles-fascia-joints.other

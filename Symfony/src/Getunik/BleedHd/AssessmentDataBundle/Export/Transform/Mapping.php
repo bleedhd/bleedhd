@@ -25,7 +25,7 @@ class Mapping extends BaseTransform
 	/**
 	 * @inheritdoc
 	 */
-	public function transform(ISource $raw)
+	public function transformData(ISource $raw)
 	{
 		if (!$raw->hasValue()) {
 			return '';

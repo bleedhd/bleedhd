@@ -16,12 +16,8 @@ class DateTimeFormat extends BaseTransform
 	/**
 	 * @inheritdoc
 	 */
-	public function transform(ISource $raw)
+	public function transformData(ISource $raw)
 	{
-		if (!$raw->hasValue()) {
-			return '';
-		}
-
 		$value = $raw->getValue();
 		if (!($value instanceof \DateTime)) {
 			throw new \Exception('DateTimeFormat transform can only be used on DateTime objects, but given ' . $raw->getType());

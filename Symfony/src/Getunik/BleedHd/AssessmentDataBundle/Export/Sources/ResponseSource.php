@@ -24,7 +24,11 @@ class ResponseSource extends BaseResultSource
 	 */
 	public function getValue()
 	{
-		return $this->getResult()->getValue();
+		if ($this->getResult()->isMultiValue()) {
+			return $this->getValueArray();
+		} else {
+			return $this->getResult()->getValue();
+		}
 	}
 
 	/**

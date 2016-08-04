@@ -50,11 +50,12 @@ abstract class BaseResultSource extends BaseSource
 	 */
 	public function getValueArray()
 	{
-		if ($this->getValue() === NULL) {
+		$value = $this->getResult()->getValue();
+		if ($value === NULL) {
 			return NULL;
 		}
 
-		return array_map([$this, 'arrayValueExtract'], $this->getValue());
+		return array_map([$this, 'arrayValueExtract'], $value);
 	}
 
 	/**

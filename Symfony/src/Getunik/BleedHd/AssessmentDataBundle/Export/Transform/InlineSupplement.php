@@ -10,37 +10,28 @@ use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\ISource;
 class InlineSupplement extends BaseTransform
 {
 	private $supplements;
-	private $emptyValue;
-	private $itemSeparator;
 	private $valueSeparator;
 
 	public function __construct($config)
 	{
 		parent::__construct($config);
 
-		$this->supplements = isset($this->config['supplement']) ? explode(',', $this->config['supplement']) : [];
-		$this->emptyValue = isset($this->config['emptyValue']) ? $this->config['emptyValue'] : '';
-		$this->itemSeparator = isset($this->config['itemSeparator']) ? $this->config['itemSeparator'] : ',';
+		$this->supplements = isset($this->config['supplements']) ? $this->config['supplements'] : [];
 		$this->valueSeparator = isset($this->config['valueSeparator']) ? $this->config['valueSeparator'] : '|';
 	}
 
 	/**
 	 * @inheritdoc
 	 */
-	public function transform(ISource $raw)
+	public function transformData(ISource $raw)
 	{
 		if (!$raw->hasValue()) {
 			return '';
 		}
 
 		$raw = self::requireResponseValue($raw);
-		$items = $this->extractItems($raw->getResult());
 
-		if (empty($items)) {
-			return $this->emptyValue;
-		}
-
-		return implode($this->itemSeparator, $items);
+		return $this->extractItems($raw->getResult());
 	}
 
 	private function extractItems(Result $result)
@@ -57,7 +48,8 @@ class InlineSupplement extends BaseTransform
 			$atoms = [];
 
 			$atoms[] = $value['value'];
-			foreach ($this->supplements as $slug) {
+			foreach ($this->supplements as $supplement) {
+				$slug = $supplement['slug'];
 				$atoms[] = isset($value['supplements']) && isset($value['supplements'][$slug]) ? $value['supplements'][$slug] : NULL;
 			}
 
