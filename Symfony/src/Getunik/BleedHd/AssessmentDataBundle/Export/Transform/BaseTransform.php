@@ -47,13 +47,22 @@ abstract class BaseTransform implements ITransform
 				return $this->listEmptyValue;
 			}
 
-			return $this->prefix . implode($this->listItemSeparator, $transformed) . $this->suffix;
+			return $this->prefix . implode($this->listItemSeparator, array_map([self::class, 'defaultToString'], $transformed)) . $this->suffix;
 		}
 
-		return $this->prefix . $transformed . $this->suffix;
+		return $this->prefix . self::defaultToString($transformed) . $this->suffix;
 	}
 
 	public abstract function transformData(ISource $raw);
+
+	protected static function defaultToString($value)
+	{
+		if (is_bool($value)) {
+			return $value ? 'true' : 'false';
+		}
+
+		return (string)$value;
+	}
 
 	/**
 	 * @param ISource $raw raw value to check
