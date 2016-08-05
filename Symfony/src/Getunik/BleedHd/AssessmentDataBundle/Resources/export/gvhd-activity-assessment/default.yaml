@@ -1,0 +1,230 @@
+
+name: Default
+type: gvhd-organ-scoring
+columns:
+  -
+      __directive:
+        op: insert
+        source: ../patient-default.yaml
+  -
+      __directive:
+        op: insert
+        source: ../assessment-default.yaml
+  -
+      label: Score
+      extractor: Score
+      reference: total
+  # screen 1
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.general.patient.weight
+  # screen 2
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.general.global.provider-rating
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.general.global.severity
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.general.global.change
+  # screen 3
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.mouth.erythema
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.mouth.lichenoid
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.mouth.ulcers
+  # screen 4
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.gi-tract.esophageal
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.gi-tract.upper-gi
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.gi-tract.lower-gi
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.gi-tract.non-gvhd
+  -
+      extractor: Supplement
+      reference: gvhd-activity-assessment.organs.gi-tract.non-gvhd.cause
+  # screen 5
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.lung-values.fev1
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.lung-values.fvc
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.lung-values.dlco
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.lung-values.tlc
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.lung-values.rv
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.lung-values.non-gvhd
+  -
+      extractor: Supplement
+      reference: gvhd-activity-assessment.organs.lung-values.non-gvhd.cause
+  # screen 6
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.liver-values.bilirubin
+  -
+      extractor: Supplement
+      reference: gvhd-activity-assessment.organs.liver-values.bilirubin.unit
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.liver-values.bilirubin-uln
+  -
+      extractor: Supplement
+      reference: gvhd-activity-assessment.organs.liver-values.bilirubin-uln.unit
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.liver-values.alt
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.liver-values.alt-uln
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.liver-values.phosphatase
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.liver-values.phosphatase-uln
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.liver-values.non-gvhd
+  -
+      extractor: Supplement
+      reference: gvhd-activity-assessment.organs.liver-values.non-gvhd.cause
+  # screen 7
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.baseline-values.distance-walked
+  -
+      extractor: Supplement
+      reference: gvhd-activity-assessment.organs.baseline-values.distance-walked.distance
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.baseline-values.karnofsky-lansky
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.baseline-values.platelets
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.baseline-values.wbc
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organs.baseline-values.eosinophilis
+  # screen 8
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.skin.bsa-score
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.skin.skin-score
+  -
+      extractor: Supplement
+      reference: gvhd-activity-assessment.organ-score.skin.skin-score.symptoms
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.skin.rating
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.skin.non-gvhd
+  -
+      extractor: Supplement
+      reference: gvhd-activity-assessment.organ-score.skin.non-gvhd.cause
+  # screen 9
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.p-rom.shoulder.left
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.p-rom.shoulder.right
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.p-rom.elbow.left
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.p-rom.elbow.right
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.p-rom.wrist-finger.left
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.p-rom.wrist-finger.right
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.p-rom.ankle.left
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.p-rom.ankle.right
+  # screen 10
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.joints-and-fascia.score
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.joints-and-fascia.non-gvhd
+  -
+      extractor: Supplement
+      reference: gvhd-activity-assessment.organ-score.joints-and-fascia.non-gvhd.cause
+  # screen 11
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.eyes.score
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.eyes.non-gvhd
+  -
+      extractor: Supplement
+      reference: gvhd-activity-assessment.organ-score.eyes.non-gvhd.cause
+  # screen 12
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.lungs.symptoms-score
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.lungs.non-gvhd
+  -
+      extractor: Supplement
+      reference: gvhd-activity-assessment.organ-score.lungs.non-gvhd.cause
+  # screen 13
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.overall.immunosuppression
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.overall.immunosuppression-medication.cyclosporine
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.overall.immunosuppression-medication.mycophenolate
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.overall.immunosuppression-medication.tacrolimus
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.overall.immunosuppression-medication.sirolimus
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.overall.immunosuppression-medication.prednisone
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.overall.immunosuppression-medication.photopheresis
+  -
+      extractor: Supplement
+      reference: gvhd-activity-assessment.organ-score.overall.immunosuppression-medication.photopheresis.other
+  -
+      extractor: Response
+      reference: gvhd-activity-assessment.organ-score.overall.immunosuppression-medication.other
