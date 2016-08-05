@@ -10,10 +10,6 @@ columns:
       __directive:
         op: insert
         source: ../assessment-default.yaml
-  -
-      label: Score
-      extractor: Score
-      reference: total
   # screen 1
   -
       extractor: Response
