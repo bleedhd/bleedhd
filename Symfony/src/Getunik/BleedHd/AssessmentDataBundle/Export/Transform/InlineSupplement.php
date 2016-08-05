@@ -2,9 +2,9 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Transform;
 
-
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Result;
 use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\ISource;
+use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\SimpleSource;
 
 
 class InlineSupplement extends BaseTransform
@@ -16,8 +16,19 @@ class InlineSupplement extends BaseTransform
 	{
 		parent::__construct($config);
 
-		$this->supplements = isset($this->config['supplements']) ? $this->config['supplements'] : [];
 		$this->valueSeparator = isset($this->config['valueSeparator']) ? $this->config['valueSeparator'] : '|';
+
+		$this->supplements = [];
+		if (isset($this->config['supplements'])) {
+			foreach ($this->config['supplements'] as $supplementConfig) {
+
+				$this->supplements[] = [
+					'slug' => $supplementConfig['slug'],
+					'transform' => new Mapping($supplementConfig),
+				];
+
+			}
+		}
 	}
 
 	/**
@@ -45,12 +56,18 @@ class InlineSupplement extends BaseTransform
 		}
 
 		foreach ($data as $value) {
-			$atoms = [];
+			$atoms = [$value['value']];
 
-			$atoms[] = $value['value'];
 			foreach ($this->supplements as $supplement) {
+
 				$slug = $supplement['slug'];
-				$atoms[] = isset($value['supplements']) && isset($value['supplements'][$slug]) ? $value['supplements'][$slug] : NULL;
+				/** @var ITransform $transform */
+				$transform = $supplement['transform'];
+				$supplementValue = isset($value['supplements']) && isset($value['supplements'][$slug]) ? $value['supplements'][$slug] : NULL;
+				$source = new SimpleSource($supplementValue);
+
+				$atoms[] = $transform->transform($source);
+
 			}
 
 			$items[] = implode($this->valueSeparator, $atoms);
