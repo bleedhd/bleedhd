@@ -2,45 +2,47 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Transform;
 
-
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Result;
-use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\IDataValue;
+use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\ISource;
+use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\SimpleSource;
 
 
 class InlineSupplement extends BaseTransform
 {
 	private $supplements;
-	private $emptyValue;
-	private $itemSeparator;
 	private $valueSeparator;
 
 	public function __construct($config)
 	{
 		parent::__construct($config);
 
-		$this->supplements = isset($this->config['supplement']) ? explode(',', $this->config['supplement']) : [];
-		$this->emptyValue = isset($this->config['emptyValue']) ? $this->config['emptyValue'] : '';
-		$this->itemSeparator = isset($this->config['itemSeparator']) ? $this->config['itemSeparator'] : ',';
 		$this->valueSeparator = isset($this->config['valueSeparator']) ? $this->config['valueSeparator'] : '|';
+
+		$this->supplements = [];
+		if (isset($this->config['supplements'])) {
+			foreach ($this->config['supplements'] as $supplementConfig) {
+
+				$this->supplements[] = [
+					'slug' => $supplementConfig['slug'],
+					'transform' => new Mapping($supplementConfig),
+				];
+
+			}
+		}
 	}
 
 	/**
 	 * @inheritdoc
 	 */
-	public function transform(IDataValue $raw)
+	public function transformData(ISource $raw)
 	{
 		if (!$raw->hasValue()) {
 			return '';
 		}
 
 		$raw = self::requireResponseValue($raw);
-		$items = $this->extractItems($raw->getResult());
 
-		if (empty($items)) {
-			return $this->emptyValue;
-		}
-
-		return implode($this->itemSeparator, $items);
+		return $this->extractItems($raw->getResult());
 	}
 
 	private function extractItems(Result $result)
@@ -54,11 +56,18 @@ class InlineSupplement extends BaseTransform
 		}
 
 		foreach ($data as $value) {
-			$atoms = [];
+			$atoms = [$value['value']];
 
-			$atoms[] = $value['value'];
-			foreach ($this->supplements as $slug) {
-				$atoms[] = isset($value['supplements']) && isset($value['supplements'][$slug]) ? $value['supplements'][$slug] : NULL;
+			foreach ($this->supplements as $supplement) {
+
+				$slug = $supplement['slug'];
+				/** @var ITransform $transform */
+				$transform = $supplement['transform'];
+				$supplementValue = isset($value['supplements']) && isset($value['supplements'][$slug]) ? $value['supplements'][$slug] : NULL;
+				$source = new SimpleSource($supplementValue);
+
+				$atoms[] = $transform->transform($source);
+
 			}
 
 			$items[] = implode($this->valueSeparator, $atoms);

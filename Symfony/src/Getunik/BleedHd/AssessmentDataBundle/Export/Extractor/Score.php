@@ -3,7 +3,7 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Extractor;
 
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
-use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\SimpleValue;
+use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\SimpleSource;
 
 
 class Score extends BaseExtractor
@@ -19,12 +19,12 @@ class Score extends BaseExtractor
 		$segments = explode('.', $this->reference);
 		foreach ($segments as $key) {
 			if (!is_array($current) || !isset($current[$key])) {
-				return new SimpleValue(NULL);
+				return new SimpleSource(NULL);
 			}
 
 			$current = $current[$key];
 		}
 
-		return new SimpleValue($current);
+		return new SimpleSource($current);
 	}
 }

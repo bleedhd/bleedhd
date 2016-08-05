@@ -1,6 +1,6 @@
 <?php
 
-namespace Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes;
+namespace Getunik\BleedHd\AssessmentDataBundle\Export\Sources;
 
 
 /**
@@ -9,7 +9,7 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes;
  *
  * Wrapper type that is returned by the meta-response extractor to facilitate subsequent transforms.
  */
-class MetaResponseValue extends BaseResultValue
+class MetaResponseSource extends BaseResultSource
 {
 	/**
 	 * @inheritdoc

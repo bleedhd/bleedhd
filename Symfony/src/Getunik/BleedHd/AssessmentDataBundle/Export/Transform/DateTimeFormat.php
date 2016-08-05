@@ -3,7 +3,7 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Transform;
 
 
-use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\IDataValue;
+use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\ISource;
 
 
 class DateTimeFormat extends BaseTransform
@@ -16,12 +16,8 @@ class DateTimeFormat extends BaseTransform
 	/**
 	 * @inheritdoc
 	 */
-	public function transform(IDataValue $raw)
+	public function transformData(ISource $raw)
 	{
-		if (!$raw->hasValue()) {
-			return '';
-		}
-
 		$value = $raw->getValue();
 		if (!($value instanceof \DateTime)) {
 			throw new \Exception('DateTimeFormat transform can only be used on DateTime objects, but given ' . $raw->getType());

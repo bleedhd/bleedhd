@@ -1,9 +1,9 @@
 <?php
 
-namespace Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes;
+namespace Getunik\BleedHd\AssessmentDataBundle\Export\Sources;
 
 
-abstract class BaseValue implements IDataValue
+abstract class BaseSource implements ISource
 {
 	/**
 	 * @inheritdoc

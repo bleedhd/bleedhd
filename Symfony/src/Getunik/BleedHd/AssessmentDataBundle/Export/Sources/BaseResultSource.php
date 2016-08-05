@@ -1,12 +1,12 @@
 <?php
 
-namespace Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes;
+namespace Getunik\BleedHd\AssessmentDataBundle\Export\Sources;
 
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Result;
 
 
-abstract class BaseResultValue extends BaseValue
+abstract class BaseResultSource extends BaseSource
 {
 	/**
 	 * @var Question
@@ -50,11 +50,12 @@ abstract class BaseResultValue extends BaseValue
 	 */
 	public function getValueArray()
 	{
-		if ($this->getValue() === NULL) {
+		$value = $this->getResult()->getValue();
+		if ($value === NULL) {
 			return NULL;
 		}
 
-		return array_map([$this, 'arrayValueExtract'], $this->getValue());
+		return array_map([$this, 'arrayValueExtract'], $value);
 	}
 
 	/**

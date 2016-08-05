@@ -3,7 +3,7 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Extractor;
 
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
-use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\ResponseValue;
+use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\ResponseSource;
 
 
 class Response extends BaseExtractor
@@ -15,6 +15,6 @@ class Response extends BaseExtractor
 	{
 		$question = $context->getQuestion($this->reference);
 
-		return new ResponseValue($question);
+		return new ResponseSource($question);
 	}
 }
