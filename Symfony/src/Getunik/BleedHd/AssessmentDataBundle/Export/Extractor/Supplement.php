@@ -18,6 +18,9 @@ class Supplement extends BaseExtractor
 		$questionSlug = implode('.', $segments);
 
 		$question = $context->getQuestion($questionSlug);
+		if ($question === NULL) {
+			throw new \Exception('Question with slug ' . $this->reference . ' does not seem to exist in assessment of type ' . $context->getAssessment()->getQuestionnaire());
+		}
 
 		return new SupplementSource($question, $supplement);
 	}

@@ -14,6 +14,9 @@ class Response extends BaseExtractor
 	public function extract(AssessmentContext $context)
 	{
 		$question = $context->getQuestion($this->reference);
+		if ($question === NULL) {
+			throw new \Exception('Question with slug ' . $this->reference . ' does not seem to exist in assessment of type ' . $context->getAssessment()->getQuestionnaire());
+		}
 
 		return new ResponseSource($question);
 	}
