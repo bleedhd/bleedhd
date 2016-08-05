@@ -4,6 +4,7 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Controller;
 
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\FOSRestController;
+use Getunik\BleedHd\AssessmentDataBundle\Annotation\FeatureRequire;
 use Getunik\BleedHd\AssessmentDataBundle\Export\ExportService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use FOS\RestBundle\Controller\Annotations\Post;
@@ -11,6 +12,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 
 
+/**
+ * Class ExportController
+ * @package Getunik\BleedHd\AssessmentDataBundle\Controller
+ *
+ * @FeatureRequire("export")
+ */
 class ExportController extends FOSRestController
 {
 	const EXPORT_DOWNLOAD_IDS_SESSION = 'export_download_ids';
