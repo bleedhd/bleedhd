@@ -13,3 +13,15 @@
     transform:
         type: DateTimeFormat
         format: Y-m-d
+-
+    label: Gender
+    extractor: PatientField
+    reference: sex
+-
+    label: Patient number
+    extractor: PatientField
+    reference: patientNumber
+-
+    label: UPN number
+    extractor: PatientField
+    reference: upn
