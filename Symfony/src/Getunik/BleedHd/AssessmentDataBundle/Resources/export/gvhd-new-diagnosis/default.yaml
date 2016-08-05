@@ -2,163 +2,163 @@
 name: Default
 type: gvhd-new-diagnosis
 columns:
-  -
-      __directive:
-        op: insert
-        source: ../patient-default.yaml
-  -
-      __directive:
-        op: insert
-        source: ../assessment-default.yaml
-  -
-      label: Score
-      extractor: Score
-      reference: total
-  # screen 1
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.acute.clinical-staging.skin
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.acute.clinical-staging.liver
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.acute.clinical-staging.gut
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.acute.clinical-staging.performance
-  # screen 2
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.acute.timing.delay
-  # screen 3
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.skin.diagnostic
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.skin.distinctive
-      transform:
-        type: InlineSupplement
-        supplements:
-            -
-                slug: confirmation
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.skin.other
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.skin.common
-  # screen 4
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.nails.distinctive
-      transform:
-        type: InlineSupplement
-        supplements:
-            -
-                slug: confirmation
-  # screen 5
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.hair.distinctive
-      transform:
-        type: InlineSupplement
-        supplements:
-            -
-                slug: confirmation
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.hair.other
-  # screen 6
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.mouth.diagnostic
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.mouth.distinctive
-      transform:
-        type: InlineSupplement
-        supplements:
-            -
-                slug: confirmation
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.mouth.common
-  # screen 7
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.eyes.distinctive
-      transform:
-        type: InlineSupplement
-        supplements:
-            -
-                slug: confirmation
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.eyes.other
-  # screen 8
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.genital-tract.diagnostic
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.genital-tract.distinctive
-      transform:
-        type: InlineSupplement
-        supplements:
-            -
-                slug: confirmation
-  # screen 9
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.gi-tract.diagnostic
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.gi-tract.other
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.gi-tract.common
-  # screen 10
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.liver.common
-  # screen 11
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.lungs.diagnostic-biopsy
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.lungs.distinctive-dependent
-  -
-      extractor: Supplement
-      reference: gvhd-new-diagnosis.chronic.lungs.distinctive-dependent.confirmation
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.lungs.air-trapping
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.lungs.other
-  # screen 12
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.muscles-fascia-joints.diagnostic
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.muscles-fascia-joints.distinctive
-      transform:
-        type: InlineSupplement
-        supplements:
-            -
-                slug: confirmation
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.muscles-fascia-joints.other
-  # screen 13
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.immune.other
-  # screen 14
-  -
-      extractor: Response
-      reference: gvhd-new-diagnosis.chronic.other.other
+    -
+        __directive:
+            op: insert
+            source: ../patient-default.yaml
+    -
+        __directive:
+            op: insert
+            source: ../assessment-default.yaml
+    -
+        label: Score
+        extractor: Score
+        reference: total
+    # screen 1
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.acute.clinical-staging.skin
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.acute.clinical-staging.liver
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.acute.clinical-staging.gut
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.acute.clinical-staging.performance
+    # screen 2
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.acute.timing.delay
+    # screen 3
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.skin.diagnostic
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.skin.distinctive
+        transform:
+            type: InlineSupplement
+            supplements:
+                -
+                    slug: confirmation
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.skin.other
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.skin.common
+    # screen 4
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.nails.distinctive
+        transform:
+            type: InlineSupplement
+            supplements:
+                -
+                    slug: confirmation
+    # screen 5
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.hair.distinctive
+        transform:
+            type: InlineSupplement
+            supplements:
+                -
+                    slug: confirmation
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.hair.other
+    # screen 6
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.mouth.diagnostic
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.mouth.distinctive
+        transform:
+            type: InlineSupplement
+            supplements:
+                -
+                    slug: confirmation
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.mouth.common
+    # screen 7
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.eyes.distinctive
+        transform:
+            type: InlineSupplement
+            supplements:
+                -
+                    slug: confirmation
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.eyes.other
+    # screen 8
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.genital-tract.diagnostic
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.genital-tract.distinctive
+        transform:
+            type: InlineSupplement
+            supplements:
+                -
+                    slug: confirmation
+    # screen 9
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.gi-tract.diagnostic
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.gi-tract.other
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.gi-tract.common
+    # screen 10
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.liver.common
+    # screen 11
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.lungs.diagnostic-biopsy
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.lungs.distinctive-dependent
+    -
+        extractor: Supplement
+        reference: gvhd-new-diagnosis.chronic.lungs.distinctive-dependent.confirmation
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.lungs.air-trapping
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.lungs.other
+    # screen 12
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.muscles-fascia-joints.diagnostic
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.muscles-fascia-joints.distinctive
+        transform:
+            type: InlineSupplement
+            supplements:
+                -
+                    slug: confirmation
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.muscles-fascia-joints.other
+    # screen 13
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.immune.other
+    # screen 14
+    -
+        extractor: Response
+        reference: gvhd-new-diagnosis.chronic.other.other

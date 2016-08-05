@@ -2,40 +2,40 @@
 name: Default
 type: gvhd-self-report
 columns:
-  -
-      __directive:
-        op: insert
-        source: ../patient-default.yaml
-  -
-      __directive:
-        op: insert
-        source: ../assessment-default.yaml
-  # screen 1
-  -
-      extractor: Response
-      reference: gvhd-self-report.organs.skin
-  -
-      extractor: Response
-      reference: gvhd-self-report.organs.joint
-  -
-      extractor: Response
-      reference: gvhd-self-report.organs.mouth
-  -
-      extractor: Response
-      reference: gvhd-self-report.organs.genitalia
-  -
-      extractor: Response
-      reference: gvhd-self-report.organs.eyes.symptom
-  -
-      extractor: Response
-      reference: gvhd-self-report.organs.eyes.severity
-  # screen 2
-  -
-      extractor: Response
-      reference: gvhd-self-report.global.rating
-  -
-      extractor: Response
-      reference: gvhd-self-report.global.severity
-  -
-      extractor: Response
-      reference: gvhd-self-report.global.change
+    -
+        __directive:
+            op: insert
+            source: ../patient-default.yaml
+    -
+        __directive:
+            op: insert
+            source: ../assessment-default.yaml
+    # screen 1
+    -
+        extractor: Response
+        reference: gvhd-self-report.organs.skin
+    -
+        extractor: Response
+        reference: gvhd-self-report.organs.joint
+    -
+        extractor: Response
+        reference: gvhd-self-report.organs.mouth
+    -
+        extractor: Response
+        reference: gvhd-self-report.organs.genitalia
+    -
+        extractor: Response
+        reference: gvhd-self-report.organs.eyes.symptom
+    -
+        extractor: Response
+        reference: gvhd-self-report.organs.eyes.severity
+    # screen 2
+    -
+        extractor: Response
+        reference: gvhd-self-report.global.rating
+    -
+        extractor: Response
+        reference: gvhd-self-report.global.severity
+    -
+        extractor: Response
+        reference: gvhd-self-report.global.change

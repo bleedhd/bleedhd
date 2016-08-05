@@ -2,33 +2,33 @@
 name: Default
 type: bsms
 columns:
-  -
-      __directive:
-        op: insert
-        source: ../patient-default.yaml
-  -
-      __directive:
-        op: insert
-        source: ../assessment-default.yaml
-  -
-      label: Score
-      extractor: Score
-      reference: total
-# screen 1
-  -
-      extractor: Response
-      reference: bsms.general.grade
-  -
-      label: bsms.general.grade.meta
-      extractor: MetaResponse
-      reference: bsms.general.grade
-  -
-      extractor: Response
-      reference: bsms.general.type-or-site
-  -
-      label: bsms.general.type-or-site.meta
-      extractor: MetaResponse
-      reference: bsms.general.type-or-site
-  -
-      extractor: Supplement
-      reference: bsms.general.type-or-site.specify
+    -
+        __directive:
+            op: insert
+            source: ../patient-default.yaml
+    -
+        __directive:
+            op: insert
+            source: ../assessment-default.yaml
+    -
+        label: Score
+        extractor: Score
+        reference: total
+    # screen 1
+    -
+        extractor: Response
+        reference: bsms.general.grade
+    -
+        label: bsms.general.grade.meta
+        extractor: MetaResponse
+        reference: bsms.general.grade
+    -
+        extractor: Response
+        reference: bsms.general.type-or-site
+    -
+        label: bsms.general.type-or-site.meta
+        extractor: MetaResponse
+        reference: bsms.general.type-or-site
+    -
+        extractor: Supplement
+        reference: bsms.general.type-or-site.specify

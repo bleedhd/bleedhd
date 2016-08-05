@@ -2,19 +2,19 @@
 name: Default
 type: gvhd-features
 columns:
-  -
-      __directive:
-        op: insert
-        source: ../patient-default.yaml
-  -
-      __directive:
-        op: insert
-        source: ../assessment-default.yaml
-  -
-      label: Score
-      extractor: Score
-      reference: total
-  # screen 1
-  -
-      extractor: Response
-      reference: gvhd-features.features.features-present
+    -
+        __directive:
+            op: insert
+            source: ../patient-default.yaml
+    -
+        __directive:
+            op: insert
+            source: ../assessment-default.yaml
+    -
+        label: Score
+        extractor: Score
+        reference: total
+    # screen 1
+    -
+        extractor: Response
+        reference: gvhd-features.features.features-present

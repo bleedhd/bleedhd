@@ -2,241 +2,241 @@
 name: Default
 type: gvhd-organ-scoring
 columns:
-  -
-      __directive:
-        op: insert
-        source: ../patient-default.yaml
-  -
-      __directive:
-        op: insert
-        source: ../assessment-default.yaml
-  -
-      label: Score
-      extractor: Score
-      reference: total
-  # screen 1
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.performance.type
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.performance.score
-  # screen 2
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.skin.bsa-features
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.skin.bsa-score
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.skin.skin-score
-  -
-      extractor: Supplement
-      reference: gvhd-organ-scoring.skin.skin-score.symptoms
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.skin.skin-features
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.skin.non-gvhd
-  -
-      extractor: Supplement
-      reference: gvhd-organ-scoring.skin.non-gvhd.cause
-  # screen 3
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.mouth.score
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.mouth.lichen-planus
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.mouth.non-gvhd
-  -
-      extractor: Supplement
-      reference: gvhd-organ-scoring.mouth.non-gvhd.cause
-  # screen 4
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.eyes.score
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.eyes.kcs
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.eyes.non-gvhd
-  -
-      extractor: Supplement
-      reference: gvhd-organ-scoring.eyes.non-gvhd.cause
-  # screen 5
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.gi-tract.score
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.gi-tract.features
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.gi-tract.non-gvhd
-  -
-      extractor: Supplement
-      reference: gvhd-organ-scoring.gi-tract.non-gvhd.cause
-  # screen 6
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.liver.score
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.liver.non-gvhd
-  -
-      extractor: Supplement
-      reference: gvhd-organ-scoring.liver.non-gvhd.cause
-  # screen 7
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.lungs.symptoms-score
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.lungs.fev1-score
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.lungs.non-gvhd
-  -
-      extractor: Supplement
-      reference: gvhd-organ-scoring.lungs.non-gvhd.cause
-  # screen 8
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.p-rom.shoulder.left
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.p-rom.shoulder.right
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.p-rom.elbow.left
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.p-rom.elbow.right
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.p-rom.wrist-finger.left
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.p-rom.wrist-finger.right
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.p-rom.ankle.left
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.p-rom.ankle.right
-  # screen 9
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.joints-and-fascia.score
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.joints-and-fascia.non-gvhd
-  -
-      extractor: Supplement
-      reference: gvhd-organ-scoring.joints-and-fascia.non-gvhd.cause
-  # screen 10
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.genital-tract.score
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.genital-tract.sexually-active
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.genital-tract.features
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.genital-tract.causes.non-gvhd
-  -
-      extractor: Supplement
-      reference: gvhd-organ-scoring.genital-tract.causes.non-gvhd.cause
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.genital-tract.causes.gvhd-plus
-  -
-      extractor: Supplement
-      reference: gvhd-organ-scoring.genital-tract.causes.gvhd-plus.cause
-  # screen 11
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.genital-tract-biopsy.obtained
-  -
-      extractor: Supplement
-      reference: gvhd-organ-scoring.genital-tract-biopsy.obtained.site
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.genital-tract-biopsy.gvhd-histology
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.genital-tract-biopsy.change
-  # screen 12
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.other-indicators.features-score.ascites
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.other-indicators.features-score.pericardial-effusion
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.other-indicators.features-score.pleura-effusion
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.other-indicators.features-score.nephrotic-syndrome
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.other-indicators.features-score.myasthenia-gravis
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.other-indicators.features-score.peripheral-neuropathy
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.other-indicators.features-score.polymyositis
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.other-indicators.features-present.weight-loss
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.other-indicators.features-present.eosinophilia
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.other-indicators.features-present.platelets
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.other-indicators.features-present.others
-  # screen 13
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.overall.severity
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.overall.immunosuppression
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.overall.immunosuppression-medication.cyclosporine
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.overall.immunosuppression-medication.mycophenolate
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.overall.immunosuppression-medication.tacrolimus
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.overall.immunosuppression-medication.sirolimus
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.overall.immunosuppression-medication.prednisone
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.overall.immunosuppression-medication.photopheresis
-  -
-      extractor: Supplement
-      reference: gvhd-organ-scoring.overall.immunosuppression-medication.photopheresis.other
-  -
-      extractor: Response
-      reference: gvhd-organ-scoring.overall.immunosuppression-medication.other
+    -
+        __directive:
+            op: insert
+            source: ../patient-default.yaml
+    -
+        __directive:
+            op: insert
+            source: ../assessment-default.yaml
+    -
+        label: Score
+        extractor: Score
+        reference: total
+    # screen 1
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.performance.type
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.performance.score
+    # screen 2
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.skin.bsa-features
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.skin.bsa-score
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.skin.skin-score
+    -
+        extractor: Supplement
+        reference: gvhd-organ-scoring.skin.skin-score.symptoms
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.skin.skin-features
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.skin.non-gvhd
+    -
+        extractor: Supplement
+        reference: gvhd-organ-scoring.skin.non-gvhd.cause
+    # screen 3
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.mouth.score
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.mouth.lichen-planus
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.mouth.non-gvhd
+    -
+        extractor: Supplement
+        reference: gvhd-organ-scoring.mouth.non-gvhd.cause
+    # screen 4
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.eyes.score
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.eyes.kcs
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.eyes.non-gvhd
+    -
+        extractor: Supplement
+        reference: gvhd-organ-scoring.eyes.non-gvhd.cause
+    # screen 5
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.gi-tract.score
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.gi-tract.features
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.gi-tract.non-gvhd
+    -
+        extractor: Supplement
+        reference: gvhd-organ-scoring.gi-tract.non-gvhd.cause
+    # screen 6
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.liver.score
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.liver.non-gvhd
+    -
+        extractor: Supplement
+        reference: gvhd-organ-scoring.liver.non-gvhd.cause
+    # screen 7
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.lungs.symptoms-score
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.lungs.fev1-score
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.lungs.non-gvhd
+    -
+        extractor: Supplement
+        reference: gvhd-organ-scoring.lungs.non-gvhd.cause
+    # screen 8
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.p-rom.shoulder.left
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.p-rom.shoulder.right
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.p-rom.elbow.left
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.p-rom.elbow.right
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.p-rom.wrist-finger.left
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.p-rom.wrist-finger.right
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.p-rom.ankle.left
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.p-rom.ankle.right
+    # screen 9
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.joints-and-fascia.score
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.joints-and-fascia.non-gvhd
+    -
+        extractor: Supplement
+        reference: gvhd-organ-scoring.joints-and-fascia.non-gvhd.cause
+    # screen 10
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.genital-tract.score
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.genital-tract.sexually-active
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.genital-tract.features
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.genital-tract.causes.non-gvhd
+    -
+        extractor: Supplement
+        reference: gvhd-organ-scoring.genital-tract.causes.non-gvhd.cause
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.genital-tract.causes.gvhd-plus
+    -
+        extractor: Supplement
+        reference: gvhd-organ-scoring.genital-tract.causes.gvhd-plus.cause
+    # screen 11
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.genital-tract-biopsy.obtained
+    -
+        extractor: Supplement
+        reference: gvhd-organ-scoring.genital-tract-biopsy.obtained.site
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.genital-tract-biopsy.gvhd-histology
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.genital-tract-biopsy.change
+    # screen 12
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.other-indicators.features-score.ascites
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.other-indicators.features-score.pericardial-effusion
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.other-indicators.features-score.pleura-effusion
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.other-indicators.features-score.nephrotic-syndrome
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.other-indicators.features-score.myasthenia-gravis
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.other-indicators.features-score.peripheral-neuropathy
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.other-indicators.features-score.polymyositis
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.other-indicators.features-present.weight-loss
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.other-indicators.features-present.eosinophilia
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.other-indicators.features-present.platelets
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.other-indicators.features-present.others
+    # screen 13
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.overall.severity
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.overall.immunosuppression
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.overall.immunosuppression-medication.cyclosporine
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.overall.immunosuppression-medication.mycophenolate
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.overall.immunosuppression-medication.tacrolimus
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.overall.immunosuppression-medication.sirolimus
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.overall.immunosuppression-medication.prednisone
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.overall.immunosuppression-medication.photopheresis
+    -
+        extractor: Supplement
+        reference: gvhd-organ-scoring.overall.immunosuppression-medication.photopheresis.other
+    -
+        extractor: Response
+        reference: gvhd-organ-scoring.overall.immunosuppression-medication.other
