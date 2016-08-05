@@ -1,6 +1,6 @@
 <?php
 
-namespace Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes;
+namespace Getunik\BleedHd\AssessmentDataBundle\Export\Sources;
 
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
 
@@ -11,7 +11,7 @@ use Getunik\BleedHd\AssessmentDataBundle\Assessment\Question;
  *
  * Wrapper type that is returned by the supplement extractor to facilitate subsequent transforms.
  */
-class SupplementValue extends BaseResultValue
+class SupplementSource extends BaseResultSource
 {
 	/**
 	 * @var string

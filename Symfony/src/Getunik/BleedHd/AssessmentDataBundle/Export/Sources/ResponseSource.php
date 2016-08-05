@@ -1,6 +1,6 @@
 <?php
 
-namespace Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes;
+namespace Getunik\BleedHd\AssessmentDataBundle\Export\Sources;
 
 
 /**
@@ -9,7 +9,7 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes;
  *
  * Wrapper type that is returned by the response extractor to facilitate subsequent transforms.
  */
-class ResponseValue extends BaseResultValue
+class ResponseSource extends BaseResultSource
 {
 	/**
 	 * @inheritdoc
@@ -24,7 +24,11 @@ class ResponseValue extends BaseResultValue
 	 */
 	public function getValue()
 	{
-		return $this->getResult()->getValue();
+		if ($this->getResult()->isMultiValue()) {
+			return $this->getValueArray();
+		} else {
+			return $this->getResult()->getValue();
+		}
 	}
 
 	/**

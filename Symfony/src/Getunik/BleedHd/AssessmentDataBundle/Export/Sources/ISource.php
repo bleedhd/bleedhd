@@ -1,9 +1,9 @@
 <?php
 
-namespace Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes;
+namespace Getunik\BleedHd\AssessmentDataBundle\Export\Sources;
 
 
-interface IDataValue
+interface ISource
 {
 	/**
 	 * @return bool flag indicating whether this represents a NULL-type value

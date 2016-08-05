@@ -3,37 +3,34 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Transform;
 
 
-use Getunik\BleedHd\AssessmentDataBundle\Export\ValueTypes\IDataValue;
+use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\ISource;
 
 
 class BitVector extends BaseTransform
 {
 	private $trueValue;
 	private $falseValue;
-	private $nullValue;
-	private $separator;
 
 	public function __construct(array $config)
 	{
 		parent::__construct($config);
 
+		if (!isset($this->config['listItemSeparator'])) {
+			// override default listItemSeparator
+			$this->listItemSeparator = '';
+		}
+
 		$this->trueValue = isset($config['trueValue']) ? $config['trueValue'] : '1';
 		$this->falseValue = isset($config['falseValue']) ? $config['falseValue'] : '0';
-		$this->nullValue = isset($config['nullValue']) ? $config['nullValue'] : '';
-		$this->separator = isset($config['separator']) ? $config['separator'] : '';
 	}
 
 	/**
 	 * @inheritdoc
 	 */
-	public function transform(IDataValue $raw)
+	public function transformData(ISource $raw)
 	{
 		$raw = self::requireActualResultValue($raw);
 		$valueArray = self::requireMultivalued($raw);
-
-		if ($valueArray === NULL) {
-			return $this->nullValue;
-		}
 
 		$question = $raw->getQuestionConfig();
 		$bits = [];
@@ -42,9 +39,7 @@ class BitVector extends BaseTransform
 			$bits[] = array_search($option['value'], $valueArray) !== false;
 		}
 
-		$result = implode($this->separator, array_map([$this, 'bitToString'], $bits));
-
-		return $result;
+		return array_map([$this, 'bitToString'], $bits);
 	}
 
 	/**

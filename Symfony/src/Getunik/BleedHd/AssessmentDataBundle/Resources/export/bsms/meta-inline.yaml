@@ -19,14 +19,17 @@ columns:
       extractor: Response
       reference: bsms.general.grade
       transform:
-        type: ValueOrMeta
+        type: Identity
+        inlineMeta: true
   -
       extractor: Response
       reference: bsms.general.type-or-site
       transform:
-        type: ValueOrMeta
+        type: Identity
+        inlineMeta: true
   -
       extractor: Supplement
       reference: bsms.general.type-or-site.specify
       transform:
-        type: ValueOrMeta
+        type: Identity
+        inlineMeta: true

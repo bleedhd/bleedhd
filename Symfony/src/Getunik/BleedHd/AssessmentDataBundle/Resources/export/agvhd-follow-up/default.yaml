@@ -1,0 +1,29 @@
+
+name: Default
+type: agvhd-follow-up
+columns:
+  -
+      __directive:
+        op: insert
+        source: ../patient-default.yaml
+  -
+      __directive:
+        op: insert
+        source: ../assessment-default.yaml
+  -
+      label: Score
+      extractor: Score
+      reference: total
+  # screen 1
+  -
+      extractor: Response
+      reference: agvhd-follow-up.acute.clinical-staging.skin
+  -
+      extractor: Response
+      reference: agvhd-follow-up.acute.clinical-staging.liver
+  -
+      extractor: Response
+      reference: agvhd-follow-up.acute.clinical-staging.gut
+  -
+      extractor: Response
+      reference: agvhd-follow-up.acute.clinical-staging.performance

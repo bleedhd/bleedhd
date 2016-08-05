@@ -43,6 +43,16 @@ class Result
         return $this->hasValue() && !self::isAssoc($this->result['data']);
     }
 
+	public function getData()
+	{
+		if ($this->hasValue())
+		{
+			return $this->result['data'];
+		}
+
+		return NULL;
+	}
+
     public function getValue()
     {
         if ($this->hasValue())
