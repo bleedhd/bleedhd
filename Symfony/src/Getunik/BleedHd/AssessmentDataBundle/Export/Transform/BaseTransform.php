@@ -16,6 +16,8 @@ abstract class BaseTransform implements ITransform
 	protected $inlineMeta;
 	protected $listItemSeparator;
 	protected $listEmptyValue;
+	protected $prefix;
+	protected $suffix;
 
 	public function __construct($config)
 	{
@@ -24,6 +26,8 @@ abstract class BaseTransform implements ITransform
 		$this->inlineMeta = isset($this->config['inlineMeta']) ? $this->config['inlineMeta'] : false;
 		$this->listItemSeparator = isset($this->config['listItemSeparator']) ? $this->config['listItemSeparator'] : ',';
 		$this->listEmptyValue = isset($this->config['listEmptyValue']) ? $this->config['listEmptyValue'] : '';
+		$this->prefix = isset($this->config['prefix']) ? $this->config['prefix'] : '';
+		$this->suffix = isset($this->config['suffix']) ? $this->config['suffix'] : '';
 	}
 
 	public function transform(ISource $raw)
@@ -43,10 +47,10 @@ abstract class BaseTransform implements ITransform
 				return $this->listEmptyValue;
 			}
 
-			return implode($this->listItemSeparator, $transformed);
+			return $this->prefix . implode($this->listItemSeparator, $transformed) . $this->suffix;
 		}
 
-		return $transformed;
+		return $this->prefix . $transformed . $this->suffix;
 	}
 
 	public abstract function transformData(ISource $raw);
