@@ -13,6 +13,10 @@ parameters:
     getunik.bleed_hd_data.clientlogentry_handler.class: Getunik\BleedHd\AssessmentDataBundle\Handler\ClientLogEntryHandler
     getunik.bleed_hd_data.clientlogentry_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\ClientLogEntriesController
     getunik.bleed_hd_data.user_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\UsersController
+    getunik.bleed_hd_data.export_controller.class: Getunik\BleedHd\AssessmentDataBundle\Controller\ExportController
+    getunik.bleed_hd_data.questionnaire_config_path: "%kernel.root_dir%/../src/Getunik/BleedHd/AssessmentDataBundle/Resources/questionnaire"
+    getunik.bleed_hd_data.export_config_path: "%kernel.root_dir%/../src/Getunik/BleedHd/AssessmentDataBundle/Resources/export"
+    getunik.bleed_hd_data.export_storage_dir: "%kernel.root_dir%/../var/export"
 
 
 services:
@@ -31,6 +35,15 @@ services:
             - "@session"
         tags:
             - { name: twig.extension }
+
+    getunik.bleed_hd_data.export_service:
+        class: Getunik\BleedHd\AssessmentDataBundle\Export\ExportService
+        arguments:
+            - "@getunik.bleed_hd_data.assessment_handler"
+            - "@getunik.bleed_hd_data.questionnaire_handler"
+            - "@getunik.bleed_hd_data.response_handler"
+            - "%getunik.bleed_hd_data.export_config_path%"
+            - "%getunik.bleed_hd_data.export_storage_dir%"
 
     getunik.bleed_hd_data.entity_update_listener:
         class: Getunik\BleedHd\AssessmentDataBundle\Listener\UpdateInformationListener
@@ -53,6 +66,12 @@ services:
         arguments: ['@service_container', '%getunik.bleed_hd_data.entity_manager_service%']
         tags:
             - { name: kernel.event_listener, event: kernel.response, method: onResponse }
+
+    getunik.bleed_hd_data.feature_require_listener:
+        class: Getunik\BleedHd\AssessmentDataBundle\Listener\FeatureRequireListener
+        arguments: ['@annotation_reader', '%getunik_bleed_hd_assessment_data.settings%']
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onFilterController }
 
     getunik.bleed_hd_data.score_calculator_factory:
         class: Getunik\BleedHd\AssessmentDataBundle\Scoring\ScoreCalculatorFactory
@@ -120,7 +139,7 @@ services:
     getunik.bleed_hd_data.questionnaire_handler:
         class: %getunik.bleed_hd_data.questionnaire_handler.class%
         arguments:
-            - %kernel.root_dir%/../src/Getunik/BleedHd/AssessmentDataBundle/Resources/questionnaire
+            - "%getunik.bleed_hd_data.questionnaire_config_path%"
 
     getunik.bleed_hd_data.questionnaire_controller:
         class: %getunik.bleed_hd_data.questionnaire_controller.class%
@@ -154,3 +173,10 @@ services:
         class: Getunik\BleedHd\AssessmentDataBundle\Security\ResourceOwnerVoter
         tags:
             - { name: security.voter }
+
+    getunik.bleed_hd_data.export_controller:
+        class: %getunik.bleed_hd_data.export_controller.class%
+        arguments:
+            - "@getunik.bleed_hd_data.export_service"
+        calls:
+            - [setContainer, ["@service_container"]]

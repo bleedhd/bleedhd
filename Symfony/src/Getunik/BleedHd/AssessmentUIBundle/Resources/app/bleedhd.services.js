@@ -203,6 +203,20 @@
 		.factory('FormWrapper', FormWrapperFactory)
 
 		/**
+		 * The FeatureCheck service is a function that the client uses to determine the availability
+		 * of certain features. This is then used to enable / disable the affected UI components.
+		 *
+		 * This is just to control the UI-side; the server side does its own checks and actually
+		 * disables the relevant functionality since it would be way too easy to fool the client.
+		 */
+		.factory('FeatureCheck', function (BleedHdConfig) {
+			return function (feature) {
+				// check config feature toggles received from server
+				return BleedHdConfig.feature[feature] === true;
+			};
+		})
+
+		/**
 		 * The JSON date interceptor is an HTTP interceptor implementation that transforms properties
 		 * with values that match an ISO-8601 date-time into a JavaScript Date object. It is added to
 		 * the default HTTP interceptors by this module's basic configuration.
@@ -239,44 +253,95 @@
 		})
 
 		/**
+		 * Global error handler function for HTTP errors. This is used for both 'regular' BleedHttp requests and
+		 * Restangular responses.
+		 */
+		.factory('HttpErrorHandler', function ($log, MessageBuilder, LoginRedirect) {
+			return function(response) {
+				var uiError = 'restApiError';
+
+				if (response.status === 403 || response.status === 401) {
+					// TODO: split 403 and 401 in separate messages and behavior
+					$log.warn('Login required. Redirecting...');
+					LoginRedirect();
+				} else if (response.status >= 500 && response.status < 600) {
+					$log.fatal('REST API error: ' + response.statusText, response.data);
+				} else if (response.status === 404 || response.status === 405) {
+					$log.error('REST API error: ' + response.statusText, {
+						statusCode: response.status,
+						method: response.config.method,
+						url: response.config.url,
+					});
+				} else if (response.status === 0) {
+					$log.fatal('REST API error: no server response', {
+						method: response.config.method,
+						url: response.config.url,
+					});
+					uiError = 'noResponseError';
+				} else if (response.status === 498) { // 498: (custom) token expired/invalid
+					// this case is already handled with the restangular resource
+					// decorator in the core BleedHD module
+				} else {
+					$log.error('Unknown REST API error', response);
+				}
+
+				MessageBuilder.send(uiError, [response.status, response.config === undefined ? null : response.config.method]);
+			}
+		})
+
+		/**
+		 * Wrapper for the $http service that adds BleedHD authorization header to all requests.
+		 */
+		.factory('BleedHttp', function ($http, AuthHandler, HttpErrorHandler) {
+			function delegateWithAuth(target, configIndex) {
+				return function () {
+					var that = this,
+						args = Array.prototype.slice.call(arguments),
+						config = args[configIndex] || {};
+
+					if (args.length <= configIndex) {
+						args.push(config);
+					}
+
+					if (config.headers === undefined) {
+						config.headers = {};
+					}
+
+					return AuthHandler.authorized(function () {
+						config.headers['Authorization'] = AuthHandler.getToken();
+						return target.apply(that, args).catch(function (response) {
+							HttpErrorHandler(response);
+							return response;
+						});
+					});
+				}
+			}
+
+			var httpWrapper = delegateWithAuth($http, 0);
+			angular.extend(httpWrapper, {
+				'get': delegateWithAuth($http.get, 1),
+				'head': delegateWithAuth($http.head, 1),
+				'post': delegateWithAuth($http.post, 2),
+				'put': delegateWithAuth($http.put, 2),
+				'delete': delegateWithAuth($http.delete, 1),
+				'jsonp': delegateWithAuth($http.jsonp, 1),
+				'patch': delegateWithAuth($http.patch, 1),
+			});
+
+			return httpWrapper;
+		})
+
+		/**
 		 * The BleedApi service provides a convenient pre-configured Restangular object with
 		 * integrated authorization.
 		 */
-		.factory('BleedApi', function (Restangular, AuthHandler, $window, $log, MessageBuilder, LoginRedirect, BleedHdConfig) {
+		.factory('BleedApi', function (Restangular, AuthHandler, $window, HttpErrorHandler, BleedHdConfig) {
 			return Restangular.withConfig(function(RestangularConfig) {
 				RestangularConfig
 					.setBaseUrl(BleedHdConfig.api.base)
 					.setDefaultHeaders({ 'Authorization': AuthHandler.getToken() })
 					.setErrorInterceptor(function (response) {
-						var uiError = 'restApiError';
-
-						if (response.status === 403 || response.status === 401) {
-							// TODO: split 403 and 401 in separate messages and behavior
-							$log.warn('Login required. Redirecting...');
-							LoginRedirect();
-						} else if (response.status >= 500 && response.status < 600) {
-							$log.fatal('REST API error: ' + response.statusText, response.data);
-						} else if (response.status === 404 || response.status === 405) {
-							$log.error('REST API error: ' + response.statusText, {
-								statusCode: response.status,
-								method: response.config.method,
-								url: response.config.url,
-							});
-						} else if (response.status === 0) {
-							$log.fatal('REST API error: no server response', {
-								method: response.config.method,
-								url: response.config.url,
-							});
-							uiError = 'noResponseError';
-						} else if (response.status === 498) { // 498: (custom) token expired/invalid
-							// this case is already handled with the restangular resource
-							// decorator in the core BleedHD module
-						} else {
-							$log.error('Unknown REST API error', response);
-						}
-
-						MessageBuilder.send(uiError, [response.status, response.config === undefined ? null : response.config.method]);
-
+						HttpErrorHandler(response);
 						return true;
 					});
 

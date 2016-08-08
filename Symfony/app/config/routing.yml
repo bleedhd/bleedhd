@@ -6,6 +6,10 @@ getunik_bleed_hd_assessment_data:
     resource: "@GetunikBleedHdAssessmentDataBundle/Resources/config/routing.yml"
     prefix:   /api
 
+getunik_bleed_hd_download_export:
+    path: /download/export/{id}/{name}
+    defaults: { _controller: GetunikBleedHdAssessmentDataBundle:ExportDownload:downloadExport }
+
 getunik_bleed_hd_assessment_ui:
     resource: "@GetunikBleedHdAssessmentUIBundle/Resources/config/routing.yml"
     prefix:   /

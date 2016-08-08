@@ -42,7 +42,9 @@
 
 	</form>
 
-	<alert ng-show="assessmentFormCtl.successMessage" class="animate-show" type="success"><div ng-bind-html="assessmentFormCtl.successMessage"></div></alert>
+	<div ng-show="assessmentFormCtl.successMessage" class="animate-show alert alert-success" role="alert">
+		<div ng-bind-html="assessmentFormCtl.successMessage"></div>
+	</div>
 
 	<pre ng-if="env.debug" class="debug-output">{{ assessmentFormCtl.assessment | json }}</pre>
 

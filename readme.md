@@ -62,6 +62,13 @@ This should give you a version for your Node.js installation (no error).
 
 For more instructions about development see [Development Instructions](doc/notes/development.md).
 
+### Cron Job for Deleting Old Exports
+To minimize the risk of data leakage, generated export files should be deleted after a fixed amount of time (30 minutes by default). This can be achieved with this very simple cron job
+
+```
+0,30      *      *       *       *       find /path/to/project/Symfony/var/export/* -type f -mmin +30 -delete
+```
+
 # Deployment / Release
 The project uses a Git based deplyoment process and the _usual suspects_ for any Symfony based project.
 

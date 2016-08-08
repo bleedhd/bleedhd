@@ -1,0 +1,14 @@
+-
+    label: Questionnaire
+    extractor: AssessmentField
+    reference: questionnaire
+-
+    label: Version
+    extractor: AssessmentField
+    reference: questionnaireVersion
+-
+    label: Start date
+    extractor: AssessmentField
+    reference: startDate
+    transform:
+        type: DateTimeFormat

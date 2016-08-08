@@ -1,0 +1,25 @@
+<?php
+
+namespace Getunik\BleedHd\AssessmentDataBundle\Export\Extractor;
+
+use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
+use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\SimpleSource;
+
+
+class AssessmentField extends BaseExtractor
+{
+	/**
+	 * @inheritdoc
+	 */
+	public function extract(AssessmentContext $context)
+	{
+		$assessment = $context->getAssessment();
+
+		$getter = 'get' . ucfirst($this->reference);
+		if (!method_exists($assessment, $getter)) {
+			throw new \Exception('Assessment entity does not have a getter called "' . $getter . '"');
+		}
+
+		return new SimpleSource($assessment->{$getter}());
+	}
+}

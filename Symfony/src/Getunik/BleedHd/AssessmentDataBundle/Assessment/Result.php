@@ -35,13 +35,23 @@ class Result
 
     public function isUnanswered()
     {
-        return isset($this->result['meta']) && $this->result['meta'] === self::UNANSWERED;
+        return isset($this->result[self::FIELD_META]) && $this->result[self::FIELD_META] === self::UNANSWERED;
     }
 
     public function isMultiValue()
     {
         return $this->hasValue() && !self::isAssoc($this->result['data']);
     }
+
+	public function getData()
+	{
+		if ($this->hasValue())
+		{
+			return $this->result['data'];
+		}
+
+		return NULL;
+	}
 
     public function getValue()
     {
@@ -52,6 +62,11 @@ class Result
 
         return NULL;
     }
+
+	public function getMetaValue()
+	{
+		return isset($this->result[self::FIELD_META]) ? $this->result[self::FIELD_META] : NULL;
+	}
 
     public function getSupplement($slug, $index = -1)
     {
