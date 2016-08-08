@@ -13,9 +13,15 @@ abstract class BaseResultSource extends BaseSource
 	 */
 	private $question;
 
-	public function __construct(Question $question)
+	/**
+	 * @var string|null
+	 */
+	protected $option;
+
+	public function __construct(Question $question, $option = NULL)
 	{
 		$this->question = $question;
+		$this->option = $option;
 	}
 
 	/**

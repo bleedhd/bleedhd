@@ -80,11 +80,15 @@ For the score extractor, some details of the scoring implementation for the part
 ##### Response
 Extracts the response to a specific question from the assessment data by giving the question's _complete slug_ as the **reference**.
 
+It is possible to extract the _presence_ of a single option of a multi-valued checkbox response by adding an additional slug segment with an "@" sign and the option value to the end of the question slug. For example, if the slug `my.question.slug` would extract the value array `['a', 'c', 'f']`, then the slug `my.question.slug.@c` would return a _true_ value instead of the list (or _false_ if the value 'c' was not present in the response).
+
 ##### MetaResponse
 Extracts the meta-response value for a specific question from the assessment data by giving the question's _complete slug_ as the **reference**.
 
 ##### Supplement
-Extracts a supplement from a question given the complete question slug combined with the (dot-separated) supplement slug as the **reference**. Not that this extractor does not work for extracting supplements from multi-valued responses - see InlineSupplement transform for that.
+Extracts a supplement from a question given the complete question slug combined with the (dot-separated) supplement slug as the **reference**.
+
+It is possible to extract the supplement of a single option of a multi-valued checkbox response by adding an additional slug segment with an "@" sign and the option value before the supplement slug segment. For example, if the option `my.question.slug@option` has a supplement called 'mysupplement', then the slug `my.question.slug.@option.mysupplement` would extract that supplement (or return NULL if the option or the supplement was not present).
 
 #### Transforms
 

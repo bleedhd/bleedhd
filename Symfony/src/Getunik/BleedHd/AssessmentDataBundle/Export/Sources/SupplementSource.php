@@ -18,9 +18,9 @@ class SupplementSource extends BaseResultSource
 	 */
 	private $slug;
 
-	public function __construct(Question $question, $slug)
+	public function __construct(Question $question, $slug, $option = NULL)
 	{
-		parent::__construct($question);
+		parent::__construct($question, $option);
 		$this->slug = $slug;
 	}
 
@@ -37,6 +37,10 @@ class SupplementSource extends BaseResultSource
 	 */
 	public function getValue()
 	{
+		if ($this->getResult()->isMultiValue() && $this->option) {
+			return $this->getResult()->getSupplementByOption($this->slug, $this->option);
+		}
+
 		return $this->getResult()->getSupplement($this->slug);
 	}
 

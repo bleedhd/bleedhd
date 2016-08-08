@@ -8,87 +8,97 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Assessment;
  */
 class Result
 {
-    const FIELD_META = 'meta';
+	const FIELD_META = 'meta';
 
-    const UNANSWERED = 'nya';
+	const UNANSWERED = 'nya';
 
-    private $result;
+	private $result;
 
-    public function __construct(array $result = NULL)
-    {
-        if ($result === NULL)
-        {
-            $this->result = array(
-                self::FIELD_META => self::UNANSWERED,
-            );
-        }
-        else
-        {
-            $this->result = $result;
-        }
-    }
+	public function __construct(array $result = NULL)
+	{
+		if ($result === NULL) {
+			$this->result = array(
+				self::FIELD_META => self::UNANSWERED,
+			);
+		} else {
+			$this->result = $result;
+		}
+	}
 
-    public function hasValue()
-    {
-        return !empty($this->result['data']);
-    }
+	public function hasValue()
+	{
+		return !empty($this->result['data']);
+	}
 
-    public function isUnanswered()
-    {
-        return isset($this->result[self::FIELD_META]) && $this->result[self::FIELD_META] === self::UNANSWERED;
-    }
+	public function isUnanswered()
+	{
+		return isset($this->result[self::FIELD_META]) && $this->result[self::FIELD_META] === self::UNANSWERED;
+	}
 
-    public function isMultiValue()
-    {
-        return $this->hasValue() && !self::isAssoc($this->result['data']);
-    }
+	public function isMultiValue()
+	{
+		return $this->hasValue() && !self::isAssoc($this->result['data']);
+	}
 
 	public function getData()
 	{
-		if ($this->hasValue())
-		{
+		if ($this->hasValue()) {
 			return $this->result['data'];
 		}
 
 		return NULL;
 	}
 
-    public function getValue()
-    {
-        if ($this->hasValue())
-        {
-            return self::isAssoc($this->result['data']) ? $this->result['data']['value'] : $this->result['data'];
-        }
+	public function getValue()
+	{
+		if ($this->hasValue()) {
+			return self::isAssoc($this->result['data']) ? $this->result['data']['value'] : $this->result['data'];
+		}
 
-        return NULL;
-    }
+		return NULL;
+	}
 
 	public function getMetaValue()
 	{
 		return isset($this->result[self::FIELD_META]) ? $this->result[self::FIELD_META] : NULL;
 	}
 
-    public function getSupplement($slug, $index = -1)
-    {
-        if (empty($this->result['data']))
-        {
-            return NULL;
-        }
+	public function getSupplement($slug, $index = -1)
+	{
+		if (empty($this->result['data'])) {
+			return NULL;
+		}
 
-        $item = empty($this->result['data']) ? array() : $this->result['data'];
+		$item = empty($this->result['data']) ? array() : $this->result['data'];
 
-        if ($index >= 0)
-        {
-            $item = isset($this->result['data'][$index]) ? $this->result['data'][$index] : array();
-        }
+		if ($index >= 0) {
+			$item = isset($this->result['data'][$index]) ? $this->result['data'][$index] : array();
+		}
 
-        return empty($this->result['data']) || empty($item['supplements']) || !isset($item['supplements'][$slug])
-                ? NULL
-                : $item['supplements'][$slug];
-    }
+		return empty($this->result['data']) || empty($item['supplements']) || !isset($item['supplements'][$slug])
+			? NULL
+			: $item['supplements'][$slug];
+	}
 
-    private static function isAssoc($arr)
-    {
-        return array_keys($arr) !== range(0, count($arr) - 1);
-    }
+	public function getSupplementByOption($slug, $optionValue)
+	{
+		if (empty($this->result['data']) || !is_array($this->result['data'])) {
+			return NULL;
+		}
+
+		foreach ($this->result['data'] as $item) {
+			if (isset($item['value']) && $item['value'] == $optionValue) {
+				return empty($item['supplements']) || !isset($item['supplements'][$slug])
+					? NULL
+					: $item['supplements'][$slug];
+			}
+		}
+
+		return NULL;
+	}
+
+	private static function isAssoc($arr)
+	{
+		return array_keys($arr) !== range(0, count($arr) - 1);
+	}
 }

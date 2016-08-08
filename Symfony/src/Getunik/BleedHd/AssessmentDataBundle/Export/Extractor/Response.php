@@ -13,11 +13,16 @@ class Response extends BaseExtractor
 	 */
 	public function extract(AssessmentContext $context)
 	{
-		$question = $context->getQuestion($this->reference);
+		$segments = explode('.', $this->reference);
+
+		$option = preg_match('/^@/', end($segments)) ? substr(array_pop($segments), 1) : NULL;
+		$slug = implode('.', $segments);
+
+		$question = $context->getQuestion($slug);
 		if ($question === NULL) {
-			throw new \Exception('Question with slug ' . $this->reference . ' does not seem to exist in assessment of type ' . $context->getAssessment()->getQuestionnaire());
+			throw new \Exception('Question with slug ' . $slug . ' does not seem to exist in assessment of type ' . $context->getAssessment()->getQuestionnaire());
 		}
 
-		return new ResponseSource($question);
+		return new ResponseSource($question, $option);
 	}
 }
