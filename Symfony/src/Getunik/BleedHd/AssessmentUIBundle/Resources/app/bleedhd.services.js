@@ -203,6 +203,20 @@
 		.factory('FormWrapper', FormWrapperFactory)
 
 		/**
+		 * The FeatureCheck service is a function that the client uses to determine the availability
+		 * of certain features. This is then used to enable / disable the affected UI components.
+		 *
+		 * This is just to control the UI-side; the server side does its own checks and actually
+		 * disables the relevant functionality since it would be way too easy to fool the client.
+		 */
+		.factory('FeatureCheck', function (BleedHdConfig) {
+			return function (feature) {
+				// check config feature toggles received from server
+				return BleedHdConfig.feature[feature] === true;
+			};
+		})
+
+		/**
 		 * The JSON date interceptor is an HTTP interceptor implementation that transforms properties
 		 * with values that match an ISO-8601 date-time into a JavaScript Date object. It is added to
 		 * the default HTTP interceptors by this module's basic configuration.

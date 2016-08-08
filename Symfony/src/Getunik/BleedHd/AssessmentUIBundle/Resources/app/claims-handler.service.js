@@ -7,7 +7,7 @@
 		'ROLE_SUPERVISOR': 30,
 		'ROLE_ASSESSOR': 20,
 		'ROLE_READER': 10,
-	}
+	};
 
 	var claims = {
 		canDeleteResource: function (subject) {
