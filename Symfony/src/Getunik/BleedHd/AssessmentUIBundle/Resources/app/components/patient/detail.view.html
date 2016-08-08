@@ -24,7 +24,7 @@
 		</div>
 		<div class="col-xs-12 bleed-button-group">
 			<a class="btn btn-default pull-right" href="#/patients/edit/{{ ctlPatient.patient.id }}">Edit patient</a>
-			<a class="btn btn-default pull-right" href="#/export/patient/{{ ctlPatient.patient.id }}">Export patient</a>
+			<a ng-if="ctlPatient.FeatureCheck('export')" class="btn btn-default pull-right" href="#/export/patient/{{ ctlPatient.patient.id }}">Export patient</a>
 		</div>
 	</div>
 </panel>

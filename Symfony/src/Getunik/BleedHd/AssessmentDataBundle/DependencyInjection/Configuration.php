@@ -30,6 +30,7 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('settings')
                     ->children()
                         ->append($this->getAllowedAssessmentTypesNode())
+						->variableNode('feature')->end()
                     ->end()
                 ->end()
             ->end();

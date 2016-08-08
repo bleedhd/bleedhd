@@ -7,10 +7,11 @@
 		remarks: 2,
 	};
 
-	function PatientDetailController($scope, $routeParams, PatientData, BleedHdConfig, patient) {
+	function PatientDetailController($scope, $routeParams, PatientData, BleedHdConfig, FeatureCheck, patient) {
 		this.$scope = $scope;
 		this.PatientData = PatientData;
 		this.BleedHdConfig = BleedHdConfig;
+		this.FeatureCheck = FeatureCheck;
 		this.patient = patient;
 
 		this.resetAssessmentFilter();

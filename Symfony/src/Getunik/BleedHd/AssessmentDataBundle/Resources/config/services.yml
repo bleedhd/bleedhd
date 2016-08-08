@@ -67,6 +67,12 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.response, method: onResponse }
 
+    getunik.bleed_hd_data.feature_require_listener:
+        class: Getunik\BleedHd\AssessmentDataBundle\Listener\FeatureRequireListener
+        arguments: ['@annotation_reader', '%getunik_bleed_hd_assessment_data.settings%']
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onFilterController }
+
     getunik.bleed_hd_data.score_calculator_factory:
         class: Getunik\BleedHd\AssessmentDataBundle\Scoring\ScoreCalculatorFactory
         arguments: ["@monolog.logger.score"]
