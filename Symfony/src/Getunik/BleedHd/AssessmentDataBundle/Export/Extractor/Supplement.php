@@ -14,14 +14,16 @@ class Supplement extends BaseExtractor
 	public function extract(AssessmentContext $context)
 	{
 		$segments = explode('.', $this->reference);
-		$supplement = array_pop($segments);
-		$questionSlug = implode('.', $segments);
 
-		$question = $context->getQuestion($questionSlug);
+		$supplement = array_pop($segments);
+		$option = preg_match('/^@/', end($segments)) ? substr(array_pop($segments), 1) : NULL;
+		$slug = implode('.', $segments);
+
+		$question = $context->getQuestion($slug);
 		if ($question === NULL) {
-			throw new \Exception('Question with slug ' . $this->reference . ' does not seem to exist in assessment of type ' . $context->getAssessment()->getQuestionnaire());
+			throw new \Exception('Question with slug ' . $slug . ' does not seem to exist in assessment of type ' . $context->getAssessment()->getQuestionnaire());
 		}
 
-		return new SupplementSource($question, $supplement);
+		return new SupplementSource($question, $supplement, $option);
 	}
 }

@@ -25,7 +25,12 @@ class ResponseSource extends BaseResultSource
 	public function getValue()
 	{
 		if ($this->getResult()->isMultiValue()) {
-			return $this->getValueArray();
+			$valueArray = $this->getValueArray();
+			if ($this->option) {
+				return array_search($this->option, $valueArray) !== false;
+			} else {
+				return $valueArray;
+			}
 		} else {
 			return $this->getResult()->getValue();
 		}
