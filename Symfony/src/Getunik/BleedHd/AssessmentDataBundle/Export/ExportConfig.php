@@ -113,7 +113,7 @@ class ExportConfig
 	 * @throws \Exception thrown if the given directive does not have a corresponding method
 	 * @uses directiveInsert
 	 */
-	private function processDirective($directive, $index, $context)
+	private function processDirective($directive, $index, &$context)
 	{
 		$directiveMethod = 'directive' . ucfirst($directive['op']);
 		if (!method_exists($this, $directiveMethod)) {
@@ -123,11 +123,11 @@ class ExportConfig
 		$this->{$directiveMethod}($directive, $index, $context);
 	}
 
-	private function directiveInsert($directive, $index, $context)
+	private function directiveInsert($directive, $index, &$context)
 	{
 		$ancestors = $context['ancestors'];
 		// with inserts, the included data is inserted into the directive's parent array
-		$targetContext = end($ancestors);
+		$targetContext = &$ancestors[count($ancestors) - 1];
 		$targetArray = &$targetContext['data'];
 		$sourcePath = dirname($context['path']) . '/' . $directive['source'];
 
