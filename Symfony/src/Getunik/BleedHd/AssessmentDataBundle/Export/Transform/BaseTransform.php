@@ -5,7 +5,9 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Export\Transform;
 
 use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\BaseResultSource;
 use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\ISource;
+use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\MetaResponseSource;
 use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\ResponseSource;
+use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\SimpleSource;
 use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\SupplementSource;
 
 
@@ -14,6 +16,7 @@ abstract class BaseTransform implements ITransform
 	protected $config;
 
 	protected $inlineMeta;
+	protected $inlineMetaTransform;
 	protected $listItemSeparator;
 	protected $listEmptyValue;
 	protected $prefix;
@@ -28,13 +31,22 @@ abstract class BaseTransform implements ITransform
 		$this->listEmptyValue = isset($this->config['listEmptyValue']) ? $this->config['listEmptyValue'] : '';
 		$this->prefix = isset($this->config['prefix']) ? $this->config['prefix'] : '';
 		$this->suffix = isset($this->config['suffix']) ? $this->config['suffix'] : '';
+
+		if ($this->inlineMeta) {
+			// only do this if inlineMeta property is set to avoid endless recursion on "new Identity()"
+			if (is_array($this->inlineMeta)) {
+				$this->inlineMetaTransform = new Mapping($this->inlineMeta);
+			} else {
+				$this->inlineMetaTransform = new Identity([]);
+			}
+		}
 	}
 
 	public function transform(ISource $raw)
 	{
 		if (!$raw->hasValue()) {
 			if ($this->inlineMeta && $result = self::isActualResultSource($raw)) {
-				return $result->getResult()->getMetaValue();
+				return $this->inlineMetaTransform->transform(new MetaResponseSource($result->getQuestion()));
 			} else {
 				return '';
 			}
