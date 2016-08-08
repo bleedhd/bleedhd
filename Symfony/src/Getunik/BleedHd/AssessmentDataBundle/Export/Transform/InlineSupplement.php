@@ -7,11 +7,17 @@ use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\ISource;
 use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\SimpleSource;
 
 
+/**
+ * Converts individual items of a multi-valued response into tuples by adding one or more supplement values.
+ */
 class InlineSupplement extends BaseTransform
 {
 	private $supplements;
 	private $valueSeparator;
 
+	/**
+	 * @inheritdoc
+	 */
 	public function __construct($config)
 	{
 		parent::__construct($config);

@@ -7,6 +7,9 @@ use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\ISource;
 use Getunik\BleedHd\AssessmentDataBundle\Export\Util\ValueMapper;
 
 
+/**
+ * Transforms source value using a @see ValueMapper constructed from the transform configuration.
+ */
 class Mapping extends BaseTransform
 {
 	/**
@@ -14,6 +17,9 @@ class Mapping extends BaseTransform
 	 */
 	private $mapper;
 
+	/**
+	 * @inheritdoc
+	 */
 	public function __construct(array $config)
 	{
 		parent::__construct($config);

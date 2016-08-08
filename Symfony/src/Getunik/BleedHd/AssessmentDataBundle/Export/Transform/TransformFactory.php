@@ -3,10 +3,14 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Transform;
 
 
+/**
+ * Factory class for transform implementations.
+ */
 class TransformFactory
 {
 	/**
 	 * @param $transformType string - transform type name
+	 * @param $transformConfig array - transform configuration
 	 * @return ITransform the transform instance from the given type name
 	 * @throws \Exception if the requested transform type does not exist
 	 */

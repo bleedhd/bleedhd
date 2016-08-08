@@ -7,10 +7,13 @@ use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\BaseResultSource;
 use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\ISource;
 use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\MetaResponseSource;
 use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\ResponseSource;
-use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\SimpleSource;
 use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\SupplementSource;
 
 
+/**
+ * Base class for transforms. Contains all the necessary code for the common transform options. Deriving classes
+ * should only implement the @see BaseTransform::transformData() method.
+ */
 abstract class BaseTransform implements ITransform
 {
 	protected $config;
@@ -22,6 +25,11 @@ abstract class BaseTransform implements ITransform
 	protected $prefix;
 	protected $suffix;
 
+	/**
+	 * Processes common export configuration options.
+	 *
+	 * @param $config array transform configuration
+	 */
 	public function __construct($config)
 	{
 		$this->config = $config;
@@ -42,6 +50,9 @@ abstract class BaseTransform implements ITransform
 		}
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function transform(ISource $raw)
 	{
 		if (!$raw->hasValue()) {
@@ -65,6 +76,10 @@ abstract class BaseTransform implements ITransform
 		return $this->prefix . self::defaultToString($transformed) . $this->suffix;
 	}
 
+	/**
+	 * @param ISource $raw raw unprocessed value
+	 * @return mixed unserialized PHP value representation of the extracted value
+	 */
 	public abstract function transformData(ISource $raw);
 
 	protected static function defaultToString($value)

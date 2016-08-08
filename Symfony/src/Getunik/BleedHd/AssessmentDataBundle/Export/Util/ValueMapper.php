@@ -3,6 +3,10 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Util;
 
 
+/**
+ * Handles export configuration for predicate based mappings. Creating a ValueMapper will instantiate all the
+ * necessary ValueMapPredicate(s) from the given configuration.
+ */
 class ValueMapper
 {
 	/**
@@ -19,6 +23,12 @@ class ValueMapper
 		}
 	}
 
+	/**
+	 * Maps the given value with the first matching value mapping predicate.
+	 *
+	 * @param $value mixed the value to map
+	 * @return mixed the mapped value
+	 */
 	public function map($value)
 	{
 		foreach ($this->predicates as $predicate) {

@@ -5,6 +5,9 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Export\Transform;
 use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\ISource;
 
 
+/**
+ * Interface for all export transformations
+ */
 interface ITransform
 {
 	/**

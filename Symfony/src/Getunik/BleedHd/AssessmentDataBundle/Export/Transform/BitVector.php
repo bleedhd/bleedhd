@@ -6,11 +6,18 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Export\Transform;
 use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\ISource;
 
 
+/**
+ * With the default settings, a response with selected options 1, 4, 5 of a question with 6 options will result in
+ * a bit vector '100110'.
+ */
 class BitVector extends BaseTransform
 {
 	private $trueValue;
 	private $falseValue;
 
+	/**
+	 * @inheritdoc
+	 */
 	public function __construct(array $config)
 	{
 		parent::__construct($config);

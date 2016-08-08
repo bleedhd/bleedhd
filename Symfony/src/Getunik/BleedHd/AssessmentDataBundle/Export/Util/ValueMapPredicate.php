@@ -3,6 +3,9 @@
 namespace Getunik\BleedHd\AssessmentDataBundle\Export\Util;
 
 
+/**
+ * Helper object for @see ValueMapper
+ */
 class ValueMapPredicate
 {
 	/**

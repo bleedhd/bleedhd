@@ -6,6 +6,9 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Export\Transform;
 use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\ISource;
 
 
+/**
+ * Formats the source using PHP @see DateTime::format()
+ */
 class DateTimeFormat extends BaseTransform
 {
 	/**
