@@ -1,7 +1,8 @@
 
 (function (angular, bleedHd) {
 
-	function PatientOverviewController($scope, $filter, $timeout, PatientData, patients) {
+	function PatientOverviewController($scope, $filter, $timeout, FeatureCheck, PatientData, patients) {
+		this.FeatureCheck = FeatureCheck;
 		this.PatientData = PatientData;
 		this.$timeout = $timeout;
 		this.patients = patients;
@@ -28,18 +29,12 @@
 
 	bleedHd.registerController('patient', PatientOverviewController,
 		{
-			// filterPatientsFulltext: function (pattern) {
-			// 	var ctl = this;
-
-			// 	// build a custom 'full text' search string from the patient properties and
-			// 	// match it against a regular expression created from the given pattern value
-			// 	return function (value, index) {
-			// 		var fullText = [value.firstname, value.lastname, ctl.dateFilter(value.birthdate.date)].join('|'),
-			// 			search = new RegExp(pattern, 'i');
-
-			// 		return fullText.match(search) !== null;
-			// 	};
-			// },
+			/**
+			 * This path is used in the top-nav component which hides the top right button if the nav url is not set/undefined
+             */
+			exportPath: function () {
+				return this.FeatureCheck('export') ? '#/export' : null;
+			},
 			resetFilter: function () {
 				this.filterActive = true;
 				this.filterSearch = '';
