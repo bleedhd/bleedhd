@@ -253,9 +253,46 @@
 		})
 
 		/**
+		 * Global error handler function for HTTP errors. This is used for both 'regular' BleedHttp requests and
+		 * Restangular responses.
+		 */
+		.factory('HttpErrorHandler', function ($log, MessageBuilder, LoginRedirect) {
+			return function(response) {
+				var uiError = 'restApiError';
+
+				if (response.status === 403 || response.status === 401) {
+					// TODO: split 403 and 401 in separate messages and behavior
+					$log.warn('Login required. Redirecting...');
+					LoginRedirect();
+				} else if (response.status >= 500 && response.status < 600) {
+					$log.fatal('REST API error: ' + response.statusText, response.data);
+				} else if (response.status === 404 || response.status === 405) {
+					$log.error('REST API error: ' + response.statusText, {
+						statusCode: response.status,
+						method: response.config.method,
+						url: response.config.url,
+					});
+				} else if (response.status === 0) {
+					$log.fatal('REST API error: no server response', {
+						method: response.config.method,
+						url: response.config.url,
+					});
+					uiError = 'noResponseError';
+				} else if (response.status === 498) { // 498: (custom) token expired/invalid
+					// this case is already handled with the restangular resource
+					// decorator in the core BleedHD module
+				} else {
+					$log.error('Unknown REST API error', response);
+				}
+
+				MessageBuilder.send(uiError, [response.status, response.config === undefined ? null : response.config.method]);
+			}
+		})
+
+		/**
 		 * Wrapper for the $http service that adds BleedHD authorization header to all requests.
 		 */
-		.factory('BleedHttp', function ($http, AuthHandler) {
+		.factory('BleedHttp', function ($http, AuthHandler, HttpErrorHandler) {
 			function delegateWithAuth(target, configIndex) {
 				return function () {
 					var that = this,
@@ -272,7 +309,10 @@
 
 					return AuthHandler.authorized(function () {
 						config.headers['Authorization'] = AuthHandler.getToken();
-						return target.apply(that, args);
+						return target.apply(that, args).catch(function (response) {
+							HttpErrorHandler(response);
+							return response;
+						});
 					});
 				}
 			}
@@ -295,41 +335,13 @@
 		 * The BleedApi service provides a convenient pre-configured Restangular object with
 		 * integrated authorization.
 		 */
-		.factory('BleedApi', function (Restangular, AuthHandler, $window, $log, MessageBuilder, LoginRedirect, BleedHdConfig) {
+		.factory('BleedApi', function (Restangular, AuthHandler, $window, HttpErrorHandler, BleedHdConfig) {
 			return Restangular.withConfig(function(RestangularConfig) {
 				RestangularConfig
 					.setBaseUrl(BleedHdConfig.api.base)
 					.setDefaultHeaders({ 'Authorization': AuthHandler.getToken() })
 					.setErrorInterceptor(function (response) {
-						var uiError = 'restApiError';
-
-						if (response.status === 403 || response.status === 401) {
-							// TODO: split 403 and 401 in separate messages and behavior
-							$log.warn('Login required. Redirecting...');
-							LoginRedirect();
-						} else if (response.status >= 500 && response.status < 600) {
-							$log.fatal('REST API error: ' + response.statusText, response.data);
-						} else if (response.status === 404 || response.status === 405) {
-							$log.error('REST API error: ' + response.statusText, {
-								statusCode: response.status,
-								method: response.config.method,
-								url: response.config.url,
-							});
-						} else if (response.status === 0) {
-							$log.fatal('REST API error: no server response', {
-								method: response.config.method,
-								url: response.config.url,
-							});
-							uiError = 'noResponseError';
-						} else if (response.status === 498) { // 498: (custom) token expired/invalid
-							// this case is already handled with the restangular resource
-							// decorator in the core BleedHD module
-						} else {
-							$log.error('Unknown REST API error', response);
-						}
-
-						MessageBuilder.send(uiError, [response.status, response.config === undefined ? null : response.config.method]);
-
+						HttpErrorHandler(response);
 						return true;
 					});
 
