@@ -32,6 +32,7 @@ class Mapping extends BaseTransform
 	 */
 	public function transformData(ISource $raw)
 	{
-		return $this->mapper->map($raw->getValue());
+		$value = $raw->getValue();
+		return is_array($value) ? array_map([$this->mapper, 'map'], $value) : $this->mapper->map($value);
 	}
 }
