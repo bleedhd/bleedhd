@@ -4,6 +4,7 @@ namespace Getunik\BleedHd\AssessmentDataBundle\Export;
 
 
 use Getunik\BleedHd\AssessmentDataBundle\Assessment\AssessmentContext;
+use Getunik\BleedHd\AssessmentDataBundle\Assessment\ExportResult;
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
 use Getunik\BleedHd\AssessmentDataBundle\Handler\ResponseHandler;
 
@@ -43,7 +44,7 @@ class AssessmentContextIterator implements \Iterator
 			/** @var Assessment $assessment */
 			$assessment = $this->assessments[$this->index];
 			$responses = $this->responseHandler->getAssessmentResponses($assessment->getId());
-			$this->contexts[$this->index] = new AssessmentContext($assessment, $this->questionnaire, $responses);
+			$this->contexts[$this->index] = new AssessmentContext($assessment, $this->questionnaire, $responses, ExportResult::class);
 		}
 
 		return $this->contexts[$this->index];

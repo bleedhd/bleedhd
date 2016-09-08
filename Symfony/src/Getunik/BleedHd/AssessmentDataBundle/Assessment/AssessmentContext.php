@@ -10,75 +10,69 @@ use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
  */
 class AssessmentContext
 {
-    private static $hierarchy = array('chapters', 'sections', 'screens', 'questions');
+	private static $hierarchy = array('chapters', 'sections', 'screens', 'questions');
 
-    private $assessment;
-    private $questions = array();
-    private $questionnaireVersion;
+	private $assessment;
+	private $questions = array();
+	private $questionnaireVersion;
 	private $questionMap = NULL;
+	private $resultType;
 
-    public function __construct(Assessment $assessment, array $questionnaire, array $responses)
-    {
-        $this->assessment = $assessment;
-        $this->processQuestionnaire($questionnaire, $responses);
-    }
+	public function __construct(Assessment $assessment, array $questionnaire, array $responses, $resultType = Result::class)
+	{
+		$this->assessment = $assessment;
+		$this->resultType = $resultType;
+		$this->processQuestionnaire($questionnaire, $responses);
+	}
 
-    protected function processQuestionnaire(array $questionnaire, array $responses)
-    {
-        $this->questionnaireVersion = isset($questionnaire['version']) ? $questionnaire['version'] : 'unknown';
-        $responseMap = array();
+	protected function processQuestionnaire(array $questionnaire, array $responses)
+	{
+		$this->questionnaireVersion = isset($questionnaire['version']) ? $questionnaire['version'] : 'unknown';
+		$responseMap = array();
 
-        foreach ($responses as $response)
-        {
-            $responseMap[$response->getQuestionSlug()] = $response;
-        }
+		foreach ($responses as $response) {
+			$responseMap[$response->getQuestionSlug()] = $response;
+		}
 
-        $rootSlug = new Slug(isset($questionnaire['slug']) ? $questionnaire['slug'] : $this->assessment->getQuestionnaire(), NULL);
+		$rootSlug = new Slug(isset($questionnaire['slug']) ? $questionnaire['slug'] : $this->assessment->getQuestionnaire(), NULL);
 
-        $this->processHierarchySegment($questionnaire, $responseMap, 0, $rootSlug);
-    }
+		$this->processHierarchySegment($questionnaire, $responseMap, 0, $rootSlug);
+	}
 
-    protected function processHierarchySegment(array $segmentData, array $responseMap, $segmentIndex, Slug $slug = NULL)
-    {
-        $segmentName = self::$hierarchy[$segmentIndex];
-        $isLast = ($segmentIndex === count(self::$hierarchy) - 1);
+	protected function processHierarchySegment(array $segmentData, array $responseMap, $segmentIndex, Slug $slug = NULL)
+	{
+		$segmentName = self::$hierarchy[$segmentIndex];
+		$isLast = ($segmentIndex === count(self::$hierarchy) - 1);
 
-        foreach ($segmentData[$segmentName] as $subSegment)
-        {
-            $subSlug = new Slug(isset($subSegment['slug']) ? $subSegment['slug'] : NULL, $slug);
-            if ($isLast)
-            {
-                if (isset($subSegment['type']) && $subSegment['type'] === 'multi')
-                {
-                    $this->processHierarchySegment($subSegment, $responseMap, $segmentIndex, $subSlug);
-                }
-                else
-                {
-                    $response = isset($responseMap[$subSlug->getFull()]) ? $responseMap[$subSlug->getFull()] : NULL;
-                    $this->questions[] = new Question($subSlug, $subSegment, $response);
-                }
-            }
-            else
-            {
-                $this->processHierarchySegment($subSegment, $responseMap, $segmentIndex + 1, $subSlug);
-            }
-        }
-    }
+		foreach ($segmentData[$segmentName] as $subSegment) {
+			$subSlug = new Slug(isset($subSegment['slug']) ? $subSegment['slug'] : NULL, $slug);
+			if ($isLast) {
+				if (isset($subSegment['type']) && $subSegment['type'] === 'multi') {
+					$this->processHierarchySegment($subSegment, $responseMap, $segmentIndex, $subSlug);
+				} else {
+					$response = isset($responseMap[$subSlug->getFull()]) ? $responseMap[$subSlug->getFull()] : NULL;
+					$this->questions[] = new Question($subSlug, $subSegment, new $this->resultType($response === NULL ? NULL : $response->getResult()));
+				}
+			} else {
+				$this->processHierarchySegment($subSegment, $responseMap, $segmentIndex + 1, $subSlug);
+			}
+		}
+	}
 
-    public function getAssessment()
-    {
-        return $this->assessment;
-    }
+	public function getAssessment()
+	{
+		return $this->assessment;
+	}
 
-    public function getQuestions()
-    {
-        return $this->questions;
-    }
+	public function getQuestions()
+	{
+		return $this->questions;
+	}
 
-    public function getQuestionnaireVersion()
-    {
-        return $this->questionnaireVersion;
-    }
+	public function getQuestionnaireVersion()
+	{
+		return $this->questionnaireVersion;
+	}
 
 	/**
 	 * @return Question[]|null an associative array from question slugs to Question objects
