@@ -12,7 +12,7 @@ class Result
 
 	const UNANSWERED = 'nya';
 
-	private $result;
+	protected $result;
 
 	public function __construct(array $result = NULL)
 	{
@@ -97,8 +97,8 @@ class Result
 		return NULL;
 	}
 
-	private static function isAssoc($arr)
+	protected static function isAssoc($arr)
 	{
-		return array_keys($arr) !== range(0, count($arr) - 1);
+		return count($arr) > 0 && array_keys($arr) !== range(0, count($arr) - 1);
 	}
 }

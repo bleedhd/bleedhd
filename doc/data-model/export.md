@@ -96,7 +96,7 @@ There are some options that are available for all transforms, but their effect m
 
 * `inlineMeta` - `true`, `false` or mapping transform configuraton; defaults to `false`: This option is only meaningful for values extracted from assessment responses (Response, ResponseMeta, Supplement). If set, this will cause the response meta-answer to show up in the export instead of the usual empty string value if the response does not have a value for the extracted property. If necessary, the raw meta-answer value can be transformed with a mapping transform by simply treating the `inlineMeta` option like a mapping transform configuration (the type does not need to be specified).
 * `listItemSeparator` - any string; defaults to ',': This separator is used for multi-valued sources to separate the individual items.
-* `listEmptyValue` - any string; defaults to '': This value is used for multi-valued sources if the value is an empty list. This can be useful to differentiate an empty list from a missing value.
+* `listEmptyValue` - any string; defaults to '': This value is used for multi-valued sources if the value is an empty list. This can be useful to differentiate an empty list from a missing value. Also note that the `prefix` and `suffix` options described below do not apply to the empty list - if you want to use the same prefix/suffix for the empty value, then you have to make sure to include them _inline_ in your list empty value definition.
 * `prefix` - any string; defaults to '': This string is prepended to the result value.
 * `suffix` - any string; defaults to '': This string is appended to the result value.
 
