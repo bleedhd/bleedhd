@@ -10,7 +10,7 @@ use Getunik\BleedHd\AssessmentDataBundle\Export\Sources\SimpleSource;
 /**
  * Converts individual items of a multi-valued response into tuples by adding one or more supplement values.
  */
-class InlineSupplement extends BaseTransform
+class InlineSupplement extends Mapping
 {
 	private $supplements;
 	private $valueSeparator;
@@ -62,7 +62,7 @@ class InlineSupplement extends BaseTransform
 		}
 
 		foreach ($data as $value) {
-			$atoms = [$value['value']];
+			$atoms = [parent::transformData(new SimpleSource($value['value']))];
 
 			foreach ($this->supplements as $supplement) {
 

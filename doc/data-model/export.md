@@ -142,6 +142,7 @@ This transform is only meaningful for multi-valued sources, in particular answer
 ##### InlineSupplement
 This transform is only meaningful for multi-valued sources where each value in turn has one or more supplements. These are the most complex types of questionnaire responses and as such require some special consideration. With the identity transform, a multi-valued source produces an intermediate result of an array of those source values which is then flattened using the default transform configuration options. The inline supplement transform allows each value to be _enriched_ by adding one or more supplements to it. The result is basically a list of tuples of the form `['value', 'supplement 1', 'supplement 2', ...]`. This list of lists is then collapsed into a single value by separating the tuple values with a separate string and then applying the usual list type options.
 
+* `map` - see the _Mapping_ transform; this allows the mapping of the base response value.
 * `supplements` - array of supplement mapping transform configurations; defaults to empty array: Each supplements array element is its own mapping transform configuration, but instead of the `type` property, it has a `slug` property that indicates which supplement should be inlined. The supplement value is transformed using the mapping configuration and then added to the tuple.
 
 ### Directives
