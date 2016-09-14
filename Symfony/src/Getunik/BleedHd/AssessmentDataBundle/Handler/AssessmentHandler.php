@@ -200,6 +200,7 @@ class AssessmentHandler
 		$x = $builder->expr();
 		$map = self::ENTITY_TARGET_MAP;
 		$group = $x->andX();
+		$paramNames = [];
 
 		foreach ($filterSpec as $index => $condition) {
 
@@ -230,11 +231,20 @@ class AssessmentHandler
 			/** @var mixed $value */
 			extract($condition);
 
-			$paramName = ':' . implode('_', [$target, $property]);
+			$paramName = ':' . implode('_', [$target, $property]) . '_';
+			$uniqueIndex = 0;
+			while (isset($paramNames[$paramName . $uniqueIndex])) {
+				$uniqueIndex++;
+			}
+
+			$paramName = $paramName . $uniqueIndex;
+			$paramNames[$paramName] = true;
+
 			$fieldName = $map[$target] . '.' . $property;
 
 			// this only works for binary operators - at some point this should probably be extended
 			$group->add($x->{$op}($fieldName, $paramName));
+
 			$builder->setParameter($paramName, $value);
 
 		}
