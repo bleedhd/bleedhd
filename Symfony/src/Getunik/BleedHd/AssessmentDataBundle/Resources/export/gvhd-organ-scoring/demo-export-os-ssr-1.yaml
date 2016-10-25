@@ -1,5 +1,5 @@
 
-name: GVHD Organ Scoring Default
+name: GVHD Organ Scoring Demo
 type: gvhd-organ-scoring
 columns:
     -
@@ -14,6 +14,50 @@ columns:
         label: Score
         extractor: Score
         reference: total
+    -
+        label: Performance
+        extractor: Score
+        reference: category.performance.value
+    -
+        label: Skin
+        extractor: Score
+        reference: category.skin.value
+    -
+        label: Mouth
+        extractor: Score
+        reference: category.mouth.value
+    -
+        label: Eyes
+        extractor: Score
+        reference: category.eyes.value
+    -
+        label: GI Tract
+        extractor: Score
+        reference: category.giTract.value
+    -
+        label: Liver
+        extractor: Score
+        reference: category.liver.value
+    -
+        label: Lungs
+        extractor: Score
+        reference: category.lungs.value
+    -
+        label: Joints
+        extractor: Score
+        reference: category.joints.value
+    -
+        label: Genital
+        extractor: Score
+        reference: category.genital.value
+    -
+        label: Other
+        extractor: Score
+        reference: category.other.value
+    -
+        label: Overall
+        extractor: Score
+        reference: category.overall.value
     # screen 1
     -
         extractor: Response

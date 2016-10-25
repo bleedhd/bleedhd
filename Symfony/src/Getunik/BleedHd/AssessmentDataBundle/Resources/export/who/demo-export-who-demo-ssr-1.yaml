@@ -1,5 +1,5 @@
 
-name: Bleeding WHO Default
+name: Bleeding WHO Demo
 type: who
 columns:
     -
@@ -168,12 +168,22 @@ columns:
     -
         extractor: Response
         reference: who.intervention.intervention-type
+        transform:
+            type: InlineSupplement
+            supplements:
+                -
+                    slug: other
     -
         extractor: Response
         reference: who.intervention.medication-administered
     -
         extractor: Response
         reference: who.intervention.medication-type
+        transform:
+            type: InlineSupplement
+            supplements:
+                -
+                    slug: other
     # screen 11
     -
         extractor: Response

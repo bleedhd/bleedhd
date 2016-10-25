@@ -1,5 +1,5 @@
 
-name: GVHD New Diagnosis Default
+name: GVHD New Diagnosis Demo
 type: gvhd-new-diagnosis
 columns:
     -
@@ -14,10 +14,64 @@ columns:
         label: Score
         extractor: Score
         reference: total
+    -
+        label: aGVHD
+        extractor: Score
+        reference: acute
+        transform:
+            type: Mapping
+            map:
+              -
+                source: 0
+                value: 'No aGVHD'
+              -
+                source: 1
+                value: 'Grade I'
+              -
+                source: 2
+                value: 'Grade II'
+              -
+                source: 3
+                value: 'Grade III'
+              -
+                source: 4
+                value: 'Grade IV'
+              -
+                default: 42
+    -
+        label: Delay
+        extractor: Score
+        reference: acuteDelay
+    -
+        label: cGVHD
+        extractor: Score
+        reference: chronic
     # screen 1
     -
+        label: Demo Label
         extractor: Response
         reference: gvhd-new-diagnosis.acute.clinical-staging.skin
+        transform:
+            type: Mapping
+            map:
+              -
+                source: 0
+                value: 'No rash'
+              -
+                source: 1
+                value: 'Rash < 25% body surface'
+              -
+                source: 2
+                value: 'Rash 25% - 50% body surface'
+              -
+                source: 3
+                value: 'Generalized erythroderma'
+              -
+                source: 4
+                value: 'Generalized erythroderma with bullae'
+
+              -
+                default: 42
     -
         extractor: Response
         reference: gvhd-new-diagnosis.acute.clinical-staging.liver
@@ -35,17 +89,56 @@ columns:
     -
         extractor: Response
         reference: gvhd-new-diagnosis.chronic.skin.diagnostic
+        transform:
+            type: Mapping
+            map:
+              -
+                source: 'poikiloderma'
+                value: 1
+              -
+                source: 'lichen-planus-like-features'
+                value: 2
+              -
+                source: 'sclerotic-features'
+                value: 3
+              -
+                source: 'morphea-like-features'
+                value: 4
+              -
+                source: 'lichen-sclerosus-like-features'
+                value: 5
+              -
+                default: 42
     -
         extractor: Response
         reference: gvhd-new-diagnosis.chronic.skin.distinctive
         transform:
+            inlineMeta: true
             type: InlineSupplement
+            valueSeparator: '+'
+            listItemSeparator: ';'
+            listEmptyValue: 'Empty List'
             supplements:
                 -
                     slug: confirmation
+                    map:
+                      -
+                        source: pending
+                        value: 77
+                      -
+                        source: positive
+                        value: 50
+                      -
+                        source: negative
+                        value: 80
     -
         extractor: Response
         reference: gvhd-new-diagnosis.chronic.skin.other
+        transform:
+            type: BitVector
+            trueValue: 'true'
+            falseValue: 'false'
+            listItemSeparator: ';'
     -
         extractor: Response
         reference: gvhd-new-diagnosis.chronic.skin.common
@@ -63,28 +156,56 @@ columns:
         extractor: Response
         reference: gvhd-new-diagnosis.chronic.hair.distinctive
         transform:
+            inlineMeta: true
             type: InlineSupplement
+            listEmptyValue: 'Empty List'
             supplements:
                 -
                     slug: confirmation
     -
         extractor: Response
         reference: gvhd-new-diagnosis.chronic.hair.other
+        transform:
+            type: BitVector
     # screen 6
     -
         extractor: Response
         reference: gvhd-new-diagnosis.chronic.mouth.diagnostic
+        transform:
+            inlineMeta:
+                map:
+                  -
+                    source: 'nass'
+                    value: 'Not assessed'
+                  -
+                    source: 'nya'
+                    value: 'Not yet answered'
+                  -
+                    default: 'invalid'
     -
         extractor: Response
         reference: gvhd-new-diagnosis.chronic.mouth.distinctive
-        transform:
-            type: InlineSupplement
-            supplements:
-                -
-                    slug: confirmation
+    -
+        extractor: Supplement
+        reference: gvhd-new-diagnosis.chronic.mouth.distinctive.confirmation
     -
         extractor: Response
         reference: gvhd-new-diagnosis.chronic.mouth.common
+    -
+        label: gvhd-new-diagnosis.chronic.mouth.common.meta
+        extractor: MetaResponse
+        reference: gvhd-new-diagnosis.chronic.mouth.common
+        transform:
+            type: Mapping
+            map:
+              -
+                source: 'nass'
+                value: 'Not assessed'
+              -
+                source: 'nya'
+                value: 'Not yet answered'
+              -
+                default: 'invalid'
     # screen 7
     -
         extractor: Response
@@ -130,9 +251,11 @@ columns:
     -
         extractor: Response
         reference: gvhd-new-diagnosis.chronic.lungs.distinctive-dependent
-    -
-        extractor: Supplement
-        reference: gvhd-new-diagnosis.chronic.lungs.distinctive-dependent.confirmation
+        transform:
+            type: InlineSupplement
+            supplements:
+                -
+                    slug: confirmation
     -
         extractor: Response
         reference: gvhd-new-diagnosis.chronic.lungs.air-trapping

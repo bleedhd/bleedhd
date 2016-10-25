@@ -1,5 +1,5 @@
 
-name: Default
+name: GVHD Patient Self Report Default
 type: gvhd-self-report
 columns:
     -
