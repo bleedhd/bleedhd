@@ -1,3 +1,0 @@
-[submodule "Symfony/src/Getunik/BleedHd/AssessmentUIBundle/Resources/bootstrap"]
-	path = Symfony/src/Getunik/BleedHd/AssessmentUIBundle/Resources/bootstrap
-	url = git@github.com:twbs/bootstrap.git
