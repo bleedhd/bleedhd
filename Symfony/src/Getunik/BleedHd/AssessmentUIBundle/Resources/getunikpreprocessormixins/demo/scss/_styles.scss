@@ -1,0 +1,10 @@
+@import "../../_getunik_mixins.scss";
+
+
+body {
+	// replace radio buttons
+	@include replace-radio("../images/radio_unchecked.svg", "../images/radio_checked.svg", 22px, 22px, 45px, "#333333");
+
+	// replace checkboxes
+	@include replace-checkbox("../images/checkbox_unchecked.svg", "../images/checkbox_checked.svg", 22px, 22px, 30px, "#333333");
+}

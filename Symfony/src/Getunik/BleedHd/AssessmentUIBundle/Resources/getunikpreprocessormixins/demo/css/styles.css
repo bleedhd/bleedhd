@@ -1,0 +1,90 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+/* apply a natural box layout model to selected elements */
+body input.getunik-radio {
+  position: absolute;
+  z-index: -1000;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+body input.getunik-radio + label {
+  position: relative;
+  min-height: 22px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: inline-block;
+  padding-left: 45px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+body input.getunik-radio + label:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  background-image: url("../images/radio_unchecked.svg");
+  background-size: 22px 22px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+}
+body input.getunik-radio:checked + label {
+  color: "#333333";
+}
+body input.getunik-radio:checked + label:before {
+  background-image: url("../images/radio_checked.svg");
+}
+body input.getunik-checkbox {
+  position: absolute;
+  z-index: -1000;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+body input.getunik-checkbox + label {
+  min-height: 22px;
+  position: relative;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding-left: 30px;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+body input.getunik-checkbox + label:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  background-image: url("../images/checkbox_unchecked.svg");
+  background-size: 22px 22px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+}
+body input.getunik-checkbox:checked + label {
+  color: "#333333";
+}
+body input.getunik-checkbox:checked + label:before {
+  background-image: url("../images/checkbox_checked.svg");
+}

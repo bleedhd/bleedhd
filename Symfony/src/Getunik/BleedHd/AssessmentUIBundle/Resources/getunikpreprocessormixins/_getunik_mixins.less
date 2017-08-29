@@ -1,0 +1,129 @@
+
+.clearfix {
+	*zoom: 1;
+	&:before,
+	&:after {
+		display: table;
+		content: "";
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+// cross browser font smoothing
+.font-smoothing() {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* apply a natural box layout model to selected elements */
+.box-sizing(@mode: border-box) {
+	-moz-box-sizing: @mode;
+	-webkit-box-sizing: @mode;
+	box-sizing: @mode;
+}
+
+// radio button replacment with image || svg
+// markup example:
+// <input type="radio" class="getunik-radio" name="stored_customer_salutation" id="stored_customer_title_mr" value="male">
+// <label for="stored_customer_title_mr">
+//     Herr
+// </label>
+.replace-radio(@image, @imageChecked, @width: 22px, @height: 22px, @paddingLeft: 45px, @labelColorChecked: #00FF00, @selectorRadio: getunik-radio) {
+	input.@{selectorRadio} {
+		// hide original radio button
+		position: absolute;
+		z-index: -1000;
+	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	    filter: alpha(opacity=0);
+	    opacity: 0;
+
+		& + label {
+			position: relative;
+			min-height: @height;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			display: inline-block;
+			padding-left: @paddingLeft;
+			vertical-align: middle;
+			cursor: pointer;
+
+			&:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: @width;
+				height: @height;
+				background-image: url(@image);
+				background-size: @width @height;
+				background-repeat: no-repeat;
+				background-position: 0 0;
+			}
+		}
+
+		&:checked + label {
+			color: @labelColorChecked;
+
+			&:before {
+				background-image: url(@imageChecked);
+			}
+		}
+	}
+}
+
+// checkbox replacment with image || svg
+// markup example:
+// <input type="checkbox" name="checkbox-newsletter" id="checkbox-newsletter" class="getunik-checkbox" checked="checked"/>
+// <label for="checkbox-newsletter">Ich möchte das der WWF mich über seine Projekte informiert</label>
+.replace-checkbox(@image, @imageChecked, @width: 22px, @height: 22px, @paddingLeft: 30px, @labelColorChecked: #00FF00, @selectorCheckbox: getunik-checkbox) {
+	input.@{selectorCheckbox} {
+		// hide original checkbox
+		position: absolute;
+		z-index: -1000;
+	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	    filter: alpha(opacity=0);
+	    opacity: 0;
+
+		& + label {
+			min-height: @height;
+			position: relative;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			padding-left: @paddingLeft;
+			display: inline-block;
+			vertical-align: middle;
+			cursor: pointer;
+
+			&:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: @width;
+				height: @height;
+				background-image: url(@image);
+				background-size: @width @height;
+				background-repeat: no-repeat;
+				background-position: 0 0;
+			}
+		}
+
+		&:checked + label{
+			color: @labelColorChecked;
+
+			&:before {
+				background-image: url(@imageChecked);
+			}
+		}
+	}
+}
