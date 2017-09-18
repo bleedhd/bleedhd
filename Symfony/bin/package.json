@@ -6,6 +6,6 @@
   "author": "",
   "license": "BSD",
   "dependencies": {
-  	"less": "2.2.0"
+    "less": "2.2.0"
   }
 }

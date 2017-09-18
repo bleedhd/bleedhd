@@ -7,6 +7,7 @@
 !var/logs/.gitkeep
 !var/export/.gitkeep
 /var/bootstrap.php.cache
+/var/*.php
 
 # Symfony parameters
 /app/config/parameters.yml
