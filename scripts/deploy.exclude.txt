@@ -1,6 +1,9 @@
 var/
-vendor/
-src/
-web/
 bin/node_modules/
 bin/node
+src/Getunik/BleedHd/AssessmentDataBundle/Resources/export
+src/Getunik/BleedHd/AssessmentDataBundle/Resources/questionnaire
+.git/
+app/config/parameters.*
+web/app.php
+web/app_dev.php
