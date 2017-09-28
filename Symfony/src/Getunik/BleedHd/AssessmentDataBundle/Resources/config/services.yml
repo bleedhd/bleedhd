@@ -117,6 +117,7 @@ services:
         class: %getunik.bleed_hd_data.assessment_controller.class%
         arguments:
             - "@getunik.bleed_hd_data.assessment_handler"
+            - "@getunik.bleed_hd_data.questionnaire_handler"
             - "%getunik_bleed_hd_assessment_data.settings%"
         calls:
             - [setContainer, ["@service_container"]]
