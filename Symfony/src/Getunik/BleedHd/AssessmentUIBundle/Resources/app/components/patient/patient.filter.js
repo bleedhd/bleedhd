@@ -26,7 +26,7 @@
 
 		.filter('toQName', function (DomainConst) {
 			return function (name) {
-				return DomainConst.questionnaires[name] || 'unknown';
+				return DomainConst.questionnaires[name] || name;
 			};
 		})
 
