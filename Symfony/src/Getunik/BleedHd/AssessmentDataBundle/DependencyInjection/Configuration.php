@@ -31,9 +31,9 @@ class Configuration implements ConfigurationInterface
                     ->children()
                         ->append($this->getAllowedAssessmentTypesNode())
 						->variableNode('feature')->end()
-                    ->end()
-                ->end()
-            ->end();
+				->end()
+			->end()
+			->end();
 
         return $treeBuilder;
     }

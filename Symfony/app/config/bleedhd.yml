@@ -16,3 +16,4 @@ getunik_bleed_hd_assessment_data:
                 - "who"
         feature:
             export: true
+            allow_custom_assessments: false
