@@ -57,6 +57,6 @@ class QuestionnairesController extends FOSRestController
     private function supportsType($type)
     {
         $allTypes = call_user_func_array("array_merge", $this->settings['allowed_assessment_types']);
-        return array_search($type, $allTypes) !== false;
+        return array_search($type, $allTypes) !== false  || $this->settings['feature']['allow_custom_assessments'] == true;
     }
 }

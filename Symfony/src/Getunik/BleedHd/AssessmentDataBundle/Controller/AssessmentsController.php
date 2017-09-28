@@ -2,14 +2,13 @@
 
 namespace Getunik\BleedHd\AssessmentDataBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
+use Getunik\BleedHd\AssessmentDataBundle\Handler\QuestionnaireHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use FOS\RestBundle\Controller\FOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
-
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Patient;
 use Getunik\BleedHd\AssessmentDataBundle\Entity\Assessment;
 use Getunik\BleedHd\AssessmentDataBundle\Handler\AssessmentHandler;
@@ -21,11 +20,13 @@ use Getunik\BleedHd\AssessmentDataBundle\Handler\AssessmentHandler;
 class AssessmentsController extends FOSRestController
 {
     protected $assessmentHandler;
+    protected $questionnaireHandler;
     protected $settings;
 
-    public function __construct(AssessmentHandler $assessmentHandler, $settings)
+    public function __construct(AssessmentHandler $assessmentHandler, QuestionnaireHandler $questionnaireHandler, $settings)
     {
         $this->assessmentHandler = $assessmentHandler;
+        $this->questionnaireHandler = $questionnaireHandler;
         $this->settings = $settings;
     }
 
@@ -104,6 +105,7 @@ class AssessmentsController extends FOSRestController
     private function supportsType($type)
     {
         $allTypes = call_user_func_array("array_merge", $this->settings['allowed_assessment_types']);
-        return array_search($type, $allTypes) !== false;
+        return $this->questionnaireHandler->getQuestionnaireByName($type) !== NULL &&
+			(array_search($type, $allTypes) !== false || $this->settings['feature']['allow_custom_assessments'] == true);
     }
 }

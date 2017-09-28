@@ -23,6 +23,10 @@ class ScoreCalculatorFactory
 		});
 		$className = 'Getunik\BleedHd\AssessmentDataBundle\Scoring\Calculator' . implode($parts);
 
+		if (!class_exists($className)) {
+			$className = CalculatorNone::class;
+		}
+
 		return new $className($this->logger);
 	}
 }

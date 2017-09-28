@@ -37,3 +37,9 @@ monolog:
 
 assetic:
     use_controller: "%use_assetic_controller%"
+
+getunik_bleed_hd_assessment_data:
+    settings:
+        feature:
+            export: true
+            allow_custom_assessments: true

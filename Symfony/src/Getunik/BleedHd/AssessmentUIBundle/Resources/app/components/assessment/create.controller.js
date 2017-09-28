@@ -38,7 +38,7 @@
 					allowed = allowed || (group.indexOf(type) >= 0);
 				});
 
-				return allowed;
+				return allowed || this.BleedHdConfig.feature.allow_custom_assessments;
 			},
 			registerForm: function (formController) {
 				this.formController = formController;

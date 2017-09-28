@@ -13,3 +13,18 @@
 <assessment-form assessment="ctlAssessment.assessment" register="ctlAssessment.registerForm(formController)"></assessment-form>
 
 <div ng-include="ctlAssessment.assessmentGroupCreateTemplate"></div>
+
+<panel ng-if="env.debug" heading="Custom Assessment">
+
+	<div class="row">
+
+		<div class="col-xs-12 col-sm-6">
+
+			<input type="text" ng-model="customAssessment" /><br />
+			<a href="" ng-click="ctlAssessment.createAndStart(customAssessment)" class="btn btn-default bleed-btn-spacing">Create</a>
+
+		</div>
+
+	</div>
+
+</panel>
